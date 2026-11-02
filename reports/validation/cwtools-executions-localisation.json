@@ -1,0 +1,30 @@
+[
+  {
+    "name": "kaiserreich",
+    "command": [
+      "$CORPORA/cwtools",
+      "loc",
+      "$CORPORA/Kaiserreich",
+      "--report-type",
+      "json",
+      "--output-file",
+      "$CORPORA/reports/kaiserreich-cwtools-localisation.json"
+    ],
+    "exitCode": 1,
+    "durationMs": 642
+  },
+  {
+    "name": "tno",
+    "command": [
+      "$CORPORA/cwtools",
+      "loc",
+      "$CORPORA/TNO",
+      "--report-type",
+      "json",
+      "--output-file",
+      "$CORPORA/reports/tno-cwtools-localisation.json"
+    ],
+    "exitCode": 1,
+    "durationMs": 751
+  }
+]

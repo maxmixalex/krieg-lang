@@ -1,0 +1,36 @@
+[project]
+site_name = "Krieg"
+site_description = "用严格的 TypeScript 子集编写 Hearts of Iron IV 模组"
+site_url = "https://maxmixalex.github.io/krieg-lang/"
+repo_url = "https://github.com/maxmixalex/krieg-lang"
+repo_name = "maxmixalex/krieg-lang"
+docs_dir = "docs"
+site_dir = "site"
+nav = [
+  { "开始" = [
+    { "Krieg 是什么" = "index.md" },
+    { "第一个模组" = "getting-started.md" },
+    { "编辑器与格式化" = "editor.md" },
+  ] },
+  { "编写模组" = [
+    { "语言与执行模型" = "language.md" },
+    { "作用域、条件与效果" = "scopes.md" },
+    { "项目、资源与依赖" = "projects.md" },
+    { "导入原生脚本" = "native-import.md" },
+  ] },
+  { "参考" = [
+    { "命令行" = "cli.md" },
+    { "验证与兼容性" = "validation.md" },
+    { "参与开发" = "contributing.md" },
+  ] },
+]
+
+[project.theme]
+language = "zh"
+features = ["navigation.sections", "navigation.top", "content.code.copy"]
+
+[project.markdown_extensions]
+admonition = {}
+pymdownx.highlight = {}
+pymdownx.superfences = {}
+toc = { permalink = true }

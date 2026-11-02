@@ -1,0 +1,36 @@
+name: Validate local corpus
+
+# Only a maintainer can dispatch this on main. The dataset stays on the runner.
+# Register a trusted Linux runner with the krieg-corpus label before using it.
+on:
+  workflow_dispatch:
+    inputs:
+      corpus_root:
+        description: Absolute path to the locally installed game or mod corpus
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: local-corpus
+  cancel-in-progress: false
+
+jobs:
+  corpus:
+    if: github.ref == 'refs/heads/main'
+    runs-on: [self-hosted, linux, krieg-corpus]
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - run: npm ci
+      - run: npm run build
+      - name: Parse and verify the local corpus
+        env:
+          CORPUS_ROOT: ${{ inputs.corpus_root }}
+        run: node dist/cli.js corpus "$CORPUS_ROOT" --out "$RUNNER_TEMP/krieg-corpus-report.json"

@@ -1,0 +1,13 @@
+node_modules/
+dist/
+build/
+site/
+.venv/
+.cache/
+coverage/
+*.tgz
+package-lock.json
+data/
+**/.krieg/
+src/schema/hoi4-schema.json
+src/sdk/commands.ts

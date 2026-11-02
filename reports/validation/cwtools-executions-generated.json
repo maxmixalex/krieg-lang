@@ -1,0 +1,74 @@
+[
+  {
+    "name": "vanilla",
+    "phase": "generated",
+    "command": [
+      "$CORPORA/cwtools",
+      "validate",
+      "--game",
+      "hoi4",
+      "--directory",
+      "$CORPORA/generated/vanilla",
+      "--rules",
+      "$CORPORA/cwtools-hoi4-config-master/cwtools-hoi4-config-master",
+      "--report-type",
+      "json",
+      "--output-file",
+      "$CORPORA/reports/vanilla-cwtools-generated.json"
+    ],
+    "exitCode": 1,
+    "durationMs": 1900,
+    "binaryVersion": "cwtools 2.3.0",
+    "binarySha256": "06161387481cffb9c593cda101994748f0e7640b3154af552b96843bfb5ba665"
+  },
+  {
+    "name": "kaiserreich",
+    "phase": "generated",
+    "command": [
+      "$CORPORA/cwtools",
+      "validate",
+      "--game",
+      "hoi4",
+      "--directory",
+      "$CORPORA/generated/kaiserreich",
+      "--rules",
+      "$CORPORA/cwtools-hoi4-config-master/cwtools-hoi4-config-master",
+      "--report-type",
+      "json",
+      "--output-file",
+      "$CORPORA/reports/kaiserreich-cwtools-generated.json",
+      "--vanilla",
+      "$CORPORA/Hearts of Iron IV",
+      "--no-vanilla-cache"
+    ],
+    "exitCode": 1,
+    "durationMs": 4723,
+    "binaryVersion": "cwtools 2.3.0",
+    "binarySha256": "06161387481cffb9c593cda101994748f0e7640b3154af552b96843bfb5ba665"
+  },
+  {
+    "name": "tno",
+    "phase": "generated",
+    "command": [
+      "$CORPORA/cwtools",
+      "validate",
+      "--game",
+      "hoi4",
+      "--directory",
+      "$CORPORA/generated/tno",
+      "--rules",
+      "$CORPORA/cwtools-hoi4-config-master/cwtools-hoi4-config-master",
+      "--report-type",
+      "json",
+      "--output-file",
+      "$CORPORA/reports/tno-cwtools-generated.json",
+      "--vanilla",
+      "$CORPORA/Hearts of Iron IV",
+      "--no-vanilla-cache"
+    ],
+    "exitCode": 1,
+    "durationMs": 4605,
+    "binaryVersion": "cwtools 2.3.0",
+    "binarySha256": "06161387481cffb9c593cda101994748f0e7640b3154af552b96843bfb5ba665"
+  }
+]

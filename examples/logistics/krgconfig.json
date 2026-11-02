@@ -1,0 +1,17 @@
+{
+  "$schema": "../../schemas/krgconfig.schema.json",
+  "name": "krieg-logistics",
+  "sourceDir": "src",
+  "outDir": "build/mod",
+  "mod": {
+    "name": "Krieg Logistics Example",
+    "version": "0.1.0",
+    "supportedVersion": "1.19.*",
+    "tags": ["Gameplay", "National Focuses"]
+  },
+  "world": { "countries": ["GER", "FRA"], "states": [64] },
+  "localisation": [
+    { "language": "english", "from": "localisation/english.json" },
+    { "language": "simp_chinese", "from": "localisation/simp_chinese.json" }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "krieg_logistics_tree": "Logistics planning",
+  "krieg_planning": "Coordinated planning",
+  "krieg_planning_desc": "A small, reusable national spirit authored in Krieg.",
+  "krieg_logistics_category": "Logistics planning",
+  "krieg_logistics_begin": "Prepare a logistics report",
+  "krieg_logistics_begin_desc": "Spend political power to schedule a report for tomorrow.",
+  "krieg_logistics.1.t": "The planning report",
+  "krieg_logistics.1.d": "Our planners offer a choice between political coordination and public mobilisation.",
+  "krieg_logistics.1.a": "Coordinate the administration.",
+  "krieg_logistics.1.b": "Mobilise public support.",
+  "krieg_logistics_prepare": "Establish the planning office",
+  "krieg_logistics_prepare_desc": "Coordinate national construction.",
+  "krieg_logistics_infrastructure": "Develop the transport plan",
+  "krieg_logistics_infrastructure_desc": "Apply the shared planning reward."
+}

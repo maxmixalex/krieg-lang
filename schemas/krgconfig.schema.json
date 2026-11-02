@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maxmixalex/krieg-lang/raw/main/schemas/krgconfig.schema.json",
+  "title": "Krieg project",
+  "description": "A statically compiled HOI4 mod and its assets.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "name": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]*$" },
+    "sourceDir": { "type": "string", "default": "src" },
+    "outDir": { "type": "string", "default": "build/mod" },
+    "strictAssets": { "type": "boolean", "default": true },
+    "mod": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "default": "0.1.0" },
+        "supportedVersion": { "type": "string", "default": "1.19.*" },
+        "tags": { "$ref": "#/$defs/strings" },
+        "replacePath": { "$ref": "#/$defs/strings" },
+        "dependencies": { "$ref": "#/$defs/strings" },
+        "picture": { "type": "string" },
+        "userDir": { "type": "string" }
+      }
+    },
+    "dependencies": {
+      "$ref": "#/$defs/strings",
+      "description": "Installed npm Krieg packages or local project paths, in load order."
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["from", "to"],
+        "properties": {
+          "from": { "type": "string" },
+          "to": { "type": "string" },
+          "override": { "type": "boolean", "default": false }
+        }
+      }
+    },
+    "localisation": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["from", "language"],
+        "properties": {
+          "from": { "type": "string" },
+          "language": {
+            "enum": [
+              "english",
+              "french",
+              "german",
+              "spanish",
+              "braz_por",
+              "polish",
+              "russian",
+              "japanese",
+              "simp_chinese",
+              "korean"
+            ]
+          }
+        }
+      }
+    },
+    "gameRoots": {
+      "type": "array",
+      "description": "Game and mod directories in effective load order. These are read, never copied into the output.",
+      "items": {
+        "oneOf": [
+          { "type": "string", "minLength": 1 },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["path"],
+            "properties": {
+              "path": { "type": "string", "minLength": 1 },
+              "replacePath": { "$ref": "#/$defs/strings" }
+            }
+          }
+        ]
+      }
+    },
+    "world": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "countries": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[A-Z][A-Z0-9]{2}$" }
+        },
+        "states": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "integer", "minimum": 1 }
+        }
+      }
+    }
+  },
+  "$defs": { "strings": { "type": "array", "items": { "type": "string", "minLength": 1 } } }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "krieg-logistics-example",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "check": "krieg check",
+    "build": "krieg build"
+  },
+  "devDependencies": {
+    "krieg-lang": "file:../.."
+  }
+}

@@ -1,0 +1,65 @@
+[
+  {
+    "name": "first-mod",
+    "exitCode": 0,
+    "diagnostics": [],
+    "durationMs": 1746,
+    "command": [
+      "$CORPORA/cwtools",
+      "validate",
+      "--game",
+      "hoi4",
+      "--directory",
+      "$REPO/examples/first-mod/build/mod",
+      "--rules",
+      "$CORPORA/cwtools-hoi4-config-master/cwtools-hoi4-config-master",
+      "--vanilla",
+      "$CORPORA/Hearts of Iron IV",
+      "--no-vanilla-cache",
+      "--report-type",
+      "json",
+      "--output-file",
+      "$CORPORA/reports/first-mod-cwtools-example.json"
+    ]
+  },
+  {
+    "name": "logistics",
+    "exitCode": 0,
+    "diagnostics": [
+      {
+        "file": "examples/logistics/build/mod/common/decisions/krieg_krieg_logistics_category.txt",
+        "line": 10,
+        "severity": "Warning",
+        "code": "CW251",
+        "message": "This AND is unnecessary",
+        "hash": "bcd1b57ea5899cfb"
+      },
+      {
+        "file": "examples/logistics/build/mod/common/scripted_triggers/krieg_krieg_planning_ready.txt",
+        "line": 2,
+        "severity": "Warning",
+        "code": "CW251",
+        "message": "This AND is unnecessary",
+        "hash": "b3d4754d6b0e80f1"
+      }
+    ],
+    "durationMs": 1405,
+    "command": [
+      "$CORPORA/cwtools",
+      "validate",
+      "--game",
+      "hoi4",
+      "--directory",
+      "$REPO/examples/logistics/build/mod",
+      "--rules",
+      "$CORPORA/cwtools-hoi4-config-master/cwtools-hoi4-config-master",
+      "--vanilla",
+      "$CORPORA/Hearts of Iron IV",
+      "--no-vanilla-cache",
+      "--report-type",
+      "json",
+      "--output-file",
+      "$CORPORA/reports/logistics-cwtools-example.json"
+    ]
+  }
+]

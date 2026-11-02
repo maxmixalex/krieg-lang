@@ -1,0 +1,16 @@
+{
+  "krieg_logistics_tree": "后勤规划",
+  "krieg_planning": "协调规划",
+  "krieg_planning_desc": "一个使用 Krieg 编写的可复用民族精神。",
+  "krieg_logistics_category": "后勤规划",
+  "krieg_logistics_begin": "准备后勤报告",
+  "krieg_logistics_begin_desc": "花费政治点数，于明天提交报告。",
+  "krieg_logistics.1.t": "规划报告",
+  "krieg_logistics.1.d": "规划人员提出了两种选择：协调行政工作，或动员公众支持。",
+  "krieg_logistics.1.a": "协调行政工作。",
+  "krieg_logistics.1.b": "动员公众支持。",
+  "krieg_logistics_prepare": "建立规划办公室",
+  "krieg_logistics_prepare_desc": "协调国家建设。",
+  "krieg_logistics_infrastructure": "制定运输计划",
+  "krieg_logistics_infrastructure_desc": "执行可复用的规划奖励。"
+}

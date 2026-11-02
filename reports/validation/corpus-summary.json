@@ -1,0 +1,1186 @@
+{
+  "formatVersion": 1,
+  "generatedAt": "2026-11-02T13:24:37.559529+00:00",
+  "validationLayers": {
+    "inputIntegrity": "Every extracted file matched the named uploaded archive member byte-for-byte.",
+    "parse": "Ordered PDX syntax with source diagnostics.",
+    "canonicalSemanticRoundtrip": "parse -> canonical emit -> parse; compare ordered properties, bare/quoted token contents, operators, colors, duplicates.",
+    "constructorStaticRecompile": "Emit editable .krg.ts constructor calls -> parse TypeScript -> statically lower allowed constructors -> compare ordered semantic AST. Never evaluates JavaScript.",
+    "fullTypeScript": "Actual strict TypeScript compiler API plus static lowering and ordered-PDX semantic-hash comparison; separate isolated worker run (see full-typescript-summary.json).",
+    "cwtools": "Execute supplied CWTools CLI 2.3.0 against original and regenerated trees, using identical CWT rules and original vanilla base for mods.",
+    "engine": "Not run."
+  },
+  "toolchain": {
+    "node": "24.22.1",
+    "typescript": "5.9.3",
+    "cwtoolsVersion": "2.3.0",
+    "cwtoolsSha256": "06161387481cffb9c593cda101994748f0e7640b3154af552b96843bfb5ba665",
+    "schema": {
+      "source": "https://github.com/cwtools/cwtools-hoi4-config (uploaded snapshot)",
+      "sha256": "4b3e365db80c5bb0cc7ce88d7ca58c37dc7bf66c31667e712605413218c8003c",
+      "files": 111
+    }
+  },
+  "inputIntegrity": [
+    {
+      "name": "Hearts of Iron IV",
+      "archiveSha256": "b5588ab8dc7ced04a3b99c04a8bfeab8286ca955f592f79c491d5b0216efecd5",
+      "files": 5479,
+      "bytes": 248588581,
+      "manifestSha256": "a47fdddde674622b0af370407e8fa58227f3f0c3017190e9cc3a7ff06a2eb74f",
+      "missing": [],
+      "changed": [],
+      "extra": [],
+      "elapsedSeconds": 1.54
+    },
+    {
+      "name": "Kaiserreich",
+      "archiveSha256": "15315e6852a228a6b75e75b85d4508c0e43fc6e908175cbc6fc6755ce83a641d",
+      "files": 6144,
+      "bytes": 175783492,
+      "manifestSha256": "84137a93711da0ac44ccd46038bb5edfca179edbd900fd2bf2a9c2a004f9df32",
+      "missing": [],
+      "changed": [],
+      "extra": [],
+      "elapsedSeconds": 2.1
+    },
+    {
+      "name": "TNO",
+      "archiveSha256": "ac5ae705e3c877a726a680b74fddff9cbfa130ecc72b3ac937c941b5af7e8a3b",
+      "files": 8287,
+      "bytes": 258456745,
+      "manifestSha256": "d45aa518e61e8409acf8f287f2f188ef55a432293a6798a71b0484ef4f0dfb5d",
+      "missing": [],
+      "changed": [],
+      "extra": [],
+      "elapsedSeconds": 3.45
+    }
+  ],
+  "datasets": [
+    {
+      "name": "vanilla",
+      "inventory": {
+        "files": 5479,
+        "bytes": 248588581,
+        "sha256": "a47fdddde674622b0af370407e8fa58227f3f0c3017190e9cc3a7ff06a2eb74f",
+        "byClass": {
+          "pdx": 5332,
+          "documentation": 61,
+          "other": 5,
+          "credits": 1,
+          "binary-asset": 72,
+          "map-table": 8
+        },
+        "byExtension": {
+          ".txt": 4722,
+          ".md": 50,
+          ".lua": 3,
+          ".json": 1,
+          ".html": 11,
+          ".gui": 453,
+          ".gfx": 162,
+          ".info": 1,
+          ".dds": 63,
+          ".sfx": 1,
+          ".csv": 2,
+          ".bmp": 9,
+          ".map": 1
+        },
+        "archiveReconciled": true
+      },
+      "structuralLevels": {
+        "parse": {
+          "attempted": 5332,
+          "passed": 5311,
+          "failed": 21,
+          "skipped": 0
+        },
+        "canonicalSemanticRoundtrip": {
+          "attempted": 5311,
+          "passed": 5311,
+          "failed": 0,
+          "skipped": 21
+        },
+        "constructorStaticRecompile": {
+          "attempted": 5311,
+          "passed": 5311,
+          "failed": 0,
+          "skipped": 21
+        },
+        "typescriptCompile": {
+          "attempted": 0,
+          "passed": 0,
+          "failed": 0,
+          "skipped": 5332
+        },
+        "ancillarySyntax": {
+          "attempted": 8,
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "structuralDurationMs": 85525,
+      "parseFailures": [
+        {
+          "path": "common/doctrines/subdoctrines/sea/navy_submarine_doctrines.txt",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 407,
+              "column": 5
+            }
+          ]
+        },
+        {
+          "path": "common/focus_inlay_windows/ast_right_vs_left_campaign_empty_inlay_window.txt",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 19,
+              "column": 5
+            }
+          ]
+        },
+        {
+          "path": "common/ideas/SOV.txt",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 10290,
+              "column": 1
+            }
+          ]
+        },
+        {
+          "path": "common/ideas/persia.txt",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 1815,
+              "column": 1
+            }
+          ]
+        },
+        {
+          "path": "common/ideas/switzerland.txt",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 1065,
+              "column": 1
+            }
+          ]
+        },
+        {
+          "path": "common/military_industrial_organization/organizations/BRA_organization.txt",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 179,
+              "column": 1
+            }
+          ]
+        },
+        {
+          "path": "common/national_focus/TSR_lingguang_incident_joint_branch.txt",
+          "diagnostics": [
+            {
+              "code": "PDX_UNEXPECTED_CLOSE",
+              "message": "Unexpected closing brace",
+              "line": 469,
+              "column": 1
+            }
+          ]
+        },
+        {
+          "path": "common/scripted_guis/AST_cabinet_trust_scripted_gui.txt",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 25,
+              "column": 1
+            }
+          ]
+        },
+        {
+          "path": "common/units/names_divisions/BRA_names_divisions.txt",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 338,
+              "column": 1
+            }
+          ]
+        },
+        {
+          "path": "common/units/names_divisions/FIN_names_divisions.txt",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 768,
+              "column": 1
+            },
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 768,
+              "column": 1
+            },
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 768,
+              "column": 1
+            },
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 768,
+              "column": 1
+            },
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 768,
+              "column": 1
+            },
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 768,
+              "column": 1
+            }
+          ]
+        },
+        {
+          "path": "history/countries/NOR - Norway.txt",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 440,
+              "column": 1
+            }
+          ]
+        },
+        {
+          "path": "history/units/AST_1936.txt",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 175,
+              "column": 1
+            }
+          ]
+        },
+        {
+          "path": "history/units/FRA_1936.txt",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 997,
+              "column": 2
+            }
+          ]
+        },
+        {
+          "path": "history/units/FRA_1936_nsb.txt",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 998,
+              "column": 2
+            }
+          ]
+        },
+        {
+          "path": "history/units/FRA_1939_naval_legacy.txt",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 432,
+              "column": 2
+            }
+          ]
+        },
+        {
+          "path": "history/units/FRA_1939_naval_mtg.txt",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 459,
+              "column": 2
+            }
+          ]
+        },
+        {
+          "path": "interface/backend.gui",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 215,
+              "column": 2
+            }
+          ]
+        },
+        {
+          "path": "interface/ger_monroe_doctrine_scripted_gui.gui",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 64,
+              "column": 1
+            }
+          ]
+        },
+        {
+          "path": "interface/powerbalanceview.gfx",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 540,
+              "column": 2
+            }
+          ]
+        },
+        {
+          "path": "interface/sia_movie_theater_campaigns_scripted_gui.gui",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 50,
+              "column": 1
+            }
+          ]
+        },
+        {
+          "path": "interface/sov_propaganda_campaigns_scripted_gui.gui",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 77,
+              "column": 1
+            }
+          ]
+        }
+      ],
+      "ancillaryFailures": [],
+      "cwtools": {
+        "original": {
+          "total": 54449,
+          "bySeverity": {
+            "Warning": 38389,
+            "Information": 15495,
+            "Error": 565
+          },
+          "byCode": {
+            "(parse)": 27,
+            "CW100": 36590,
+            "CW105": 17,
+            "CW121": 327,
+            "CW223": 2557,
+            "CW240": 99,
+            "CW242": 526,
+            "CW248": 2,
+            "CW251": 927,
+            "CW262": 286,
+            "CW263": 119,
+            "CW264": 5,
+            "CW267": 3,
+            "CW272": 12644,
+            "CW280": 297,
+            "CW281": 23
+          }
+        },
+        "generated": {
+          "total": 54449,
+          "bySeverity": {
+            "Warning": 38389,
+            "Information": 15495,
+            "Error": 565
+          },
+          "byCode": {
+            "(parse)": 27,
+            "CW100": 36590,
+            "CW105": 17,
+            "CW121": 327,
+            "CW223": 2557,
+            "CW240": 99,
+            "CW242": 526,
+            "CW248": 2,
+            "CW251": 927,
+            "CW262": 286,
+            "CW263": 119,
+            "CW264": 5,
+            "CW267": 3,
+            "CW272": 12644,
+            "CW280": 297,
+            "CW281": 23
+          }
+        },
+        "added": [],
+        "removed": [],
+        "comparison": "Relative-path + severity + code + message multiset; excludes diagnostic line/hash fields but retains line numbers embedded in messages.",
+        "baseGame": null
+      },
+      "localisation": {
+        "files": 0,
+        "cwtools": "not applicable: no localisation files supplied"
+      },
+      "fullTypeScript": {
+        "status": "complete",
+        "distSha256": "5376e9fed76adec39a9a82006cbf9b3ee0d4675d84612e4193fc01a85fb5bf46",
+        "durationMs": 315320,
+        "levels": {
+          "parse": {
+            "attempted": 5332,
+            "passed": 5311,
+            "failed": 21,
+            "skipped": 0
+          },
+          "canonicalSemanticRoundtrip": {
+            "attempted": 5311,
+            "passed": 5311,
+            "failed": 0,
+            "skipped": 21
+          },
+          "constructorStaticRecompile": {
+            "attempted": 0,
+            "passed": 0,
+            "failed": 0,
+            "skipped": 5332
+          },
+          "typescriptCompile": {
+            "attempted": 5311,
+            "passed": 5311,
+            "failed": 0,
+            "skipped": 21
+          },
+          "ancillarySyntax": {
+            "attempted": 8,
+            "passed": 8,
+            "failed": 0,
+            "skipped": 0
+          }
+        },
+        "validation": "Actual strict TypeScript compiler program, static AST lowering, exact output path, and SHA-256 comparison of ordered semantic PDX. Authored JavaScript is never executed.",
+        "constructorPass": "Standalone constructor interpreter skipped in this run because full TypeScript compilation supersedes it. Earlier independent structural run remains in structuralLevels."
+      }
+    },
+    {
+      "name": "kaiserreich",
+      "inventory": {
+        "files": 6144,
+        "bytes": 175783492,
+        "sha256": "84137a93711da0ac44ccd46038bb5edfca179edbd900fd2bf2a9c2a004f9df32",
+        "byClass": {
+          "pdx": 5041,
+          "documentation": 22,
+          "other": 4,
+          "credits": 1,
+          "localisation": 1076
+        },
+        "byExtension": {
+          ".txt": 4382,
+          ".md": 22,
+          ".info": 2,
+          ".lua": 2,
+          ".gfx": 444,
+          ".gui": 216,
+          ".yml": 1076
+        }
+      },
+      "structuralLevels": {
+        "parse": {
+          "attempted": 5041,
+          "passed": 5041,
+          "failed": 0,
+          "skipped": 0
+        },
+        "canonicalSemanticRoundtrip": {
+          "attempted": 5041,
+          "passed": 5041,
+          "failed": 0,
+          "skipped": 0
+        },
+        "constructorStaticRecompile": {
+          "attempted": 5041,
+          "passed": 5041,
+          "failed": 0,
+          "skipped": 0
+        },
+        "typescriptCompile": {
+          "attempted": 0,
+          "passed": 0,
+          "failed": 0,
+          "skipped": 5041
+        },
+        "ancillarySyntax": {
+          "attempted": 1076,
+          "passed": 1076,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "structuralDurationMs": 54971,
+      "parseFailures": [],
+      "ancillaryFailures": [],
+      "cwtools": {
+        "original": {
+          "total": 51883,
+          "bySeverity": {
+            "Warning": 1618,
+            "Information": 2824,
+            "Error": 47441
+          },
+          "byCode": {
+            "CW100": 1360,
+            "CW105": 1,
+            "CW113": 47246,
+            "CW121": 14,
+            "CW122": 1,
+            "CW223": 2735,
+            "CW225": 161,
+            "CW240": 2,
+            "CW242": 18,
+            "CW244": 6,
+            "CW251": 198,
+            "CW263": 4,
+            "CW267": 1,
+            "CW272": 82,
+            "CW275": 24,
+            "CW276": 1,
+            "CW280": 6,
+            "CW281": 3,
+            "CW500": 20
+          }
+        },
+        "generated": {
+          "total": 51883,
+          "bySeverity": {
+            "Warning": 1618,
+            "Information": 2824,
+            "Error": 47441
+          },
+          "byCode": {
+            "CW100": 1360,
+            "CW105": 1,
+            "CW113": 47246,
+            "CW121": 14,
+            "CW122": 1,
+            "CW223": 2735,
+            "CW225": 161,
+            "CW240": 2,
+            "CW242": 18,
+            "CW244": 6,
+            "CW251": 198,
+            "CW263": 4,
+            "CW267": 1,
+            "CW272": 82,
+            "CW275": 24,
+            "CW276": 1,
+            "CW280": 6,
+            "CW281": 3,
+            "CW500": 20
+          }
+        },
+        "added": [],
+        "removed": [],
+        "comparison": "Relative-path + severity + code + message multiset; excludes diagnostic line/hash fields but retains line numbers embedded in messages.",
+        "baseGame": "Original supplied vanilla snapshot"
+      },
+      "localisation": {
+        "files": 1076,
+        "cwtools": {
+          "total": 638,
+          "bySeverity": {
+            "Error": 613,
+            "Warning": 25
+          },
+          "byCode": {
+            "(parse)": 166,
+            "CW225": 447,
+            "CW275": 24,
+            "CW276": 1
+          }
+        }
+      },
+      "fullTypeScript": {
+        "status": "complete",
+        "distSha256": "5376e9fed76adec39a9a82006cbf9b3ee0d4675d84612e4193fc01a85fb5bf46",
+        "durationMs": 255685,
+        "levels": {
+          "parse": {
+            "attempted": 5041,
+            "passed": 5041,
+            "failed": 0,
+            "skipped": 0
+          },
+          "canonicalSemanticRoundtrip": {
+            "attempted": 5041,
+            "passed": 5041,
+            "failed": 0,
+            "skipped": 0
+          },
+          "constructorStaticRecompile": {
+            "attempted": 0,
+            "passed": 0,
+            "failed": 0,
+            "skipped": 5041
+          },
+          "typescriptCompile": {
+            "attempted": 5041,
+            "passed": 5041,
+            "failed": 0,
+            "skipped": 0
+          },
+          "ancillarySyntax": {
+            "attempted": 1076,
+            "passed": 1076,
+            "failed": 0,
+            "skipped": 0
+          }
+        },
+        "validation": "Actual strict TypeScript compiler program, static AST lowering, exact output path, and SHA-256 comparison of ordered semantic PDX. Authored JavaScript is never executed.",
+        "constructorPass": "Standalone constructor interpreter skipped in this run because full TypeScript compilation supersedes it. Earlier independent structural run remains in structuralLevels."
+      }
+    },
+    {
+      "name": "tno",
+      "inventory": {
+        "files": 8287,
+        "bytes": 258456745,
+        "sha256": "d45aa518e61e8409acf8f287f2f188ef55a432293a6798a71b0484ef4f0dfb5d",
+        "byClass": {
+          "pdx": 7207,
+          "other": 10,
+          "documentation": 13,
+          "credits": 1,
+          "binary-asset": 2,
+          "localisation": 1054
+        },
+        "byExtension": {
+          ".txt": 6366,
+          "(none)": 1,
+          ".info": 6,
+          ".md": 13,
+          ".lua": 3,
+          ".mod": 1,
+          ".gui": 373,
+          ".gfx": 467,
+          ".dds": 1,
+          ".py": 1,
+          ".yml": 1054,
+          ".png": 1
+        }
+      },
+      "structuralLevels": {
+        "parse": {
+          "attempted": 7207,
+          "passed": 7196,
+          "failed": 11,
+          "skipped": 0
+        },
+        "canonicalSemanticRoundtrip": {
+          "attempted": 7196,
+          "passed": 7196,
+          "failed": 0,
+          "skipped": 11
+        },
+        "constructorStaticRecompile": {
+          "attempted": 7196,
+          "passed": 7196,
+          "failed": 0,
+          "skipped": 11
+        },
+        "typescriptCompile": {
+          "attempted": 0,
+          "passed": 0,
+          "failed": 0,
+          "skipped": 7207
+        },
+        "ancillarySyntax": {
+          "attempted": 1054,
+          "passed": 1052,
+          "failed": 2,
+          "skipped": 0
+        }
+      },
+      "structuralDurationMs": 74897,
+      "parseFailures": [
+        {
+          "path": "common/decisions/TNO_forpol_JAP.txt",
+          "diagnostics": [
+            {
+              "code": "PDX_MISSING_VALUE",
+              "message": "Missing value after factor =",
+              "line": 6527,
+              "column": 11
+            }
+          ]
+        },
+        {
+          "path": "common/ideas/TNO_Brazil_Dummy.txt",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 1699,
+              "column": 1
+            }
+          ]
+        },
+        {
+          "path": "common/scripted_localisation/TNO_MEX_scripted_localisation.txt",
+          "diagnostics": [
+            {
+              "code": "PDX_MISSING_VALUE",
+              "message": "Missing value after localization_key =",
+              "line": 279,
+              "column": 20
+            },
+            {
+              "code": "PDX_MISSING_VALUE",
+              "message": "Missing value after localization_key =",
+              "line": 318,
+              "column": 20
+            },
+            {
+              "code": "PDX_MISSING_VALUE",
+              "message": "Missing value after localization_key =",
+              "line": 357,
+              "column": 20
+            },
+            {
+              "code": "PDX_MISSING_VALUE",
+              "message": "Missing value after localization_key =",
+              "line": 396,
+              "column": 20
+            },
+            {
+              "code": "PDX_MISSING_VALUE",
+              "message": "Missing value after localization_key =",
+              "line": 435,
+              "column": 20
+            },
+            {
+              "code": "PDX_MISSING_VALUE",
+              "message": "Missing value after localization_key =",
+              "line": 474,
+              "column": 20
+            },
+            {
+              "code": "PDX_MISSING_VALUE",
+              "message": "Missing value after localization_key =",
+              "line": 513,
+              "column": 20
+            },
+            {
+              "code": "PDX_MISSING_VALUE",
+              "message": "Missing value after localization_key =",
+              "line": 552,
+              "column": 20
+            },
+            {
+              "code": "PDX_MISSING_VALUE",
+              "message": "Missing value after localization_key =",
+              "line": 5672,
+              "column": 20
+            }
+          ]
+        },
+        {
+          "path": "events/TNO_endo_exo.txt",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 287,
+              "column": 2
+            }
+          ]
+        },
+        {
+          "path": "history/units/SMO_Collapse.TXT",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 44,
+              "column": 2
+            }
+          ]
+        },
+        {
+          "path": "interface/Technologies/Technologies_Country_SWE.gfx",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 917,
+              "column": 2
+            }
+          ]
+        },
+        {
+          "path": "interface/Ukraine/TNO_Ukraine_FUK_election.gui",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 207,
+              "column": 1
+            },
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 207,
+              "column": 1
+            }
+          ]
+        },
+        {
+          "path": "interface/backend.gui",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 215,
+              "column": 2
+            }
+          ]
+        },
+        {
+          "path": "interface/brazil_gui/TNO_brazil_map.gui",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 3027,
+              "column": 2
+            }
+          ]
+        },
+        {
+          "path": "interface/equipmentdesigner/tanks/tank_chassis_MBT_jap.gui",
+          "diagnostics": [
+            {
+              "code": "PDX_UNCLOSED_BLOCK",
+              "message": "Unclosed block; expected }",
+              "line": 382,
+              "column": 1
+            }
+          ]
+        },
+        {
+          "path": "interface/special_projects/facility.gui",
+          "diagnostics": [
+            {
+              "code": "PDX_UNEXPECTED_CLOSE",
+              "message": "Unexpected closing brace",
+              "line": 674,
+              "column": 2
+            },
+            {
+              "code": "PDX_UNEXPECTED_CLOSE",
+              "message": "Unexpected closing brace",
+              "line": 677,
+              "column": 1
+            }
+          ]
+        }
+      ],
+      "ancillaryFailures": [
+        {
+          "path": "localisation/english/TNO_Asturias_l_english.yml",
+          "diagnostics": [
+            {
+              "line": 55,
+              "message": "Expected localisation key:version \"text\""
+            }
+          ]
+        },
+        {
+          "path": "localisation/english/TNO_Caribbean_l_english.yml",
+          "diagnostics": [
+            {
+              "line": 932,
+              "message": "Expected localisation key:version \"text\""
+            }
+          ]
+        }
+      ],
+      "cwtools": {
+        "original": {
+          "total": 97854,
+          "bySeverity": {
+            "Warning": 13433,
+            "Information": 20633,
+            "Error": 63788
+          },
+          "byCode": {
+            "(parse)": 20,
+            "CW100": 8098,
+            "CW105": 7,
+            "CW113": 58338,
+            "CW121": 714,
+            "CW122": 17,
+            "CW223": 2305,
+            "CW225": 122,
+            "CW226": 1,
+            "CW240": 26,
+            "CW242": 535,
+            "CW244": 1,
+            "CW248": 1,
+            "CW251": 4038,
+            "CW257": 24,
+            "CW262": 174,
+            "CW263": 148,
+            "CW264": 32,
+            "CW265": 26,
+            "CW267": 6,
+            "CW272": 17561,
+            "CW275": 12,
+            "CW276": 9,
+            "CW280": 755,
+            "CW281": 7,
+            "CW500": 4877
+          }
+        },
+        "generated": {
+          "total": 97852,
+          "bySeverity": {
+            "Warning": 13431,
+            "Information": 20633,
+            "Error": 63788
+          },
+          "byCode": {
+            "(parse)": 20,
+            "CW100": 8098,
+            "CW105": 7,
+            "CW113": 58338,
+            "CW121": 714,
+            "CW122": 17,
+            "CW223": 2305,
+            "CW225": 122,
+            "CW226": 1,
+            "CW240": 26,
+            "CW242": 535,
+            "CW244": 1,
+            "CW248": 1,
+            "CW251": 4038,
+            "CW257": 24,
+            "CW262": 174,
+            "CW263": 148,
+            "CW264": 30,
+            "CW265": 26,
+            "CW267": 6,
+            "CW272": 17561,
+            "CW275": 12,
+            "CW276": 9,
+            "CW280": 755,
+            "CW281": 7,
+            "CW500": 4877
+          }
+        },
+        "added": [
+          {
+            "path": "interface/TNO_SG_Politics.gui",
+            "severity": "Error",
+            "code": "",
+            "message": "unclosed quoted string starting at line 191",
+            "count": 1
+          },
+          {
+            "path": "interface/TNO_SG_Politics.gui",
+            "severity": "Error",
+            "code": "",
+            "message": "unclosed quoted string starting at line 192",
+            "count": 1
+          },
+          {
+            "path": "interface/TNO_SG_Politics.gui",
+            "severity": "Warning",
+            "code": "CW264",
+            "message": "Unexpected bare value '\"\"'",
+            "count": 1
+          }
+        ],
+        "removed": [
+          {
+            "path": "common/decisions/TNO_forpol_BRA.txt",
+            "severity": "Warning",
+            "code": "CW264",
+            "message": "Unexpected bare value 'has_political_power>'",
+            "count": 1
+          },
+          {
+            "path": "common/decisions/TNO_forpol_BRA.txt",
+            "severity": "Warning",
+            "code": "CW264",
+            "message": "Unexpected bare value '-1000'",
+            "count": 1
+          },
+          {
+            "path": "interface/TNO_SG_Politics.gui",
+            "severity": "Error",
+            "code": "",
+            "message": "unclosed quoted string starting at line 142",
+            "count": 1
+          },
+          {
+            "path": "interface/TNO_SG_Politics.gui",
+            "severity": "Error",
+            "code": "",
+            "message": "unclosed quoted string starting at line 143",
+            "count": 1
+          },
+          {
+            "path": "interface/TNO_SG_Politics.gui",
+            "severity": "Warning",
+            "code": "CW264",
+            "message": "Unexpected bare value '\"\r\"'",
+            "count": 1
+          }
+        ],
+        "comparison": "Relative-path + severity + code + message multiset; excludes diagnostic line/hash fields but retains line numbers embedded in messages.",
+        "baseGame": "Original supplied vanilla snapshot",
+        "interpretation": "Error counts are unchanged. Three raw added diagnostics replace three baseline diagnostics for the same multiline token because messages embed shifted source lines and newline recovery text. Two bare-value warnings disappear where the supplied checker does not recognize a glued > operator; Krieg and Jomini do recognize it. The raw deltas are retained above."
+      },
+      "localisation": {
+        "files": 1054,
+        "cwtools": {
+          "total": 195,
+          "bySeverity": {
+            "Error": 174,
+            "Warning": 21
+          },
+          "byCode": {
+            "(parse)": 4,
+            "CW225": 146,
+            "CW257": 24,
+            "CW275": 12,
+            "CW276": 9
+          }
+        }
+      },
+      "fullTypeScript": {
+        "status": "complete",
+        "distSha256": "5376e9fed76adec39a9a82006cbf9b3ee0d4675d84612e4193fc01a85fb5bf46",
+        "durationMs": 337989,
+        "levels": {
+          "parse": {
+            "attempted": 7207,
+            "passed": 7196,
+            "failed": 11,
+            "skipped": 0
+          },
+          "canonicalSemanticRoundtrip": {
+            "attempted": 7196,
+            "passed": 7196,
+            "failed": 0,
+            "skipped": 11
+          },
+          "constructorStaticRecompile": {
+            "attempted": 0,
+            "passed": 0,
+            "failed": 0,
+            "skipped": 7207
+          },
+          "typescriptCompile": {
+            "attempted": 7196,
+            "passed": 7196,
+            "failed": 0,
+            "skipped": 11
+          },
+          "ancillarySyntax": {
+            "attempted": 1054,
+            "passed": 1052,
+            "failed": 2,
+            "skipped": 0
+          }
+        },
+        "validation": "Actual strict TypeScript compiler program, static AST lowering, exact output path, and SHA-256 comparison of ordered semantic PDX. Authored JavaScript is never executed.",
+        "constructorPass": "Standalone constructor interpreter skipped in this run because full TypeScript compilation supersedes it. Earlier independent structural run remains in structuralLevels."
+      }
+    }
+  ],
+  "grammarEvidence": [
+    {
+      "claim": "Quoted token contents may include raw newlines; Krieg retains this instead of adopting the supplied binary's line-based recovery.",
+      "source": "https://github.com/cwtools/cwtools/blob/b377453dee803f9258be92cfc49896d09039702d/CWTools/Parser/SharedParsers.fs",
+      "lines": "145-147 and 195-199",
+      "interpretation": "quotedCharSnippet excludes backslash and quote only; CR/LF remain permitted. This is a source-code inference, not an engine execution."
+    },
+    {
+      "claim": "Glued <, =, > delimiters are lexical boundaries in Jomini; Krieg recognizes the comparison without inserting a new logical operation.",
+      "source": "https://github.com/rakaly/jomini/blob/8fbd6861f453c719da59daac6970babd9ddc19ac/crates/jomini/src/data.rs",
+      "lines": "58-76",
+      "interpretation": "The character-class table identifies <, = and > as boundary bytes. This disagrees with the supplied checker for one TNO input."
+    }
+  ],
+  "limitations": [
+    "These are the uploaded snapshots, not a claim to complete current game/mod distributions. Vanilla snapshot contains no localisation YML files.",
+    "Canonical generation removes comments and normalizes whitespace; original-source passthrough is a separate API and was not used to prove semantic roundtrips.",
+    "32 source files fail PDX parsing and remain copied originals in reconstructed trees. They are excluded from successful migration/compilation counts, not silently repaired.",
+    "CWT metadata extraction is conservative and does not implement all CWTools semantic rules.",
+    "Ancillary checks validate basic row envelopes only; independent CWTools localisation diagnostics remain in results.",
+    "CWTools is an independent checker, not the HOI4 engine. Two TNO syntax cases expose disagreement between available parser implementations."
+  ],
+  "totals": {
+    "inputFiles": 19910,
+    "inputBytes": 682828818,
+    "pdxCandidates": 17580,
+    "parseablePdx": 17548,
+    "originalParseFailures": 32,
+    "canonicalSemanticMismatches": 0,
+    "constructorStaticMismatches": 0,
+    "fullTypeScript": {
+      "attempted": 17548,
+      "passed": 17548,
+      "failed": 0,
+      "skipped": 32,
+      "datasetsComplete": 3,
+      "datasetsExpected": 3
+    }
+  },
+  "fullTypeScriptSnapshot": {
+    "distSha256": "5376e9fed76adec39a9a82006cbf9b3ee0d4675d84612e4193fc01a85fb5bf46",
+    "componentSha256": {
+      "pdx/ast.js": "9b4514f6e917627700480cbb21f7d0ef0e1e604caac97bc97cb464f4adb6a3de",
+      "pdx/lexer.js": "fa48c611b7c793be91958f2b18bce11c6a61b10f44caae68e077a78cf74426b8",
+      "pdx/parser.js": "9fd1a8ace9eb6a73f7130bb6363d51ea1a0fe858e12cfb7031b18c15e444c16b",
+      "pdx/emitter.js": "250f235553c719c68dd45f4acadf37aabf40c4733ff22cfe2ab68e4d63f61ad9",
+      "pdx/index.js": "beaf9674d8e20786c1227afb088b26daf3dd5309870d8bbeb26e8abeff105611",
+      "importer/index.js": "d8536f005ff84d711c3252d55ff289b29d345efa7df746972f0ca7516afd1724",
+      "compiler/index.js": "0af9f187345b0743183bb7d2d9c5a02acd8ea4fe5f0277211cad27e769a581ca",
+      "compiler/sdk.js": "6c8420b5db5108c338b4f6d02deab7223c0fff078fac158b797a9c643089e34b",
+      "compiler/minimal-lib.js": "aa92b7446b434cf8cff80572a93a385c34beee4d85bd243779155a6b020c0c8e",
+      "corpus/index.js": "4190b77435768f8173bf8840796672a45cf7bef6330f0cf3fd60f6608f2b4eb2",
+      "corpus/compiler-worker.js": "b7ac914f7e37e450682aecb8393cb882fe2f4f0aed0324a0d3da52ba362d7d63",
+      "corpus/compiler-runner.js": "628f0051612cec15ef48c66f7d63079ae8170ee238dca436f344560d67ec4698"
+    },
+    "complete": true,
+    "provenance": "Measurements belong to this isolated build snapshot. Standalone structural measurements are recorded separately."
+  }
+}

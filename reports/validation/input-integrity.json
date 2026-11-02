@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Hearts of Iron IV",
+    "archiveSha256": "b5588ab8dc7ced04a3b99c04a8bfeab8286ca955f592f79c491d5b0216efecd5",
+    "files": 5479,
+    "bytes": 248588581,
+    "manifestSha256": "a47fdddde674622b0af370407e8fa58227f3f0c3017190e9cc3a7ff06a2eb74f",
+    "missing": [],
+    "changed": [],
+    "extra": [],
+    "elapsedSeconds": 1.54
+  },
+  {
+    "name": "Kaiserreich",
+    "archiveSha256": "15315e6852a228a6b75e75b85d4508c0e43fc6e908175cbc6fc6755ce83a641d",
+    "files": 6144,
+    "bytes": 175783492,
+    "manifestSha256": "84137a93711da0ac44ccd46038bb5edfca179edbd900fd2bf2a9c2a004f9df32",
+    "missing": [],
+    "changed": [],
+    "extra": [],
+    "elapsedSeconds": 2.1
+  },
+  {
+    "name": "TNO",
+    "archiveSha256": "ac5ae705e3c877a726a680b74fddff9cbfa130ecc72b3ac937c941b5af7e8a3b",
+    "files": 8287,
+    "bytes": 258456745,
+    "manifestSha256": "d45aa518e61e8409acf8f287f2f188ef55a432293a6798a71b0484ef4f0dfb5d",
+    "missing": [],
+    "changed": [],
+    "extra": [],
+    "elapsedSeconds": 3.45
+  }
+]

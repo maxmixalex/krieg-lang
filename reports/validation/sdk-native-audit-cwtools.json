@@ -1,0 +1,59 @@
+{
+  "name": "comprehensive-sdk-native-audit",
+  "exitCode": 0,
+  "durationMs": 921,
+  "cwtoolsVersion": "2.3.0",
+  "cwtoolsSha256": "06161387481cffb9c593cda101994748f0e7640b3154af552b96843bfb5ba665",
+  "command": [
+    "$CORPORA/cwtools",
+    "validate",
+    "--game",
+    "hoi4",
+    "--directory",
+    "$FIXTURE",
+    "--rules",
+    "$CORPORA/cwtools-hoi4-config-master/cwtools-hoi4-config-master",
+    "--vanilla",
+    "$CORPORA/Hearts of Iron IV",
+    "--no-vanilla-cache",
+    "--report-type",
+    "json",
+    "--output-file",
+    "$CORPORA/reports/sdk-native-audit-cwtools.json"
+  ],
+  "diagnostics": [
+    {
+      "file": "common/national_focus/krieg_audit_tree.txt",
+      "line": 16,
+      "severity": "Information",
+      "code": "CW272",
+      "message": "This is the default value and can be ommitted",
+      "hash": "83b063c21dd32294"
+    },
+    {
+      "file": "common/national_focus/krieg_audit_tree.txt",
+      "line": 17,
+      "severity": "Information",
+      "code": "CW272",
+      "message": "This is the default value and can be ommitted",
+      "hash": "a807cf3be858f509"
+    },
+    {
+      "file": "events/krieg_audit_1.txt",
+      "line": 13,
+      "severity": "Warning",
+      "code": "CW251",
+      "message": "This AND is unnecessary",
+      "hash": "5a14c993d9c002d2"
+    },
+    {
+      "file": "history/states/1-France.txt",
+      "line": 3,
+      "severity": "Warning",
+      "code": "CW100",
+      "message": "Localisation key STATE_1 is not defined for any language",
+      "hash": "3a07ae5d9c02f8c8"
+    }
+  ],
+  "engineValidation": "not-run"
+}
