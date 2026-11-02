@@ -1,0 +1,2901 @@
+{
+  "schema": 1,
+  "generatedAt": "2026-11-02T15:57:45.218Z",
+  "scope": "Authored complete-example outputs checked against explicit effective bases. CWT and project validation are static checks, not an in-game launch or save/load test.",
+  "limitations": [
+    "Supplied corpus versions are not identified by the downloaded upstream descriptor.",
+    "The supplied snapshots omit proprietary art; original example flags, portraits and UI textures are included.",
+    "Kaiserreich's missing map text is supplemented from the pinned public commit; binaries remain inherited from the installed game and are not validated here."
+  ],
+  "kaiserreichDescriptor": {
+    "source": "https://github.com/Kaiserreich/Kaiserreich-HOI4/blob/b603c934c871c7e4ef1c08a2dad19a77e6342ca1/descriptor.mod",
+    "commit": "b603c934c871c7e4ef1c08a2dad19a77e6342ca1",
+    "sha256": "1ad91873617cf34a53cd2b77397dcaca701e19891f3b0fbd8efbbc711602dc28",
+    "upstreamVersion": "1.7",
+    "upstreamSupportedVersion": "1.19.4.*",
+    "purpose": "Explicit load-order metadata for validation of the supplied stripped Kaiserreich text snapshot. The snapshot does not include its own descriptor or map directory. This fetched descriptor is recorded separately and does not modify or identify the snapshot version.",
+    "replacePath": [
+      "common/abilities",
+      "common/ai_areas",
+      "common/ai_equipment",
+      "common/ai_focuses",
+      "common/ai_navy/fleet",
+      "common/ai_navy/goals",
+      "common/ai_navy/taskforce",
+      "common/ai_strategy",
+      "common/ai_strategy_plans",
+      "common/ai_templates",
+      "common/autonomous_states",
+      "common/bookmarks",
+      "common/bop",
+      "common/characters",
+      "common/collections",
+      "common/continuous_focus",
+      "common/countries",
+      "common/country_leader",
+      "common/country_tag_aliases",
+      "common/country_tags",
+      "common/decisions",
+      "common/decisions/categories",
+      "common/difficulty_settings",
+      "common/dynamic_modifiers",
+      "common/factions/goals",
+      "common/factions/rules",
+      "common/factions/rules/groups",
+      "common/factions/templates",
+      "common/focus_inlay_windows",
+      "common/game_rules",
+      "common/idea_tags",
+      "common/ideas",
+      "common/ideologies",
+      "common/military_industrial_organization/organizations",
+      "common/modifiers",
+      "common/modifier_definitions",
+      "common/names",
+      "common/national_focus",
+      "common/on_actions",
+      "common/operations",
+      "common/opinion_modifiers",
+      "common/peace_conference/ai_peace",
+      "common/peace_conference/categories",
+      "common/peace_conference/cost_modifiers",
+      "common/raids",
+      "common/scorers/country",
+      "common/scripted_diplomatic_actions",
+      "common/scripted_effects",
+      "common/scripted_guis",
+      "common/scripted_localisation",
+      "common/scripted_triggers",
+      "common/special_projects/projects",
+      "common/special_projects/prototype_rewards",
+      "common/state_category",
+      "common/technologies",
+      "common/technology_sharing",
+      "common/technology_tags",
+      "common/units/codenames_operatives",
+      "common/units/names",
+      "common/units/names_divisions",
+      "common/units/names_railway_guns",
+      "common/units/names_ships",
+      "events",
+      "gfx/loadingscreens",
+      "gfx/flags",
+      "gfx/leaders",
+      "history/countries",
+      "history/general",
+      "history/states",
+      "history/units",
+      "map/strategicregions",
+      "map/supplyareas",
+      "portraits",
+      "tests"
+    ]
+  },
+  "mapSupplement": {
+    "source": "https://github.com/Kaiserreich/Kaiserreich-HOI4",
+    "commit": "b603c934c871c7e4ef1c08a2dad19a77e6342ca1",
+    "files": [
+      {
+        "path": "map/adjacencies.csv",
+        "bytes": 11937,
+        "sha256": "578093612ff746e1de77b5137bcc67bf954ef2f32ba39349979ca72a683c2829",
+        "gitBlob": "718bb7d14ef5d8144da21429c7faa4c91a499b87"
+      },
+      {
+        "path": "map/adjacency_rules.txt",
+        "bytes": 7968,
+        "sha256": "8eee86a8e05871859496307dff7d8d3d7511b2d51768b3878a5785b953f77a16",
+        "gitBlob": "61a9ae34ab6baeedef456f2fa3e94a16ebdbf9da"
+      },
+      {
+        "path": "map/ambient_object.txt",
+        "bytes": 9067,
+        "sha256": "def5810de59ee19fb9927ddc5845c40c52467cb013f0b23357e473e4b6db07ea",
+        "gitBlob": "6a2509935e8136ad2106637907426f3c721869e9"
+      },
+      {
+        "path": "map/buildings.txt",
+        "bytes": 3862963,
+        "sha256": "4b017a360aa0fb6f5becd7a2bc73a689e13792b88522eb99df9e77e6a8be4670",
+        "gitBlob": "f4fe5868fa5b1d909d25cb3ea5c1e47d81967131"
+      },
+      {
+        "path": "map/continent.txt",
+        "bytes": 118,
+        "sha256": "3e225824c6154e9d7108e1635f359e23ef1499b540a375616ab2f5a0a61c9f9a",
+        "gitBlob": "b15771200190b295d14595aa483ca1001cb6aeba"
+      },
+      {
+        "path": "map/definition.csv",
+        "bytes": 484531,
+        "sha256": "7a129478f638bf2845aca305ff835555662ba8bb3d90e6298fddcb282398a0ee",
+        "gitBlob": "6478ef10a6cea52a81bdb3dca1b5c6318cf62f85"
+      },
+      {
+        "path": "map/railways.txt",
+        "bytes": 32656,
+        "sha256": "6a3d613a94921c819f00b7e823bdde2d565e1da082397a0d8ae83cec345288aa",
+        "gitBlob": "0ec9f33669c59f0ffd21255ae39119efe9fa9869"
+      },
+      {
+        "path": "map/strategicregions/1 - Southern England.txt",
+        "bytes": 3203,
+        "sha256": "b8d059142ba67ad83a2b73c59fef00900b8b0d01a871e8e2a927627f6c717577",
+        "gitBlob": "63b5830e030dfe0a3a875f2fac0f5d4f9fdc6661"
+      },
+      {
+        "path": "map/strategicregions/10 - Southern Sweden.txt",
+        "bytes": 3366,
+        "sha256": "4fc8d80450d9efa973cf2604e09fa2fa052eff87485712ad0a985abf8a8eccf1",
+        "gitBlob": "40d03ebe3d682f11200d0abf2a912f9d2baca530"
+      },
+      {
+        "path": "map/strategicregions/100 - Red Sea.txt",
+        "bytes": 3019,
+        "sha256": "6fca14073137752b865915dcdc3bd3e3351bb9a79d90c6b5bb412b5bdfc3e5d0",
+        "gitBlob": "199616e85d53bdbafb2d508f7debb8bfb53877e6"
+      },
+      {
+        "path": "map/strategicregions/101 - Bay of Bengal.txt",
+        "bytes": 3171,
+        "sha256": "fcee89bc447c822e34fd9c772bd1e978619cd36a30c2d1134917eac66f690583",
+        "gitBlob": "db76febfcc41ca3b466ccf038a2c56c718c9f986"
+      },
+      {
+        "path": "map/strategicregions/102 - East African Coast.txt",
+        "bytes": 3064,
+        "sha256": "74c164e6e78e67a48da8c7c8090edeb6e8bb7552e9f43f3c6a4cf6db22aca7f2",
+        "gitBlob": "5ebf52b707e5ea9d0e0d234e61bf54f49f6c27bb"
+      },
+      {
+        "path": "map/strategicregions/103 - Mozambique Channel.txt",
+        "bytes": 3070,
+        "sha256": "1aeb4dc62326710699c807f433d9537fe3bf5c2fcecf2b19ce94e367cdd86eab",
+        "gitBlob": "a0aec46136cec3e6e2307b8c21fdb74db5cbb15f"
+      },
+      {
+        "path": "map/strategicregions/104 - Arabian Sea.txt",
+        "bytes": 3116,
+        "sha256": "7421bcf9ada9907572abdb2175f1d294e983aec765e97a300c777306fa98d8b3",
+        "gitBlob": "a0b3237e6ee96b6f51643d06b4d691807b81ee75"
+      },
+      {
+        "path": "map/strategicregions/105 - Hawaii Ridge.txt",
+        "bytes": 3348,
+        "sha256": "6c35bc5faa830b08422db2969a962eb58edc3028e1118091c5db427c2b915cc0",
+        "gitBlob": "c78386e6de996503f521d6107802b0054611b981"
+      },
+      {
+        "path": "map/strategicregions/106 - Mexican Coast.txt",
+        "bytes": 3109,
+        "sha256": "a81c43ffd31ebef1f4feab5189f398668e0db2a8517872edc82b04ba3023618c",
+        "gitBlob": "16c93a8f8b82bad42bb6508270fc9a1e30b813ea"
+      },
+      {
+        "path": "map/strategicregions/107 - Western Canal zone.txt",
+        "bytes": 3054,
+        "sha256": "335c9295c5420f0d210fe4828158f092f731f790766ed079bb73825737d68c7c",
+        "gitBlob": "5a7402f42ed47085a646a63c89919030c28256cc"
+      },
+      {
+        "path": "map/strategicregions/108 - South American coast.txt",
+        "bytes": 3116,
+        "sha256": "71196f706f10e0c7d5ed45e2bac17b98ce398a4eb1fb5218edf55182c1970429",
+        "gitBlob": "75a389eb2669051597d130b94cd7c85781e1d773"
+      },
+      {
+        "path": "map/strategicregions/109 - Peruvian Coast.txt",
+        "bytes": 3091,
+        "sha256": "383b2089148bb7e93dfc969c769e0a72abf918c52c37809ae5e8dd3076b7c6cb",
+        "gitBlob": "e9cc8ffdb7620532b7ff9809deacea89ceb23357"
+      },
+      {
+        "path": "map/strategicregions/11 - Southern Norway.txt",
+        "bytes": 3428,
+        "sha256": "73ad900df57aba7306b5e2616f71a52becc5c65a306005fd489d326c8594b48a",
+        "gitBlob": "5d892fc10797aeb3035aaed97c7b2bb3517585dd"
+      },
+      {
+        "path": "map/strategicregions/110 - East Pacific Rise.txt",
+        "bytes": 3338,
+        "sha256": "ee191f4b98d5db6e81f761f906036db8a91f82654e090ab6d974947e7d34c8bb",
+        "gitBlob": "c1591c47466fc9efab7f1f01834c96a5306e4f43"
+      },
+      {
+        "path": "map/strategicregions/111 - North Central Pacific.txt",
+        "bytes": 3306,
+        "sha256": "df927b3adb1efc6238716ea2c3da2fb9c2b46c4e7298126b15763c9c21fff0f3",
+        "gitBlob": "64bf7637afbec1c3f8b5722b68265e0a2c585ade"
+      },
+      {
+        "path": "map/strategicregions/112 - Far South Pacific.txt",
+        "bytes": 3390,
+        "sha256": "f04a96acf30f3c2fe97c788dd728ca575bfae6f4f6c46a6c127587b4b68ed16f",
+        "gitBlob": "dc1e19781d852bfb0e35f5ce3d39bdd956a2708a"
+      },
+      {
+        "path": "map/strategicregions/113 - South Central Pacific.txt",
+        "bytes": 3201,
+        "sha256": "5ce23345490ec69ffc084b78630f718cb522902177c19fee5341f1726ffa9eb2",
+        "gitBlob": "75caef57dfd5ae0350c5142bc093951e2a2c9f8b"
+      },
+      {
+        "path": "map/strategicregions/114 - Gulf of Alaska.txt",
+        "bytes": 3218,
+        "sha256": "7ee87b08a7a052013332572cf44b7e4057af2a30ed8413d915fd9921dccdcf93",
+        "gitBlob": "3ea0777afae0d204b0e40f48b4d570492fc4c7d0"
+      },
+      {
+        "path": "map/strategicregions/115 - North East Pacific.txt",
+        "bytes": 3176,
+        "sha256": "c460b66b6883f57ea45325ea34a0fe206c13d66ea151b16ba5df5fc7a14e8e97",
+        "gitBlob": "b76e0b2fc49355d93bcae50813237fca50f18b23"
+      },
+      {
+        "path": "map/strategicregions/116 - Alborz Mountains.txt",
+        "bytes": 3112,
+        "sha256": "984930f88d8209e63afcf4e28c8bb358968e4a664f6bb988539209c53e1a809c",
+        "gitBlob": "7a08d4007aa55d31c23b390efa688875ca93dca7"
+      },
+      {
+        "path": "map/strategicregions/117 - Maritimes.txt",
+        "bytes": 3062,
+        "sha256": "6053cbbce1902c8e3cd6dbefbf22b0d48a134c1b24851bd39f9aa0d76dd293a1",
+        "gitBlob": "5622a6c9511dec4d0d9f99c7da8ec2861b657d8d"
+      },
+      {
+        "path": "map/strategicregions/118 - Sierra Nevada.txt",
+        "bytes": 3344,
+        "sha256": "b3c7fce10d3d821d68a6b01752670baac18c6d24b853edc13fdc678fa1177e35",
+        "gitBlob": "58de69336dac3ad16ed4c6ed968466ecd6d82909"
+      },
+      {
+        "path": "map/strategicregions/119 - Southern Rockies.txt",
+        "bytes": 3304,
+        "sha256": "a2c059997901ca76e1369b9a02625dfe674b482606222f1ed3446f8ce3e0ca46",
+        "gitBlob": "3703e4564a764a192950dc6124df65c392da7d8b"
+      },
+      {
+        "path": "map/strategicregions/12 - Lapland.txt",
+        "bytes": 3489,
+        "sha256": "abf704859bd3b59b9c9739a12994c79a06ffce6859f81ec51570f8e1b8321519",
+        "gitBlob": "6ec74c5e0f82530dd4843dee4693896f2622cefa"
+      },
+      {
+        "path": "map/strategicregions/120 - Midwest.txt",
+        "bytes": 3558,
+        "sha256": "49abc16c2d08c7c59d58c2c8d27f3f301ce4059d7706fa7949bebd525097caac",
+        "gitBlob": "2da1d22db959900e40eb75063e1cc223a69596fe"
+      },
+      {
+        "path": "map/strategicregions/121 - Canadian Shield.txt",
+        "bytes": 3179,
+        "sha256": "edb8785b22b6c3886a55414e6bf5e3d1b8135e940a2bf5c51a954f9176daea74",
+        "gitBlob": "3ec2ce755ca009dccb4bed46ff85fffd68dce55b"
+      },
+      {
+        "path": "map/strategicregions/122 - Western Canada.txt",
+        "bytes": 3140,
+        "sha256": "e295c30b82dc7e301e1656a42f81d01a09c149d3e2c7ffa79a79abfb841c954c",
+        "gitBlob": "2d664c93b343925f38cf57a3845e0d9488e54b78"
+      },
+      {
+        "path": "map/strategicregions/123 - Transvolcanic Belt.txt",
+        "bytes": 3198,
+        "sha256": "d56f6fb12b1ae0e201e9e1052d07e48adadd9a4bbacb655289868c60253674fd",
+        "gitBlob": "4680c1b1577595f81451f73a467c633717f94710"
+      },
+      {
+        "path": "map/strategicregions/124 - Venezuela.txt",
+        "bytes": 3109,
+        "sha256": "efe7b1f9dc28df89ff64a5d8d728d286aa0aa592b8ef297151cec47943435763",
+        "gitBlob": "5de9f4eee50729dccfe985b2f33456e4f5c8fd74"
+      },
+      {
+        "path": "map/strategicregions/125 - Southeast Brazil.txt",
+        "bytes": 3234,
+        "sha256": "90f6bf5164e7a0859087f768b8cb1e8c401e198053ea4285fae9014dc1046d66",
+        "gitBlob": "dd0f7dd8a29490d725cf2241c29e7f41a185b3c9"
+      },
+      {
+        "path": "map/strategicregions/126 - Egypt.txt",
+        "bytes": 3274,
+        "sha256": "1b0f9a0df77250990d71b26963dda02a2dc13864abc3e559dbc450278f9b9bcd",
+        "gitBlob": "a3798de4538040c3688223db96eaf20f849e1e90"
+      },
+      {
+        "path": "map/strategicregions/127 - Sahara Desert.txt",
+        "bytes": 3135,
+        "sha256": "09b6ba4279e85471db23b4e4512f7f948dfd85f44fc118cd43c8e7692ccea317",
+        "gitBlob": "37eafdf9e3aa04b4e1a4f4b34e6bf852b368bf60"
+      },
+      {
+        "path": "map/strategicregions/128 - Nubia.txt",
+        "bytes": 3131,
+        "sha256": "93179bce9aee034f6f62c11198f0e9c140593531ded0bb3b6caa52bd069c49f4",
+        "gitBlob": "21977e1f44e5c1a5696fbab5187173a2f69611f0"
+      },
+      {
+        "path": "map/strategicregions/129 - Anatolia.txt",
+        "bytes": 3762,
+        "sha256": "49e4cc1c23911c65605b04d4f5785b7fb48ad2d606ccd2cdd5f376943ec5bdf4",
+        "gitBlob": "42bd83b084502c84499979e3f1891ba7e9b89428"
+      },
+      {
+        "path": "map/strategicregions/13 - Finland.txt",
+        "bytes": 3657,
+        "sha256": "41606dce5b2770345ea4b9a204f0b9caa422949f18c6df0b87c592b5c2f9d107",
+        "gitBlob": "e2b418339c30d63411730c7531933a1bd3f4a2b7"
+      },
+      {
+        "path": "map/strategicregions/130 - Ukraine.txt",
+        "bytes": 3913,
+        "sha256": "55569caad5d06f4b8f09e4280596e74eeef13b0243985ef50f15cb9db7b7a1b0",
+        "gitBlob": "0adec3b2658c110fc838e728c7ac324b6674d0b8"
+      },
+      {
+        "path": "map/strategicregions/131 - Switzerland.txt",
+        "bytes": 3094,
+        "sha256": "843398d6b94fc9fc984143b773e32fdf627196969c8044bf817d7928c5c57934",
+        "gitBlob": "f014595db0b064517272e10ad42b539a351c1f93"
+      },
+      {
+        "path": "map/strategicregions/132 - Western Russia.txt",
+        "bytes": 4111,
+        "sha256": "015c764fbfb5e23cf40194458d301953178f28074bf7379df8bcf86ee49861bc",
+        "gitBlob": "ad0718a01b96b0b4e03c23e3e29e66f0522b2ecf"
+      },
+      {
+        "path": "map/strategicregions/133 - Central Russia.txt",
+        "bytes": 4365,
+        "sha256": "d0b8498779f2685fed790b4848ca0a9112226508bb907f1827c4a63671aab697",
+        "gitBlob": "5bb7dd7948a8175a27458f366728ed38b059928d"
+      },
+      {
+        "path": "map/strategicregions/134 - Transcaucasia.txt",
+        "bytes": 3290,
+        "sha256": "dd5ef4e8512f8aa4353260c6f46f1355163b0133bd0b689ad8078a1f410bc1c7",
+        "gitBlob": "5e744cca91ba74cb6d39457fdd162d78a9281a4b"
+      },
+      {
+        "path": "map/strategicregions/135 - North Caucasus.txt",
+        "bytes": 3670,
+        "sha256": "329341a6ede0b6e4dcc9a58861526479338224cf831ac1dafa08185b3bdc3b14",
+        "gitBlob": "8aa873808d4337a4d5dafdff306cfeac74e06310"
+      },
+      {
+        "path": "map/strategicregions/136 - Kazakh Steppes.txt",
+        "bytes": 3787,
+        "sha256": "9f696b38c37689c603999c87deda1a034581c2241dd00a5f36db6b33d2c08ee1",
+        "gitBlob": "c75744dc0fabeaa6080060dd27f7a4c088f27dea"
+      },
+      {
+        "path": "map/strategicregions/137 - Caspian Lowlands.txt",
+        "bytes": 4144,
+        "sha256": "31489e218864a3ab1b78c2e402db8f45ca93dce9e5f265678be59c14b2dc82a0",
+        "gitBlob": "49618854110084c78c1f35408e3605ef28fda3be"
+      },
+      {
+        "path": "map/strategicregions/138 - Baltic Sea.txt",
+        "bytes": 3056,
+        "sha256": "6f543f7aeaf7f38228b7ee7f711319368b8be4486001ae1bc26a8a25ad7cd547",
+        "gitBlob": "25104f47a15168841713907f8c52db40269cdd20"
+      },
+      {
+        "path": "map/strategicregions/139 - South Africa.txt",
+        "bytes": 3453,
+        "sha256": "a5bbf416f673f4b30553ee9e8d5bf7be8215829efc204a10ae858365ef800fc5",
+        "gitBlob": "c443dba95e4b36bdff4de99bbad11ea716d6c9d6"
+      },
+      {
+        "path": "map/strategicregions/14 - Western Siberia.txt",
+        "bytes": 3493,
+        "sha256": "31af19ab34dc7098967c6ff2e571cf8963c8f82b72574288920c463c5784afb4",
+        "gitBlob": "466ac86c421aa61267b7f03ec3a26f974773259e"
+      },
+      {
+        "path": "map/strategicregions/140 - Equatorial Africa.txt",
+        "bytes": 3100,
+        "sha256": "574adf883dc053a3c8fcee5821ead63643dfb567f0e0b7a02a0266049d025682",
+        "gitBlob": "2720254651d12522378cb4706da0b303cf1d9606"
+      },
+      {
+        "path": "map/strategicregions/141 - Bengal.txt",
+        "bytes": 3337,
+        "sha256": "c6e7bd2125b29876512f7aea0634e31e0bcbc4578df7699cb5bc8378cdee2e4f",
+        "gitBlob": "c309d25a680871f12ac8cffa1bce2eb698af8fbf"
+      },
+      {
+        "path": "map/strategicregions/142 - Siam.txt",
+        "bytes": 3410,
+        "sha256": "b081e17a4154c117c66e6946ba2cb1016495f2bd770e3dd0b82f8e72ac909254",
+        "gitBlob": "ddc12470e6f95303722f41f5482a6f87df41b73d"
+      },
+      {
+        "path": "map/strategicregions/143 - Illyria.txt",
+        "bytes": 3308,
+        "sha256": "6e37dd6f74e3de11757c9c95d21b47de0a6b1341176a11f96b4731755da5e1d6",
+        "gitBlob": "4516bec4ab20f8066d316a292658b8424913faf0"
+      },
+      {
+        "path": "map/strategicregions/144 - Transylvania.txt",
+        "bytes": 3223,
+        "sha256": "cb11afaa16038401a63e517c4409a9cc643930ffec51354fcc9b86c7ef7b68d5",
+        "gitBlob": "bac7e75c3945665026a46b8be67f8860cabb17a4"
+      },
+      {
+        "path": "map/strategicregions/145 - Congo Basin.txt",
+        "bytes": 3348,
+        "sha256": "bfaef70aa01cdd7506f4fbe5e541e3dd3d5cc052c2b5720e48db8d1429ae8713",
+        "gitBlob": "8597bddcf40151d8e987087da72d582bb5288634"
+      },
+      {
+        "path": "map/strategicregions/146 - Himalayas.txt",
+        "bytes": 3202,
+        "sha256": "67ac56b29440a78fd117fa0b9274032f3777ebf06a6eb55b6c0102a3af35525b",
+        "gitBlob": "f2301684ca529ae60d6f895755c367aa4b794116"
+      },
+      {
+        "path": "map/strategicregions/147 - Danish Belts.txt",
+        "bytes": 3036,
+        "sha256": "55a140b850165619f8c7b80ce46bc577e7c13fdf758df76874ca8731d7949e6f",
+        "gitBlob": "18c817a81655041831416ee90e987e6088ab306a"
+      },
+      {
+        "path": "map/strategicregions/148 - Primorye.txt",
+        "bytes": 3307,
+        "sha256": "54576027e66cb7f30aa58fcd9b09b5fcd4d78da5c978ad8bde38522d248e1d13",
+        "gitBlob": "3e400c34225e4314def48399b1a6af78ed8dd841"
+      },
+      {
+        "path": "map/strategicregions/149 - Russian Far East.txt",
+        "bytes": 3227,
+        "sha256": "a1d2579c68e4f63d2ae21aeb692aab489249f1e38c61c128facedbe5dca6e368",
+        "gitBlob": "11a9b9c0a48ad62889a8ba59cb027e31d7f0341e"
+      },
+      {
+        "path": "map/strategicregions/15 - Romania.txt",
+        "bytes": 3271,
+        "sha256": "5e04c89ab7407ea3bdc668b4d1d85483edcf4b7f391a4fa9dd99abcb1f9db88f",
+        "gitBlob": "6d39f0533ceffaf72f459d23db80f78924319632"
+      },
+      {
+        "path": "map/strategicregions/150 - Arctic Russia.txt",
+        "bytes": 3805,
+        "sha256": "254db6ae38372f5dcbe6150c09e6e80b1b71287ee04f5720515c9118596d56a7",
+        "gitBlob": "a892ade140728ab12268a4ce94494c5a8d5cd8bf"
+      },
+      {
+        "path": "map/strategicregions/151 - Central Siberia.txt",
+        "bytes": 3196,
+        "sha256": "97a666bbe25d984e699aeb9c78b08e1d72535e3264d0817f0bfa3d1fca271194",
+        "gitBlob": "b39eaae685dbf43886fe02a243dc2e53cf486e8d"
+      },
+      {
+        "path": "map/strategicregions/152 - Outer Mongolia.txt",
+        "bytes": 3425,
+        "sha256": "cb8db77a6b1511a8daeb5a8bd7aae0a256345365933e9f4a24fa7fbdd37964c9",
+        "gitBlob": "682feff2b70641c6e4f481fc6db720fb5ff45f51"
+      },
+      {
+        "path": "map/strategicregions/153 - Gangetic Plain.txt",
+        "bytes": 3166,
+        "sha256": "a71842557f49aba80226086d2e24f57886bda55f9fe510d12417491627a9e993",
+        "gitBlob": "83427189f4839f6d93df91bc62625f7316e5d3d8"
+      },
+      {
+        "path": "map/strategicregions/154 - Eastern Japan.txt",
+        "bytes": 3249,
+        "sha256": "cfd20d8a6a4f3bfa3b1c3f05675217f46f55714d57348495e70ff7c11665e050",
+        "gitBlob": "9530c1772a52f90435991d11681976388bc7fbb4"
+      },
+      {
+        "path": "map/strategicregions/155 - Zagros Mountains.txt",
+        "bytes": 3160,
+        "sha256": "566d73e822c7f66aa55a298518c90aff24810f260fc94870d01a1b9eab72e46d",
+        "gitBlob": "b1a7d7c28c13cc402df50885fd16f8076f707024"
+      },
+      {
+        "path": "map/strategicregions/156 - Southern Australia.txt",
+        "bytes": 3181,
+        "sha256": "273607938e5c5185d3813cd7f46fa1a91caf9675376c3657c0d488c83ee16c38",
+        "gitBlob": "5a0a4b0bff861a077d9e1de173d25789da67ce2e"
+      },
+      {
+        "path": "map/strategicregions/157 - New Zealand.txt",
+        "bytes": 3192,
+        "sha256": "f046a92313bce0caf489027050e8d5338f4ed2aed27bef3f6f2b14a7d09d508a",
+        "gitBlob": "44598848cc8f0c0de1aeeb091305c1015a75db10"
+      },
+      {
+        "path": "map/strategicregions/158 - Sunda Islands.txt",
+        "bytes": 3231,
+        "sha256": "35ec35399430dea9de5eec0b10fd49fd78aace6be041108095c8fc3508e6e0f5",
+        "gitBlob": "f84dbc8115cc57163d59d01502b8f58d073b4851"
+      },
+      {
+        "path": "map/strategicregions/159 - Borneo.txt",
+        "bytes": 3343,
+        "sha256": "157b19dde91e55efdc2b416e0f4e7ddaa6067113dbe15f7766876bb27f01779a",
+        "gitBlob": "30935838a5bbb450afa0171e284ee777997e189e"
+      },
+      {
+        "path": "map/strategicregions/16 - North Sea.txt",
+        "bytes": 3076,
+        "sha256": "0903880fff95027e5347f53180d242c496ca05c9ffebc1e3be9a12473bd5c926",
+        "gitBlob": "6e2d21e5f0056a1a6d7ef20fceec0214b913bd7b"
+      },
+      {
+        "path": "map/strategicregions/160 - Philippines.txt",
+        "bytes": 3403,
+        "sha256": "dcfc834535c3097cd37e606d86c95dcc97597596df6a9cf40c321e385b680733",
+        "gitBlob": "bd380424ad981b718bef7479de50cf93c28fbfbf"
+      },
+      {
+        "path": "map/strategicregions/161 - Iceland.txt",
+        "bytes": 3023,
+        "sha256": "360caaf8f0c1a5e14694b8a4a3b61931f4dae58b1c1364bc90c6a89eb525f138",
+        "gitBlob": "018a6a84b282bf07870da6d94759fb70b7ce5994"
+      },
+      {
+        "path": "map/strategicregions/162 - Afghanistan.txt",
+        "bytes": 3160,
+        "sha256": "daf5e1f735976dc81a486d5c28fc4d54f4e20b094b41b7304dcafc3fcdbbff6a",
+        "gitBlob": "861d44539a1f1dc6683327d4cdb2a61588010186"
+      },
+      {
+        "path": "map/strategicregions/163 - Amazonas.txt",
+        "bytes": 3359,
+        "sha256": "018f6dfe553e628f4909f5ffeca699776812d2c24b14b1ecca1d32541a1afe7c",
+        "gitBlob": "9dbe8aa2c8b59e61a8707ba72eb086e525734f39"
+      },
+      {
+        "path": "map/strategicregions/164 - Western France.txt",
+        "bytes": 3254,
+        "sha256": "d342efef9c3431623241645a76233f6741b9c8243a8b911b58e535e383d10d6b",
+        "gitBlob": "564766d7d6581b4a34a48d679bce632dcccd2e21"
+      },
+      {
+        "path": "map/strategicregions/165 - Western Maghreb.txt",
+        "bytes": 3238,
+        "sha256": "8ca6b09af22872df0c8663dfa58ba58aa0335dd084c3070efd2daea31c937d75",
+        "gitBlob": "987e999bdc372681c1460f9f40333b9bb261d2f9"
+      },
+      {
+        "path": "map/strategicregions/166 - Hudson Bay.txt",
+        "bytes": 3064,
+        "sha256": "2c05a06bf4ea7872867db1fdefd3d641211b9d1d35605e981edd344c38f8dae3",
+        "gitBlob": "5bb097a8b852b6e783462a949c388d6e84bc1ddb"
+      },
+      {
+        "path": "map/strategicregions/167 - New Guinea.txt",
+        "bytes": 3389,
+        "sha256": "80219ab415dcffa543b60c653d14c38c6a7f3a8deadb89f84a7c5d3f4b4c16df",
+        "gitBlob": "83cd6c50f4d5380d35751351173deaa11e133934"
+      },
+      {
+        "path": "map/strategicregions/168 - Adriatic Sea.txt",
+        "bytes": 3034,
+        "sha256": "5011b46b226f364522398671e8dd2c6380f27445ecd46641b8969a2861a42870",
+        "gitBlob": "18b7aab7a13fa3ef6c29db3c70173c43d8968398"
+      },
+      {
+        "path": "map/strategicregions/169 - Tyrrhenian Sea.txt",
+        "bytes": 3075,
+        "sha256": "9ac77c8531a0a0cc3ec9ba4a57d0c60b7c9dd4dd2979cfd33a1df09ed4f96d60",
+        "gitBlob": "bf6f1e6f1eb88739c8a795f8eb53dbef812dff79"
+      },
+      {
+        "path": "map/strategicregions/17 - Ethiopia.txt",
+        "bytes": 3200,
+        "sha256": "4c3b2a92ad5b54b6e45037e91dadb273a06555699f99e832051f6a73ea449fcb",
+        "gitBlob": "1102896e3ea6246b1c63444097f7eda820bbf383"
+      },
+      {
+        "path": "map/strategicregions/170 - Florida Coast.txt",
+        "bytes": 3157,
+        "sha256": "581183a23e68f8de2c74e55bc79f3cf2dcbffb3eda8811a22dc6b4779256d64d",
+        "gitBlob": "b4fed2c6525b378e04711afea7bd954b6afa4b4d"
+      },
+      {
+        "path": "map/strategicregions/171 - Northwest Coast.txt",
+        "bytes": 3147,
+        "sha256": "19f49bf1cd1ad1740fc98d0a575450b2f03131a1d12b24f07537bff8e0fac15e",
+        "gitBlob": "a4dccda9df81bc26e35351b9699beeca3428f13d"
+      },
+      {
+        "path": "map/strategicregions/172 - Pacific Line Ridge.txt",
+        "bytes": 3248,
+        "sha256": "e3040e0ef1367c598c3e547a366803b3f7c5480a4b0499bc9b14392384f8c561",
+        "gitBlob": "e2a02322f207bbd01f62d1b4e3b3bf46a27ef929"
+      },
+      {
+        "path": "map/strategicregions/173 - Eastern North Sea.txt",
+        "bytes": 3049,
+        "sha256": "067adf99323e90451f9cbe5063a777c54a166cd04c98b7b59ab297c66cb6f843",
+        "gitBlob": "219b808c458d006756d79896f217bf8174ca9319"
+      },
+      {
+        "path": "map/strategicregions/174 - Norwegian Coast.txt",
+        "bytes": 3048,
+        "sha256": "b81ff9e4b2f8968b7a1cf3e2cb8a9fe230c076010ffbbe2942a70dc2e3a97a81",
+        "gitBlob": "f3ff1ef0bd0e5455916acf3c20365ee72e73c8de"
+      },
+      {
+        "path": "map/strategicregions/175 - Central Pacific.txt",
+        "bytes": 3271,
+        "sha256": "ca98d32efc3badb3edf7e79070954d48d7c2a521024f4661b5a7d74a7381e8b2",
+        "gitBlob": "b0eed00ad6e533f4e3e3bd6821a3a08077dc9580"
+      },
+      {
+        "path": "map/strategicregions/176 - Central North Pacific.txt",
+        "bytes": 3265,
+        "sha256": "1dd4da3f8703c0254495f95c3a766638c801f087b8b2516c4cbbb5fc06d092ec",
+        "gitBlob": "0c6e89cce753c9e31d30da823c7593e3c700a176"
+      },
+      {
+        "path": "map/strategicregions/177 - Western North Pacific.txt",
+        "bytes": 3140,
+        "sha256": "c5bb239c2c72c20b5e532aa6f40f65c306899aed9bf1c6e9d9c7dc5c9130f282",
+        "gitBlob": "3b653cb5780c410daa75175473c1e13324efb156"
+      },
+      {
+        "path": "map/strategicregions/178 - West Polynesia.txt",
+        "bytes": 3223,
+        "sha256": "a8024e498eb1e376a96ff1c526f767fce5241dd2b5ccfeb631d8181b2c4e0e9e",
+        "gitBlob": "d3e80d101b8ec98188c0e0b14d9b2cca95e1ad68"
+      },
+      {
+        "path": "map/strategicregions/179 - East Polynesia.txt",
+        "bytes": 3208,
+        "sha256": "2c499eee8dae392e745547d8f6b745fa62ed9a30baa0987e3e8e66519fc36acc",
+        "gitBlob": "8c1f7e1c721be7972b29cc00bc13702eb61112a8"
+      },
+      {
+        "path": "map/strategicregions/18 - English Channel.txt",
+        "bytes": 3105,
+        "sha256": "511a5538e5ebf995493a4926a7396d2b79591193d7c02aa7e13974fb130a035b",
+        "gitBlob": "1baef03e8710a2477b140448c9053da0bfcc0c61"
+      },
+      {
+        "path": "map/strategicregions/180 - Micronesian Gap.txt",
+        "bytes": 3137,
+        "sha256": "ff748584eb42c68871b8cc8d488e8160b5a5635f390f18e5a5a74a07eae0f4b7",
+        "gitBlob": "dde184f3585408209ee1536ca5998913164225c2"
+      },
+      {
+        "path": "map/strategicregions/181 - Po Valley.txt",
+        "bytes": 3269,
+        "sha256": "c305bca6f3b38d84d414488ba22cf0462bd31ee3611c12ba8f29083315913402",
+        "gitBlob": "a35fb51c3b372b7fba90dbf94313690c9b9712d6"
+      },
+      {
+        "path": "map/strategicregions/182 - Niger Basin.txt",
+        "bytes": 3317,
+        "sha256": "ae06fbf0762f1a05a9c02c0ffd8cb55052a855ce0d2c9eb19e319f75e162b20c",
+        "gitBlob": "3db41e19d40fefab12b8f3e02aa51699e6af49bc"
+      },
+      {
+        "path": "map/strategicregions/183 - Prairies.txt",
+        "bytes": 3130,
+        "sha256": "29104bcc69fc15795fd319575a820c85da456b1f48beb7f553733ce056fe4ee0",
+        "gitBlob": "d164eb93233845a7b6535a4a32ba970bd2561fe3"
+      },
+      {
+        "path": "map/strategicregions/184 - Arctic Canada.txt",
+        "bytes": 3322,
+        "sha256": "15d9458d84258ca3f6c1ac6fc4a6ef7741ec95d7131fea0ab25afaa00ba3d6aa",
+        "gitBlob": "947acc8c96292428e0b5c1355d56772f60d5d8cc"
+      },
+      {
+        "path": "map/strategicregions/185 - Cascades.txt",
+        "bytes": 3226,
+        "sha256": "1c986da9de93f1ad41b30ab5141dc597edc0fdd4ed6a2c520ed8b63c293f8093",
+        "gitBlob": "5cf3a377b161fd3d7868310e990dcc28bd97b4a6"
+      },
+      {
+        "path": "map/strategicregions/186 - New England.txt",
+        "bytes": 3321,
+        "sha256": "02f1ea9b11f5ed044447057a26109f086116d6fcbc236a60fe6c1ee1c03e9c60",
+        "gitBlob": "65d740f58d33daddbeb4f73e82a0e3545b10989f"
+      },
+      {
+        "path": "map/strategicregions/187 - Central Arabia.txt",
+        "bytes": 3263,
+        "sha256": "32cb84d3b4448d739a500848cb83fd3320cea828051a18c3ef1e0ba594dbc643",
+        "gitBlob": "b3769b8f7c312d54791579e169d6a98b5c7f312a"
+      },
+      {
+        "path": "map/strategicregions/188 - Lake Victoria.txt",
+        "bytes": 3394,
+        "sha256": "ff274d8fb0fa5e5a76080b3d81288a913c079894ee2266ba2c0756988e520524",
+        "gitBlob": "1036abab52b72b20c9e52c3bd546f965e7244070"
+      },
+      {
+        "path": "map/strategicregions/189 - Eastern Maghreb.txt",
+        "bytes": 3370,
+        "sha256": "11553225d3a3f3d25bc08c9d30236ba462d34bd681a4ef6041774f3b47102d1f",
+        "gitBlob": "c606b88ed394d2c3f9aa25deded40e8df3ddf3c6"
+      },
+      {
+        "path": "map/strategicregions/19 - Northern France.txt",
+        "bytes": 3410,
+        "sha256": "1929e5c10d7d5935fb85c24bceb82fe2570c1dfad0c39c28acf256e702d9aeb9",
+        "gitBlob": "7e6402fa3f7f99641d6bcc2fe762da716e1f5474"
+      },
+      {
+        "path": "map/strategicregions/190 - Angola.txt",
+        "bytes": 3136,
+        "sha256": "b1a239ca92dbd6406762a160fc3c7b5fd1b1ad1892df0950442eac38f0266f75",
+        "gitBlob": "f0b9ba5fe1fd7cf60654a0d6e04d577569b01d68"
+      },
+      {
+        "path": "map/strategicregions/191 - Korea.txt",
+        "bytes": 3344,
+        "sha256": "bd20cf0a50f63cb64661856865fbaea9e5ebc70d19a389b9549082129abd1bf1",
+        "gitBlob": "ae5e718455fe59052db785a55d5b34f8d59f333e"
+      },
+      {
+        "path": "map/strategicregions/192 - Sumatra.txt",
+        "bytes": 3297,
+        "sha256": "cb358e004004d8d65c23f2daf8e8c273b5a28e0dee9e8e55258d9c43e8ba4b80",
+        "gitBlob": "99cb361d5362b3f921fd900d0573fe464ca21f70"
+      },
+      {
+        "path": "map/strategicregions/193 - Madagascar.txt",
+        "bytes": 3039,
+        "sha256": "c982ca96a9e685781897b09c1a5811bd252fc7bfd96224e203044ce3a33fb47e",
+        "gitBlob": "2edbd6eeaa42ebd1464a648e50ba18aa8c1be49a"
+      },
+      {
+        "path": "map/strategicregions/194 - Malay Peninsula.txt",
+        "bytes": 3212,
+        "sha256": "c4845babf56f986bfec751e7a6358c454483ec1a69440dab31232aa81c0a05be",
+        "gitBlob": "09d91aa7eba9ba8e82e4f7ae6a7d351009b53718"
+      },
+      {
+        "path": "map/strategicregions/195 - Burma.txt",
+        "bytes": 3414,
+        "sha256": "8d943a60e5787e4fc1d8d0dc7873271e8755e772e1f790611a7da652feb7b324",
+        "gitBlob": "f7148080b58830f254d342d58a62b4aa3da11b39"
+      },
+      {
+        "path": "map/strategicregions/196 - Indochina.txt",
+        "bytes": 3601,
+        "sha256": "89014846bd99bf62d9e502eae81160a909a1dcb21a834356150e8c6e5c671c21",
+        "gitBlob": "15b7d0a29903d26ac582beb13e590cd457d74664"
+      },
+      {
+        "path": "map/strategicregions/197 - Northern Andes.txt",
+        "bytes": 3153,
+        "sha256": "ccea828957d0b4e59543159d051bf3fd6acabfa152404f1ff1f4f12441adebdd",
+        "gitBlob": "07d03ca1cc8388ea9d063530dd4d9c2b28d8e260"
+      },
+      {
+        "path": "map/strategicregions/198 - Colombia.txt",
+        "bytes": 3250,
+        "sha256": "f0ea643eef0227a5160ada2fea68e7fde9baa86d42b7db8bef64045bebb6a174",
+        "gitBlob": "7cc0c458986c177f8fc142f917f6c86a824d90fc"
+      },
+      {
+        "path": "map/strategicregions/199 - Zambesi Basin.txt",
+        "bytes": 3221,
+        "sha256": "982398292e742225a3fc43e665e4de41dfe53031e3daaa31d7f3bdfeeca50083",
+        "gitBlob": "42baf8149eec65875a295e33d28595bce590a1a5"
+      },
+      {
+        "path": "map/strategicregions/2 - Northern England.txt",
+        "bytes": 3125,
+        "sha256": "3bc39db0af88111b7e8cab6b5a1d534cf4054adc6d4dec6f8a241a2729a90e34",
+        "gitBlob": "c106c5ac35adfcf5de885ca966efdc2ef6926d2e"
+      },
+      {
+        "path": "map/strategicregions/20 - Southern France.txt",
+        "bytes": 3500,
+        "sha256": "850469f7ff989351468d095ad5dfc06c716083741182a0e9e93783d0f9a95e3d",
+        "gitBlob": "aa47febaee7bfabef023b3d6efaf92e8299f7144"
+      },
+      {
+        "path": "map/strategicregions/200 - Guyana Plateau.txt",
+        "bytes": 3043,
+        "sha256": "3012c4b06085598e5e769f280fd863eb19b48830e7f61ded0af4d21f8d174fe5",
+        "gitBlob": "bd41bd8ba74d2c4ef5f83d46d3a872af768e266f"
+      },
+      {
+        "path": "map/strategicregions/201 - Central Brazil.txt",
+        "bytes": 3349,
+        "sha256": "fb39e9f1a09d73b4bf28b3d16ae9a8075e1d0bfb5b40a00e2be1e0b4f6d81cad",
+        "gitBlob": "1ecb504afdb29a227918756d8361b3c2af2ceaa2"
+      },
+      {
+        "path": "map/strategicregions/202 - Northeast Brazil.txt",
+        "bytes": 3360,
+        "sha256": "f1a87e1250ab346c1a48aae26696d5bea51eac0bcadd21f65535e2bed67509bb",
+        "gitBlob": "c54257bc392988ea8105a15b63915b6e75e519fd"
+      },
+      {
+        "path": "map/strategicregions/203 - Uruguay Basin.txt",
+        "bytes": 3274,
+        "sha256": "4d44d8a23ac725057e3fb9fcdf4623e0a6103250c2dd866349fc83183840f635",
+        "gitBlob": "defde679a316a236ad127564aee93edbcba751d1"
+      },
+      {
+        "path": "map/strategicregions/204 - Gran Chaco.txt",
+        "bytes": 3097,
+        "sha256": "806e75caa510393b830277e492021737e93a20c24791cf258078ac5e8fbba850",
+        "gitBlob": "ed736727187c97f58a70e7a1b474a4a7b8970f4a"
+      },
+      {
+        "path": "map/strategicregions/205 - Altiplano.txt",
+        "bytes": 3205,
+        "sha256": "42e353b5e18b85091c097188fcd410a026aba308a53dd8fef1b87b31654d7c62",
+        "gitBlob": "ef1dae918f7186a6d4ac79027a7587aa79182eb8"
+      },
+      {
+        "path": "map/strategicregions/206 - Peru.txt",
+        "bytes": 3146,
+        "sha256": "160f26d133fde903b7396e424c3b0580644689abd7309fbda9b00260cd854991",
+        "gitBlob": "ad5ec3a09ff79a0e4ce9acf9912ec0aaa38cfa15"
+      },
+      {
+        "path": "map/strategicregions/207 - Southern Andes.txt",
+        "bytes": 3245,
+        "sha256": "5098efdcbce987b93e9f5ceab5da74c27714c5f1b0a01adb98de10dea2696d11",
+        "gitBlob": "a40bd4de7cad905744566470f3c897ce98184ced"
+      },
+      {
+        "path": "map/strategicregions/208 - Central Argentina.txt",
+        "bytes": 3306,
+        "sha256": "39c4a383a99e2031770c7e35c89579d80c5d9f99767dbac2c13891cc50edce27",
+        "gitBlob": "24ca5cf16400f43a482dc28ed2d67cac2e6d24a3"
+      },
+      {
+        "path": "map/strategicregions/209 - North China Plain.txt",
+        "bytes": 3404,
+        "sha256": "5d0324d4733bebc8d34d4ced6c9c958a0d5e52ea4b38e48489a0ce2db33dc388",
+        "gitBlob": "5df651a90de7692a9a3c8a430a4ba5b648dbf883"
+      },
+      {
+        "path": "map/strategicregions/21 - Austria.txt",
+        "bytes": 3250,
+        "sha256": "1488aae0d3258b4cbbf428e91dc4a1813f77b0c837a35fbb24f474d9c007b421",
+        "gitBlob": "ba58de092cd9b196dfcfb7631e18730fd0d34fbc"
+      },
+      {
+        "path": "map/strategicregions/210 - Jilin.txt",
+        "bytes": 3302,
+        "sha256": "4e6243c4bdb8a87afe3df9b82e6ce2d70bcba06054de8003476886ef78c198d5",
+        "gitBlob": "5ee4457803efdcc47d872122629a8890508f5653"
+      },
+      {
+        "path": "map/strategicregions/211 - Huangtu Plateau.txt",
+        "bytes": 3185,
+        "sha256": "8c5e5e959523a40223da7962a2ba2a579e49fe813806983dc490306b10d46613",
+        "gitBlob": "f8f0d3fdec73426aab7ebcf8f787611f06ec2c89"
+      },
+      {
+        "path": "map/strategicregions/212 - Lower Yangtze.txt",
+        "bytes": 3458,
+        "sha256": "234d90b7eeaf66d5e9acbb893506a9d4a42e5828be5b0349c37a98a21663af73",
+        "gitBlob": "3ed395c67a15d8212b681bc3beb53c2ea4124cc1"
+      },
+      {
+        "path": "map/strategicregions/213 - Middle Yangtze.txt",
+        "bytes": 3318,
+        "sha256": "a239fe08b6a9e64eff29f0523d6665728e8a19dc1c987c32b938ba1e375c60e4",
+        "gitBlob": "f3672d44671d53b43411f81b6f2845959eec0c95"
+      },
+      {
+        "path": "map/strategicregions/214 - Upper Yangtze.txt",
+        "bytes": 3277,
+        "sha256": "cd81f161290c9a58435ec2788fff55d5500f3c46966ed395f42e84c4baa7470d",
+        "gitBlob": "fc1b59fc78412dd830f46218210036b1c59ff9e8"
+      },
+      {
+        "path": "map/strategicregions/215 - Yungui Plateau.txt",
+        "bytes": 3203,
+        "sha256": "c1c0ef21041a96316d3a1fad09871a0ce2aeebe854230721905b61839dd144e7",
+        "gitBlob": "a5b65a2dfaa6b8b90de69a836d282c6a092aff11"
+      },
+      {
+        "path": "map/strategicregions/216 - Lingnan.txt",
+        "bytes": 3378,
+        "sha256": "17c6dfabaeaafe4a127987b993585a156be56173b67898792c1f02d706d0d2bb",
+        "gitBlob": "aa264b94fd0ada7a0f791df870654b65e00603a0"
+      },
+      {
+        "path": "map/strategicregions/217 - Dongnan.txt",
+        "bytes": 3368,
+        "sha256": "1e9f4da36bcce32e3eb93fb074408115e735a92c4ec84a2dc8d412dfae199b87",
+        "gitBlob": "4c028cadfc837e417e0bf8a6c6bef93629f20151"
+      },
+      {
+        "path": "map/strategicregions/218 - Fengtian.txt",
+        "bytes": 3432,
+        "sha256": "f06a2bca4a6f3097e1828891eaef771601de9c6a48a5b9f33401de74ddd5519e",
+        "gitBlob": "8be41cee77e3e25e89d8caeef293e805027b4e26"
+      },
+      {
+        "path": "map/strategicregions/219 - Heilongjiang.txt",
+        "bytes": 3178,
+        "sha256": "7275df0f7dbaeb09655d65388bbdb11b7a8ee48acb043cf01165968c1066e4bd",
+        "gitBlob": "9a4202bf5065257fa6c937d8b48d60131c017ea1"
+      },
+      {
+        "path": "map/strategicregions/22 - Bohemia.txt",
+        "bytes": 3184,
+        "sha256": "fe8d5c8c99041f7af7fa994b63360050bc0837bafa376996bb9857ea8283352b",
+        "gitBlob": "c2655d4d87c7bf8179c9d31028811a170f46ebf6"
+      },
+      {
+        "path": "map/strategicregions/220 - Xibei.txt",
+        "bytes": 3300,
+        "sha256": "9c0e060f5395c3671501db49b764f6edc1228440167fb4a35033cfcc77cf632a",
+        "gitBlob": "2816355c03fd3f5da7c9fb55cc040ff26896caa4"
+      },
+      {
+        "path": "map/strategicregions/221 - Tarim Basin.txt",
+        "bytes": 3235,
+        "sha256": "05a2ba743878f8cd5e5dbda0c71c0dcb16ddd0794c1cfaf3f2eab295359caf29",
+        "gitBlob": "e316d4472b659c226801880efb62293585bf393e"
+      },
+      {
+        "path": "map/strategicregions/222 - Inner Mongolia.txt",
+        "bytes": 3265,
+        "sha256": "9cb944fda0a7f97f0e294df3172f09c6f801fa729560d8c79ce1b56489f58d60",
+        "gitBlob": "ac249ace1fed85c6657b533217478a948c39a3e9"
+      },
+      {
+        "path": "map/strategicregions/223 - Aegean Sea.txt",
+        "bytes": 3066,
+        "sha256": "c243c40e64a2549c98bddcf1dec6e56b2e1e7f23ce5d69f83192a15a8aabc49f",
+        "gitBlob": "a897a3ca24c5a42a385a6d84f24a19164fc35129"
+      },
+      {
+        "path": "map/strategicregions/224 - Yucatan Peninsula.txt",
+        "bytes": 3125,
+        "sha256": "112e72396297f6804b086c4d69b37e469dd9f11b2771757e0541152d7c28a28b",
+        "gitBlob": "bc15dd08ab0a45ebdefcbb11ba3df7bc6b1a8fff"
+      },
+      {
+        "path": "map/strategicregions/225 - Sierra Madre.txt",
+        "bytes": 3368,
+        "sha256": "b2622b7872b2c98f0859d39dff015eba6dda54673f661bd14e79baee1877b9e5",
+        "gitBlob": "8c4e5d94990eb0cd2af50e20fb00f4dd33f9c25c"
+      },
+      {
+        "path": "map/strategicregions/226 - East Coast.txt",
+        "bytes": 3524,
+        "sha256": "a84235c6afb9a361374ca4d47e53327889b8b0671b099497c27076a38872c262",
+        "gitBlob": "6d2033da8e38df33f854709441724dbe4096bd57"
+      },
+      {
+        "path": "map/strategicregions/227 - Deep South.txt",
+        "bytes": 3485,
+        "sha256": "f1a8cddfeda0b75cbec10d1dea415cc5a570be4ff14e7c49bc1863f8664dd929",
+        "gitBlob": "767aefd0791451f02f4e57c4fd895fcd412e433a"
+      },
+      {
+        "path": "map/strategicregions/228 - Northern Rockies.txt",
+        "bytes": 3248,
+        "sha256": "6f985c728af6ee9849b2443aa6749da441dd744c583dd452e5492f02ef86fc63",
+        "gitBlob": "603a3466b975717f03cb0833cf700e5536e43330"
+      },
+      {
+        "path": "map/strategicregions/229 - Gulf Coast.txt",
+        "bytes": 3327,
+        "sha256": "79db9a9af831c5bda095d26c7e49a0abfa7359c2f40f8c57e759e62e39d391c8",
+        "gitBlob": "3c9d68956c788630c1702528177c33a8b4f443c4"
+      },
+      {
+        "path": "map/strategicregions/23 - Italy.txt",
+        "bytes": 3327,
+        "sha256": "fd7f0b17e8d8e0cc8703d7380af9b8b372e4aea344eff9375e21018cd746ca2d",
+        "gitBlob": "ea5ada5dd00e7a2dbde58dec154b56ada76bd873"
+      },
+      {
+        "path": "map/strategicregions/230 - Great Lakes.txt",
+        "bytes": 3571,
+        "sha256": "9c0dd36423bfe8f0c51df5bdf08f2964de77cac9dabad4c242224723ac9ee6ff",
+        "gitBlob": "dc8be9fcc6f3a13ef2e229bc6a552ecbd97f854c"
+      },
+      {
+        "path": "map/strategicregions/231 - Labrador.txt",
+        "bytes": 3221,
+        "sha256": "f293c2ca264110bb5b7457ee5cfb98b124345dec6307a4d555765201a51c9826",
+        "gitBlob": "474665d056d8108bab5a6173d6aa47e343f3ef3b"
+      },
+      {
+        "path": "map/strategicregions/232 - Central Canada.txt",
+        "bytes": 3275,
+        "sha256": "c6d4755a89c8ef99ffbe6d90ba47324484d705b1f07d6ed318e7c5c93719ebe4",
+        "gitBlob": "70f902ef0ef25f14545ab2b8f43daaea4f2630d5"
+      },
+      {
+        "path": "map/strategicregions/233 - Appalachia.txt",
+        "bytes": 3196,
+        "sha256": "a4c1f255fadfa4374d0f9469c9cef072918553c80dd81eec9ce6ff082aff0a6f",
+        "gitBlob": "b4390f41ec5fab008951b6e8716fd3158bed68a5"
+      },
+      {
+        "path": "map/strategicregions/234 - Northern Siberia.txt",
+        "bytes": 3251,
+        "sha256": "238aa0a4722d2f1bdfbad3a45fd70a2d75500635cf5fa97cd4b876ff4d18f4a8",
+        "gitBlob": "ba95274e343b674ab88a41e0b85c4ffb7761d96a"
+      },
+      {
+        "path": "map/strategicregions/235 - Eastern Siberia.txt",
+        "bytes": 3246,
+        "sha256": "eaf1cb98d44a83b2a0dd299ba5b6baec59654ba5b21bef6f469ecc7dc5120d6b",
+        "gitBlob": "cb2b7e36ddfa6b45fae54e1c16fbe4dbf448e70f"
+      },
+      {
+        "path": "map/strategicregions/236 - Southern Iberia.txt",
+        "bytes": 3453,
+        "sha256": "656da93d452d10f913892bb96375c66c4eb29219a636c451d90531b16187be55",
+        "gitBlob": "5b112ff48676354e06a4b51fad4b2c7b8f3b2b25"
+      },
+      {
+        "path": "map/strategicregions/237 - Western Iberia.txt",
+        "bytes": 3423,
+        "sha256": "47be4a7fdea3395333834bba2f7d5495f0bf7a47cd89cf040bb2ef770599d1b6",
+        "gitBlob": "9a314dd96dbf96824d458ba02f19890a7118862f"
+      },
+      {
+        "path": "map/strategicregions/238 - Tripolitania.txt",
+        "bytes": 3283,
+        "sha256": "451eea3241da678ccc81a84a61437fe1de25593c9659b6419186c30467e840a1",
+        "gitBlob": "f6b9b05dae6e512f8f51776a63c79055069d59fe"
+      },
+      {
+        "path": "map/strategicregions/239 - Mesopotamia.txt",
+        "bytes": 3150,
+        "sha256": "faf0453f387d8a7cdf66b5764a106952c53d64cd8f309d85d9899428ec9243e6",
+        "gitBlob": "74d9e8010e08255b3cbddd741f1c95a4f3c32e79"
+      },
+      {
+        "path": "map/strategicregions/24 - Central Balkans.txt",
+        "bytes": 3177,
+        "sha256": "910cb6d5580eae101cbf7b064ad895fba4f230b4b69efe56ee70078efcbed8e8",
+        "gitBlob": "a0e8d5550617c3b3eae601d57846a655a754be11"
+      },
+      {
+        "path": "map/strategicregions/240 - Persian Gulf.txt",
+        "bytes": 3026,
+        "sha256": "c52ce31861a9e29db77f7c5c726d03fc7c725d5d3bb1713d87d1433a7868a234",
+        "gitBlob": "4f2d5e517abc14d67c833e39169a9efc2b97f43b"
+      },
+      {
+        "path": "map/strategicregions/241 - Mozambique.txt",
+        "bytes": 3112,
+        "sha256": "a247a98e83d9b7896f33a2ce109b07db32367d7a9710ff42de5ca324eea8c5ea",
+        "gitBlob": "a5513a2595507c83ae034661469f20cd3806ff29"
+      },
+      {
+        "path": "map/strategicregions/242 - Kalahari.txt",
+        "bytes": 3117,
+        "sha256": "6915295f42f1bc9572a56db7f1afc7c9d98ee188de7d745bb0725d9c5b4f6761",
+        "gitBlob": "77113573df6b04436114df3d2fea54fcf8bc7c62"
+      },
+      {
+        "path": "map/strategicregions/243 - West Africa.txt",
+        "bytes": 3244,
+        "sha256": "511be35e542839d45b26e8f02932dc21b55eee01f17c492ae6f20a87c7c1cc45",
+        "gitBlob": "9477c10c0d5d0edcba02968887422b46e4ea8f18"
+      },
+      {
+        "path": "map/strategicregions/244 - Central Africa.txt",
+        "bytes": 3080,
+        "sha256": "cddafb8a0a2d9ee477dfb508696c126ec216f4fc24b61a599fd85b2f01492443",
+        "gitBlob": "58a374530394d210980364dae2033d1412567b91"
+      },
+      {
+        "path": "map/strategicregions/245 - Indus Valley.txt",
+        "bytes": 3287,
+        "sha256": "b3d1328337e06fe32b9a7b37406335836251d8e63f9da396818eab86b20a7b99",
+        "gitBlob": "222bd156568ece233ab9f7ca050d4b8906e1a15d"
+      },
+      {
+        "path": "map/strategicregions/246 - Northern Norway.txt",
+        "bytes": 3206,
+        "sha256": "3569d669dbd553bf773b29897257c6156f49df92b3774db7b3b44aa05eda2880",
+        "gitBlob": "88e5d9fe51bdf8bbef92322f3b929d806de58f58"
+      },
+      {
+        "path": "map/strategicregions/247 - Northern Sweden.txt",
+        "bytes": 3648,
+        "sha256": "248eb02d4322da48259d89286c2ee57986d9169d2146c2073b101022f8cf8ab3",
+        "gitBlob": "3a81f925b4e5b100dbc097adbaa7ede284d9e5a5"
+      },
+      {
+        "path": "map/strategicregions/248 - Eastern Australia.txt",
+        "bytes": 3598,
+        "sha256": "e24113766fd88664c0653105b39f6c924c96e91bee945d66a0893363a1f53f18",
+        "gitBlob": "7b7221119a17a922383f1fab536d6b57a8f30819"
+      },
+      {
+        "path": "map/strategicregions/249 - Northern Australia.txt",
+        "bytes": 3219,
+        "sha256": "01ae9e3a23d098e7f43aa991de3d1e7d956a0177f6e240204fdbd6e4226b1bff",
+        "gitBlob": "a5242376a20f47e1bddb35610d657ff7dbec0224"
+      },
+      {
+        "path": "map/strategicregions/25 - Greece.txt",
+        "bytes": 3248,
+        "sha256": "6f3e5a4a4656b8e65cd48825f46c56a2b96be97c31fb6e3d065305c43cbfb072",
+        "gitBlob": "d934180b139dcfd6926501449f3a96d9ae12179d"
+      },
+      {
+        "path": "map/strategicregions/250 - Central Australia.txt",
+        "bytes": 3060,
+        "sha256": "f3bfb6e7b7a39db381e9333b7f7b0e4f643e381bb1ee17283822995d21580127",
+        "gitBlob": "5eca6e2ff65e478478c8b8055bb40c573ba981b4"
+      },
+      {
+        "path": "map/strategicregions/251 - Straits of Malacca.txt",
+        "bytes": 3034,
+        "sha256": "a910905a5b2ef6918450cbfbc56a6155de90883eeb2d6a48a84b77887d246f90",
+        "gitBlob": "71e6fed239619594ad996046b914da69c6d348ed"
+      },
+      {
+        "path": "map/strategicregions/252 - Kurdistan.txt",
+        "bytes": 3168,
+        "sha256": "f00ead49e9c74b00a2a3c80b2e13a4db2d005a79305bf193f065b30ad082def6",
+        "gitBlob": "0d602bd41e47e1982cee5f927f93b1ea44fea6d0"
+      },
+      {
+        "path": "map/strategicregions/253 - Transcaspia.txt",
+        "bytes": 3265,
+        "sha256": "d2f11f9c8d82c0c7c6df32404f8eebe1d4ed01c0ac81edc085ca72f8e0f762c3",
+        "gitBlob": "56f75109db85ef125f97ff16623f9e860584b129"
+      },
+      {
+        "path": "map/strategicregions/254 - Transoxiana.txt",
+        "bytes": 3141,
+        "sha256": "995bb3047ef4b99e7370db21dfabde58b7b41dfa94312101312b77ac2e161b34",
+        "gitBlob": "5135bafed701b04fdc18459a892936002a10ef74"
+      },
+      {
+        "path": "map/strategicregions/255 - Ferghana Valley.txt",
+        "bytes": 3338,
+        "sha256": "090590766c021870f2039cabcb71705dc951cccff83cac88d89008b82ac24994",
+        "gitBlob": "02a44fa8db1f046b6166ca07419ca857ed9044a1"
+      },
+      {
+        "path": "map/strategicregions/256 - Ural Mountains.txt",
+        "bytes": 3177,
+        "sha256": "49363cf3e98bb8f2062c187840d7fa31991b448237fb648cd828a9a93995b516",
+        "gitBlob": "aa5dc84e1a24e6a47ab61f26699b9e85881cb9c2"
+      },
+      {
+        "path": "map/strategicregions/257 - Minusinsk Hollow.txt",
+        "bytes": 3239,
+        "sha256": "f499a5edd6f3d3c86db1189862b525b0c5774c138d9fa7308a26b6a7e9e11dad",
+        "gitBlob": "6e913925e5c180f6b9c28308285fac901da4741a"
+      },
+      {
+        "path": "map/strategicregions/258 - Altai.txt",
+        "bytes": 3153,
+        "sha256": "0e63c451bc6eef2d924782a409867ae2da856dd427ea3564f68f982a14a3b415",
+        "gitBlob": "23a7e7b477bc1790169aa0b73cdc4fd4623f00cc"
+      },
+      {
+        "path": "map/strategicregions/259 - Transbaikal.txt",
+        "bytes": 3251,
+        "sha256": "ac4e0c4e972bc1040849267c6fec21bb2ae93e49c616791acec680d9524db868",
+        "gitBlob": "6599c197f0bbfbbadf32869217ed1588fdec32ca"
+      },
+      {
+        "path": "map/strategicregions/26 - Bulgaria.txt",
+        "bytes": 3229,
+        "sha256": "7beb3e7f74ddb974a8c0aa32593c9ed40d137394c700750c2ce611907103ceb8",
+        "gitBlob": "2459498ff1b4eef32092a8fc2d520d475b0da4ea"
+      },
+      {
+        "path": "map/strategicregions/260 - Amur.txt",
+        "bytes": 3230,
+        "sha256": "3b21b1042864090700b5616e777bb0be26c16db7407f559a3dabdffee1ac9fdb",
+        "gitBlob": "c9d25cf8f21965f82fb6c39bbf41415acfca11aa"
+      },
+      {
+        "path": "map/strategicregions/261 - Rajasthan.txt",
+        "bytes": 3180,
+        "sha256": "47f28da89e023fc2caaecee3afe05c032b367e3d2e8f11c23e1d0f30e057756e",
+        "gitBlob": "69f07867c6a3e878769b3f39325f54e5562a4ca6"
+      },
+      {
+        "path": "map/strategicregions/262 - Vindhya Range.txt",
+        "bytes": 3241,
+        "sha256": "c93ada303c4c1f19cb3ce2575e33195dd7e52e3751f86d5901ed79d68ab58748",
+        "gitBlob": "0891cd38fbaa4cc774dadfaeb4a260a487e07e7f"
+      },
+      {
+        "path": "map/strategicregions/263 - Coromandel Coast.txt",
+        "bytes": 3188,
+        "sha256": "2f18cea61f7848963a54a09b62c929ebe23aba916bd83ae484d9ae63e0f00be8",
+        "gitBlob": "36e0237b056b13e0d88138b3468c8e6a6527a1f6"
+      },
+      {
+        "path": "map/strategicregions/264 - Cape Comorin.txt",
+        "bytes": 3158,
+        "sha256": "23a3c0e81fe827836b840eef940c47cee374632973f2df183ef1a9541eff1d2e",
+        "gitBlob": "352bfded3e35f7e170e41fad9b7ea46ae7c03197"
+      },
+      {
+        "path": "map/strategicregions/265 - Dzungaria.txt",
+        "bytes": 3289,
+        "sha256": "8ce1dbc7a8f25baf76e44bcac67e78b3f254f852fab3693726ea9f02f10ceb75",
+        "gitBlob": "802faac39386c5b803458ee1d76f8256067bea19"
+      },
+      {
+        "path": "map/strategicregions/266 - Nigeria.txt",
+        "bytes": 3191,
+        "sha256": "c5b5f971b64ec22c311fb345b47791020fcc9e46bb74a90a3a703545d4759f91",
+        "gitBlob": "e0c49a4f7f06c0cce4a09e80887056145be018bd"
+      },
+      {
+        "path": "map/strategicregions/267 - Horn of Africa.txt",
+        "bytes": 3187,
+        "sha256": "b49aa3d840ac8b8aa5076a15420f428a3cb52f8086b4512d0676bbb7815aa405",
+        "gitBlob": "f1216e86ae05be9892b57bc58a0f5252486fd1c5"
+      },
+      {
+        "path": "map/strategicregions/268 - Upper Nile.txt",
+        "bytes": 3122,
+        "sha256": "7808e7d75ed116cc505da88d973cd1d190ed93a202938c3b516d68162c780648",
+        "gitBlob": "e662a49b8cd8f4e510912aeb3b3e00f474d42962"
+      },
+      {
+        "path": "map/strategicregions/269 - Iranian Plateau.txt",
+        "bytes": 3142,
+        "sha256": "d36514f83ad7efe1786c11b840b3f0449ea6ed2de235d8db8e2f239667aaf82a",
+        "gitBlob": "e70fda1cca174127469af00c162272273d97009f"
+      },
+      {
+        "path": "map/strategicregions/27 - Hungary.txt",
+        "bytes": 3318,
+        "sha256": "4bbf1f16024ab6172cc443df207ad8bae1079e821e6812c532defe6e5a0cbd3e",
+        "gitBlob": "a5d2f5a5337c4cf9fe5bd9462cf76a0d67f23f1b"
+      },
+      {
+        "path": "map/strategicregions/270 - Kashmir.txt",
+        "bytes": 3093,
+        "sha256": "f81b4fc615ccf1301558dcc69187205f45fe99305419f798d837325935c37260",
+        "gitBlob": "66f664db2c2154a2d409d5766d062e49a9fe873d"
+      },
+      {
+        "path": "map/strategicregions/271 - Sea of Marmara.txt",
+        "bytes": 3019,
+        "sha256": "3b22fe938f3d1a0c882be67b58c49b9c28195df8e691751d4f3b874c48d889a0",
+        "gitBlob": "383d629d6403457d4065b1b0d5b0db1035194ea2"
+      },
+      {
+        "path": "map/strategicregions/272 - Gulf of Finland.txt",
+        "bytes": 3016,
+        "sha256": "b83db53cbd68715802a09692f7c393937ed69977ebffb555d2762265ee53435e",
+        "gitBlob": "5d6809f299e81e5799ee3575d4b359f36b71b81e"
+      },
+      {
+        "path": "map/strategicregions/273 - Western Japan.txt",
+        "bytes": 3288,
+        "sha256": "8fc1c12731a02aff7e37273821f2f4c057541dc07271f037ce17a5c029b41349",
+        "gitBlob": "be82bde9ca24d294975fbf6510ca58814e85ec57"
+      },
+      {
+        "path": "map/strategicregions/274 - Eastern Arabia.txt",
+        "bytes": 3088,
+        "sha256": "c7b5e8b8a7092577731caafdbeef2792da8337a932e2e9ad7d5fecbd67f97927",
+        "gitBlob": "9cb8b1903a58c43542d66eabbb7658040181d3ab"
+      },
+      {
+        "path": "map/strategicregions/275 - South Arabia.txt",
+        "bytes": 3154,
+        "sha256": "bef9171843df41cfde36020749d87e7d706ca1b951286d796f8404b205b123d2",
+        "gitBlob": "62b7c8a983a3a3af61b0e5a68e399dba663d5e68"
+      },
+      {
+        "path": "map/strategicregions/28 - Levant.txt",
+        "bytes": 3225,
+        "sha256": "42f4beab9d46711ca15b9f6e9a04b14a572d836c99365604462b0a7efcc71d6e",
+        "gitBlob": "53214ee3dc127e616aa9782c4734f132246c42d3"
+      },
+      {
+        "path": "map/strategicregions/29 - Central Mediterranean Sea.txt",
+        "bytes": 3039,
+        "sha256": "9eb4f6b6f8419a078923da11d64580e38c46bc9ee5d679dad4d0aa2909c6d57d",
+        "gitBlob": "1771d5957741cba83ee5882611a4c7f8b76573e0"
+      },
+      {
+        "path": "map/strategicregions/3 - Scotland.txt",
+        "bytes": 3150,
+        "sha256": "c66ff74ee67b0a068398a2a287af360e6c0960f0c49cb54a41f0025e2d21fcdd",
+        "gitBlob": "837964171310aec6290f8842e35158d763b3a54c"
+      },
+      {
+        "path": "map/strategicregions/30 - Black Sea.txt",
+        "bytes": 3079,
+        "sha256": "31a2792e3d4701cd627a40bb23a82514a66efeb2c6d7ed8fb49cdcd08907112b",
+        "gitBlob": "56c04174ff09684eae7dd65e9faa422caaa17985"
+      },
+      {
+        "path": "map/strategicregions/31 - Deccan Plateau.txt",
+        "bytes": 3316,
+        "sha256": "91601494790261e6f1f6a8fb8f3a853e7ec5bb9f555d9be2a1bcc11a6b883208",
+        "gitBlob": "9237bf9f8417c4a92509a7c326baae21f460c856"
+      },
+      {
+        "path": "map/strategicregions/32 - South-Eastern Pacific.txt",
+        "bytes": 3453,
+        "sha256": "343e06067210b25a7fabd14b25a867d609e6c756da0de651585ac6e28c5638b9",
+        "gitBlob": "ac4671619983b064c02b4101fb47476f400d9064"
+      },
+      {
+        "path": "map/strategicregions/33 - Denmark.txt",
+        "bytes": 3103,
+        "sha256": "5da5e716e4aef3b187828b60b035212bb3b5d9943164f9116e58bc23900afc62",
+        "gitBlob": "5115da31ea845a214d672151c01d00acec4fc02c"
+      },
+      {
+        "path": "map/strategicregions/34 - Central America.txt",
+        "bytes": 3380,
+        "sha256": "60a0858e71082abb70eb95551850aa1fdc33e286e92ff85c8204fd12b0413d8c",
+        "gitBlob": "7e4e12faa050ae87cbbe4c0ec60f3b099af03f31"
+      },
+      {
+        "path": "map/strategicregions/35 - Patagonia.txt",
+        "bytes": 3428,
+        "sha256": "62f9c9332ad72b364f1436a0d007050c167ae2fba922bf7771694e191cb917e6",
+        "gitBlob": "dfb27cffbe30f178c10f8ecebbaa5374e5e03499"
+      },
+      {
+        "path": "map/strategicregions/36 - Greenland.txt",
+        "bytes": 3015,
+        "sha256": "5857cf2a8900c6827ba552830ae755c16b3f6c9d18625a713e4437976ff6a76b",
+        "gitBlob": "28e3b7ec065c60fa4a8bf6b5dd8cb97f14050044"
+      },
+      {
+        "path": "map/strategicregions/37 - Baltic States.txt",
+        "bytes": 3408,
+        "sha256": "d0fba55f74efe358c025530441eec30362fdd657f46dd411a132a7284c763ec4",
+        "gitBlob": "536ab61a2359968119e97eb688e2273efd66b89d"
+      },
+      {
+        "path": "map/strategicregions/38 - Poland.txt",
+        "bytes": 3638,
+        "sha256": "f61909bd3885c84a27450afb57b9e361f09139120d985ba4262b5a2e0c33e8ef",
+        "gitBlob": "9b0e375d09c1f74064130916cec88273c5a931dc"
+      },
+      {
+        "path": "map/strategicregions/39 - Belarus.txt",
+        "bytes": 3312,
+        "sha256": "258281f49f953f377af72e6fd1fc1e42fbbccf65c5ce12e693b9fe70217f596e",
+        "gitBlob": "1a898ea3512c2e8b277265d7606204d9292b7d3e"
+      },
+      {
+        "path": "map/strategicregions/4 - Ireland.txt",
+        "bytes": 3155,
+        "sha256": "96f634e390bdcbed505a68a5d0faa0404f23244c02b7fd4f5a006ebaaf943c0b",
+        "gitBlob": "d05c3a4e6026a96f265e39f153139fbae5a3f609"
+      },
+      {
+        "path": "map/strategicregions/40 - Transvolga.txt",
+        "bytes": 3987,
+        "sha256": "ae5278ef0dbbd4baf6b7af052420e0080bcfbd891b0a29d99903e46a087ab14d",
+        "gitBlob": "af11eaddf98e7a0bb4db320b8eb0c4f705061b43"
+      },
+      {
+        "path": "map/strategicregions/41 - Eastern Iberia.txt",
+        "bytes": 3403,
+        "sha256": "671c2921b90b9e47dff05673b848ca1beaf172cad6b8c2e38c04c24379bc2228",
+        "gitBlob": "7fec27391f87769189f1c5db1a8c5fa2044bca95"
+      },
+      {
+        "path": "map/strategicregions/42 - Bay of Biscay.txt",
+        "bytes": 3017,
+        "sha256": "51abb95010d91f801ae7747730df50d7902cc3258e17d81baff36696df57e238",
+        "gitBlob": "1b8c299c80152fa0fd4c4dd82c2462423b892e11"
+      },
+      {
+        "path": "map/strategicregions/43 - Western Approaches.txt",
+        "bytes": 3147,
+        "sha256": "9918cdb047a1796e478affdf3fad3908b49690eb0a5aaeb57d68e946a8ddd8d0",
+        "gitBlob": "2fecbb3ea940b4889d21e19914e7476eb2365a5b"
+      },
+      {
+        "path": "map/strategicregions/44 - Denmark Strait.txt",
+        "bytes": 3102,
+        "sha256": "e1d851e96b7cc3ac5a47efcea1ac60c94a8cdf588dfe04f274058591e2910a80",
+        "gitBlob": "8301ab9b06f6581563becb527073c4801636c2ee"
+      },
+      {
+        "path": "map/strategicregions/45 - Norwegian Sea.txt",
+        "bytes": 3154,
+        "sha256": "c472b9aba05e853226eda8317254c0ca141e4903d83ca4b0fdc46189687e306e",
+        "gitBlob": "c4e0db07ee0949f2ccf23c5d1085d0d9d21b2776"
+      },
+      {
+        "path": "map/strategicregions/46 - Barents Sea.txt",
+        "bytes": 3059,
+        "sha256": "db9add5b1c1a4fb4d9eae2bc007daf09f99eb4b33c839346f454ea2bee99ef7e",
+        "gitBlob": "c3b90b362e92eb1b1ecb564a710485ccb70b1e26"
+      },
+      {
+        "path": "map/strategicregions/47 - Iberian Coast.txt",
+        "bytes": 3120,
+        "sha256": "754d8f1dfa66ecd7bbb283c0ab1778dc098d8ce375ee1d68f94fd907df787b51",
+        "gitBlob": "598581ad28ce38918163a057deae5d071eaf5833"
+      },
+      {
+        "path": "map/strategicregions/48 - African Coast.txt",
+        "bytes": 3059,
+        "sha256": "65fb00af99fdbf6e3476090dad41afeeda9da3190e352b15b93b9bcf81726c35",
+        "gitBlob": "2d607f852e58f9db756211e88006ac0f9b932a04"
+      },
+      {
+        "path": "map/strategicregions/49 - North Atlantic Ridge.txt",
+        "bytes": 3155,
+        "sha256": "ad975ed401581037cff70c032e6478cc5bd7a104cfe9c0022389805465c70c67",
+        "gitBlob": "90dd30c7a19c2ac48ec657f7598faced57a4867d"
+      },
+      {
+        "path": "map/strategicregions/5 - Low Countries.txt",
+        "bytes": 3200,
+        "sha256": "4d60e92f8a4307a30e4510c31ee27fe64140e6e0e69dffde1160e9a6a6f7aae3",
+        "gitBlob": "86593cb67ebab03e7baadc54d8c75ec71bfcf196"
+      },
+      {
+        "path": "map/strategicregions/50 - Labrador Sea.txt",
+        "bytes": 3237,
+        "sha256": "06857b2a77a297bfdd5056e3a528edef7163e934029b282b02bb084287c197a8",
+        "gitBlob": "c1f5532cbde3f3fecfb891572a367c8987abba4f"
+      },
+      {
+        "path": "map/strategicregions/51 - Mid Atlantic Gap.txt",
+        "bytes": 3135,
+        "sha256": "0e80c3ff50fc598755c64527c42d84e7c5ac503b10f0673c95a81c160389d791",
+        "gitBlob": "04fc1ec37ea7c3e3d33685a2b319011769fcbc1a"
+      },
+      {
+        "path": "map/strategicregions/52 - Gulf of Mexico.txt",
+        "bytes": 3034,
+        "sha256": "793355382b82382a30f0839e2d18c5b38a0f0962a1389af3e3afc5c82653504c",
+        "gitBlob": "f9a77cdad1bbce5df34b3689a641b26a18b1197c"
+      },
+      {
+        "path": "map/strategicregions/53 - Caribbean Sea.txt",
+        "bytes": 3412,
+        "sha256": "f2d03480570fc862fe063d756464643e087414528e29cf7d134e234b437f67fc",
+        "gitBlob": "e3257cb46d899cd587a9c4b82e282d48744cb6d2"
+      },
+      {
+        "path": "map/strategicregions/54 - Eastern Seaboard.txt",
+        "bytes": 3051,
+        "sha256": "b04d38acbf92c3911f37b6ffdec7b59f7ab1a8b998d169922fc9db8d74ef8de6",
+        "gitBlob": "a2670e0ca95532e3f53064f4e85605b1b304a1ef"
+      },
+      {
+        "path": "map/strategicregions/55 - Newfoundland Sea.txt",
+        "bytes": 3061,
+        "sha256": "67d36561153f2dcbb4ff22b96bb1d3bb348611cf2a93e57ace4114f45f01691a",
+        "gitBlob": "c09664f5f3c29521007be57ad80abfa3661d6804"
+      },
+      {
+        "path": "map/strategicregions/56 - Mid Atlantic.txt",
+        "bytes": 3135,
+        "sha256": "9a2abccad2fe5fb2fbb26a650b5f96ad5edbee68fd1b766d10e6682b75ff186f",
+        "gitBlob": "aad2f12d647f4ffdbeb0a531b7e1af0b46b063b7"
+      },
+      {
+        "path": "map/strategicregions/57 - Sargasso Sea.txt",
+        "bytes": 3186,
+        "sha256": "b0726e9eaec685551da140fd152e612d438b6659a566907b47ff7bdb542570e2",
+        "gitBlob": "3bdf8735eb7b3c136d9ff85c79c45b2263d104b2"
+      },
+      {
+        "path": "map/strategicregions/58 - Central Atlantic Gap.txt",
+        "bytes": 3143,
+        "sha256": "1247433c5617b0fe42082a6200302d0197cd9ec6ee6bb847553c47bb666ccee2",
+        "gitBlob": "ea9ef73b474210a6c3bf400bb6c09e67a625bc32"
+      },
+      {
+        "path": "map/strategicregions/59 - Demerara Plain.txt",
+        "bytes": 3230,
+        "sha256": "629084cda460b7a28248aba3e98a66fce174abf27dc9c38af0ab7b73b6e9db88",
+        "gitBlob": "e2f09a63e5a38d54cb815485fae617207d9a9f27"
+      },
+      {
+        "path": "map/strategicregions/6 - Rhineland.txt",
+        "bytes": 3198,
+        "sha256": "e8a589ac7c2033c0b1251de6a24afad3478ca257653911cd3b03aff14f092a37",
+        "gitBlob": "02499c0efc2b2e3da4c831692681aa86cbfbca7e"
+      },
+      {
+        "path": "map/strategicregions/60 - West Indian Ocean.txt",
+        "bytes": 3490,
+        "sha256": "67cffa550a7cb58dbb49309a5d9af5836283f7bec7e83d9abd73fe28c96bce71",
+        "gitBlob": "efffbaed5cb9fbcd43acc7b43959ce3d6725aa77"
+      },
+      {
+        "path": "map/strategicregions/61 - Cape Verde Plain.txt",
+        "bytes": 3225,
+        "sha256": "4437c9c82b92d4031df2edb2248dca6d5d1b51664f03e89cbabcb6587c4993d5",
+        "gitBlob": "b29ae7b2db08e1e5b70e9fb888f15cbb26b50e34"
+      },
+      {
+        "path": "map/strategicregions/62 - Gulf of Guinea.txt",
+        "bytes": 3552,
+        "sha256": "650cb20c8839fb6e77db7089103712ec7df1de70d04030e023c2f389ba55d232",
+        "gitBlob": "5898cc791ea4fc855affb0d350d595d0692a47a4"
+      },
+      {
+        "path": "map/strategicregions/63 - Drake Passage.txt",
+        "bytes": 3105,
+        "sha256": "313cf135aa699254edbb6b90204264d69f87891519abc6123937caea076a4078",
+        "gitBlob": "c2a92422b7222674bc51aaae39323bb7a5ac1fab"
+      },
+      {
+        "path": "map/strategicregions/64 - Scotia Sea.txt",
+        "bytes": 3410,
+        "sha256": "b9221f51ff886e9b32fd9366a82ec12edd47ba7156f510d98b4c1b936bed45b3",
+        "gitBlob": "f25712cc066e1ff371e0e67e3c737bfbf1a0acd1"
+      },
+      {
+        "path": "map/strategicregions/65 - Cape of Africa.txt",
+        "bytes": 3183,
+        "sha256": "6ac6e884fef41eaed90dcf67b3d66cbd2fd9c7e0ff2946570a3d22282e852bf0",
+        "gitBlob": "cffe60d8702c29cd634b7af32ea96cd9d7636ad1"
+      },
+      {
+        "path": "map/strategicregions/66 - South Central Atlantic.txt",
+        "bytes": 3453,
+        "sha256": "77f952d25a92b32d4fc3c45799b32940fb5f618687d206e1d9354142cb0c8770",
+        "gitBlob": "a3a9e6411d9ba9ee315991eac760795e83f4102c"
+      },
+      {
+        "path": "map/strategicregions/67 - Atlantic-Indian Ridge.txt",
+        "bytes": 3226,
+        "sha256": "0f881745e5f413545d2818d3a249a2b1834809bbdac599cc6232ac94b0475e04",
+        "gitBlob": "7f69797b791689c97d266a734890f3c3b6181e8f"
+      },
+      {
+        "path": "map/strategicregions/68 - Western Mediterranean Sea.txt",
+        "bytes": 3064,
+        "sha256": "f432a2b3309ba78dfad6e5a6b748d38575082633384cde47f15f230dd6586362",
+        "gitBlob": "7485a7c040ef39cea64212d29c01311bc91cade7"
+      },
+      {
+        "path": "map/strategicregions/69 - Eastern mediterranean Sea.txt",
+        "bytes": 3046,
+        "sha256": "eedd6668888db47e40f045b51c77a771fbe4efb3bdd644a5fdd6d9bb9a47f729",
+        "gitBlob": "9be02583638af287bdefe1aec7cfbd207c899607"
+      },
+      {
+        "path": "map/strategicregions/7 - Upper Germany.txt",
+        "bytes": 3242,
+        "sha256": "2d7583ba7306d6e62a3c26e3794ee0c6f01d758f3a659e41100213a05074ba98",
+        "gitBlob": "2e575f8bca76fdef7465da1a1cf42b00dfeeac71"
+      },
+      {
+        "path": "map/strategicregions/70 - Caspian Sea.txt",
+        "bytes": 3003,
+        "sha256": "2bf5fd1aaa577ae5ccb9c4dea3a247d6d53808f8452a236f5d5cfafba4cf2ac8",
+        "gitBlob": "84e4223910c192cfee9250d9274dfda7389fa3cf"
+      },
+      {
+        "path": "map/strategicregions/71 - East Indian Ocean.txt",
+        "bytes": 3298,
+        "sha256": "b194ff13bad0b0656449432729bead448a2327fef778bb0ebe27a451be5fd663",
+        "gitBlob": "48c76ec58df2f8cd173288f2f47f8ebb301c611b"
+      },
+      {
+        "path": "map/strategicregions/72 - Natuna Sea.txt",
+        "bytes": 3042,
+        "sha256": "03fcc5fe8787e11dcda86f43f509838c88033eec4dfd6a083d88a86b46d570aa",
+        "gitBlob": "7393b06c8707f050ef75b84c1a41f90d8674910f"
+      },
+      {
+        "path": "map/strategicregions/73 - Gulf of Siam.txt",
+        "bytes": 3047,
+        "sha256": "05f51fee2302f16bbbe34f6259410af25f2dde954a5ed6f44a88432de645a56f",
+        "gitBlob": "eaaecd8622f9e1797f8d4949c2ae991bc062a37c"
+      },
+      {
+        "path": "map/strategicregions/74 - South East Indian Ocean.txt",
+        "bytes": 3384,
+        "sha256": "a4f6755659258d4423064a6d06695a0a63664aa48ad35d57fa577ecafe5e5593",
+        "gitBlob": "7c45431a868a0308baf26025865165ef6c8803c7"
+      },
+      {
+        "path": "map/strategicregions/75 - South China Sea.txt",
+        "bytes": 3201,
+        "sha256": "c29a884ffbcba74d404b4540542c353b1e2f015e8aaa2f2a9464a7a50d86279e",
+        "gitBlob": "ea7ef5278ce3dffa131906a14a883aa7de05e869"
+      },
+      {
+        "path": "map/strategicregions/76 - East China Sea.txt",
+        "bytes": 3164,
+        "sha256": "c5ec44168cd1dd9bea71b99a61dd962de532312641531d11657bbd03509473b7",
+        "gitBlob": "d1894902630228421aaa32185f450161994b6fdf"
+      },
+      {
+        "path": "map/strategicregions/77 - Yellow Sea.txt",
+        "bytes": 3047,
+        "sha256": "65858785c82f89beb7dcc84b59d9a330eeb33c25fdf7326cfe0427d7a8a2c0d8",
+        "gitBlob": "c8064b088e5bed1e74326998ec3a032e605bc506"
+      },
+      {
+        "path": "map/strategicregions/78 - Philippine Sea.txt",
+        "bytes": 3254,
+        "sha256": "d5c6d49b530d9b26351e5c827cfbf6ba1be64dfa76ce5a3d2cff78b6a7380312",
+        "gitBlob": "507939e2e06b26971f378a9b7d8e10ecc718446a"
+      },
+      {
+        "path": "map/strategicregions/79 - Sea of Japan.txt",
+        "bytes": 3064,
+        "sha256": "2539f8c4d46bb38b12e1e0be2209b3718c76a87a67043fd530e297e815ca3957",
+        "gitBlob": "a7eebb169dff660793f3490015b81b827e6e949d"
+      },
+      {
+        "path": "map/strategicregions/8 - Lower Germany.txt",
+        "bytes": 3555,
+        "sha256": "ae83bf3150bc343c45ead61bb3bf53d098b1a04638544a36bf8c07a499bc0857",
+        "gitBlob": "a41e197bb25406536ff553f44c493d601131617d"
+      },
+      {
+        "path": "map/strategicregions/80 - Celebes Sea.txt",
+        "bytes": 3124,
+        "sha256": "98fd8a23e069a2a9a66b31f3643637dc4b412edd9e65f058be9596cfa21892d3",
+        "gitBlob": "aeee4bb9f0feac4ac2665bfca05d1c7027b6aa51"
+      },
+      {
+        "path": "map/strategicregions/81 - Coral Sea.txt",
+        "bytes": 3161,
+        "sha256": "acfdd0908b884a9c13b96a6c6cc04591e500eb8c9fb5b3e6ee49278c41e18e55",
+        "gitBlob": "85e436b3f15f2cee190b0c723033f25d40d22948"
+      },
+      {
+        "path": "map/strategicregions/82 - Gulf of Carpentaria.txt",
+        "bytes": 3042,
+        "sha256": "e489547c7be11269bbe6aef8007ba4396fb8161788cc06a3e3ad72a8c67ec658",
+        "gitBlob": "95cffa05b1b1605a234e21c6f52e953c0a09a8d2"
+      },
+      {
+        "path": "map/strategicregions/83 - Solomon Sea.txt",
+        "bytes": 3375,
+        "sha256": "60d4f31b80a42def782a89ac5f38670dd8ada4be53d6f60ff27222451eba5bb4",
+        "gitBlob": "1c67c51cedbbf9113699abf2f64cc82a4f5b7b00"
+      },
+      {
+        "path": "map/strategicregions/84 - Bismarck Sea.txt",
+        "bytes": 3298,
+        "sha256": "00e87cd286c3ad8f61bbd954b4c94d0e68dc55c1191d1092ffb3b5add0757a3f",
+        "gitBlob": "d697226cfd2707ca7bd11cc30aa94e569d4cbb12"
+      },
+      {
+        "path": "map/strategicregions/85 - South West Indian Ocean.txt",
+        "bytes": 3472,
+        "sha256": "56951bf0a3fbbe0e7766672e7e44af6bdd06311ff6e166aea5bcec0b52cdc648",
+        "gitBlob": "32ec7df6b48f4f0ee215f4a71cc0a9dd23810cd1"
+      },
+      {
+        "path": "map/strategicregions/86 - Tasman Sea.txt",
+        "bytes": 3182,
+        "sha256": "b7feaf3e1607b7fbbaae7a04216927a44f4a640efcd1297910f5ca7dcce3ec62",
+        "gitBlob": "ad537eb2b256fc9f64023e6cd6883d97ff105707"
+      },
+      {
+        "path": "map/strategicregions/87 - Sea of Okhotsk.txt",
+        "bytes": 3191,
+        "sha256": "b5a64fdacd4482ca4ebf5492f0fc4465862a2db596ec4dccd85bac05467792ea",
+        "gitBlob": "cc9d084a8aed887939846e457fd685a42c0f4280"
+      },
+      {
+        "path": "map/strategicregions/88 - Bering Sea.txt",
+        "bytes": 3318,
+        "sha256": "6546a20844045b6b33f64db0cb3af5f76d9880c28d46bee75edc5036f3e5cfee",
+        "gitBlob": "ce8b0b335eec92bb77821fb1dbe34c968d1f64de"
+      },
+      {
+        "path": "map/strategicregions/89 - Western Seaboard.txt",
+        "bytes": 3022,
+        "sha256": "613caa3b3ae5b5d57d39c63fef221d997c166a071a32ad3178383442fca3a4aa",
+        "gitBlob": "66d4d1d91c1f9ba4f0b3f97dcd9d5ae678d5f053"
+      },
+      {
+        "path": "map/strategicregions/9 - Gulf of Bothnia.txt",
+        "bytes": 3022,
+        "sha256": "88f135610eec828e0c2b9cb55780216ae23620ce9a53a313bf3bef37f1816a25",
+        "gitBlob": "48959cf7690a889257b3145f07b1a674edc40262"
+      },
+      {
+        "path": "map/strategicregions/90 - Coast of Japan.txt",
+        "bytes": 3081,
+        "sha256": "508470d7c7abaec46f71b0d73b5a7435a20a5f63e39bcf5da6b84ba76f340d15",
+        "gitBlob": "5a53729fda2818f7b9c1cb8e4ca9d848935193ba"
+      },
+      {
+        "path": "map/strategicregions/91 - Arafura & Banda Seas.txt",
+        "bytes": 3144,
+        "sha256": "93b3d099a42297e25c4cd1463de4d06ab5029855f2e378c0ef1aa5672775476f",
+        "gitBlob": "20be11d0410a610a76abaa230d709ba5b86ef5a0"
+      },
+      {
+        "path": "map/strategicregions/92 - Timor Sea.txt",
+        "bytes": 3063,
+        "sha256": "89b42a4a82fa4f383ebb30309fdce98b157d84d99368089950e4e144715ab855",
+        "gitBlob": "92710ff9f7a49e7fbd579dd856ec21d8f6571ed2"
+      },
+      {
+        "path": "map/strategicregions/93 - Java & Flores Seas.txt",
+        "bytes": 3347,
+        "sha256": "37cc221cbe0da038ea78196c0e9f52cfcf47ba14000c643a54b32c5759691f8b",
+        "gitBlob": "7f0e84bc3231cc52a793d65e0a05b3c5de40b0c9"
+      },
+      {
+        "path": "map/strategicregions/94 - Mariana Trench.txt",
+        "bytes": 3291,
+        "sha256": "2c65c96bb5962b4a555bdda5deea1689f032a72906915d96e2a6402f191d4c97",
+        "gitBlob": "4efac1df26d85fdb6e2c82b2e8daaaa49a144cec"
+      },
+      {
+        "path": "map/strategicregions/95 - West Emperor Chain.txt",
+        "bytes": 3299,
+        "sha256": "32516c9827cac8b94a08d968a6922783ef3d9a5df17e25510ef0b26f5976137a",
+        "gitBlob": "4dab97940b8a11a054c6bfaf5420492e41fc9470"
+      },
+      {
+        "path": "map/strategicregions/96 - North Emperor Chain.txt",
+        "bytes": 3256,
+        "sha256": "ba70b7a9a25c7399efd676115ad273f9988d4d0dfd3214e5edc8369807e4334c",
+        "gitBlob": "21df561b2c4a52ccd05b072965506a8385a7dccd"
+      },
+      {
+        "path": "map/strategicregions/97 - Eastern Micronesia.txt",
+        "bytes": 3436,
+        "sha256": "84276b5997497b27f577601d150c0496ea420a04bd1b2546d72fb4eda0922438",
+        "gitBlob": "f32a4891541d1b778f6974c25f43cff4759b9ded"
+      },
+      {
+        "path": "map/strategicregions/98 - Great Australian Bight.txt",
+        "bytes": 3152,
+        "sha256": "246f015f00f4dc6156ac446440d1f95b6a6a8fe9562158b3d537c5c25124bd01",
+        "gitBlob": "9adbb4475979fa86c25c55506e2538f56bae0c0b"
+      },
+      {
+        "path": "map/strategicregions/99 - Far Eastern Indian Ocean.txt",
+        "bytes": 3425,
+        "sha256": "c6758ff7e4be4f37d0e18f63dff66badf0cf84816dc212d8d52c3d60323eaeb8",
+        "gitBlob": "b25fa0c921e55c6031689c47ab48a3a17cc2488e"
+      },
+      {
+        "path": "map/supply_nodes.txt",
+        "bytes": 6818,
+        "sha256": "378bdee5707e73a4dbd9f0a9a9bab1e2f64dd2327e577ebd64f19eb594587993",
+        "gitBlob": "450f279ba8012db3f6564fcdf6ba5621ee2c60b7"
+      },
+      {
+        "path": "map/unitstacks.txt",
+        "bytes": 10714861,
+        "sha256": "c5f3e8cbd7e06c3258dd97a87298c7be728feb168c2d42a52e720ef1d0b94a8b",
+        "gitBlob": "903afa2d4fc07d4b19af4a5ef5a9599cf48c3316"
+      },
+      {
+        "path": "map/weatherpositions.txt",
+        "bytes": 24053,
+        "sha256": "cbe383ff790e847c4ae8b28857208cb45e17cdbec37e3947dc8e8285f1b13707",
+        "gitBlob": "75c6f1f61020fa554f4f598962981889fae2f489"
+      }
+    ]
+  },
+  "inputIntegrity": {
+    "before": {
+      "vanilla": {
+        "files": 5479,
+        "bytes": 248588581,
+        "manifestSha256": "806fd388dd9e478e73d3f9ec432a2531ba7c6830c67299c4cd1110e3e7ced10f"
+      },
+      "kaiserreich": {
+        "files": 6144,
+        "bytes": 175783492,
+        "manifestSha256": "67f147f790ec4091271a7ea12102b51b0ffcabb6647076f3ce495634f28d55f3"
+      }
+    },
+    "after": {
+      "vanilla": {
+        "files": 5479,
+        "bytes": 248588581,
+        "manifestSha256": "806fd388dd9e478e73d3f9ec432a2531ba7c6830c67299c4cd1110e3e7ced10f"
+      },
+      "kaiserreich": {
+        "files": 6144,
+        "bytes": 175783492,
+        "manifestSha256": "67f147f790ec4091271a7ea12102b51b0ffcabb6647076f3ce495634f28d55f3"
+      }
+    },
+    "unchanged": true
+  },
+  "checks": [
+    {
+      "name": "vanilla-complete",
+      "selectedBase": "supplied vanilla text snapshot",
+      "effectiveBaseFiles": 5479,
+      "project": {
+        "success": true,
+        "diagnostics": [],
+        "world": {
+          "countries": 440,
+          "states": 1081,
+          "assets": 91
+        },
+        "files": [
+          {
+            "path": "common/ai_strategy_plans/krieg_civ_civic_plan.txt",
+            "bytes": 273,
+            "sha256": "60e8657853079fc00dab48d4c7d8f6b9ec114d4ace182c4e978001266f9e6616",
+            "kind": "script"
+          },
+          {
+            "path": "common/autonomous_states/krieg_civ_treaty_associate.txt",
+            "bytes": 447,
+            "sha256": "d672027206bbbef0c54b6a82113542760620f8f1ece71b6a1008671307be199a",
+            "kind": "script"
+          },
+          {
+            "path": "common/bookmarks/krieg_civ_island_start.txt",
+            "bytes": 329,
+            "sha256": "29a3ef00393aa739eeffc88bb311b64eb4f294fd73d7615dbb217f2c307a6356",
+            "kind": "script"
+          },
+          {
+            "path": "common/bop/krieg_civ_assembly_balance.txt",
+            "bytes": 625,
+            "sha256": "a87f10a76d1c8cd7ffb8c601dc8f4d5304f42121b41f45f9dc61f53f3992cdd5",
+            "kind": "script"
+          },
+          {
+            "path": "common/characters/krieg_civ_valenti.txt",
+            "bytes": 356,
+            "sha256": "05ac4d439cee0f79dc9a79f95479aebe8185587bc32a7f61dee1b396cf090b8c",
+            "kind": "script"
+          },
+          {
+            "path": "common/countries/Civic Republic.txt",
+            "bytes": 113,
+            "sha256": "6051d7b7766f57f76819082175ea1627d1efe8a8399c4d006a186abdbe4251a1",
+            "kind": "script"
+          },
+          {
+            "path": "common/country_tags/krieg_KRG.txt",
+            "bytes": 37,
+            "sha256": "f025c7ee56dd5ea52932083b3247e5766565c8f043e96f09c4ee9ebc13d4f2de",
+            "kind": "script"
+          },
+          {
+            "path": "common/decisions/categories/krieg_civ_assembly.txt",
+            "bytes": 68,
+            "sha256": "2e82f9ec56b5845024efb3704637eb176102cf4c4982cc43c4404de9e95ded1c",
+            "kind": "script"
+          },
+          {
+            "path": "common/decisions/categories/krieg_civ_development.txt",
+            "bytes": 50,
+            "sha256": "ba435c785ab1681b16e9d7c35d88b55c89bc5748ff9072d321025efeba24e124",
+            "kind": "script"
+          },
+          {
+            "path": "common/decisions/krieg_civ_assembly.txt",
+            "bytes": 454,
+            "sha256": "710f9df7ebc671629fca4d9afb7264c21acd636cb46d71c48d9eb81c21a172ca",
+            "kind": "script"
+          },
+          {
+            "path": "common/decisions/krieg_civ_development.txt",
+            "bytes": 1592,
+            "sha256": "e84d157306a5edd509dd38b3bc40db951b8f3ab3bddeab0a2f11b64a2a196c59",
+            "kind": "script"
+          },
+          {
+            "path": "common/defines/krieg_island_congress_timing.lua",
+            "bytes": 121,
+            "sha256": "5cf31531cc2182412851b0c046db7218354a7aef424ff19b7e1bf3229f556be7",
+            "kind": "script"
+          },
+          {
+            "path": "common/dynamic_modifiers/krieg_civ_workshops.txt",
+            "bytes": 119,
+            "sha256": "3ce3c7648d8c8626c2a1306078324913931559ff813a342776cf744abab7e5c6",
+            "kind": "script"
+          },
+          {
+            "path": "common/ideas/krieg_civ_civic_spirit.txt",
+            "bytes": 182,
+            "sha256": "1cdabb9f36872268e4c06af2a59bd83085f1b2153065e84b301022f9839b3d88",
+            "kind": "script"
+          },
+          {
+            "path": "common/ideologies/krieg_civ_cooperative.txt",
+            "bytes": 404,
+            "sha256": "f385dc38bd6b192db72e97420d8ec36b4e34a9ce4a08e21ba72c93313d45e890",
+            "kind": "script"
+          },
+          {
+            "path": "common/intelligence_agencies/krieg_civ_coastal_service.txt",
+            "bytes": 189,
+            "sha256": "be42e68aedfd13113a1cb453a25eb90027ec11b8185404c6b607503f28d37d8b",
+            "kind": "script"
+          },
+          {
+            "path": "common/intelligence_agency_upgrades/krieg_civ_harbour_contacts.txt",
+            "bytes": 254,
+            "sha256": "4c6bd68a65fea8229f9aa81efca65783ed6a52a01a0ad9bd0a8a777048bbd8a2",
+            "kind": "script"
+          },
+          {
+            "path": "common/military_industrial_organization/organizations/krieg_civ_design_cooperative.txt",
+            "bytes": 292,
+            "sha256": "fb472b08cdf0e68d0c7b9fe774a8bcc14d340deaf22cce044d81c0fdc8743726",
+            "kind": "script"
+          },
+          {
+            "path": "common/national_focus/krieg_civ_island_tree.txt",
+            "bytes": 956,
+            "sha256": "e377d41ba4b7e702abea4979066eb914cb236dcbaac365f8c066d67f9339c3dc",
+            "kind": "script"
+          },
+          {
+            "path": "common/on_actions/civ_startup.txt",
+            "bytes": 136,
+            "sha256": "8ee2c8e705df0116239c340095ca9c2a40c5d7c4d3b80a94f7f4e6fe082d6646",
+            "kind": "script"
+          },
+          {
+            "path": "common/operation_phases/krieg_civ_survey_phase.txt",
+            "bytes": 225,
+            "sha256": "bc87de1a25c77bc37a0410c669d42dd0c547aad9861401de3ea1876c14540a67",
+            "kind": "script"
+          },
+          {
+            "path": "common/operation_tokens/krieg_civ_harbour_charts.txt",
+            "bytes": 170,
+            "sha256": "0616d06e723176646b29eccce4811ba2cd720a2a1114b0c5169f7785ac251951",
+            "kind": "script"
+          },
+          {
+            "path": "common/operations/krieg_civ_coastal_survey.txt",
+            "bytes": 472,
+            "sha256": "7925ad9b546181b4a88d1b2ec3287cc0d7a14fe801618139f40898fb02c248c7",
+            "kind": "script"
+          },
+          {
+            "path": "common/opinion_modifiers/krieg_civ_trade_partners.txt",
+            "bytes": 76,
+            "sha256": "56a61e283b6389c8737c9bc26c4cd26d87696d050e16c752489c4c3f8e94e4cc",
+            "kind": "script"
+          },
+          {
+            "path": "common/raids/categories/krieg_civ_coastal_recon.txt",
+            "bytes": 146,
+            "sha256": "533c5d633c5fd4ace0521c0e8f52d2073c59f819c8935f200c55bde395218df4",
+            "kind": "script"
+          },
+          {
+            "path": "common/raids/krieg_civ_coastal_patrol.txt",
+            "bytes": 1275,
+            "sha256": "70dd9fa018313de72ee29699232ed9c070212a1c1cf12d966f34c7e2115dd5a5",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_effects/krieg_civ_complete_investment.txt",
+            "bytes": 426,
+            "sha256": "a1f5c3d171dcdd3553caa0ecf33ffb13a028875f6fa9d2a695f19b7f4c2424bb",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_effects/krieg_civ_redeem_bond.txt",
+            "bytes": 196,
+            "sha256": "ff6c241896ee5fa89460a6d7f9a209adc6a62a19e3122060d228ad9a10fc620a",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_effects/krieg_civ_refund.txt",
+            "bytes": 159,
+            "sha256": "e4a76e58a321ce3666f5309093da62ed6eea43c2dfdf8dcb2b5b78ba007ba58d",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_guis/krieg_civ_assembly_panel.txt",
+            "bytes": 413,
+            "sha256": "61599cd8fa52f63c54920d7f83b102673bd1fc532fe66a2ffb2104dde455cc35",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_localisation/krieg_Get_civ_ProjectStatus.txt",
+            "bytes": 209,
+            "sha256": "d9c87349bd13d7b721f3b419111e96921e0a53da85af75c5e1d3c4ea568bb822",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_triggers/krieg_civ_can_invest.txt",
+            "bytes": 124,
+            "sha256": "fcd75014e48f590b85a25a2550437854bf5733c76159c813fc39d5abf2f071f1",
+            "kind": "script"
+          },
+          {
+            "path": "common/special_projects/projects/krieg_civ_coastal_beacon.txt",
+            "bytes": 529,
+            "sha256": "f8038b990a1d9ff8703aacada68f97338d9cd0e9ce31fe2679d103552d7def79",
+            "kind": "script"
+          },
+          {
+            "path": "common/technologies/krieg_civ_workshop_methods.txt",
+            "bytes": 488,
+            "sha256": "37ccd29c5bc86b997151febbec7080edfb0d9647e72a7939aef6cfde99cd2a31",
+            "kind": "script"
+          },
+          {
+            "path": "common/units/equipment/krieg_civ_field_tools.txt",
+            "bytes": 211,
+            "sha256": "a5cd0e918ebbd4d2af5a2a0c738c6cee271ecf92097bd34758e2a81b74d011dc",
+            "kind": "script"
+          },
+          {
+            "path": "common/units/krieg_civ_island_engineers.txt",
+            "bytes": 449,
+            "sha256": "3d07e2d0140726420af00346ff2ac5b0fec934ba05cfe3f2379890f4bf4e8581",
+            "kind": "script"
+          },
+          {
+            "path": "descriptor.mod",
+            "bytes": 134,
+            "sha256": "39fb6aa61f2e5140a4fea5c7efdb2943246284f21214cf8499bd07a87e9462a6",
+            "kind": "metadata"
+          },
+          {
+            "path": "events/krieg_civ_congress_0.txt",
+            "bytes": 235,
+            "sha256": "69dcbbe536ef01855fba8ce80399c05f9d6bbe6381d07b66c41ab46347b47b01",
+            "kind": "script"
+          },
+          {
+            "path": "events/krieg_civ_congress_1.txt",
+            "bytes": 367,
+            "sha256": "2a6f24dd0ab90936300513254c3f8aa22b95d16f8d61a52fb2a39cba2e2e0a59",
+            "kind": "script"
+          },
+          {
+            "path": "events/krieg_civ_congress_2.txt",
+            "bytes": 306,
+            "sha256": "042e8baa6a064620d27920eec48af4b83be5bf18da604e72bf38e7455491517f",
+            "kind": "script"
+          },
+          {
+            "path": "events/krieg_civ_congress_3.txt",
+            "bytes": 373,
+            "sha256": "46169063a04a92fa1f9a0a9eed43f74d0a64d93caa18ea6b2803e49bbe2526ee",
+            "kind": "script"
+          },
+          {
+            "path": "gfx/flags/KRG_communism.tga",
+            "bytes": 17074,
+            "sha256": "9a66c27baa6067b88f2f8d74e0b2a91c1e63e03b7a84a62c22ca0535fdbaed3d",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRG_democratic.tga",
+            "bytes": 17074,
+            "sha256": "9a66c27baa6067b88f2f8d74e0b2a91c1e63e03b7a84a62c22ca0535fdbaed3d",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRG_fascism.tga",
+            "bytes": 17074,
+            "sha256": "9a66c27baa6067b88f2f8d74e0b2a91c1e63e03b7a84a62c22ca0535fdbaed3d",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRG_neutrality.tga",
+            "bytes": 17074,
+            "sha256": "9a66c27baa6067b88f2f8d74e0b2a91c1e63e03b7a84a62c22ca0535fdbaed3d",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRG.tga",
+            "bytes": 17074,
+            "sha256": "9a66c27baa6067b88f2f8d74e0b2a91c1e63e03b7a84a62c22ca0535fdbaed3d",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRG_communism.tga",
+            "bytes": 4282,
+            "sha256": "df6eb4e71ecc29afd315135864ced56e99b5d0783f90a666a06981bd84452bd0",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRG_democratic.tga",
+            "bytes": 4282,
+            "sha256": "df6eb4e71ecc29afd315135864ced56e99b5d0783f90a666a06981bd84452bd0",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRG_fascism.tga",
+            "bytes": 4282,
+            "sha256": "df6eb4e71ecc29afd315135864ced56e99b5d0783f90a666a06981bd84452bd0",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRG_neutrality.tga",
+            "bytes": 4282,
+            "sha256": "df6eb4e71ecc29afd315135864ced56e99b5d0783f90a666a06981bd84452bd0",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRG.tga",
+            "bytes": 4282,
+            "sha256": "df6eb4e71ecc29afd315135864ced56e99b5d0783f90a666a06981bd84452bd0",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRG_communism.tga",
+            "bytes": 298,
+            "sha256": "d3a0db874970b1c41c5e1d83a86af49678ac17a34833293eef7f9b970078e8fe",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRG_democratic.tga",
+            "bytes": 298,
+            "sha256": "d3a0db874970b1c41c5e1d83a86af49678ac17a34833293eef7f9b970078e8fe",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRG_fascism.tga",
+            "bytes": 298,
+            "sha256": "d3a0db874970b1c41c5e1d83a86af49678ac17a34833293eef7f9b970078e8fe",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRG_neutrality.tga",
+            "bytes": 298,
+            "sha256": "d3a0db874970b1c41c5e1d83a86af49678ac17a34833293eef7f9b970078e8fe",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRG.tga",
+            "bytes": 298,
+            "sha256": "d3a0db874970b1c41c5e1d83a86af49678ac17a34833293eef7f9b970078e8fe",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/interface/civ_button.tga",
+            "bytes": 19218,
+            "sha256": "8ed8942754cea5681fd9a39a24af90ef5711780ee8e3e1b8fc5ae5c27c2e712c",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/interface/civ_icon.tga",
+            "bytes": 16402,
+            "sha256": "7f6a923043e035ac66624a9080d873018f75e03efc9ef542d289bf8bf5bf8d12",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/interface/civ_panel.tga",
+            "bytes": 266018,
+            "sha256": "0b08a181c0687029a10a71804197ad23415d3e1095836810b6e1fe130916e0c8",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/leaders/KRG/civ_leader.tga",
+            "bytes": 131058,
+            "sha256": "e8424b497dc2dc942e148dd56587e2a19460b942fef79984beed5814adc242f7",
+            "kind": "asset"
+          },
+          {
+            "path": "history/countries/KRG - Krieg.txt",
+            "bytes": 641,
+            "sha256": "681dc7e89c09667585baaf8d7cb9286c9c4ddde0110642ae9f050da3ebd9beb0",
+            "kind": "script"
+          },
+          {
+            "path": "history/states/1-France.txt",
+            "bytes": 446,
+            "sha256": "92a931c0e555fb4c9eac0c23ccd14f686187920b8c29d6329fcc7e9d91fb1909",
+            "kind": "script"
+          },
+          {
+            "path": "history/units/civ_1936.txt",
+            "bytes": 386,
+            "sha256": "b8ca3ac562a303041ae72e47b3e90b8c3ce2ffcac34f0dce7e264d2a763c8059",
+            "kind": "script"
+          },
+          {
+            "path": "history/units/civ_engineers.txt",
+            "bytes": 356,
+            "sha256": "eb3f627b241dc13bb08c5ba6c68e9ee406a66255c157c466b9d7b08a56577f1b",
+            "kind": "script"
+          },
+          {
+            "path": "interface/civ_assembly.gui",
+            "bytes": 848,
+            "sha256": "239024ddc79f56e1ebf13ec7563f6781345003b0ded488487f1d3b832e5c206c",
+            "kind": "script"
+          },
+          {
+            "path": "interface/civ_sprites.gfx",
+            "bytes": 594,
+            "sha256": "1e3d4368386bbda48e8eab19e509ee0ba7448ee68b84ff3f668295ca78174179",
+            "kind": "script"
+          },
+          {
+            "path": "localisation/english/civ-civic-kit_english_l_english.yml",
+            "bytes": 50,
+            "sha256": "239cae9cf53d31bff14d3e34c5fa8eee3bb315ae3ffd7d6c08da59bb892cb8f1",
+            "kind": "localisation"
+          },
+          {
+            "path": "localisation/english/vanilla-complete_english_l_english.yml",
+            "bytes": 7258,
+            "sha256": "52cfcedb1f95826c09322f242cb88ff3ed34598fdd07357d88fe3d1afd884c45",
+            "kind": "localisation"
+          },
+          {
+            "path": "localisation/simp_chinese/vanilla-complete_chinese_l_simp_chinese.yml",
+            "bytes": 179,
+            "sha256": "1658bdc2d724d448cfd8246f0b287b4e0d306ad81ca571cb6d4eb6769db28b04",
+            "kind": "localisation"
+          },
+          {
+            "path": "map/strategicregions/169-Tyrrhenian Sea.txt",
+            "bytes": 508,
+            "sha256": "366272799df7ffa2aa345da88cf34bd3ead4e1f9c2fce2859ac1596ee803b611",
+            "kind": "script"
+          }
+        ]
+      },
+      "external": {
+        "exitCode": 0,
+        "durationMs": 1196,
+        "command": [
+          "$CORPORA/cwtools",
+          "validate",
+          "--game",
+          "hoi4",
+          "--directory",
+          "$REPO/examples/vanilla-complete/build/mod",
+          "--rules",
+          "$CORPORA/cwtools-hoi4-config-master/cwtools-hoi4-config-master",
+          "--vanilla",
+          "$SCRATCH/vanilla-complete",
+          "--no-vanilla-cache",
+          "--report-type",
+          "json",
+          "--output-file",
+          "$SCRATCH/vanilla-complete-cwtools.json"
+        ],
+        "stdout": "Wrote json report (0 errors, 2 warnings) to $SCRATCH/vanilla-complete-cwtools.json\n",
+        "stderr": "Validating hoi4 files in $REPO/examples/vanilla-complete/build/mod against rules directory $CORPORA/cwtools-hoi4-config-master/cwtools-hoi4-config-master\n  Loaded 229 types, 123 enums, 1957 aliases\n  Discovered 46 files\n",
+        "diagnostics": [
+          {
+            "file": "$REPO/examples/vanilla-complete/build/mod/common/intelligence_agencies/krieg_civ_coastal_service.txt",
+            "line": 10,
+            "severity": "Warning",
+            "code": "CW251",
+            "message": "This AND is unnecessary",
+            "hash": "8972eb22adea38d8"
+          },
+          {
+            "file": "$REPO/examples/vanilla-complete/build/mod/common/scripted_triggers/krieg_civ_can_invest.txt",
+            "line": 2,
+            "severity": "Warning",
+            "code": "CW251",
+            "message": "This AND is unnecessary",
+            "hash": "1f45f3f6280dfd9c"
+          }
+        ]
+      }
+    },
+    {
+      "name": "kaiserreich-complete",
+      "selectedBase": "supplied vanilla + supplied Kaiserreich text snapshot with pinned official descriptor replacement paths and pinned official map text supplement",
+      "effectiveBaseFiles": 7240,
+      "project": {
+        "success": true,
+        "diagnostics": [],
+        "world": {
+          "countries": 333,
+          "states": 1125,
+          "assets": 109
+        },
+        "files": [
+          {
+            "path": "common/ai_strategy_plans/krieg_srd_civic_plan.txt",
+            "bytes": 273,
+            "sha256": "a6d746b79d4ddf87db62012ccb032d1eed0d959a1fb33eb22f292d016d590fe0",
+            "kind": "script"
+          },
+          {
+            "path": "common/autonomous_states/krieg_srd_treaty_associate.txt",
+            "bytes": 447,
+            "sha256": "976a3832196551a8ed88abb3821b0b13af2bee9a7a6cbb38839eab265a727790",
+            "kind": "script"
+          },
+          {
+            "path": "common/bookmarks/krieg_srd_island_start.txt",
+            "bytes": 334,
+            "sha256": "e19b23867f3271cb3f8702a89b0825559b24d59f4b231aff320299b22b143354",
+            "kind": "script"
+          },
+          {
+            "path": "common/bop/krieg_srd_assembly_balance.txt",
+            "bytes": 625,
+            "sha256": "212c4d5013c5ae49f7ea6f8413ed4fe369c3d9a885ac9ef80e146423ffd46f19",
+            "kind": "script"
+          },
+          {
+            "path": "common/characters/krieg_srd_serra.txt",
+            "bytes": 363,
+            "sha256": "fd82ac3e61b496ffd489e52021c1810ac15a41176b050795769b3def54d26552",
+            "kind": "script"
+          },
+          {
+            "path": "common/countries/Reconstruction League.txt",
+            "bytes": 113,
+            "sha256": "773cbfefa01c061e7779cc90739e70b3e495fad31e0b9b110e0b35f01ec23d6b",
+            "kind": "script"
+          },
+          {
+            "path": "common/country_tags/krieg_KRL.txt",
+            "bytes": 44,
+            "sha256": "5591dbfe0796fb852aa8884ecc2f10928d8837743ad9f427e7c301a228c225be",
+            "kind": "script"
+          },
+          {
+            "path": "common/decisions/categories/krieg_srd_assembly.txt",
+            "bytes": 68,
+            "sha256": "1b306ae72061829a063fa6333d02f33f1ae301af710e01c8bd3f42d4db063d3f",
+            "kind": "script"
+          },
+          {
+            "path": "common/decisions/categories/krieg_srd_development.txt",
+            "bytes": 50,
+            "sha256": "ce7ed80ea6f15e0b54d8870fc601a56b238c6a41191ba142eea700dc79b29e39",
+            "kind": "script"
+          },
+          {
+            "path": "common/decisions/krieg_srd_assembly.txt",
+            "bytes": 454,
+            "sha256": "ad8c451057c33db272e7bb50d2ee3e34dd5e64c44e168f0c0ca3cea2c0761236",
+            "kind": "script"
+          },
+          {
+            "path": "common/decisions/krieg_srd_development.txt",
+            "bytes": 1594,
+            "sha256": "73f5eb65ee5f1b0f2d3cce5e9931155e4497d2a319a082d17aa3ee24e6c52a10",
+            "kind": "script"
+          },
+          {
+            "path": "common/defines/krieg_island_congress_timing.lua",
+            "bytes": 121,
+            "sha256": "5cf31531cc2182412851b0c046db7218354a7aef424ff19b7e1bf3229f556be7",
+            "kind": "script"
+          },
+          {
+            "path": "common/dynamic_modifiers/krieg_srd_workshops.txt",
+            "bytes": 119,
+            "sha256": "481f9e0a962e3b93c26bc3e241620b823ec4e8207669e50d8590647a5c4ee742",
+            "kind": "script"
+          },
+          {
+            "path": "common/ideas/krieg_srd_civic_spirit.txt",
+            "bytes": 182,
+            "sha256": "da8d4b1175ffef93da062c7d3eb55f545dabe16d7c1e30e12b44cddc3c212a15",
+            "kind": "script"
+          },
+          {
+            "path": "common/ideologies/krieg_srd_cooperative.txt",
+            "bytes": 404,
+            "sha256": "77ce3719740faf717b2a1bcb276bb3ba3a0a88c75a6ecaabc6b78c9cb05ff3a7",
+            "kind": "script"
+          },
+          {
+            "path": "common/intelligence_agencies/krieg_srd_coastal_service.txt",
+            "bytes": 189,
+            "sha256": "6c57149031d25cc097e3b6b90e0caa7325b106e219825ae15e3f2810445596ca",
+            "kind": "script"
+          },
+          {
+            "path": "common/intelligence_agency_upgrades/krieg_srd_harbour_contacts.txt",
+            "bytes": 254,
+            "sha256": "5b8d341c12a0d309437c7f121ff1d00af7a0bb56b79a4c8900b867e522ec2068",
+            "kind": "script"
+          },
+          {
+            "path": "common/military_industrial_organization/organizations/krieg_srd_design_cooperative.txt",
+            "bytes": 292,
+            "sha256": "f0d131bc0fe82e9008ea2bce820e3342da5fee66a8155dbebfaf127759edcd87",
+            "kind": "script"
+          },
+          {
+            "path": "common/national_focus/krieg_srd_island_tree.txt",
+            "bytes": 956,
+            "sha256": "8fd1da2e2e49c2cb512f5faf88cfe07064e6aee0cfb2ea93ed0c0944daa1fbf2",
+            "kind": "script"
+          },
+          {
+            "path": "common/on_actions/srd_startup.txt",
+            "bytes": 136,
+            "sha256": "e6cfabedd974c909dbc1ffb67578d20114b8b8af1d82269fbcd92227fa110662",
+            "kind": "script"
+          },
+          {
+            "path": "common/operation_phases/krieg_srd_survey_phase.txt",
+            "bytes": 225,
+            "sha256": "a65a3810384ae1d954b947c3d086a08f4b9926cf085e58178a05dcd0f6d99720",
+            "kind": "script"
+          },
+          {
+            "path": "common/operation_tokens/krieg_srd_harbour_charts.txt",
+            "bytes": 170,
+            "sha256": "423a403f6e94bc245728dd3a80b2dc2c0c8e56ae162a7a0f122450420f90884d",
+            "kind": "script"
+          },
+          {
+            "path": "common/operations/krieg_srd_coastal_survey.txt",
+            "bytes": 472,
+            "sha256": "de2d8a6c1e6101c39ee0cbdd43b576bf8907a40fa571d841f35d9e32754191e9",
+            "kind": "script"
+          },
+          {
+            "path": "common/opinion_modifiers/krieg_srd_trade_partners.txt",
+            "bytes": 76,
+            "sha256": "ffdd26f69a79d18ee862d6ac23e12cb1ff6314b484ce1aa1c448d620700f0ddd",
+            "kind": "script"
+          },
+          {
+            "path": "common/raids/categories/krieg_srd_coastal_recon.txt",
+            "bytes": 146,
+            "sha256": "fc47243f93e8d44e946b2d05a36beaffe4bf72250ec7f723567b3c09890e7c3c",
+            "kind": "script"
+          },
+          {
+            "path": "common/raids/krieg_srd_coastal_patrol.txt",
+            "bytes": 1275,
+            "sha256": "ba22588b04f2b6345e24a560f9e1e530e595e6d4fd0747658d31fa143cc4190f",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_effects/krieg_srd_complete_investment.txt",
+            "bytes": 437,
+            "sha256": "4c3150817a425e71448b5f81c7acfeb59caf907209c2db74f2d546b6fa320f1f",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_effects/krieg_srd_redeem_bond.txt",
+            "bytes": 196,
+            "sha256": "a3683dfd5a22ddedfdb6c988570e0464f2e8a3c3cfcd88f109785f41b08a786c",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_effects/krieg_srd_refund.txt",
+            "bytes": 159,
+            "sha256": "770ed6255362993fb7dab73154ec25c186825e06ad475a2c37ec46f8d456c634",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_guis/krieg_srd_assembly_panel.txt",
+            "bytes": 413,
+            "sha256": "996ff3f04e97f2c895c224d8599e052f6e187016757bcd57825619a1667871f2",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_localisation/krieg_Get_srd_ProjectStatus.txt",
+            "bytes": 209,
+            "sha256": "a275ee23860c1231ab4c3fb675cac6673f4df66ab1a1e8d6d7b039f80b7671e5",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_triggers/krieg_srd_can_invest.txt",
+            "bytes": 124,
+            "sha256": "f0e878f0ff6336f4bf5bf9ef2bad3a214dbad90327c0d66ada3b25f73cf0b2a5",
+            "kind": "script"
+          },
+          {
+            "path": "common/special_projects/projects/krieg_srd_coastal_beacon.txt",
+            "bytes": 529,
+            "sha256": "6c9f1237012a7499ec3de3167239a7ef11edce53b8bcd29e88b2270a7bac1c82",
+            "kind": "script"
+          },
+          {
+            "path": "common/technologies/krieg_srd_workshop_methods.txt",
+            "bytes": 488,
+            "sha256": "c57b03047df05d1f8791b89ffb35306ac6c4db4232073e444bb127e88427de29",
+            "kind": "script"
+          },
+          {
+            "path": "common/units/equipment/krieg_srd_field_tools.txt",
+            "bytes": 211,
+            "sha256": "894ced3d1cb1b506b35cc87f75d9b14432ded696134b825e0c376f77057f6b72",
+            "kind": "script"
+          },
+          {
+            "path": "common/units/krieg_srd_island_engineers.txt",
+            "bytes": 449,
+            "sha256": "7d144de09aa844e45ae9f4fd5a2b0a88530c5cc6ada5723f395f136dbcf4f6d7",
+            "kind": "script"
+          },
+          {
+            "path": "descriptor.mod",
+            "bytes": 173,
+            "sha256": "f49b141fe19121761a76767c6f5122fd519cd451c31de906752dc1ef4be3155b",
+            "kind": "metadata"
+          },
+          {
+            "path": "events/krieg_srd_congress_0.txt",
+            "bytes": 235,
+            "sha256": "5ff1c79a5a79576a3aad88861cf900b52dc9d38998c453f810bba54bc9f92ab6",
+            "kind": "script"
+          },
+          {
+            "path": "events/krieg_srd_congress_1.txt",
+            "bytes": 367,
+            "sha256": "a4dad24e8c7bbfa74e3fa72d98b1a6d8a6f4f370fd54b943cacaad893248173c",
+            "kind": "script"
+          },
+          {
+            "path": "events/krieg_srd_congress_2.txt",
+            "bytes": 306,
+            "sha256": "f882a5de33e1859c0e4cc19edd56f56901116c54558c876e1159daaddec7613f",
+            "kind": "script"
+          },
+          {
+            "path": "events/krieg_srd_congress_3.txt",
+            "bytes": 373,
+            "sha256": "be87b89bfbc7a966baf3e466fdc592753189ffa4522a1a9d4f179d94b583538a",
+            "kind": "script"
+          },
+          {
+            "path": "gfx/flags/KRL_authoritarian_democrat.tga",
+            "bytes": 17074,
+            "sha256": "de9693b6d9bc0328a947604414dd63d4c94b99f48b9ae0a68fac43ae786503c3",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRL_market_liberal.tga",
+            "bytes": 17074,
+            "sha256": "de9693b6d9bc0328a947604414dd63d4c94b99f48b9ae0a68fac43ae786503c3",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRL_national_populist.tga",
+            "bytes": 17074,
+            "sha256": "de9693b6d9bc0328a947604414dd63d4c94b99f48b9ae0a68fac43ae786503c3",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRL_paternal_autocrat.tga",
+            "bytes": 17074,
+            "sha256": "de9693b6d9bc0328a947604414dd63d4c94b99f48b9ae0a68fac43ae786503c3",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRL_radical_socialist.tga",
+            "bytes": 17074,
+            "sha256": "de9693b6d9bc0328a947604414dd63d4c94b99f48b9ae0a68fac43ae786503c3",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRL_social_conservative.tga",
+            "bytes": 17074,
+            "sha256": "de9693b6d9bc0328a947604414dd63d4c94b99f48b9ae0a68fac43ae786503c3",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRL_social_democrat.tga",
+            "bytes": 17074,
+            "sha256": "de9693b6d9bc0328a947604414dd63d4c94b99f48b9ae0a68fac43ae786503c3",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRL_social_liberal.tga",
+            "bytes": 17074,
+            "sha256": "de9693b6d9bc0328a947604414dd63d4c94b99f48b9ae0a68fac43ae786503c3",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRL_syndicalist.tga",
+            "bytes": 17074,
+            "sha256": "de9693b6d9bc0328a947604414dd63d4c94b99f48b9ae0a68fac43ae786503c3",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRL_totalist.tga",
+            "bytes": 17074,
+            "sha256": "de9693b6d9bc0328a947604414dd63d4c94b99f48b9ae0a68fac43ae786503c3",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRL.tga",
+            "bytes": 17074,
+            "sha256": "de9693b6d9bc0328a947604414dd63d4c94b99f48b9ae0a68fac43ae786503c3",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRL_authoritarian_democrat.tga",
+            "bytes": 4282,
+            "sha256": "04b26828f2565b895d8ff13d0d2e3e84009b4de4a0a8c5a5a3c3645ca9d43ad6",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRL_market_liberal.tga",
+            "bytes": 4282,
+            "sha256": "04b26828f2565b895d8ff13d0d2e3e84009b4de4a0a8c5a5a3c3645ca9d43ad6",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRL_national_populist.tga",
+            "bytes": 4282,
+            "sha256": "04b26828f2565b895d8ff13d0d2e3e84009b4de4a0a8c5a5a3c3645ca9d43ad6",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRL_paternal_autocrat.tga",
+            "bytes": 4282,
+            "sha256": "04b26828f2565b895d8ff13d0d2e3e84009b4de4a0a8c5a5a3c3645ca9d43ad6",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRL_radical_socialist.tga",
+            "bytes": 4282,
+            "sha256": "04b26828f2565b895d8ff13d0d2e3e84009b4de4a0a8c5a5a3c3645ca9d43ad6",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRL_social_conservative.tga",
+            "bytes": 4282,
+            "sha256": "04b26828f2565b895d8ff13d0d2e3e84009b4de4a0a8c5a5a3c3645ca9d43ad6",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRL_social_democrat.tga",
+            "bytes": 4282,
+            "sha256": "04b26828f2565b895d8ff13d0d2e3e84009b4de4a0a8c5a5a3c3645ca9d43ad6",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRL_social_liberal.tga",
+            "bytes": 4282,
+            "sha256": "04b26828f2565b895d8ff13d0d2e3e84009b4de4a0a8c5a5a3c3645ca9d43ad6",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRL_syndicalist.tga",
+            "bytes": 4282,
+            "sha256": "04b26828f2565b895d8ff13d0d2e3e84009b4de4a0a8c5a5a3c3645ca9d43ad6",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRL_totalist.tga",
+            "bytes": 4282,
+            "sha256": "04b26828f2565b895d8ff13d0d2e3e84009b4de4a0a8c5a5a3c3645ca9d43ad6",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRL.tga",
+            "bytes": 4282,
+            "sha256": "04b26828f2565b895d8ff13d0d2e3e84009b4de4a0a8c5a5a3c3645ca9d43ad6",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRL_authoritarian_democrat.tga",
+            "bytes": 298,
+            "sha256": "25787cf534994774bd18d92c7dd6f2a85d057d80d7ad1093fde3a5d09c5ce07f",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRL_market_liberal.tga",
+            "bytes": 298,
+            "sha256": "25787cf534994774bd18d92c7dd6f2a85d057d80d7ad1093fde3a5d09c5ce07f",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRL_national_populist.tga",
+            "bytes": 298,
+            "sha256": "25787cf534994774bd18d92c7dd6f2a85d057d80d7ad1093fde3a5d09c5ce07f",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRL_paternal_autocrat.tga",
+            "bytes": 298,
+            "sha256": "25787cf534994774bd18d92c7dd6f2a85d057d80d7ad1093fde3a5d09c5ce07f",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRL_radical_socialist.tga",
+            "bytes": 298,
+            "sha256": "25787cf534994774bd18d92c7dd6f2a85d057d80d7ad1093fde3a5d09c5ce07f",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRL_social_conservative.tga",
+            "bytes": 298,
+            "sha256": "25787cf534994774bd18d92c7dd6f2a85d057d80d7ad1093fde3a5d09c5ce07f",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRL_social_democrat.tga",
+            "bytes": 298,
+            "sha256": "25787cf534994774bd18d92c7dd6f2a85d057d80d7ad1093fde3a5d09c5ce07f",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRL_social_liberal.tga",
+            "bytes": 298,
+            "sha256": "25787cf534994774bd18d92c7dd6f2a85d057d80d7ad1093fde3a5d09c5ce07f",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRL_syndicalist.tga",
+            "bytes": 298,
+            "sha256": "25787cf534994774bd18d92c7dd6f2a85d057d80d7ad1093fde3a5d09c5ce07f",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRL_totalist.tga",
+            "bytes": 298,
+            "sha256": "25787cf534994774bd18d92c7dd6f2a85d057d80d7ad1093fde3a5d09c5ce07f",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRL.tga",
+            "bytes": 298,
+            "sha256": "25787cf534994774bd18d92c7dd6f2a85d057d80d7ad1093fde3a5d09c5ce07f",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/interface/srd_button.tga",
+            "bytes": 19218,
+            "sha256": "8c2693a247c906d6fe1cf462498efa936baaf8ff5266649ce7d041e326eba87a",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/interface/srd_icon.tga",
+            "bytes": 16402,
+            "sha256": "3d80c9077dbff296857433626ca9d169bee5bf7621a7e60779e1f5d21a065f3b",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/interface/srd_panel.tga",
+            "bytes": 266018,
+            "sha256": "21dec78c445659627b5dba127a2be4bf63962d28d05a069dca0a100e64135457",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/leaders/KRL/srd_leader.tga",
+            "bytes": 131058,
+            "sha256": "e964c879b3dadfa07e22751dcf4297db5b4536c1ebff12f726861e2a8554abcd",
+            "kind": "asset"
+          },
+          {
+            "path": "history/countries/KRL - Krieg.txt",
+            "bytes": 651,
+            "sha256": "502deae5792e2b0f3966aea520a26fe5154b963e488a2f365e029ceb500eb0a8",
+            "kind": "script"
+          },
+          {
+            "path": "history/states/114 - Sardinia.txt",
+            "bytes": 489,
+            "sha256": "7bddb0ac066ac173bdbc9f7db47600d73ac666578d15f17ea94214ef0455ca5d",
+            "kind": "script"
+          },
+          {
+            "path": "history/units/srd_1936.txt",
+            "bytes": 387,
+            "sha256": "93523960aaf74d8ff93991862aba53fcc55e0cd6ce79a9cdae9a822b0a289572",
+            "kind": "script"
+          },
+          {
+            "path": "history/units/srd_engineers.txt",
+            "bytes": 357,
+            "sha256": "7e3f459f4ff0bce870427508499315e00c4aa2544ecce4e52d36d77cb387d793",
+            "kind": "script"
+          },
+          {
+            "path": "interface/srd_assembly.gui",
+            "bytes": 848,
+            "sha256": "f0a57319b6e89ac0ae3a14e1c93b39c622c2406b87528f46a62d401e8a9a4b17",
+            "kind": "script"
+          },
+          {
+            "path": "interface/srd_sprites.gfx",
+            "bytes": 594,
+            "sha256": "2cb03ebae401a27ddfe303b4891019fbf4c6c3a390b3589becfbf7b9f012211b",
+            "kind": "script"
+          },
+          {
+            "path": "localisation/english/kaiserreich-complete_english_l_english.yml",
+            "bytes": 8426,
+            "sha256": "683c122776e1f448707faab2c037cca8e0bfce1c5d50832545ddcffb751323e6",
+            "kind": "localisation"
+          },
+          {
+            "path": "localisation/english/srd-civic-kit_english_l_english.yml",
+            "bytes": 50,
+            "sha256": "98116b0e6f444ec5e5bde4359573dfd61071df34814d45a510bd8f472e90bab1",
+            "kind": "localisation"
+          },
+          {
+            "path": "localisation/simp_chinese/kaiserreich-complete_chinese_l_simp_chinese.yml",
+            "bytes": 173,
+            "sha256": "c19ac0515beb69c3cf22b0bfc7d1a77fde3edf424f45cae76955ab249fb254db",
+            "kind": "localisation"
+          },
+          {
+            "path": "map/strategicregions/169 - Tyrrhenian Sea.txt",
+            "bytes": 508,
+            "sha256": "366272799df7ffa2aa345da88cf34bd3ead4e1f9c2fce2859ac1596ee803b611",
+            "kind": "script"
+          }
+        ]
+      },
+      "external": {
+        "exitCode": 0,
+        "durationMs": 2830,
+        "command": [
+          "$CORPORA/cwtools",
+          "validate",
+          "--game",
+          "hoi4",
+          "--directory",
+          "$REPO/examples/kaiserreich-complete/build/mod",
+          "--rules",
+          "$CORPORA/cwtools-hoi4-config-master/cwtools-hoi4-config-master",
+          "--vanilla",
+          "$SCRATCH/kaiserreich-complete",
+          "--no-vanilla-cache",
+          "--report-type",
+          "json",
+          "--output-file",
+          "$SCRATCH/kaiserreich-complete-cwtools.json"
+        ],
+        "stdout": "Wrote json report (0 errors, 2 warnings) to $SCRATCH/kaiserreich-complete-cwtools.json\n",
+        "stderr": "Validating hoi4 files in $REPO/examples/kaiserreich-complete/build/mod against rules directory $CORPORA/cwtools-hoi4-config-master/cwtools-hoi4-config-master\n  Loaded 229 types, 123 enums, 1957 aliases\n  Discovered 46 files\n",
+        "diagnostics": [
+          {
+            "file": "$REPO/examples/kaiserreich-complete/build/mod/common/intelligence_agencies/krieg_srd_coastal_service.txt",
+            "line": 10,
+            "severity": "Warning",
+            "code": "CW251",
+            "message": "This AND is unnecessary",
+            "hash": "252197683e21a644"
+          },
+          {
+            "file": "$REPO/examples/kaiserreich-complete/build/mod/common/scripted_triggers/krieg_srd_can_invest.txt",
+            "line": 2,
+            "severity": "Warning",
+            "code": "CW251",
+            "message": "This AND is unnecessary",
+            "hash": "7e73ab3520516c90"
+          }
+        ]
+      }
+    }
+  ]
+}

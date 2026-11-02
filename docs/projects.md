@@ -22,7 +22,7 @@
   },
   "dependencies": [],
   "assets": [{ "from": "gfx", "to": "gfx" }],
-  "localisation": [{ "language": "simp_chinese", "from": "localisation/zh.json" }],
+  "localisation": [{ "language": "simp_chinese", "from": "localisation/zh.yaml" }],
   "gameRoots": [],
   "world": { "countries": ["GER"], "states": [1] },
   "strictAssets": true
@@ -162,3 +162,9 @@ npx krieg pack --out build/my-mod.zip
 ```
 
 构建会生成模组目录、`descriptor.mod`、相邻的启动器 `.mod` 文件以及输出清单。打包命令生成可分发 ZIP，把模组目录和可移植的启动器描述文件放在一起。失败的检查不会替换上一次成功构建的模组目录。
+
+## 原生与 YAML 本地化
+
+`localisation` 条目可使用 JSON 字符串字典、平面 YAML 字符串字典或 HOI4 原生 `.yml`。默认按扩展名识别：`.json` → JSON、`.yaml` → YAML、`.yml` → HOI4；也可用 `format` 显式选择 `json`、`yaml`、`hoi4`。完整转义、BOM、重复键与原生保留规则见 [本地化](localisation.md)。
+
+一次命令可用重复 `--game-root` 覆盖基础游戏输入，按原版到上层模组排列；`--game-replace-path` 应用到最后一个命令行游戏根，用于需要显式目录替换的上层模组。它们不修改已提交配置，见 [CLI](cli.md)。

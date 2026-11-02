@@ -1,0 +1,360 @@
+{
+  "formatVersion": 1,
+  "scope": "Identifier and field-type facts observed in the supplied native .gui corpora. No game bodies, text, default values, or binary assets are included. These legacy engine controls have no corresponding top-level or alias rules in the supplied CWTools snapshot.",
+  "controls": {
+    "windowType": {
+      "name": "Window",
+      "children": true,
+      "evidence": {
+        "vanilla": {
+          "instances": 83,
+          "parents": {
+            "guiTypes": 63,
+            "windowType": 20
+          },
+          "reference": {
+            "file": "interface/backend.gui",
+            "sha256": "17a1f3a3f9db84aac5405d21f226f5c505b8e8b535a58e434e2a0b09fee7fbc3"
+          }
+        },
+        "Kaiserreich": {
+          "instances": 1,
+          "parents": {
+            "guiTypes": 1
+          },
+          "reference": {
+            "file": "interface/countrydiplomacyview.gui",
+            "sha256": "b3342ef3298a5c4776fec7a05dff727b80e46146d3f914dba139c583ad7d2be7"
+          }
+        },
+        "TNO": {
+          "instances": 41,
+          "parents": {
+            "guiTypes": 35,
+            "windowType": 6
+          },
+          "reference": {
+            "file": "interface/backend.gui",
+            "sha256": "2047400f211c01076b25d9d0f5dd3dd9a8277c14cf65e94cd4dfa2949aefe64a"
+          }
+        }
+      },
+      "fields": {
+        "name": {
+          "name": "name",
+          "types": ["string"],
+          "required": true,
+          "observations": 125
+        },
+        "backGround": {
+          "name": "backGround",
+          "types": ["string"],
+          "required": false,
+          "observations": 108
+        },
+        "position": {
+          "name": "position",
+          "types": ["coordinates"],
+          "required": false,
+          "observations": 125
+        },
+        "size": {
+          "name": "size",
+          "types": ["coordinates"],
+          "required": false,
+          "observations": 122
+        },
+        "moveable": {
+          "name": "moveable",
+          "types": ["number"],
+          "required": false,
+          "observations": 116
+        },
+        "dontRender": {
+          "name": "dontRender",
+          "types": ["string"],
+          "required": false,
+          "observations": 88
+        },
+        "horizontalBorder": {
+          "name": "horizontalBorder",
+          "types": ["string", "number"],
+          "required": false,
+          "observations": 91
+        },
+        "verticalBorder": {
+          "name": "verticalBorder",
+          "types": ["string"],
+          "required": false,
+          "observations": 91
+        },
+        "fullscreen": {
+          "name": "fullscreen",
+          "types": ["boolean"],
+          "required": false,
+          "observations": 102
+        },
+        "orientation": {
+          "name": "orientation",
+          "types": ["string"],
+          "required": false,
+          "enum": "orientation",
+          "observations": 72
+        },
+        "showPosition": {
+          "name": "show_position",
+          "types": ["coordinates"],
+          "required": false,
+          "observations": 9
+        },
+        "hidePosition": {
+          "name": "hide_position",
+          "types": ["coordinates"],
+          "required": false,
+          "observations": 9
+        },
+        "animationTime": {
+          "name": "animation_time",
+          "types": ["number"],
+          "required": false,
+          "observations": 11
+        }
+      }
+    },
+    "textBoxType": {
+      "name": "TextBox",
+      "children": false,
+      "evidence": {
+        "vanilla": {
+          "instances": 23,
+          "parents": {
+            "guiTypes": 3,
+            "windowType": 20
+          },
+          "reference": {
+            "file": "interface/core.gui",
+            "sha256": "553b14374957f1a0403b627a5252cce0b9a8578cae1a70be2686e660f2c7c481"
+          }
+        },
+        "TNO": {
+          "instances": 3,
+          "parents": {
+            "guiTypes": 3
+          },
+          "reference": {
+            "file": "interface/core.gui",
+            "sha256": "3f443d8ddb2d0c0027c3ffa5231599eb178a96d076d1a5c48ce211be6e932520"
+          }
+        }
+      },
+      "fields": {
+        "position": {
+          "name": "position",
+          "types": ["coordinates"],
+          "required": false,
+          "observations": 26
+        },
+        "name": {
+          "name": "name",
+          "types": ["string"],
+          "required": true,
+          "observations": 26
+        },
+        "textureFile": {
+          "name": "textureFile",
+          "types": ["string"],
+          "required": false,
+          "observations": 26
+        },
+        "borderSize": {
+          "name": "borderSize",
+          "types": ["coordinates"],
+          "required": false,
+          "observations": 26
+        },
+        "font": {
+          "name": "font",
+          "types": ["string"],
+          "required": false,
+          "observations": 26
+        },
+        "text": {
+          "name": "text",
+          "types": ["string", "number"],
+          "required": false,
+          "observations": 22
+        },
+        "maxWidth": {
+          "name": "maxWidth",
+          "types": ["number"],
+          "required": false,
+          "observations": 26
+        },
+        "maxHeight": {
+          "name": "maxHeight",
+          "types": ["number"],
+          "required": false,
+          "observations": 26
+        }
+      }
+    },
+    "guiButtonType": {
+      "name": "GuiButton",
+      "children": false,
+      "evidence": {
+        "vanilla": {
+          "instances": 352,
+          "parents": {
+            "scrollbarType": 136,
+            "windowType": 214,
+            "guiTypes": 2
+          },
+          "reference": {
+            "file": "interface/airwingreorganization.gui",
+            "sha256": "36a9c20b2749871f0bf341d0abfa91ca11df89ba5aabdecb3de9a9b3a96d528f"
+          }
+        },
+        "Kaiserreich": {
+          "instances": 1,
+          "parents": {
+            "windowType": 1
+          },
+          "reference": {
+            "file": "interface/countrydiplomacyview.gui",
+            "sha256": "b3342ef3298a5c4776fec7a05dff727b80e46146d3f914dba139c583ad7d2be7"
+          }
+        },
+        "TNO": {
+          "instances": 162,
+          "parents": {
+            "scrollbarType": 120,
+            "windowType": 41,
+            "guiTypes": 1
+          },
+          "reference": {
+            "file": "interface/airwingreorganization.gui",
+            "sha256": "e3913c7a779175b65226313bcccdfe80b363511b52c536ace45fa968e56a1537"
+          }
+        }
+      },
+      "fields": {
+        "name": {
+          "name": "name",
+          "types": ["string"],
+          "required": true,
+          "observations": 515
+        },
+        "quadTextureSprite": {
+          "name": "quadTextureSprite",
+          "types": ["string"],
+          "required": false,
+          "observations": 505
+        },
+        "position": {
+          "name": "position",
+          "types": ["coordinates"],
+          "required": false,
+          "observations": 497
+        },
+        "clicksound": {
+          "name": "clicksound",
+          "types": ["string"],
+          "required": false,
+          "observations": 51
+        },
+        "orientation": {
+          "name": "orientation",
+          "types": ["string"],
+          "required": false,
+          "enum": "orientation",
+          "observations": 52
+        },
+        "buttonText": {
+          "name": "buttonText",
+          "types": ["string", "number"],
+          "required": false,
+          "observations": 192
+        },
+        "buttonFont": {
+          "name": "buttonFont",
+          "types": ["string"],
+          "required": false,
+          "observations": 208
+        },
+        "size": {
+          "name": "size",
+          "types": ["coordinates"],
+          "required": false,
+          "observations": 8
+        },
+        "noClicksound": {
+          "name": "no_clicksound",
+          "types": ["boolean"],
+          "required": false,
+          "observations": 5
+        },
+        "parent": {
+          "name": "parent",
+          "types": ["string"],
+          "required": false,
+          "observations": 60
+        },
+        "hintTag": {
+          "name": "hint_tag",
+          "types": ["string"],
+          "required": false,
+          "observations": 2
+        },
+        "format": {
+          "name": "format",
+          "types": ["string"],
+          "required": false,
+          "enum": "text-format",
+          "observations": 6
+        },
+        "shortcut": {
+          "name": "shortcut",
+          "types": ["string", "number"],
+          "required": false,
+          "observations": 58
+        },
+        "frame": {
+          "name": "frame",
+          "types": ["number"],
+          "required": false,
+          "observations": 9
+        },
+        "scale": {
+          "name": "scale",
+          "types": ["number"],
+          "required": false,
+          "observations": 1
+        },
+        "alwaystransparent": {
+          "name": "alwaystransparent",
+          "types": ["boolean"],
+          "required": false,
+          "observations": 1
+        },
+        "pdxTooltip": {
+          "name": "pdx_tooltip",
+          "types": ["string"],
+          "required": false,
+          "observations": 7
+        },
+        "oversound": {
+          "name": "oversound",
+          "types": ["string"],
+          "required": false,
+          "observations": 2
+        },
+        "pdxTooltipDelayed": {
+          "name": "pdx_tooltip_delayed",
+          "types": ["string"],
+          "required": false,
+          "observations": 6
+        }
+      }
+    }
+  }
+}

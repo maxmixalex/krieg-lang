@@ -1,16 +1,19 @@
 import ts from "typescript";
 import path from "node:path";
 import * as pdx from "../pdx/ast.js";
+import { parsePdx } from "../pdx/parser.js";
 import type { CwtSchema } from "../schema/types.js";
 import { commandAllowed } from "./sdk.js";
 import { commandValueError } from "./command-validation.js";
-import type { CompileOptions, CompileOutput, KriegDiagnostic } from "./types.js";
+import { DOMAIN_DEFINITIONS, DOMAIN_SCHEMA, type NativeValue } from "./domain-registry.js";
+import { lowerDefines } from "./defines.js";
+import type { CompileOptions, CompileOutput, PdxCompileOutput, KriegDiagnostic } from "./types.js";
 
 type Value = unknown;
 type Environment = Map<ts.Symbol, Value>;
 type Scope = { _krg: "scope"; name: string; id: number; parent?: Scope };
 type Callable = { _krg: "function"; node: ts.FunctionLikeDeclaration; env: Environment };
-type Builtin = { _krg: "builtin"; name: string; module: "sdk" | "pdx" };
+type Builtin = { _krg: "builtin"; name: string; module: "sdk" | "pdx" | "ui" };
 type Member = { _krg: "member"; object: Value; name: string };
 type Trigger = { _krg: "trigger"; items: pdx.PdxItem[] };
 type Variable = { _krg: "variable"; name: string; scope: Scope; mutable: boolean };
@@ -78,6 +81,7 @@ const queries: Record<string, string> = {
   isAI: "is_ai",
 };
 const definitions = new Set([
+  ...Object.keys(DOMAIN_DEFINITIONS),
   "CountryEvent",
   "StateEvent",
   "NewsEvent",
@@ -92,6 +96,10 @@ const definitions = new Set([
   "StateHistory",
   "SourceFile",
   "DataFile",
+  "ScriptedLocalisation",
+  "ScriptedGui",
+  "Defines",
+  "DefineFile",
 ]);
 const forbiddenKinds = new Set([
   ts.SyntaxKind.ClassDeclaration,
@@ -113,8 +121,6 @@ const forbiddenKinds = new Set([
   ts.SyntaxKind.RegularExpressionLiteral,
   ts.SyntaxKind.EnumDeclaration,
   ts.SyntaxKind.ModuleDeclaration,
-  ts.SyntaxKind.JsxElement,
-  ts.SyntaxKind.JsxSelfClosingElement,
   ts.SyntaxKind.NonNullExpression,
 ]);
 
@@ -180,11 +186,11 @@ export class Lowerer {
         );
     }
     for (const source of this.sources) {
-      if (!source.fileName.endsWith(".krg.ts"))
+      if (!/\.krg\.tsx?$/.test(source.fileName))
         this.report(
           source,
           "KRG1000",
-          "Krieg project implementation modules must use the .krg.ts extension.",
+          "Krieg project implementation modules must use the .krg.ts or .krg.tsx extension.",
         );
       const scanner = ts.createScanner(
         ts.ScriptTarget.Latest,
@@ -288,6 +294,7 @@ export class Lowerer {
             !name.startsWith(".") &&
             name !== "krieg-lang/hoi4" &&
             name !== "krieg-lang/pdx" &&
+            name !== "krieg-lang/ui" &&
             !this.options.virtualModules?.[name] &&
             !this.options.moduleFiles?.[name]
           )
@@ -374,15 +381,23 @@ export class Lowerer {
     for (const output of this.outputs) {
       const previous = merged.get(output.path);
       if (previous) {
-        if (previous.representation !== output.representation)
+        if (previous.representation !== output.representation || previous.format !== output.format)
           this.diagnostics.push({
             code: "KRG1013",
             severity: "error",
             message: `Output '${output.path}' mixes semantic and ordered-PDX declarations. Give them distinct explicit paths.`,
             file: output.sourceFile,
           });
-        previous.document.items.push(...output.document.items);
-      } else merged.set(output.path, { ...output, document: pdx.document(output.document.items) });
+        if (previous.format === "pdx" && output.format === "pdx")
+          previous.document.items.push(...output.document.items);
+        else if (previous.format === "lua" && output.format === "lua") previous.text += output.text;
+      } else
+        merged.set(
+          output.path,
+          output.format === "pdx"
+            ? { ...output, document: pdx.document(output.document.items) }
+            : { ...output },
+        );
     }
     return [...merged.values()].sort((a, b) => a.path.localeCompare(b.path));
   }
@@ -411,7 +426,7 @@ export class Lowerer {
         .relative(this.options.rootDir, node.getSourceFile().fileName)
         .replaceAll(path.sep, "/")
         .replace(/^src\//, "")
-        .replace(/\.krg\.ts$/, ".txt");
+        .replace(/\.krg\.tsx?$/, ".txt");
       this.outputs.push(
         this.output(relative, value as unknown as pdx.PdxDocument, node, "ordered-pdx"),
       );
@@ -422,7 +437,7 @@ export class Lowerer {
     document: pdx.PdxDocument,
     node: ts.Node,
     representation: CompileOutput["representation"] = "semantic",
-  ): CompileOutput {
+  ): PdxCompileOutput {
     const normalized = outputPath.replaceAll("\\", "/");
     if (
       !normalized ||
@@ -436,6 +451,7 @@ export class Lowerer {
         `Output path '${outputPath}' must be a relative game path without traversal.`,
       );
     return {
+      format: "pdx",
       path: normalized,
       document,
       sourceFile: node.getSourceFile().fileName,
@@ -490,10 +506,20 @@ export class Lowerer {
     if (!declaration)
       this.fail(identifier, "KRG2006", `No static declaration for '${identifier.text}'.`);
     const module = declaration.getSourceFile().fileName;
-    if (module === path.join(this.options.rootDir, ".krieg-compiler-virtual/krieg-lang_hoi4.d.ts"))
+    if (
+      ["krieg-lang_hoi4.d.ts", "krieg-lang_hoi4_domains.d.ts", "krieg-lang_hoi4_defines.d.ts"].some(
+        (file) => module === path.join(this.options.rootDir, ".krieg-compiler-virtual", file),
+      )
+    )
       return { _krg: "builtin", name: symbol.name, module: "sdk" } as Builtin;
     if (module === path.join(this.options.rootDir, ".krieg-compiler-virtual/krieg-lang_pdx.d.ts"))
       return { _krg: "builtin", name: symbol.name, module: "pdx" } as Builtin;
+    if (
+      module === path.join(this.options.rootDir, ".krieg-compiler-virtual/krieg-lang_ui.d.ts") ||
+      module ===
+        path.join(this.options.rootDir, ".krieg-compiler-virtual/krieg-lang_ui_native.d.ts")
+    )
+      return { _krg: "builtin", name: symbol.name, module: "ui" } as Builtin;
     if (ts.isNamespaceImport(declaration))
       return {
         _krg: "namespace",
@@ -652,11 +678,15 @@ export class Lowerer {
       const name = String(key);
       if (tagged(object, "namespace")) {
         const module = object.name;
-        if (module === "krieg-lang/pdx" || module === "krieg-lang/hoi4")
+        if (
+          module === "krieg-lang/pdx" ||
+          module === "krieg-lang/hoi4" ||
+          module === "krieg-lang/ui"
+        )
           return {
             _krg: "builtin",
             name,
-            module: module === "krieg-lang/pdx" ? "pdx" : "sdk",
+            module: module === "krieg-lang/pdx" ? "pdx" : module === "krieg-lang/ui" ? "ui" : "sdk",
           } as Builtin;
         if (ts.isPropertyAccessExpression(node) && ts.isIdentifier(node.name))
           return this.lookup(node.name, context);
@@ -681,6 +711,8 @@ export class Lowerer {
       if (record(object) && Object.hasOwn(object, name)) return object[name];
       this.fail(node, "KRG2016", `Property '${name}' does not have a static value.`);
     }
+    if (ts.isJsxElement(node) || ts.isJsxSelfClosingElement(node) || ts.isJsxFragment(node))
+      return this.jsx(node, context);
     if (ts.isCallExpression(node))
       return this.call(
         this.evaluate(node.expression, context),
@@ -758,12 +790,14 @@ export class Lowerer {
     );
   }
 
-  private call(callable: Value, args: Value[], node: ts.CallExpression, context: Context): Value {
+  private call(callable: Value, args: Value[], node: ts.Node, context: Context): Value {
     if (tagged(callable, "builtin")) {
       const builtin = callable as Builtin;
       return builtin.module === "pdx"
         ? this.pdxCall(builtin.name, args, node)
-        : this.sdkCall(builtin.name, args, node, context);
+        : builtin.module === "ui"
+          ? this.uiCall(builtin.name, args, node, context)
+          : this.sdkCall(builtin.name, args, node, context);
     }
     if (tagged(callable, "function")) return this.invoke(callable as Callable, args, node, context);
     if (tagged(callable, "member")) return this.memberCall(callable as Member, args, node, context);
@@ -839,9 +873,10 @@ export class Lowerer {
     }
   }
   private sdkCall(name: string, args: Value[], node: ts.Node, context: Context): Value {
+    if (name === "MetaEffect") return this.metaEffect(args, node, context);
     if (name === "country") {
       const tag = this.string(args[0], node);
-      if (!/^[A-Z0-9]{3}$/.test(tag))
+      if (!/^[A-Z][A-Z0-9]{2}$/.test(tag))
         this.fail(
           node,
           "KRG2026",
@@ -870,7 +905,7 @@ export class Lowerer {
         outputs: this.definition(name, args, node, context),
       };
       if (record(args[0]) && typeof args[0].id === "string") result.id = args[0].id;
-      if (name.includes("Scripted")) {
+      if (name.includes("ScriptedEffect") || name.includes("ScriptedTrigger")) {
         result.name = this.string(args[0], node);
         result.scope =
           args.length === 3
@@ -880,9 +915,344 @@ export class Lowerer {
               : "country";
         result.definitionKind = name.endsWith("Trigger") ? "trigger" : "effect";
       }
+      if (name === "ScriptedLocalisation") {
+        result.name = this.string(args[0], node);
+        result.scope = this.string(this.object(args[1], node).scope, node);
+      }
       return result;
     }
     this.fail(node, "KRG2029", `SDK declaration '${name}' has no static lowering.`);
+  }
+
+  private jsx(
+    node: ts.JsxElement | ts.JsxSelfClosingElement | ts.JsxFragment,
+    context: Context,
+  ): Value {
+    if (context.mode !== "top")
+      this.fail(node, "KRG2080", "GUI elements belong in static interface declarations.");
+    const children: Value[] = [];
+    const childNodes = ts.isJsxSelfClosingElement(node) ? [] : node.children;
+    for (const child of childNodes) {
+      if (ts.isJsxText(child)) {
+        if (child.text.trim())
+          this.fail(
+            child,
+            "KRG2081",
+            "Use a Text component with a localisation key; literal JSX text is not a game UI element.",
+          );
+      } else if (ts.isJsxExpression(child)) {
+        if (child.dotDotDotToken)
+          this.fail(
+            child,
+            "KRG2082",
+            "JSX spread children are not supported; pass a static array expression.",
+          );
+        if (child.expression) children.push(this.evaluate(child.expression, context));
+      } else children.push(this.jsx(child, context));
+    }
+    if (ts.isJsxFragment(node)) return { _krg: "gui-fragment", children };
+    const opening = ts.isJsxElement(node) ? node.openingElement : node;
+    const props: Record<string, Value> = Object.create(null);
+    for (const attribute of opening.attributes.properties) {
+      if (ts.isJsxSpreadAttribute(attribute)) {
+        Object.assign(props, this.object(this.evaluate(attribute.expression, context), attribute));
+        continue;
+      }
+      if (ts.isJsxNamespacedName(attribute.name))
+        this.fail(
+          attribute,
+          "KRG2083",
+          "XML namespaced attributes are not part of HOI4 GUI syntax.",
+        );
+      const name = attribute.name.text;
+      if (Object.hasOwn(props, name))
+        this.fail(attribute, "KRG2084", `Duplicate GUI property '${name}'.`);
+      props[name] = !attribute.initializer
+        ? true
+        : ts.isStringLiteral(attribute.initializer)
+          ? attribute.initializer.text
+          : ts.isJsxExpression(attribute.initializer) && attribute.initializer.expression
+            ? this.evaluate(attribute.initializer.expression, context)
+            : this.fail(
+                attribute,
+                "KRG2085",
+                "GUI attribute values must be static strings or expressions.",
+              );
+    }
+    if (children.length) {
+      if (Object.hasOwn(props, "children"))
+        this.fail(node, "KRG2084", "Use either a children attribute or nested elements.");
+      props.children = children;
+    }
+    const tag = opening.tagName;
+    if (ts.isIdentifier(tag) && /^[a-z]/.test(tag.text)) {
+      const native = DOMAIN_SCHEMA.gui[tag.text]?.name;
+      if (!native) this.fail(tag, "KRG2086", `Unknown native GUI element '${tag.text}'.`);
+      return this.uiCall(native, [props], node, context);
+    }
+    if (ts.isJsxNamespacedName(tag)) this.fail(tag, "KRG2083", "XML namespaces are not supported.");
+    return this.call(this.evaluate(tag, context), [props], node, context);
+  }
+  private guiChildren(value: Value, node: ts.Node): pdx.PdxProperty[] {
+    if (value === undefined || value === false) return [];
+    if (Array.isArray(value)) return value.flatMap((item) => this.guiChildren(item, node));
+    if (tagged(value, "gui-fragment")) return this.guiChildren(value.children, node);
+    if (tagged(value, "gui-element")) return [value.property as pdx.PdxProperty];
+    this.fail(node, "KRG2087", "GUI children must be statically authored interface elements.");
+  }
+  private uiCall(name: string, args: Value[], node: ts.Node, context: Context): Value {
+    if (context.mode !== "top")
+      this.fail(node, "KRG2080", "GUI declarations belong at module scope.");
+    if (name === "GuiFile" || name === "SpriteFile") {
+      const file = this.string(args[0], node);
+      const extension = name === "GuiFile" ? ".gui" : ".gfx";
+      if (!file.startsWith("interface/") || !file.endsWith(extension))
+        this.fail(node, "KRG2088", `${name} requires an interface/*${extension} game path.`);
+      const elements = this.guiChildren(args[1], node);
+      for (const element of elements) {
+        if ((name === "SpriteFile") !== (element.key.text === "spriteType"))
+          this.fail(
+            node,
+            "KRG2089",
+            "Sprite elements belong in SpriteFile; interface elements belong in GuiFile.",
+          );
+      }
+      return {
+        _krg: "definition",
+        outputs: [
+          this.output(
+            file,
+            pdx.document([
+              pdx.property(name === "GuiFile" ? "guiTypes" : "spriteTypes", pdx.block(elements)),
+            ]),
+            node,
+          ),
+        ],
+      } as Definition;
+    }
+    const native = Object.entries(DOMAIN_SCHEMA.gui).find(([, value]) => value.name === name);
+    if (native) {
+      const spec = this.object(args[0], node);
+      const props = Object.fromEntries(Object.entries(spec).filter(([key]) => key !== "children"));
+      const rule: NativeValue = { kind: "object", shape: native[1].shape };
+      const error = this.nativeValueError(props, rule);
+      if (error) this.fail(node, "KRG2119", `${name}: ${error}`);
+      const block = this.nativeValue(props, rule, node, context) as pdx.PdxBlock;
+      for (const field of block.items)
+        if (
+          field.kind === "property" &&
+          ["name", "text", "buttonText", "font", "buttonFont", "spriteType"].includes(
+            field.key.text,
+          ) &&
+          field.value.kind === "atom" &&
+          !field.value.quoted
+        )
+          field.value = pdx.string(field.value.text);
+      if (spec.children !== undefined) {
+        if (!native[1].children)
+          this.fail(node, "KRG2120", `${name} does not accept nested GUI controls.`);
+        block.items.push(...this.guiChildren(spec.children, node));
+      }
+      return { _krg: "gui-element", property: pdx.property(native[0], block) };
+    }
+    const base: Record<string, string> = {
+      name: "name",
+      position: "position",
+      size: "size",
+      orientation: "orientation",
+      origo: "origo",
+      scale: "scale",
+      rotation: "rotation",
+      hide: "hide",
+      tooltip: "pdx_tooltip",
+      tooltipDelayed: "pdx_tooltip_delayed",
+    };
+    const kinds: Record<string, { type: string; fields: Record<string, string> }> = {
+      Container: {
+        type: "containerWindowType",
+        fields: {
+          moveable: "moveable",
+          clipping: "clipping",
+          fullscreen: "fullscreen",
+          verticalScrollbar: "verticalScrollbar",
+          horizontalScrollbar: "horizontalScrollbar",
+          autohideScrollbars: "autohide_scrollbars",
+          clickToFront: "click_to_front",
+          smoothScrolling: "smooth_scrolling",
+          scrollWheelFactor: "scroll_wheel_factor",
+        },
+      },
+      Icon: {
+        type: "iconType",
+        fields: {
+          spriteType: "spriteType",
+          frame: "frame",
+          alwaysTransparent: "alwaystransparent",
+          centerPosition: "centerposition",
+        },
+      },
+      Button: {
+        type: "buttonType",
+        fields: {
+          spriteType: "spriteType",
+          text: "buttonText",
+          font: "buttonFont",
+          shortcut: "shortcut",
+          frame: "frame",
+          borderSize: "borderSize",
+          format: "format",
+          multiline: "multiline",
+          noClickSound: "no_clicksound",
+        },
+      },
+      Text: {
+        type: "instantTextBoxType",
+        fields: {
+          text: "text",
+          font: "font",
+          maxWidth: "maxWidth",
+          maxHeight: "maxHeight",
+          format: "format",
+          verticalAlignment: "vertical_alignment",
+          multiline: "multiline",
+          fixedSize: "fixedsize",
+          alwaysTransparent: "alwaystransparent",
+          borderSize: "borderSize",
+        },
+      },
+      GridBox: {
+        type: "gridBoxType",
+        fields: {
+          slotsize: "slotsize",
+          maxSlotsHorizontal: "max_slots_horizontal",
+          maxSlotsVertical: "max_slots_vertical",
+          format: "format",
+          addHorizontal: "add_horizontal",
+          padding: "padding",
+        },
+      },
+      ListBox: {
+        type: "listBoxType",
+        fields: {
+          horizontal: "horizontal",
+          spacing: "spacing",
+          scrollbartype: "scrollbartype",
+          borderSize: "borderSize",
+          offset: "offset",
+          alwaysTransparent: "alwaystransparent",
+        },
+      },
+      Sprite: {
+        type: "spriteType",
+        fields: {
+          name: "name",
+          textureFile: "texturefile",
+          noOfFrames: "noOfFrames",
+          effectFile: "effectFile",
+          transparenceCheck: "transparencecheck",
+          loadType: "loadType",
+          lazyLoad: "lazyLoad",
+        },
+      },
+    };
+    const kind = kinds[name];
+    if (!kind) this.fail(node, "KRG2090", `Unknown interface constructor '${name}'.`);
+    const spec = this.object(args[0], node);
+    const mapping = name === "Sprite" ? kind.fields : { ...base, ...kind.fields };
+    this.checkKeys(
+      spec,
+      [...Object.keys(mapping), ...(name === "Container" ? ["children"] : [])],
+      node,
+      name,
+    );
+    if (!this.string(spec.name, node))
+      this.fail(node, "KRG2091", "GUI elements require non-empty names.");
+    const rawStrings = new Set([
+      "orientation",
+      "origo",
+      "format",
+      "verticalAlignment",
+      "maxWidth",
+      "maxHeight",
+    ]);
+    const items = Object.entries(mapping)
+      .filter(([key]) => spec[key] !== undefined)
+      .map(([key, target]) => {
+        const value = spec[key];
+        if (["position", "offset", "size", "slotsize", "borderSize"].includes(key)) {
+          const coordinates = this.object(value, node);
+          this.checkKeys(
+            coordinates,
+            ["position", "offset", "borderSize"].includes(key) ? ["x", "y"] : ["width", "height"],
+            node,
+            `${name}.${key}`,
+          );
+          if (key === "size" && name === "Button")
+            return pdx.property(
+              target,
+              this.toPdx({ x: coordinates.width, y: coordinates.height }, node, context),
+            );
+        }
+        return pdx.property(
+          target,
+          typeof value === "string" && !rawStrings.has(key)
+            ? pdx.string(value)
+            : this.toPdx(value, node, context),
+        );
+      });
+    if (spec.children !== undefined) items.push(...this.guiChildren(spec.children, node));
+    return { _krg: "gui-element", property: pdx.property(kind.type, pdx.block(items)) };
+  }
+  private metaEffect(args: Value[], node: ts.Node, context: Context): Value {
+    if (context.mode !== "effect" || !tagged(args[0], "scope"))
+      this.fail(node, "KRG2092", "MetaEffect requires an active game effect scope.");
+    const scope = args[0] as Scope;
+    const spec = this.object(args[1], node);
+    this.checkKeys(spec, ["text", "parameters", "debug"], node, "MetaEffect");
+    const source = this.string(spec.text, node);
+    const parsed = parsePdx(source, { retainSource: false });
+    if (
+      !parsed.document.items.length ||
+      parsed.diagnostics.some((diagnostic) => diagnostic.severity === "error") ||
+      parsed.document.items.some((item) => item.kind !== "property")
+    )
+      this.fail(
+        node,
+        "KRG2093",
+        "MetaEffect text must be a well-formed native effect block body without outer braces.",
+      );
+    const parameters = this.object(spec.parameters, node);
+    const names = [...new Set([...source.matchAll(/\[([^\[\]]+)\]/g)].map((match) => match[1]))];
+    for (const name of names) {
+      if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(name) || name === "text" || name === "debug")
+        this.fail(
+          node,
+          "KRG2094",
+          `Invalid meta parameter '[${name}]'; put dynamic localisation in its parameter value.`,
+        );
+      if (!Object.hasOwn(parameters, name))
+        this.fail(node, "KRG2095", `MetaEffect is missing parameter '${name}'.`);
+    }
+    this.checkKeys(parameters, names, node, "MetaEffect parameters");
+    const body: pdx.PdxItem[] = [pdx.property("text", pdx.block(parsed.document.items))];
+    const commandContext = { ...context, scope, sink: [] };
+    for (const [name, value] of Object.entries(parameters)) {
+      const token = this.toPdx(value, node, commandContext);
+      if (token.kind !== "atom")
+        this.fail(node, "KRG2096", "MetaEffect parameters must be scalar substitutions.");
+      body.push(pdx.property(name, typeof value === "string" ? pdx.string(value) : token));
+    }
+    if (spec.debug !== undefined)
+      body.push(pdx.property("debug", this.toPdx(spec.debug, node, commandContext)));
+    context.sink.push(
+      ...this.inScope(
+        [...commandContext.sink, pdx.property("meta_effect", pdx.block(body))],
+        scope,
+        context,
+        node,
+      ),
+    );
+    return undefined;
   }
 
   private callback(
@@ -1572,6 +1942,32 @@ export class Lowerer {
     node: ts.Node,
     context: Context,
   ): CompileOutput[] {
+    if (name === "Defines" || name === "DefineFile") {
+      const outputPath =
+        name === "Defines"
+          ? `common/defines/krieg_${safeId(this.string(args[0], node))}.lua`
+          : this.string(args[0], node);
+      if (!outputPath.startsWith("common/defines/") || !outputPath.endsWith(".lua"))
+        this.fail(node, "KRG2121", "Defines output must use a common/defines/*.lua path.");
+      // Reuse path validation; the emitted Lua variant carries text, never a PDX document.
+      const validated = this.output(outputPath, pdx.document([]), node, "schema-native");
+      try {
+        return [
+          {
+            format: "lua",
+            path: validated.path,
+            sourceFile: validated.sourceFile,
+            representation: "schema-native",
+            text: lowerDefines(args[1]),
+          },
+        ];
+      } catch (error) {
+        this.fail(node, "KRG2122", error instanceof Error ? error.message : String(error));
+      }
+    }
+    if (DOMAIN_DEFINITIONS[name]) return this.nativeDefinition(name, args, node, context);
+    if (name === "ScriptedLocalisation") return this.scriptedLocalisation(args, node, context);
+    if (name === "ScriptedGui") return this.scriptedGui(args, node, context);
     if (name === "SourceFile")
       return [
         this.output(this.string(args[0], node), args[1] as pdx.PdxDocument, node, "ordered-pdx"),
@@ -2027,5 +2423,585 @@ export class Lowerer {
       ];
     }
     this.fail(node, "KRG2065", `Definition '${name}' has no lowering.`);
+  }
+
+  private nativeValueError(value: Value, rule: NativeValue, depth = 0): string | undefined {
+    if (depth > 64) return "Native definition nesting exceeds the compiler limit.";
+    if (rule.kind === "union") {
+      const errors = rule.variants.map((variant) =>
+        this.nativeValueError(value, variant, depth + 1),
+      );
+      return errors.some((error) => error === undefined) ? undefined : errors[0];
+    }
+    if (rule.kind === "scalar") {
+      if (typeof value !== rule.type) return `Expected ${rule.type}.`;
+      if (rule.literals && !rule.literals.includes(value as string | number | boolean))
+        return `Expected one of ${rule.literals.join(", ")}.`;
+      if (
+        rule.format === "day-month" &&
+        (typeof value !== "string" || !/^\d{1,2}\.\d{1,2}$/.test(value))
+      )
+        return "Expected a native day.month string, such as 0.0 or 30.11.";
+      if (
+        typeof value === "number" &&
+        (!Number.isFinite(value) ||
+          (rule.integer && !Number.isInteger(value)) ||
+          (rule.min !== undefined && value < rule.min) ||
+          (rule.max !== undefined && value > rule.max))
+      )
+        return "Number does not satisfy the native CWT bounds.";
+      return undefined;
+    }
+    if (rule.kind === "callback") {
+      if (!tagged(value, "function")) return "Expected a typed game scope callback.";
+      const declaredScope = this.nativeCallbackScope(value as Callable);
+      return declaredScope !== undefined && declaredScope !== rule.scope
+        ? `Expected a ${rule.scope} callback, received ${declaredScope}.`
+        : undefined;
+    }
+    if (rule.kind === "opaque")
+      return record(value) && value.kind === "cwt"
+        ? undefined
+        : `This CWT form requires cwt([...]): ${rule.reason}.`;
+    if (rule.kind === "list") {
+      if (!Array.isArray(value)) return "Expected an array of native list values.";
+      return value
+        .map((entry) => this.nativeValueError(entry, rule.element, depth + 1))
+        .find((error) => error !== undefined);
+    }
+    if (!record(value) || "_krg" in value) return "Expected a native field record.";
+    if (rule.kind === "map")
+      return Object.entries(value)
+        .map(([key, entry]) =>
+          rule.keys && !rule.keys.includes(key)
+            ? `Unknown native map key '${key}'.`
+            : this.nativeValueError(entry, rule.value, depth + 1),
+        )
+        .find((error) => error !== undefined);
+    const fields = DOMAIN_SCHEMA.shapes[rule.shape];
+    for (const key of Object.keys(value))
+      if (!Object.hasOwn(fields, key)) return `Unknown native field '${key}'.`;
+    for (const [key, field] of Object.entries(fields)) {
+      if (value[key] === undefined) {
+        if (field.required) return `Required native field '${key}' is missing.`;
+        continue;
+      }
+      if (field.repeated && !Array.isArray(value[key]))
+        return `Repeated native field '${key}' requires an array.`;
+      const entries = field.repeated ? (value[key] as Value[]) : [value[key]];
+      if (field.repeated) {
+        const minCount = field.minCount ?? (field.required ? 1 : 0);
+        if (entries.length < minCount)
+          return `Repeated native field '${key}' requires at least ${minCount} entries.`;
+        if (field.maxCount !== undefined && entries.length > field.maxCount)
+          return `Repeated native field '${key}' allows at most ${field.maxCount} entries.`;
+      }
+      for (const entry of entries) {
+        const error = this.nativeValueError(entry, field.value, depth + 1);
+        if (error) return `${key}: ${error}`;
+      }
+    }
+    return undefined;
+  }
+  private nativeCallbackScope(value: Callable): string | undefined {
+    const parameter = value.node.parameters[0];
+    if (!parameter) return undefined;
+    const type = this.checker.getTypeAtLocation(parameter);
+    const property = this.checker.getPropertyOfType(type, "scope");
+    if (!property) return undefined;
+    const scope = this.checker.getTypeOfSymbolAtLocation(property, parameter);
+    return scope.isStringLiteral() ? scope.value : undefined;
+  }
+  private nativeValue(
+    value: Value,
+    rule: NativeValue,
+    node: ts.Node,
+    context: Context,
+  ): pdx.PdxValue {
+    if (rule.kind === "union") {
+      const candidate = rule.variants.find(
+        (variant) => this.nativeValueError(value, variant) === undefined,
+      );
+      if (!candidate)
+        this.fail(node, "KRG2111", this.nativeValueError(value, rule) ?? "Invalid native field.");
+      return this.nativeValue(value, candidate, node, context);
+    }
+    if (rule.kind === "callback")
+      return pdx.block(this.callback(value, rule.scope, rule.mode, node, context));
+    if (rule.kind === "scalar" || rule.kind === "opaque") return this.toPdx(value, node, context);
+    if (rule.kind === "list")
+      return pdx.block(
+        this.array(value, node).map((entry) =>
+          this.nativeValue(entry, rule.element, node, context),
+        ),
+      );
+    if (rule.kind === "map")
+      return pdx.block(
+        Object.entries(this.object(value, node)).map(([key, entry]) =>
+          pdx.property(key, this.nativeValue(entry, rule.value, node, context)),
+        ),
+      );
+    const spec = this.object(value, node);
+    const fields = DOMAIN_SCHEMA.shapes[rule.shape];
+    const items: pdx.PdxItem[] = [];
+    for (const [key, field] of Object.entries(fields)) {
+      if (spec[key] === undefined) continue;
+      for (const entry of field.repeated ? this.array(spec[key], node) : [spec[key]]) {
+        const encoded = this.nativeValue(entry, field.value, node, context);
+        if (field.name) items.push(pdx.property(field.name, encoded));
+        else if (encoded.kind === "block") items.push(...encoded.items);
+        else this.fail(node, "KRG2112", "Inline native fields must produce a block or a list.");
+      }
+    }
+    return pdx.block(items);
+  }
+  private nativeDefinition(
+    name: string,
+    args: Value[],
+    node: ts.Node,
+    context: Context,
+  ): CompileOutput[] {
+    const definition = DOMAIN_DEFINITIONS[name];
+    const spec = this.object(args[0], node);
+    const id = spec.id;
+    if (
+      (definition.idType === "number" &&
+        (typeof id !== "number" || !Number.isInteger(id) || id < 1)) ||
+      (definition.idType !== "number" && (typeof id !== "string" || !id))
+    )
+      this.fail(
+        node,
+        "KRG2113",
+        `${name} requires a ${definition.idType === "number" ? "positive integer" : "non-empty string"} id.`,
+      );
+    const shape = definition.byId?.[String(id)] ?? definition.shape;
+    if (definition.byId && !Object.hasOwn(definition.byId, String(id)))
+      this.fail(node, "KRG2114", `Unknown on-action hook '${String(id)}'.`);
+    const data = Object.fromEntries(
+      Object.entries(spec).filter(
+        ([key]) => key !== "id" && key !== "outputPath" && key !== definition.rootField,
+      ),
+    );
+    const error = this.nativeValueError(data, { kind: "object", shape });
+    if (error) this.fail(node, "KRG2115", `${name}: ${error}`);
+    const items = (
+      this.nativeValue(data, { kind: "object", shape }, node, {
+        ...context,
+        prefix: safeId(String(id)),
+      }) as pdx.PdxBlock
+    ).items;
+    const outputPath =
+      spec.outputPath === undefined
+        ? `${definition.folder}/${definition.fileName ?? `krieg_${safeId(String(id))}${definition.extension ?? ".txt"}`}`
+        : this.string(spec.outputPath, node);
+    if (definition.kind === "country") {
+      if (!/^[A-Z][A-Z0-9]{2}$/.test(String(id)))
+        this.fail(
+          node,
+          "KRG2116",
+          "CountryDefinition id must start with an uppercase letter followed by two uppercase letters or digits.",
+        );
+      if (!outputPath.startsWith("common/countries/") || !outputPath.endsWith(".txt"))
+        this.fail(
+          node,
+          "KRG2117",
+          "CountryDefinition outputPath must be a common/countries/*.txt game path.",
+        );
+      const color = items.find((item) => item.kind === "property" && item.key.text === "color") as
+        pdx.PdxProperty | undefined;
+      if (!color || color.value.kind !== "block" || color.value.items.length !== 3)
+        this.fail(
+          node,
+          "KRG2118",
+          "Country RGB color requires exactly three integers from 0 to 255.",
+        );
+      color.value = pdx.tagged("rgb", color.value);
+      return [
+        this.output(outputPath, pdx.document(items), node, "schema-native"),
+        this.output(
+          `common/country_tags/krieg_${String(id)}.txt`,
+          pdx.document([pdx.property(String(id), pdx.string(outputPath.slice("common/".length)))]),
+          node,
+          "schema-native",
+        ),
+      ];
+    }
+    if (definition.idMode === "field")
+      items.unshift(pdx.property(definition.idField ?? "id", this.toPdx(id, node, context)));
+    let body =
+      definition.idMode === "anonymous"
+        ? items
+        : [pdx.property(definition.nodeName ?? String(id), pdx.block(items))];
+    if (definition.rootField) {
+      const root = this.string(spec[definition.rootField], node);
+      if (definition.rootValues && !definition.rootValues.includes(root))
+        this.fail(
+          node,
+          "KRG2124",
+          `${name} has an invalid native ${definition.rootField} '${root}'.`,
+        );
+      body = [pdx.property(root, pdx.block(body))];
+    }
+    if (definition.root) body = [pdx.property(definition.root, pdx.block(body))];
+    if (definition.kind === "event") {
+      const match = /^([A-Za-z_][A-Za-z0-9_]*)\.([0-9]+)$/.exec(String(id));
+      if (!match)
+        this.fail(
+          node,
+          "KRG2123",
+          "Native event IDs require an identifier namespace and numeric suffix, such as krg.1.",
+        );
+      body.unshift(pdx.property("add_namespace", pdx.atom(match[1])));
+    }
+    return [this.output(outputPath, pdx.document(body), node, "schema-native")];
+  }
+
+  private weight(value: Value, scope: string, node: ts.Node, context: Context): pdx.PdxBlock {
+    const spec = this.object(value, node);
+    this.checkKeys(spec, ["base", "factor", "add", "modifiers"], node, "Weight");
+    const items: pdx.PdxItem[] = [];
+    for (const key of ["base", "factor", "add"])
+      if (spec[key] !== undefined)
+        items.push(pdx.property(key, this.toPdx(spec[key], node, context)));
+    for (const entry of this.array(spec.modifiers ?? [], node)) {
+      const modifier = this.object(entry, node);
+      this.checkKeys(modifier, ["trigger", "factor", "add"], node, "Weight modifier");
+      if (modifier.factor === undefined && modifier.add === undefined)
+        this.fail(node, "KRG2097", "A weight modifier requires factor or add.");
+      const fields: pdx.PdxItem[] = [];
+      for (const key of ["factor", "add"])
+        if (modifier[key] !== undefined)
+          fields.push(pdx.property(key, this.toPdx(modifier[key], node, context)));
+      fields.push(...this.callback(modifier.trigger, scope, "trigger", node, context));
+      items.push(pdx.property("modifier", pdx.block(fields)));
+    }
+    return pdx.block(items);
+  }
+  private scriptedLocalisation(args: Value[], node: ts.Node, context: Context): CompileOutput[] {
+    const name = this.string(args[0], node);
+    const spec = this.object(args[1], node);
+    this.checkKeys(spec, ["scope", "texts"], node, "ScriptedLocalisation");
+    const scope = this.string(spec.scope, node);
+    const texts = this.array(spec.texts, node);
+    if (!texts.length)
+      this.fail(node, "KRG2098", "Scripted localisation requires at least one text choice.");
+    const items: pdx.PdxItem[] = [pdx.property("name", this.toPdx(name, node, context))];
+    for (let index = 0; index < texts.length; index++) {
+      const entry = this.object(texts[index], node);
+      this.checkKeys(
+        entry,
+        ["trigger", "localisationKey", "randomList", "seed"],
+        node,
+        "Scripted localisation text",
+      );
+      if (entry.trigger === undefined && index < texts.length - 1)
+        this.fail(
+          node,
+          "KRG2099",
+          "An unconditional scripted localisation fallback must be the last text choice.",
+        );
+      if ((entry.localisationKey !== undefined) === (entry.randomList !== undefined))
+        this.fail(
+          node,
+          "KRG2100",
+          "A text choice requires exactly one localisationKey or randomList.",
+        );
+      const fields: pdx.PdxItem[] = [];
+      if (entry.trigger !== undefined)
+        fields.push(
+          pdx.property(
+            "trigger",
+            pdx.block(this.callback(entry.trigger, scope, "trigger", node, context)),
+          ),
+        );
+      const localisation = (key: Value): pdx.PdxProperty => {
+        const text = this.string(key, node);
+        return pdx.property(
+          "localization_key",
+          /\[/.test(text) ? pdx.string(text) : this.toPdx(text, node, context),
+        );
+      };
+      if (entry.localisationKey !== undefined) {
+        if (entry.seed !== undefined)
+          this.fail(node, "KRG2101", "A random seed belongs to a randomList text choice.");
+        fields.push(localisation(entry.localisationKey));
+      } else {
+        const choices = this.array(entry.randomList, node);
+        if (!choices.length)
+          this.fail(node, "KRG2102", "A random localisation list must contain a weighted choice.");
+        const weighted: pdx.PdxItem[] = [];
+        if (entry.seed !== undefined)
+          weighted.push(pdx.property("seed", this.toPdx(entry.seed, node, context)));
+        for (const choice of choices) {
+          const item = this.object(choice, node);
+          this.checkKeys(
+            item,
+            ["weight", "localisationKey", "modifiers"],
+            node,
+            "Random localisation choice",
+          );
+          if (typeof item.weight !== "number" || !Number.isInteger(item.weight) || item.weight <= 0)
+            this.fail(node, "KRG2103", "Localisation weights must be positive integers.");
+          const body = [
+            localisation(item.localisationKey),
+            ...this.weight({ modifiers: item.modifiers ?? [] }, scope, node, context).items,
+          ];
+          weighted.push(pdx.property(String(item.weight), pdx.block(body)));
+        }
+        fields.push(pdx.property("random_list", pdx.block(weighted)));
+      }
+      items.push(pdx.property("text", pdx.block(fields)));
+    }
+    return [
+      this.output(
+        `common/scripted_localisation/krieg_${safeId(name)}.txt`,
+        pdx.document([pdx.property("defined_text", pdx.block(items))]),
+        node,
+      ),
+    ];
+  }
+  private scriptedGui(args: Value[], node: ts.Node, context: Context): CompileOutput[] {
+    const spec = this.object(args[0], node);
+    const scalar: Record<string, string> = {
+      windowName: "window_name",
+      context: "context_type",
+      parentWindowToken: "parent_window_token",
+      parentWindowName: "parent_window_name",
+      parentScriptedGui: "parent_scripted_gui",
+      dirty: "dirty",
+      aiTestParent: "ai_test_parent",
+      aiTestInterval: "ai_test_interval",
+      aiTestVariance: "ai_test_variance",
+      aiMaxWeightTakenPerTest: "ai_max_weight_taken_per_test",
+    };
+    this.checkKeys(
+      spec,
+      [
+        "name",
+        ...Object.keys(scalar),
+        "visible",
+        "effects",
+        "triggers",
+        "properties",
+        "dynamicLists",
+        "aiEnabled",
+        "aiCheck",
+        "aiCheckScope",
+        "aiTestScopes",
+        "aiWeights",
+        "mapiconTargets",
+      ],
+      node,
+      "ScriptedGui",
+    );
+    const name = this.string(spec.name, node);
+    const guiContext = this.string(spec.context, node);
+    const scope =
+      guiContext === "selected_state_context" || guiContext === "state_mapicon"
+        ? "state"
+        : guiContext === "global_context"
+          ? "any"
+          : "country";
+    const parents = ["parentWindowToken", "parentWindowName", "parentScriptedGui"].filter(
+      (key) => spec[key] !== undefined,
+    );
+    if (parents.length > 1)
+      this.fail(
+        node,
+        "KRG2104",
+        "Choose one scripted GUI parent: token, window name, or scripted GUI.",
+      );
+    if (guiContext === "decision_category" && parents.length)
+      this.fail(
+        node,
+        "KRG2105",
+        "Decision-category GUIs are attached through the category and cannot specify a parent window.",
+      );
+    const items: pdx.PdxItem[] = [];
+    for (const [key, native] of Object.entries(scalar))
+      if (spec[key] !== undefined)
+        items.push(
+          pdx.property(
+            native,
+            ["windowName", "parentWindowName", "parentScriptedGui"].includes(key)
+              ? pdx.string(this.string(spec[key], node))
+              : this.toPdx(spec[key], node, context),
+          ),
+        );
+    for (const [key, native, callbackScope] of [
+      ["visible", "visible", scope],
+      ["aiEnabled", "ai_enabled", "country"],
+      ["aiCheck", "ai_check", "country"],
+      ["aiCheckScope", "ai_check_scope", scope],
+    ])
+      if (spec[key] !== undefined)
+        items.push(
+          pdx.property(
+            native,
+            pdx.block(this.callback(spec[key], callbackScope, "trigger", node, context)),
+          ),
+        );
+    const eventCallbacks = (
+      value: Value,
+      mode: "effect" | "trigger",
+      callbackScope = scope,
+    ): pdx.PdxItem[] =>
+      Object.entries(this.object(value, node)).map(([event, callback]) => {
+        if (!(mode === "effect" ? /_click$/ : /_(?:visible|click_enabled)$/).test(event))
+          this.fail(node, "KRG2106", `Scripted GUI ${mode} '${event}' has no native event suffix.`);
+        return pdx.property(
+          event,
+          pdx.block(this.callback(callback, callbackScope, mode, node, context)),
+        );
+      });
+    const effects = spec.effects === undefined ? [] : eventCallbacks(spec.effects, "effect");
+    const triggers = spec.triggers === undefined ? [] : eventCallbacks(spec.triggers, "trigger");
+    if (spec.properties !== undefined) {
+      const properties = Object.entries(this.object(spec.properties, node)).map(
+        ([element, value]) => {
+          const property = this.object(value, node);
+          this.checkKeys(property, ["image", "frame", "x", "y"], node, "Scripted GUI property");
+          return pdx.property(
+            element,
+            pdx.block(
+              Object.entries(property)
+                .filter(([, value]) => value !== undefined)
+                .map(([key, value]) =>
+                  pdx.property(
+                    key,
+                    key === "image"
+                      ? pdx.string(this.string(value, node))
+                      : this.toPdx(value, node, context),
+                  ),
+                ),
+            ),
+          );
+        },
+      );
+      items.push(pdx.property("properties", pdx.block(properties)));
+    }
+    const aiWeights = (value: Value, callbackScope = scope): pdx.PdxBlock =>
+      pdx.block(
+        Object.entries(this.object(value, node)).map(([event, weight]) => {
+          if (!/_click$/.test(event))
+            this.fail(node, "KRG2106", `Scripted GUI AI action '${event}' must end in _click.`);
+          const specification = this.object(weight, node);
+          this.checkKeys(specification, ["aiWillDo", "ignoreLowerWeights"], node, "GUI AI weight");
+          const fields: pdx.PdxItem[] = [
+            pdx.property(
+              "ai_will_do",
+              this.weight(specification.aiWillDo, callbackScope, node, context),
+            ),
+          ];
+          if (specification.ignoreLowerWeights !== undefined)
+            fields.push(
+              pdx.property(
+                "ignore_lower_weights",
+                this.weight(specification.ignoreLowerWeights, callbackScope, node, context),
+              ),
+            );
+          return pdx.property(event, pdx.block(fields));
+        }),
+      );
+    if (spec.aiWeights !== undefined)
+      items.push(pdx.property("ai_weights", aiWeights(spec.aiWeights)));
+    for (const target of this.array(spec.aiTestScopes ?? [], node))
+      items.push(pdx.property("ai_test_scopes", this.toPdx(target, node, context)));
+    if (spec.dynamicLists !== undefined) {
+      const lists = Object.entries(this.object(spec.dynamicLists, node)).map(([element, value]) => {
+        const list = this.object(value, node);
+        const mapping: Record<string, string> = {
+          array: "array",
+          index: "index",
+          value: "value",
+          changeScope: "change_scope",
+          entryContainer: "entry_container",
+          countryScopeEntryContainer: "country_scope_entry_container",
+        };
+        this.checkKeys(
+          list,
+          [...Object.keys(mapping), "aiWeights", "effects", "triggers", "entryScope"],
+          node,
+          "GUI dynamic list",
+        );
+        if (list.changeScope === true)
+          this.fail(
+            node,
+            "KRG2107",
+            "Scope-changing dynamic lists require an explicitly scoped entry declaration.",
+          );
+        if ((list.entryContainer !== undefined) === (list.countryScopeEntryContainer !== undefined))
+          this.fail(node, "KRG2108", "A dynamic list requires exactly one entry container.");
+        const fields = Object.entries(mapping)
+          .filter(([key]) => list[key] !== undefined)
+          .map(([key, native]) =>
+            pdx.property(
+              native,
+              key.endsWith("Container")
+                ? pdx.string(this.string(list[key], node))
+                : this.toPdx(list[key], node, context),
+            ),
+          );
+        const entryScope =
+          list.entryScope === undefined ? scope : this.string(list.entryScope, node);
+        if (list.entryScope !== undefined)
+          fields.push(pdx.property("change_scope", pdx.atom("yes")));
+        if (list.effects !== undefined)
+          effects.push(...eventCallbacks(list.effects, "effect", entryScope));
+        if (list.triggers !== undefined)
+          triggers.push(...eventCallbacks(list.triggers, "trigger", entryScope));
+        if (list.aiWeights !== undefined)
+          fields.push(pdx.property("ai_weights", aiWeights(list.aiWeights, entryScope)));
+        return pdx.property(element, pdx.block(fields));
+      });
+      items.push(pdx.property("dynamic_lists", pdx.block(lists)));
+    }
+    for (const [key, callbacks] of [
+      ["effects", effects],
+      ["triggers", triggers],
+    ] as const) {
+      const names = new Set<string>();
+      for (const callback of callbacks) {
+        if (callback.kind !== "property") continue;
+        if (names.has(callback.key.text))
+          this.fail(
+            node,
+            "KRG2110",
+            `Scripted GUI '${name}' repeats ${key} handler '${callback.key.text}'.`,
+          );
+        names.add(callback.key.text);
+      }
+      if (callbacks.length) items.push(pdx.property(key, pdx.block(callbacks)));
+    }
+    if (spec.mapiconTargets !== undefined) {
+      if (!guiContext.endsWith("mapicon"))
+        this.fail(
+          node,
+          "KRG2109",
+          "mapiconTargets requires a country_mapicon or state_mapicon context.",
+        );
+      const targets = this.object(spec.mapiconTargets, node);
+      this.checkKeys(targets, ["targetArray", "targetTrigger"], node, "Map icon targets");
+      const fields: pdx.PdxItem[] = [];
+      if (targets.targetArray !== undefined)
+        fields.push(pdx.property("target_array", this.toPdx(targets.targetArray, node, context)));
+      if (targets.targetTrigger !== undefined)
+        fields.push(
+          pdx.property(
+            "target_trigger",
+            pdx.block(this.callback(targets.targetTrigger, scope, "trigger", node, context)),
+          ),
+        );
+      items.push(pdx.property("mapicon_targets", pdx.block(fields)));
+    }
+    return [
+      this.output(
+        `common/scripted_guis/krieg_${safeId(name)}.txt`,
+        pdx.document([
+          pdx.property("scripted_gui", pdx.block([pdx.property(name, pdx.block(items))])),
+        ]),
+        node,
+      ),
+    ];
   }
 }

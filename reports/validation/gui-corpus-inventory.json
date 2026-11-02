@@ -1,0 +1,866 @@
+{
+  "formatVersion": 1,
+  "method": "Parse .gui files; count blocks ending in Type inside guiTypes, recording whether a name child exists and their parent key. Distinguish actual controls from nested scrollbar guiButtonType and formatting blocks. No game code executed.",
+  "corpora": {
+    "vanilla": {
+      "files": 453,
+      "parseErrorFiles": 4,
+      "types": {
+        "containerwindowtype": {
+          "spellings": ["containerWindowType"],
+          "count": 9070,
+          "withName": 9070,
+          "parents": {
+            "guiTypes": 1767,
+            "containerWindowType": 7284,
+            "dropDownBoxType": 19
+          },
+          "first": {
+            "file": "interface/AST_cabinet_trust_scripted_gui.gui",
+            "sha256": "ef072fb932861d32f189d40365f82c07caf74ee069a806cc23b5d7081936b6f4"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "NativeContainer"
+        },
+        "icontype": {
+          "spellings": ["iconType"],
+          "count": 6715,
+          "withName": 6715,
+          "parents": {
+            "containerWindowType": 6649,
+            "guiTypes": 23,
+            "windowType": 36,
+            "dropDownBoxType": 7
+          },
+          "first": {
+            "file": "interface/AST_cabinet_trust_scripted_gui.gui",
+            "sha256": "ef072fb932861d32f189d40365f82c07caf74ee069a806cc23b5d7081936b6f4"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "NativeIcon"
+        },
+        "instanttextboxtype": {
+          "spellings": ["instantTextBoxType", "instantTextboxType"],
+          "count": 3539,
+          "withName": 3539,
+          "parents": {
+            "containerWindowType": 3419,
+            "windowType": 105,
+            "expandedWindow": 2,
+            "guiTypes": 2,
+            "dropDownBoxType": 11
+          },
+          "first": {
+            "file": "interface/AST_cabinet_trust_scripted_gui.gui",
+            "sha256": "ef072fb932861d32f189d40365f82c07caf74ee069a806cc23b5d7081936b6f4"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "NativeText"
+        },
+        "buttontype": {
+          "spellings": ["buttonType", "ButtonType", "buttontype"],
+          "count": 2388,
+          "withName": 2388,
+          "parents": {
+            "containerWindowType": 2386,
+            "dropDownBoxType": 2
+          },
+          "first": {
+            "file": "interface/CZE_industry_focus_scripted_gui.gui",
+            "sha256": "e54d100e61fb5fb322f7095a0804950c811f7732966a2676c2eeecac31307a31"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "NativeButton"
+        },
+        "gridboxtype": {
+          "spellings": ["gridBoxType", "gridboxtype", "gridboxType"],
+          "count": 681,
+          "withName": 681,
+          "parents": {
+            "containerWindowType": 640,
+            "expandedWindow": 41
+          },
+          "first": {
+            "file": "interface/acesview.gui",
+            "sha256": "279bf491a6654901c47c144545d7c960d50bb49936109a7cddbb867595b708e5"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "NativeGridBox"
+        },
+        "smoothlistboxtype": {
+          "spellings": ["smoothListBoxType"],
+          "count": 29,
+          "withName": 29,
+          "parents": {
+            "containerWindowType": 29
+          },
+          "first": {
+            "file": "interface/airgroupview.gui",
+            "sha256": "24fd664281cf96466a5070cdd115d74c04cf0d7431e0c09d69bff866c9f45e43"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "SmoothListBox"
+        },
+        "editboxtype": {
+          "spellings": ["editBoxType"],
+          "count": 103,
+          "withName": 103,
+          "parents": {
+            "containerWindowType": 69,
+            "windowType": 25,
+            "dropDownBoxType": 9
+          },
+          "first": {
+            "file": "interface/airgroupview.gui",
+            "sha256": "24fd664281cf96466a5070cdd115d74c04cf0d7431e0c09d69bff866c9f45e43"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "EditBox"
+        },
+        "positiontype": {
+          "spellings": ["positionType"],
+          "count": 211,
+          "withName": 211,
+          "parents": {
+            "containerWindowType": 169,
+            "expandedWindow": 1,
+            "guiTypes": 41
+          },
+          "first": {
+            "file": "interface/airgroupview.gui",
+            "sha256": "24fd664281cf96466a5070cdd115d74c04cf0d7431e0c09d69bff866c9f45e43"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "Position"
+        },
+        "listboxtype": {
+          "spellings": ["listBoxType", "listboxType"],
+          "count": 30,
+          "withName": 30,
+          "parents": {
+            "containerWindowType": 8,
+            "windowType": 22
+          },
+          "first": {
+            "file": "interface/airselectionview.gui",
+            "sha256": "13f4fc6073e40a456dcf0fa9a599a7b5af787085a6168ad524e07473a15c30ac"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "NativeListBox"
+        },
+        "dropdownboxtype": {
+          "spellings": ["dropDownBoxType"],
+          "count": 43,
+          "withName": 43,
+          "parents": {
+            "containerWindowType": 43
+          },
+          "first": {
+            "file": "interface/airselectionview.gui",
+            "sha256": "13f4fc6073e40a456dcf0fa9a599a7b5af787085a6168ad524e07473a15c30ac"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "DropDownBox"
+        },
+        "scrollbartype": {
+          "spellings": ["scrollbarType"],
+          "count": 34,
+          "withName": 34,
+          "parents": {
+            "containerWindowType": 26,
+            "guiTypes": 4,
+            "windowType": 4
+          },
+          "first": {
+            "file": "interface/airwingreorganization.gui",
+            "sha256": "36a9c20b2749871f0bf341d0abfa91ca11df89ba5aabdecb3de9a9b3a96d528f"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "Scrollbar"
+        },
+        "guibuttontype": {
+          "spellings": ["guiButtonType", "guibuttonType"],
+          "count": 352,
+          "withName": 352,
+          "parents": {
+            "scrollbarType": 136,
+            "windowType": 214,
+            "guiTypes": 2
+          },
+          "first": {
+            "file": "interface/airwingreorganization.gui",
+            "sha256": "36a9c20b2749871f0bf341d0abfa91ca11df89ba5aabdecb3de9a9b3a96d528f"
+          },
+          "upstreamCwtKnown": false,
+          "apiCovered": true,
+          "factory": "GuiButton"
+        },
+        "windowtype": {
+          "spellings": ["windowType"],
+          "count": 83,
+          "withName": 83,
+          "parents": {
+            "guiTypes": 63,
+            "windowType": 20
+          },
+          "first": {
+            "file": "interface/backend.gui",
+            "sha256": "17a1f3a3f9db84aac5405d21f226f5c505b8e8b535a58e434e2a0b09fee7fbc3"
+          },
+          "upstreamCwtKnown": false,
+          "apiCovered": true,
+          "factory": "Window"
+        },
+        "browsertype": {
+          "spellings": ["browserType"],
+          "count": 1,
+          "withName": 1,
+          "parents": {
+            "containerWindowType": 1
+          },
+          "first": {
+            "file": "interface/browser.gui",
+            "sha256": "d8f6bec8f36593ddb7d75e18d99d1338d40e9d577172dd7f8829ecdb87670881"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "Browser"
+        },
+        "overlappingelementsboxtype": {
+          "spellings": ["overlappingElementsBoxType", "OverlappingElementsBoxType"],
+          "count": 55,
+          "withName": 55,
+          "parents": {
+            "containerWindowType": 47,
+            "windowType": 8
+          },
+          "first": {
+            "file": "interface/career_profile/common_components.gui",
+            "sha256": "3604d63afe62d30081a64114cb16bbab9dc8b2da1e9425695322da316ec697b2"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "OverlappingElementsBox"
+        },
+        "checkboxtype": {
+          "spellings": ["checkboxType", "checkBoxType"],
+          "count": 172,
+          "withName": 172,
+          "parents": {
+            "containerWindowType": 123,
+            "windowType": 49
+          },
+          "first": {
+            "file": "interface/career_profile/statistics_view.gui",
+            "sha256": "a99f5ba9a0732b622f9b17f0f5482e66f09ce2064901416b25bc757927e42102"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "Checkbox"
+        },
+        "extendedscrollbartype": {
+          "spellings": ["extendedScrollbarType"],
+          "count": 22,
+          "withName": 22,
+          "parents": {
+            "containerWindowType": 15,
+            "guiTypes": 7
+          },
+          "first": {
+            "file": "interface/combatlogview.gui",
+            "sha256": "2a0f4a8679891835068de10c125731b369205eade41497304a4f3ba3a38f5a5f"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "ExtendedScrollbar"
+        },
+        "textboxtype": {
+          "spellings": ["textBoxType"],
+          "count": 23,
+          "withName": 23,
+          "parents": {
+            "guiTypes": 3,
+            "windowType": 20
+          },
+          "first": {
+            "file": "interface/core.gui",
+            "sha256": "553b14374957f1a0403b627a5252cce0b9a8578cae1a70be2686e660f2c7c481"
+          },
+          "upstreamCwtKnown": false,
+          "apiCovered": true,
+          "factory": "TextBox"
+        }
+      }
+    },
+    "Kaiserreich": {
+      "files": 216,
+      "parseErrorFiles": 0,
+      "types": {
+        "containerwindowtype": {
+          "spellings": ["containerWindowType"],
+          "count": 3994,
+          "withName": 3994,
+          "parents": {
+            "guiTypes": 426,
+            "containerWindowType": 3558,
+            "dropDownBoxType": 1,
+            "guitypes": 9
+          },
+          "first": {
+            "file": "interface/browser.gui",
+            "sha256": "f7d7bf013b0a6e46704d85bc81a449ec1d66154f65f139f08f9d30acff00c678"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "NativeContainer"
+        },
+        "browsertype": {
+          "spellings": ["browserType"],
+          "count": 1,
+          "withName": 1,
+          "parents": {
+            "containerWindowType": 1
+          },
+          "first": {
+            "file": "interface/browser.gui",
+            "sha256": "f7d7bf013b0a6e46704d85bc81a449ec1d66154f65f139f08f9d30acff00c678"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "Browser"
+        },
+        "icontype": {
+          "spellings": ["iconType"],
+          "count": 2185,
+          "withName": 2185,
+          "parents": {
+            "containerWindowType": 2185
+          },
+          "first": {
+            "file": "interface/browser.gui",
+            "sha256": "f7d7bf013b0a6e46704d85bc81a449ec1d66154f65f139f08f9d30acff00c678"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "NativeIcon"
+        },
+        "buttontype": {
+          "spellings": ["buttonType", "ButtonType"],
+          "count": 468,
+          "withName": 468,
+          "parents": {
+            "containerWindowType": 468
+          },
+          "first": {
+            "file": "interface/browser.gui",
+            "sha256": "f7d7bf013b0a6e46704d85bc81a449ec1d66154f65f139f08f9d30acff00c678"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "NativeButton"
+        },
+        "positiontype": {
+          "spellings": ["positionType"],
+          "count": 29,
+          "withName": 29,
+          "parents": {
+            "containerWindowType": 17,
+            "guiTypes": 12
+          },
+          "first": {
+            "file": "interface/career_profile/playthrough_overview_window.gui",
+            "sha256": "001e913397679b99f2daa834a1a793bb55d4a7b3efd03bec518d6c5fd3d30f7d"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "Position"
+        },
+        "instanttextboxtype": {
+          "spellings": ["instantTextBoxType", "instantTextboxType"],
+          "count": 846,
+          "withName": 846,
+          "parents": {
+            "containerWindowType": 845,
+            "expandedWindow": 1
+          },
+          "first": {
+            "file": "interface/career_profile/playthrough_overview_window.gui",
+            "sha256": "001e913397679b99f2daa834a1a793bb55d4a7b3efd03bec518d6c5fd3d30f7d"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "NativeText"
+        },
+        "gridboxtype": {
+          "spellings": ["gridBoxType", "gridboxtype", "gridboxType"],
+          "count": 232,
+          "withName": 232,
+          "parents": {
+            "containerWindowType": 228,
+            "expandedWindow": 4
+          },
+          "first": {
+            "file": "interface/command_character_view.gui",
+            "sha256": "ad659d4622dfa597be66f64fe9730394eb5016abcdf07490a3c899dabf55c183"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "NativeGridBox"
+        },
+        "dropdownboxtype": {
+          "spellings": ["dropDownBoxType"],
+          "count": 4,
+          "withName": 4,
+          "parents": {
+            "containerWindowType": 4
+          },
+          "first": {
+            "file": "interface/countrydeploymentview.gui",
+            "sha256": "746137cfc753f061fd2b748b2f596fb2150786d8d1347356899d212ce93a74f2"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "DropDownBox"
+        },
+        "editboxtype": {
+          "spellings": ["editBoxType"],
+          "count": 6,
+          "withName": 6,
+          "parents": {
+            "dropDownBoxType": 1,
+            "containerWindowType": 5
+          },
+          "first": {
+            "file": "interface/countrydeploymentview.gui",
+            "sha256": "746137cfc753f061fd2b748b2f596fb2150786d8d1347356899d212ce93a74f2"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "EditBox"
+        },
+        "overlappingelementsboxtype": {
+          "spellings": ["OverlappingElementsBoxType"],
+          "count": 6,
+          "withName": 6,
+          "parents": {
+            "containerWindowType": 6
+          },
+          "first": {
+            "file": "interface/countrydiplomacyview.gui",
+            "sha256": "b3342ef3298a5c4776fec7a05dff727b80e46146d3f914dba139c583ad7d2be7"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "OverlappingElementsBox"
+        },
+        "checkboxtype": {
+          "spellings": ["checkBoxType", "checkboxType"],
+          "count": 26,
+          "withName": 26,
+          "parents": {
+            "containerWindowType": 26
+          },
+          "first": {
+            "file": "interface/countrydiplomacyview.gui",
+            "sha256": "b3342ef3298a5c4776fec7a05dff727b80e46146d3f914dba139c583ad7d2be7"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "Checkbox"
+        },
+        "extendedscrollbartype": {
+          "spellings": ["extendedScrollbarType"],
+          "count": 4,
+          "withName": 4,
+          "parents": {
+            "containerWindowType": 4
+          },
+          "first": {
+            "file": "interface/countrydiplomacyview.gui",
+            "sha256": "b3342ef3298a5c4776fec7a05dff727b80e46146d3f914dba139c583ad7d2be7"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "ExtendedScrollbar"
+        },
+        "windowtype": {
+          "spellings": ["windowType"],
+          "count": 1,
+          "withName": 1,
+          "parents": {
+            "guiTypes": 1
+          },
+          "first": {
+            "file": "interface/countrydiplomacyview.gui",
+            "sha256": "b3342ef3298a5c4776fec7a05dff727b80e46146d3f914dba139c583ad7d2be7"
+          },
+          "upstreamCwtKnown": false,
+          "apiCovered": true,
+          "factory": "Window"
+        },
+        "guibuttontype": {
+          "spellings": ["guiButtonType"],
+          "count": 1,
+          "withName": 1,
+          "parents": {
+            "windowType": 1
+          },
+          "first": {
+            "file": "interface/countrydiplomacyview.gui",
+            "sha256": "b3342ef3298a5c4776fec7a05dff727b80e46146d3f914dba139c583ad7d2be7"
+          },
+          "upstreamCwtKnown": false,
+          "apiCovered": true,
+          "factory": "GuiButton"
+        }
+      }
+    },
+    "TNO": {
+      "files": 373,
+      "parseErrorFiles": 5,
+      "types": {
+        "containerwindowtype": {
+          "spellings": ["containerWindowType", "containerwindowtype"],
+          "count": 6919,
+          "withName": 6919,
+          "parents": {
+            "guiTypes": 2167,
+            "containerWindowType": 4697,
+            "guitypes": 23,
+            "containerwindowtype": 17,
+            "dropDownBoxType": 15
+          },
+          "first": {
+            "file": "interface/00_tno_soundtrack.gui",
+            "sha256": "7416f14edd2feb39aa5fd1c9e9b1f35e863300667634813ea66d2b196d934c03"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "NativeContainer"
+        },
+        "icontype": {
+          "spellings": ["iconType", "icontype"],
+          "count": 9104,
+          "withName": 9104,
+          "parents": {
+            "containerWindowType": 8985,
+            "containerwindowtype": 60,
+            "guiTypes": 23,
+            "windowType": 29,
+            "dropDownBoxType": 7
+          },
+          "first": {
+            "file": "interface/00_tno_soundtrack.gui",
+            "sha256": "7416f14edd2feb39aa5fd1c9e9b1f35e863300667634813ea66d2b196d934c03"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "NativeIcon"
+        },
+        "instanttextboxtype": {
+          "spellings": ["instantTextboxType", "instantTextBoxType", "instanttextboxtype"],
+          "count": 5316,
+          "withName": 5316,
+          "parents": {
+            "containerWindowType": 5219,
+            "containerwindowtype": 27,
+            "windowType": 56,
+            "expandedWindow": 2,
+            "guiTypes": 2,
+            "dropDownBoxType": 10
+          },
+          "first": {
+            "file": "interface/00_tno_soundtrack.gui",
+            "sha256": "7416f14edd2feb39aa5fd1c9e9b1f35e863300667634813ea66d2b196d934c03"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "NativeText"
+        },
+        "buttontype": {
+          "spellings": ["buttonType", "buttontype", "ButtonType"],
+          "count": 3931,
+          "withName": 3931,
+          "parents": {
+            "containerWindowType": 3899,
+            "containerwindowtype": 30,
+            "dropDownBoxType": 2
+          },
+          "first": {
+            "file": "interface/00_tno_soundtrack.gui",
+            "sha256": "7416f14edd2feb39aa5fd1c9e9b1f35e863300667634813ea66d2b196d934c03"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "NativeButton"
+        },
+        "extendedscrollbartype": {
+          "spellings": ["extendedScrollbarType"],
+          "count": 75,
+          "withName": 75,
+          "parents": {
+            "containerWindowType": 23,
+            "guiTypes": 51,
+            "guitypes": 1
+          },
+          "first": {
+            "file": "interface/00_tno_soundtrack.gui",
+            "sha256": "7416f14edd2feb39aa5fd1c9e9b1f35e863300667634813ea66d2b196d934c03"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "ExtendedScrollbar"
+        },
+        "checkboxtype": {
+          "spellings": ["checkBoxType", "checkboxType"],
+          "count": 139,
+          "withName": 139,
+          "parents": {
+            "containerWindowType": 116,
+            "windowType": 23
+          },
+          "first": {
+            "file": "interface/00_tno_soundtrack.gui",
+            "sha256": "7416f14edd2feb39aa5fd1c9e9b1f35e863300667634813ea66d2b196d934c03"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "Checkbox"
+        },
+        "gridboxtype": {
+          "spellings": ["gridboxtype", "gridBoxType", "gridboxType"],
+          "count": 950,
+          "withName": 950,
+          "parents": {
+            "containerWindowType": 909,
+            "containerwindowtype": 3,
+            "expandedWindow": 38
+          },
+          "first": {
+            "file": "interface/Africa/TNO_Ostafrika_Investigation.gui",
+            "sha256": "7e8d0ac85ba634bb510e39959162865400f3d49c43a69f8d1f93a4805ef52830"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "NativeGridBox"
+        },
+        "smoothlistboxtype": {
+          "spellings": ["smoothListBoxType"],
+          "count": 20,
+          "withName": 20,
+          "parents": {
+            "containerWindowType": 20
+          },
+          "first": {
+            "file": "interface/airgroupview.gui",
+            "sha256": "985ab7bd186b900b77d6cd0b6e97732d52a439e562fbf14f7e4f658b49397eb6"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "SmoothListBox"
+        },
+        "editboxtype": {
+          "spellings": ["editBoxType"],
+          "count": 70,
+          "withName": 70,
+          "parents": {
+            "containerWindowType": 60,
+            "windowType": 2,
+            "dropDownBoxType": 8
+          },
+          "first": {
+            "file": "interface/airgroupview.gui",
+            "sha256": "985ab7bd186b900b77d6cd0b6e97732d52a439e562fbf14f7e4f658b49397eb6"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "EditBox"
+        },
+        "positiontype": {
+          "spellings": ["positionType"],
+          "count": 194,
+          "withName": 194,
+          "parents": {
+            "containerWindowType": 154,
+            "expandedWindow": 1,
+            "guiTypes": 39
+          },
+          "first": {
+            "file": "interface/airgroupview.gui",
+            "sha256": "985ab7bd186b900b77d6cd0b6e97732d52a439e562fbf14f7e4f658b49397eb6"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "Position"
+        },
+        "listboxtype": {
+          "spellings": ["listBoxType", "listboxType"],
+          "count": 15,
+          "withName": 15,
+          "parents": {
+            "containerWindowType": 6,
+            "windowType": 9
+          },
+          "first": {
+            "file": "interface/airselectionview.gui",
+            "sha256": "a71ff597042b4cc9a70544f9eea3fe07c135cd7eaa9ac69f56f762b415feba8d"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "NativeListBox"
+        },
+        "dropdownboxtype": {
+          "spellings": ["dropDownBoxType"],
+          "count": 40,
+          "withName": 40,
+          "parents": {
+            "containerWindowType": 40
+          },
+          "first": {
+            "file": "interface/airselectionview.gui",
+            "sha256": "a71ff597042b4cc9a70544f9eea3fe07c135cd7eaa9ac69f56f762b415feba8d"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "DropDownBox"
+        },
+        "scrollbartype": {
+          "spellings": ["scrollbarType"],
+          "count": 30,
+          "withName": 30,
+          "parents": {
+            "containerWindowType": 23,
+            "guiTypes": 7
+          },
+          "first": {
+            "file": "interface/airwingreorganization.gui",
+            "sha256": "e3913c7a779175b65226313bcccdfe80b363511b52c536ace45fa968e56a1537"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "Scrollbar"
+        },
+        "guibuttontype": {
+          "spellings": ["guiButtonType", "guibuttonType"],
+          "count": 162,
+          "withName": 162,
+          "parents": {
+            "scrollbarType": 120,
+            "windowType": 41,
+            "guiTypes": 1
+          },
+          "first": {
+            "file": "interface/airwingreorganization.gui",
+            "sha256": "e3913c7a779175b65226313bcccdfe80b363511b52c536ace45fa968e56a1537"
+          },
+          "upstreamCwtKnown": false,
+          "apiCovered": true,
+          "factory": "GuiButton"
+        },
+        "windowtype": {
+          "spellings": ["windowType"],
+          "count": 41,
+          "withName": 41,
+          "parents": {
+            "guiTypes": 35,
+            "windowType": 6
+          },
+          "first": {
+            "file": "interface/backend.gui",
+            "sha256": "2047400f211c01076b25d9d0f5dd3dd9a8277c14cf65e94cd4dfa2949aefe64a"
+          },
+          "upstreamCwtKnown": false,
+          "apiCovered": true,
+          "factory": "Window"
+        },
+        "browsertype": {
+          "spellings": ["browserType"],
+          "count": 1,
+          "withName": 1,
+          "parents": {
+            "containerWindowType": 1
+          },
+          "first": {
+            "file": "interface/browser.gui",
+            "sha256": "ff9517fb0dc40674d3e6fe68311e2800477dda951f74adb9f23b5e0dcc08cdce"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "Browser"
+        },
+        "overlappingelementsboxtype": {
+          "spellings": ["overlappingElementsBoxType", "OverlappingElementsBoxType"],
+          "count": 50,
+          "withName": 50,
+          "parents": {
+            "containerWindowType": 42,
+            "windowType": 8
+          },
+          "first": {
+            "file": "interface/career_profile/common_components.gui",
+            "sha256": "c042c98074419c1231b27f065b36eba09fb82771dd6517165c8f398fc1c14a45"
+          },
+          "upstreamCwtKnown": true,
+          "apiCovered": true,
+          "factory": "OverlappingElementsBox"
+        },
+        "textboxtype": {
+          "spellings": ["textBoxType"],
+          "count": 3,
+          "withName": 3,
+          "parents": {
+            "guiTypes": 3
+          },
+          "first": {
+            "file": "interface/core.gui",
+            "sha256": "3f443d8ddb2d0c0027c3ffa5231599eb178a96d076d1a5c48ce211be6e932520"
+          },
+          "upstreamCwtKnown": false,
+          "apiCovered": true,
+          "factory": "TextBox"
+        }
+      }
+    }
+  },
+  "rawLexicalCrossCheck": {
+    "method": "rg --multiline over all supplied .gui files, including original parse-error files; extract uncommented line-start blocks with Type suffix and case-fold names.",
+    "families": [
+      "browserType",
+      "buttonType",
+      "checkBoxType",
+      "containerWindowType",
+      "dropDownBoxType",
+      "editBoxType",
+      "extendedScrollbarType",
+      "gridBoxType",
+      "guiButtonType",
+      "iconType",
+      "instantTextBoxType",
+      "listBoxType",
+      "OverlappingElementsBoxType",
+      "positionType",
+      "scrollbarType",
+      "smoothListBoxType",
+      "textBoxType",
+      "windowType"
+    ],
+    "outsideApi": []
+  },
+  "coverage": {
+    "publicFactories": 18,
+    "upstreamCwtNativePositiveAndNegativeValidated": 15,
+    "legacyCorpusObserved": 3,
+    "engineValidation": "not-run"
+  }
+}

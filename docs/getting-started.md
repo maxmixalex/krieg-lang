@@ -14,14 +14,14 @@ npm run build
 npm pack
 ```
 
-这会生成 `krieg-lang-0.1.0.tgz`。这里使用本地安装包，避免把“仓库里已经有代码”和“npm 上已经发布版本”混为一谈。
+这会生成 `krieg-lang-0.2.0.tgz`。这里使用本地安装包，避免把“仓库里已经有代码”和“npm 上已经发布版本”混为一谈。
 
 创建项目，并把刚打好的包安装进去：
 
 ```sh
 node dist/cli.js init ../hello-krieg
 cd ../hello-krieg
-npm install ../krieg-lang/krieg-lang-0.1.0.tgz
+npm install ../krieg-lang/krieg-lang-0.2.0.tgz
 npx krieg check
 npx krieg build
 ```

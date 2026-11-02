@@ -143,7 +143,7 @@ export function importProject(
           type: "module",
           version: "0.1.0",
           scripts: { build: "krieg build", check: "krieg check" },
-          devDependencies: { "krieg-lang": "^0.1.0" },
+          devDependencies: { "krieg-lang": "^0.2.0" },
         },
         null,
         2,
@@ -154,7 +154,7 @@ export function importProject(
       JSON.stringify(
         {
           extends: "./.krieg/tsconfig.json",
-          include: ["src/**/*.krg.ts", ".krieg/types/**/*.d.ts"],
+          include: ["src/**/*.krg.ts", "src/**/*.krg.tsx", ".krieg/types/**/*.d.ts"],
         },
         null,
         2,

@@ -11,3 +11,10 @@ data/
 **/.krieg/
 src/schema/hoi4-schema.json
 src/sdk/commands.ts
+src/sdk/domains.ts
+src/ui/native.ts
+src/schema/hoi4-domains.json
+src/sdk/defines.ts
+src/schema/hoi4-defines.json
+examples/**/localisation/**/*.yml
+tests/fixtures/**/localisation/**/*.yml

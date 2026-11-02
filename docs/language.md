@@ -1,10 +1,10 @@
 # 语言与执行模型
 
-Krieg 源码同时满足两个条件：它是严格类型检查能够通过的 TypeScript，也是 Krieg 可以静态翻译的语言子集。理解这两个条件，可以解释为什么编辑器认识某种语法，编译器却可能拒绝它。
+Krieg 的 `.krg.ts` / `.krg.tsx` 源码同时满足两个条件：它是严格类型检查能够通过的 TypeScript，也是 Krieg 可以静态翻译的语言子集。理解这两个条件，可以解释为什么编辑器认识某种语法，编译器却可能拒绝它。
 
 ## 编译器读取什么
 
-编译器解析 TypeScript AST，解析模块与符号，检查类型，再把定义、作用域、条件和效果降级到 Paradox 脚本。`.krg.ts` 中的函数不会被 Node.js 调用，导入也不会运行模块的 JavaScript。
+编译器解析 TypeScript AST，解析模块与符号，检查类型，再把定义、作用域、条件和效果降级到原生游戏文件。普通脚本生成有序 PDX AST，`Defines` / `DefineFile` 生成 Lua 赋值文本；`emitCompileOutput` 根据输出的 `format` 统一序列化。`.krg.ts` 中的函数不会被 Node.js 调用，导入也不会运行模块的 JavaScript。
 
 例如：
 
@@ -102,7 +102,7 @@ ScriptedEffect("shared_reward", (country: CountryScope) => {
 
 这里的 `.krg.js` 是 TypeScript NodeNext 风格的模块说明符，指向源码中的 `.krg.ts` 模块；它不表示 Krieg 会执行生成的 JavaScript。`import "./definitions.krg.js"` 也可以静态纳入另一个源码模块中的定义。
 
-项目源码和源码依赖必须使用 `.krg.ts`。编译器只接受自己生成的声明模块，不接受用户通过相对 `.d.ts` 文件注入额外运行时声明。普通类型别名与接口可以直接写在 `.krg.ts` 中。
+项目源码和源码依赖必须使用 `.krg.ts` 或 `.krg.tsx`。TSX 专门用于静态界面组件，详见 [界面与 TSX](ui.md)。编译器只接受自己生成的声明模块，不接受用户通过相对 `.d.ts` 文件注入额外运行时声明。普通类型别名与接口可以直接写在 `.krg.ts` 中。
 
 ## 不支持的结构
 

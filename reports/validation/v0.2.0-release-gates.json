@@ -1,0 +1,158 @@
+{
+  "formatVersion": 1,
+  "version": "0.2.0",
+  "generatedAt": "2026-11-02T16:45:15.210881Z",
+  "scope": "Local release gates and linked static-validation evidence. GitHub deployment and game execution are not implied.",
+  "gates": [
+    {
+      "command": "npm run check",
+      "status": "passed"
+    },
+    {
+      "command": "npm run build",
+      "status": "passed"
+    },
+    {
+      "command": "npm run lint",
+      "status": "passed"
+    },
+    {
+      "command": "node scripts/generate-sdk.mjs --check",
+      "status": "passed"
+    },
+    {
+      "command": "npm run generate:domains:check",
+      "status": "passed"
+    },
+    {
+      "command": "npm run generate:defines:check",
+      "status": "passed"
+    },
+    {
+      "command": "npm test",
+      "status": "passed",
+      "tests": 176,
+      "passed": 176,
+      "failed": 0,
+      "skipped": 0,
+      "durationMs": 68805.04329
+    },
+    {
+      "command": "npm run test:examples",
+      "status": "passed",
+      "projects": 4,
+      "outputFiles": {
+        "first-mod": 6,
+        "logistics": 10,
+        "vanilla-complete": 70,
+        "kaiserreich-complete": 88
+      },
+      "totalOutputFiles": 174
+    },
+    {
+      "command": "npm run test:package",
+      "status": "passed",
+      "publicEntrypoints": 8,
+      "checks": [
+        "npm tarball installation",
+        "installed CLI version, check, build and pack",
+        "TSX native GUI output",
+        "YAML BOM and Unicode output",
+        "DefineFile Lua assignment output",
+        "stock TypeScript declarations: valid input passes, invalid GUI coordinate yields TS2322"
+      ],
+      "initialScaffold": "Repository CLI; subsequent commands use the installed tarball."
+    },
+    {
+      "command": "npm run docs:coverage",
+      "status": "passed",
+      "topicFamilies": 57
+    },
+    {
+      "command": "npm run docs:api:check",
+      "status": "passed",
+      "generatedFiles": 653,
+      "markdownPages": 652,
+      "publicExports": 508,
+      "fixedCommands": 1165
+    },
+    {
+      "command": "zensical build --clean --strict",
+      "status": "passed",
+      "durationMs": 68900
+    },
+    {
+      "command": "npm run format:check",
+      "status": "passed"
+    }
+  ],
+  "staticEvidence": {
+    "nativeDomains": {
+      "report": "reports/validation/domain-native-audit.json",
+      "constructors": 111,
+      "outputs": 112,
+      "positiveSamplesPassed": 111,
+      "negativeRuleMatches": 111,
+      "unmodifiedUpstreamRulesPassed": 107,
+      "explicitlyCorrectedDomains": 4,
+      "addedDiagnostics": 0,
+      "scope": "One authored sample per constructor; compatibility-rule corrections are disclosed in the linked report."
+    },
+    "nativeGui": {
+      "report": "reports/validation/gui-native-audit.json",
+      "controls": 15,
+      "positiveSamplesPassed": 15,
+      "negativeRuleMatches": 15,
+      "addedDiagnostics": 0,
+      "scope": "CWT-covered controls only; no rendered GUI execution."
+    },
+    "corpus": {
+      "report": "reports/validation/v0.2.0-corpus-summary.json",
+      "datasets": 3,
+      "strictTypeScriptPassed": 17548,
+      "semanticRoundtripsPassed": 17548,
+      "conversionFailures": 0,
+      "originalParseFailuresExcluded": 32,
+      "originalAncillarySyntaxFailures": 2,
+      "scope": "Ordered native imports and semantic preservation at the recorded compiler snapshot; not semantic-constructor coverage or game execution.",
+      "finalIntegration": {
+        "largestFileFromEachDataset": true,
+        "files": 3,
+        "originalBytes": 24568951,
+        "diagnostics": 0,
+        "typeChecking": "full",
+        "canonicalOutputHashesMatchFrozenEmitter": true,
+        "finalDistHash": "110f28b699ce0b0cda001317880a705d7a4cd67cef914207cb01b74fc260ee58"
+      }
+    },
+    "completeExamples": {
+      "report": "reports/validation/complete-examples.json",
+      "examples": 2,
+      "cwtErrorsPerExample": 0,
+      "cwtWarningsPerExample": 2,
+      "warningCode": "CW251"
+    },
+    "completeExamplePackages": {
+      "report": "reports/validation/complete-example-package-workflows.json",
+      "examples": 2,
+      "status": "passed"
+    }
+  },
+  "engineValidation": {
+    "status": "not-run",
+    "unverified": [
+      "HOI4 client startup and save/load",
+      "In-game behavior and GUI rendering or interaction"
+    ]
+  },
+  "documentation": {
+    "guides": 19,
+    "apiMarkdownPages": 652,
+    "sourceMarkdownPages": 671,
+    "tutorialSnippetsCompiled": 32,
+    "localLinksChecked": 32626,
+    "anchorsChecked": 7071,
+    "brokenLinks": 0,
+    "localOutputNote": "The link scan includes 17 old isolated HTML pages left in the local site directory. Source/API generation is clean; deployment is built from a fresh checkout."
+  }
+}

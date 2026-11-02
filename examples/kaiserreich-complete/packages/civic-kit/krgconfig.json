@@ -1,0 +1,10 @@
+{
+  "name": "srd-civic-kit",
+  "sourceDir": "src",
+  "localisation": [
+    {
+      "language": "english",
+      "from": "localisation/english.yaml"
+    }
+  ]
+}

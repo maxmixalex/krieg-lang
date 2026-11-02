@@ -63,10 +63,11 @@ const noAny: Rule.RuleModule = {
 };
 
 function isAllowedImport(value: string, packages: readonly string[]): boolean {
-  if (value === "krieg-lang/hoi4" || value === "krieg-lang/pdx") return true;
+  if (value === "krieg-lang/hoi4" || value === "krieg-lang/pdx" || value === "krieg-lang/ui")
+    return true;
   if (["@project/countries", "@project/states", "@project/assets"].includes(value)) return true;
   if (value.startsWith("./") || value.startsWith("../")) {
-    return !/\.(?:[cm]?js|[cm]?ts|json)$/.test(value) || /\.krg\.(?:js|ts)$/.test(value);
+    return !/\.(?:[cm]?jsx?|[cm]?tsx?|json)$/.test(value) || /\.krg\.(?:jsx?|tsx?)$/.test(value);
   }
   return packages.some((name) => value === name || value.startsWith(`${name}/`));
 }
@@ -296,7 +297,7 @@ const explicitParameters: Rule.RuleModule = {
 
 /** ESLint flat-config plugin. The compiler remains the final semantic authority. */
 const plugin: ESLint.Plugin & { configs: { recommended: Linter.Config } } = {
-  meta: { name: "krieg-lang", version: "0.1.0" },
+  meta: { name: "krieg-lang", version: "0.2.0" },
   rules: {
     "no-any": noAny,
     "allowed-imports": allowedImports,
@@ -308,7 +309,7 @@ const plugin: ESLint.Plugin & { configs: { recommended: Linter.Config } } = {
 
 plugin.configs.recommended = {
   name: "krieg/recommended",
-  files: ["**/*.krg.ts"],
+  files: ["**/*.krg.ts", "**/*.krg.tsx"],
   languageOptions: {
     parser,
     ecmaVersion: "latest",

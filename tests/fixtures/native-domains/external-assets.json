@@ -1,0 +1,24 @@
+{
+  "source": "https://github.com/Kaiserreich/Kaiserreich-HOI4",
+  "commit": "b603c934c871c7e4ef1c08a2dad19a77e6342ca1",
+  "files": [
+    {
+      "path": "gfx/models/buildings/landmarks/pyramids_of_giza/pyramids_of_giza.mesh",
+      "bytes": 4857,
+      "sha256": "28abf8f61f79a20366e119095d6b76ed698d6f98b9af5df735e8faaa16a83963",
+      "gitBlob": "bf534d64a7219fc60f887fb941605da248126eaf",
+      "headerHex": "4040624021087064786173736574690200000001000000000000005b6f626a65",
+      "url": "https://raw.githubusercontent.com/Kaiserreich/Kaiserreich-HOI4/b603c934c871c7e4ef1c08a2dad19a77e6342ca1/gfx/models/buildings/landmarks/pyramids_of_giza/pyramids_of_giza.mesh",
+      "auditPath": "gfx/models/krieg_audit.mesh"
+    },
+    {
+      "path": "gfx/models/units/ships/generic_SH_battleship_idle.anim",
+      "bytes": 2597,
+      "sha256": "f74a547504c6cc5a5abd7cfcc06823eb07fdfb5e2ca5259cd2baee9d2cb7d82f",
+      "gitBlob": "074ec521e564150558e24be31fc716b482db5b2e",
+      "headerHex": "4040624021087064786173736574690200000001000000000000005b696e666f",
+      "url": "https://raw.githubusercontent.com/Kaiserreich/Kaiserreich-HOI4/b603c934c871c7e4ef1c08a2dad19a77e6342ca1/gfx/models/units/ships/generic_SH_battleship_idle.anim",
+      "auditPath": "gfx/models/krieg_audit.anim"
+    }
+  ]
+}

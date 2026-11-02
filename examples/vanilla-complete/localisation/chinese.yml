@@ -1,0 +1,5 @@
+﻿l_simp_chinese:
+ # Native localisation keeps versions, comments and escapes.
+ KRG:0 "科西嘉公民共和国"
+ civ_gui_title:2 "岛屿议会"
+ civ_gui_redeem:0 "兑付公债"

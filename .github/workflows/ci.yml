@@ -31,6 +31,10 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: node scripts/generate-sdk.mjs --check
+      - run: npm run generate:domains:check
+      - run: npm run generate:defines:check
+      - run: npm run docs:api:check
+      - run: npm run docs:coverage
       - run: npm run check
       - run: npm run lint
       - run: npm run format:check
@@ -41,9 +45,16 @@ jobs:
   docs:
     name: Zensical documentation
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run docs:api:check
+      - run: npm run docs:coverage
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"

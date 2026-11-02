@@ -1,5 +1,6 @@
 import { existsSync, mkdirSync, readdirSync, writeFileSync } from "node:fs";
 import { basename, dirname, resolve } from "node:path";
+import { VERSION } from "../version.js";
 import { writeEditorProject } from "./editor.js";
 
 export const starterSource = `import { CountryEvent, DecisionCategory, type CountryScope } from "krieg-lang/hoi4";
@@ -79,7 +80,7 @@ export function initProject(destination: string): string {
             world: "krieg world",
             format: "prettier --write src",
           },
-          devDependencies: { "krieg-lang": "^0.1.0", prettier: "3.9.10" },
+          devDependencies: { "krieg-lang": `^${VERSION}`, prettier: "3.9.10" },
         },
         null,
         2,
@@ -88,7 +89,7 @@ export function initProject(destination: string): string {
       JSON.stringify(
         {
           extends: "./.krieg/tsconfig.json",
-          include: ["src/**/*.krg.ts", ".krieg/types/**/*.d.ts"],
+          include: ["src/**/*.krg.ts", "src/**/*.krg.tsx", ".krieg/types/**/*.d.ts"],
         },
         null,
         2,

@@ -9,12 +9,20 @@ export interface KriegDiagnostic {
   line?: number;
   column?: number;
 }
-export interface CompileOutput {
+interface CompileOutputBase {
   path: string;
-  document: PdxDocument;
   sourceFile: string;
-  representation: "semantic" | "ordered-pdx" | "structured-data";
+  representation: "semantic" | "schema-native" | "ordered-pdx" | "structured-data";
 }
+export interface PdxCompileOutput extends CompileOutputBase {
+  format: "pdx";
+  document: PdxDocument;
+}
+export interface LuaCompileOutput extends CompileOutputBase {
+  format: "lua";
+  text: string;
+}
+export type CompileOutput = PdxCompileOutput | LuaCompileOutput;
 export interface CompileResult {
   success: boolean;
   outputs: CompileOutput[];

@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdtempSync, readFileSync, rmSync, writeFileSync, existsSync } from "node:fs";
+import { mkdtempSync, readFileSync, rmSync, writeFileSync, existsSync, readdirSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { resolve, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -30,22 +30,29 @@ function assertSuccess(result, label = "source") {
 }
 
 test("the tutorials' complete TypeScript examples compile against the public SDK", () => {
-  const pages = ["index", "getting-started", "language", "scopes", "native-import", "projects"];
+  const pages = readdirSync(join(repository, "docs"))
+    .filter((file) => file.endsWith(".md"))
+    .sort();
   let checked = 0;
   for (const page of pages) {
-    const markdown = readFileSync(join(repository, "docs", `${page}.md`), "utf8");
-    const snippets = [...markdown.matchAll(/```typescript\n([\s\S]*?)```/g)];
+    const markdown = readFileSync(join(repository, "docs", page), "utf8");
+    const snippets = [...markdown.matchAll(/```(typescript|tsx)\n([\s\S]*?)```/g)];
     for (let index = 0; index < snippets.length; index++) {
-      const result = compile(snippets[index][1], {
+      const result = compile(snippets[index][2], {
+        fileName: `docs-${page}-${index}.krg.${snippets[index][1] === "tsx" ? "tsx" : "ts"}`,
         virtualModules,
         sources: { "rewards.krg.ts": helperSource },
         moduleFiles: { "@my-team/krieg-common/rewards": "rewards.krg.ts" },
       });
-      assertSuccess(result, `${page}.md example ${index + 1}`);
+      assertSuccess(result, `${page} example ${index + 1}`);
+      assert.ok(
+        result.outputs.length > 0,
+        `${page} example ${index + 1} should generate game content`,
+      );
       checked++;
     }
   }
-  assert.ok(checked >= 12, "the tutorial suite should contain complete runnable examples");
+  assert.ok(checked >= 25, "the tutorial suite should contain complete runnable examples");
 });
 
 test("SDK symbols resolve through named aliases and namespace imports", () => {

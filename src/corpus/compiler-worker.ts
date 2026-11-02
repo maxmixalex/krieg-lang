@@ -38,6 +38,18 @@ const results: CorpusCompileResult[] = job.files.map((file, i) => {
         },
       ],
     };
+  if (output[0].format !== "pdx")
+    return {
+      sourcePath: file.sourcePath,
+      success: false,
+      diagnostics: [
+        ...own,
+        {
+          code: "KRG_CORPUS_FORMAT",
+          message: `Ordered PDX corpus validation requires PDX output; ${file.outputPath} produced ${output[0].format}.`,
+        },
+      ],
+    };
   const semanticHash = createHash("sha256")
     .update(JSON.stringify(semanticPdx(output[0].document)))
     .digest("hex");

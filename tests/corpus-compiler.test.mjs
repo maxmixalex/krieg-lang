@@ -53,3 +53,17 @@ test("full compiler workers return type errors instead of treating source as pas
   assert.equal(result.success, false);
   assert(result.diagnostics.some((d) => d.code === "TS2345"));
 });
+
+test("ordered corpus validation reports Lua output as a format mismatch without crashing", async () => {
+  const [result] = await compileCorpusBatch([
+    {
+      source:
+        'import { DefineFile } from "krieg-lang/hoi4"; export default DefineFile("common/defines/worker.lua", { NDefines: { NGame: { EVENT_TIMEOUT_DEFAULT: 14 } } });',
+      sourcePath: "defines.krg.ts",
+      outputPath: "common/defines/worker.lua",
+      expectedSemanticHash: "not-pdx",
+    },
+  ]);
+  assert.equal(result.success, false);
+  assert(result.diagnostics.some((diagnostic) => diagnostic.code === "KRG_CORPUS_FORMAT"));
+});

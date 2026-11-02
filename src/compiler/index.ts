@@ -8,17 +8,23 @@ import { generateCommandDeclarations, PDX_DECLARATIONS } from "./sdk.js";
 import { Lowerer } from "./lower.js";
 import { emitPdx, comparePdxSemantic } from "../pdx/emitter.js";
 import { parsePdx } from "../pdx/parser.js";
-import type { CompileOptions, CompileResult, KriegDiagnostic } from "./types.js";
+import type { CompileOptions, CompileOutput, CompileResult, KriegDiagnostic } from "./types.js";
 
 export * from "./types.js";
+export type * from "../schema/types.js";
 export { MINIMAL_LIB } from "./minimal-lib.js";
 export { generateCommandDeclarations } from "./sdk.js";
 
-function sdkSource(): string {
+/** Serialize the compiler's explicitly discriminated native output formats. */
+export function emitCompileOutput(output: CompileOutput): string {
+  return output.format === "lua" ? output.text : emitPdx(output.document);
+}
+
+function sdkSource(relative = "sdk/index"): string {
   const directory = path.dirname(fileURLToPath(import.meta.url));
   const candidates = [
-    path.join(directory, "../sdk/index.d.ts"),
-    path.join(directory, "../sdk/index.ts"),
+    path.join(directory, `../${relative}.d.ts`),
+    path.join(directory, `../${relative}.ts`),
   ];
   const file = candidates.find((candidate) => fs.existsSync(candidate));
   if (!file) throw new Error("Krieg SDK declarations are missing from this installation.");
@@ -42,9 +48,35 @@ export function compileProject(options: CompileOptions): CompileResult {
       /import type\s*\{[^}]+\}\s*from\s*['"]\.\/commands\.js['"];?/,
       generateCommandDeclarations(schema, false),
     )
-    .replace(/['"]\.\.\/pdx\/ast\.js['"]/g, "'krieg-lang/pdx'");
+    .replace(/['"]\.\.\/pdx\/ast\.js['"]/g, "'krieg-lang/pdx'")
+    .replace(/['"]\.\/domains\.js['"]/g, "'krieg-lang/hoi4/domains'")
+    .replace(/['"]\.\/defines\.js['"]/g, "'krieg-lang/hoi4/defines'");
   addModule("krieg-lang/hoi4", sdk);
+  addModule(
+    "krieg-lang/hoi4/domains",
+    sdkSource("sdk/domains").replace(/['"]\.\/index\.js['"]/g, "'krieg-lang/hoi4'"),
+  );
+  addModule(
+    "krieg-lang/hoi4/defines",
+    sdkSource("sdk/defines").replace(/['"]\.\/index\.js['"]/g, "'krieg-lang/hoi4'"),
+  );
   addModule("krieg-lang/pdx", PDX_DECLARATIONS);
+  addModule(
+    "krieg-lang/ui",
+    sdkSource("ui/index")
+      .replace(/['"]\.\.\/sdk\/index\.js['"]/g, "'krieg-lang/hoi4'")
+      .replace(/['"]\.\/native\.js['"]/g, "'krieg-lang/ui/native'"),
+  );
+  addModule(
+    "krieg-lang/ui/native",
+    sdkSource("ui/native")
+      .replace(/['"]\.\/index\.js['"]/g, "'krieg-lang/ui'")
+      .replace(/['"]\.\.\/sdk\/domains\.js['"]/g, "'krieg-lang/hoi4/domains'"),
+  );
+  addModule(
+    "krieg-lang/ui/jsx-runtime",
+    sdkSource("ui/jsx-runtime").replace(/['"]\.\/index\.js['"]/g, "'krieg-lang/ui'"),
+  );
   for (const [name, source] of Object.entries(options.virtualModules ?? {}))
     addModule(name, source);
   const libFile = path.join(virtualRoot, "lib.krieg.d.ts");
@@ -63,6 +95,8 @@ export function compileProject(options: CompileOptions): CompileResult {
     allowImportingTsExtensions: true,
     noUncheckedIndexedAccess: false,
     exactOptionalPropertyTypes: true,
+    jsx: ts.JsxEmit.Preserve,
+    jsxImportSource: "krieg-lang/ui",
   };
   const host = ts.createCompilerHost(compilerOptions);
   const baseRead = host.readFile.bind(host);
@@ -79,18 +113,39 @@ export function compileProject(options: CompileOptions): CompileResult {
       if (supplied)
         return {
           resolvedFileName: path.resolve(rootDir, supplied),
-          extension: supplied.endsWith(".d.ts") ? ts.Extension.Dts : ts.Extension.Ts,
+          extension: supplied.endsWith(".d.ts")
+            ? ts.Extension.Dts
+            : supplied.endsWith(".tsx")
+              ? ts.Extension.Tsx
+              : ts.Extension.Ts,
         };
       if (!name.startsWith(".")) return undefined;
       const base = path.resolve(path.dirname(containingFile), name);
-      const candidates = [base, `${base}.krg.ts`, `${base}.ts`, path.join(base, "index.krg.ts")];
+      const candidates = [
+        base,
+        `${base}.krg.ts`,
+        `${base}.krg.tsx`,
+        `${base}.ts`,
+        `${base}.tsx`,
+        path.join(base, "index.krg.ts"),
+        path.join(base, "index.krg.tsx"),
+      ];
       if (/\.js$/.test(base))
-        candidates.push(base.replace(/\.js$/, ".ts"), base.replace(/\.js$/, ".krg.ts"));
+        candidates.push(
+          base.replace(/\.js$/, ".ts"),
+          base.replace(/\.js$/, ".krg.ts"),
+          base.replace(/\.js$/, ".tsx"),
+          base.replace(/\.js$/, ".krg.tsx"),
+        );
       const found = candidates.find((candidate) => host.fileExists(candidate));
       return found
         ? {
             resolvedFileName: found,
-            extension: found.endsWith(".d.ts") ? ts.Extension.Dts : ts.Extension.Ts,
+            extension: found.endsWith(".d.ts")
+              ? ts.Extension.Dts
+              : found.endsWith(".tsx")
+                ? ts.Extension.Tsx
+                : ts.Extension.Ts,
           }
         : undefined;
     });
@@ -115,6 +170,7 @@ export function compileProject(options: CompileOptions): CompileResult {
     return { success: false, outputs: [], diagnostics };
   const outputs = lowerer.lower();
   for (const output of outputs) {
+    if (output.format !== "pdx") continue;
     const encoded = emitPdx(output.document);
     const parsed = parsePdx(encoded, { sourceName: output.path, retainSource: false });
     if (

@@ -11,6 +11,9 @@ interface Boolean {}
 interface RegExp {}
 interface Array<T> { readonly length: number; [index: number]: T }
 interface ReadonlyArray<T> { readonly length: number; readonly [index: number]: T }
+// Type-only support for the PDX lexer declaration exported by krieg-lang/pdx.
+// There is deliberately no Set constructor value in the source language.
+interface Set<T> { readonly size: number; has(value: T): boolean }
 type Readonly<T> = { readonly [P in keyof T]: T[P] };
 type Partial<T> = { [P in keyof T]?: T[P] };
 type Record<K extends string | number | symbol, T> = { [P in K]: T };

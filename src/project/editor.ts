@@ -7,10 +7,11 @@ import { resolveDependencies } from "./dependencies.js";
 import { collectAssets } from "./assets.js";
 import { createWorld } from "./world.js";
 import { safeChild, slash } from "./files.js";
+import type { ProjectOptions } from "./types.js";
 import type { ProjectWorld } from "./world.js";
 
-export function writeEditorProject(project = "."): ProjectWorld {
-  const config = loadConfig(project);
+export function writeEditorProject(project = ".", options: ProjectOptions = {}): ProjectWorld {
+  const config = loadConfig(project, options);
   const graph = resolveDependencies(config);
   const layers = graph.layers.map(({ config: layer }) => ({
     config: layer,
@@ -28,6 +29,12 @@ export function writeEditorProject(project = "."): ProjectWorld {
     "krieg-lang/hoi4": [
       slash(relative(generated, fileURLToPath(new URL("../sdk/index.d.ts", import.meta.url)))),
     ],
+    "krieg-lang/ui": [
+      slash(relative(generated, fileURLToPath(new URL("../ui/index.d.ts", import.meta.url)))),
+    ],
+    "krieg-lang/ui/jsx-runtime": [
+      slash(relative(generated, fileURLToPath(new URL("../ui/jsx-runtime.d.ts", import.meta.url)))),
+    ],
     "krieg-lang/pdx": [
       slash(relative(generated, fileURLToPath(new URL("../pdx/index.d.ts", import.meta.url)))),
     ],
@@ -41,6 +48,8 @@ export function writeEditorProject(project = "."): ProjectWorld {
         compilerOptions: {
           target: "ES5",
           module: "ESNext",
+          jsx: "preserve",
+          jsxImportSource: "krieg-lang/ui",
           moduleResolution: "Bundler",
           noLib: true,
           types: [],

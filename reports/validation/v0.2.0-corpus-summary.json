@@ -1,0 +1,535 @@
+{
+  "formatVersion": 1,
+  "version": "0.2.0",
+  "startedAt": "2026-11-02T15:36:49.274484+00:00",
+  "nodeVersion": "v24.22.1",
+  "typescriptVersion": "5.9.3",
+  "complete": true,
+  "snapshot": {
+    "distSha256": "12761686ff11de9ff38e49615ae48c2f23667c1cbf73f027b017b2839f1f383c",
+    "files": 200,
+    "hashAlgorithm": "SHA-256 of compact JSON [{path,sha256},...] sorted by path"
+  },
+  "validation": "Official CLI without heap flags; full strict TypeScript compilation, static lowering, exact destination paths, and canonical PDX semantic hashes.",
+  "representation": "ordered-pdx",
+  "engineValidation": "not-run",
+  "datasets": [
+    {
+      "name": "vanilla",
+      "inventory": {
+        "files": 5479,
+        "bytes": 248588581,
+        "sha256": "a47fdddde674622b0af370407e8fa58227f3f0c3017190e9cc3a7ff06a2eb74f",
+        "byClass": {
+          "pdx": 5332,
+          "documentation": 61,
+          "other": 5,
+          "credits": 1,
+          "binary-asset": 72,
+          "map-table": 8
+        },
+        "byExtension": {
+          ".txt": 4722,
+          ".md": 50,
+          ".lua": 3,
+          ".json": 1,
+          ".html": 11,
+          ".gui": 453,
+          ".gfx": 162,
+          ".info": 1,
+          ".dds": 63,
+          ".sfx": 1,
+          ".csv": 2,
+          ".bmp": 9,
+          ".map": 1
+        }
+      },
+      "levels": {
+        "parse": {
+          "attempted": 5332,
+          "passed": 5311,
+          "failed": 21,
+          "skipped": 0
+        },
+        "canonicalSemanticRoundtrip": {
+          "attempted": 5311,
+          "passed": 5311,
+          "failed": 0,
+          "skipped": 21
+        },
+        "constructorStaticRecompile": {
+          "attempted": 0,
+          "passed": 0,
+          "failed": 0,
+          "skipped": 5332
+        },
+        "typescriptCompile": {
+          "attempted": 5311,
+          "passed": 5311,
+          "failed": 0,
+          "skipped": 21
+        },
+        "ancillarySyntax": {
+          "attempted": 8,
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "durationMs": 406700,
+      "exitCode": 1,
+      "inputManifestUnchanged": true,
+      "typescriptResultUnchanged": true,
+      "inputFailurePaths": [
+        "common/doctrines/subdoctrines/sea/navy_submarine_doctrines.txt",
+        "common/focus_inlay_windows/ast_right_vs_left_campaign_empty_inlay_window.txt",
+        "common/ideas/SOV.txt",
+        "common/ideas/persia.txt",
+        "common/ideas/switzerland.txt",
+        "common/military_industrial_organization/organizations/BRA_organization.txt",
+        "common/national_focus/TSR_lingguang_incident_joint_branch.txt",
+        "common/scripted_guis/AST_cabinet_trust_scripted_gui.txt",
+        "common/units/names_divisions/BRA_names_divisions.txt",
+        "common/units/names_divisions/FIN_names_divisions.txt",
+        "history/countries/NOR - Norway.txt",
+        "history/units/AST_1936.txt",
+        "history/units/FRA_1936.txt",
+        "history/units/FRA_1936_nsb.txt",
+        "history/units/FRA_1939_naval_legacy.txt",
+        "history/units/FRA_1939_naval_mtg.txt",
+        "interface/backend.gui",
+        "interface/ger_monroe_doctrine_scripted_gui.gui",
+        "interface/powerbalanceview.gfx",
+        "interface/sia_movie_theater_campaigns_scripted_gui.gui",
+        "interface/sov_propaganda_campaigns_scripted_gui.gui"
+      ]
+    },
+    {
+      "name": "kaiserreich",
+      "inventory": {
+        "files": 6144,
+        "bytes": 175783492,
+        "sha256": "84137a93711da0ac44ccd46038bb5edfca179edbd900fd2bf2a9c2a004f9df32",
+        "byClass": {
+          "pdx": 5041,
+          "documentation": 22,
+          "other": 4,
+          "credits": 1,
+          "localisation": 1076
+        },
+        "byExtension": {
+          ".txt": 4382,
+          ".md": 22,
+          ".info": 2,
+          ".lua": 2,
+          ".gfx": 444,
+          ".gui": 216,
+          ".yml": 1076
+        }
+      },
+      "levels": {
+        "parse": {
+          "attempted": 5041,
+          "passed": 5041,
+          "failed": 0,
+          "skipped": 0
+        },
+        "canonicalSemanticRoundtrip": {
+          "attempted": 5041,
+          "passed": 5041,
+          "failed": 0,
+          "skipped": 0
+        },
+        "constructorStaticRecompile": {
+          "attempted": 0,
+          "passed": 0,
+          "failed": 0,
+          "skipped": 5041
+        },
+        "typescriptCompile": {
+          "attempted": 5041,
+          "passed": 5041,
+          "failed": 0,
+          "skipped": 0
+        },
+        "ancillarySyntax": {
+          "attempted": 1076,
+          "passed": 1076,
+          "failed": 0,
+          "skipped": 0
+        }
+      },
+      "durationMs": 340358,
+      "exitCode": 0,
+      "inputManifestUnchanged": true,
+      "typescriptResultUnchanged": true,
+      "inputFailurePaths": []
+    },
+    {
+      "name": "tno",
+      "inventory": {
+        "files": 8287,
+        "bytes": 258456745,
+        "sha256": "d45aa518e61e8409acf8f287f2f188ef55a432293a6798a71b0484ef4f0dfb5d",
+        "byClass": {
+          "pdx": 7207,
+          "other": 10,
+          "documentation": 13,
+          "credits": 1,
+          "binary-asset": 2,
+          "localisation": 1054
+        },
+        "byExtension": {
+          ".txt": 6366,
+          "(none)": 1,
+          ".info": 6,
+          ".md": 13,
+          ".lua": 3,
+          ".mod": 1,
+          ".gui": 373,
+          ".gfx": 467,
+          ".dds": 1,
+          ".py": 1,
+          ".yml": 1054,
+          ".png": 1
+        }
+      },
+      "levels": {
+        "parse": {
+          "attempted": 7207,
+          "passed": 7196,
+          "failed": 11,
+          "skipped": 0
+        },
+        "canonicalSemanticRoundtrip": {
+          "attempted": 7196,
+          "passed": 7196,
+          "failed": 0,
+          "skipped": 11
+        },
+        "constructorStaticRecompile": {
+          "attempted": 0,
+          "passed": 0,
+          "failed": 0,
+          "skipped": 7207
+        },
+        "typescriptCompile": {
+          "attempted": 7196,
+          "passed": 7196,
+          "failed": 0,
+          "skipped": 11
+        },
+        "ancillarySyntax": {
+          "attempted": 1054,
+          "passed": 1052,
+          "failed": 2,
+          "skipped": 0
+        }
+      },
+      "durationMs": 467099,
+      "exitCode": 1,
+      "inputManifestUnchanged": true,
+      "typescriptResultUnchanged": true,
+      "inputFailurePaths": [
+        "common/decisions/TNO_forpol_JAP.txt",
+        "common/ideas/TNO_Brazil_Dummy.txt",
+        "common/scripted_localisation/TNO_MEX_scripted_localisation.txt",
+        "events/TNO_endo_exo.txt",
+        "history/units/SMO_Collapse.TXT",
+        "interface/Technologies/Technologies_Country_SWE.gfx",
+        "interface/Ukraine/TNO_Ukraine_FUK_election.gui",
+        "interface/backend.gui",
+        "interface/brazil_gui/TNO_brazil_map.gui",
+        "interface/equipmentdesigner/tanks/tank_chassis_MBT_jap.gui",
+        "interface/special_projects/facility.gui"
+      ]
+    }
+  ],
+  "completedAt": "2026-11-02T15:57:03.442417+00:00",
+  "totals": {
+    "attempted": 17548,
+    "passed": 17548,
+    "failed": 0,
+    "skipped": 32
+  },
+  "finalIntegration": {
+    "startedAt": "2026-11-02T16:26:52.619Z",
+    "complete": true,
+    "method": "Sequential official current CLI corpus runs, without --skip-typecheck or explicit heap flags, on the largest PDX-class native text file from each frozen full-corpus inventory. Original game paths and input bytes are preserved. Each run performs the actual ordered importer, strict TypeScript compiler, exact output-path check, and canonical native semantic roundtrip.",
+    "selection": "Largest category=pdx file by bytes in each complete frozen inventory; .gfx is native text, so the largest Kaiserreich text is its goals_shine.gfx.",
+    "snapshotDistSha256": "12761686ff11de9ff38e49615ae48c2f23667c1cbf73f027b017b2839f1f383c",
+    "currentDist": {
+      "sha256": "110f28b699ce0b0cda001317880a705d7a4cd67cef914207cb01b74fc260ee58",
+      "files": 201,
+      "hashAlgorithm": "SHA-256 of compact JSON [{path,sha256},...] sorted by path"
+    },
+    "engineValidation": "not-run",
+    "datasets": [
+      {
+        "name": "vanilla",
+        "path": "common/scripted_localisation/FR_SCRIPTING_FULL_AUTOMATED.txt",
+        "bytes": 20219715,
+        "inputSha256": "adb29d2a7ce4fe0f594010971515aa8ac943856cb4103dda901b934ed98b7307",
+        "inputMatchesFrozenInventory": true,
+        "inputUnchangedAfterRun": true,
+        "selectionRank": 1,
+        "frozenStatus": "typescript-compiled-semantic-match",
+        "currentStatus": "typescript-compiled-semantic-match",
+        "command": [
+          "node",
+          "dist/cli.js",
+          "corpus",
+          "$WORK/vanilla/input",
+          "--name",
+          "final-vanilla",
+          "--out",
+          "$WORK/vanilla/report.json",
+          "--generated",
+          "$WORK/vanilla/generated"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "durationMs": 68191,
+        "levels": {
+          "parse": {
+            "attempted": 1,
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0
+          },
+          "canonicalSemanticRoundtrip": {
+            "attempted": 1,
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0
+          },
+          "constructorStaticRecompile": {
+            "attempted": 0,
+            "passed": 0,
+            "failed": 0,
+            "skipped": 1
+          },
+          "typescriptCompile": {
+            "attempted": 1,
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0
+          },
+          "ancillarySyntax": {
+            "attempted": 0,
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0
+          }
+        },
+        "diagnostics": [],
+        "canonicalNativeBytes": 19427960,
+        "canonicalNativeSha256": "d9ed745c4642d484a90acd9d932e22d37a8b93a1645d1a49808dae57abd064b7",
+        "frozenEmitterCanonicalSha256": "d9ed745c4642d484a90acd9d932e22d37a8b93a1645d1a49808dae57abd064b7",
+        "canonicalBytesIdenticalToFrozenEmitter": true,
+        "expectedSemanticSha256": "1dc9370d7a739acaa5173ee3c983d8d50059ff01bbde5b077481ea13cc4b2bd9",
+        "roundtripSemanticSha256": "1dc9370d7a739acaa5173ee3c983d8d50059ff01bbde5b077481ea13cc4b2bd9",
+        "typescriptOutputSemanticMatch": true
+      },
+      {
+        "name": "kaiserreich",
+        "path": "interface/kaiserreich/goals_shine.gfx",
+        "bytes": 2808665,
+        "inputSha256": "6b4b2b1b4848cebc0a18253626d2814ae4c9563981e24cc49a5d33c86cd007f3",
+        "inputMatchesFrozenInventory": true,
+        "inputUnchangedAfterRun": true,
+        "selectionRank": 1,
+        "frozenStatus": "typescript-compiled-semantic-match",
+        "currentStatus": "typescript-compiled-semantic-match",
+        "command": [
+          "node",
+          "dist/cli.js",
+          "corpus",
+          "$WORK/kaiserreich/input",
+          "--name",
+          "final-kaiserreich",
+          "--out",
+          "$WORK/kaiserreich/report.json",
+          "--generated",
+          "$WORK/kaiserreich/generated"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "durationMs": 10676,
+        "levels": {
+          "parse": {
+            "attempted": 1,
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0
+          },
+          "canonicalSemanticRoundtrip": {
+            "attempted": 1,
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0
+          },
+          "constructorStaticRecompile": {
+            "attempted": 0,
+            "passed": 0,
+            "failed": 0,
+            "skipped": 1
+          },
+          "typescriptCompile": {
+            "attempted": 1,
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0
+          },
+          "ancillarySyntax": {
+            "attempted": 0,
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0
+          }
+        },
+        "diagnostics": [],
+        "canonicalNativeBytes": 2835409,
+        "canonicalNativeSha256": "2e2fb229e3015131e51f58f1c7b88f7efd7474d50c4cafd73d05484751db8047",
+        "frozenEmitterCanonicalSha256": "2e2fb229e3015131e51f58f1c7b88f7efd7474d50c4cafd73d05484751db8047",
+        "canonicalBytesIdenticalToFrozenEmitter": true,
+        "expectedSemanticSha256": "4f5ee29509f4d55fdb1fc219bf88c94c436e8d6ba72223b17b5a328907af36f9",
+        "roundtripSemanticSha256": "4f5ee29509f4d55fdb1fc219bf88c94c436e8d6ba72223b17b5a328907af36f9",
+        "typescriptOutputSemanticMatch": true
+      },
+      {
+        "name": "tno",
+        "path": "events/TNO_Guangdong.txt",
+        "bytes": 1540571,
+        "inputSha256": "b2c98d7c9a79f6ffb8ce33db952c243af4d56b77babb8fd1701c9f3752c29715",
+        "inputMatchesFrozenInventory": true,
+        "inputUnchangedAfterRun": true,
+        "selectionRank": 1,
+        "frozenStatus": "typescript-compiled-semantic-match",
+        "currentStatus": "typescript-compiled-semantic-match",
+        "command": [
+          "node",
+          "dist/cli.js",
+          "corpus",
+          "$WORK/tno/input",
+          "--name",
+          "final-tno",
+          "--out",
+          "$WORK/tno/report.json",
+          "--generated",
+          "$WORK/tno/generated"
+        ],
+        "exitCode": 0,
+        "signal": null,
+        "durationMs": 6461,
+        "levels": {
+          "parse": {
+            "attempted": 1,
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0
+          },
+          "canonicalSemanticRoundtrip": {
+            "attempted": 1,
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0
+          },
+          "constructorStaticRecompile": {
+            "attempted": 0,
+            "passed": 0,
+            "failed": 0,
+            "skipped": 1
+          },
+          "typescriptCompile": {
+            "attempted": 1,
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0
+          },
+          "ancillarySyntax": {
+            "attempted": 0,
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0
+          }
+        },
+        "diagnostics": [],
+        "canonicalNativeBytes": 1494699,
+        "canonicalNativeSha256": "b1e3c8d109d56ad163daa12f75e7d2d47eece31889ea4544a6e509af30e6cfdc",
+        "frozenEmitterCanonicalSha256": "b1e3c8d109d56ad163daa12f75e7d2d47eece31889ea4544a6e509af30e6cfdc",
+        "canonicalBytesIdenticalToFrozenEmitter": true,
+        "expectedSemanticSha256": "f5bf48f8195523ae297cde48eaf28649e3f252c1f55e2bd8ce26497b4f61d64e",
+        "roundtripSemanticSha256": "f5bf48f8195523ae297cde48eaf28649e3f252c1f55e2bd8ce26497b4f61d64e",
+        "typescriptOutputSemanticMatch": true
+      }
+    ],
+    "orderedPathReview": {
+      "byteIdenticalTrees": [
+        {
+          "prefix": "importer/",
+          "unchanged": true
+        },
+        {
+          "prefix": "pdx/",
+          "unchanged": true
+        }
+      ],
+      "byteIdenticalEntryPoints": [
+        {
+          "path": "compiler/index.js",
+          "unchanged": true
+        },
+        {
+          "path": "compiler/sdk.js",
+          "unchanged": true
+        },
+        {
+          "path": "compiler/command-validation.js",
+          "unchanged": true
+        },
+        {
+          "path": "corpus/index.js",
+          "unchanged": true
+        },
+        {
+          "path": "corpus/compiler-worker.js",
+          "unchanged": true
+        },
+        {
+          "path": "corpus/compiler-runner.js",
+          "unchanged": true
+        },
+        {
+          "path": "cli.js",
+          "unchanged": true
+        }
+      ],
+      "changedRuntimeFiles": [
+        "compiler/lower.js",
+        "compiler/minimal-lib.js",
+        "project/countries.js",
+        "project/localisation.js",
+        "project/map.js",
+        "schema/hoi4-domain-coverage.json",
+        "schema/hoi4-domains.json",
+        "schema/hoi4-legacy-gui.json",
+        "sdk/domains.js",
+        "ui/native.js"
+      ],
+      "loweringDelta": "Direct frozen/current lower.js diff changes only nativeValueError and adds nativeCallbackScope. These validate named native definitions and GUI schema fields; ordered PDX constructor lowering is unchanged.",
+      "ambientDelta": "MINIMAL_LIB adds a type-only Set<T> interface for public PDX .d.ts compatibility; it does not add a constructor value or runtime execution.",
+      "otherDelta": "Native domain/UI declarations and metadata add field cardinalities, correct native wrappers and GUI coordinates, and add observed legacy GUI families. project/countries, project/localisation and project/map changes belong to project validation and are not invoked by the ordered corpus pipeline.",
+      "boundary": "The complete 17,548-file strict compilation result belongs to the frozen runtime hash above. These current-runtime runs are a bounded integration check of the three largest inputs, supported by byte-identical ordered importer/parser/emitter/host/corpus modules and a reviewed native-only lowering delta; they are not a second full-corpus run."
+    },
+    "currentDistUnchangedDuringRun": true,
+    "completedAt": "2026-11-02T16:28:18.181Z",
+    "totals": {
+      "files": 3,
+      "bytes": 24568951,
+      "strictTypescriptPassed": 3,
+      "canonicalSemanticRoundtripPassed": 3,
+      "diagnostics": 0
+    }
+  }
+}

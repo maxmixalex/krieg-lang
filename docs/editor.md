@@ -1,6 +1,6 @@
 # 编辑器与格式化
 
-`.krg.ts` 是普通 TypeScript 文件名，因此可以使用已有的 TypeScript 编辑器支持。补全和跳转来自类型声明，语言子集提示来自 Krieg 的 ESLint 插件，最终检查由 `krieg check` 完成。
+`.krg.ts` 与 `.krg.tsx` 使用 TypeScript / TSX 文件扩展名，因此可以使用已有的 TypeScript 编辑器支持。补全和跳转来自类型声明，语言子集提示来自 Krieg 的 ESLint 插件，最终检查由 `krieg check` 完成。
 
 ## TypeScript 类型检查
 
@@ -14,6 +14,8 @@ npx tsc --noEmit
 `world` 根据项目配置生成编辑器需要的声明。国家标签、地区编号与 SDK 类型可以通过标准 TypeScript 语言服务进入补全和诊断；这里不需要安装独立的 Krieg 语言服务器。
 
 使用初始化项目生成的 `tsconfig.json`。它包含严格检查及项目类型映射。自己配置时，应保留 `strict: true` 和 `noEmit: true`，并使用 Krieg 生成的类型配置。`noEmit` 保证类型检查不产生 JavaScript；真正的游戏输出由 `krieg build` 生成。
+
+生成配置也包含 TSX 的 `jsx` / `jsxImportSource` 设置，指向 `krieg-lang/ui` 的类型入口；不需要 React 依赖或运行时转换。添加 `.krg.tsx` 后运行 `krieg world`，再检查编辑器是否使用项目自己的 `tsconfig.json`。
 
 修改 `gameRoots`、依赖或显式的 `world` 列表后重新运行 `krieg world`。如果编辑器暂时仍显示旧类型，重新载入项目或重启 TypeScript 语言服务即可。
 
@@ -36,7 +38,7 @@ export default [krieg.configs.recommended];
 然后运行：
 
 ```sh
-npx eslint "src/**/*.krg.ts"
+npx eslint "src/**/*.krg.{ts,tsx}"
 ```
 
 该配置使用标准 `typescript-eslint` parser。插件包含以下规则：
@@ -56,7 +58,7 @@ import krieg from "krieg-lang/eslint";
 export default [
   krieg.configs.recommended,
   {
-    files: ["**/*.krg.ts"],
+    files: ["**/*.krg.{ts,tsx}"],
     rules: {
       "krieg/allowed-imports": ["error", { packages: ["@my-team/krieg-common"] }],
     },
@@ -74,7 +76,7 @@ Prettier 自带的 TypeScript parser 可以直接格式化 `.krg.ts`：
 
 ```sh
 npm install --save-dev prettier
-npx prettier --write "src/**/*.krg.ts"
+npx prettier --write "src/**/*.krg.{ts,tsx}"
 ```
 
 不需要自定义 parser 或源码预处理器。若需要显式覆盖，可以在 `.prettierrc.json` 中写：

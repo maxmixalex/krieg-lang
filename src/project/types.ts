@@ -17,6 +17,8 @@ export interface AssetRule {
 }
 
 export interface LocalisationRule {
+  /** .json = JSON mapping; .yaml = YAML mapping; .yml = native HOI4. */
+  format?: "json" | "yaml" | "hoi4";
   language: string;
   from: string;
 }
@@ -24,6 +26,11 @@ export interface LocalisationRule {
 export interface GameRoot {
   path: string;
   replacePath: string[];
+}
+
+export interface ProjectOptions {
+  /** Override configured game roots, in vanilla-to-mod load order. Paths are resolved from the current directory. */
+  gameRoots?: readonly (string | GameRoot)[];
 }
 
 export interface KriegConfig {

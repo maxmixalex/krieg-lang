@@ -26,6 +26,19 @@ npx krieg pack ./my-mod --out ./my-mod.zip
 
 `build` 会先完成验证，成功后再替换自己的输出目录。目标非空且不属于同一 Krieg 项目时会拒绝覆盖。
 
+## 指定本地基础游戏与大型模组
+
+```sh
+npx krieg check . --game-root "/path/to/Hearts of Iron IV"
+npx krieg build . \
+  --game-root "/path/to/Hearts of Iron IV" \
+  --game-root "/path/to/Kaiserreich"
+```
+
+`--game-root` 可重复，按从基础游戏到上层模组的顺序排列，并替换本次命令使用的 `krgconfig.json` 游戏根配置。`--game-replace-path <directory>` 可重复，作用于最后一个命令行游戏根，用于显式指定上层模组的目录替换。它不修改配置文件，也不把基础游戏或上层模组复制到输出。`check`、`build`、`pack`、`world` 与 `watch` 使用同一套有效视图。开发者可为自己的安装路径保留本地命令，仓库配置中不必提交机器专属路径。
+
+同时检查输入版本、DLC、模组版本和加载顺序；这些条件决定引用是否合法及游戏中的最终行为。两个完整项目的命令见 [完整示例](examples.md)。
+
 ## 持续构建
 
 ```sh

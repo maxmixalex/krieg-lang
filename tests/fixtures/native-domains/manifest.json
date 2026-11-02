@@ -1,0 +1,1167 @@
+{
+  "formatVersion": 1,
+  "authored": "Synthetic minimal samples. Only identifiers, enum values and numeric facts are selected from native references; effect/trigger bodies are newly authored.",
+  "domains": {
+    "Ability": {
+      "file": "Ability.krg.ts",
+      "reference": {
+        "file": "common/abilities/CHI_abilities.txt",
+        "sha256": "528011a9799420a2c754f4ce46c4659336999c0e4ed2ff9f374e7563b599a976"
+      },
+      "cwt": {
+        "source": "common/abilities.cwt",
+        "line": 9
+      }
+    },
+    "Ace": {
+      "file": "Ace.krg.ts",
+      "reference": {
+        "file": "common/aces/00_aces.txt",
+        "sha256": "5ad375b8851dbcb910e6127fc0c4af1773b4f2b5ea4fa57fa531a007556c451e"
+      },
+      "cwt": {
+        "source": "common/aces.cwt",
+        "line": 8
+      }
+    },
+    "Achievement": {
+      "file": "Achievement.krg.ts",
+      "reference": null,
+      "cwt": {
+        "source": "common/achievements.cwt",
+        "line": 9
+      }
+    },
+    "AiStrategy": {
+      "file": "AiStrategy.krg.ts",
+      "reference": {
+        "file": "common/ai_strategy/AUS.txt",
+        "sha256": "a56d9bb07f8bb610a11de307c37dfb250f265dd7436b8301a139b25012389b9f"
+      },
+      "cwt": {
+        "source": "common/ai_strategy.cwt",
+        "line": 11
+      }
+    },
+    "AiStrategyPlan": {
+      "file": "AiStrategyPlan.krg.ts",
+      "reference": {
+        "file": "common/ai_strategy_plans/AFG_alternate_strategy_plan.txt",
+        "sha256": "ec6bdffdeecda076f3888bf52b3859696ae27076b5b00bf863d24199a7cc1247"
+      },
+      "cwt": {
+        "source": "common/ai_strategy.cwt",
+        "line": 42
+      }
+    },
+    "AutonomyState": {
+      "file": "AutonomyState.krg.ts",
+      "reference": {
+        "file": "common/autonomous_states/aat_defense_council_member.txt",
+        "sha256": "8e651b9c3cfe6b25c54c05bfbdf5881c74ccc8bbf60f8a7bc33cf4c6db45834c"
+      },
+      "cwt": {
+        "source": "common/autonomous_states.cwt",
+        "line": 9
+      }
+    },
+    "Bookmark": {
+      "file": "Bookmark.krg.ts",
+      "reference": {
+        "file": "common/bookmarks/blitzkrieg.txt",
+        "sha256": "54f6f23dec5a066dca37125f69a29b8cc0400b4c0d598ff6e6ba71bd82dcf25d"
+      },
+      "cwt": {
+        "source": "common/bookmarks.cwt",
+        "line": 8
+      }
+    },
+    "BalanceOfPower": {
+      "file": "BalanceOfPower.krg.ts",
+      "reference": {
+        "file": "common/bop/_test.txt",
+        "sha256": "7a4d648ae927e628aa6e385227f74e831a0a947c932c4e239f49e0487d8f279c"
+      },
+      "cwt": {
+        "source": "common/bop.cwt",
+        "line": 7
+      }
+    },
+    "Building": {
+      "file": "Building.krg.ts",
+      "reference": {
+        "file": "common/buildings/00_buildings.txt",
+        "sha256": "9fa27d266f726de04c71311551698c6466257636dcc34d2573a3568d397bd539"
+      },
+      "cwt": {
+        "source": "common/buildings.cwt",
+        "line": 36
+      }
+    },
+    "SpawnPoint": {
+      "file": "SpawnPoint.krg.ts",
+      "reference": {
+        "file": "common/buildings/00_buildings.txt",
+        "sha256": "9fa27d266f726de04c71311551698c6466257636dcc34d2573a3568d397bd539"
+      },
+      "cwt": {
+        "source": "common/buildings.cwt",
+        "line": 246
+      }
+    },
+    "Character": {
+      "file": "Character.krg.ts",
+      "reference": {
+        "file": "common/characters/AOI.txt",
+        "sha256": "281bfd5436aeec8b90376fba683f84ce33b144147c5bc35121271a964c5143a7"
+      },
+      "cwt": {
+        "source": "common/characters.cwt",
+        "line": 97
+      }
+    },
+    "Collection": {
+      "file": "Collection.krg.ts",
+      "reference": {
+        "file": "common/collections/collections.txt",
+        "sha256": "7e4668d20f868767431a5e548a3d4bd2c068b30b8f12901bdb4b2288840041a2"
+      },
+      "cwt": {
+        "source": "common/collections.cwt",
+        "line": 41
+      }
+    },
+    "CombatTactic": {
+      "file": "CombatTactic.krg.ts",
+      "reference": {
+        "file": "common/combat_tactics.txt",
+        "sha256": "13e81fc2c26dd950d4b11a7f0263aee519f3e9c86ee4c828355c1e09f9d5e607"
+      },
+      "cwt": {
+        "source": "common/combat_tactics.cwt",
+        "line": 16
+      }
+    },
+    "AiArea": {
+      "file": "AiArea.krg.ts",
+      "reference": {
+        "file": "common/ai_areas/default.txt",
+        "sha256": "56fa826dc8ff1b793bf5dae69c3d1f933fe22285206bbc7fa67e4b4eaf00f81e"
+      },
+      "cwt": {
+        "source": "common/consolidated_ai.cwt",
+        "line": 36
+      }
+    },
+    "AiFocus": {
+      "file": "AiFocus.krg.ts",
+      "reference": {
+        "file": "common/ai_focuses/ENG.txt",
+        "sha256": "50b6eca3f8e82192b1ba83a5a18b68f9709bfd7056d34a940b4958a40c6f339e"
+      },
+      "cwt": {
+        "source": "common/consolidated_ai.cwt",
+        "line": 49
+      }
+    },
+    "AiPeace": {
+      "file": "AiPeace.krg.ts",
+      "reference": null,
+      "cwt": {
+        "source": "common/consolidated_ai.cwt",
+        "line": 70
+      }
+    },
+    "AiTemplate": {
+      "file": "AiTemplate.krg.ts",
+      "reference": {
+        "file": "common/ai_templates/templates_GER.txt",
+        "sha256": "45328d40ed9415c561fb63556250dd03000a67710a350241c93f89da82beb2a1"
+      },
+      "cwt": {
+        "source": "common/consolidated_ai.cwt",
+        "line": 137
+      }
+    },
+    "AiEquipmentDesignGroup": {
+      "file": "AiEquipmentDesignGroup.krg.ts",
+      "reference": {
+        "file": "common/ai_equipment/ENG_naval.txt",
+        "sha256": "c72ff4d549909ca3e1e900ee15586026934bd29f9ebd4c781ada56a096cc24fb"
+      },
+      "cwt": {
+        "source": "common/consolidated_ai.cwt",
+        "line": 249
+      }
+    },
+    "AiFactionTheater": {
+      "file": "AiFactionTheater.krg.ts",
+      "reference": {
+        "file": "common/ai_faction_theaters/ai_faction_theaters.txt",
+        "sha256": "b2a29ee3c4dbfa9f6f272fad42eb1cc07ef11459e589163f3e6ba24913a07192"
+      },
+      "cwt": {
+        "source": "common/consolidated_ai.cwt",
+        "line": 401
+      }
+    },
+    "CountryDefinition": {
+      "file": "CountryDefinition.krg.ts",
+      "reference": {
+        "file": "common/countries/Argentina.txt",
+        "sha256": "b407444a314f78980a9d23a518fb63303d967ffa40bc4366ada4278bf94b9f49"
+      },
+      "cwt": {
+        "source": "common/countries.cwt",
+        "line": 29
+      }
+    },
+    "CountryTagAlias": {
+      "file": "CountryTagAlias.krg.ts",
+      "reference": {
+        "file": "common/country_tag_aliases/tag_aliases.txt",
+        "sha256": "e18b1f4da49b6a7e2e845515dd21484024887020e82e9b7d730d9569b7aacc66"
+      },
+      "cwt": {
+        "source": "common/country_tag_aliases.cwt",
+        "line": 20
+      }
+    },
+    "DifficultySetting": {
+      "file": "DifficultySetting.krg.ts",
+      "reference": {
+        "file": "common/difficulty_settings/00_difficulty.txt",
+        "sha256": "640da95ff21f96b06a9f38860ec1dc69cad9d5cccaec3e597317cfa8e13c103f"
+      },
+      "cwt": {
+        "source": "common/difficulty_settings.cwt",
+        "line": 8
+      }
+    },
+    "DoctrineFolder": {
+      "file": "DoctrineFolder.krg.ts",
+      "reference": {
+        "file": "common/doctrines/folders/doctrine_folders.txt",
+        "sha256": "65b4a8f0a7c49d41006ef9ffe89ddeead59d669c71330dc34fd27685a7825428"
+      },
+      "cwt": {
+        "source": "common/doctrine_folders.cwt",
+        "line": 9
+      }
+    },
+    "GrandDoctrine": {
+      "file": "GrandDoctrine.krg.ts",
+      "reference": {
+        "file": "common/doctrines/grand_doctrines/air_grand_doctrines.txt",
+        "sha256": "c06b6b1ad7c9b67d9f55b70fa9a26a9ba5830956d50ec94f33817755baace5a2"
+      },
+      "cwt": {
+        "source": "common/doctrine_grand_doctrines.cwt",
+        "line": 30
+      }
+    },
+    "Subdoctrine": {
+      "file": "Subdoctrine.krg.ts",
+      "reference": {
+        "file": "common/doctrines/subdoctrines/air/air_fighter_aircraft_subdoctrines.txt",
+        "sha256": "cdc9d22a4dc3dfd7501ab0a8253ddb9ae37cefc5769c7d14727915c0a3b20bc8"
+      },
+      "cwt": {
+        "source": "common/doctrine_subdoctrines.cwt",
+        "line": 29
+      }
+    },
+    "DoctrineTrack": {
+      "file": "DoctrineTrack.krg.ts",
+      "reference": {
+        "file": "common/doctrines/tracks/air_doctrine_track.txt",
+        "sha256": "2a178532316b9f32fe5a9e95d8ac51e7b65fb8b4efa79c8b3114d6efa76e29fb"
+      },
+      "cwt": {
+        "source": "common/doctrine_tracks.cwt",
+        "line": 29
+      }
+    },
+    "DynamicModifier": {
+      "file": "DynamicModifier.krg.ts",
+      "reference": {
+        "file": "common/dynamic_modifiers/aat_dynamic_modifiers.txt",
+        "sha256": "e916f8c6679ab6e32374a14401de743a485071f12a296cdc49ba9e3ac9dddc55"
+      },
+      "cwt": {
+        "source": "common/dynamic_modifiers.cwt",
+        "line": 8
+      }
+    },
+    "EquipmentGroup": {
+      "file": "EquipmentGroup.krg.ts",
+      "reference": {
+        "file": "common/equipment_groups/mio_equipment_groups.txt",
+        "sha256": "c72e7e5d07e2bb2f2096bcdb8702652304abe7b0f039eb3b8fda03603b55271b"
+      },
+      "cwt": {
+        "source": "common/equipment_groups.cwt",
+        "line": 7
+      }
+    },
+    "Equipment": {
+      "file": "Equipment.krg.ts",
+      "reference": {
+        "file": "common/units/equipment/amphibious_mechanized.txt",
+        "sha256": "81446c5e3b9b373b36693ae95faced779f85170e42ae59033fa2305f417456f3"
+      },
+      "cwt": {
+        "source": "common/equipment.cwt",
+        "line": 121
+      }
+    },
+    "EquipmentUpgrade": {
+      "file": "EquipmentUpgrade.krg.ts",
+      "reference": {
+        "file": "common/units/equipment/upgrades/air_upgrades.txt",
+        "sha256": "eddb0fa1644595e4ac353712aca7ba00c4ed423726309f85edf115ee69d10418"
+      },
+      "cwt": {
+        "source": "common/equipment.cwt",
+        "line": 407
+      }
+    },
+    "EquipmentModule": {
+      "file": "EquipmentModule.krg.ts",
+      "reference": {
+        "file": "common/units/equipment/modules/00_plane_modules.txt",
+        "sha256": "b077c40bd386b53ea3b6af97acee44247c07056c9476a143de48e7130c74b692"
+      },
+      "cwt": {
+        "source": "common/equipment.cwt",
+        "line": 489
+      }
+    },
+    "CriticalPart": {
+      "file": "CriticalPart.krg.ts",
+      "reference": {
+        "file": "common/units/critical_parts/00_critical_parts.txt",
+        "sha256": "365b497d8873adb3351547ab6c3f9607c4e438200519fce4d1ba8eff9b03a47d"
+      },
+      "cwt": {
+        "source": "common/equipment.cwt",
+        "line": 654
+      }
+    },
+    "FactionGoal": {
+      "file": "FactionGoal.krg.ts",
+      "reference": {
+        "file": "common/factions/goals/faction_goals_long_term.txt",
+        "sha256": "8b356091135ba0390f9acaca4c8a80c7fd9d7a4117abe120ee2ce819c88d1350"
+      },
+      "cwt": {
+        "source": "common/factions.cwt",
+        "line": 39
+      }
+    },
+    "FactionMemberUpgrade": {
+      "file": "FactionMemberUpgrade.krg.ts",
+      "reference": {
+        "file": "common/factions/member_upgrades/member_groups/member_upgrade_groups.txt",
+        "sha256": "e00c4b8da53002fa6580133bb1d1567ae03a8f91f2c75096da8e1f40a2b470ff"
+      },
+      "cwt": {
+        "source": "common/factions.cwt",
+        "line": 322
+      }
+    },
+    "FactionRule": {
+      "file": "FactionRule.krg.ts",
+      "reference": {
+        "file": "common/factions/rules/change_leader_rules.txt",
+        "sha256": "61fea13b1bdab333a059448f0acbe8d626b1c0fe93f8f6daa1db490d4a2fe3bb"
+      },
+      "cwt": {
+        "source": "common/factions.cwt",
+        "line": 343
+      }
+    },
+    "FactionRuleGroup": {
+      "file": "FactionRuleGroup.krg.ts",
+      "reference": {
+        "file": "common/factions/rules/groups/rule_groups.txt",
+        "sha256": "2a1e7dcc06e9df7ed10772aa2672ee7f153755e24144ac9811684ee560625648"
+      },
+      "cwt": {
+        "source": "common/factions.cwt",
+        "line": 569
+      }
+    },
+    "FactionTemplate": {
+      "file": "FactionTemplate.krg.ts",
+      "reference": {
+        "file": "common/factions/templates/allies.txt",
+        "sha256": "70fa5ffbadcdc96ef4b7166156ddea10a657c27785a1c0e3f626d9186b058b93"
+      },
+      "cwt": {
+        "source": "common/factions.cwt",
+        "line": 477
+      }
+    },
+    "FactionUpgrade": {
+      "file": "FactionUpgrade.krg.ts",
+      "reference": null,
+      "cwt": {
+        "source": "common/factions.cwt",
+        "line": 540
+      }
+    },
+    "GameRule": {
+      "file": "GameRule.krg.ts",
+      "reference": {
+        "file": "common/game_rules/00_game_rules.txt",
+        "sha256": "f4dc7124c692b424fa0af050c584f756a2a2535b72d77b1a21ff6bebf51da907"
+      },
+      "cwt": {
+        "source": "common/game_rules.cwt",
+        "line": 8
+      }
+    },
+    "IdeaCategory": {
+      "file": "IdeaCategory.krg.ts",
+      "reference": {
+        "file": "common/idea_tags/00_idea.txt",
+        "sha256": "59de89c2407405d7ed6854332c92ac0961948d1d2246f60c0b81e7d0e82e1863"
+      },
+      "cwt": {
+        "source": "common/idea_tags.cwt",
+        "line": 23
+      }
+    },
+    "Ideology": {
+      "file": "Ideology.krg.ts",
+      "reference": {
+        "file": "common/ideologies/00_ideologies.txt",
+        "sha256": "e04353c6b237091f2d12364937861f487a81d444e3bb89b2ce5819518da7bc83"
+      },
+      "cwt": {
+        "source": "common/ideologies.cwt",
+        "line": 17
+      }
+    },
+    "IntelligenceAgency": {
+      "file": "IntelligenceAgency.krg.ts",
+      "reference": {
+        "file": "common/intelligence_agencies/00_intelligence_agencies.txt",
+        "sha256": "87ef7adc75208a73259c39c4d69a57d496c2d40133aaa5c28d830598570148fb"
+      },
+      "cwt": {
+        "source": "common/intelligence_agencies.cwt",
+        "line": 8
+      }
+    },
+    "IntelligenceAgencyUpgrade": {
+      "file": "IntelligenceAgencyUpgrade.krg.ts",
+      "reference": {
+        "file": "common/intelligence_agency_upgrades/intelligence_agency_upgrades.txt",
+        "sha256": "a38dc41a44c89e44c2fb9bee20df9b29f86c4384d89303720fb0c5aa87b7530a"
+      },
+      "cwt": {
+        "source": "common/intelligence_agency_updates.cwt",
+        "line": 14
+      }
+    },
+    "ScriptedMapMode": {
+      "file": "ScriptedMapMode.krg.ts",
+      "reference": null,
+      "cwt": {
+        "source": "common/map_modes.cwt",
+        "line": 32
+      }
+    },
+    "MilitaryIndustrialOrganization": {
+      "file": "MilitaryIndustrialOrganization.krg.ts",
+      "reference": {
+        "file": "common/military_industrial_organization/organizations/00_generic_organization.txt",
+        "sha256": "8ab828d60a35316dfe49fb038133b1ecb2abbf5f1f85858f1040a2258c8ec743"
+      },
+      "cwt": {
+        "source": "common/military_industrial_organizations.cwt",
+        "line": 8
+      }
+    },
+    "MioPolicy": {
+      "file": "MioPolicy.krg.ts",
+      "reference": {
+        "file": "common/military_industrial_organization/policies/_general_policies.txt",
+        "sha256": "993f7f1b2e22f13a39fc727e7625364ba2aac1dde2586ca4cf4c1f9e209b766a"
+      },
+      "cwt": {
+        "source": "common/mio_policies.cwt",
+        "line": 8
+      }
+    },
+    "ModifierDefinition": {
+      "file": "ModifierDefinition.krg.ts",
+      "reference": {
+        "file": "common/modifier_definitions/lar_operation_modifiers_pre_definition.txt",
+        "sha256": "9ddb4fc3db7c1dcf30e1f3e7ace9468a4dc8b60f31236f4b527ab38f8f1defc8"
+      },
+      "cwt": {
+        "source": "common/modifier_definitions.cwt",
+        "line": 10
+      }
+    },
+    "MeanTimeToHappen": {
+      "file": "MeanTimeToHappen.krg.ts",
+      "reference": null,
+      "cwt": {
+        "source": "common/mtth.cwt",
+        "line": 9
+      }
+    },
+    "OccupationLaw": {
+      "file": "OccupationLaw.krg.ts",
+      "reference": {
+        "file": "common/occupation_laws/occupation_laws.txt",
+        "sha256": "b0e776a177eb7ceb186178d873cb6955fad5a9c56cd299292a62e00397f9c823"
+      },
+      "cwt": {
+        "source": "common/occupation_laws.cwt",
+        "line": 8
+      }
+    },
+    "OperationPhase": {
+      "file": "OperationPhase.krg.ts",
+      "reference": {
+        "file": "common/operation_phases/00_operation_phases.txt",
+        "sha256": "c06f799ba9fb050007cd70180fdc45283450bdd215e9c29e969842af5ac4db9d"
+      },
+      "cwt": {
+        "source": "common/operation_phases.cwt",
+        "line": 8
+      }
+    },
+    "OperationToken": {
+      "file": "OperationToken.krg.ts",
+      "reference": {
+        "file": "common/operation_tokens/00_OperationTokens.txt",
+        "sha256": "706f46ae953433272de32cfe3ce8f8942c5d74e8fd85f777b07260685f233bd6"
+      },
+      "cwt": {
+        "source": "common/operation_tokens.cwt",
+        "line": 8
+      }
+    },
+    "Operation": {
+      "file": "Operation.krg.ts",
+      "reference": {
+        "file": "common/operations/00_operations.txt",
+        "sha256": "e9d91ac1af23868d96a91a8ddf0463b769480525407e04bc02ec6edb4b7a273e"
+      },
+      "cwt": {
+        "source": "common/operations.cwt",
+        "line": 10
+      }
+    },
+    "OpinionModifier": {
+      "file": "OpinionModifier.krg.ts",
+      "reference": {
+        "file": "common/opinion_modifiers/00_opinion_modifiers.txt",
+        "sha256": "024c8c8ea5359b7af0e7b8659a1ab4d95d70ddcae711496a2c1e45438c01dc99"
+      },
+      "cwt": {
+        "source": "common/opinions.cwt",
+        "line": 8
+      }
+    },
+    "PeaceActionCategory": {
+      "file": "PeaceActionCategory.krg.ts",
+      "reference": {
+        "file": "common/peace_conference/categories/00_peace_action_categories.txt",
+        "sha256": "0f43ada6d227b4b8798b1f31d62782dcac14fd111167db4a035ac67260851af1"
+      },
+      "cwt": {
+        "source": "common/peace_conference.cwt",
+        "line": 31
+      }
+    },
+    "PeaceAiDesire": {
+      "file": "PeaceAiDesire.krg.ts",
+      "reference": {
+        "file": "common/peace_conference/ai_peace/00_misc.txt",
+        "sha256": "b3af61d01aa794213f17090b13fa01f26e59d74374999c4ec8c88959439d36f8"
+      },
+      "cwt": {
+        "source": "common/peace_conference.cwt",
+        "line": 38
+      }
+    },
+    "PeaceActionModifier": {
+      "file": "PeaceActionModifier.krg.ts",
+      "reference": {
+        "file": "common/peace_conference/cost_modifiers/00_generic_peace.txt",
+        "sha256": "9d518edba257f6704acdc79bd79a182117871a6280514f1557fef5308422c2e8"
+      },
+      "cwt": {
+        "source": "common/peace_conference.cwt",
+        "line": 70
+      }
+    },
+    "RaidCategory": {
+      "file": "RaidCategory.krg.ts",
+      "reference": {
+        "file": "common/raids/categories/raid_categories.txt",
+        "sha256": "573d0a6f8d673ebfd0edc0ba831c7efb9622e3aa76b8794dae4ebd6a0ee71224"
+      },
+      "cwt": {
+        "source": "common/raids.cwt",
+        "line": 13
+      }
+    },
+    "Raid": {
+      "file": "Raid.krg.ts",
+      "reference": {
+        "file": "common/raids/air_raids_custom.txt",
+        "sha256": "86718f32abbeaa25c8e18aefb26817134a7711e9f39fbd199ad12cc90be1c390"
+      },
+      "cwt": {
+        "source": "common/raids.cwt",
+        "line": 36
+      }
+    },
+    "ResistanceComplianceModifier": {
+      "file": "ResistanceComplianceModifier.krg.ts",
+      "reference": {
+        "file": "common/resistance_compliance_modifiers/compliance_modifiers.txt",
+        "sha256": "349ea3abd9d1924c35cb70ddd5a7fabbcc8c5c038ad91b20d890567198dfa2fc"
+      },
+      "cwt": {
+        "source": "common/resistance_compliance_modifiers.cwt",
+        "line": 23
+      }
+    },
+    "Resource": {
+      "file": "Resource.krg.ts",
+      "reference": {
+        "file": "common/resources/00_resources.txt",
+        "sha256": "f6d2d193e478ad98fd46db27a93677e27442bbfdeb44bcd22cbdc901aad039d5"
+      },
+      "cwt": {
+        "source": "common/resources.cwt",
+        "line": 8
+      }
+    },
+    "CountryScorer": {
+      "file": "CountryScorer.krg.ts",
+      "reference": {
+        "file": "common/scorers/country/ai_decryption_scorer.txt",
+        "sha256": "e12e929c5c6d9c72b78418af7569b9f94a49a4913d241047136e48847654ead5"
+      },
+      "cwt": {
+        "source": "common/scorers.cwt",
+        "line": 7
+      }
+    },
+    "SpecialProject": {
+      "file": "SpecialProject.krg.ts",
+      "reference": {
+        "file": "common/special_projects/projects/air_projects.txt",
+        "sha256": "9a8e41f1dd41d22bcb6ba8974bc217ae9f2404f262e508a4d32b3f7c10c077e1"
+      },
+      "cwt": {
+        "source": "common/special_projects.cwt",
+        "line": 14
+      }
+    },
+    "PrototypeReward": {
+      "file": "PrototypeReward.krg.ts",
+      "reference": {
+        "file": "common/special_projects/prototype_rewards/generic_nuclear_prototype_rewards.txt",
+        "sha256": "9bbfb6e51c0fbd2c58f9fa49f6f336f5cae9cf94cd6cceabd8411d402cb75d95"
+      },
+      "cwt": {
+        "source": "common/special_projects.cwt",
+        "line": 266
+      }
+    },
+    "Specialization": {
+      "file": "Specialization.krg.ts",
+      "reference": {
+        "file": "common/special_projects/specialization/specializations.txt",
+        "sha256": "51d265cfe0e31b37f7290e15d591b3b8e6c82c296ebbf503eb40c2ec972773c5"
+      },
+      "cwt": {
+        "source": "common/special_projects.cwt",
+        "line": 400
+      }
+    },
+    "StaticModifier": {
+      "file": "StaticModifier.krg.ts",
+      "reference": {
+        "file": "common/modifiers/00_static_modifiers.txt",
+        "sha256": "e38cf5c867170a175a9e56bd6ecd25f91c7e9e7682b1f31f330811bdf9ed292a"
+      },
+      "cwt": {
+        "source": "common/static_modifiers.cwt",
+        "line": 13
+      }
+    },
+    "StrategicLocation": {
+      "file": "StrategicLocation.krg.ts",
+      "reference": null,
+      "cwt": {
+        "source": "common/strategic_locations.cwt",
+        "line": 31
+      }
+    },
+    "Technology": {
+      "file": "Technology.krg.ts",
+      "reference": {
+        "file": "common/technologies/air_techs.txt",
+        "sha256": "b9cbd21b2dbfa819b07d435f3557b037420f8885a7d0ec8c221c1a78015b941d"
+      },
+      "cwt": {
+        "source": "common/technologies.cwt",
+        "line": 28
+      }
+    },
+    "TechnologySharingGroup": {
+      "file": "TechnologySharingGroup.krg.ts",
+      "reference": {
+        "file": "common/technology_sharing/00_tech_sharing_groups.txt",
+        "sha256": "b14ea1ea047396fb87a1e9d854881b80e7517e9d0d7c66f2f34aba32280f99e9"
+      },
+      "cwt": {
+        "source": "common/technologies.cwt",
+        "line": 278
+      }
+    },
+    "Terrain": {
+      "file": "Terrain.krg.ts",
+      "reference": {
+        "file": "common/terrain/00_terrain.txt",
+        "sha256": "2bc3931762c4a88f689311803d06c2c2ee50f8fe065743d96115ed7b9315bb91"
+      },
+      "cwt": {
+        "source": "common/terrain.cwt",
+        "line": 30
+      }
+    },
+    "GraphicalTerrain": {
+      "file": "GraphicalTerrain.krg.ts",
+      "reference": {
+        "file": "common/terrain/00_terrain.txt",
+        "sha256": "2bc3931762c4a88f689311803d06c2c2ee50f8fe065743d96115ed7b9315bb91"
+      },
+      "cwt": {
+        "source": "common/terrain.cwt",
+        "line": 81
+      }
+    },
+    "CountryLeaderTrait": {
+      "file": "CountryLeaderTrait.krg.ts",
+      "reference": {
+        "file": "common/country_leader/00_traits.txt",
+        "sha256": "b629d44fde5fa93d176a1db04bdac83c53e51f55dd789359dca7a96ab4d25dc5"
+      },
+      "cwt": {
+        "source": "common/traits.cwt",
+        "line": 52
+      }
+    },
+    "UnitLeaderTrait": {
+      "file": "UnitLeaderTrait.krg.ts",
+      "reference": {
+        "file": "common/unit_leader/00_traits.txt",
+        "sha256": "249ce6ee645cbd0270a8834ddc251c1f53ac981c979ac2a7c1852f929d850035"
+      },
+      "cwt": {
+        "source": "common/traits.cwt",
+        "line": 99
+      }
+    },
+    "ScientistTrait": {
+      "file": "ScientistTrait.krg.ts",
+      "reference": {
+        "file": "common/scientist_traits/00_traits.txt",
+        "sha256": "bf2f1601e4c1e0620ecac191afcc307d85449bce3c557b54cfafca4f31469247"
+      },
+      "cwt": {
+        "source": "common/traits.cwt",
+        "line": 288
+      }
+    },
+    "UnitMedal": {
+      "file": "UnitMedal.krg.ts",
+      "reference": {
+        "file": "common/unit_medals/00_default.txt",
+        "sha256": "ac8f6fd131ade8fbb3752541119d154c0b770be71b1877f672b3f206e5275325"
+      },
+      "cwt": {
+        "source": "common/unit_medals.cwt",
+        "line": 10
+      }
+    },
+    "Unit": {
+      "file": "Unit.krg.ts",
+      "reference": {
+        "file": "common/units/air.txt",
+        "sha256": "13a5f3ff144c9bc754c7d7aea60d2a90cb282c335bfe312f9762785134d0c574"
+      },
+      "cwt": {
+        "source": "common/units.cwt",
+        "line": 37
+      }
+    },
+    "DivisionNames": {
+      "file": "DivisionNames.krg.ts",
+      "reference": {
+        "file": "common/units/names_divisions/AFA_names_divisions.txt",
+        "sha256": "25047426ceeb0b5bee67030526a366d6bfef31513d4e48a43c5fcaeedc62501c"
+      },
+      "cwt": {
+        "source": "common/units.cwt",
+        "line": 324
+      }
+    },
+    "ShipNames": {
+      "file": "ShipNames.krg.ts",
+      "reference": {
+        "file": "common/units/names_ships/ARG_ship_names.txt",
+        "sha256": "48e793da63e8140e66e098884ac84501a0cc1daf48167b12f7cce2443ce72e54"
+      },
+      "cwt": {
+        "source": "common/units.cwt",
+        "line": 272
+      }
+    },
+    "Wargoal": {
+      "file": "Wargoal.krg.ts",
+      "reference": {
+        "file": "common/wargoals/00_invasion.txt",
+        "sha256": "ce35aab00cb0fb92fe0ddf1cadc05a72aee24e3f9d121dbadea3c95bebb211fd"
+      },
+      "cwt": {
+        "source": "common/wargoals.cwt",
+        "line": 9
+      }
+    },
+    "GraphicDatabase": {
+      "file": "GraphicDatabase.krg.ts",
+      "reference": null,
+      "cwt": {
+        "source": "gfx/graphic_db.cwt",
+        "line": 14
+      }
+    },
+    "Light": {
+      "file": "Light.krg.ts",
+      "reference": null,
+      "cwt": {
+        "source": "gfx/lights.cwt",
+        "line": 10
+      }
+    },
+    "Mesh": {
+      "file": "Mesh.krg.ts",
+      "reference": null,
+      "cwt": {
+        "source": "gfx/model_entities.cwt",
+        "line": 25
+      }
+    },
+    "Entity": {
+      "file": "Entity.krg.ts",
+      "reference": null,
+      "cwt": {
+        "source": "gfx/model_entities.cwt",
+        "line": 71
+      }
+    },
+    "ModelAnimation": {
+      "file": "ModelAnimation.krg.ts",
+      "reference": null,
+      "cwt": {
+        "source": "gfx/model_entities.cwt",
+        "line": 212
+      }
+    },
+    "PdxParticle": {
+      "file": "PdxParticle.krg.ts",
+      "reference": null,
+      "cwt": {
+        "source": "gfx/particles.cwt",
+        "line": 22
+      }
+    },
+    "Particle": {
+      "file": "Particle.krg.ts",
+      "reference": null,
+      "cwt": {
+        "source": "gfx/particles.cwt",
+        "line": 30
+      }
+    },
+    "UnitHistory": {
+      "file": "UnitHistory.krg.ts",
+      "reference": {
+        "file": "history/units/ARG_1936.txt",
+        "sha256": "ee8d2a924061dafc45d4e435f67490ed5d0002b93c423554833a74d3ac232002"
+      },
+      "cwt": {
+        "source": "history/oobs.cwt",
+        "line": 68
+      }
+    },
+    "StateCategory": {
+      "file": "StateCategory.krg.ts",
+      "reference": {
+        "file": "common/state_category/large_island.txt",
+        "sha256": "e9cacb3f9575b42c7066fb29c46cf0ea1b6194c19c5828d58267ab6de468577e"
+      },
+      "cwt": {
+        "source": "history/states.cwt",
+        "line": 97
+      }
+    },
+    "BitmapFont": {
+      "file": "BitmapFont.krg.ts",
+      "reference": {
+        "file": "interface/core.gfx",
+        "sha256": "90d9751fa3dc1faf0aadd6f2c725d523bded8cd908dc27f7e6f08e04058bf1ba"
+      },
+      "cwt": {
+        "source": "interface/gfx.cwt",
+        "line": 156
+      }
+    },
+    "AdjacencyRule": {
+      "file": "AdjacencyRule.krg.ts",
+      "reference": {
+        "file": "map/adjacency_rules.txt",
+        "sha256": "9d430deb495f4f4ad20ce4c773a36aed0e2083c7987cf29559fa5ed86a846452"
+      },
+      "cwt": {
+        "source": "map/map_consolidated.cwt",
+        "line": 19
+      }
+    },
+    "SupplyArea": {
+      "file": "SupplyArea.krg.ts",
+      "reference": {
+        "file": "map/supplyareas/1-SupplyArea.txt",
+        "sha256": "712957a037f2e2fc10d9509b2da117cc87c992b32d2ce81a1018d285ce73ccaa"
+      },
+      "cwt": {
+        "source": "map/regions.cwt",
+        "line": 12
+      }
+    },
+    "StrategicRegion": {
+      "file": "StrategicRegion.krg.ts",
+      "reference": {
+        "file": "map/strategicregions/78-Philippine Sea.txt",
+        "sha256": "75837b881d722a185aeab42207b0eccce3693c862d6fcc8ff96d8237481a0bb0"
+      },
+      "cwt": {
+        "source": "map/regions.cwt",
+        "line": 22
+      }
+    },
+    "MusicPlaylistEntry": {
+      "file": "MusicPlaylistEntry.krg.ts",
+      "reference": null,
+      "cwt": {
+        "source": "music.cwt",
+        "line": 26
+      }
+    },
+    "MusicAsset": {
+      "file": "MusicAsset.krg.ts",
+      "reference": null,
+      "cwt": {
+        "source": "music.cwt",
+        "line": 20
+      }
+    },
+    "Portrait": {
+      "file": "Portrait.krg.ts",
+      "reference": null,
+      "cwt": {
+        "source": "portraits.cwt",
+        "line": 19
+      }
+    },
+    "SoundCategory": {
+      "file": "SoundCategory.krg.ts",
+      "reference": null,
+      "cwt": {
+        "source": "sound.cwt",
+        "line": 93
+      }
+    },
+    "SoundEffect": {
+      "file": "SoundEffect.krg.ts",
+      "reference": null,
+      "cwt": {
+        "source": "sound.cwt",
+        "line": 34
+      }
+    },
+    "SoundAsset": {
+      "file": "SoundAsset.krg.ts",
+      "reference": null,
+      "cwt": {
+        "source": "sound.cwt",
+        "line": 25
+      }
+    },
+    "NativeCountryEvent": {
+      "file": "NativeCountryEvent.krg.ts",
+      "reference": {
+        "file": "events/AAT_Denmark.txt",
+        "sha256": "ee22127359a8d21e78683d6901aaa76f64d0b46027d97d4d57bb6a04208958aa"
+      },
+      "cwt": {
+        "source": "events.cwt",
+        "line": 39
+      }
+    },
+    "NativeStateEvent": {
+      "file": "NativeStateEvent.krg.ts",
+      "reference": {
+        "file": "events/AAT_Denmark.txt",
+        "sha256": "ee22127359a8d21e78683d6901aaa76f64d0b46027d97d4d57bb6a04208958aa"
+      },
+      "cwt": {
+        "source": "events.cwt",
+        "line": 39
+      }
+    },
+    "NativeNewsEvent": {
+      "file": "NativeNewsEvent.krg.ts",
+      "reference": {
+        "file": "events/AAT_Denmark.txt",
+        "sha256": "ee22127359a8d21e78683d6901aaa76f64d0b46027d97d4d57bb6a04208958aa"
+      },
+      "cwt": {
+        "source": "events.cwt",
+        "line": 39
+      }
+    },
+    "NativeUnitLeaderEvent": {
+      "file": "NativeUnitLeaderEvent.krg.ts",
+      "reference": {
+        "file": "events/AAT_Denmark.txt",
+        "sha256": "ee22127359a8d21e78683d6901aaa76f64d0b46027d97d4d57bb6a04208958aa"
+      },
+      "cwt": {
+        "source": "events.cwt",
+        "line": 39
+      }
+    },
+    "NativeOperativeEvent": {
+      "file": "NativeOperativeEvent.krg.ts",
+      "reference": {
+        "file": "events/AAT_Denmark.txt",
+        "sha256": "ee22127359a8d21e78683d6901aaa76f64d0b46027d97d4d57bb6a04208958aa"
+      },
+      "cwt": {
+        "source": "events.cwt",
+        "line": 39
+      }
+    },
+    "NativeFocusTree": {
+      "file": "NativeFocusTree.krg.ts",
+      "reference": {
+        "file": "common/national_focus/afghanistan.txt",
+        "sha256": "87ef0090e8f7ac0e626b747b476771ce14664fe8696348b43770a668aa9ec9a1"
+      },
+      "cwt": {
+        "source": "common/national_focus.cwt",
+        "line": 63
+      }
+    },
+    "ContinuousFocusPalette": {
+      "file": "ContinuousFocusPalette.krg.ts",
+      "reference": {
+        "file": "common/continuous_focus/generic.txt",
+        "sha256": "3c9660831933bf8b1ae9a0624fd0b38d0769f683abf40788c8a2c8bdb8894184"
+      },
+      "cwt": {
+        "source": "common/national_focus.cwt",
+        "line": 820
+      }
+    },
+    "SharedFocus": {
+      "file": "SharedFocus.krg.ts",
+      "reference": {
+        "file": "common/national_focus/abdacom_shared_branch.txt",
+        "sha256": "86e7320c7619cd21abc0d42a6e82bc979e4231bbe5287fde19b6db5e3af955ef"
+      },
+      "cwt": {
+        "source": "common/national_focus.cwt",
+        "line": 592
+      }
+    },
+    "JointFocus": {
+      "file": "JointFocus.krg.ts",
+      "reference": {
+        "file": "common/national_focus/abdacom_shared_branch.txt",
+        "sha256": "86e7320c7619cd21abc0d42a6e82bc979e4231bbe5287fde19b6db5e3af955ef"
+      },
+      "cwt": {
+        "source": "common/national_focus.cwt",
+        "line": 592
+      }
+    },
+    "FocusStyle": {
+      "file": "FocusStyle.krg.ts",
+      "reference": {
+        "file": "common/national_focus/00_titlebar_styles.txt",
+        "sha256": "a3f51bfc7a8429cf3895271d259c0d65b5c4f65055b550927e6c92ab4f2f6949"
+      },
+      "cwt": {
+        "source": "common/national_focus.cwt",
+        "line": 920
+      }
+    },
+    "NativeDecisionCategory": {
+      "file": "NativeDecisionCategory.krg.ts",
+      "reference": {
+        "file": "common/decisions/categories/00_decision_categories.txt",
+        "sha256": "4fabf2151a0728b70f3a0cdaa11342aac0bb2e1bdce3811fad64e980f606eb39"
+      },
+      "cwt": {
+        "source": "common/decisions.cwt",
+        "line": 80
+      }
+    },
+    "NativeDecision": {
+      "file": "NativeDecision.krg.ts",
+      "reference": {
+        "file": "common/decisions/_debug_decisions.txt",
+        "sha256": "268b61da99d9ac5ba4f4cae94c99a34b84c4c935e707970a6211b17437f4a16b"
+      },
+      "cwt": {
+        "source": "common/decisions.cwt",
+        "line": 232
+      }
+    },
+    "NativeIdeas": {
+      "file": "NativeIdeas.krg.ts",
+      "reference": null,
+      "cwt": {
+        "source": "common/ideas.cwt",
+        "line": 14
+      }
+    },
+    "OnAction": {
+      "file": "OnAction.krg.ts",
+      "reference": {
+        "file": "common/on_actions/00_on_actions.txt",
+        "sha256": "52a751456f1774ad5001c86d41d4e46494f751d79b6c224b6cd4c0eebb615eb9"
+      },
+      "cwt": {
+        "source": "on_actions.cwt",
+        "line": 548
+      }
+    }
+  }
+}

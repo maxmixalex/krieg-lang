@@ -329,3 +329,29 @@ test("portable project paths reject Windows devices and trailing aliases", (t) =
   });
   assert.throws(() => loadConfig(root), /path|portable|reserved/i);
 });
+
+test("local source exports share npm identities, deduplicate the same copy and reject different copies or escaping exports", (t) => {
+  const root = fixture(t);
+  const library = installedPackage(root, "@fixtures/shared");
+  edit(root, "krgconfig.json", (config) => {
+    config.dependencies = ["./node_modules/@fixtures/shared", "@fixtures/shared"];
+  });
+  const graph = resolveDependencies(loadConfig(root));
+  assert.equal(graph.layers.length, 2, "the same source package appears once before the consumer");
+  assert.equal(graph.layers[0].packageName, "@fixtures/shared");
+  assert.equal(graph.moduleFiles["@fixtures/shared"], join(library, "src/index.krg.ts"));
+
+  installedPackage(join(root, "local"), "@fixtures/shared", { version: "2.0.0" });
+  edit(root, "krgconfig.json", (config) => {
+    config.dependencies = ["./local/node_modules/@fixtures/shared", "@fixtures/shared"];
+  });
+  assert.throws(() => resolveDependencies(loadConfig(root)), /Two .*copies.*@fixtures\/shared/);
+
+  edit(root, "krgconfig.json", (config) => {
+    config.dependencies = ["./node_modules/@fixtures/shared"];
+  });
+  edit(library, "package.json", (manifest) => {
+    manifest.krieg.exports["."] = "../../outside.krg.ts";
+  });
+  assert.throws(() => resolveDependencies(loadConfig(root)), /path|escapes/i);
+});

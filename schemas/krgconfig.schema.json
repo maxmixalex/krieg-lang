@@ -50,6 +50,10 @@
         "required": ["from", "language"],
         "properties": {
           "from": { "type": "string" },
+          "format": {
+            "enum": ["json", "yaml", "hoi4"],
+            "description": "Defaults by extension: .json flat JSON mapping, .yaml flat YAML mapping, .yml native HOI4 localisation preserved with a UTF-8 BOM."
+          },
           "language": {
             "enum": [
               "english",

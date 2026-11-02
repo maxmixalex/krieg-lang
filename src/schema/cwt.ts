@@ -9,9 +9,9 @@ interface Token {
   line: number;
   comments: string[];
 }
-interface Node {
+export interface CwtSyntaxNode {
   key: string;
-  value: string | Node[];
+  value: string | CwtSyntaxNode[];
   line: number;
   comments: string[];
 }
@@ -63,11 +63,15 @@ function tokens(text: string): Token[] {
   }
   return out;
 }
-function parseRules(text: string, source: string, diagnostics: CwtSchema["diagnostics"]): Node[] {
+function parseRules(
+  text: string,
+  source: string,
+  diagnostics: CwtSchema["diagnostics"],
+): CwtSyntaxNode[] {
   const ts = tokens(text);
   let i = 0;
-  function body(nested: boolean): Node[] {
-    const nodes: Node[] = [];
+  function body(nested: boolean): CwtSyntaxNode[] {
+    const nodes: CwtSyntaxNode[] = [];
     while (i < ts.length) {
       const t = ts[i++]!;
       if (t.text === "}") {
@@ -125,7 +129,7 @@ function description(comments: string[]): string | undefined {
     .join("\n");
   return value || undefined;
 }
-function valueOf(node: Node): CwtValueRule {
+function valueOf(node: CwtSyntaxNode): CwtValueRule {
   if (typeof node.value === "string") return { type: "scalar", expression: node.value };
   return {
     type: "block",
@@ -139,6 +143,17 @@ function valueOf(node: Node): CwtValueRule {
       ...(description(n.comments) ? { description: description(n.comments) } : {}),
     })),
   };
+}
+/** Parse the native CWT definition dialect for schema and API generation. */
+export function parseCwtRules(
+  text: string,
+  source = "CWT",
+): {
+  nodes: CwtSyntaxNode[];
+  diagnostics: CwtSchema["diagnostics"];
+} {
+  const diagnostics: CwtSchema["diagnostics"] = [];
+  return { nodes: parseRules(text, source, diagnostics), diagnostics };
 }
 async function cwtFiles(root: string): Promise<string[]> {
   const result: string[] = [];

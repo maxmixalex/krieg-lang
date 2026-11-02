@@ -4,14 +4,15 @@ import { zipSync, type Zippable } from "fflate";
 import { buildProject } from "./build.js";
 import { loadConfig } from "./config.js";
 import { slash, walkFiles } from "./files.js";
-import type { BuildResult } from "./types.js";
+import type { BuildResult, ProjectOptions } from "./types.js";
 
 export function packProject(
   project = ".",
   destination?: string,
+  options: ProjectOptions = {},
 ): { build: BuildResult; archive?: string } {
-  const config = loadConfig(project);
-  const build = buildProject(project);
+  const config = loadConfig(project, options);
+  const build = buildProject(project, options);
   if (!build.success) return { build };
   const archive = destination
     ? resolve(destination)

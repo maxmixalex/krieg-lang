@@ -1,7 +1,7 @@
 import { existsSync, readFileSync, statSync } from "node:fs";
 import { basename, dirname, resolve } from "node:path";
 import { gamePath, inside, safeChild } from "./files.js";
-import type { KriegConfig } from "./types.js";
+import type { KriegConfig, ProjectOptions } from "./types.js";
 
 export function readJson(path: string): Record<string, unknown> {
   let data: unknown;
@@ -44,7 +44,7 @@ function keys(value: Record<string, unknown>, allowed: string[], label: string):
       throw new Error(`Unknown ${label} property ${JSON.stringify(key)}.`);
 }
 
-export function loadConfig(path = "."): KriegConfig {
+export function loadConfig(path = ".", options: ProjectOptions = {}): KriegConfig {
   const absolute = resolve(path);
   const configPath =
     existsSync(absolute) && statSync(absolute).isFile()
@@ -143,8 +143,11 @@ export function loadConfig(path = "."): KriegConfig {
     }),
     localisation: array(data.localisation, "localisation").map((value, i) => {
       const rule = object(value, `localisation[${i}]`);
-      keys(rule, ["language", "from"], `localisation[${i}]`);
+      keys(rule, ["language", "from", "format"], `localisation[${i}]`);
+      if (rule.format !== undefined && !["json", "yaml", "hoi4"].includes(String(rule.format)))
+        throw new Error(`localisation[${i}].format must be json, yaml or hoi4.`);
       return {
+        ...(rule.format === undefined ? {} : { format: rule.format as "json" | "yaml" | "hoi4" }),
         language: str(rule.language, "english", "language"),
         from: gamePath(str(rule.from, "", "from")),
       };
@@ -161,6 +164,12 @@ export function loadConfig(path = "."): KriegConfig {
     world: { countries: [...new Set(countryTags)], states: [...new Set(states as number[])] },
     strictAssets: data.strictAssets !== false,
   };
+  if (options.gameRoots !== undefined)
+    config.gameRoots = options.gameRoots.map((root) =>
+      typeof root === "string"
+        ? { path: resolve(root), replacePath: [] }
+        : { path: resolve(root.path), replacePath: root.replacePath.map((path) => gamePath(path)) },
+    );
   if (!/^[A-Za-z0-9][A-Za-z0-9_.+-]*$/.test(config.mod.version))
     throw new Error("mod.version must be a portable version string without path separators.");
   safeChild(rootDir, sourceDir);

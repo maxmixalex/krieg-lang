@@ -24,4 +24,16 @@ export default [
     },
   },
   krieg.configs.recommended,
+  {
+    files: ["examples/vanilla-complete/**/*.krg.{ts,tsx}"],
+    rules: {
+      "krieg/allowed-imports": ["error", { packages: ["@krieg-examples/civ-civic-kit"] }],
+    },
+  },
+  {
+    files: ["examples/kaiserreich-complete/**/*.krg.{ts,tsx}"],
+    rules: {
+      "krieg/allowed-imports": ["error", { packages: ["@krieg-examples/srd-civic-kit"] }],
+    },
+  },
 ];

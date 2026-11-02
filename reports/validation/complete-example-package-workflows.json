@@ -1,0 +1,209 @@
+{
+  "schema": 1,
+  "generatedAt": "2026-11-02T15:58:59.273Z",
+  "scope": "Actual installed-package user workflows for both complete examples; all commands executed sequentially in isolated copies.",
+  "environment": {
+    "node": "v24.22.1",
+    "npm": "11.9.0",
+    "platform": "linux",
+    "arch": "x64"
+  },
+  "isolation": {
+    "source": "Complete example directories copied without node_modules, build or .krieg output.",
+    "dependency": "Only the temporary package.json krieg-lang file dependency was redirected to a locally packed npm tarball.",
+    "installation": "npm install used --ignore-scripts and --package-lock=false; no example installation artifacts were written to the repository."
+  },
+  "distributions": {
+    "initial": {
+      "filename": "krieg-lang-0.2.0.tgz",
+      "sha256": "424e2c26f4270a71a8d0b65697f1107a13e8349ad709448ea58d645b2745c27d",
+      "version": "0.2.0"
+    },
+    "corrected": {
+      "filename": "krieg-lang-0.2.0.tgz",
+      "sha256": "5157c39008589a0e86daf3e924236bfbf37586dd3aec07de7bf5635ed3c4f9c8",
+      "version": "0.2.0"
+    },
+    "packCommands": [
+      {
+        "revision": "initial",
+        "command": ["npm", "pack", "--ignore-scripts", "--json", "--pack-destination", "$WORK"],
+        "exitCode": 0
+      },
+      {
+        "revision": "corrected",
+        "command": [
+          "npm",
+          "pack",
+          "--ignore-scripts",
+          "--json",
+          "--pack-destination",
+          "$WORK/corrected-package"
+        ],
+        "exitCode": 0
+      }
+    ]
+  },
+  "correction": {
+    "issue": "The public krieg-lang/pdx entry point re-exports a lexer declaration with Set<PdxOperator>, which was missing from the generated noLib editor environment.",
+    "change": "MINIMAL_LIB adds only the Set<T> type interface (size and has); no Set constructor value or general JavaScript library is enabled.",
+    "retest": "Previously successful vanilla lint/check/build/pack steps were retained. The corrected tarball was installed, npm run world regenerated declarations, and native tsc passed. Kaiserreich completed its entire workflow with the corrected tarball.",
+    "nativeOutputChange": "The corrected distribution also emits IntelligenceAgency using the fixed intelligence_agency root. Final native output validation is recorded separately in complete-examples.json."
+  },
+  "checks": [
+    {
+      "example": "vanilla-complete",
+      "cwd": "$PROJECT",
+      "success": true,
+      "commands": [
+        {
+          "command": [
+            "npm",
+            "install",
+            "--ignore-scripts",
+            "--package-lock=false",
+            "--no-audit",
+            "--no-fund"
+          ],
+          "packageSha256": "424e2c26f4270a71a8d0b65697f1107a13e8349ad709448ea58d645b2745c27d",
+          "exitCode": 0,
+          "durationMs": 4767
+        },
+        {
+          "command": ["npm", "run", "lint"],
+          "packageSha256": "424e2c26f4270a71a8d0b65697f1107a13e8349ad709448ea58d645b2745c27d",
+          "exitCode": 0,
+          "durationMs": 1137
+        },
+        {
+          "command": ["npm", "run", "check"],
+          "packageSha256": "424e2c26f4270a71a8d0b65697f1107a13e8349ad709448ea58d645b2745c27d",
+          "exitCode": 0,
+          "durationMs": 2167,
+          "result": "Validated 70 files (566212 bytes)."
+        },
+        {
+          "command": ["npm", "run", "build"],
+          "packageSha256": "424e2c26f4270a71a8d0b65697f1107a13e8349ad709448ea58d645b2745c27d",
+          "exitCode": 0,
+          "durationMs": 1917,
+          "result": "Validated 70 files (566212 bytes)."
+        },
+        {
+          "command": ["npm", "run", "pack"],
+          "packageSha256": "424e2c26f4270a71a8d0b65697f1107a13e8349ad709448ea58d645b2745c27d",
+          "exitCode": 0,
+          "durationMs": 2055,
+          "result": "Validated 70 files (566212 bytes)."
+        },
+        {
+          "command": [
+            "node",
+            "$PROJECT/node_modules/typescript/bin/tsc",
+            "--noEmit",
+            "--project",
+            "tsconfig.json"
+          ],
+          "packageSha256": "424e2c26f4270a71a8d0b65697f1107a13e8349ad709448ea58d645b2745c27d",
+          "exitCode": 2,
+          "diagnostic": "node_modules/krieg-lang/dist/pdx/lexer.d.ts(12,33): TS2583 Cannot find name 'Set'.",
+          "resolvedBy": "Corrected package installation, editor declaration refresh, and successful native tsc below."
+        },
+        {
+          "command": [
+            "npm",
+            "install",
+            "--ignore-scripts",
+            "--package-lock=false",
+            "--no-audit",
+            "--no-fund"
+          ],
+          "packageSha256": "5157c39008589a0e86daf3e924236bfbf37586dd3aec07de7bf5635ed3c4f9c8",
+          "exitCode": 0,
+          "durationMs": 689
+        },
+        {
+          "command": ["npm", "run", "world"],
+          "packageSha256": "5157c39008589a0e86daf3e924236bfbf37586dd3aec07de7bf5635ed3c4f9c8",
+          "exitCode": 0,
+          "durationMs": 589
+        },
+        {
+          "command": [
+            "node",
+            "$PROJECT/node_modules/typescript/bin/tsc",
+            "--noEmit",
+            "--project",
+            "tsconfig.json"
+          ],
+          "packageSha256": "5157c39008589a0e86daf3e924236bfbf37586dd3aec07de7bf5635ed3c4f9c8",
+          "exitCode": 0,
+          "durationMs": 896
+        }
+      ]
+    },
+    {
+      "example": "kaiserreich-complete",
+      "cwd": "$PROJECT",
+      "success": true,
+      "commands": [
+        {
+          "command": [
+            "npm",
+            "install",
+            "--ignore-scripts",
+            "--package-lock=false",
+            "--no-audit",
+            "--no-fund"
+          ],
+          "packageSha256": "5157c39008589a0e86daf3e924236bfbf37586dd3aec07de7bf5635ed3c4f9c8",
+          "exitCode": 0,
+          "durationMs": 3859
+        },
+        {
+          "command": ["npm", "run", "lint"],
+          "packageSha256": "5157c39008589a0e86daf3e924236bfbf37586dd3aec07de7bf5635ed3c4f9c8",
+          "exitCode": 0,
+          "durationMs": 1078
+        },
+        {
+          "command": ["npm", "run", "check"],
+          "packageSha256": "5157c39008589a0e86daf3e924236bfbf37586dd3aec07de7bf5635ed3c4f9c8",
+          "exitCode": 0,
+          "durationMs": 2126,
+          "result": "Validated 88 files (697424 bytes)."
+        },
+        {
+          "command": ["npm", "run", "build"],
+          "packageSha256": "5157c39008589a0e86daf3e924236bfbf37586dd3aec07de7bf5635ed3c4f9c8",
+          "exitCode": 0,
+          "durationMs": 2122,
+          "result": "Validated 88 files (697424 bytes)."
+        },
+        {
+          "command": ["npm", "run", "pack"],
+          "packageSha256": "5157c39008589a0e86daf3e924236bfbf37586dd3aec07de7bf5635ed3c4f9c8",
+          "exitCode": 0,
+          "durationMs": 2161,
+          "result": "Validated 88 files (697424 bytes)."
+        },
+        {
+          "command": [
+            "node",
+            "$PROJECT/node_modules/typescript/bin/tsc",
+            "--noEmit",
+            "--project",
+            "tsconfig.json"
+          ],
+          "packageSha256": "5157c39008589a0e86daf3e924236bfbf37586dd3aec07de7bf5635ed3c4f9c8",
+          "exitCode": 0,
+          "durationMs": 1310
+        }
+      ]
+    }
+  ],
+  "success": true,
+  "limitations": [
+    "This verifies installation, public declaration resolution, ESLint configuration, actual npm scripts, the krieg executable, generated files and packaging. It does not launch the game."
+  ]
+}

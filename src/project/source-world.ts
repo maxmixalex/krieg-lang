@@ -27,7 +27,7 @@ const metadataModules = new Map<string, Intrinsic["module"]>([
   ["krieg-lang/pdx", "pdx"],
   ["@project/states", "states"],
 ]);
-const metadataNames = new Set(["DataFile", "SourceFile", "StateHistory"]);
+const metadataNames = new Set(["DataFile", "SourceFile", "StateHistory", "CountryDefinition"]);
 
 function record(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === "object" && !Array.isArray(value);
@@ -58,10 +58,15 @@ export function discoverSourceWorld(config: KriegConfig): {
   const files: OutputFile[] = [];
   const diagnostics: ProjectDiagnostic[] = [];
   for (const file of walkFiles(safeChild(config.rootDir, config.sourceDir))) {
-    if (!file.endsWith(".krg.ts")) continue;
+    if (!/\.krg\.tsx?$/.test(file)) continue;
     const source = readFileSync(file, "utf8");
     // Canonical imports retain their destination literal. Avoid parsing large event/UI imports.
-    if (!/country_tags|history[\\/]+states|StateHistory|DataFile|SourceFile/.test(source)) continue;
+    if (
+      !/country_tags|history[\\/]+states|StateHistory|DataFile|SourceFile|CountryDefinition/.test(
+        source,
+      )
+    )
+      continue;
     const imported = recompileImportedKrieg(source, file);
     if (imported.file) {
       if (isMetadataPath(imported.file.path)) {
@@ -89,7 +94,7 @@ export function discoverSourceWorld(config: KriegConfig): {
       source,
       ts.ScriptTarget.Latest,
       true,
-      ts.ScriptKind.TS,
+      file.endsWith(".tsx") ? ts.ScriptKind.TSX : ts.ScriptKind.TS,
     );
     const syntaxDiagnostics =
       (syntax as ts.SourceFile & { parseDiagnostics?: readonly ts.Diagnostic[] })
@@ -205,6 +210,22 @@ export function discoverSourceWorld(config: KriegConfig): {
         if (intrinsic.name === "country" && typeof args[0] === "string")
           return { kind: "country", tag: args[0] };
         if (intrinsic.name === "loc" && typeof args[0] === "string") return args[0];
+        if (intrinsic.name === "CountryDefinition") {
+          const spec = args[0];
+          if (!record(spec) || typeof spec.id !== "string" || !/^[A-Z][A-Z0-9]{2}$/.test(spec.id)) {
+            warn(node, "CountryDefinition requires a statically discoverable three-character tag.");
+            return unknownValue;
+          }
+          const countryPath = spec.outputPath ?? `common/countries/krieg_${spec.id}.txt`;
+          if (typeof countryPath !== "string" || !countryPath.startsWith("common/countries/")) {
+            warn(node, "CountryDefinition's outputPath must be a literal common/countries path.");
+            return unknownValue;
+          }
+          return declaration(
+            `common/country_tags/krieg_${spec.id}.txt`,
+            pdx.document([pdx.property(spec.id, pdx.string(countryPath.slice("common/".length)))]),
+          );
+        }
         if (intrinsic.name === "StateHistory") {
           const spec = args[0];
           const reference = record(spec) ? spec.state : undefined;

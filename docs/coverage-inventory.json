@@ -1,0 +1,1528 @@
+{
+  "formatVersion": 1,
+  "reviewedAt": "2026-11-02",
+  "scope": "Wiki topic families plus newer families present in the supplied CWT snapshot; individual commands live in the generated API reference.",
+  "provenance": {
+    "wiki": "https://hoi4.paradoxwikis.com/Modding",
+    "archiveIndex": "https://github.com/thelight0211/hoi4-wiki",
+    "access": "Live official Wiki requests returned HTTP 401; archived page titles locate the topical outline. Technical claims are verified against repository source, tests, supplied game documentation and CWT rules.",
+    "cwt": "https://github.com/cwtools/cwtools-hoi4-config",
+    "cwtSha256": "4b3e365db80c5bb0cc7ce88d7ca58c37dc7bf66c31667e712605413218c8003c"
+  },
+  "families": [
+    {
+      "id": "project",
+      "topic": "模组结构、描述符与加载",
+      "group": "工程",
+      "wiki": ["https://hoi4.paradoxwikis.com/Modding"],
+      "nativePaths": ["descriptor.mod", "common/", "history/"],
+      "level": "semantic",
+      "api": ["krieg-lang/project:buildProject", "krieg-lang/project:descriptor"],
+      "guide": "projects.md",
+      "ruleSources": [],
+      "tests": [
+        {
+          "file": "tests/project.test.mjs",
+          "test": "effective world respects non-recursive replace_path and generates exact tag types"
+        }
+      ],
+      "boundary": "项目依赖与资源叠加可检查；游戏按数据库种类解析重复定义，不能简化为所有内容都采用同一种合并规则。"
+    },
+    {
+      "id": "events",
+      "topic": "事件",
+      "group": "脚本",
+      "wiki": ["https://hoi4.paradoxwikis.com/Event_modding"],
+      "nativePaths": ["events/*.txt"],
+      "level": "semantic",
+      "api": [
+        "krieg-lang/hoi4:CountryEvent",
+        "krieg-lang/hoi4:StateEvent",
+        "krieg-lang/hoi4:NewsEvent",
+        "krieg-lang/hoi4:NativeCountryEvent",
+        "krieg-lang/hoi4:NativeStateEvent",
+        "krieg-lang/hoi4:NativeNewsEvent",
+        "krieg-lang/hoi4:NativeUnitLeaderEvent",
+        "krieg-lang/hoi4:NativeOperativeEvent"
+      ],
+      "guide": "recipes.md",
+      "ruleSources": ["Config/events.cwt"],
+      "tests": [
+        {
+          "file": "tests/compiler.test.mjs",
+          "test": "semantic event emits scoped trigger, helper effects, runtime if/else and namespace"
+        },
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "native event variants and advanced focus forms preserve callbacks and ordered conditional text"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "常用语义 API 之外，五类 NativeEvent 覆盖各事件类型与条件标题/描述、after 等原生字段；独立原生规则检查仍不能替代游戏中的弹窗与作用域行为。",
+      "nativeAudit": [
+        "NativeCountryEvent",
+        "NativeStateEvent",
+        "NativeNewsEvent",
+        "NativeUnitLeaderEvent",
+        "NativeOperativeEvent"
+      ]
+    },
+    {
+      "id": "focus",
+      "topic": "国策与 AI 国策计划",
+      "group": "脚本",
+      "wiki": [
+        "https://hoi4.paradoxwikis.com/National_focus_modding",
+        "https://hoi4.paradoxwikis.com/AI_focuses"
+      ],
+      "nativePaths": ["common/national_focus/*.txt", "common/ai_strategy_plans/*.txt"],
+      "level": "semantic",
+      "api": [
+        "krieg-lang/hoi4:FocusTree",
+        "krieg-lang/hoi4:Focus",
+        "krieg-lang/hoi4:NativeFocusTree",
+        "krieg-lang/hoi4:ContinuousFocusPalette",
+        "krieg-lang/hoi4:SharedFocus",
+        "krieg-lang/hoi4:JointFocus",
+        "krieg-lang/hoi4:FocusStyle",
+        "krieg-lang/hoi4:AiStrategyPlan"
+      ],
+      "guide": "recipes.md",
+      "ruleSources": ["Config/common/national_focus.cwt"],
+      "tests": [
+        {
+          "file": "tests/compiler.test.mjs",
+          "test": "all high-level domains compile with explicit file conventions"
+        },
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "常用国策语义 API 与完整原生字段入口并存，覆盖连续、共享、联合国策与样式；引用图、布局、DLC 和运行时行为另行检查。",
+      "nativeAudit": [
+        "NativeFocusTree",
+        "ContinuousFocusPalette",
+        "SharedFocus",
+        "JointFocus",
+        "FocusStyle",
+        "AiStrategyPlan"
+      ]
+    },
+    {
+      "id": "decisions",
+      "topic": "决议与任务",
+      "group": "脚本",
+      "wiki": ["https://hoi4.paradoxwikis.com/Decision_modding"],
+      "nativePaths": ["common/decisions/*.txt", "common/decisions/categories/*.txt"],
+      "level": "semantic",
+      "api": [
+        "krieg-lang/hoi4:DecisionCategory",
+        "krieg-lang/hoi4:Decision",
+        "krieg-lang/hoi4:NativeDecisionCategory",
+        "krieg-lang/hoi4:NativeDecision"
+      ],
+      "guide": "recipes.md",
+      "ruleSources": ["Config/common/decisions.cwt"],
+      "tests": [
+        {
+          "file": "tests/compiler.test.mjs",
+          "test": "all high-level domains compile with explicit file conventions"
+        },
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "常用语义 API 配合 NativeDecision 覆盖任务、目标、费用与其他原生字段；CWT 子型投射不是所有字段组合的互斥类型证明。",
+      "nativeAudit": ["NativeDecisionCategory", "NativeDecision"]
+    },
+    {
+      "id": "ideas",
+      "topic": "民族精神、顾问与法律",
+      "group": "脚本",
+      "wiki": ["https://hoi4.paradoxwikis.com/Idea_modding"],
+      "nativePaths": ["common/ideas/*.txt"],
+      "level": "semantic",
+      "api": [
+        "krieg-lang/hoi4:Idea",
+        "krieg-lang/hoi4:NativeIdeas",
+        "krieg-lang/hoi4:IdeaCategory"
+      ],
+      "guide": "recipes.md",
+      "ruleSources": ["Config/common/ideas.cwt"],
+      "tests": [
+        {
+          "file": "tests/compiler.test.mjs",
+          "test": "country idea modifiers use actual country modifier names"
+        },
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "Idea 提供常用国家精神语义；NativeIdeas 保留原生分组、法律与扩展字段。人物角色与招募仍需配套 Character / 历史。",
+      "nativeAudit": ["NativeIdeas", "IdeaCategory"]
+    },
+    {
+      "id": "effects",
+      "topic": "效果与脚本化效果",
+      "group": "脚本",
+      "wiki": ["https://hoi4.paradoxwikis.com/Effects"],
+      "nativePaths": ["common/scripted_effects/*.txt", "common/scripted_triggers/*.txt"],
+      "level": "semantic",
+      "api": ["krieg-lang/hoi4:ScriptedEffect"],
+      "guide": "language.md",
+      "ruleSources": ["Config/effects.cwt", "Config/triggers.cwt", "Config/variables.cwt"],
+      "tests": [
+        {
+          "file": "tests/compiler.test.mjs",
+          "test": "scripted handles invoke emitted scripts and preserve scope types"
+        }
+      ],
+      "boundary": "固定命令按 CWT 生成；动态 CWT 键、特殊值表达式与游戏运行时行为保留明确边界。"
+    },
+    {
+      "id": "triggers",
+      "topic": "条件与脚本化条件",
+      "group": "脚本",
+      "wiki": ["https://hoi4.paradoxwikis.com/Triggers"],
+      "nativePaths": ["common/scripted_effects/*.txt", "common/scripted_triggers/*.txt"],
+      "level": "semantic",
+      "api": ["krieg-lang/hoi4:ScriptedTrigger"],
+      "guide": "language.md",
+      "ruleSources": ["Config/effects.cwt", "Config/triggers.cwt", "Config/variables.cwt"],
+      "tests": [
+        {
+          "file": "tests/compiler.test.mjs",
+          "test": "generated CWT command types include legal scopes and block fields"
+        }
+      ],
+      "boundary": "固定命令按 CWT 生成；动态 CWT 键、特殊值表达式与游戏运行时行为保留明确边界。"
+    },
+    {
+      "id": "scopes",
+      "topic": "作用域、遍历与祖先引用",
+      "group": "脚本",
+      "wiki": ["https://hoi4.paradoxwikis.com/Scopes"],
+      "nativePaths": ["common/scripted_effects/*.txt", "common/scripted_triggers/*.txt"],
+      "level": "semantic",
+      "api": ["krieg-lang/hoi4:CountryScope", "krieg-lang/hoi4:StateScope"],
+      "guide": "scopes.md",
+      "ruleSources": ["Config/effects.cwt", "Config/triggers.cwt", "Config/variables.cwt"],
+      "tests": [
+        {
+          "file": "tests/compiler.test.mjs",
+          "test": "ancestor scope capture lowers PREV and PREV.PREV safely"
+        }
+      ],
+      "boundary": "固定命令按 CWT 生成；动态 CWT 键、特殊值表达式与游戏运行时行为保留明确边界。"
+    },
+    {
+      "id": "variables",
+      "topic": "变量、数组与数据结构",
+      "group": "脚本",
+      "wiki": ["https://hoi4.paradoxwikis.com/Data_structures"],
+      "nativePaths": ["common/scripted_effects/*.txt", "common/scripted_triggers/*.txt"],
+      "level": "semantic",
+      "api": ["krieg-lang/hoi4:CountryScope"],
+      "guide": "language.md",
+      "ruleSources": ["Config/effects.cwt", "Config/triggers.cwt", "Config/variables.cwt"],
+      "tests": [
+        {
+          "file": "tests/compiler.test.mjs",
+          "test": "let variables and arithmetic preserve runtime updates and comparisons"
+        }
+      ],
+      "boundary": "固定命令按 CWT 生成；动态 CWT 键、特殊值表达式与游戏运行时行为保留明确边界。"
+    },
+    {
+      "id": "meta-effects",
+      "topic": "MetaEffect 与运行时替换",
+      "group": "脚本",
+      "wiki": ["https://hoi4.paradoxwikis.com/Effects"],
+      "nativePaths": ["common/scripted_effects/*.txt"],
+      "level": "semantic",
+      "api": ["krieg-lang/hoi4:MetaEffect"],
+      "guide": "scripted-content.md",
+      "ruleSources": ["Config/effects.cwt"],
+      "tests": [
+        {
+          "file": "tests/language-ui.test.mjs",
+          "test": "meta effects require exact parameters, valid PDX, and an effect context"
+        }
+      ],
+      "boundary": "检查占位参数、PDX 结构和效果上下文；替换后的动态文本不获得普通 SDK 调用的全部命令语义保证。"
+    },
+    {
+      "id": "scripted-localisation",
+      "topic": "脚本化本地化",
+      "group": "文本与界面",
+      "wiki": ["https://hoi4.paradoxwikis.com/Localisation"],
+      "nativePaths": ["common/scripted_localisation/*.txt"],
+      "level": "semantic",
+      "api": ["krieg-lang/hoi4:ScriptedLocalisation"],
+      "guide": "scripted-content.md",
+      "ruleSources": ["Config/common/scripted_effects_locs_and_triggers.cwt"],
+      "tests": [
+        {
+          "file": "tests/language-ui.test.mjs",
+          "test": "scripted localisation preserves priority, dynamic strings and repeated random weights"
+        }
+      ],
+      "boundary": "有序条件分支、回退与随机权重可建模；动态文本对象与最终显示由游戏解释。"
+    },
+    {
+      "id": "localisation",
+      "topic": "JSON、YAML 与原生本地化",
+      "group": "文本与界面",
+      "wiki": ["https://hoi4.paradoxwikis.com/Localisation"],
+      "nativePaths": ["localisation/*/*.yml"],
+      "level": "semantic",
+      "api": ["krieg-lang/project:buildProject", "krieg-lang/project:LocalisationRule"],
+      "guide": "localisation.md",
+      "ruleSources": [],
+      "tests": [
+        {
+          "file": "tests/project.test.mjs",
+          "test": "starter builds events, decisions, BOM localisation, descriptors and deterministic manifest"
+        }
+      ],
+      "boundary": "平面 YAML/JSON 字符串字典和原生 HOI4 方言分别处理；不将游戏方言当成通用 YAML。"
+    },
+    {
+      "id": "scripted-gui",
+      "topic": "Scripted GUI 行为",
+      "group": "文本与界面",
+      "wiki": ["https://hoi4.paradoxwikis.com/Scripted_GUI_modding"],
+      "nativePaths": ["common/scripted_guis/*.txt"],
+      "level": "semantic",
+      "api": ["krieg-lang/hoi4:ScriptedGui"],
+      "guide": "ui.md",
+      "ruleSources": ["Config/common/scripted_guis.cwt"],
+      "tests": [
+        {
+          "file": "tests/language-ui.test.mjs",
+          "test": "scripted GUI emits context, event callbacks, repeated AI targets and dynamic lists"
+        }
+      ],
+      "boundary": "上下文、点击/可用性、动态属性、列表和 AI 字段有类型；布局与 AI 策略的游戏效果需要运行验证。"
+    },
+    {
+      "id": "interface",
+      "topic": "界面布局、TSX 与组件",
+      "group": "文本与界面",
+      "wiki": ["https://hoi4.paradoxwikis.com/Interface_modding"],
+      "nativePaths": ["interface/*.gui"],
+      "level": "semantic",
+      "api": ["krieg-lang/ui:GuiFile", "krieg-lang/ui:Container", "krieg-lang/ui:Button"],
+      "guide": "ui.md",
+      "ruleSources": ["Config/interface/gui.cwt"],
+      "tests": [
+        {
+          "file": "tests/language-ui.test.mjs",
+          "test": "TSX components, fragments, source helpers and native tags emit ordered native GUI"
+        },
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "all declared native GUI control factories use declared fields and exact engine type names"
+        }
+      ],
+      "boundary": "六个常用组件及十八种原生控件有静态入口：十五种有 CWT 规则和独立正负审计，三种旧式控件来自真实语料字段投射；布局、字体与输入仍需游戏验证。"
+    },
+    {
+      "id": "graphics",
+      "topic": "Sprite 与图形资源",
+      "group": "文本与界面",
+      "wiki": ["https://hoi4.paradoxwikis.com/Graphical_asset_modding"],
+      "nativePaths": ["interface/*.gfx", "gfx/**/*.dds", "gfx/**/*.tga", "gfx/**/*.png"],
+      "level": "semantic",
+      "api": ["krieg-lang/ui:Sprite", "krieg-lang/ui:SpriteFile"],
+      "guide": "ui.md",
+      "ruleSources": ["Config/interface/gfx.cwt"],
+      "tests": [
+        {
+          "file": "tests/language-ui.test.mjs",
+          "test": "TSX components, fragments, source helpers and native tags emit ordered native GUI"
+        }
+      ],
+      "boundary": "常用 sprite 属性有类型；图像字节原样复制并做头部检查，不重新压缩，也不保证 shader 或动画视觉效果。"
+    },
+    {
+      "id": "country",
+      "topic": "创建国家、标签、历史与旗帜",
+      "group": "国家与地图",
+      "wiki": ["https://hoi4.paradoxwikis.com/Country_creation"],
+      "nativePaths": [
+        "common/country_tags/*.txt",
+        "common/countries/*.txt",
+        "history/countries/*.txt",
+        "gfx/flags/"
+      ],
+      "level": "semantic",
+      "api": [
+        "krieg-lang/hoi4:CountryDefinition",
+        "krieg-lang/hoi4:CountryHistory",
+        "krieg-lang/project:buildProject"
+      ],
+      "guide": "countries-maps.md",
+      "ruleSources": ["Config/common/countries.cwt", "Config/history/country_history.cwt"],
+      "tests": [
+        {
+          "file": "tests/compiler.test.mjs",
+          "test": "all high-level domains compile with explicit file conventions"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "CountryHistory 有语义模型；标签、颜色、人物、军队与旗帜组合为原生文件工作流，各项引用需对有效世界检查。",
+      "nativeAudit": ["CountryDefinition"]
+    },
+    {
+      "id": "states",
+      "topic": "地区历史与省份归属",
+      "group": "国家与地图",
+      "wiki": ["https://hoi4.paradoxwikis.com/State_modding"],
+      "nativePaths": ["history/states/*.txt"],
+      "level": "semantic",
+      "api": ["krieg-lang/hoi4:StateHistory", "krieg-lang/project:validateMap"],
+      "guide": "countries-maps.md",
+      "ruleSources": ["Config/history/states.cwt"],
+      "tests": [
+        {
+          "file": "tests/compiler.test.mjs",
+          "test": "StateHistory requires and emits a complete native state definition"
+        }
+      ],
+      "boundary": "完整地区定义有语义模型，省份集合、建筑与胜利点需与地图一致；编辑地区不自动修改 provinces.bmp。"
+    },
+    {
+      "id": "map",
+      "topic": "地图表格、位图与网络",
+      "group": "国家与地图",
+      "wiki": ["https://hoi4.paradoxwikis.com/Map_modding"],
+      "nativePaths": [
+        "map/definition.csv",
+        "map/provinces.bmp",
+        "map/default.map",
+        "map/adjacencies.csv",
+        "map/railways.txt",
+        "map/supply_nodes.txt"
+      ],
+      "level": "native-asset",
+      "api": ["krieg-lang/project:validateMap", "krieg-lang/project:buildProject"],
+      "guide": "countries-maps.md",
+      "ruleSources": [],
+      "tests": [
+        {
+          "file": "tests/project.test.mjs",
+          "test": "map validates colors, province references and railway row lengths"
+        }
+      ],
+      "boundary": "校验结构、颜色、引用、归属与网络；不绘制地图，不承诺拓扑、可通行性和游戏引擎所有 MAP_ERROR 已验证。"
+    },
+    {
+      "id": "ai",
+      "topic": "AI 战略与计划",
+      "group": "内容定义",
+      "wiki": [
+        "https://hoi4.paradoxwikis.com/AI_modding",
+        "https://hoi4.paradoxwikis.com/AI_focuses"
+      ],
+      "nativePaths": [
+        "common/ai_strategy/*",
+        "common/ai_strategy_plans/*",
+        "common/ai_areas/*",
+        "common/ai_focuses/*",
+        "common/ai_peace/*",
+        "common/ai_templates/*",
+        "common/ai_equipment/*",
+        "common/ai_faction_theaters/*"
+      ],
+      "level": "schema",
+      "api": [
+        "krieg-lang/hoi4:AiStrategy",
+        "krieg-lang/hoi4:AiStrategyPlan",
+        "krieg-lang/hoi4:AiArea",
+        "krieg-lang/hoi4:AiFocus",
+        "krieg-lang/hoi4:AiPeace",
+        "krieg-lang/hoi4:AiTemplate",
+        "krieg-lang/hoi4:AiEquipmentDesignGroup",
+        "krieg-lang/hoi4:AiFactionTheater"
+      ],
+      "guide": "content-domains.md",
+      "ruleSources": ["Config/common/ai_strategy.cwt", "Config/common/consolidated_ai.cwt"],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。",
+      "nativeAudit": [
+        "AiStrategy",
+        "AiStrategyPlan",
+        "AiArea",
+        "AiFocus",
+        "AiPeace",
+        "AiTemplate",
+        "AiEquipmentDesignGroup",
+        "AiFactionTheater"
+      ]
+    },
+    {
+      "id": "achievements",
+      "topic": "成就",
+      "group": "内容定义",
+      "wiki": ["https://hoi4.paradoxwikis.com/Achievement_modding"],
+      "nativePaths": ["common/achievements/*"],
+      "level": "schema",
+      "api": ["krieg-lang/hoi4:Achievement"],
+      "guide": "content-domains.md",
+      "ruleSources": ["Config/common/achievements.cwt"],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。",
+      "nativeAudit": ["Achievement"]
+    },
+    {
+      "id": "autonomy",
+      "topic": "自治等级",
+      "group": "内容定义",
+      "wiki": ["https://hoi4.paradoxwikis.com/Autonomy_state_modding"],
+      "nativePaths": ["common/autonomous_states/*"],
+      "level": "schema",
+      "api": ["krieg-lang/hoi4:AutonomyState"],
+      "guide": "content-domains.md",
+      "ruleSources": ["Config/common/autonomous_states.cwt"],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。",
+      "nativeAudit": ["AutonomyState"]
+    },
+    {
+      "id": "balance-power",
+      "topic": "权力平衡",
+      "group": "内容定义",
+      "wiki": ["https://hoi4.paradoxwikis.com/Balance_of_power_modding"],
+      "nativePaths": ["common/bop/*"],
+      "level": "schema",
+      "api": ["krieg-lang/hoi4:BalanceOfPower"],
+      "guide": "content-domains.md",
+      "ruleSources": ["Config/common/bop.cwt"],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。",
+      "nativeAudit": ["BalanceOfPower"]
+    },
+    {
+      "id": "bookmarks",
+      "topic": "开局书签",
+      "group": "内容定义",
+      "wiki": ["https://hoi4.paradoxwikis.com/Bookmark_modding"],
+      "nativePaths": ["common/bookmarks/*", "common/difficulty_settings/*"],
+      "level": "schema",
+      "api": ["krieg-lang/hoi4:Bookmark", "krieg-lang/hoi4:DifficultySetting"],
+      "guide": "content-domains.md",
+      "ruleSources": ["Config/common/bookmarks.cwt", "Config/common/difficulty_settings.cwt"],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。",
+      "nativeAudit": ["Bookmark", "DifficultySetting"]
+    },
+    {
+      "id": "buildings",
+      "topic": "建筑",
+      "group": "内容定义",
+      "wiki": ["https://hoi4.paradoxwikis.com/Building_modding"],
+      "nativePaths": ["common/buildings/*"],
+      "level": "schema",
+      "api": ["krieg-lang/hoi4:Building", "krieg-lang/hoi4:SpawnPoint"],
+      "guide": "content-domains.md",
+      "ruleSources": ["Config/common/buildings.cwt"],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。",
+      "nativeAudit": ["Building", "SpawnPoint"]
+    },
+    {
+      "id": "characters",
+      "topic": "人物、顾问与特质",
+      "group": "内容定义",
+      "wiki": ["https://hoi4.paradoxwikis.com/Character_modding"],
+      "nativePaths": [
+        "common/characters/*",
+        "common/country_leader/*",
+        "common/unit_leader/*",
+        "common/scientist_traits/*",
+        "common/unit_medals/*"
+      ],
+      "level": "schema",
+      "api": [
+        "krieg-lang/hoi4:Character",
+        "krieg-lang/hoi4:CountryLeaderTrait",
+        "krieg-lang/hoi4:UnitLeaderTrait",
+        "krieg-lang/hoi4:ScientistTrait",
+        "krieg-lang/hoi4:UnitMedal"
+      ],
+      "guide": "content-domains.md",
+      "ruleSources": [
+        "Config/common/characters.cwt",
+        "Config/common/traits.cwt",
+        "Config/common/unit_medals.cwt"
+      ],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。",
+      "nativeAudit": [
+        "Character",
+        "CountryLeaderTrait",
+        "UnitLeaderTrait",
+        "ScientistTrait",
+        "UnitMedal"
+      ]
+    },
+    {
+      "id": "cosmetic-tags",
+      "topic": "外观国家标签",
+      "group": "内容定义",
+      "wiki": ["https://hoi4.paradoxwikis.com/Cosmetic_tag_modding"],
+      "nativePaths": ["localisation/*/*.yml", "gfx/flags/", "common/countries/colors.txt"],
+      "level": "native-asset",
+      "api": ["krieg-lang/hoi4:CountryEffects", "krieg-lang/project:buildProject"],
+      "guide": "content-domains.md",
+      "ruleSources": ["Config/common/countries.cwt"],
+      "tests": [
+        {
+          "file": "tests/corpus-compiler.test.mjs",
+          "test": "isolated full TypeScript compiler preserves native ordered constructs"
+        }
+      ],
+      "boundary": "set_cosmetic_tag 等原生命令配合本地化与旗帜资源工作流；不把任意颜色文件或有序数据包装声称为独立的全语义国家模型。"
+    },
+    {
+      "id": "divisions",
+      "topic": "师模板与开局军队",
+      "group": "内容定义",
+      "wiki": ["https://hoi4.paradoxwikis.com/Division_modding"],
+      "nativePaths": ["history/units/*", "common/units/names_divisions/*"],
+      "level": "schema",
+      "api": ["krieg-lang/hoi4:UnitHistory", "krieg-lang/hoi4:DivisionNames"],
+      "guide": "content-domains.md",
+      "ruleSources": ["Config/history/oobs.cwt", "Config/common/units.cwt"],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。",
+      "nativeAudit": ["UnitHistory", "DivisionNames"]
+    },
+    {
+      "id": "doctrines",
+      "topic": "学说",
+      "group": "内容定义",
+      "wiki": ["https://hoi4.paradoxwikis.com/Doctrine_modding"],
+      "nativePaths": [
+        "common/doctrines/folders/*",
+        "common/doctrines/grand_doctrines/*",
+        "common/doctrines/subdoctrines/*",
+        "common/doctrines/tracks/*"
+      ],
+      "level": "schema",
+      "api": [
+        "krieg-lang/hoi4:DoctrineFolder",
+        "krieg-lang/hoi4:GrandDoctrine",
+        "krieg-lang/hoi4:Subdoctrine",
+        "krieg-lang/hoi4:DoctrineTrack"
+      ],
+      "guide": "content-domains.md",
+      "ruleSources": [
+        "Config/common/doctrine_folders.cwt",
+        "Config/common/doctrine_grand_doctrines.cwt",
+        "Config/common/doctrine_subdoctrines.cwt",
+        "Config/common/doctrine_tracks.cwt"
+      ],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。",
+      "nativeAudit": ["DoctrineFolder", "GrandDoctrine", "Subdoctrine", "DoctrineTrack"]
+    },
+    {
+      "id": "equipment",
+      "topic": "装备、模块与装备组",
+      "group": "内容定义",
+      "wiki": ["https://hoi4.paradoxwikis.com/Equipment_modding"],
+      "nativePaths": [
+        "common/units/equipment/*",
+        "common/equipment_groups/*",
+        "common/units/equipment/upgrades/*",
+        "common/units/equipment/modules/*",
+        "common/units/critical_parts/*"
+      ],
+      "level": "schema",
+      "api": [
+        "krieg-lang/hoi4:Equipment",
+        "krieg-lang/hoi4:EquipmentGroup",
+        "krieg-lang/hoi4:EquipmentUpgrade",
+        "krieg-lang/hoi4:EquipmentModule",
+        "krieg-lang/hoi4:CriticalPart"
+      ],
+      "guide": "content-domains.md",
+      "ruleSources": ["Config/common/equipment.cwt", "Config/common/equipment_groups.cwt"],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。",
+      "nativeAudit": [
+        "Equipment",
+        "EquipmentGroup",
+        "EquipmentUpgrade",
+        "EquipmentModule",
+        "CriticalPart"
+      ]
+    },
+    {
+      "id": "factions",
+      "topic": "阵营定义与规则",
+      "group": "内容定义",
+      "wiki": ["https://hoi4.paradoxwikis.com/Faction_modding"],
+      "nativePaths": [
+        "common/factions/goals/*",
+        "common/factions/member_upgrades/*",
+        "common/factions/rules/*",
+        "common/factions/rules/groups/*",
+        "common/factions/templates/*",
+        "common/factions/upgrades/*"
+      ],
+      "level": "schema",
+      "api": [
+        "krieg-lang/hoi4:FactionGoal",
+        "krieg-lang/hoi4:FactionMemberUpgrade",
+        "krieg-lang/hoi4:FactionRule",
+        "krieg-lang/hoi4:FactionRuleGroup",
+        "krieg-lang/hoi4:FactionTemplate",
+        "krieg-lang/hoi4:FactionUpgrade"
+      ],
+      "guide": "content-domains.md",
+      "ruleSources": ["Config/common/factions.cwt"],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。",
+      "nativeAudit": [
+        "FactionGoal",
+        "FactionMemberUpgrade",
+        "FactionRule",
+        "FactionRuleGroup",
+        "FactionTemplate",
+        "FactionUpgrade"
+      ]
+    },
+    {
+      "id": "ideologies",
+      "topic": "意识形态",
+      "group": "内容定义",
+      "wiki": ["https://hoi4.paradoxwikis.com/Ideology_modding"],
+      "nativePaths": ["common/ideologies/*"],
+      "level": "schema",
+      "api": ["krieg-lang/hoi4:Ideology"],
+      "guide": "content-domains.md",
+      "ruleSources": ["Config/common/ideologies.cwt"],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。",
+      "nativeAudit": ["Ideology"]
+    },
+    {
+      "id": "intelligence",
+      "topic": "情报机构、行动与阶段",
+      "group": "内容定义",
+      "wiki": ["https://hoi4.paradoxwikis.com/Intelligence_agency_modding"],
+      "nativePaths": [
+        "common/intelligence_agencies/*",
+        "common/intelligence_agency_upgrades/*",
+        "common/operations/*",
+        "common/operation_phases/*",
+        "common/operation_tokens/*"
+      ],
+      "level": "schema",
+      "api": [
+        "krieg-lang/hoi4:IntelligenceAgency",
+        "krieg-lang/hoi4:IntelligenceAgencyUpgrade",
+        "krieg-lang/hoi4:Operation",
+        "krieg-lang/hoi4:OperationPhase",
+        "krieg-lang/hoi4:OperationToken"
+      ],
+      "guide": "content-domains.md",
+      "ruleSources": [
+        "Config/common/intelligence_agencies.cwt",
+        "Config/common/intelligence_agency_updates.cwt",
+        "Config/common/operations.cwt",
+        "Config/common/operation_phases.cwt",
+        "Config/common/operation_tokens.cwt"
+      ],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。",
+      "nativeAudit": [
+        "IntelligenceAgency",
+        "IntelligenceAgencyUpgrade",
+        "Operation",
+        "OperationPhase",
+        "OperationToken"
+      ]
+    },
+    {
+      "id": "mio",
+      "topic": "军工组织与政策",
+      "group": "内容定义",
+      "wiki": ["https://hoi4.paradoxwikis.com/Military_industrial_organization_modding"],
+      "nativePaths": [
+        "common/military_industrial_organization/organizations/*",
+        "common/military_industrial_organization/policies/*"
+      ],
+      "level": "schema",
+      "api": ["krieg-lang/hoi4:MilitaryIndustrialOrganization", "krieg-lang/hoi4:MioPolicy"],
+      "guide": "content-domains.md",
+      "ruleSources": [
+        "Config/common/military_industrial_organizations.cwt",
+        "Config/common/mio_policies.cwt"
+      ],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。",
+      "nativeAudit": ["MilitaryIndustrialOrganization", "MioPolicy"]
+    },
+    {
+      "id": "modifiers",
+      "topic": "静态、动态、意见与自定义修正",
+      "group": "内容定义",
+      "wiki": ["https://hoi4.paradoxwikis.com/Modifiers"],
+      "nativePaths": [
+        "common/dynamic_modifiers/*",
+        "common/modifiers/*",
+        "common/modifier_definitions/*",
+        "common/opinion_modifiers/*",
+        "common/resistance_compliance_modifiers/*",
+        "common/mtth/*"
+      ],
+      "level": "schema",
+      "api": [
+        "krieg-lang/hoi4:DynamicModifier",
+        "krieg-lang/hoi4:StaticModifier",
+        "krieg-lang/hoi4:ModifierDefinition",
+        "krieg-lang/hoi4:OpinionModifier",
+        "krieg-lang/hoi4:ResistanceComplianceModifier",
+        "krieg-lang/hoi4:MeanTimeToHappen"
+      ],
+      "guide": "content-domains.md",
+      "ruleSources": [
+        "Config/common/dynamic_modifiers.cwt",
+        "Config/common/static_modifiers.cwt",
+        "Config/common/modifier_definitions.cwt",
+        "Config/common/opinions.cwt",
+        "Config/common/resistance_compliance_modifiers.cwt",
+        "Config/common/mtth.cwt"
+      ],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。",
+      "nativeAudit": [
+        "DynamicModifier",
+        "StaticModifier",
+        "ModifierDefinition",
+        "OpinionModifier",
+        "ResistanceComplianceModifier",
+        "MeanTimeToHappen"
+      ]
+    },
+    {
+      "id": "namelists",
+      "topic": "姓名与单位命名表",
+      "group": "内容定义",
+      "wiki": ["https://hoi4.paradoxwikis.com/Namelist_modding"],
+      "nativePaths": ["common/units/names_divisions/*", "common/units/names_ships/*"],
+      "level": "schema",
+      "api": ["krieg-lang/hoi4:DivisionNames", "krieg-lang/hoi4:ShipNames"],
+      "guide": "content-domains.md",
+      "ruleSources": ["Config/common/units.cwt"],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。",
+      "nativeAudit": ["DivisionNames", "ShipNames"]
+    },
+    {
+      "id": "on-actions",
+      "topic": "On Actions",
+      "group": "内容定义",
+      "wiki": ["https://hoi4.paradoxwikis.com/On_actions"],
+      "nativePaths": ["common/on_actions/*"],
+      "level": "schema",
+      "api": ["krieg-lang/hoi4:OnAction"],
+      "guide": "content-domains.md",
+      "ruleSources": ["Config/on_actions.cwt"],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。",
+      "nativeAudit": ["OnAction"]
+    },
+    {
+      "id": "resources",
+      "topic": "资源定义",
+      "group": "内容定义",
+      "wiki": ["https://hoi4.paradoxwikis.com/Resources_modding"],
+      "nativePaths": ["common/resources/*"],
+      "level": "schema",
+      "api": ["krieg-lang/hoi4:Resource"],
+      "guide": "content-domains.md",
+      "ruleSources": ["Config/common/resources.cwt"],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。",
+      "nativeAudit": ["Resource"]
+    },
+    {
+      "id": "regions",
+      "topic": "战略区域与天气",
+      "group": "内容定义",
+      "wiki": ["https://hoi4.paradoxwikis.com/Strategic_region_modding"],
+      "nativePaths": ["map/strategicregions/*", "common/strategic_locations/*"],
+      "level": "schema",
+      "api": ["krieg-lang/hoi4:StrategicRegion", "krieg-lang/hoi4:StrategicLocation"],
+      "guide": "content-domains.md",
+      "ruleSources": ["Config/map/regions.cwt", "Config/common/strategic_locations.cwt"],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。",
+      "nativeAudit": ["StrategicRegion", "StrategicLocation"]
+    },
+    {
+      "id": "technology",
+      "topic": "科技与科技目录",
+      "group": "内容定义",
+      "wiki": ["https://hoi4.paradoxwikis.com/Technology_modding"],
+      "nativePaths": ["common/technologies/*", "common/technology_sharing/*"],
+      "level": "schema",
+      "api": ["krieg-lang/hoi4:Technology", "krieg-lang/hoi4:TechnologySharingGroup"],
+      "guide": "content-domains.md",
+      "ruleSources": ["Config/common/technologies.cwt"],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。",
+      "nativeAudit": ["Technology", "TechnologySharingGroup"]
+    },
+    {
+      "id": "units",
+      "topic": "作战单位、战术与能力",
+      "group": "内容定义",
+      "wiki": ["https://hoi4.paradoxwikis.com/Unit_modding"],
+      "nativePaths": ["common/units/*", "common/abilities/*", "common/*", "common/aces/*"],
+      "level": "schema",
+      "api": [
+        "krieg-lang/hoi4:Unit",
+        "krieg-lang/hoi4:Ability",
+        "krieg-lang/hoi4:CombatTactic",
+        "krieg-lang/hoi4:Ace"
+      ],
+      "guide": "content-domains.md",
+      "ruleSources": [
+        "Config/common/units.cwt",
+        "Config/common/abilities.cwt",
+        "Config/common/combat_tactics.cwt",
+        "Config/common/aces.cwt"
+      ],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。",
+      "nativeAudit": ["Unit", "Ability", "CombatTactic", "Ace"]
+    },
+    {
+      "id": "rules",
+      "topic": "游戏规则、占领法与战争目标",
+      "group": "内容定义",
+      "wiki": ["https://hoi4.paradoxwikis.com/Modding"],
+      "nativePaths": ["common/game_rules/*"],
+      "level": "schema",
+      "api": ["krieg-lang/hoi4:GameRule"],
+      "guide": "content-domains.md",
+      "ruleSources": ["Config/common/game_rules.cwt"],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。",
+      "nativeAudit": ["GameRule"]
+    },
+    {
+      "id": "special-projects",
+      "topic": "特殊项目与科学家特质",
+      "group": "内容定义",
+      "wiki": ["https://hoi4.paradoxwikis.com/Modding"],
+      "nativePaths": [
+        "common/special_projects/projects/*",
+        "common/special_projects/prototype_rewards/*",
+        "common/special_projects/specialization/*"
+      ],
+      "level": "schema",
+      "api": [
+        "krieg-lang/hoi4:SpecialProject",
+        "krieg-lang/hoi4:PrototypeReward",
+        "krieg-lang/hoi4:Specialization"
+      ],
+      "guide": "content-domains.md",
+      "ruleSources": ["Config/common/special_projects.cwt"],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。",
+      "nativeAudit": ["SpecialProject", "PrototypeReward", "Specialization"]
+    },
+    {
+      "id": "raids",
+      "topic": "突袭",
+      "group": "内容定义",
+      "wiki": ["https://hoi4.paradoxwikis.com/Modding"],
+      "nativePaths": ["common/raids/*", "common/raids/categories/*"],
+      "level": "schema",
+      "api": ["krieg-lang/hoi4:Raid", "krieg-lang/hoi4:RaidCategory"],
+      "guide": "content-domains.md",
+      "ruleSources": ["Config/common/raids.cwt"],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。",
+      "nativeAudit": ["Raid", "RaidCategory"]
+    },
+    {
+      "id": "peace",
+      "topic": "和平会议",
+      "group": "内容定义",
+      "wiki": ["https://hoi4.paradoxwikis.com/Modding"],
+      "nativePaths": [
+        "common/peace_conference/categories/*",
+        "common/peace_conference/ai_peace/*",
+        "common/peace_conference/cost_modifiers/*",
+        "common/wargoals/*",
+        "common/occupation_laws/*"
+      ],
+      "level": "schema",
+      "api": [
+        "krieg-lang/hoi4:PeaceActionCategory",
+        "krieg-lang/hoi4:PeaceAiDesire",
+        "krieg-lang/hoi4:PeaceActionModifier",
+        "krieg-lang/hoi4:Wargoal",
+        "krieg-lang/hoi4:OccupationLaw"
+      ],
+      "guide": "content-domains.md",
+      "ruleSources": [
+        "Config/common/peace_conference.cwt",
+        "Config/common/wargoals.cwt",
+        "Config/common/occupation_laws.cwt"
+      ],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。",
+      "nativeAudit": [
+        "PeaceActionCategory",
+        "PeaceAiDesire",
+        "PeaceActionModifier",
+        "Wargoal",
+        "OccupationLaw"
+      ]
+    },
+    {
+      "id": "collections",
+      "topic": "集合、评分器与战略位置",
+      "group": "内容定义",
+      "wiki": [
+        "https://hoi4.paradoxwikis.com/Modding",
+        "https://hoi4.paradoxwikis.com/Data_structures"
+      ],
+      "nativePaths": ["common/collections/*", "common/scorers/country/*"],
+      "level": "schema",
+      "api": ["krieg-lang/hoi4:Collection", "krieg-lang/hoi4:CountryScorer"],
+      "guide": "content-domains.md",
+      "ruleSources": ["Config/common/collections.cwt", "Config/common/scorers.cwt"],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。",
+      "nativeAudit": ["Collection", "CountryScorer"]
+    },
+    {
+      "id": "fonts",
+      "topic": "字体",
+      "group": "原生资源",
+      "wiki": ["https://hoi4.paradoxwikis.com/Font_modding"],
+      "nativePaths": ["interface/*"],
+      "level": "schema",
+      "api": ["krieg-lang/hoi4:BitmapFont"],
+      "guide": "assets.md",
+      "ruleSources": ["Config/interface/gfx.cwt"],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。 配套二进制资源按字节保留；不由规则校验器解码或渲染。",
+      "nativeAudit": ["BitmapFont"]
+    },
+    {
+      "id": "entities",
+      "topic": "模型、实体与动画",
+      "group": "原生资源",
+      "wiki": ["https://hoi4.paradoxwikis.com/Entity_modding"],
+      "nativePaths": ["gfx/*", "gfx/models/*"],
+      "level": "schema",
+      "api": [
+        "krieg-lang/hoi4:Mesh",
+        "krieg-lang/hoi4:Entity",
+        "krieg-lang/hoi4:ModelAnimation",
+        "krieg-lang/hoi4:Light"
+      ],
+      "guide": "assets.md",
+      "ruleSources": ["Config/gfx/model_entities.cwt", "Config/gfx/lights.cwt"],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。 配套二进制资源按字节保留；不由规则校验器解码或渲染。",
+      "nativeAudit": ["Mesh", "Entity", "ModelAnimation", "Light"]
+    },
+    {
+      "id": "particles",
+      "topic": "粒子",
+      "group": "原生资源",
+      "wiki": ["https://hoi4.paradoxwikis.com/Particle_modding"],
+      "nativePaths": ["gfx/models/*"],
+      "level": "schema",
+      "api": ["krieg-lang/hoi4:Particle", "krieg-lang/hoi4:PdxParticle"],
+      "guide": "assets.md",
+      "ruleSources": ["Config/gfx/particles.cwt"],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。 配套二进制资源按字节保留；不由规则校验器解码或渲染。",
+      "nativeAudit": ["Particle", "PdxParticle"]
+    },
+    {
+      "id": "portraits",
+      "topic": "人物肖像",
+      "group": "原生资源",
+      "wiki": ["https://hoi4.paradoxwikis.com/Portrait_modding"],
+      "nativePaths": ["portraits/*"],
+      "level": "schema",
+      "api": ["krieg-lang/hoi4:Portrait"],
+      "guide": "assets.md",
+      "ruleSources": ["Config/portraits.cwt"],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。 配套二进制资源按字节保留；不由规则校验器解码或渲染。",
+      "nativeAudit": ["Portrait"]
+    },
+    {
+      "id": "posteffects",
+      "topic": "后处理与 shader",
+      "group": "原生资源",
+      "wiki": ["https://hoi4.paradoxwikis.com/Posteffect_modding"],
+      "nativePaths": ["gfx/FX/", "gfx/map/"],
+      "level": "native-asset",
+      "api": ["krieg-lang/project:buildProject", "krieg-lang/project:AssetRule"],
+      "guide": "assets.md",
+      "ruleSources": [],
+      "tests": [
+        {
+          "file": "tests/project.test.mjs",
+          "test": "ordinary assets preserve bytes; duplicate destinations fail"
+        }
+      ],
+      "boundary": "文件按字节保留；已识别的图片/音频头部和文件引用受检查，其他二进制、Lua 或 shader 内容不由 TypeScript 编译器执行或验证。"
+    },
+    {
+      "id": "music",
+      "topic": "音乐与电台",
+      "group": "原生资源",
+      "wiki": ["https://hoi4.paradoxwikis.com/Music_modding"],
+      "nativePaths": ["music/*"],
+      "level": "schema",
+      "api": ["krieg-lang/hoi4:MusicAsset", "krieg-lang/hoi4:MusicPlaylistEntry"],
+      "guide": "assets.md",
+      "ruleSources": ["Config/music.cwt"],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。 配套二进制资源按字节保留；不由规则校验器解码或渲染。",
+      "nativeAudit": ["MusicAsset", "MusicPlaylistEntry"]
+    },
+    {
+      "id": "sound",
+      "topic": "音效",
+      "group": "原生资源",
+      "wiki": ["https://hoi4.paradoxwikis.com/Sound_modding"],
+      "nativePaths": ["sound/*"],
+      "level": "schema",
+      "api": [
+        "krieg-lang/hoi4:SoundAsset",
+        "krieg-lang/hoi4:SoundEffect",
+        "krieg-lang/hoi4:SoundCategory"
+      ],
+      "guide": "assets.md",
+      "ruleSources": ["Config/sound.cwt"],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。 配套二进制资源按字节保留；不由规则校验器解码或渲染。",
+      "nativeAudit": ["SoundAsset", "SoundEffect", "SoundCategory"]
+    },
+    {
+      "id": "defines",
+      "topic": "Lua Defines",
+      "group": "原生资源",
+      "wiki": ["https://hoi4.paradoxwikis.com/Defines"],
+      "nativePaths": ["common/defines/*.lua"],
+      "level": "semantic",
+      "api": [
+        "krieg-lang/hoi4:Defines",
+        "krieg-lang/hoi4:DefineFile",
+        "krieg-lang/hoi4:DefineOverrides"
+      ],
+      "guide": "assets.md",
+      "ruleSources": [],
+      "tests": [
+        {
+          "file": "tests/defines.test.mjs",
+          "test": "defines emit real Lua assignments with independent Lua 5.1 syntax validation"
+        },
+        {
+          "file": "tests/defines.test.mjs",
+          "test": "defines preserve each native root and reject invalid keys, value types and paths"
+        }
+      ],
+      "boundary": "静态生成真实 Lua，检查三个原生根、命名空间、已知键和值类型；不执行 Lua，不复制原版默认值，不证明平衡值的游戏效果。"
+    },
+    {
+      "id": "terrain",
+      "topic": "地形、河流、树木与地图纹理",
+      "group": "原生资源",
+      "wiki": ["https://hoi4.paradoxwikis.com/Map_modding"],
+      "nativePaths": ["common/terrain/*"],
+      "level": "schema",
+      "api": ["krieg-lang/hoi4:Terrain", "krieg-lang/hoi4:GraphicalTerrain"],
+      "guide": "assets.md",
+      "ruleSources": ["Config/common/terrain.cwt"],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "命名构造器检查 CWT 投射字段、原生包裹层、已建模基数与回调作用域；引用、子型组合及版本条件需原生校验，游戏行为尚未实测。",
+      "nativeAudit": ["Terrain", "GraphicalTerrain"]
+    },
+    {
+      "id": "legacy-supply",
+      "topic": "旧版补给区域",
+      "group": "工具与边界",
+      "wiki": ["https://hoi4.paradoxwikis.com/Supply_areas_modding"],
+      "nativePaths": ["map/supplyareas/"],
+      "level": "version-conditional",
+      "api": ["krieg-lang/hoi4:SupplyArea"],
+      "guide": "countries-maps.md",
+      "ruleSources": [],
+      "tests": [
+        {
+          "file": "tests/native-domains.test.mjs",
+          "test": "every native domain constructor checks its projected schema and emits its registered native path and wrapper"
+        },
+        {
+          "file": "tests/native-domain-audit.test.mjs",
+          "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        }
+      ],
+      "boundary": "旧版 SupplyArea 有结构化原生入口，保留给版本适配；现代铁路/补给节点工作流不能由旧 supplyareas 替代。",
+      "nativeAudit": ["SupplyArea"]
+    },
+    {
+      "id": "console",
+      "topic": "控制台与调试命令",
+      "group": "工具与边界",
+      "wiki": ["https://hoi4.paradoxwikis.com/Console_commands"],
+      "nativePaths": [],
+      "level": "hardcoded",
+      "api": [],
+      "guide": "validation.md",
+      "ruleSources": [],
+      "tests": [],
+      "boundary": "控制台是游戏进程的调试界面，不是要编译到模组中的定义；Krieg 不实现或调用游戏控制台。"
+    },
+    {
+      "id": "troubleshooting",
+      "topic": "游戏日志与排错",
+      "group": "工具与边界",
+      "wiki": ["https://hoi4.paradoxwikis.com/Troubleshooting"],
+      "nativePaths": ["logs/error.log"],
+      "level": "not-applicable",
+      "api": [],
+      "guide": "validation.md",
+      "ruleSources": [],
+      "tests": [],
+      "boundary": "Krieg 提供构建诊断与本地语料检查；游戏加载、事件触发、渲染与玩法仍由目标安装和日志验证。"
+    }
+  ]
+}

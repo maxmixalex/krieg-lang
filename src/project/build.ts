@@ -1,3 +1,4 @@
+import { VERSION } from "../version.js";
 import { createHash, randomUUID } from "node:crypto";
 import {
   existsSync,
@@ -10,13 +11,15 @@ import {
 } from "node:fs";
 import { basename, dirname, relative, resolve } from "node:path";
 import { compileProjectChunks } from "./compilation.js";
-import { comparePdxSemantic, emitPdx, parsePdx } from "../pdx/index.js";
+import { emitCompileOutput } from "../compiler/index.js";
+import { comparePdxSemantic, parsePdx } from "../pdx/index.js";
 import { classifyCorpusPath, decodeCorpusText } from "../corpus/index.js";
 import { loadConfig } from "./config.js";
 import { resolveDependencies } from "./dependencies.js";
 import { collectAssets, validateAsset } from "./assets.js";
-import { localisationFiles } from "./localisation.js";
+import { localisationFiles, validateLocalisation } from "./localisation.js";
 import { createWorld } from "./world.js";
+import { validateCountries } from "./countries.js";
 import { validateFileReferences, validateMap } from "./map.js";
 import { gamePath, safeChild, slash, walkFiles } from "./files.js";
 import type {
@@ -25,6 +28,7 @@ import type {
   ModMetadata,
   OutputFile,
   ProjectDiagnostic,
+  ProjectOptions,
 } from "./types.js";
 
 export function descriptor(mod: ModMetadata, launcherPath?: string): string {
@@ -44,7 +48,10 @@ export function descriptor(mod: ModMetadata, launcherPath?: string): string {
   return lines.join("\n") + "\n";
 }
 
-export function buildProject(project = ".", options: { check?: boolean } = {}): BuildResult {
+export function buildProject(
+  project = ".",
+  options: ProjectOptions & { check?: boolean } = {},
+): BuildResult {
   const diagnostics: ProjectDiagnostic[] = [];
   let config: KriegConfig | undefined;
   const result: BuildResult = {
@@ -55,7 +62,7 @@ export function buildProject(project = ".", options: { check?: boolean } = {}): 
     world: { countries: 0, states: 0, assets: 0 },
   };
   try {
-    config = loadConfig(project);
+    config = loadConfig(project, options);
     result.outDir = safeChild(config.rootDir, config.outDir);
     const graph = resolveDependencies(config);
     const effectiveMod: ModMetadata = {
@@ -125,7 +132,7 @@ export function buildProject(project = ".", options: { check?: boolean } = {}): 
         add(file, "override" in file && file.override === true);
       }
       const entries = walkFiles(safeChild(layer.config.rootDir, layer.config.sourceDir)).filter(
-        (path) => path.endsWith(".krg.ts"),
+        (path) => /\.krg\.tsx?$/.test(path),
       );
       for (const compiled of compileProjectChunks({
         rootDir: config.rootDir,
@@ -139,31 +146,42 @@ export function buildProject(project = ".", options: { check?: boolean } = {}): 
           const path = gamePath(file.path);
           if (path === "descriptor.mod" || path === ".krieg-build.json")
             throw new Error(`Source cannot replace compiler-owned metadata ${path}.`);
-          const text = emitPdx(file.document);
-          const parsed = parsePdx(text, { sourceName: file.sourceFile });
-          for (const d of parsed.diagnostics)
-            diagnostics.push({
-              code: d.code,
-              severity: d.severity,
-              message: d.message,
-              file: file.sourceFile,
-              line: d.span.line,
-              column: d.span.column,
-            });
-          if (!comparePdxSemantic(file.document, parsed.document))
-            diagnostics.push({
-              code: "KRG_EMIT_SEMANTICS",
-              severity: "error",
-              file: file.sourceFile,
-              message: `Emitting ${path} changes its ordered syntax tree; use valid atoms and escaped strings.`,
-            });
+          const text = emitCompileOutput(file);
+          if (file.format === "pdx") {
+            const parsed = parsePdx(text, { sourceName: file.sourceFile });
+            for (const d of parsed.diagnostics)
+              diagnostics.push({
+                code: d.code,
+                severity: d.severity,
+                message: d.message,
+                file: file.sourceFile,
+                line: d.span.line,
+                column: d.span.column,
+              });
+            if (!comparePdxSemantic(file.document, parsed.document))
+              diagnostics.push({
+                code: "KRG_EMIT_SEMANTICS",
+                severity: "error",
+                file: file.sourceFile,
+                message: `Emitting ${path} changes its ordered syntax tree; use valid atoms and escaped strings.`,
+              });
+          }
           add({ path, bytes: Buffer.from(text, "utf8"), source: file.sourceFile, kind: "script" });
         }
       }
     }
     for (const [path, file] of output)
       world.effectiveFiles.set(path, { source: file.source, bytes: file.bytes });
-    diagnostics.push(...validateMap(world.effectiveFiles));
+    diagnostics.push(...validateLocalisation(output.values()));
+    diagnostics.push(...validateMap(world.effectiveFiles, new Set(output.keys())));
+    diagnostics.push(
+      ...validateCountries(
+        world.effectiveFiles,
+        new Set(output.keys()),
+        world,
+        config.gameRoots.length > 0,
+      ),
+    );
     if (config.strictAssets)
       diagnostics.push(
         ...validateFileReferences(
@@ -247,7 +265,7 @@ function writeBuild(
         {
           format: 1,
           name: config.name,
-          compiler: "krieg-lang@0.1.0",
+          compiler: `krieg-lang@${VERSION}`,
           files: manifest,
           sources: files.map((f) => ({
             path: f.path,

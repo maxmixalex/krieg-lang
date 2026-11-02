@@ -51,9 +51,50 @@ export function resolveDependencies(config: KriegConfig): DependencyGraph {
     for (const spec of specs) {
       let dependency: KriegConfig;
       let dependencyName: string | undefined;
-      if (spec.startsWith(".") || isAbsolute(spec))
+      if (spec.startsWith(".") || isAbsolute(spec)) {
         dependency = loadConfig(resolve(current.rootDir, spec));
-      else {
+        // A local source package exposes the same public imports as its npm installation.
+        const manifest = resolve(dependency.rootDir, "package.json");
+        if (existsSync(manifest)) {
+          const pkg = readJson(manifest);
+          const metadata = pkg.krieg;
+          if (
+            typeof pkg.name === "string" &&
+            metadata &&
+            typeof metadata === "object" &&
+            !Array.isArray(metadata)
+          ) {
+            const entries = (metadata as Record<string, unknown>).exports;
+            if (entries !== undefined) {
+              if (!entries || typeof entries !== "object" || Array.isArray(entries))
+                throw new Error(
+                  `${pkg.name}.krieg.exports must map module paths to .krg.ts or .krg.tsx sources.`,
+                );
+              const packageDirectory = realpathSync(dependency.rootDir);
+              const previous = versions.get(pkg.name);
+              if (previous && previous !== packageDirectory)
+                throw new Error(
+                  `Two source copies of ${pkg.name} would share generated game symbols. Deduplicate or alias the package.`,
+                );
+              versions.set(pkg.name, packageDirectory);
+              for (const [subpath, value] of Object.entries(entries)) {
+                if (
+                  typeof value !== "string" ||
+                  !/\.krg\.tsx?$/.test(value) ||
+                  (subpath !== "." && !subpath.startsWith("./"))
+                )
+                  throw new Error(`Invalid Krieg export ${pkg.name}/${subpath}.`);
+                const name = subpath === "." ? pkg.name : pkg.name + subpath.slice(1);
+                const file = realpathSync(safeChild(dependency.rootDir, value));
+                if (moduleFiles[name] && moduleFiles[name] !== file)
+                  throw new Error(`Two source packages expose the same Krieg import ${name}.`);
+                moduleFiles[name] = file;
+              }
+              dependencyName = pkg.name;
+            }
+          }
+        }
+      } else {
         const root = packageRoot(spec, current.rootDir);
         const pkg = readJson(resolve(root, "package.json"));
         const previous = versions.get(spec);
@@ -77,14 +118,16 @@ export function resolveDependencies(config: KriegConfig): DependencyGraph {
           configFile = (data.config as string) ?? configFile;
           if (data.exports !== undefined) {
             if (!data.exports || typeof data.exports !== "object" || Array.isArray(data.exports))
-              throw new Error(`${spec}.krieg.exports must map module paths to .krg.ts sources.`);
+              throw new Error(
+                `${spec}.krieg.exports must map module paths to .krg.ts or .krg.tsx sources.`,
+              );
             exports = data.exports as Record<string, unknown>;
           }
         } else throw new Error(`Invalid krieg metadata in ${spec}.`);
         for (const [subpath, value] of Object.entries(exports)) {
           if (
             typeof value !== "string" ||
-            !value.endsWith(".krg.ts") ||
+            !/\.krg\.tsx?$/.test(value) ||
             (subpath !== "." && !subpath.startsWith("./"))
           )
             throw new Error(`Invalid Krieg export ${spec}/${subpath}.`);

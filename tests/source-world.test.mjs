@@ -195,3 +195,33 @@ test("source-derived world files obey dependency load order and exact replacePat
   );
   assert.deepEqual(writeEditorProject(root).states, [1, 3]);
 });
+
+test("CountryDefinition metadata is discovered through genuine aliases in TSX before world type checking", (t) => {
+  const root = fixture(t);
+  write(
+    root,
+    "src/country.krg.tsx",
+    `
+    import { CountryDefinition as Nation } from "krieg-lang/hoi4";
+    const tag = "KRG";
+    export const nation = Nation({ id: tag, graphicalCulture: "western_european_gfx", color: [24, 62, 105] });
+  `,
+  );
+  write(
+    root,
+    "src/main.krg.ts",
+    `
+    import { ScriptedTrigger, type CountryScope } from "krieg-lang/hoi4";
+    import { countries } from "@project/countries";
+    export const owned = ScriptedTrigger("owned_by_declared_country", (country: CountryScope) => country.triggers.tag(countries.KRG));
+  `,
+  );
+  assert.deepEqual(writeEditorProject(root).countries, ["KRG"]);
+  const result = buildProject(root);
+  assert.equal(result.success, true, JSON.stringify(result.diagnostics));
+  assert.ok(result.files.some((file) => file.path === "common/country_tags/krieg_KRG.txt"));
+  assert.match(
+    readFileSync(join(result.outDir, "common/countries/krieg_KRG.txt"), "utf8"),
+    /color = rgb \{/,
+  );
+});

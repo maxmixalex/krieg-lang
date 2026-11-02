@@ -1,0 +1,2471 @@
+{
+  "formatVersion": 1,
+  "engineValidation": "not-run",
+  "note": "The compiler contract is covered for every constructor. Each external status describes one original authored sample plus a deliberately invalid native probe, not exhaustive API semantics or game execution. 107 samples pass the uploaded original CWTools rules; four require the explicitly documented temporary rule corrections in the linked independent report.",
+  "domains": {
+    "Ability": {
+      "folder": "common/abilities",
+      "schemaSource": "common/abilities.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.Ability",
+        "fixture": "tests/fixtures/native-domains/Ability.krg.ts",
+        "fixtureSha256": "195a938dfeb7b0f8e7eeea0736afebc4f107481b9cf43e3a7b28c4d0f4b6bdf3",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "Ace": {
+      "folder": "common/aces",
+      "schemaSource": "common/aces.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.Ace",
+        "fixture": "tests/fixtures/native-domains/Ace.krg.ts",
+        "fixtureSha256": "a3c53f3d718dfd4eeae77a4740ad5dd0856aa15552fc1f267efb72a460aa6ef9",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "Achievement": {
+      "folder": "common/achievements",
+      "schemaSource": "common/achievements.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.Achievement",
+        "fixture": "tests/fixtures/native-domains/Achievement.krg.ts",
+        "fixtureSha256": "138adfa03f302186e6536dc63a676a1a350948b9c786a164c05dff907b2fd0d3",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "AiStrategy": {
+      "folder": "common/ai_strategy",
+      "schemaSource": "common/ai_strategy.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.AiStrategy",
+        "fixture": "tests/fixtures/native-domains/AiStrategy.krg.ts",
+        "fixtureSha256": "3aaf8c92921fb061148d0c716b1bcaddf8ea17f6d3be0a5f5be24b935cb3f1c5",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "AiStrategyPlan": {
+      "folder": "common/ai_strategy_plans",
+      "schemaSource": "common/ai_strategy.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.AiStrategyPlan",
+        "fixture": "tests/fixtures/native-domains/AiStrategyPlan.krg.ts",
+        "fixtureSha256": "28f186fe802e001db3bb647588b95ba5eb2f20aa151c3aa5734e26b6f094d706",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "AutonomyState": {
+      "folder": "common/autonomous_states",
+      "schemaSource": "common/autonomous_states.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.AutonomyState",
+        "fixture": "tests/fixtures/native-domains/AutonomyState.krg.ts",
+        "fixtureSha256": "b8b73ef42152bf6f67d6065840fa8f84a030b0b34efdde6253b2d8f01cfb8aa2",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "Bookmark": {
+      "folder": "common/bookmarks",
+      "schemaSource": "common/bookmarks.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.Bookmark",
+        "fixture": "tests/fixtures/native-domains/Bookmark.krg.ts",
+        "fixtureSha256": "f445d194113dbf0a3e1d623f82f988c7fc716653e0b8407024890b4ed1426561",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "BalanceOfPower": {
+      "folder": "common/bop",
+      "schemaSource": "common/bop.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.BalanceOfPower",
+        "fixture": "tests/fixtures/native-domains/BalanceOfPower.krg.ts",
+        "fixtureSha256": "4cd08068cfd7fbb6e8301bd191ab4e96af89aa6d1d93a7a41deed0521a4a569b",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "Building": {
+      "folder": "common/buildings",
+      "schemaSource": "common/buildings.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.Building",
+        "fixture": "tests/fixtures/native-domains/Building.krg.ts",
+        "fixtureSha256": "8d19d10f6169c51bcc23cd5e84eafddfbc02a1d1e0423b20f63c876812fee759",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "SpawnPoint": {
+      "folder": "common/buildings",
+      "schemaSource": "common/buildings.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.SpawnPoint",
+        "fixture": "tests/fixtures/native-domains/SpawnPoint.krg.ts",
+        "fixtureSha256": "4325d62f6304f25946d0aadcb6cb3059e959f9084217b7d1a6596f7f142122df",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "Character": {
+      "folder": "common/characters",
+      "schemaSource": "common/characters.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.Character",
+        "fixture": "tests/fixtures/native-domains/Character.krg.ts",
+        "fixtureSha256": "5d418b78cdb8e10bd9590987b1d32062410a0fc6bddfcdefec9fd0e6b59e35d7",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "Collection": {
+      "folder": "common/collections",
+      "schemaSource": "common/collections.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.Collection",
+        "fixture": "tests/fixtures/native-domains/Collection.krg.ts",
+        "fixtureSha256": "4a709ba9a55631cf7a463a3b10f4c7d17a11aa80ac5d4c152046665e461d5451",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "CombatTactic": {
+      "folder": "common",
+      "schemaSource": "common/combat_tactics.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.CombatTactic",
+        "fixture": "tests/fixtures/native-domains/CombatTactic.krg.ts",
+        "fixtureSha256": "2c30ae6559ad554647ed0c9649f308e75fdb451bea203c89304852097898ca1b",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "AiArea": {
+      "folder": "common/ai_areas",
+      "schemaSource": "common/consolidated_ai.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.AiArea",
+        "fixture": "tests/fixtures/native-domains/AiArea.krg.ts",
+        "fixtureSha256": "e9bc943762b263806bc6a485e71b50e6e5f3d1930bf249649d5008c4a1059f82",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "AiFocus": {
+      "folder": "common/ai_focuses",
+      "schemaSource": "common/consolidated_ai.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.AiFocus",
+        "fixture": "tests/fixtures/native-domains/AiFocus.krg.ts",
+        "fixtureSha256": "6341df3e15165a44e05630c023b66444aaf0d121c83020a01048449cc814f116",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "AiPeace": {
+      "folder": "common/ai_peace",
+      "schemaSource": "common/consolidated_ai.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.AiPeace",
+        "fixture": "tests/fixtures/native-domains/AiPeace.krg.ts",
+        "fixtureSha256": "a1d2c0c285ab3e9e829aa029895cb6f8e906800c4563db3d615db73a4b21c439",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "AiTemplate": {
+      "folder": "common/ai_templates",
+      "schemaSource": "common/consolidated_ai.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.AiTemplate",
+        "fixture": "tests/fixtures/native-domains/AiTemplate.krg.ts",
+        "fixtureSha256": "b4cdbb7d3d41efc12c1ba670ba5d7a633c07face5ecc4f833c88d6402fdf383e",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "AiEquipmentDesignGroup": {
+      "folder": "common/ai_equipment",
+      "schemaSource": "common/consolidated_ai.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.AiEquipmentDesignGroup",
+        "fixture": "tests/fixtures/native-domains/AiEquipmentDesignGroup.krg.ts",
+        "fixtureSha256": "9ad15338842953a6dc929ea8a321108b606d74a211bbe50c1cc193ea605447a2",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "AiFactionTheater": {
+      "folder": "common/ai_faction_theaters",
+      "schemaSource": "common/consolidated_ai.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.AiFactionTheater",
+        "fixture": "tests/fixtures/native-domains/AiFactionTheater.krg.ts",
+        "fixtureSha256": "88370ca18a0eff14aab53266ff1839e2adff103d939253ed0453655e49cf9990",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "CountryDefinition": {
+      "folder": "common/countries",
+      "schemaSource": "common/countries.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.CountryDefinition",
+        "fixture": "tests/fixtures/native-domains/CountryDefinition.krg.ts",
+        "fixtureSha256": "ba91ba0ad2cd21b2b43ed324c6d99a79c22da1980c4bd9140ddcd0f25d10c6c4",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "CountryTagAlias": {
+      "folder": "common/country_tag_aliases",
+      "schemaSource": "common/country_tag_aliases.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.CountryTagAlias",
+        "fixture": "tests/fixtures/native-domains/CountryTagAlias.krg.ts",
+        "fixtureSha256": "b0a09f8bf3f21470116c69cc3af987659030ae3be72f038d8cc9c7af8665969b",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "DifficultySetting": {
+      "folder": "common/difficulty_settings",
+      "schemaSource": "common/difficulty_settings.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.DifficultySetting",
+        "fixture": "tests/fixtures/native-domains/DifficultySetting.krg.ts",
+        "fixtureSha256": "ce615e192030caa33666237b47e6ffd583eafa304b50773afdf4d40ada7d5c63",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "DoctrineFolder": {
+      "folder": "common/doctrines/folders",
+      "schemaSource": "common/doctrine_folders.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.DoctrineFolder",
+        "fixture": "tests/fixtures/native-domains/DoctrineFolder.krg.ts",
+        "fixtureSha256": "2bfb7bad7c7790da8833b68088fab6174c797426217ff42297d19b95006fdcdb",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "GrandDoctrine": {
+      "folder": "common/doctrines/grand_doctrines",
+      "schemaSource": "common/doctrine_grand_doctrines.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.GrandDoctrine",
+        "fixture": "tests/fixtures/native-domains/GrandDoctrine.krg.ts",
+        "fixtureSha256": "5e9d3fc542e4f8218fe1aab414993059d34c99f43220c6fc80f79142f7a80e12",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "Subdoctrine": {
+      "folder": "common/doctrines/subdoctrines",
+      "schemaSource": "common/doctrine_subdoctrines.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.Subdoctrine",
+        "fixture": "tests/fixtures/native-domains/Subdoctrine.krg.ts",
+        "fixtureSha256": "f07034cd03e051bf62280b99bf4469fe2a9099cd71a818ce88a1b7808d998098",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "DoctrineTrack": {
+      "folder": "common/doctrines/tracks",
+      "schemaSource": "common/doctrine_tracks.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.DoctrineTrack",
+        "fixture": "tests/fixtures/native-domains/DoctrineTrack.krg.ts",
+        "fixtureSha256": "4082b4fe486fdb2cc68a5d15ccb0546e0159e1b3a20d3b4801522e8ea5d34b3c",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "DynamicModifier": {
+      "folder": "common/dynamic_modifiers",
+      "schemaSource": "common/dynamic_modifiers.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.DynamicModifier",
+        "fixture": "tests/fixtures/native-domains/DynamicModifier.krg.ts",
+        "fixtureSha256": "3a83640f86682479dac97a61b752dfd532125072f245782b20e71fd2e8fb4e3a",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "EquipmentGroup": {
+      "folder": "common/equipment_groups",
+      "schemaSource": "common/equipment_groups.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.EquipmentGroup",
+        "fixture": "tests/fixtures/native-domains/EquipmentGroup.krg.ts",
+        "fixtureSha256": "7638c2e44ace64b6c3f7e72d73c947737c4c5396ad06278306c62cd273957f47",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "Equipment": {
+      "folder": "common/units/equipment",
+      "schemaSource": "common/equipment.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.Equipment",
+        "fixture": "tests/fixtures/native-domains/Equipment.krg.ts",
+        "fixtureSha256": "7031cedce73b28b58a037ba83d0e071c723c8f807d7b1076febf5614a478b09f",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "EquipmentUpgrade": {
+      "folder": "common/units/equipment/upgrades",
+      "schemaSource": "common/equipment.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.EquipmentUpgrade",
+        "fixture": "tests/fixtures/native-domains/EquipmentUpgrade.krg.ts",
+        "fixtureSha256": "eb70294b7111c58c30d1784430d560d14124709d5486b681e32df4efaf643b0f",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "EquipmentModule": {
+      "folder": "common/units/equipment/modules",
+      "schemaSource": "common/equipment.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.EquipmentModule",
+        "fixture": "tests/fixtures/native-domains/EquipmentModule.krg.ts",
+        "fixtureSha256": "bab9f94e810255ee6ef293789f7d6d20ce860842f21b53596a9c344187ecf669",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "CriticalPart": {
+      "folder": "common/units/critical_parts",
+      "schemaSource": "common/equipment.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.CriticalPart",
+        "fixture": "tests/fixtures/native-domains/CriticalPart.krg.ts",
+        "fixtureSha256": "e6c1e0f6a22a76f2cdc81f5eec49abc1ba5513b998d0cbe48454ba447f70031a",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "FactionGoal": {
+      "folder": "common/factions/goals",
+      "schemaSource": "common/factions.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.FactionGoal",
+        "fixture": "tests/fixtures/native-domains/FactionGoal.krg.ts",
+        "fixtureSha256": "73def304890b00623cff22b98ea50b806390265d382946a398b18f2fc88a97fd",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "FactionMemberUpgrade": {
+      "folder": "common/factions/member_upgrades",
+      "schemaSource": "common/factions.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.FactionMemberUpgrade",
+        "fixture": "tests/fixtures/native-domains/FactionMemberUpgrade.krg.ts",
+        "fixtureSha256": "a5e19c837d8d2f660dcc79c25b1d6e5f253b3cd1edc637e3e66fdf26a041105c",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "FactionRule": {
+      "folder": "common/factions/rules",
+      "schemaSource": "common/factions.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.FactionRule",
+        "fixture": "tests/fixtures/native-domains/FactionRule.krg.ts",
+        "fixtureSha256": "8a03d4fe81b3d7e6ef29ed09545afabb5d42a55fae11d7088354817451c3bb47",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "FactionRuleGroup": {
+      "folder": "common/factions/rules/groups",
+      "schemaSource": "common/factions.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.FactionRuleGroup",
+        "fixture": "tests/fixtures/native-domains/FactionRuleGroup.krg.ts",
+        "fixtureSha256": "7db9b74161695c4fee86afdac411afbbbe7850f3661b2d27dc4f3467db8e564c",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "FactionTemplate": {
+      "folder": "common/factions/templates",
+      "schemaSource": "common/factions.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.FactionTemplate",
+        "fixture": "tests/fixtures/native-domains/FactionTemplate.krg.ts",
+        "fixtureSha256": "7c605f48390d90457b1593bef81830eeecd3d747e1d05741a6433dd10e88b652",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "FactionUpgrade": {
+      "folder": "common/factions/upgrades",
+      "schemaSource": "common/factions.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.FactionUpgrade",
+        "fixture": "tests/fixtures/native-domains/FactionUpgrade.krg.ts",
+        "fixtureSha256": "fe59d47a91c32672be51f50e27b1394092fa61e61e21f31a7d530e6bcfe2b282",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "GameRule": {
+      "folder": "common/game_rules",
+      "schemaSource": "common/game_rules.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.GameRule",
+        "fixture": "tests/fixtures/native-domains/GameRule.krg.ts",
+        "fixtureSha256": "d476c169f1cf180c47b89bd50b7211da44655ab90e64a7b82d441eb9434d657f",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "IdeaCategory": {
+      "folder": "common/idea_tags",
+      "schemaSource": "common/idea_tags.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.IdeaCategory",
+        "fixture": "tests/fixtures/native-domains/IdeaCategory.krg.ts",
+        "fixtureSha256": "9177b6497ddc94df22e46b8642bb61129457c86ba5f88226d71ba09a76b23792",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "Ideology": {
+      "folder": "common/ideologies",
+      "schemaSource": "common/ideologies.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.Ideology",
+        "fixture": "tests/fixtures/native-domains/Ideology.krg.ts",
+        "fixtureSha256": "729fe36ca0730352e0a65b79bc52024ebc1b95aee0f726248440a05460191801",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "IntelligenceAgency": {
+      "folder": "common/intelligence_agencies",
+      "schemaSource": "common/intelligence_agencies.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.IntelligenceAgency",
+        "fixture": "tests/fixtures/native-domains/IntelligenceAgency.krg.ts",
+        "fixtureSha256": "b0e6659c220225a416582fb0592481b7db214c6c0c9859a595dd96a72d47a8b2",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "IntelligenceAgencyUpgrade": {
+      "folder": "common/intelligence_agency_upgrades",
+      "schemaSource": "common/intelligence_agency_updates.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.IntelligenceAgencyUpgrade",
+        "fixture": "tests/fixtures/native-domains/IntelligenceAgencyUpgrade.krg.ts",
+        "fixtureSha256": "f78add243faea705e0f03a9b70e8b7b588d54fde4995e6fbd2e78547c73e8175",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "ScriptedMapMode": {
+      "folder": "common/map_modes",
+      "schemaSource": "common/map_modes.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.ScriptedMapMode",
+        "fixture": "tests/fixtures/native-domains/ScriptedMapMode.krg.ts",
+        "fixtureSha256": "12b09cb65bfefe9635e196d6131815a83ef0014c57c663b36f33385c380237f6",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "MilitaryIndustrialOrganization": {
+      "folder": "common/military_industrial_organization/organizations",
+      "schemaSource": "common/military_industrial_organizations.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.MilitaryIndustrialOrganization",
+        "fixture": "tests/fixtures/native-domains/MilitaryIndustrialOrganization.krg.ts",
+        "fixtureSha256": "518022b51cad4310913eeedff10cd893bad2d84b48194212243bde0a0d3e1225",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "MioPolicy": {
+      "folder": "common/military_industrial_organization/policies",
+      "schemaSource": "common/mio_policies.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.MioPolicy",
+        "fixture": "tests/fixtures/native-domains/MioPolicy.krg.ts",
+        "fixtureSha256": "b76fb8fd22260b4c158ff28e516f23867e8eac53537be0c737783cda5c4e27e6",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "ModifierDefinition": {
+      "folder": "common/modifier_definitions",
+      "schemaSource": "common/modifier_definitions.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.ModifierDefinition",
+        "fixture": "tests/fixtures/native-domains/ModifierDefinition.krg.ts",
+        "fixtureSha256": "acc6634c2e41815aa99d9c87e6843d6fe42dab155046d9c9121b8bdd99c97c3c",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "MeanTimeToHappen": {
+      "folder": "common/mtth",
+      "schemaSource": "common/mtth.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.MeanTimeToHappen",
+        "fixture": "tests/fixtures/native-domains/MeanTimeToHappen.krg.ts",
+        "fixtureSha256": "57036b5aea529a5a2fe9c4b0e7d0af319f9733255a6a8047c48cec0ade106d4d",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "OccupationLaw": {
+      "folder": "common/occupation_laws",
+      "schemaSource": "common/occupation_laws.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.OccupationLaw",
+        "fixture": "tests/fixtures/native-domains/OccupationLaw.krg.ts",
+        "fixtureSha256": "534e0d5c3b3a0487eccb28627ee8e7a77e7d8971b56b97b63d340ae0d41d58ca",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "OperationPhase": {
+      "folder": "common/operation_phases",
+      "schemaSource": "common/operation_phases.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.OperationPhase",
+        "fixture": "tests/fixtures/native-domains/OperationPhase.krg.ts",
+        "fixtureSha256": "e48178725fc0bf266995af4af69eff4852a380b078275f6b3a4478757ead5fe8",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "OperationToken": {
+      "folder": "common/operation_tokens",
+      "schemaSource": "common/operation_tokens.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.OperationToken",
+        "fixture": "tests/fixtures/native-domains/OperationToken.krg.ts",
+        "fixtureSha256": "ef50f1a72e4819d886a9ddb434afd98519f937aae011a052f9b02ad3ec22b01f",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "Operation": {
+      "folder": "common/operations",
+      "schemaSource": "common/operations.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.Operation",
+        "fixture": "tests/fixtures/native-domains/Operation.krg.ts",
+        "fixtureSha256": "a700d724b430a9728f0bd27b3e4313d51e84c0fe9d4483e0a8b3d2e0bc78a284",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "OpinionModifier": {
+      "folder": "common/opinion_modifiers",
+      "schemaSource": "common/opinions.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.OpinionModifier",
+        "fixture": "tests/fixtures/native-domains/OpinionModifier.krg.ts",
+        "fixtureSha256": "2b398b92bdb81bece5a3322624c052dd0a962d5f5b76c592f356f81feb6b1f92",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "PeaceActionCategory": {
+      "folder": "common/peace_conference/categories",
+      "schemaSource": "common/peace_conference.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.PeaceActionCategory",
+        "fixture": "tests/fixtures/native-domains/PeaceActionCategory.krg.ts",
+        "fixtureSha256": "9098fdec4be485afddbc5dedaff481ac5ca05eb508861a14193f26c95c332ca1",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "PeaceAiDesire": {
+      "folder": "common/peace_conference/ai_peace",
+      "schemaSource": "common/peace_conference.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.PeaceAiDesire",
+        "fixture": "tests/fixtures/native-domains/PeaceAiDesire.krg.ts",
+        "fixtureSha256": "69f3da2ceb0b01a12cd41c79a11f0324c2121322f45e026df29a9f07e82c0970",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "PeaceActionModifier": {
+      "folder": "common/peace_conference/cost_modifiers",
+      "schemaSource": "common/peace_conference.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.PeaceActionModifier",
+        "fixture": "tests/fixtures/native-domains/PeaceActionModifier.krg.ts",
+        "fixtureSha256": "484f2ca4054c4d96874b19e8588fb24a91e9c80f97cab53a3560d6a0ccde7fa3",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "RaidCategory": {
+      "folder": "common/raids/categories",
+      "schemaSource": "common/raids.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.RaidCategory",
+        "fixture": "tests/fixtures/native-domains/RaidCategory.krg.ts",
+        "fixtureSha256": "8957024f14569d5d669982dba568e4af979937e7adec0a13fc5b40ba8ed73593",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "Raid": {
+      "folder": "common/raids",
+      "schemaSource": "common/raids.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.Raid",
+        "fixture": "tests/fixtures/native-domains/Raid.krg.ts",
+        "fixtureSha256": "5e33006cdc07fc9492ca01f5844c690d35d0caffc6f5ab7de7061974a3578678",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "ResistanceComplianceModifier": {
+      "folder": "common/resistance_compliance_modifiers",
+      "schemaSource": "common/resistance_compliance_modifiers.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.ResistanceComplianceModifier",
+        "fixture": "tests/fixtures/native-domains/ResistanceComplianceModifier.krg.ts",
+        "fixtureSha256": "bd92c1611d1bdd13cb298260fc8a15a5291e9b252d5a72b974cc6db232056cc4",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "Resource": {
+      "folder": "common/resources",
+      "schemaSource": "common/resources.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.Resource",
+        "fixture": "tests/fixtures/native-domains/Resource.krg.ts",
+        "fixtureSha256": "895f914885e217324c084ed6fc15885df329d5ead413a48ecb615249aa2d870e",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "CountryScorer": {
+      "folder": "common/scorers/country",
+      "schemaSource": "common/scorers.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.CountryScorer",
+        "fixture": "tests/fixtures/native-domains/CountryScorer.krg.ts",
+        "fixtureSha256": "6a15a3c51dc9276c83e6ff0b2338ffa8880e50cbf1a0bb9216e1358dc2815c5a",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "SpecialProject": {
+      "folder": "common/special_projects/projects",
+      "schemaSource": "common/special_projects.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.SpecialProject",
+        "fixture": "tests/fixtures/native-domains/SpecialProject.krg.ts",
+        "fixtureSha256": "b6757c4bda528f3465b04d5ab70ded42c275f01d05ad157271ff21cc052d01e7",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "PrototypeReward": {
+      "folder": "common/special_projects/prototype_rewards",
+      "schemaSource": "common/special_projects.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.PrototypeReward",
+        "fixture": "tests/fixtures/native-domains/PrototypeReward.krg.ts",
+        "fixtureSha256": "0e1907cb4146714a8a8f37c65ac3cd3f19e0a835cfe6fc679f35249026228b77",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "Specialization": {
+      "folder": "common/special_projects/specialization",
+      "schemaSource": "common/special_projects.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.Specialization",
+        "fixture": "tests/fixtures/native-domains/Specialization.krg.ts",
+        "fixtureSha256": "8d18b1ad46d7beec837ce9fad365d61fb46d6fb92608d0c25fbbff10e7387347",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "StaticModifier": {
+      "folder": "common/modifiers",
+      "schemaSource": "common/static_modifiers.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.StaticModifier",
+        "fixture": "tests/fixtures/native-domains/StaticModifier.krg.ts",
+        "fixtureSha256": "5e4e36bafa67ee3847d3bd0f3e1d8f04beababb4683b1d8acae73274d9d72256",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "StrategicLocation": {
+      "folder": "common/strategic_locations",
+      "schemaSource": "common/strategic_locations.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.StrategicLocation",
+        "fixture": "tests/fixtures/native-domains/StrategicLocation.krg.ts",
+        "fixtureSha256": "608e248fb6f87f67cdf6bc9cffa113f77e42cd28de1444ab4f6ded8fdc036a46",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "Technology": {
+      "folder": "common/technologies",
+      "schemaSource": "common/technologies.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.Technology",
+        "fixture": "tests/fixtures/native-domains/Technology.krg.ts",
+        "fixtureSha256": "0f931888ecbb22d4473bb55b95d4c187e53497eb5fac248b86a479e211057c6e",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "TechnologySharingGroup": {
+      "folder": "common/technology_sharing",
+      "schemaSource": "common/technologies.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.TechnologySharingGroup",
+        "fixture": "tests/fixtures/native-domains/TechnologySharingGroup.krg.ts",
+        "fixtureSha256": "84d87eee6db35e29154eb5603939e400e7ad58f0a953de224c705b2f3fe6ae76",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "Terrain": {
+      "folder": "common/terrain",
+      "schemaSource": "common/terrain.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.Terrain",
+        "fixture": "tests/fixtures/native-domains/Terrain.krg.ts",
+        "fixtureSha256": "9c3ea85c2d44c889668145dc28e0ef833ab105ff5cd1ec0170877b8017ac4b25",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "GraphicalTerrain": {
+      "folder": "common/terrain",
+      "schemaSource": "common/terrain.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.GraphicalTerrain",
+        "fixture": "tests/fixtures/native-domains/GraphicalTerrain.krg.ts",
+        "fixtureSha256": "e83cf34392864a1b61cf804a02c42a4b4e741ca6b1f3ab4d3fdf2292a85a3d78",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "CountryLeaderTrait": {
+      "folder": "common/country_leader",
+      "schemaSource": "common/traits.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.CountryLeaderTrait",
+        "fixture": "tests/fixtures/native-domains/CountryLeaderTrait.krg.ts",
+        "fixtureSha256": "b47a87007e9d98554bbf71261d76cb2ee16dfc7454d69f88eb0f910d563e860a",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "UnitLeaderTrait": {
+      "folder": "common/unit_leader",
+      "schemaSource": "common/traits.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.UnitLeaderTrait",
+        "fixture": "tests/fixtures/native-domains/UnitLeaderTrait.krg.ts",
+        "fixtureSha256": "b6609af9a70db8fb84b8b9789f778ca480a2a52d970d1516c4de7b1f94268788",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "ScientistTrait": {
+      "folder": "common/scientist_traits",
+      "schemaSource": "common/traits.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-with-documented-rule-corrections",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.ScientistTrait",
+        "fixture": "tests/fixtures/native-domains/ScientistTrait.krg.ts",
+        "fixtureSha256": "26e8c3e29d7d9b494320661dc26d5dd9ceb157f8cb6bb9f4bb3f42475054963b",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": false,
+        "ruleSet": "temporary-compatibility-copy",
+        "correctionReasons": [
+          "The supplied rules use a singular directory; the supplied native game uses the plural directory."
+        ]
+      }
+    },
+    "UnitMedal": {
+      "folder": "common/unit_medals",
+      "schemaSource": "common/unit_medals.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.UnitMedal",
+        "fixture": "tests/fixtures/native-domains/UnitMedal.krg.ts",
+        "fixtureSha256": "e25a70a910ca0918eccc1e81bd435e6f5f93bbad9e89a8a87ba34cd410b1b306",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "Unit": {
+      "folder": "common/units",
+      "schemaSource": "common/units.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.Unit",
+        "fixture": "tests/fixtures/native-domains/Unit.krg.ts",
+        "fixtureSha256": "22004a3db84f3a805c3a843271b58f4b3b79cd1bab2122c7952226c79b2dcd08",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "DivisionNames": {
+      "folder": "common/units/names_divisions",
+      "schemaSource": "common/units.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.DivisionNames",
+        "fixture": "tests/fixtures/native-domains/DivisionNames.krg.ts",
+        "fixtureSha256": "255ec28e820553edb9b18397c6d6af36a43b838f728ba5bddcf43305e1d8f504",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "ShipNames": {
+      "folder": "common/units/names_ships",
+      "schemaSource": "common/units.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.ShipNames",
+        "fixture": "tests/fixtures/native-domains/ShipNames.krg.ts",
+        "fixtureSha256": "687680e956c1c04932fb63318032bb2fec18117fb1eadf9759dc55b09429cb30",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "Wargoal": {
+      "folder": "common/wargoals",
+      "schemaSource": "common/wargoals.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.Wargoal",
+        "fixture": "tests/fixtures/native-domains/Wargoal.krg.ts",
+        "fixtureSha256": "710b46b39567a9bee3740ccb98fb7ee81fc9544c67340c11232926ea8d99550a",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "GraphicDatabase": {
+      "folder": "gfx/interface/equipmentdesigner/graphic_db",
+      "schemaSource": "gfx/graphic_db.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.GraphicDatabase",
+        "fixture": "tests/fixtures/native-domains/GraphicDatabase.krg.ts",
+        "fixtureSha256": "74c43bd195a14828d347750bddfeb892f5c543a3f163b2963de2b74f55394d2c",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "Light": {
+      "folder": "gfx/models",
+      "schemaSource": "gfx/lights.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.Light",
+        "fixture": "tests/fixtures/native-domains/Light.krg.ts",
+        "fixtureSha256": "f56fd5b32e0979edbd9feece9c26a6ad51dccef38c735760384be58410f7a6f5",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "Mesh": {
+      "folder": "gfx",
+      "schemaSource": "gfx/model_entities.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.Mesh",
+        "fixture": "tests/fixtures/native-domains/Mesh.krg.ts",
+        "fixtureSha256": "eba2d43e7739ee5b7ac9bffce5369c10719bfd2a7d796e1ba4ce18782b8a74e2",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "Entity": {
+      "folder": "gfx",
+      "schemaSource": "gfx/model_entities.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.Entity",
+        "fixture": "tests/fixtures/native-domains/Entity.krg.ts",
+        "fixtureSha256": "0a9a2b675200b43be5a2f2efce0f89ad9388b7149a5d34511433605053b910da",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "ModelAnimation": {
+      "folder": "gfx",
+      "schemaSource": "gfx/model_entities.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.ModelAnimation",
+        "fixture": "tests/fixtures/native-domains/ModelAnimation.krg.ts",
+        "fixtureSha256": "cac4b206f88b6b3d57d23b4fd0c5ebcc003fade40a5843aef167c2a5aeb2fb8b",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "PdxParticle": {
+      "folder": "gfx/models",
+      "schemaSource": "gfx/particles.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.PdxParticle",
+        "fixture": "tests/fixtures/native-domains/PdxParticle.krg.ts",
+        "fixtureSha256": "2aa95af60c2cef2da72562e458df8edbda22f718b20911bc98d41c69d5235800",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "Particle": {
+      "folder": "gfx/models",
+      "schemaSource": "gfx/particles.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.Particle",
+        "fixture": "tests/fixtures/native-domains/Particle.krg.ts",
+        "fixtureSha256": "737a425096b4302c72006327e6a11c5d07a47a46b4d01b2b02a98a7e72f8beb8",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "UnitHistory": {
+      "folder": "history/units",
+      "schemaSource": "history/oobs.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.UnitHistory",
+        "fixture": "tests/fixtures/native-domains/UnitHistory.krg.ts",
+        "fixtureSha256": "83214f4c3de3fa6aa1bf51d13003a0c6c9ec6e122be73acae7bddf7b305412b2",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "StateCategory": {
+      "folder": "common/state_category",
+      "schemaSource": "history/states.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.StateCategory",
+        "fixture": "tests/fixtures/native-domains/StateCategory.krg.ts",
+        "fixtureSha256": "051e4442bffbf6bd298506f81a5eaf2770251d6280f0e4d86f35da82fc5e00c9",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "BitmapFont": {
+      "folder": "interface",
+      "schemaSource": "interface/gfx.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.BitmapFont",
+        "fixture": "tests/fixtures/native-domains/BitmapFont.krg.ts",
+        "fixtureSha256": "88a413bc9a3ecc40c2c8564fb67ff85899ba795fae7d424c040caf28a60c3e59",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "AdjacencyRule": {
+      "folder": "map",
+      "schemaSource": "map/map_consolidated.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.AdjacencyRule",
+        "fixture": "tests/fixtures/native-domains/AdjacencyRule.krg.ts",
+        "fixtureSha256": "841a7a28781266bb8a3f2e66f595e70564f3b901e88975af9f911f553c532876",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "SupplyArea": {
+      "folder": "map/supplyareas",
+      "schemaSource": "map/regions.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.SupplyArea",
+        "fixture": "tests/fixtures/native-domains/SupplyArea.krg.ts",
+        "fixtureSha256": "1e065d819a4b717e0c3509e35d3524bd6f0213a9bd032efe184ffb9adacb8aa9",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "StrategicRegion": {
+      "folder": "map/strategicregions",
+      "schemaSource": "map/regions.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.StrategicRegion",
+        "fixture": "tests/fixtures/native-domains/StrategicRegion.krg.ts",
+        "fixtureSha256": "bd8b687e8f4bc3cb8b852474c9b737bb82cf935a2c2a2bf0fa93f9dd12ee9787",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "MusicPlaylistEntry": {
+      "folder": "music",
+      "schemaSource": "music.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.MusicPlaylistEntry",
+        "fixture": "tests/fixtures/native-domains/MusicPlaylistEntry.krg.ts",
+        "fixtureSha256": "61aa7845f190f42bb0fbca1352056a93abc5c9bb1665c5c46622f1c721e0021c",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "MusicAsset": {
+      "folder": "music",
+      "schemaSource": "music.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.MusicAsset",
+        "fixture": "tests/fixtures/native-domains/MusicAsset.krg.ts",
+        "fixtureSha256": "8f2c81fb3a68ab1e9db38fffb8c72a8c99442e7f28088d9384b87c688c9f3ae9",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "Portrait": {
+      "folder": "portraits",
+      "schemaSource": "portraits.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.Portrait",
+        "fixture": "tests/fixtures/native-domains/Portrait.krg.ts",
+        "fixtureSha256": "f28cdc9cf87b5eeac9b5297365ac6eb67480acbb440c90562b81aacf9293f0a7",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "SoundCategory": {
+      "folder": "sound",
+      "schemaSource": "sound.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.SoundCategory",
+        "fixture": "tests/fixtures/native-domains/SoundCategory.krg.ts",
+        "fixtureSha256": "017e95b2011b34b1d5e5a5af250c3c30941fb0d3dc469e24a5f676fad5d2c7e6",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "SoundEffect": {
+      "folder": "sound",
+      "schemaSource": "sound.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.SoundEffect",
+        "fixture": "tests/fixtures/native-domains/SoundEffect.krg.ts",
+        "fixtureSha256": "f80a8688a8ae837c50e071c9d2703ba31cfe9c65b307fc713cb080214976e089",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "SoundAsset": {
+      "folder": "sound",
+      "schemaSource": "sound.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.SoundAsset",
+        "fixture": "tests/fixtures/native-domains/SoundAsset.krg.ts",
+        "fixtureSha256": "32a2ac8d01742cde7c8ea87fc9ce767c7aa686fdf31ab0cb13dc49e74ede8e3c",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "OnAction": {
+      "folder": "common/on_actions",
+      "schemaSource": "on_actions.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-with-documented-rule-corrections",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.OnAction",
+        "fixture": "tests/fixtures/native-domains/OnAction.krg.ts",
+        "fixtureSha256": "80eac412c3595ddf3f6bddbd5e2df5b53d71c4e464b20f2d45685af169aab48d",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": false,
+        "ruleSet": "temporary-compatibility-copy",
+        "correctionReasons": [
+          "Align the generic type identifier with the fixed native on_actions root for cwtools 2.3.0; hook bodies are preserved.",
+          "Use the same aligned identifier for the existing rule body; no hook constraints are relaxed."
+        ]
+      }
+    },
+    "NativeCountryEvent": {
+      "folder": "events",
+      "schemaSource": "events.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.NativeCountryEvent",
+        "fixture": "tests/fixtures/native-domains/NativeCountryEvent.krg.ts",
+        "fixtureSha256": "93fb3a6c56d6e03c06fea7b46b08e9ab95006ea64faf68684dd01d5aa600a47a",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "NativeStateEvent": {
+      "folder": "events",
+      "schemaSource": "events.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.NativeStateEvent",
+        "fixture": "tests/fixtures/native-domains/NativeStateEvent.krg.ts",
+        "fixtureSha256": "2428f2dac90bd155b2f99a83db9b2e8f6981e91062a79589e235531f9d126c1d",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "NativeNewsEvent": {
+      "folder": "events",
+      "schemaSource": "events.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.NativeNewsEvent",
+        "fixture": "tests/fixtures/native-domains/NativeNewsEvent.krg.ts",
+        "fixtureSha256": "08204823161e6e2450927f118afe29cc483030a6b00471408cc4c6a5a7957d5f",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "NativeUnitLeaderEvent": {
+      "folder": "events",
+      "schemaSource": "events.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.NativeUnitLeaderEvent",
+        "fixture": "tests/fixtures/native-domains/NativeUnitLeaderEvent.krg.ts",
+        "fixtureSha256": "1abe9eabbf4d176a6897a4eb94fc8a69bb7840e30ce72e881e35a6ea3b35386f",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "NativeOperativeEvent": {
+      "folder": "events",
+      "schemaSource": "events.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.NativeOperativeEvent",
+        "fixture": "tests/fixtures/native-domains/NativeOperativeEvent.krg.ts",
+        "fixtureSha256": "83e553c5bd4f5334ce1565f03e0080f43b5f01dea78aefb0f8e10d2a40c2d252",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "NativeFocusTree": {
+      "folder": "common/national_focus",
+      "schemaSource": "common/national_focus.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.NativeFocusTree",
+        "fixture": "tests/fixtures/native-domains/NativeFocusTree.krg.ts",
+        "fixtureSha256": "6fc623f987358f3a92700cad5b5fc7b27b7d485a88f2a23e241e154f55a61806",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "ContinuousFocusPalette": {
+      "folder": "common/continuous_focus",
+      "schemaSource": "common/national_focus.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-with-documented-rule-corrections",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.ContinuousFocusPalette",
+        "fixture": "tests/fixtures/native-domains/ContinuousFocusPalette.krg.ts",
+        "fixtureSha256": "b6a175182de4e167eb5ae1ed3a6fad9922bbe0ff3ac2b938dc7b7efa5ca080f1",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": false,
+        "ruleSet": "temporary-compatibility-copy",
+        "correctionReasons": [
+          "Align the internal type/rule spelling with the native type_key_filter for cwtools 2.3.0; field rules remain unchanged."
+        ]
+      }
+    },
+    "SharedFocus": {
+      "folder": "common/national_focus",
+      "schemaSource": "common/national_focus.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.SharedFocus",
+        "fixture": "tests/fixtures/native-domains/SharedFocus.krg.ts",
+        "fixtureSha256": "7d1cc13dc4d92662c127d9f3e10092828158865a11a020c9bfbe51987c89589c",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "JointFocus": {
+      "folder": "common/national_focus",
+      "schemaSource": "common/national_focus.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.JointFocus",
+        "fixture": "tests/fixtures/native-domains/JointFocus.krg.ts",
+        "fixtureSha256": "293d6b0bb552027f18a979c71b59319457eed9b00258db92fac976fc5e75541b",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "FocusStyle": {
+      "folder": "common/national_focus",
+      "schemaSource": "common/national_focus.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-with-documented-rule-corrections",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.FocusStyle",
+        "fixture": "tests/fixtures/native-domains/FocusStyle.krg.ts",
+        "fixtureSha256": "43d132745e08c304070ebb3abffea3a86059b06ee3e1a8b49092e5df4185b4bd",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": false,
+        "ruleSet": "temporary-compatibility-copy",
+        "correctionReasons": [
+          "Align the rule-body identifier with type[focus_style]; the native style node and every field remain unchanged."
+        ]
+      }
+    },
+    "NativeDecisionCategory": {
+      "folder": "common/decisions/categories",
+      "schemaSource": "common/decisions.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.NativeDecisionCategory",
+        "fixture": "tests/fixtures/native-domains/NativeDecisionCategory.krg.ts",
+        "fixtureSha256": "f8e81afc5a1db10c474e1ac6e4f05babaa2be8e1906791ad85cec4502143763f",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "NativeDecision": {
+      "folder": "common/decisions",
+      "schemaSource": "common/decisions.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.NativeDecision",
+        "fixture": "tests/fixtures/native-domains/NativeDecision.krg.ts",
+        "fixtureSha256": "5110be14ad9bf3046f5d1f0fd25ac2b0f0ca18c59e09b3f0b66dd777fd82a5b0",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    },
+    "NativeIdeas": {
+      "folder": "common/ideas",
+      "schemaSource": "common/ideas.cwt",
+      "compilerContractTest": "every native domain constructor checks its projected schema and emits its registered native path and wrapper",
+      "compilerContractStatus": "passed",
+      "externalNativeValidation": "passed-original-rules",
+      "nativeGameplayValidation": "not-run",
+      "reviewNeeded": [
+        "Exercise untested subtype combinations and cross-definition constraints.",
+        "Confirm engine-specific activation and gameplay behavior."
+      ],
+      "externalNativeEvidence": {
+        "report": "reports/validation/domain-native-audit.json",
+        "entry": "domains.NativeIdeas",
+        "fixture": "tests/fixtures/native-domains/NativeIdeas.krg.ts",
+        "fixtureSha256": "087e747a4e6c634d89e4d72479f2c71bac31e191744708f72b6d29523aafdad1",
+        "positiveDiagnostics": 0,
+        "negativeProbeMatched": true,
+        "originalRulesPassed": true,
+        "ruleSet": "uploaded-original"
+      }
+    }
+  },
+  "externalAuditSummary": {
+    "report": "reports/validation/domain-native-audit.json",
+    "constructors": 111,
+    "originalRulesPassed": 107,
+    "compatibilityCorrectedDomains": 4,
+    "positiveDiagnostics": 0,
+    "baselineDiagnostics": 0,
+    "negativeRuleMatches": 111
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "@krieg-examples/civ-civic-kit",
+  "version": "1.0.0",
+  "type": "module",
+  "krieg": {
+    "config": "krgconfig.json",
+    "exports": {
+      ".": "src/index.krg.ts"
+    }
+  }
+}

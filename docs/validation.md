@@ -2,6 +2,23 @@
 
 一次检查能证明什么，取决于它检查的层次。Krieg 把语言、项目资源和语料往返分开记录，便于定位错误，也避免把不同程度的成功当成同一个结论。
 
+## v0.2.0 的新增验证证据
+
+本轮完整语料检查使用冻结编译产物 `12761686ff11de9ff38e49615ae48c2f23667c1cbf73f027b017b2839f1f383c`：原版 5,311、Kaiserreich 5,041、TNO 7,196 个可解析 PDX 文件，共 **17,548 / 17,548** 完成实际严格 TypeScript 编译、静态降级、确切目标路径与规范 PDX 语义哈希匹配。19,910 个输入文件的清单哈希未变；32 个既有原始解析错误和 TNO 的两个附加格式问题仍原样记录。[v0.2.0 完整报告](https://github.com/maxmixalex/krieg-lang/blob/main/reports/validation/v0.2.0-corpus-summary.json) 说明冻结产物、输入清单和逐层结果。
+
+这组全量结果验证有序迁移通道。随后增加或修正的命名领域、Lua 与 UI 通过对应的独立回归及原生审计；不能把冻结产物的全量结果自动描述为之后每次源码修改都重新跑过全语料。
+
+| 新增验证     | 实际证据                                                                           | 明确边界                                                                    |
+| ------------ | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| 命名原生领域 | 111 个原创 public-SDK 样例，112 个原生文件；正向零新增诊断，逐域破坏样例均触发规则 | 107 个直接使用原规则；4 个使用逐条记录的临时兼容修正，原规则结果保留        |
+| 原生 GUI     | 15 种上游规则控件，正向零诊断和逐控件必填字段删除探针全部通过                      | 另 3 种旧式控件基于三语料字段观察投射，无上游 CWT 规则，不计入原生 CWT 分数 |
+| 完整项目     | 原版 70、Kaiserreich 88 个输出文件；项目诊断为零，原生检查无错误                   | 每例保留并解释两条冗余 AND 提示；KR 审计基准的地图补充和替换目录单独记录    |
+| Lua Defines  | 独立 Lua 5.1 解析器检查真实赋值文本；三个根下的键和值类型检查                      | 不执行 Lua，不证明某个平衡参数的游戏效果                                    |
+
+[领域审计](https://github.com/maxmixalex/krieg-lang/blob/main/reports/validation/domain-native-audit.json)、[GUI 审计](https://github.com/maxmixalex/krieg-lang/blob/main/reports/validation/gui-native-audit.json)、[GUI 语料清单](https://github.com/maxmixalex/krieg-lang/blob/main/reports/validation/gui-corpus-inventory.json) 与 [完整项目报告](https://github.com/maxmixalex/krieg-lang/blob/main/reports/validation/complete-examples.json) 均保留工具/输入信息。领域审计的 `ScientistTrait`、`FocusStyle`、`ContinuousFocusPalette`、`OnAction` 需要 CWT 路径或内部类型标识兼容修正；修正不放宽字段规则，也不改动游戏输出。
+
+普通 CI 将原创 fixtures 再次编译，比较已独立审计的路径、文本哈希、源文件和资源哈希。它不会从当前实现重新生成“期望结果”。刷新金样本必须显式重跑外部审计；模型/动画验证依赖的公开固定版本资源只下载到临时目录，仓库不分发这些二进制。所有上述报告均注明 `engineValidation: "not-run"`。
+
 ## 编写项目时的检查
 
 | 检查                     | 能发现的问题                                           |

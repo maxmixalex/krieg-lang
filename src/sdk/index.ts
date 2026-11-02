@@ -18,6 +18,8 @@ import type {
   GeneratedTriggersByScope,
 } from "./commands.js";
 import type { PdxDocument, PdxItem } from "../pdx/ast.js";
+export * from "./domains.js";
+export * from "./defines.js";
 
 export interface CountryRef {
   readonly kind: "country";
@@ -364,3 +366,185 @@ export declare function state(id: number): StateRef;
 export declare function loc(key: string): LocalisationKey;
 /** A deliberate typed escape to ordered syntax for a CWT block argument. */
 export declare function cwt(items: readonly PdxItem[]): CwtNode;
+
+/** First matching text wins; preserve the array order and put an unconditional fallback last. */
+export type ScriptedLocalisationText<S> = {
+  trigger?: Trigger<S>;
+} & (
+  | { localisationKey: LocalisationKey; randomList?: never }
+  | {
+      localisationKey?: never;
+      randomList: readonly {
+        weight: number;
+        localisationKey: LocalisationKey;
+        modifiers?: readonly WeightModifier<S>[];
+      }[];
+      seed?: number | string;
+    }
+);
+export interface WeightModifier<S> {
+  trigger: Trigger<S>;
+  factor?: number | string;
+  add?: number | string;
+}
+export interface ScriptedLocalisationSpec<S extends ScopeName> {
+  scope: S;
+  texts: readonly ScriptedLocalisationText<ScopeByName[S]>[];
+}
+export interface ScriptedLocalisationDefinition<S extends ScopeName> extends Definition {
+  readonly name: string;
+  readonly scope: S;
+}
+export declare function ScriptedLocalisation<S extends ScopeName>(
+  name: string,
+  spec: ScriptedLocalisationSpec<S>,
+): ScriptedLocalisationDefinition<S>;
+
+/** Native meta_effect substitutions are evaluated by HOI4, never by the compiler. */
+export type MetaParameterNames<Text extends string> =
+  Text extends `${string}[${infer Name}]${infer Rest}` ? Name | MetaParameterNames<Rest> : never;
+export type MetaParameterValue = string | number | boolean | CountryRef | StateRef;
+export interface MetaEffectSpec<Text extends string> {
+  /** An effect block body without outer braces, containing [PARAMETER] placeholders. */
+  text: Text;
+  parameters: { readonly [Name in MetaParameterNames<Text>]: MetaParameterValue };
+  debug?: boolean;
+}
+export declare function MetaEffect<const Text extends string>(
+  scope: { readonly scope: ScopeName },
+  specification: MetaEffectSpec<Text>,
+): void;
+
+export type ScriptedGuiContext =
+  | "global_context"
+  | "player_context"
+  | "selected_country_context"
+  | "selected_state_context"
+  | "diplomacy_target_context"
+  | "decision_category"
+  | "diplomatic_action"
+  | "national_focus_context"
+  | "country_mapicon"
+  | "state_mapicon";
+export type ScriptedGuiScope<C extends ScriptedGuiContext> = C extends
+  "selected_state_context" | "state_mapicon"
+  ? StateScope
+  : C extends "global_context"
+    ? AnyScope
+    : CountryScope;
+export type GuiParentWindowToken =
+  | "top_bar"
+  | "decision_tab"
+  | "technology_tab"
+  | "trade_tab"
+  | "construction_tab"
+  | "production_tab"
+  | "deployment_tab"
+  | "logistics_tab"
+  | "diplomacy_tab"
+  | "national_focus"
+  | "politics_tab"
+  | "selected_country_view"
+  | "selected_state_view"
+  | "selected_country_view_info"
+  | "selected_country_view_diplomacy"
+  | "army_ledger"
+  | "navy_ledger"
+  | "civilian_ledger"
+  | "air_ledger"
+  | "tech_infantry_folder"
+  | "tech_support_folder"
+  | "tech_armor_folder"
+  | "tech_artillery_folder"
+  | "tech_land_doctrine_folder"
+  | "tech_naval_folder"
+  | "tech_naval_doctrine_folder"
+  | "tech_air_techs_folder"
+  | "tech_air_doctrine_folder"
+  | "tech_electronics_folder"
+  | "tech_industry_folder";
+export interface ScriptedGuiProperties {
+  image?: string;
+  frame?: number | string;
+  x?: number | string;
+  y?: number | string;
+}
+export interface GuiWeight<S> {
+  base?: number | string;
+  factor?: number | string;
+  add?: number | string;
+  modifiers?: readonly WeightModifier<S>[];
+}
+export interface GuiAiWeight<S> {
+  aiWillDo: GuiWeight<S>;
+  ignoreLowerWeights?: GuiWeight<S>;
+}
+export type GuiClickName = `${string}_click`;
+export type GuiTriggerName = `${string}_visible` | `${string}_click_enabled`;
+export type GuiAiTestScope =
+  | "test_self_country"
+  | "test_enemy_countries"
+  | "test_ally_countries"
+  | "test_neighbouring_countries"
+  | "test_neighbouring_ally_countries"
+  | "test_neighbouring_enemy_countries"
+  | "test_self_owned_states"
+  | "test_enemy_owned_states"
+  | "test_ally_owned_states"
+  | "test_self_controlled_states"
+  | "test_enemy_controlled_states"
+  | "test_ally_controlled_states"
+  | "test_neighbouring_states"
+  | "test_neighbouring_enemy_states"
+  | "test_neighbouring_ally_states"
+  | "test_our_neighbouring_states"
+  | "test_our_neighbouring_states_against_allies"
+  | "test_our_neighbouring_states_against_enemies"
+  | "test_contesded_states"
+  | "test_if_only_major"
+  | "test_if_only_coastal";
+export type GuiDynamicList<S> = {
+  array: string;
+  value?: string;
+  index?: string;
+  changeScope?: false;
+  effects?: { readonly [action: GuiClickName]: Effect<S> };
+  triggers?: { readonly [action: GuiTriggerName]: Trigger<S> };
+  aiWeights?: { readonly [action: GuiClickName]: GuiAiWeight<S> };
+} & (
+  | { entryContainer: string; countryScopeEntryContainer?: never }
+  | { entryContainer?: never; countryScopeEntryContainer: string }
+);
+/** entryScope emits change_scope=yes and checks row callbacks against that scope. */
+export type ScopedGuiDynamicList = {
+  [S in ScopeName]: Omit<GuiDynamicList<ScopeByName[S]>, "changeScope"> & { entryScope: S };
+}[ScopeName];
+export interface ScriptedGuiSpec<C extends ScriptedGuiContext> {
+  name: string;
+  windowName: string;
+  context: C;
+  parentWindowToken?: GuiParentWindowToken;
+  parentWindowName?: string;
+  parentScriptedGui?: string;
+  dirty?: string;
+  visible?: Trigger<ScriptedGuiScope<C>>;
+  effects?: { readonly [action: GuiClickName]: Effect<ScriptedGuiScope<C>> };
+  triggers?: { readonly [action: GuiTriggerName]: Trigger<ScriptedGuiScope<C>> };
+  properties?: { readonly [element: string]: ScriptedGuiProperties };
+  dynamicLists?: {
+    readonly [element: string]: GuiDynamicList<ScriptedGuiScope<C>> | ScopedGuiDynamicList;
+  };
+  aiEnabled?: Trigger<CountryScope>;
+  aiCheck?: Trigger<CountryScope>;
+  aiCheckScope?: Trigger<ScriptedGuiScope<C>>;
+  aiTestParent?: string;
+  aiTestInterval?: number;
+  aiTestVariance?: number;
+  aiTestScopes?: readonly GuiAiTestScope[];
+  aiMaxWeightTakenPerTest?: number;
+  aiWeights?: { readonly [action: GuiClickName]: GuiAiWeight<ScriptedGuiScope<C>> };
+  mapiconTargets?: { targetArray?: string; targetTrigger?: Trigger<ScriptedGuiScope<C>> };
+}
+export declare function ScriptedGui<C extends ScriptedGuiContext>(
+  spec: ScriptedGuiSpec<C>,
+): Definition;

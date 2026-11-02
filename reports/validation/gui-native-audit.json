@@ -1,0 +1,708 @@
+{
+  "formatVersion": 1,
+  "generatedAt": "2026-11-02T15:55:12.716Z",
+  "scope": "One original static-TSX sample for each declared CWT native GUI kind; a required-field deletion proves that each control matches a native rule. This is sample-level validation, not a rendered game test.",
+  "schema": {
+    "source": "https://github.com/cwtools/cwtools-hoi4-config (uploaded MIT snapshot)",
+    "sha256": "e2c3e31e300eed3e9c7e3245d9bc7030c37388633b16041bf8fbcaf5ffb1afca",
+    "files": 111
+  },
+  "fixtureSha256": "0fd6da28b23037ee29d91d56a84dccd8d88a069ecccae2ce328a58d1d468a5b6",
+  "support": [
+    {
+      "path": "tests/fixtures/native-domains/support/gfx/interface/krieg_audit.dds",
+      "sha256": "2e53d55e758e0a73f614b5cc92150013752ee5b4582f28135ff1c155664c9d9a"
+    },
+    {
+      "path": "tests/fixtures/native-domains/support/interface/krieg_audit.gfx",
+      "sha256": "4755a96440aaaee87b74fc8a5e99331e8e3b32e7517fadca2e4e8eedf43d1e3b"
+    }
+  ],
+  "compilation": {
+    "success": true,
+    "diagnostics": []
+  },
+  "controls": {
+    "containerWindowType": {
+      "factory": "NativeContainer",
+      "fixture": "tests/fixtures/native-gui/controls.krg.tsx",
+      "compile": {
+        "attempted": true,
+        "passed": true
+      },
+      "path": "interface/audit_containerWindowType.gui",
+      "nativeCwt": {
+        "attempted": true,
+        "passed": true,
+        "diagnostics": []
+      },
+      "ruleMatch": {
+        "attempted": true,
+        "passed": true,
+        "mutation": "remove-required-name",
+        "field": "name",
+        "diagnostics": [
+          {
+            "file": "interface/audit_containerWindowType.gui",
+            "line": 2,
+            "severity": "Warning",
+            "code": "CW242",
+            "message": "Field 'name' appears 0 time(s), expected at least 1",
+            "hash": "d04bb9c4a4187277"
+          }
+        ]
+      },
+      "engineValidation": "not-run",
+      "outputSha256": "0fc33abfc3b079b72ea9da574248c5505d217e0e2c31985a4d29f7deb400d305"
+    },
+    "dropDownBoxType": {
+      "factory": "DropDownBox",
+      "fixture": "tests/fixtures/native-gui/controls.krg.tsx",
+      "compile": {
+        "attempted": true,
+        "passed": true
+      },
+      "path": "interface/audit_dropDownBoxType.gui",
+      "nativeCwt": {
+        "attempted": true,
+        "passed": true,
+        "diagnostics": []
+      },
+      "ruleMatch": {
+        "attempted": true,
+        "passed": true,
+        "mutation": "remove-required-name",
+        "field": "name",
+        "diagnostics": [
+          {
+            "file": "interface/audit_dropDownBoxType.gui",
+            "line": 8,
+            "severity": "Warning",
+            "code": "CW242",
+            "message": "Field 'name' appears 0 time(s), expected at least 1",
+            "hash": "170fbfdbcf28de57"
+          }
+        ]
+      },
+      "engineValidation": "not-run",
+      "outputSha256": "2b3453d4665c34b114ddcac2e7fa43649df2d9bd6c60bd8d623e33a5105113ea"
+    },
+    "buttonType": {
+      "factory": "NativeButton",
+      "fixture": "tests/fixtures/native-gui/controls.krg.tsx",
+      "compile": {
+        "attempted": true,
+        "passed": true
+      },
+      "path": "interface/audit_buttonType.gui",
+      "nativeCwt": {
+        "attempted": true,
+        "passed": true,
+        "diagnostics": []
+      },
+      "ruleMatch": {
+        "attempted": true,
+        "passed": true,
+        "mutation": "remove-required-name",
+        "field": "name",
+        "diagnostics": [
+          {
+            "file": "interface/audit_buttonType.gui",
+            "line": 8,
+            "severity": "Warning",
+            "code": "CW242",
+            "message": "Field 'name' appears 0 time(s), expected at least 1",
+            "hash": "8aa86264c0fbb91f"
+          }
+        ]
+      },
+      "engineValidation": "not-run",
+      "outputSha256": "bc9408a2cfadf37eef65b04b4e5d9e9fbb8e31d39b8c5c2136ba1d99940f611a"
+    },
+    "OverlappingElementsBoxType": {
+      "factory": "OverlappingElementsBox",
+      "fixture": "tests/fixtures/native-gui/controls.krg.tsx",
+      "compile": {
+        "attempted": true,
+        "passed": true
+      },
+      "path": "interface/audit_OverlappingElementsBoxType.gui",
+      "nativeCwt": {
+        "attempted": true,
+        "passed": true,
+        "diagnostics": []
+      },
+      "ruleMatch": {
+        "attempted": true,
+        "passed": true,
+        "mutation": "remove-required-name",
+        "field": "name",
+        "diagnostics": [
+          {
+            "file": "interface/audit_OverlappingElementsBoxType.gui",
+            "line": 8,
+            "severity": "Warning",
+            "code": "CW242",
+            "message": "Field 'name' appears 0 time(s), expected at least 1",
+            "hash": "3a5c1f37122dcd69"
+          }
+        ]
+      },
+      "engineValidation": "not-run",
+      "outputSha256": "1ba4f2496699b3ffaea87a1443225e2bb1c69e26f8fdb9b72436a6ada6301819"
+    },
+    "gridBoxType": {
+      "factory": "NativeGridBox",
+      "fixture": "tests/fixtures/native-gui/controls.krg.tsx",
+      "compile": {
+        "attempted": true,
+        "passed": true
+      },
+      "path": "interface/audit_gridBoxType.gui",
+      "nativeCwt": {
+        "attempted": true,
+        "passed": true,
+        "diagnostics": []
+      },
+      "ruleMatch": {
+        "attempted": true,
+        "passed": true,
+        "mutation": "remove-required-name",
+        "field": "name",
+        "diagnostics": [
+          {
+            "file": "interface/audit_gridBoxType.gui",
+            "line": 8,
+            "severity": "Warning",
+            "code": "CW242",
+            "message": "Field 'name' appears 0 time(s), expected at least 1",
+            "hash": "b01f4e93c76bd593"
+          }
+        ]
+      },
+      "engineValidation": "not-run",
+      "outputSha256": "6a68d8b3c7dd0aff47106a63b0280bf3296c36423a5fbe90872a277ba95077fa"
+    },
+    "listBoxType": {
+      "factory": "NativeListBox",
+      "fixture": "tests/fixtures/native-gui/controls.krg.tsx",
+      "compile": {
+        "attempted": true,
+        "passed": true
+      },
+      "path": "interface/audit_listBoxType.gui",
+      "nativeCwt": {
+        "attempted": true,
+        "passed": true,
+        "diagnostics": []
+      },
+      "ruleMatch": {
+        "attempted": true,
+        "passed": true,
+        "mutation": "remove-required-name",
+        "field": "name",
+        "diagnostics": [
+          {
+            "file": "interface/audit_listBoxType.gui",
+            "line": 8,
+            "severity": "Warning",
+            "code": "CW242",
+            "message": "Field 'name' appears 0 time(s), expected at least 1",
+            "hash": "44f086dea7b0df4b"
+          }
+        ]
+      },
+      "engineValidation": "not-run",
+      "outputSha256": "ca1162fc25f05dc38a47a1f69838c198062ab75d4fcca0a908b3be49c9397049"
+    },
+    "smoothListBoxType": {
+      "factory": "SmoothListBox",
+      "fixture": "tests/fixtures/native-gui/controls.krg.tsx",
+      "compile": {
+        "attempted": true,
+        "passed": true
+      },
+      "path": "interface/audit_smoothListBoxType.gui",
+      "nativeCwt": {
+        "attempted": true,
+        "passed": true,
+        "diagnostics": []
+      },
+      "ruleMatch": {
+        "attempted": true,
+        "passed": true,
+        "mutation": "remove-required-name",
+        "field": "name",
+        "diagnostics": [
+          {
+            "file": "interface/audit_smoothListBoxType.gui",
+            "line": 8,
+            "severity": "Warning",
+            "code": "CW242",
+            "message": "Field 'name' appears 0 time(s), expected at least 1",
+            "hash": "1fd07dbb06854d7f"
+          }
+        ]
+      },
+      "engineValidation": "not-run",
+      "outputSha256": "ded7c5ce32004260eeef76370631c4a45dc7fa2ae6222dcab24585a36bcd398a"
+    },
+    "iconType": {
+      "factory": "NativeIcon",
+      "fixture": "tests/fixtures/native-gui/controls.krg.tsx",
+      "compile": {
+        "attempted": true,
+        "passed": true
+      },
+      "path": "interface/audit_iconType.gui",
+      "nativeCwt": {
+        "attempted": true,
+        "passed": true,
+        "diagnostics": []
+      },
+      "ruleMatch": {
+        "attempted": true,
+        "passed": true,
+        "mutation": "remove-required-name",
+        "field": "name",
+        "diagnostics": [
+          {
+            "file": "interface/audit_iconType.gui",
+            "line": 8,
+            "severity": "Warning",
+            "code": "CW242",
+            "message": "Field 'name' appears 0 time(s), expected at least 1",
+            "hash": "eaf667e23f71f295"
+          }
+        ]
+      },
+      "engineValidation": "not-run",
+      "outputSha256": "c167e0a2db47aeb5dc8f871752847be35d0939728cbeb73d7c80ee8fd36f7b33"
+    },
+    "positionType": {
+      "factory": "Position",
+      "fixture": "tests/fixtures/native-gui/controls.krg.tsx",
+      "compile": {
+        "attempted": true,
+        "passed": true
+      },
+      "path": "interface/audit_positionType.gui",
+      "nativeCwt": {
+        "attempted": true,
+        "passed": true,
+        "diagnostics": []
+      },
+      "ruleMatch": {
+        "attempted": true,
+        "passed": true,
+        "mutation": "remove-required-position",
+        "field": "position",
+        "diagnostics": [
+          {
+            "file": "interface/audit_positionType.gui",
+            "line": 8,
+            "severity": "Warning",
+            "code": "CW242",
+            "message": "Field 'position' appears 0 time(s), expected at least 1",
+            "hash": "057a51c439ee0185"
+          }
+        ]
+      },
+      "engineValidation": "not-run",
+      "outputSha256": "17792c1223822315be972020719e9f231846f1000d6c4832b135939200ca03f3"
+    },
+    "browserType": {
+      "factory": "Browser",
+      "fixture": "tests/fixtures/native-gui/controls.krg.tsx",
+      "compile": {
+        "attempted": true,
+        "passed": true
+      },
+      "path": "interface/audit_browserType.gui",
+      "nativeCwt": {
+        "attempted": true,
+        "passed": true,
+        "diagnostics": []
+      },
+      "ruleMatch": {
+        "attempted": true,
+        "passed": true,
+        "mutation": "remove-required-name",
+        "field": "name",
+        "diagnostics": [
+          {
+            "file": "interface/audit_browserType.gui",
+            "line": 8,
+            "severity": "Warning",
+            "code": "CW242",
+            "message": "Field 'name' appears 0 time(s), expected at least 1",
+            "hash": "b7c2a9fb6e3969f7"
+          }
+        ]
+      },
+      "engineValidation": "not-run",
+      "outputSha256": "61a7fb6b95535ed71c945156f63a7a7cbe4745093232f01ea709d04cb0c0fa42"
+    },
+    "instantTextBoxType": {
+      "factory": "NativeText",
+      "fixture": "tests/fixtures/native-gui/controls.krg.tsx",
+      "compile": {
+        "attempted": true,
+        "passed": true
+      },
+      "path": "interface/audit_instantTextBoxType.gui",
+      "nativeCwt": {
+        "attempted": true,
+        "passed": true,
+        "diagnostics": []
+      },
+      "ruleMatch": {
+        "attempted": true,
+        "passed": true,
+        "mutation": "remove-required-name",
+        "field": "name",
+        "diagnostics": [
+          {
+            "file": "interface/audit_instantTextBoxType.gui",
+            "line": 8,
+            "severity": "Warning",
+            "code": "CW242",
+            "message": "Field 'name' appears 0 time(s), expected at least 1",
+            "hash": "d96b8ce98f9da01d"
+          }
+        ]
+      },
+      "engineValidation": "not-run",
+      "outputSha256": "e6350eb27571825f574e3c40c6f741479c99114021f1c7f7c1583c8fb67a2b35"
+    },
+    "editBoxType": {
+      "factory": "EditBox",
+      "fixture": "tests/fixtures/native-gui/controls.krg.tsx",
+      "compile": {
+        "attempted": true,
+        "passed": true
+      },
+      "path": "interface/audit_editBoxType.gui",
+      "nativeCwt": {
+        "attempted": true,
+        "passed": true,
+        "diagnostics": []
+      },
+      "ruleMatch": {
+        "attempted": true,
+        "passed": true,
+        "mutation": "remove-required-name",
+        "field": "name",
+        "diagnostics": [
+          {
+            "file": "interface/audit_editBoxType.gui",
+            "line": 8,
+            "severity": "Warning",
+            "code": "CW242",
+            "message": "Field 'name' appears 0 time(s), expected at least 1",
+            "hash": "6f9a88b56e3bbc7f"
+          }
+        ]
+      },
+      "engineValidation": "not-run",
+      "outputSha256": "10a67d62977ee2684dcebfb6d8552cd630d57f56fc650739609f0c6e945ffdb7"
+    },
+    "checkboxType": {
+      "factory": "Checkbox",
+      "fixture": "tests/fixtures/native-gui/controls.krg.tsx",
+      "compile": {
+        "attempted": true,
+        "passed": true
+      },
+      "path": "interface/audit_checkboxType.gui",
+      "nativeCwt": {
+        "attempted": true,
+        "passed": true,
+        "diagnostics": []
+      },
+      "ruleMatch": {
+        "attempted": true,
+        "passed": true,
+        "mutation": "remove-required-name",
+        "field": "name",
+        "diagnostics": [
+          {
+            "file": "interface/audit_checkboxType.gui",
+            "line": 8,
+            "severity": "Warning",
+            "code": "CW242",
+            "message": "Field 'name' appears 0 time(s), expected at least 1",
+            "hash": "2fd6ff179e2ce9ad"
+          }
+        ]
+      },
+      "engineValidation": "not-run",
+      "outputSha256": "28d16fcea3cdc1c3f8d1d80b09759bf06f9262b85399db9e71caa5d995f1c6b5"
+    },
+    "scrollbarType": {
+      "factory": "Scrollbar",
+      "fixture": "tests/fixtures/native-gui/controls.krg.tsx",
+      "compile": {
+        "attempted": true,
+        "passed": true
+      },
+      "path": "interface/audit_scrollbarType.gui",
+      "nativeCwt": {
+        "attempted": true,
+        "passed": true,
+        "diagnostics": []
+      },
+      "ruleMatch": {
+        "attempted": true,
+        "passed": true,
+        "mutation": "remove-required-name",
+        "field": "name",
+        "diagnostics": [
+          {
+            "file": "interface/audit_scrollbarType.gui",
+            "line": 8,
+            "severity": "Warning",
+            "code": "CW242",
+            "message": "Field 'name' appears 0 time(s), expected at least 1",
+            "hash": "ead340639f386707"
+          }
+        ]
+      },
+      "engineValidation": "not-run",
+      "outputSha256": "dca1c07f42ff0440c9b63c81e0751262196408f4b39a7a30597a0e42fba04791"
+    },
+    "extendedScrollbarType": {
+      "factory": "ExtendedScrollbar",
+      "fixture": "tests/fixtures/native-gui/controls.krg.tsx",
+      "compile": {
+        "attempted": true,
+        "passed": true
+      },
+      "path": "interface/audit_extendedScrollbarType.gui",
+      "nativeCwt": {
+        "attempted": true,
+        "passed": true,
+        "diagnostics": []
+      },
+      "ruleMatch": {
+        "attempted": true,
+        "passed": true,
+        "mutation": "remove-required-name",
+        "field": "name",
+        "diagnostics": [
+          {
+            "file": "interface/audit_extendedScrollbarType.gui",
+            "line": 8,
+            "severity": "Warning",
+            "code": "CW242",
+            "message": "Field 'name' appears 0 time(s), expected at least 1",
+            "hash": "4484c21dc6984e87"
+          }
+        ]
+      },
+      "engineValidation": "not-run",
+      "outputSha256": "97875685bb2d045255b38c5e5ecb23526800b1dd79b051c7e35e5d14d4e340d4"
+    }
+  },
+  "engineValidation": "not-run",
+  "tool": {
+    "version": "cwtools 2.3.0",
+    "sha256": "06161387481cffb9c593cda101994748f0e7640b3154af552b96843bfb5ba665"
+  },
+  "baseline": {
+    "exitCode": 0,
+    "durationMs": 1123,
+    "command": [
+      "$CWTOOLS",
+      "validate",
+      "--game",
+      "hoi4",
+      "--directory",
+      "$WORK/baseline",
+      "--rules",
+      "$RULES",
+      "--vanilla",
+      "$VANILLA",
+      "--no-vanilla-cache",
+      "--report-type",
+      "json",
+      "--output-file",
+      "$WORK/baseline.json"
+    ],
+    "diagnostics": []
+  },
+  "native": {
+    "exitCode": 0,
+    "durationMs": 1327,
+    "command": [
+      "$CWTOOLS",
+      "validate",
+      "--game",
+      "hoi4",
+      "--directory",
+      "$WORK/generated",
+      "--rules",
+      "$RULES",
+      "--vanilla",
+      "$VANILLA",
+      "--no-vanilla-cache",
+      "--report-type",
+      "json",
+      "--output-file",
+      "$WORK/generated.json"
+    ],
+    "diagnostics": []
+  },
+  "negative": {
+    "exitCode": 0,
+    "durationMs": 1367,
+    "command": [
+      "$CWTOOLS",
+      "validate",
+      "--game",
+      "hoi4",
+      "--directory",
+      "$WORK/negative",
+      "--rules",
+      "$RULES",
+      "--vanilla",
+      "$VANILLA",
+      "--no-vanilla-cache",
+      "--report-type",
+      "json",
+      "--output-file",
+      "$WORK/negative.json"
+    ],
+    "diagnostics": [
+      {
+        "file": "$WORK/negative/interface/audit_OverlappingElementsBoxType.gui",
+        "line": 8,
+        "severity": "Warning",
+        "code": "CW242",
+        "message": "Field 'name' appears 0 time(s), expected at least 1",
+        "hash": "3a5c1f37122dcd69"
+      },
+      {
+        "file": "$WORK/negative/interface/audit_browserType.gui",
+        "line": 8,
+        "severity": "Warning",
+        "code": "CW242",
+        "message": "Field 'name' appears 0 time(s), expected at least 1",
+        "hash": "b7c2a9fb6e3969f7"
+      },
+      {
+        "file": "$WORK/negative/interface/audit_buttonType.gui",
+        "line": 8,
+        "severity": "Warning",
+        "code": "CW242",
+        "message": "Field 'name' appears 0 time(s), expected at least 1",
+        "hash": "8aa86264c0fbb91f"
+      },
+      {
+        "file": "$WORK/negative/interface/audit_checkboxType.gui",
+        "line": 8,
+        "severity": "Warning",
+        "code": "CW242",
+        "message": "Field 'name' appears 0 time(s), expected at least 1",
+        "hash": "2fd6ff179e2ce9ad"
+      },
+      {
+        "file": "$WORK/negative/interface/audit_containerWindowType.gui",
+        "line": 2,
+        "severity": "Warning",
+        "code": "CW242",
+        "message": "Field 'name' appears 0 time(s), expected at least 1",
+        "hash": "d04bb9c4a4187277"
+      },
+      {
+        "file": "$WORK/negative/interface/audit_dropDownBoxType.gui",
+        "line": 8,
+        "severity": "Warning",
+        "code": "CW242",
+        "message": "Field 'name' appears 0 time(s), expected at least 1",
+        "hash": "170fbfdbcf28de57"
+      },
+      {
+        "file": "$WORK/negative/interface/audit_editBoxType.gui",
+        "line": 8,
+        "severity": "Warning",
+        "code": "CW242",
+        "message": "Field 'name' appears 0 time(s), expected at least 1",
+        "hash": "6f9a88b56e3bbc7f"
+      },
+      {
+        "file": "$WORK/negative/interface/audit_extendedScrollbarType.gui",
+        "line": 8,
+        "severity": "Warning",
+        "code": "CW242",
+        "message": "Field 'name' appears 0 time(s), expected at least 1",
+        "hash": "4484c21dc6984e87"
+      },
+      {
+        "file": "$WORK/negative/interface/audit_gridBoxType.gui",
+        "line": 8,
+        "severity": "Warning",
+        "code": "CW242",
+        "message": "Field 'name' appears 0 time(s), expected at least 1",
+        "hash": "b01f4e93c76bd593"
+      },
+      {
+        "file": "$WORK/negative/interface/audit_iconType.gui",
+        "line": 8,
+        "severity": "Warning",
+        "code": "CW242",
+        "message": "Field 'name' appears 0 time(s), expected at least 1",
+        "hash": "eaf667e23f71f295"
+      },
+      {
+        "file": "$WORK/negative/interface/audit_instantTextBoxType.gui",
+        "line": 8,
+        "severity": "Warning",
+        "code": "CW242",
+        "message": "Field 'name' appears 0 time(s), expected at least 1",
+        "hash": "d96b8ce98f9da01d"
+      },
+      {
+        "file": "$WORK/negative/interface/audit_listBoxType.gui",
+        "line": 8,
+        "severity": "Warning",
+        "code": "CW242",
+        "message": "Field 'name' appears 0 time(s), expected at least 1",
+        "hash": "44f086dea7b0df4b"
+      },
+      {
+        "file": "$WORK/negative/interface/audit_positionType.gui",
+        "line": 8,
+        "severity": "Warning",
+        "code": "CW242",
+        "message": "Field 'position' appears 0 time(s), expected at least 1",
+        "hash": "057a51c439ee0185"
+      },
+      {
+        "file": "$WORK/negative/interface/audit_scrollbarType.gui",
+        "line": 8,
+        "severity": "Warning",
+        "code": "CW242",
+        "message": "Field 'name' appears 0 time(s), expected at least 1",
+        "hash": "ead340639f386707"
+      },
+      {
+        "file": "$WORK/negative/interface/audit_smoothListBoxType.gui",
+        "line": 8,
+        "severity": "Warning",
+        "code": "CW242",
+        "message": "Field 'name' appears 0 time(s), expected at least 1",
+        "hash": "1fd07dbb06854d7f"
+      }
+    ]
+  },
+  "unassignedDiagnostics": [],
+  "summary": {
+    "controls": 15,
+    "compilerPassed": 15,
+    "nativeCwtPassed": 15,
+    "ruleMatchPassed": 15,
+    "baselineDiagnostics": 0,
+    "addedDiagnostics": 0
+  }
+}

@@ -8,6 +8,9 @@ import { fileURLToPath } from "node:url";
 import { corpusRuntimeArguments } from "../dist/corpus/compiler-runner.js";
 
 const cli = fileURLToPath(new URL("../dist/cli.js", import.meta.url));
+const packageVersion = JSON.parse(
+  readFileSync(new URL("../package.json", import.meta.url), "utf8"),
+).version;
 
 test("corpus runtime defaults preserve explicit Node heap choices", () => {
   assert.deepEqual(corpusRuntimeArguments([], undefined, false), [
@@ -124,7 +127,7 @@ if (typeof global.gc === 'function') {
     });
     assert.equal(version.error, undefined);
     assert.equal(version.status, 0, version.stderr);
-    assert.equal(version.stdout.trim(), "0.1.0");
+    assert.equal(version.stdout.trim(), packageVersion);
     const versionEntries = readFileSync(versionLog, "utf8")
       .trim()
       .split("\n")

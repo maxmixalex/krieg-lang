@@ -14,9 +14,10 @@ import {
 } from "./project/index.js";
 import { compileCorpusBatch, ensureCorpusRuntime } from "./corpus/compiler-runner.js";
 import { runCorpus } from "./corpus/index.js";
-import type { BuildResult, ProjectDiagnostic } from "./project/types.js";
+import type { BuildResult, ProjectDiagnostic, ProjectOptions } from "./project/types.js";
+import { VERSION } from "./version.js";
 
-const help = `Krieg 0.1.0 — statically compile TypeScript to an HOI4 mod
+const help = `Krieg ${VERSION} — statically compile TypeScript to an HOI4 mod
 
   krieg init <directory>                 Create a complete example project
   krieg check [project]                  Check types, scripts, assets and maps
@@ -33,6 +34,8 @@ const help = `Krieg 0.1.0 — statically compile TypeScript to an HOI4 mod
       --skip-typecheck                  Explicitly skip the full TS compiler pass
 
   --json                                Machine-readable results
+  --game-root <directory>               Override the game/mod base; repeat in load order
+  --game-replace-path <directory>       Replace a native folder in the final --game-root
   --version                             Print compiler version
   --help                                Show help
 `;
@@ -72,11 +75,13 @@ async function main(): Promise<void> {
       generated: { type: "string" },
       imported: { type: "string" },
       "skip-typecheck": { type: "boolean" },
+      "game-root": { type: "string", multiple: true },
+      "game-replace-path": { type: "string", multiple: true },
     },
   });
   const [command, argument] = positionals;
   if (values.version) {
-    console.log("0.1.0");
+    console.log(VERSION);
     return;
   }
   if (values.help || !command) {
@@ -85,6 +90,23 @@ async function main(): Promise<void> {
   }
   if (positionals.length > 2) throw new Error("Too many positional arguments. See krieg --help.");
   const project = argument ?? ".";
+  if (values["game-replace-path"] && !values["game-root"])
+    throw new Error("--game-replace-path requires --game-root and applies to its final layer.");
+  const projectOptions: ProjectOptions = values["game-root"]
+    ? {
+        gameRoots: values["game-root"].map((path, index, roots) =>
+          index === roots.length - 1 && values["game-replace-path"]
+            ? { path, replacePath: values["game-replace-path"] }
+            : path,
+        ),
+      }
+    : {};
+  if (
+    values["game-root"] &&
+    !["check", "build", "world", "types", "pack", "watch", "import"].includes(command)
+  ) {
+    throw new Error("--game-root applies to check, build, world, types, pack, watch, and import.");
+  }
   switch (command) {
     case "init": {
       if (!argument) throw new Error("krieg init needs a destination directory.");
@@ -98,13 +120,16 @@ async function main(): Promise<void> {
     }
     case "check":
     case "build": {
-      writeEditorProject(project);
-      showBuild(buildProject(project, { check: command === "check" }), values.json === true);
+      writeEditorProject(project, projectOptions);
+      showBuild(
+        buildProject(project, { ...projectOptions, check: command === "check" }),
+        values.json === true,
+      );
       break;
     }
     case "world":
     case "types": {
-      const world = writeEditorProject(project);
+      const world = writeEditorProject(project, projectOptions);
       const summary = {
         countries: world.countries.length,
         states: world.states.length,
@@ -116,8 +141,8 @@ async function main(): Promise<void> {
       break;
     }
     case "pack": {
-      writeEditorProject(project);
-      const result = packProject(project, values.out);
+      writeEditorProject(project, projectOptions);
+      const result = packProject(project, values.out, projectOptions);
       if (values.json) console.log(JSON.stringify(result, null, 2));
       else {
         showBuild(result.build, false);
@@ -130,7 +155,7 @@ async function main(): Promise<void> {
       if (!argument || !values.out)
         throw new Error("krieg import needs an input and --out directory.");
       const result = importProject(argument, values.out, { outputPath: values.path });
-      if (result.success) writeEditorProject(result.destination);
+      if (result.success) writeEditorProject(result.destination, projectOptions);
       if (values.json) console.log(JSON.stringify(result, null, 2));
       else {
         diagnostics(result.diagnostics);
@@ -188,7 +213,7 @@ async function main(): Promise<void> {
     case "watch": {
       if (values.json)
         throw new Error("--json is not supported with the continuous watch command.");
-      const config = loadConfig(project);
+      const config = loadConfig(project, projectOptions);
       const graph = resolveDependencies(config);
       let timer: NodeJS.Timeout | undefined;
       let building = false;
@@ -196,8 +221,8 @@ async function main(): Promise<void> {
         if (building) return;
         building = true;
         try {
-          writeEditorProject(project);
-          showBuild(buildProject(project), false);
+          writeEditorProject(project, projectOptions);
+          showBuild(buildProject(project, projectOptions), false);
         } catch (error) {
           console.error((error as Error).message);
         } finally {

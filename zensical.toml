@@ -1,6 +1,6 @@
 [project]
 site_name = "Krieg"
-site_description = "用严格的 TypeScript 子集编写 Hearts of Iron IV 模组"
+site_description = "用严格的 TypeScript 与 TSX 编写 Hearts of Iron IV 模组"
 site_url = "https://maxmixalex.github.io/krieg-lang/"
 repo_url = "https://github.com/maxmixalex/krieg-lang"
 repo_name = "maxmixalex/krieg-lang"
@@ -10,24 +10,50 @@ nav = [
   { "开始" = [
     { "Krieg 是什么" = "index.md" },
     { "第一个模组" = "getting-started.md" },
+    { "原版与 Kaiserreich 完整示例" = "examples.md" },
     { "编辑器与格式化" = "editor.md" },
   ] },
-  { "编写模组" = [
+  { "语言与玩法" = [
     { "语言与执行模型" = "language.md" },
     { "作用域、条件与效果" = "scopes.md" },
+    { "事件、国策与决议组合" = "recipes.md" },
+    { "脚本化内容与 MetaEffect" = "scripted-content.md" },
+    { "科技、人物与其他领域" = "content-domains.md" },
+  ] },
+  { "世界、文本与界面" = [
+    { "国家与地图" = "countries-maps.md" },
+    { "YAML 与原生本地化" = "localisation.md" },
+    { "界面与 TSX" = "ui.md" },
+    { "图片、音频与原生资源" = "assets.md" },
+  ] },
+  { "项目工作流" = [
     { "项目、资源与依赖" = "projects.md" },
     { "导入原生脚本" = "native-import.md" },
-  ] },
-  { "参考" = [
     { "命令行" = "cli.md" },
     { "验证与兼容性" = "validation.md" },
+    { "Wiki 功能覆盖" = "coverage.md" },
+  ] },
+  { "API Reference" = [
+    { "总览与入口" = "api/index.md" },
+    { "HOI4 定义与值" = "api/hoi4.md" },
+    { "作用域 API" = "api/scopes.md" },
+    { "CWT 游戏内容定义" = "api/domains.md" },
+    { "Lua Defines 命名空间" = "api/defines.md" },
+    { "效果与条件目录" = "api/commands/index.md" },
+    { "UI 与 TSX API" = "api/ui.md" },
+    { "编译器 API" = "api/compiler.md" },
+    { "项目 API" = "api/project.md" },
+    { "有序 PDX API" = "api/pdx.md" },
+    { "ESLint API" = "api/eslint.md" },
+  ] },
+  { "维护" = [
     { "参与开发" = "contributing.md" },
   ] },
 ]
 
 [project.theme]
 language = "zh"
-features = ["navigation.sections", "navigation.top", "content.code.copy"]
+features = ["navigation.sections", "navigation.top", "content.code.copy", "search.highlight"]
 
 [project.markdown_extensions]
 admonition = {}

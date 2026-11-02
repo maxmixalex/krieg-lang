@@ -1,0 +1,17 @@
+{
+  "name": "krieg-kaiserreich-complete",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "check": "krieg check",
+    "build": "krieg build",
+    "pack": "krieg pack",
+    "world": "krieg world",
+    "lint": "eslint --config eslint.project.mjs src packages"
+  },
+  "devDependencies": {
+    "krieg-lang": "file:../..",
+    "eslint": "10.14.0"
+  }
+}
