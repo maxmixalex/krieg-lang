@@ -2,6 +2,7 @@
 import { existsSync, watch, type FSWatcher } from "node:fs";
 import { resolve } from "node:path";
 import { parseArgs } from "node:util";
+import { fileURLToPath } from "node:url";
 import {
   buildProject,
   initProject,
@@ -11,7 +12,7 @@ import {
   resolveDependencies,
   writeEditorProject,
 } from "./project/index.js";
-import { compileCorpusBatch } from "./corpus/compiler-runner.js";
+import { compileCorpusBatch, ensureCorpusRuntime } from "./corpus/compiler-runner.js";
 import { runCorpus } from "./corpus/index.js";
 import type { BuildResult, ProjectDiagnostic } from "./project/types.js";
 
@@ -143,6 +144,15 @@ async function main(): Promise<void> {
     case "corpus": {
       if (!argument || !values.out)
         throw new Error("krieg corpus needs a dataset directory and --out report.json.");
+      const relaunched = await ensureCorpusRuntime(
+        fileURLToPath(import.meta.url),
+        process.argv.slice(2),
+      );
+      if (relaunched) {
+        if (relaunched.signal) process.kill(process.pid, relaunched.signal);
+        else process.exitCode = relaunched.code ?? 1;
+        return;
+      }
       const report = await runCorpus({
         rootDir: resolve(argument),
         name: values.name,

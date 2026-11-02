@@ -1,0 +1,91 @@
+{
+  "formatVersion": 1,
+  "name": "largest-original-file-through-production-cli",
+  "command": [
+    "node",
+    "dist/cli.js",
+    "corpus",
+    "$FIXTURE_INPUT",
+    "--out",
+    "$PRIVATE_REPORT",
+    "--name",
+    "vanilla-largest-cli",
+    "--imported",
+    "$FIXTURE_IMPORTED",
+    "--json"
+  ],
+  "runtimeOptionsPassedByCaller": [],
+  "nodeOptionsEnvironment": "",
+  "nodeVersion": "v24.22.1",
+  "exitCode": 0,
+  "corpusDurationMs": 66019,
+  "completedAt": "2026-11-02T14:04:03.267Z",
+  "source": {
+    "dataset": "vanilla",
+    "path": "common/scripted_localisation/FR_SCRIPTING_FULL_AUTOMATED.txt",
+    "bytes": 20219715,
+    "sha256": "adb29d2a7ce4fe0f594010971515aa8ac943856cb4103dda901b934ed98b7307",
+    "matchesFullCorpusInput": true,
+    "originalUnchanged": true
+  },
+  "importedSource": {
+    "bytes": 52314341,
+    "sha256": "710de68b77190dad747296dbe84ebb0b8703f4aceb640a4cc76ae6320e93c1be"
+  },
+  "levels": {
+    "parse": {
+      "attempted": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    "canonicalSemanticRoundtrip": {
+      "attempted": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    "constructorStaticRecompile": {
+      "attempted": 0,
+      "passed": 0,
+      "failed": 0,
+      "skipped": 1
+    },
+    "typescriptCompile": {
+      "attempted": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    "ancillarySyntax": {
+      "attempted": 0,
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "status": "typescript-compiled-semantic-match",
+  "productionRuntime": {
+    "parentDefaults": ["--expose-gc", "--max-old-space-size=3072"],
+    "workerFlags": ["--max-old-space-size=5632"],
+    "gcBoundary": "compileCorpusBatch calls optional GC before allocating the worker job.",
+    "verification": "Focused production CLI tests record actual relaunch arguments and pre-worker GC; this largest-file run used the same built launcher with no caller flags.",
+    "processRssTelemetry": "Not claimed: optional /proc sampling did not capture every required descendant."
+  },
+  "runtimeComponentSha256": {
+    "cli.js": "c4f72a0ff20371dead2df611c6f7cc41123c95dcaa8d365f3f86f5ed14239e8f",
+    "corpus/compiler-runner.js": "6155851765d4bedd44ce9bba34cfd67e5e08d8238cad3474a89b26dd39acdc31",
+    "corpus/compiler-worker.js": "62c6479027c1046018db5136eb8e825d7d950f7dbe7892bb63a855128e67fb55",
+    "corpus/index.js": "7a35e1c8c0d72489782b4d47e764668ed90844fbb728c3e389d879696b4c17f4",
+    "compiler/index.js": "d400ec04004695896522ae9a6fbd811f04ce1f6199b507f93e1a52ba05af2c02",
+    "compiler/lower.js": "8b4673a3cd5f39bf8a67e5bfb3a76f6ca3a2f0a7d713262492581116511042dd",
+    "pdx/parser.js": "017933945abb718ca4631bb82296b2912eb04caceea79f1607d486b1454c7f28",
+    "pdx/emitter.js": "e820e5583a6ac8130688a86e1e1006568e1257b0029f70cc73127dce9da1b79b",
+    "importer/index.js": "22ca1d838b7b6c02feaf6cc35c8c8e89f98c4c358a9677bcac6c598b438a4dc0"
+  },
+  "privateReport": {
+    "path": "corpora/reports/production-cli-largest.json",
+    "sha256": "1fee37678370d090c434fa2b52f95d3233bcc4812a450407d378ae6adabd8f8b"
+  },
+  "engineValidation": "not-run"
+}

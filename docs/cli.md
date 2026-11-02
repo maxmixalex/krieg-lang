@@ -56,7 +56,22 @@ npx krieg corpus /path/to/game --name vanilla --out ./reports/vanilla.json
 | `--generated <directory>` | 保存重建的原生脚本及其他文件                   |
 | `--skip-typecheck`        | 显式跳过完整 TypeScript 编译层，报告会记录跳过 |
 
-默认包含完整 TypeScript 编译层。输入很大时检查可能需要较长时间，进度写到标准错误，报告写到标准输出及指定文件。任一实际执行的验证层失败时，命令返回非零状态；输入本身的错误也会保留在报告中。
+默认包含完整 TypeScript 编译层。输入很大时检查可能需要较长时间，进度写到标准错误，摘要写到标准输出，完整报告写入指定文件；使用 `--json` 时标准输出也包含完整报告。任一实际执行的验证层失败时，命令返回非零状态；输入本身的错误也会保留在报告中。
+
+### 大语料的内存设置
+
+普通的 `npx krieg corpus ...` 会自动准备语料进程需要的 Node.js 设置：启用 `--expose-gc`，并在没有显式堆配置时使用 `--max-old-space-size=3072`。需要时，CLI 会携带原参数重新启动自身，继承环境和标准输入输出，并传递退出状态。日常使用无需手工添加这些标志。
+
+父进程通过 Node.js 参数或 `NODE_OPTIONS` 显式指定的堆设置会被保留。完整 TypeScript 编译在独立的批次进程中运行，每个编译进程默认使用 5632 MiB 的老生代堆设置；父进程在启动编译批次前会调用可用的垃圾回收接口，减少上一阶段数据与编译进程同时占用内存的情况。
+
+这些数值是 V8 老生代堆的上限，不能当作整个进程树的内存上限。实际占用还包括其他堆区域、缓冲区和运行时开销。需要调整父进程设置时，可直接运行安装包中的 CLI，例如：
+
+```sh
+node --max-old-space-size=4096 ./node_modules/krieg-lang/dist/cli.js \
+  corpus /path/to/game --out ./reports/game.json
+```
+
+Node.js 标志的定义见[官方命令行文档](https://nodejs.org/api/cli.html#--max-old-space-sizesize-in-mib)。
 
 ## 机器可读输出
 

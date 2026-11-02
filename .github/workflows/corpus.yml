@@ -33,4 +33,13 @@ jobs:
       - name: Parse and verify the local corpus
         env:
           CORPUS_ROOT: ${{ inputs.corpus_root }}
+        # Exercise the supported CLI path, which supplies corpus heap/GC defaults.
         run: node dist/cli.js corpus "$CORPUS_ROOT" --out "$RUNNER_TEMP/krieg-corpus-report.json"
+      - name: Retain the validation report
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: corpus-validation-${{ github.run_id }}
+          path: ${{ runner.temp }}/krieg-corpus-report.json
+          if-no-files-found: warn
+          retention-days: 7
