@@ -1,0 +1,13 @@
+node_modules/
+dist/
+build/
+site/
+.venv/
+.cache/
+.krieg/
+*.tgz
+*.zip
+corpora/
+reports/local/
+coverage/
+*.log
