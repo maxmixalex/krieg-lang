@@ -5,7 +5,7 @@ import { resolve, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 import test from "node:test";
-import { compileSource } from "../dist/compiler/index.js";
+import { compileProject, compileSource, emitCompileOutput } from "../dist/compiler/index.js";
 import { emitPdx } from "../dist/pdx/index.js";
 import { initProject, writeEditorProject } from "../dist/project/index.js";
 
@@ -37,12 +37,63 @@ test("the tutorials' complete TypeScript examples compile against the public SDK
   let checked = 0;
   for (const page of pages) {
     const markdown = readFileSync(join(repository, "docs", page), "utf8");
-    const snippets = [...markdown.matchAll(/```(typescript|tsx)\n([\s\S]*?)```/g)];
-    for (let index = 0; index < snippets.length; index++) {
-      const result = compile(snippets[index][2], {
-        fileName: `docs-${page}-${index}.krg.${snippets[index][1] === "tsx" ? "tsx" : "ts"}`,
+    const snippets = [...markdown.matchAll(/```(typescript|tsx|css)\n([\s\S]*?)```/g)].map(
+      (match) => ({
+        language: match[1],
+        source: match[2],
+        file:
+          match[2].match(/^\/\/ (src\/[^\n]+\.krg\.(?:tsx?|css))\n/)?.[1] ??
+          markdown.slice(0, match.index).match(/`(src\/[^`\n]+\.krg\.(?:tsx?|css))`[：:]\s*$/)?.[1],
+      }),
+    );
+    const sources = {
+      "rewards.krg.ts": helperSource,
+      ...Object.fromEntries(
+        snippets.filter((snippet) => snippet.file).map((snippet) => [snippet.file, snippet.source]),
+      ),
+    };
+    const files = snippets
+      .filter((snippet) => snippet.file && snippet.language !== "css")
+      .map((snippet) => snippet.file);
+    if (files.length) {
+      const result = compileProject({
+        rootDir: join(repository, "tutorial-examples", page),
+        files,
+        sources,
         virtualModules,
-        sources: { "rewards.krg.ts": helperSource },
+        moduleFiles: { "@my-team/krieg-common/rewards": "rewards.krg.ts" },
+      });
+      assertSuccess(result, `${page} named source project`);
+      assert.ok(result.outputs.length > 0, `${page} named source project should generate content`);
+      if (page === "recipes.md") {
+        const outputs = new Map(
+          result.outputs.map((output) => [output.path, emitCompileOutput(output)]),
+        );
+        assert.match(
+          outputs.get("common/decisions/krieg_reconstruction_decisions.txt") ?? "",
+          /cost = 25/,
+        );
+        assert.match(outputs.get("interface/reconstruction.gui") ?? "", /name = "request_aid"/);
+        assert.match(
+          outputs.get("events/krieg_reconstruction_1.txt") ?? "",
+          /emergency_aid_execute = yes/,
+        );
+        assert.match(
+          outputs.get("common/national_focus/krieg_reconstruction_tree.txt") ?? "",
+          /focus = reconstruction_authorize/,
+        );
+        const action = outputs.get("common/scripted_effects/krieg_emergency_aid_action.txt") ?? "";
+        assert.equal((action.match(/add_political_power = -25/g) ?? []).length, 1);
+      }
+      checked += files.length;
+    }
+    for (let index = 0; index < snippets.length; index++) {
+      const snippet = snippets[index];
+      if (snippet.file || snippet.language === "css") continue;
+      const result = compile(snippet.source, {
+        fileName: `docs-${page}-${index}.krg.${snippet.language === "tsx" ? "tsx" : "ts"}`,
+        virtualModules,
+        sources,
         moduleFiles: { "@my-team/krieg-common/rewards": "rewards.krg.ts" },
       });
       assertSuccess(result, `${page} example ${index + 1}`);

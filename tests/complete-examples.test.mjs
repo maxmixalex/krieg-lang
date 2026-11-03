@@ -205,6 +205,38 @@ for (const scenario of scenarios)
       native(result, (path) => path.startsWith("common/scripted_guis/")),
       /redeem_click_enabled/,
     );
+    const decisions = native(result, `common/decisions/krieg_${p}_assembly.txt`);
+    assert.match(decisions, new RegExp(`${p}_invest = \\{\\s+cost = 25`));
+    assert.match(decisions, new RegExp(`${p}_request_investment_eligible = yes`));
+    assert.match(decisions, new RegExp(`${p}_request_investment_perform = yes`));
+    assert.match(decisions, new RegExp(`${p}_delegation = \\{\\s+cost = 15`));
+    assert.doesNotMatch(decisions, /add_political_power|_execute = yes/);
+    const investment = native(
+      result,
+      `common/scripted_effects/krieg_${p}_request_investment_action.txt`,
+    );
+    assert.match(
+      investment,
+      new RegExp(
+        `${p}_request_investment_perform = \\{\\s+country_event = \\{\\s+id = ${p}_congress.1\\s+days = 1`,
+      ),
+    );
+    assert.equal((investment.match(/add_political_power = -25/g) ?? []).length, 1);
+    const scriptedGui = native(result, (path) => path.startsWith("common/scripted_guis/"));
+    assert.match(scriptedGui, new RegExp(`redeem_click = \\{\\s+${p}_redeem_execute = yes`));
+    assert.match(
+      scriptedGui,
+      new RegExp(`redeem_click_enabled = \\{\\s+${p}_redeem_available = yes`),
+    );
+    const redeem = native(result, `common/scripted_effects/krieg_${p}_redeem_action.txt`);
+    assert.match(
+      redeem,
+      new RegExp(
+        `${p}_redeem_perform = \\{\\s+${p}_redeem_bond = yes\\s+clr_country_flag = ${p}_bonds_unlocked`,
+      ),
+    );
+    assert.match(redeem, /if = \{\s+limit = \{/);
+    assert.doesNotMatch(redeem, /add_political_power/);
     assert.match(
       native(result, (path) => path.startsWith("common/scripted_localisation/")),
       new RegExp(`${p}_status_complete`),

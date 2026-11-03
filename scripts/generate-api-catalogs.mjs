@@ -208,6 +208,7 @@ export function generateGameCatalogs({ root, manifest, generated, header }) {
     "| --- | --- | --- |",
   ];
   for (const rootNode of declaration.members) {
+    defineIndex.push(`| <a id="${slug(rootNode.name.text)}"></a> **${rootNode.name.text}** | | |`);
     for (const namespace of rootNode.type.members) {
       const rootName = rootNode.name.text;
       const namespaceName = namespace.name.text;

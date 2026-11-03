@@ -1,6 +1,8 @@
 /** Compile-time HOI4 interface components. These functions are never executed. */
 import type {
   Definition,
+  CountryActionDefinition,
+  CountryScope,
   Effect,
   Trigger,
   GuiAiWeight,
@@ -16,6 +18,15 @@ export interface GuiElement {
   readonly __kriegGuiElement: unique symbol;
 }
 export type GuiChild = GuiElement | readonly GuiChild[] | boolean | null | undefined;
+/** An opaque class exported by a .krg.css module; no browser class string is emitted. */
+export interface GuiClass<Properties extends object = object> {
+  readonly __kriegGuiClass: unique symbol;
+  readonly __kriegGuiProperties: Properties;
+}
+/** Classes apply left to right; explicit component props override the resulting style. */
+export interface GuiStyleProps {
+  className?: GuiClass | readonly GuiClass[];
+}
 export type GuiCoordinate = number | `${number}%` | `@${string}`;
 export interface GuiPosition {
   x: GuiCoordinate;
@@ -52,7 +63,7 @@ export type GuiOrigin =
   | "upper_left"
   | "right"
   | "left";
-export interface ElementProps {
+export interface ElementProps extends GuiStyleProps {
   name: string;
   position?: GuiPosition;
   size?: GuiSize;
@@ -76,12 +87,22 @@ export interface ContainerProps extends ElementProps {
   smoothScrolling?: boolean | number;
   scrollWheelFactor?: number;
 }
-export interface IconProps extends ElementProps {
-  spriteType: string;
+interface IconBaseProps extends ElementProps {
   frame?: number;
   alwaysTransparent?: boolean;
   centerPosition?: boolean;
 }
+/** Supply a sprite explicitly or through the first style class. */
+export type IconProps = IconBaseProps &
+  (
+    | { spriteType: string }
+    | {
+        spriteType?: string;
+        className:
+          | GuiClass<{ spriteType: string }>
+          | readonly [GuiClass<{ spriteType: string }>, ...GuiClass[]];
+      }
+  );
 export interface ButtonProps extends ElementProps {
   spriteType?: string;
   text?: string;
@@ -166,12 +187,17 @@ export interface GuiElementBindings<S> {
   visible?: Trigger<S>;
   properties?: GuiPositionBindings;
 }
-export interface GuiButtonBindings<S> extends GuiElementBindings<S> {
-  click?: Effect<S>;
-  enabled?: Trigger<S>;
+export type GuiButtonBindings<S> = GuiElementBindings<S> & {
   aiWeight?: GuiAiWeight<S>;
   properties?: GuiFrameBindings;
-}
+} & (
+    | { action?: never; click?: Effect<S>; enabled?: Trigger<S> }
+    | {
+        action: S extends CountryScope ? CountryActionDefinition : never;
+        click?: never;
+        enabled?: never;
+      }
+  );
 export interface GuiIconBindings<S> extends GuiElementBindings<S> {
   properties?: GuiTextureBindings;
 }
@@ -254,6 +280,16 @@ export declare function For<T>(props: {
   each: readonly T[];
   children: (item: T, index: number) => GuiChild;
 }): GuiElement;
+
+/** Static absolute layout of explicitly sized children. Emits no extra native container. */
+export interface StackProps {
+  direction?: "vertical" | "horizontal";
+  gap?: number;
+  position?: { x: number; y: number };
+  children?: GuiChild;
+}
+/** Children need a numeric size and upper-left anchoring; no automatic text measurement. */
+export declare function Stack(props: StackProps): GuiElement;
 
 export interface SpriteSpec {
   name: string;

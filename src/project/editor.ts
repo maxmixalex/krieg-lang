@@ -10,6 +10,7 @@ import { createWorld } from "./world.js";
 import { safeChild, slash } from "./files.js";
 import type { KriegConfig, ProjectOptions } from "./types.js";
 import type { ProjectWorld } from "./world.js";
+import { writeStyleDeclarations } from "./style-editor.js";
 
 // Keeping mtimes stable lets TypeScript reuse unchanged declaration files while Krieg watches a project.
 function writeChanged(path: string, contents: string): void {
@@ -38,6 +39,8 @@ export function writeEditorDeclarations(
   const generated = safeChild(config.rootDir, ".krieg");
   const types = resolve(generated, "types");
   mkdirSync(types, { recursive: true });
+  const styles = writeStyleDeclarations(generated, graph);
+  world.diagnostics.push(...styles.diagnostics);
   for (const [name, contents] of Object.entries(world.virtualModules))
     writeChanged(resolve(types, name.slice("@project/".length) + ".d.ts"), contents);
   writeChanged(resolve(types, "lib.d.ts"), MINIMAL_LIB);
@@ -56,8 +59,10 @@ export function writeEditorDeclarations(
       slash(relative(generated, fileURLToPath(new URL("../pdx/index.d.ts", import.meta.url)))),
     ],
   };
-  for (const [name, path] of Object.entries(graph.moduleFiles))
-    paths[name] = [slash(relative(generated, path))];
+  for (const [name, path] of Object.entries(graph.moduleFiles)) {
+    const target = slash(relative(generated, styles.declarations.get(path) ?? path));
+    paths[name] = [target.startsWith(".") ? target : `./${target}`];
+  }
   writeChanged(
     resolve(generated, "tsconfig.json"),
     JSON.stringify(
@@ -71,10 +76,13 @@ export function writeEditorDeclarations(
           noLib: true,
           types: [],
           strict: true,
+          exactOptionalPropertyTypes: true,
           noEmit: true,
           skipLibCheck: false,
           paths,
           allowImportingTsExtensions: true,
+          allowArbitraryExtensions: true,
+          rootDirs: styles.rootDirs,
           forceConsistentCasingInFileNames: true,
         },
         files: ["./types/lib.d.ts"],

@@ -57,7 +57,13 @@ npm run docs:api:check
 npm run docs:coverage
 ```
 
-`docs:api` 从 `package.json` 获取每个 TypeScript 公开入口，使用 TypeDoc 解析导出、重载、字段、继承和 JSDoc，由 Markdown 插件生成 `docs/api/reference/`。固定配置位于 `typedoc.json`。不手工编辑生成页；类型声明、`@param`、`@returns`、`@example` 与 `@category` 应写在源码 JSDoc 中。
+`docs:api` 从 `package.json` 获取每个 TypeScript 公开入口，使用 TypeDoc 解析导出、重载、字段、继承和 JSDoc，再将 Markdown 插件的结果按任务组装到 `docs/api/reference/`。固定配置位于 `typedoc.json`。不手工编辑生成页；类型声明、`@param`、`@returns`、`@example` 与 `@category` 应写在源码 JSDoc 中。
+
+新增公开 API 时，在 `scripts/api-topics.mjs` 中为它与相关 Spec、选项、句柄选择同一任务；补充用途说明和最小例子。函数签名与字段始终由 TypeDoc 生成，任务配置只负责排列和编辑说明。复杂原生字段会按内容和字段分组分页；生成器限制页面体积，避免把整个模块合并成巨页。`npm run docs:examples` 实际编译任务参考里的 `.krg.ts` / TSX 例子，并对 Node.js 示例做类型检查，执行前需先 `npm run build`。
+
+`scripts/api-legacy-0.3.json` 保存 0.3 发布站点的 747 个参考网址和 36,061 个锚点。它是固定兼容基线，不随新 API 覆写。兼容网址只保留在重定向数据中，不生成 Markdown 空页，也不参加搜索或导航；`docs:build` 在 Zensical 构建后直接生成轻量 HTML 跳转，已知字段精确重定向，未知片段回到所属符号。`manifest.json` 中的 `referencePages` 才是实际任务参考页数，不能把兼容文件计作新增内容。
+
+`docs:build` 检查所有公开导出的渲染锚点和搜索记录、旧网址、同页关联类型、源码与人类指南链接、重复 ID 和页面体积。CI 与 Pages 使用相同的固定 npm / Python 依赖和这些命令；部署前还要运行 `docs:api:check`，确认提交的结果可以从当前源码重现。
 
 小型原生嵌套结构使用 TypeDoc 的内联机制，大型共享字段由 missing-exports 插件解析并按使用位置命名。它们通过公共字段链接进入，不增加包导出或占据主导航。不要恢复旧的 `NativeShape` 编号页面。
 

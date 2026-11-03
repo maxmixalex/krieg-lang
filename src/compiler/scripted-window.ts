@@ -19,7 +19,7 @@ export const SCRIPTED_WINDOW_COMPONENTS = [
   "GridBox",
   "ListBox",
 ] as const;
-export const GUI_BINDING_KEYS = ["visible", "properties", "click", "enabled", "aiWeight"];
+export const GUI_BINDING_KEYS = ["visible", "properties", "click", "enabled", "aiWeight", "action"];
 
 function record(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -42,6 +42,7 @@ export function composeScriptedWindow(
   owner: number,
   node: ts.Node,
   fail: Fail,
+  bindButton: (props: Record<string, unknown>, node: ts.Node) => Record<string, unknown>,
 ): Record<string, unknown> {
   const roots = guiElements(layout, node, fail);
   if (roots.length !== 1 || roots[0].property.key.text !== "containerWindowType")
@@ -78,7 +79,7 @@ export function composeScriptedWindow(
     if (binding) {
       if (binding.owner !== owner)
         fail(origin, "KRG2133", "A bound GUI component belongs to a different ScriptedWindow.");
-      const props = binding.props;
+      let props = binding.props;
       if (root && Object.values(props).some((value) => value !== undefined))
         fail(
           origin,
@@ -86,8 +87,12 @@ export function composeScriptedWindow(
           "Put window visibility on ScriptedWindow's spec; element bindings belong to descendants of the root container.",
         );
       const button = element.property.key.text === "buttonType";
-      if (!button && ["click", "enabled", "aiWeight"].some((key) => props[key] !== undefined))
-        fail(origin, "KRG2134", "Only a bound Button accepts click, enabled and aiWeight.");
+      if (
+        !button &&
+        ["click", "enabled", "aiWeight", "action"].some((key) => props[key] !== undefined)
+      )
+        fail(origin, "KRG2134", "Only a bound Button accepts click, enabled, action and aiWeight.");
+      if (button) props = bindButton(props, origin);
       if (props.click !== undefined) effects[`${name}_click`] = props.click;
       if (props.enabled !== undefined) triggers[`${name}_click_enabled`] = props.enabled;
       if (props.visible !== undefined) triggers[`${name}_visible`] = props.visible;

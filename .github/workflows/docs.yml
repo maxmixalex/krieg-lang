@@ -29,6 +29,7 @@ jobs:
       - run: npm run generate:domains:check
       - run: npm run generate:defines:check
       - run: npm run docs:api:check
+      - run: npm run docs:examples
       - run: npm run docs:coverage
       - uses: actions/setup-python@v6
         with:

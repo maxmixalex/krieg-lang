@@ -1,6 +1,13 @@
 #!/usr/bin/env node
-import { existsSync, watch, type FSWatcher } from "node:fs";
-import { resolve } from "node:path";
+import {
+  readFileSync as readTraceLog,
+  existsSync,
+  mkdirSync,
+  watch,
+  writeFileSync,
+  type FSWatcher,
+} from "node:fs";
+import { dirname, resolve } from "node:path";
 import { parseArgs } from "node:util";
 import { fileURLToPath } from "node:url";
 import {
@@ -11,9 +18,13 @@ import {
   packProject,
   resolveDependencies,
   writeEditorProject,
+  traceOutput,
+  traceGameLog,
 } from "./project/index.js";
 import { compileCorpusBatch, ensureCorpusRuntime } from "./corpus/compiler-runner.js";
 import { runCorpus } from "./corpus/index.js";
+import { renderFocusTreeMermaid } from "./compiler/focus-preview.js";
+import { document, parsePdx } from "./pdx/index.js";
 import type { BuildResult, ProjectDiagnostic, ProjectOptions } from "./project/types.js";
 import { VERSION } from "./version.js";
 
@@ -25,6 +36,11 @@ const help = `Krieg ${VERSION} — statically compile TypeScript to an HOI4 mod
   krieg pack [project] [--out file.zip]   Build a portable, reproducible mod ZIP
   krieg world [project]                  Refresh editor project declarations
   krieg watch [project]                  Rebuild when project inputs change
+  krieg graph [project] --focus <id>      Preview a compiled focus tree as Mermaid
+      --out <file.mmd>                   Save the diagram instead of printing it
+  krieg trace [project] --at path:line   Locate a native game line in authoring source
+  krieg trace [project] --log error.log  Locate native file/line pairs from a game log
+      --log error.log                   Trace recognizable locations in a complete error log
   krieg import <input> --out <directory> Convert native files to ordered .krg.ts
       --path events/name.txt            Required game path for a single-file import
   krieg corpus <dataset> --out report.json
@@ -74,7 +90,10 @@ async function main(): Promise<void> {
       name: { type: "string" },
       generated: { type: "string" },
       imported: { type: "string" },
+      focus: { type: "string" },
       "skip-typecheck": { type: "boolean" },
+      at: { type: "string" },
+      log: { type: "string" },
       "game-root": { type: "string", multiple: true },
       "game-replace-path": { type: "string", multiple: true },
     },
@@ -103,11 +122,91 @@ async function main(): Promise<void> {
     : {};
   if (
     values["game-root"] &&
-    !["check", "build", "world", "types", "pack", "watch", "import"].includes(command)
+    !["check", "build", "world", "types", "pack", "watch", "import", "graph"].includes(command)
   ) {
-    throw new Error("--game-root applies to check, build, world, types, pack, watch, and import.");
+    throw new Error(
+      "--game-root applies to check, build, world, types, pack, watch, import, and graph.",
+    );
   }
   switch (command) {
+    case "graph": {
+      if (!values.focus)
+        throw new Error("Use krieg graph [project] --focus <tree-id> [--out file.mmd].");
+      const native = document([]);
+      const result = buildProject(project, {
+        ...projectOptions,
+        check: true,
+        onOutput(file) {
+          if (!/^common\/national_focus\/.*\.txt$/i.test(file.path)) return;
+          const parsed = parsePdx(file.readText(), { sourceName: file.path });
+          if (parsed.diagnostics.some((diagnostic) => diagnostic.severity === "error"))
+            throw new Error(`Could not parse validated focus output '${file.path}'.`);
+          native.items.push(...parsed.document.items);
+        },
+      });
+      if (!result.success) {
+        if (values.json)
+          console.log(JSON.stringify({ success: false, diagnostics: result.diagnostics }, null, 2));
+        else diagnostics(result.diagnostics);
+        process.exitCode = 1;
+        break;
+      }
+      const mermaid = renderFocusTreeMermaid(native, values.focus);
+      const output = values.out ? resolve(values.out) : undefined;
+      if (output) {
+        mkdirSync(dirname(output), { recursive: true });
+        writeFileSync(output, mermaid);
+      }
+      if (values.json)
+        console.log(
+          JSON.stringify(
+            {
+              success: true,
+              treeId: values.focus,
+              mermaid,
+              output,
+              diagnostics: result.diagnostics,
+            },
+            null,
+            2,
+          ),
+        );
+      else {
+        diagnostics(result.diagnostics);
+        if (output) console.log(`Focus graph: ${output}`);
+        else process.stdout.write(mermaid);
+      }
+      break;
+    }
+    case "trace": {
+      if (values.log) {
+        if (values.at) throw new Error("Choose one of --at and --log.");
+        const rows = traceGameLog(project, readTraceLog(resolve(values.log), "utf8"));
+        if (values.json) console.log(JSON.stringify(rows, null, 2));
+        else {
+          for (const row of rows) {
+            const loc = row.location;
+            console.log(
+              `log:${row.logLine} ${row.path}:${row.generatedLine} → ${loc ? `${loc.source}${loc.line ? `:${loc.line}:${loc.column}` : ""} (${loc.precision})` : row.reason}`,
+            );
+          }
+          if (!rows.length) console.log("No recognized native file and line pairs.");
+        }
+        break;
+      }
+      const input = values.at && /^(.+):([1-9]\d*)$/.exec(values.at);
+      if (!input) throw new Error('Use krieg trace [project] --at "events/example.txt:12".');
+      const hit = traceOutput(project, input[1], Number(input[2]));
+      if (values.json) console.log(JSON.stringify(hit, null, 2));
+      else {
+        console.log(
+          `${hit.path}:${hit.generatedLine} → ${hit.source}${hit.line ? `:${hit.line}:${hit.column}` : ""} (${hit.precision})`,
+        );
+        for (const frame of hit.via ?? [])
+          console.log(`  expanded at ${frame.source}:${frame.line}:${frame.column}`);
+      }
+      break;
+    }
     case "init": {
       if (!argument) throw new Error("krieg init needs a destination directory.");
       const root = initProject(argument);

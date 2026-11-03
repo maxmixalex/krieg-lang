@@ -834,7 +834,7 @@ for (const shape of Object.keys(shapes))
   );
 const nativeUi = [
   `/** Generated native interface controls from CWT and observed legacy field facts. No JavaScript runtime. */`,
-  `import type { GuiElement, GuiChild } from './index.js';`,
+  `import type { GuiElement, GuiChild, GuiStyleProps } from './index.js';`,
   `import type { ${[...exportedShapes].join(", ")} } from '../sdk/domains.js';`,
 ];
 for (const { name, shape, children, validation } of Object.values(gui)) {
@@ -843,14 +843,14 @@ for (const { name, shape, children, validation } of Object.values(gui)) {
       `/** Legacy engine control observed in native GUI corpora. The supplied upstream CWTools has no rule for this control. */`,
     );
   nativeUi.push(
-    `export declare function ${name}(props: ${shape}${children ? " & { children?: GuiChild }" : ""}): GuiElement;`,
+    `export declare function ${name}(props: ${shape} & GuiStyleProps${children ? " & { children?: GuiChild }" : ""}): GuiElement;`,
   );
 }
 nativeUi.push(
   `export interface NativeIntrinsicElements {\n${Object.entries(gui)
     .map(
       ([native, { shape, children }]) =>
-        `  ${JSON.stringify(native)}: ${shape}${children ? " & { children?: GuiChild }" : ""};`,
+        `  ${JSON.stringify(native)}: ${shape} & GuiStyleProps${children ? " & { children?: GuiChild }" : ""};`,
     )
     .join("\n")}\n}`,
 );

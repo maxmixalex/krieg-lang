@@ -68,7 +68,7 @@ export function resolveDependencies(config: KriegConfig): DependencyGraph {
             if (entries !== undefined) {
               if (!entries || typeof entries !== "object" || Array.isArray(entries))
                 throw new Error(
-                  `${pkg.name}.krieg.exports must map module paths to .krg.ts or .krg.tsx sources.`,
+                  `${pkg.name}.krieg.exports must map module paths to .krg.ts, .krg.tsx or .krg.css sources.`,
                 );
               const packageDirectory = realpathSync(dependency.rootDir);
               const previous = versions.get(pkg.name);
@@ -80,7 +80,7 @@ export function resolveDependencies(config: KriegConfig): DependencyGraph {
               for (const [subpath, value] of Object.entries(entries)) {
                 if (
                   typeof value !== "string" ||
-                  !/\.krg\.tsx?$/.test(value) ||
+                  !/\.krg\.(?:tsx?|css)$/.test(value) ||
                   (subpath !== "." && !subpath.startsWith("./"))
                 )
                   throw new Error(`Invalid Krieg export ${pkg.name}/${subpath}.`);
@@ -119,7 +119,7 @@ export function resolveDependencies(config: KriegConfig): DependencyGraph {
           if (data.exports !== undefined) {
             if (!data.exports || typeof data.exports !== "object" || Array.isArray(data.exports))
               throw new Error(
-                `${spec}.krieg.exports must map module paths to .krg.ts or .krg.tsx sources.`,
+                `${spec}.krieg.exports must map module paths to .krg.ts, .krg.tsx or .krg.css sources.`,
               );
             exports = data.exports as Record<string, unknown>;
           }
@@ -127,7 +127,7 @@ export function resolveDependencies(config: KriegConfig): DependencyGraph {
         for (const [subpath, value] of Object.entries(exports)) {
           if (
             typeof value !== "string" ||
-            !/\.krg\.tsx?$/.test(value) ||
+            !/\.krg\.(?:tsx?|css)$/.test(value) ||
             (subpath !== "." && !subpath.startsWith("./"))
           )
             throw new Error(`Invalid Krieg export ${spec}/${subpath}.`);

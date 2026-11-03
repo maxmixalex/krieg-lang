@@ -1,4 +1,5 @@
 import {
+  CountryAction,
   CountryEvent,
   DecisionCategory,
   FocusGraph,
@@ -16,6 +17,7 @@ import {
 import { countries } from "@project/countries";
 import { states } from "@project/states";
 import { credit, ready, refund } from "@krieg-examples/civ-civic-kit";
+import { civicInfrastructure } from "./focus-nodes.krg.js";
 
 export const civicSpirit = Idea({
   id: "civ_civic_spirit",
@@ -29,6 +31,15 @@ export const executeBond = ScriptedEffect("civ_redeem_bond", (country: CountrySc
     debug: false,
   });
   country.effects.addToVariable({ var: "civ_gui_dirty", value: 1 });
+});
+// The button shares its eligibility and settlement; focus rewards still grant the bond directly.
+export const redeemBond = CountryAction("civ_redeem", {
+  politicalPowerCost: 0,
+  available: (country) => country.triggers.hasCountryFlag("civ_bonds_unlocked"),
+  perform: (country) => {
+    country.run(executeBond);
+    country.effects.clearCountryFlag("civ_bonds_unlocked");
+  },
 });
 export const successfulInvestment = ScriptedEffect(
   "civ_complete_investment",
@@ -83,6 +94,18 @@ export const partnerVisit = CountryEvent({
   ],
 });
 export const relations = OpinionModifier({ id: "civ_trade_partners", value: 20, decay: 1 });
+// One definition owns each price and settlement across any future event or GUI entry point.
+export const requestInvestment = CountryAction("civ_request_investment", {
+  politicalPowerCost: 25,
+  available: (country) => country.test(ready),
+  perform: (country) => country.schedule(report, { days: 1 }),
+});
+export const sendDelegation = CountryAction("civ_send_delegation", {
+  politicalPowerCost: 15,
+  available: (country) => country.triggers.hasCountryFlag("civ_invested"),
+  perform: (country) => country.schedule(partnerVisit, { days: 2 }),
+});
+
 export const decisions = DecisionCategory({
   id: "civ_assembly",
   icon: "civ_assembly",
@@ -90,17 +113,13 @@ export const decisions = DecisionCategory({
   decisions: [
     {
       id: "civ_invest",
-      cost: 25,
-      available: (country: CountryScope) => country.test(ready),
+      action: requestInvestment,
       visible: (country: CountryScope) => !country.triggers.hasCountryFlag("civ_invested"),
-      completeEffect: (country: CountryScope) => country.schedule(report, { days: 1 }),
     },
     {
       id: "civ_delegation",
-      cost: 15,
+      action: sendDelegation,
       daysReEnable: 30,
-      available: (country: CountryScope) => country.triggers.hasCountryFlag("civ_invested"),
-      completeEffect: (country: CountryScope) => country.schedule(partnerVisit, { days: 2 }),
     },
   ],
 });
@@ -109,19 +128,9 @@ export const focusTree = FocusGraph({
   prefix: "civ",
   country: (country: CountryScope) => country.triggers.tag(countries.KRG),
   nodes: {
-    charter: {
-      icon: "GFX_civ_focus",
-      position: { x: 1, y: 0 },
-      cost: 3,
-      completionReward: (country: CountryScope) => country.effects.addStability(0.05),
-    },
-    harbour: {
-      icon: "GFX_civ_focus",
-      position: { x: 0, y: 1 },
-      cost: 5,
-      completionReward: (country: CountryScope) => country.schedule(report, { days: 1 }),
-    },
+    ...civicInfrastructure(report),
     bonds: {
+      requires: (focus) => focus.charter,
       icon: "GFX_civ_focus",
       position: { x: 2, y: 1 },
       cost: 5,
@@ -131,17 +140,13 @@ export const focusTree = FocusGraph({
       },
     },
     cooperation: {
+      requires: (focus) => ({ all: [focus.harbour, focus.bonds] }),
       icon: "GFX_civ_focus",
       position: { x: 1, y: 2 },
       cost: 5,
       completionReward: (country: CountryScope) => country.schedule(partnerVisit, { days: 1 }),
     },
   },
-  sequences: [
-    ["charter", "harbour"],
-    ["charter", "bonds"],
-  ],
-  joins: [{ to: "cooperation", all: ["harbour", "bonds"] }],
 });
 export const status = ScriptedLocalisation("Get_civ_ProjectStatus", {
   scope: "country",

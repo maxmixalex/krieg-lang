@@ -345,7 +345,7 @@ try {
     checks,
   };
   const destination = resolve(
-    values.out ?? join(repo, "reports/validation/v0.3.0-complete-examples.json"),
+    values.out ?? join(repo, "reports/validation", `v${report.version}-complete-examples.json`),
   );
   mkdirSync(dirname(destination), { recursive: true });
   writeFileSync(destination, JSON.stringify(report, null, 2) + "\n");

@@ -2,6 +2,7 @@ import ts from "typescript";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { createHash } from "node:crypto";
 import { loadBundledSchema } from "../schema/index.js";
 import { MINIMAL_LIB } from "./minimal-lib.js";
 import { generateCommandDeclarations, PDX_DECLARATIONS } from "./sdk.js";
@@ -9,11 +10,14 @@ import { Lowerer } from "./lower.js";
 import { emitPdx, comparePdxSemantic } from "../pdx/emitter.js";
 import { parsePdx } from "../pdx/parser.js";
 import type { CompileOptions, CompileOutput, CompileResult, KriegDiagnostic } from "./types.js";
+import { parseStyleModule, type StyleModule } from "./styles.js";
+import { relativeSourceModule } from "./modules.js";
 
 export * from "./types.js";
 export type * from "../schema/types.js";
 export { MINIMAL_LIB } from "./minimal-lib.js";
 export { generateCommandDeclarations } from "./sdk.js";
+export { renderFocusTreeMermaid } from "./focus-preview.js";
 
 /** Serialize the compiler's explicitly discriminated native output formats. */
 export function emitCompileOutput(output: CompileOutput): string {
@@ -38,6 +42,8 @@ export function compileProject(options: CompileOptions): CompileResult {
   const virtualRoot = path.join(rootDir, ".krieg-compiler-virtual");
   const virtual = new Map<string, string>();
   const modules = new Map<string, string>();
+  const styleModules = new Map<string, StyleModule>();
+  const styleDiagnostics: KriegDiagnostic[] = [];
   const addModule = (name: string, source: string): void => {
     const file = path.join(virtualRoot, `${name.replace(/[^a-zA-Z0-9._-]/g, "_")}.d.ts`);
     virtual.set(file, source);
@@ -98,6 +104,7 @@ export function compileProject(options: CompileOptions): CompileResult {
     types: [],
     skipLibCheck: false,
     allowImportingTsExtensions: true,
+    allowArbitraryExtensions: true,
     noUncheckedIndexedAccess: false,
     exactOptionalPropertyTypes: true,
     jsx: ts.JsxEmit.Preserve,
@@ -115,6 +122,26 @@ export function compileProject(options: CompileOptions): CompileResult {
   host.resolveModuleNames = (names, containingFile) =>
     names.map((name) => {
       const supplied = modules.get(name) ?? options.moduleFiles?.[name];
+      const styleFile = supplied?.endsWith(".krg.css")
+        ? path.resolve(rootDir, supplied)
+        : name.startsWith(".") && name.endsWith(".krg.css")
+          ? path.resolve(path.dirname(containingFile), name)
+          : undefined;
+      if (styleFile) {
+        const source = host.readFile(styleFile);
+        if (source === undefined) return undefined;
+        const declaration = path.join(
+          virtualRoot,
+          `styles-${createHash("sha256").update(styleFile).digest("hex")}.d.ts`,
+        );
+        if (!styleModules.has(declaration)) {
+          const style = parseStyleModule(source, styleFile);
+          styleModules.set(declaration, style);
+          styleDiagnostics.push(...style.diagnostics);
+          virtual.set(declaration, style.declaration);
+        }
+        return { resolvedFileName: declaration, extension: ts.Extension.Dts };
+      }
       if (supplied)
         return {
           resolvedFileName: path.resolve(rootDir, supplied),
@@ -124,25 +151,7 @@ export function compileProject(options: CompileOptions): CompileResult {
               ? ts.Extension.Tsx
               : ts.Extension.Ts,
         };
-      if (!name.startsWith(".")) return undefined;
-      const base = path.resolve(path.dirname(containingFile), name);
-      const candidates = [
-        base,
-        `${base}.krg.ts`,
-        `${base}.krg.tsx`,
-        `${base}.ts`,
-        `${base}.tsx`,
-        path.join(base, "index.krg.ts"),
-        path.join(base, "index.krg.tsx"),
-      ];
-      if (/\.js$/.test(base))
-        candidates.push(
-          base.replace(/\.js$/, ".ts"),
-          base.replace(/\.js$/, ".krg.ts"),
-          base.replace(/\.js$/, ".tsx"),
-          base.replace(/\.js$/, ".krg.tsx"),
-        );
-      const found = candidates.find((candidate) => host.fileExists(candidate));
+      const found = relativeSourceModule(name, containingFile, host.fileExists);
       return found
         ? {
             resolvedFileName: found,
@@ -169,7 +178,8 @@ export function compileProject(options: CompileOptions): CompileResult {
       ...(position ? { line: position.line + 1, column: position.character + 1 } : {}),
     };
   });
-  const lowerer = new Lowerer(program, { ...options, rootDir, schema }, diagnostics);
+  diagnostics.push(...styleDiagnostics);
+  const lowerer = new Lowerer(program, { ...options, rootDir, schema }, diagnostics, styleModules);
   lowerer.validate();
   if (diagnostics.some((diagnostic) => diagnostic.severity === "error"))
     return { success: false, outputs: [], diagnostics };

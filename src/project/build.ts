@@ -1,3 +1,4 @@
+import { nativeLineOrigins } from "../compiler/native-trace.js";
 import { writeEditorDeclarations } from "./editor.js";
 import { VERSION } from "../version.js";
 import { createHash, randomUUID } from "node:crypto";
@@ -158,6 +159,7 @@ export function buildProject(
         virtualModules: world.virtualModules,
         moduleFiles: graph.moduleFiles,
         emitDependencies: false,
+        traceSources: !options.check,
       })) {
         diagnostics.push(...compiled.diagnostics);
         for (const file of compiled.outputs) {
@@ -165,8 +167,11 @@ export function buildProject(
           if (path === "descriptor.mod" || path === ".krieg-build.json")
             throw new Error(`Source cannot replace compiler-owned metadata ${path}.`);
           const text = emitCompileOutput(file);
+          let origins: OutputFile["origins"];
           if (file.format === "pdx") {
             const parsed = parsePdx(text, { sourceName: file.sourceFile });
+            if (file.tracePoints?.length)
+              origins = nativeLineOrigins(parsed.document, text, file.tracePoints);
             for (const d of parsed.diagnostics)
               diagnostics.push({
                 code: d.code,
@@ -184,6 +189,20 @@ export function buildProject(
                 message: `Emitting ${path} changes its ordered syntax tree; use valid atoms and escaped strings.`,
               });
           }
+          if (file.format === "lua") origins = file.lineOrigins;
+          const rootDir = config.rootDir;
+          origins = origins?.map((origin) => ({
+            ...origin,
+            source: slash(relative(rootDir, origin.source)),
+            ...(origin.via
+              ? {
+                  via: origin.via.map((frame) => ({
+                    ...frame,
+                    source: slash(relative(rootDir, frame.source)),
+                  })),
+                }
+              : {}),
+          }));
           const eventIds: string[] = [];
           if (file.format === "pdx" && file.representation === "semantic")
             for (const event of properties(file.document.items)) {
@@ -198,7 +217,13 @@ export function buildProject(
               if (id?.value.kind === "atom") eventIds.push(id.value.text);
             }
           add(
-            { path, bytes: Buffer.from(text, "utf8"), source: file.sourceFile, kind: "script" },
+            {
+              path,
+              bytes: Buffer.from(text, "utf8"),
+              source: file.sourceFile,
+              kind: "script",
+              ...(origins?.length ? { origins } : {}),
+            },
             false,
             eventIds,
           );
@@ -301,6 +326,15 @@ export function buildProject(
       kind: file.kind,
     }));
     if (diagnostics.some((d) => d.severity === "error")) return result;
+    if (options.onOutput)
+      for (const file of files)
+        options.onOutput({
+          path: file.path,
+          source: file.source,
+          kind: file.kind,
+          readText: () => decodeCorpusText(file.bytes).text,
+          readBytes: () => Uint8Array.from(file.bytes),
+        });
     if (!options.check) {
       writeBuild({ ...config, mod: effectiveMod }, files, result.files);
       result.launcherFile = resolve(dirname(result.outDir), `${config.name}.mod`);
@@ -361,6 +395,7 @@ function writeBuild(
           sources: files.map((f) => ({
             path: f.path,
             source: slash(relative(config.rootDir, f.source)),
+            ...(f.origins?.length ? { origins: f.origins } : {}),
           })),
         },
         null,

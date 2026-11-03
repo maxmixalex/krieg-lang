@@ -1,4 +1,52 @@
-import type { CountryScope, FocusSpec, IdentifiedDefinition, Trigger } from "./index.js";
+import type {
+  CountryScope,
+  Effect,
+  FocusSpec,
+  IdentifiedDefinition,
+  ScriptedEffectDefinition,
+  ScriptedTriggerDefinition,
+  Trigger,
+} from "./index.js";
+
+/** One country action's shared eligibility, political-power price and settlement. */
+export interface CountryActionSpec {
+  /** Non-negative compile-time safe integer; zero is free even at a negative balance. */
+  readonly politicalPowerCost: number;
+  /** Gameplay eligibility. The compiler adds the affordability check where required. */
+  readonly available?: Trigger<CountryScope>;
+  /** Shared settlement. The compiler handles the price separately. */
+  readonly perform: Effect<CountryScope>;
+}
+
+/**
+ * A compiler-created paid country action, reusable across modules and entry points.
+ * @remarks `available` includes eligibility and affordability. `execute` rechecks
+ * both in native if/limit, deducts the price once, then runs the shared settlement.
+ * Bind the action directly to a decision so the game's cost system collects the price.
+ */
+export interface CountryActionDefinition<Id extends string = string> extends IdentifiedDefinition {
+  readonly id: Id;
+  readonly politicalPowerCost: number;
+  readonly available: ScriptedTriggerDefinition<"country"> & { readonly name: `${Id}_available` };
+  readonly execute: ScriptedEffectDefinition<"country"> & { readonly name: `${Id}_execute` };
+  readonly __kriegCountryAction: unique symbol;
+}
+
+/**
+ * Declare reusable eligibility, price and settlement for a country action.
+ * @remarks Buttons use `action={aid}`. Events use `country.run(aid.execute)`;
+ * an optional display condition is `country.test(aid.available)`. Decisions use
+ * `{ id: "request_aid", action: aid }` and cannot override cost, available or
+ * completeEffect. Ordinary decisions pay through native cost and call settlement
+ * directly, without checking the already-deducted balance or charging again.
+ * Generated names are `${id}_eligible`, `${id}_available`, `${id}_perform` and
+ * `${id}_execute`; these names are reserved against other scripted declarations.
+ * @category Typed gameplay
+ */
+export declare function CountryAction<const Id extends string>(
+  id: Id,
+  spec: CountryActionSpec,
+): CountryActionDefinition<Id>;
 
 type DecimalDigit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
 type DecimalDigits<Value extends string> = Value extends `${DecimalDigit}${infer Rest}`
@@ -75,6 +123,61 @@ export interface FocusNodeSpec extends Omit<
   readonly position?: { readonly x: number; readonly y: number };
 }
 
+/** A local node selected while declaring a graph's prerequisites or exclusions. */
+export interface FocusNodeKey<Key extends string = string> {
+  readonly key: Key;
+  readonly __kriegFocusNode: unique symbol;
+}
+
+/** Exact node-name completion for a graph or reusable node module. */
+export type FocusSelector<Key extends string> = {
+  readonly [Name in Key]: FocusNodeKey<Name>;
+};
+
+/**
+ * A completed focus, every requirement in `all`, or one requirement in `any`.
+ * @remarks Nested groups retain their boolean meaning. The compiler distributes
+ * OR over AND to produce the game's prerequisite blocks, with a checked limit
+ * on expansion. This describes accumulated completed focuses, not a state machine.
+ */
+export type FocusRequirement<Key extends string = string> =
+  | FocusNodeKey<Key>
+  | {
+      readonly all: readonly [FocusRequirement<Key>, ...FocusRequirement<Key>[]];
+      readonly any?: never;
+    }
+  | {
+      readonly any: readonly [FocusRequirement<Key>, ...FocusRequirement<Key>[]];
+      readonly all?: never;
+    };
+
+/** Gameplay and its local unlocking rules, written together on the same node. */
+export interface FocusGraphNodeSpec<Key extends string> extends FocusNodeSpec {
+  /** Select completed predecessors; omit this on a root node. */
+  readonly requires?: (focus: FocusSelector<Key>) => FocusRequirement<Key>;
+  /** Select alternatives to exclude. The compiler supplies the reverse links. */
+  readonly exclusiveWith?: (
+    focus: FocusSelector<Key>,
+  ) => FocusNodeKey<Key> | readonly [FocusNodeKey<Key>, ...FocusNodeKey<Key>[]];
+}
+
+/** A node module retains its exact names and contextual gameplay callback types. */
+export type FocusNodeSet<Key extends string> = {
+  readonly [Name in Key]: FocusGraphNodeSpec<NoInfer<Key>>;
+} & (string extends Key ? { readonly __kriegLiteralNodeKeys: never } : unknown);
+
+/**
+ * Define a reusable, typed collection of focus nodes without emitting a tree.
+ * @remarks Spread the returned nodes into one or more FocusGraphs. Internal
+ * selectors are checked here; graph-level selectors also see the imported nodes.
+ * Each consuming graph supplies its own ID prefix and layout. A module owns its
+ * node names; use distinct names when combining modules in the same tree.
+ * @category Typed gameplay
+ */
+export declare function FocusNodes<const Key extends string>(
+  nodes: FocusNodeSet<Key>,
+): FocusNodeSet<Key>;
+
 /** A chain creates one prerequisite for every consecutive pair of nodes. */
 export type FocusSequence<Key extends string> = readonly [Key, Key, ...Key[]];
 
@@ -88,7 +191,7 @@ export type FocusJoin<Key extends string> =
 
 /**
  * A focus tree with topology checked against the exact keys of `nodes`.
- * @remarks Sequences and joins generate native prerequisite groups. Each choice
+ * @remarks Node-local requirements generate native prerequisite groups. Each choice
  * group creates pairwise, symmetric mutual exclusions. Defaults position nodes
  * by dependency depth, with columns assigned in declaration order within a row.
  */
@@ -98,11 +201,12 @@ export interface FocusGraphSpec<Id extends string, Key extends string, Prefix ex
   readonly prefix?: Prefix;
   readonly country?: Trigger<CountryScope>;
   readonly default?: boolean;
-  readonly nodes: { readonly [Name in Key]: FocusNodeSpec } & (string extends Key
-    ? { readonly __kriegLiteralNodeKeys: never }
-    : unknown);
+  readonly nodes: FocusNodeSet<Key>;
+  /** Compatible with 0.3; node-local `requires` is usually easier to read. */
   readonly sequences?: readonly FocusSequence<NoInfer<Key>>[];
+  /** Compatible with 0.3; combines with node-local `requires` using AND. */
   readonly joins?: readonly FocusJoin<NoInfer<Key>>[];
+  /** Compatible with 0.3; node-local `exclusiveWith` also makes symmetric links. */
   readonly choices?: readonly FocusSequence<NoInfer<Key>>[];
   readonly layout?: { readonly columnSpacing?: number; readonly rowSpacing?: number };
 }
@@ -118,7 +222,7 @@ export interface FocusGraphDefinition<
 }
 
 /**
- * Build a complete focus graph from gameplay nodes, paths, joins and choices.
+ * Build a complete focus graph from gameplay nodes and their local requirements.
  * @remarks Rejects missing nodes, cycles, empty groups, and unavoidable mutually
  * exclusive prerequisites. Generated IDs are stable under node reordering. Use
  * the returned `focuses` references with `country.hasCompletedFocus` and
@@ -129,13 +233,13 @@ export interface FocusGraphDefinition<
  *   id: "reconstruction", prefix: "REC",
  *   nodes: {
  *     charter: { cost: 3 },
- *     industry: { cost: 5, completionReward: c => c.effects.addPoliticalPower(50) },
- *     relief: { cost: 5 },
- *     assembly: { cost: 5 },
+ *     industry: {
+ *       requires: f => f.charter, exclusiveWith: f => f.relief,
+ *       cost: 5, completionReward: c => c.effects.addPoliticalPower(50),
+ *     },
+ *     relief: { requires: f => f.charter, cost: 5 },
+ *     assembly: { requires: f => ({ any: [f.industry, f.relief] }), cost: 5 },
  *   },
- *   sequences: [["charter", "industry"], ["charter", "relief"]],
- *   choices: [["industry", "relief"]],
- *   joins: [{ to: "assembly", any: ["industry", "relief"] }],
  * });
  * @category Typed gameplay
  */

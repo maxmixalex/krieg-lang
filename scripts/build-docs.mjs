@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import { writeApiRedirects } from "./write-api-redirects.mjs";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 // Zensical's --clean resets its build cache. Clear retired output URLs as well,
@@ -23,4 +24,5 @@ if (result.error) {
   throw result.error;
 }
 if (result.status !== 0) process.exit(result.status ?? 1);
+writeApiRedirects(root);
 await import("./check-docs.mjs");

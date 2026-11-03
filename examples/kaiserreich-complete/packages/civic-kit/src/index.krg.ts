@@ -8,7 +8,6 @@ export function credit(country: CountryScope, amount: number): void {
 }
 export const ready = ScriptedTrigger(
   "srd_can_invest",
-  (country: CountryScope) =>
-    country.politicalPower >= 25 && !country.triggers.hasCountryFlag("srd_invested"),
+  (country: CountryScope) => !country.triggers.hasCountryFlag("srd_invested"),
 );
 export const refund = ScriptedEffect("srd_refund", (country: CountryScope) => credit(country, 5));

@@ -18,7 +18,13 @@ import type {
   GeneratedTriggersByScope,
 } from "./commands.js";
 import type { PdxDocument, PdxItem } from "../pdx/ast.js";
-import type { EventDefinition, EventDelay, EventIdentifier, FocusReference } from "./gameplay.js";
+import type {
+  CountryActionDefinition,
+  EventDefinition,
+  EventDelay,
+  EventIdentifier,
+  FocusReference,
+} from "./gameplay.js";
 export * from "./domains.js";
 export * from "./defines.js";
 export * from "./gameplay.js";
@@ -285,18 +291,31 @@ export declare function Focus(spec: FocusSpec): FocusSpec;
  * @see {@link FocusTreeSpec} */
 export declare function FocusTree(spec: FocusTreeSpec): IdentifiedDefinition;
 
-export interface DecisionSpec {
+interface DecisionBaseSpec {
   id: string;
   icon?: AssetId;
-  cost?: number;
   daysRemove?: number;
   daysReEnable?: number;
   visible?: Trigger<CountryScope>;
-  available?: Trigger<CountryScope>;
-  completeEffect?: Effect<CountryScope>;
   removeEffect?: Effect<CountryScope>;
   aiWillDo?: number;
 }
+/** A manual decision or a shared action; an action owns its cost, eligibility and settlement. */
+export type DecisionSpec = DecisionBaseSpec &
+  (
+    | {
+        action: CountryActionDefinition;
+        cost?: never;
+        available?: never;
+        completeEffect?: never;
+      }
+    | {
+        action?: never;
+        cost?: number;
+        available?: Trigger<CountryScope>;
+        completeEffect?: Effect<CountryScope>;
+      }
+  );
 export interface DecisionCategorySpec {
   id: string;
   icon?: AssetId;

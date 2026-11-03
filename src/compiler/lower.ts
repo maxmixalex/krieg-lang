@@ -1,12 +1,21 @@
 import ts from "typescript";
 import path from "node:path";
 import * as pdx from "../pdx/ast.js";
+import { NativeOrigins } from "./native-trace.js";
 import { parsePdx } from "../pdx/parser.js";
 import type { CwtSchema } from "../schema/types.js";
 import { commandAllowed } from "./sdk.js";
 import { commandValueError } from "./command-validation.js";
+import { CountryActions } from "./country-actions.js";
 import { DOMAIN_DEFINITIONS, DOMAIN_SCHEMA, type NativeValue } from "./domain-registry.js";
 import { lowerDefines } from "./defines.js";
+import { stackElements } from "./stack.js";
+import {
+  STYLE_NATIVE_NAMES,
+  type StyleModule,
+  type StyleClassValue,
+  type StyleDeclaration,
+} from "./styles.js";
 import { normalizeScriptedFamily, ScriptedFamilyError } from "./scripted-families.js";
 import {
   GameplayError,
@@ -55,6 +64,7 @@ interface Context {
   sink: pdx.PdxItem[];
   scope?: Scope;
   prefix: string;
+  declarationFile?: string;
   dynamicBranch?: boolean;
 }
 class CompileFailure extends Error {}
@@ -148,6 +158,8 @@ const forbiddenKinds = new Set([
 
 /** A bounded AST interpreter for compile-time values and game IR, never JavaScript. */
 export class Lowerer {
+  private readonly origins = new NativeOrigins();
+  private readonly styleOrigins = new WeakMap<object, Map<string, StyleDeclaration>>();
   private readonly checker: ts.TypeChecker;
   private readonly sources: ts.SourceFile[];
   private readonly cache = new Map<ts.Symbol, Value>();
@@ -158,6 +170,10 @@ export class Lowerer {
   private readonly scriptedFamilies = new WeakMap<object, Definition[]>();
   private readonly scriptedNames = new Set<string>();
   private readonly gameplayIds = new Set<string>();
+  private readonly countryActions = new CountryActions((node, code, message) =>
+    this.fail(node, code, message),
+  );
+  private readonly pendingActions = new Map<Definition, { node: ts.Node; source: string }>();
   private count = 0;
   private sequence = 0;
   private guiSequence = 0;
@@ -166,6 +182,7 @@ export class Lowerer {
     private readonly program: ts.Program,
     private readonly options: CompileOptions & { schema: CwtSchema },
     private readonly diagnostics: KriegDiagnostic[],
+    private readonly styleModules: ReadonlyMap<string, StyleModule> = new Map(),
   ) {
     this.checker = program.getTypeChecker();
     this.sources = program.getSourceFiles().filter((source) => !source.isDeclarationFile);
@@ -363,6 +380,7 @@ export class Lowerer {
         mode: "top",
         sink: [],
         prefix: safeId(path.basename(source.fileName, ".krg.ts")),
+        declarationFile: source.fileName,
       };
       for (const statement of source.statements) {
         try {
@@ -411,6 +429,15 @@ export class Lowerer {
         }
       }
     }
+    const emittedFiles = new Set(emittedSources.map((source) => source.fileName));
+    for (const [action, origin] of this.pendingActions) {
+      if (!emittedFiles.has(origin.source)) continue;
+      try {
+        this.emitValue(action, origin.node);
+      } catch (error) {
+        if (!(error instanceof CompileFailure)) throw error;
+      }
+    }
     const merged = new Map<string, CompileOutput>();
     for (const output of this.outputs) {
       const previous = merged.get(output.path);
@@ -424,7 +451,19 @@ export class Lowerer {
           });
         if (previous.format === "pdx" && output.format === "pdx")
           previous.document.items.push(...output.document.items);
-        else if (previous.format === "lua" && output.format === "lua") previous.text += output.text;
+        else if (previous.format === "lua" && output.format === "lua") {
+          if (output.lineOrigins?.length) {
+            const offset = previous.text.split("\n").length - 1;
+            (previous.lineOrigins ??= []).push(
+              ...output.lineOrigins.map((r) => ({
+                ...r,
+                from: r.from + offset,
+                to: r.to + offset,
+              })),
+            );
+          }
+          previous.text += output.text;
+        }
       } else
         merged.set(
           output.path,
@@ -433,6 +472,11 @@ export class Lowerer {
             : { ...output },
         );
     }
+    if (this.options.traceSources)
+      for (const output of merged.values()) {
+        if (output.format === "pdx" && output.representation !== "ordered-pdx")
+          output.tracePoints = this.origins.collect(output.document);
+      }
     return [...merged.values()].sort((a, b) => a.path.localeCompare(b.path));
   }
   private emitValue(value: Value, node: ts.Node): void {
@@ -492,6 +536,8 @@ export class Lowerer {
         "KRG1014",
         `Output path '${outputPath}' must be a relative game path without traversal.`,
       );
+    if (this.options.traceSources && representation !== "ordered-pdx")
+      this.origins.mark(document.items, node, "declaration");
     return {
       format: "pdx",
       path: normalized,
@@ -548,6 +594,8 @@ export class Lowerer {
     if (!declaration)
       this.fail(identifier, "KRG2006", `No static declaration for '${identifier.text}'.`);
     const module = declaration.getSourceFile().fileName;
+    const styleModule = this.styleModules.get(module);
+    if (styleModule) return styleModule.classes;
     if (
       [
         "krieg-lang_hoi4.d.ts",
@@ -582,6 +630,7 @@ export class Lowerer {
           mode: "top",
           sink: [],
           prefix: safeId(path.basename(declaration.getSourceFile().fileName, ".krg.ts")),
+          declarationFile: declaration.getSourceFile().fileName,
         });
         this.cache.set(symbol, result);
         return result;
@@ -609,6 +658,7 @@ export class Lowerer {
           mode: "top",
           sink: [],
           prefix: safeId(path.basename(declaration.getSourceFile().fileName, ".krg.ts")),
+          declarationFile: declaration.getSourceFile().fileName,
         };
         const result = this.evaluate(declaration.initializer, declarationContext);
         this.cache.set(symbol, result);
@@ -672,6 +722,7 @@ export class Lowerer {
       !ts.isVariableDeclaration(declaration) ||
       declaration.initializer ||
       !declaration.getSourceFile().isDeclarationFile ||
+      this.styleModules.has(declaration.getSourceFile().fileName) ||
       !declaration.getSourceFile().fileName.startsWith(trustedRoot)
     )
       return undefined;
@@ -684,6 +735,15 @@ export class Lowerer {
     return { value: this.typeValue(type, node, 0) };
   }
   private evaluate(node: ts.Expression, context: Context): Value {
+    if (!this.options.traceSources) return this.evaluateExpression(node, context);
+    const before = context.sink.length;
+    const value = this.evaluateExpression(node, context);
+    if (context.sink.length > before) this.origins.mark(context.sink, node, "expression", before);
+    if (tagged(value, "trigger") && Array.isArray(value.items))
+      this.origins.mark(value.items, node, "expression");
+    return value;
+  }
+  private evaluateExpression(node: ts.Expression, context: Context): Value {
     this.tick(node);
     if (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) return node.text;
     if (ts.isNumericLiteral(node)) return Number(node.text);
@@ -915,6 +975,11 @@ export class Lowerer {
       if (symbol) env.set(symbol, argument);
     }
     const inner = { ...context, env };
+    const traceHelper =
+      this.options.traceSources &&
+      ts.isCallExpression(call) &&
+      ts.isFunctionDeclaration(callable.node);
+    if (traceHelper) this.origins.helpers.push(call);
     this.calls.push(callable.node);
     try {
       if (!ts.isBlock(callable.node.body)) return this.evaluate(callable.node.body, inner);
@@ -927,6 +992,7 @@ export class Lowerer {
       return undefined;
     } finally {
       this.calls.pop();
+      if (traceHelper) this.origins.helpers.pop();
     }
   }
   private pdxCall(name: string, args: Value[], node: ts.Node): Value {
@@ -958,12 +1024,37 @@ export class Lowerer {
   }
   private sdkCall(name: string, args: Value[], node: ts.Node, context: Context): Value {
     if (name === "MetaEffect") return this.metaEffect(args, node, context);
+    if (name === "CountryAction") {
+      if (context.mode !== "top")
+        this.fail(node, "KRG2028", "Country actions belong at module scope.");
+      const action = this.countryActions.declare(args[0], args[1], node, {
+        claim: (mode, id) => this.claimScriptedName(mode, id, node),
+        callback: (value, mode, prefix) =>
+          this.callback(value, "country", mode, node, { ...context, prefix }),
+        output: (file, document) => this.output(file, document, node),
+      });
+      this.pendingActions.set(action, {
+        node,
+        source: context.declarationFile ?? node.getSourceFile().fileName,
+      });
+      return action;
+    }
     if (name === "ScriptedEffectFamily" || name === "ScriptedTriggerFamily")
       return this.scriptedFamily(name, args, node, context);
     if (name === "FocusGraph") {
       if (context.mode !== "top")
         this.fail(node, "KRG2028", "Focus graphs belong at module scope.");
-      const graph = this.gameplay(node, () => normalizeFocusGraph(args[0]));
+      const graph = this.gameplay(node, () =>
+        normalizeFocusGraph(args[0], (callback, selector) => {
+          if (!tagged(callback, "function"))
+            this.fail(
+              node,
+              "KRG2601",
+              "Focus rules require a statically defined selector callback.",
+            );
+          return this.invoke(callback as Callable, [selector], node, context);
+        }),
+      );
       return {
         _krg: "definition",
         id: graph.spec.id,
@@ -989,7 +1080,7 @@ export class Lowerer {
     }
     if (name === "loc") return this.string(args[0], node);
     if (name === "cwt") return { kind: "cwt", items: this.array(args[0], node) };
-    if (name === "Option" || name === "Focus" || name === "Decision")
+    if (name === "Option" || name === "Focus" || name === "Decision" || name === "FocusNodes")
       return this.object(args[0], node);
     if (definitions.has(name)) {
       if (context.mode !== "top")
@@ -1175,7 +1266,11 @@ export class Lowerer {
   private guiChildren(value: Value, node: ts.Node): pdx.PdxProperty[] {
     return guiElements(value, node, (origin, code, message) =>
       this.fail(origin, code, message),
-    ).map((element) => element.property);
+    ).map((element) => {
+      if (this.options.traceSources)
+        this.origins.mark([element.property], element.source ?? node, "expression");
+      return element.property;
+    });
   }
   private uiCall(
     name: string,
@@ -1231,6 +1326,21 @@ export class Lowerer {
         }),
       };
     }
+    if (name === "Stack") {
+      const props = this.object(args[0], node);
+      this.checkKeys(props, ["direction", "gap", "position", "children"], node, "Stack");
+      return {
+        _krg: "gui-fragment",
+        children: stackElements(
+          props,
+          node,
+          (origin, code, message) => this.fail(origin, code, message),
+          (position) => {
+            if (this.options.traceSources) this.origins.mark([position], node, "expression");
+          },
+        ),
+      };
+    }
     if (name === "ScriptedWindow") {
       const spec = this.object(args[0], node);
       this.checkKeys(
@@ -1267,8 +1377,13 @@ export class Lowerer {
         ]),
       );
       const layout = this.invoke(args[1] as Callable, [components], node, context);
-      const scripted = composeScriptedWindow(spec, layout, owner, node, (origin, code, message) =>
-        this.fail(origin, code, message),
+      const scripted = composeScriptedWindow(
+        spec,
+        layout,
+        owner,
+        node,
+        (origin, code, message) => this.fail(origin, code, message),
+        (props, origin) => this.countryActions.button(props, spec.context, origin),
       );
       const gui = this.uiCall("GuiFile", [spec.path, layout], node, context) as Definition;
       return {
@@ -1305,12 +1420,23 @@ export class Lowerer {
     }
     const native = Object.entries(DOMAIN_SCHEMA.gui).find(([, value]) => value.name === name);
     if (native) {
-      const spec = this.object(args[0], node);
+      const spec = this.styledProps(this.object(args[0], node), native[0], node);
       const props = Object.fromEntries(Object.entries(spec).filter(([key]) => key !== "children"));
       const rule: NativeValue = { kind: "object", shape: native[1].shape };
       const error = this.nativeValueError(props, rule);
       if (error) this.fail(node, "KRG2119", `${name}: ${error}`);
       const block = this.nativeValue(props, rule, node, context) as pdx.PdxBlock;
+      this.traceStyleFields(
+        spec,
+        block.items,
+        Object.fromEntries(
+          Object.entries(DOMAIN_SCHEMA.shapes[native[1].shape]).map(([key, field]) => [
+            key,
+            field.name,
+          ]),
+        ),
+        node,
+      );
       for (const field of block.items)
         if (
           field.kind === "property" &&
@@ -1435,8 +1561,11 @@ export class Lowerer {
     };
     const kind = kinds[name];
     if (!kind) this.fail(node, "KRG2090", `Unknown interface constructor '${name}'.`);
-    const spec = this.object(args[0], node);
     const mapping = name === "Sprite" ? kind.fields : { ...base, ...kind.fields };
+    const spec =
+      name === "Sprite"
+        ? this.object(args[0], node)
+        : this.styledProps(this.object(args[0], node), kind.type, node, mapping);
     this.checkKeys(
       spec,
       [...Object.keys(mapping), ...(name === "Container" ? ["children"] : [])],
@@ -1445,6 +1574,12 @@ export class Lowerer {
     );
     if (!this.string(spec.name, node))
       this.fail(node, "KRG2091", "GUI elements require non-empty names.");
+    if (name === "Icon" && typeof spec.spriteType !== "string")
+      this.fail(
+        node,
+        "KRG2213",
+        "Icon requires spriteType, either explicitly or in its style classes.",
+      );
     const rawStrings = new Set([
       "orientation",
       "origo",
@@ -1478,6 +1613,7 @@ export class Lowerer {
             : this.toPdx(value, node, context),
         );
       });
+    this.traceStyleFields(spec, items, mapping, node);
     if (spec.children !== undefined) items.push(...this.guiChildren(spec.children, node));
     return {
       _krg: "gui-element",
@@ -1485,6 +1621,93 @@ export class Lowerer {
       children: spec.children,
       source: node,
     } satisfies GuiElementValue;
+  }
+  /** Resolve opaque style values before ordinary native validation and serialization. */
+  private styledProps(
+    input: Record<string, Value>,
+    nativeType: string,
+    node: ts.Node,
+    mapping?: Record<string, string>,
+  ): Record<string, Value> {
+    if (input.className === undefined) return input;
+    const selected = Array.isArray(input.className) ? input.className : [input.className];
+    const fields = DOMAIN_SCHEMA.shapes[DOMAIN_SCHEMA.gui[nativeType].shape];
+    const result: Record<string, Value> = {};
+    const origins = new Map<string, StyleDeclaration>();
+    for (const candidate of selected) {
+      if (!tagged(candidate, "gui-style"))
+        this.fail(
+          node,
+          "KRG2210",
+          "className requires imported .krg.css classes or an ordered array of those classes.",
+        );
+      for (const declaration of (candidate as unknown as StyleClassValue).declarations) {
+        const nativeName = mapping
+          ? mapping[declaration.property]
+          : declaration.property === "font" && ["buttonType", "guiButtonType"].includes(nativeType)
+            ? "buttonFont"
+            : (STYLE_NATIVE_NAMES[declaration.property] ?? declaration.property);
+        const entry = nativeName
+          ? Object.entries(fields).find(([, field]) => field.name === nativeName)
+          : undefined;
+        const report = (message: string): never => {
+          const location = node.getSourceFile().getLineAndCharacterOfPosition(node.getStart());
+          this.diagnostics.push({
+            code: "KRG2211",
+            severity: "error",
+            file: declaration.file,
+            line: declaration.line,
+            column: declaration.column,
+            message: `${message} Applied to ${nativeType} at ${node.getSourceFile().fileName}:${location.line + 1}:${location.character + 1}.`,
+          });
+          throw new CompileFailure(message);
+        };
+        if (!entry)
+          return report(
+            `Style property '${declaration.property}' is not supported by this control.`,
+          );
+        let value = declaration.value;
+        let error = this.nativeValueError(value, entry[1].value);
+        if (declaration.property === "size" && error) {
+          const size = value as { width: unknown; height: unknown };
+          const coordinates = { x: size.width, y: size.height };
+          if (!this.nativeValueError(coordinates, entry[1].value)) {
+            value = coordinates;
+            error = undefined;
+          }
+        }
+        if (error) report(`Invalid style '${declaration.property}': ${error}`);
+        const key = mapping ? declaration.property : entry[0];
+        result[key] = mapping ? declaration.value : value;
+        origins.set(key, declaration);
+      }
+    }
+    for (const [key, value] of Object.entries(input))
+      if (key !== "className") {
+        result[key] = value;
+        origins.delete(key);
+      }
+    this.styleOrigins.set(result, origins);
+    return result;
+  }
+  private traceStyleFields(
+    spec: object,
+    items: pdx.PdxItem[],
+    mapping: Record<string, string>,
+    node: ts.Node,
+  ): void {
+    if (!this.options.traceSources) return;
+    for (const [key, origin] of this.styleOrigins.get(spec) ?? []) {
+      const field = items.find(
+        (item) => item.kind === "property" && item.key.text === mapping[key],
+      );
+      if (field)
+        this.origins.markStyle(
+          field,
+          { source: origin.file, line: origin.line, column: origin.column },
+          node,
+        );
+    }
   }
   private metaEffect(args: Value[], node: ts.Node, context: Context): Value {
     if (context.mode !== "effect" || !tagged(args[0], "scope"))
@@ -1547,6 +1770,8 @@ export class Lowerer {
     parent?: Scope,
     parameters: Value[] = [],
   ): pdx.PdxItem[] {
+    const actionCallback = this.countryActions.callback(value, scopeName, mode, node);
+    if (actionCallback) return actionCallback;
     if (!tagged(value, "function"))
       this.fail(node, "KRG2030", "Expected a typed game scope callback.");
     const scope: Scope = {
@@ -2281,13 +2506,25 @@ export class Lowerer {
       // Reuse path validation; the emitted Lua variant carries text, never a PDX document.
       const validated = this.output(outputPath, pdx.document([]), node, "schema-native");
       try {
+        const text = lowerDefines(args[1]);
         return [
           {
             format: "lua",
             path: validated.path,
             sourceFile: validated.sourceFile,
             representation: "schema-native",
-            text: lowerDefines(args[1]),
+            text,
+            ...(this.options.traceSources && text
+              ? {
+                  lineOrigins: [
+                    {
+                      from: 1,
+                      to: text.trimEnd().split("\n").length,
+                      ...this.origins.declaration(node),
+                    },
+                  ],
+                }
+              : {}),
           },
         ];
       } catch (error) {
@@ -2660,7 +2897,7 @@ export class Lowerer {
       ];
       const decisions: pdx.PdxItem[] = [];
       for (const decisionValue of this.array(spec.decisions, node)) {
-        const decision = this.object(decisionValue, node);
+        const decision = this.countryActions.decision(this.object(decisionValue, node), node);
         this.checkKeys(
           decision,
           [

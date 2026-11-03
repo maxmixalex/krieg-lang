@@ -1,6 +1,8 @@
 # 第一个模组
 
-这一页从本地构建 Krieg 开始，创建一个可以检查、编译和打包的小项目。需要 Node.js 22.17 或更新版本、npm 和 Git。编译器本身不需要启动 HOI4。
+这一页创建一个可以检查、编译和打包的小项目。需要 Node.js 22.17 或更新版本和 npm；从源码安装时还需要 Git。编译器本身不需要启动 HOI4。
+
+可以从 [GitHub Actions 的成功 CI 运行](https://github.com/maxmixalex/krieg-lang/actions/workflows/ci.yml)下载 `krieg-npm-package`（保留 30 天），解压得到已通过消费者验收的 `krieg-lang-0.4.0.tgz` 与 `SHA256SUMS`。用 SHA-256 工具校验后，在解压目录运行 `npx --yes --package=./krieg-lang-0.4.0.tgz krieg init hello-krieg`，再运行 `cd hello-krieg`、`npm install --save-dev ../krieg-lang-0.4.0.tgz` 和 `npx krieg build`。这是 CI 归档安装方式，该流程不会向 npm registry 发布版本；下面提供从源码安装的完整步骤。
 
 ## 安装当前仓库版本
 
@@ -14,14 +16,14 @@ npm run build
 npm pack
 ```
 
-这会生成 `krieg-lang-0.3.0.tgz`。这里使用本地安装包，避免把“仓库里已经有代码”和“npm 上已经发布版本”混为一谈。
+这会生成 `krieg-lang-0.4.0.tgz`。这里使用本地安装包，避免把“仓库里已经有代码”和“npm 上已经发布版本”混为一谈。
 
 创建项目，并把刚打好的包安装进去：
 
 ```sh
 node dist/cli.js init ../hello-krieg
 cd ../hello-krieg
-npm install ../krieg-lang/krieg-lang-0.3.0.tgz
+npm install ../krieg-lang/krieg-lang-0.4.0.tgz
 npx krieg check
 npx krieg build
 ```

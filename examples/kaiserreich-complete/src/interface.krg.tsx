@@ -2,16 +2,15 @@ import { ScriptedWindow, SpriteFile, Sprite, Text, type GuiElement } from "krieg
 import { countries } from "@project/countries";
 import { assets } from "@project/assets";
 import { messages } from "@project/localisation";
-import { executeBond } from "./programme.krg.ts";
+import { redeemBond } from "./programme.krg.ts";
+import styles from "./interface.krg.css";
 
 function StatusLine(props: { text: string; y: number }): GuiElement {
   return (
     <Text
       name="programme_status"
+      className={[styles.bodyText, styles.status]}
       position={{ x: 18, y: props.y }}
-      maxWidth={300}
-      maxHeight={50}
-      font="hoi_16mbs"
       text={props.text}
     />
   );
@@ -37,34 +36,21 @@ export const panel = ScriptedWindow(
     visible: (country) => country.triggers.tag(countries.KRL),
   },
   (ui) => (
-    <ui.Container
-      name="srd_assembly_window"
-      position={{ x: 15, y: 80 }}
-      size={{ width: 350, height: 190 }}
-    >
-      <ui.Icon name="background" spriteType="GFX_srd_panel" />
+    <ui.Container name="srd_assembly_window" className={styles.panel}>
+      <ui.Icon name="background" className={styles.background} />
       <ui.Text
         name="title"
-        position={{ x: 18, y: 14 }}
-        maxWidth={300}
-        maxHeight={26}
-        font="hoi_18mbs"
+        className={[styles.bodyText, styles.title]}
         text={messages["srd_gui_title"]}
       />
       <StatusLine text={messages["srd_gui_status"]} y={54} />
       <ui.Button
         name="redeem"
-        position={{ x: 18, y: 118 }}
-        size={{ width: 150, height: 32 }}
-        spriteType="GFX_srd_button"
-        font="hoi_16mbs"
+        className={styles.redeem}
         text="srd_gui_redeem"
         tooltip="srd_gui_redeem_tt"
-        click={(country) => {
-          country.run(executeBond);
-          country.effects.clearCountryFlag("srd_bonds_unlocked");
-        }}
-        enabled={(country) => country.triggers.hasCountryFlag("srd_bonds_unlocked")}
+        click={(country) => country.run(redeemBond.execute)}
+        enabled={(country) => country.test(redeemBond.available)}
       />
     </ui.Container>
   ),

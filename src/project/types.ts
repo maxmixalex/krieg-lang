@@ -38,10 +38,22 @@ export interface ProjectOptions {
   railways?: RailwayPlan | ((atlas: ProvinceAtlas) => RailwayPlan);
 }
 
+/** Read-only view of one validated mod file, available without writing a build directory. */
+export interface InspectedOutput {
+  readonly path: string;
+  readonly source: string;
+  readonly kind: OutputFile["kind"];
+  readText(): string;
+  /** Returns independent bytes; editing them cannot modify the mod. */
+  readBytes(): Uint8Array;
+}
+
 /** Options for workflows that can refresh editor declarations from the same resolved inputs. */
 export interface ProjectBuildOptions extends ProjectOptions {
   /** Write `.krieg` declarations as part of this build. Enabled by the CLI. */
   writeEditor?: boolean;
+  /** Visit the final outputs after validation. With `check: true`, useful for previews and authoring tools. This is a host-side hook, never executed from Krieg source. */
+  onOutput?: (output: InspectedOutput) => void;
 }
 
 export interface KriegConfig {
@@ -75,6 +87,8 @@ export interface ProjectLayer {
 }
 
 export interface OutputFile {
+  /** Internal build provenance, stored only in the local build marker. */
+  origins?: import("../compiler/types.js").NativeLineOrigin[];
   path: string;
   bytes: Uint8Array;
   source: string;

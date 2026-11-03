@@ -34,13 +34,29 @@ jobs:
       - run: npm run generate:domains:check
       - run: npm run generate:defines:check
       - run: npm run docs:api:check
+      - run: npm run docs:examples
       - run: npm run docs:coverage
       - run: npm run check
       - run: npm run lint
       - run: npm run format:check
       - run: npm test
       - run: npm run test:examples
-      - run: npm run test:package
+      - name: Test installed npm package
+        id: package_test
+        run: npm run test:package
+        env:
+          KRIEG_VERIFIED_PACKAGE_DIR: ${{ matrix.node == 24 && format('{0}/krieg-verified-package', runner.temp) || '' }}
+      - name: Upload verified npm package
+        if: ${{ success() && matrix.node == 24 && steps.package_test.outcome == 'success' }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: krieg-npm-package
+          path: |
+            ${{ runner.temp }}/krieg-verified-package/*.tgz
+            ${{ runner.temp }}/krieg-verified-package/SHA256SUMS
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0
 
   docs:
     name: Zensical documentation
@@ -53,7 +69,9 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
+      - run: npm run build
       - run: npm run docs:api:check
+      - run: npm run docs:examples
       - run: npm run docs:coverage
       - uses: actions/setup-python@v6
         with:

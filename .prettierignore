@@ -20,3 +20,7 @@ src/schema/hoi4-defines.json
 docs/api/reference/
 examples/**/localisation/**/*.yml
 tests/fixtures/**/localisation/**/*.yml
+
+# Immutable published URL baseline and generated compact redirect maps.
+scripts/api-legacy-0.3.json
+docs/api/redirects.json

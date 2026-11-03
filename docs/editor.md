@@ -15,6 +15,8 @@ npx tsc --noEmit
 
 使用初始化项目生成的 `tsconfig.json`。它包含严格检查及项目类型映射。自己配置时，应保留 `strict: true` 和 `noEmit: true`，并使用 Krieg 生成的类型配置。`noEmit` 保证类型检查不产生 JavaScript；真正的游戏输出由 `krieg build` 生成。
 
+首次克隆模组项目后，先运行 `npm install`，再运行 `npx krieg check` 或 `npx krieg world`，恢复被 Git 忽略的 `.krieg` 声明，然后使用编辑器或 `npx tsc --noEmit`。生成配置与编译器都启用 `exactOptionalPropertyTypes`：不提供可选字段时应省略该字段，只有字段类型明确允许时才能显式传入 `undefined`。
+
 生成配置也包含 TSX 的 `jsx` / `jsxImportSource` 设置，指向 `krieg-lang/ui` 的类型入口；不需要 React 依赖或运行时转换。添加 `.krg.tsx` 后运行 `krieg world`，再检查编辑器是否使用项目自己的 `tsconfig.json`。
 
 修改 `gameRoots`、依赖或显式的 `world` 列表后重新运行 `krieg world`。如果编辑器暂时仍显示旧类型，重新载入项目或重启 TypeScript 语言服务即可。

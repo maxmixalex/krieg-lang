@@ -1,0 +1,22 @@
+flowchart TD
+  %% Focus tree: reconstruction_tree
+  note["Static graph: availability, bypasses, allow_branch and game positions are not simulated."]
+  classDef external stroke-dasharray:5 5
+  f0["REC_charter"]
+  f1["REC_trade"]
+  f2["REC_industry"]
+  f3["REC_relief"]
+  f4["REC_assembly"]
+  f5["REC_congress"]
+  f0 --> f1
+  f0 --> f2
+  f0 --> f3
+  g0{"OR"}
+  f2 --> g0
+  f3 --> g0
+  g0 --> f4
+  g1{"AND"}
+  g1 --> f5
+  f4 --> g1
+  f1 --> g1
+  f2 -.-|"exclusive"| f3

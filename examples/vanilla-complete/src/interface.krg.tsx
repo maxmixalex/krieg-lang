@@ -2,16 +2,15 @@ import { ScriptedWindow, SpriteFile, Sprite, Text, type GuiElement } from "krieg
 import { countries } from "@project/countries";
 import { assets } from "@project/assets";
 import { messages } from "@project/localisation";
-import { executeBond } from "./programme.krg.ts";
+import { redeemBond } from "./programme.krg.ts";
+import styles from "./interface.krg.css";
 
 function StatusLine(props: { text: string; y: number }): GuiElement {
   return (
     <Text
       name="programme_status"
+      className={styles.status}
       position={{ x: 18, y: props.y }}
-      maxWidth={300}
-      maxHeight={50}
-      font="hoi_16mbs"
       text={props.text}
     />
   );
@@ -37,34 +36,16 @@ export const panel = ScriptedWindow(
     visible: (country) => country.triggers.tag(countries.KRG),
   },
   (ui) => (
-    <ui.Container
-      name="civ_assembly_window"
-      position={{ x: 15, y: 80 }}
-      size={{ width: 350, height: 190 }}
-    >
-      <ui.Icon name="background" spriteType="GFX_civ_panel" />
-      <ui.Text
-        name="title"
-        position={{ x: 18, y: 14 }}
-        maxWidth={300}
-        maxHeight={26}
-        font="hoi_18mbs"
-        text={messages["civ_gui_title"]}
-      />
+    <ui.Container name="civ_assembly_window" className={styles.panel}>
+      <ui.Icon name="background" className={styles.background} />
+      <ui.Text name="title" className={styles.title} text={messages["civ_gui_title"]} />
       <StatusLine text={messages["civ_gui_status"]} y={54} />
       <ui.Button
         name="redeem"
-        position={{ x: 18, y: 118 }}
-        size={{ width: 150, height: 32 }}
-        spriteType="GFX_civ_button"
-        font="hoi_16mbs"
+        className={styles.redeem}
         text="civ_gui_redeem"
         tooltip="civ_gui_redeem_tt"
-        click={(country) => {
-          country.run(executeBond);
-          country.effects.clearCountryFlag("civ_bonds_unlocked");
-        }}
-        enabled={(country) => country.triggers.hasCountryFlag("civ_bonds_unlocked")}
+        action={redeemBond}
       />
     </ui.Container>
   ),

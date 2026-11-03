@@ -1,68 +1,68 @@
 /** Generated native interface controls from CWT and observed legacy field facts. No JavaScript runtime. */
 
-import type { GuiElement, GuiChild } from './index.js';
+import type { GuiElement, GuiChild, GuiStyleProps } from './index.js';
 
 import type { NativeContainerProps, DropDownBoxProps, NativeButtonProps, OverlappingElementsBoxProps, NativeGridBoxProps, NativeListBoxProps, SmoothListBoxProps, NativeIconProps, PositionProps, BrowserProps, NativeTextProps, EditBoxProps, CheckboxProps, ScrollbarProps, ExtendedScrollbarProps, WindowProps, TextBoxProps, GuiButtonProps } from '../sdk/domains.js';
 
-export declare function NativeContainer(props: NativeContainerProps & { children?: GuiChild }): GuiElement;
+export declare function NativeContainer(props: NativeContainerProps & GuiStyleProps & { children?: GuiChild }): GuiElement;
 
-export declare function DropDownBox(props: DropDownBoxProps & { children?: GuiChild }): GuiElement;
+export declare function DropDownBox(props: DropDownBoxProps & GuiStyleProps & { children?: GuiChild }): GuiElement;
 
-export declare function NativeButton(props: NativeButtonProps): GuiElement;
+export declare function NativeButton(props: NativeButtonProps & GuiStyleProps): GuiElement;
 
-export declare function OverlappingElementsBox(props: OverlappingElementsBoxProps): GuiElement;
+export declare function OverlappingElementsBox(props: OverlappingElementsBoxProps & GuiStyleProps): GuiElement;
 
-export declare function NativeGridBox(props: NativeGridBoxProps): GuiElement;
+export declare function NativeGridBox(props: NativeGridBoxProps & GuiStyleProps): GuiElement;
 
-export declare function NativeListBox(props: NativeListBoxProps): GuiElement;
+export declare function NativeListBox(props: NativeListBoxProps & GuiStyleProps): GuiElement;
 
-export declare function SmoothListBox(props: SmoothListBoxProps): GuiElement;
+export declare function SmoothListBox(props: SmoothListBoxProps & GuiStyleProps): GuiElement;
 
-export declare function NativeIcon(props: NativeIconProps): GuiElement;
+export declare function NativeIcon(props: NativeIconProps & GuiStyleProps): GuiElement;
 
-export declare function Position(props: PositionProps): GuiElement;
+export declare function Position(props: PositionProps & GuiStyleProps): GuiElement;
 
-export declare function Browser(props: BrowserProps): GuiElement;
+export declare function Browser(props: BrowserProps & GuiStyleProps): GuiElement;
 
-export declare function NativeText(props: NativeTextProps): GuiElement;
+export declare function NativeText(props: NativeTextProps & GuiStyleProps): GuiElement;
 
-export declare function EditBox(props: EditBoxProps): GuiElement;
+export declare function EditBox(props: EditBoxProps & GuiStyleProps): GuiElement;
 
-export declare function Checkbox(props: CheckboxProps): GuiElement;
+export declare function Checkbox(props: CheckboxProps & GuiStyleProps): GuiElement;
 
-export declare function Scrollbar(props: ScrollbarProps): GuiElement;
+export declare function Scrollbar(props: ScrollbarProps & GuiStyleProps): GuiElement;
 
-export declare function ExtendedScrollbar(props: ExtendedScrollbarProps): GuiElement;
-
-/** Legacy engine control observed in native GUI corpora. The supplied upstream CWTools has no rule for this control. */
-
-export declare function Window(props: WindowProps & { children?: GuiChild }): GuiElement;
+export declare function ExtendedScrollbar(props: ExtendedScrollbarProps & GuiStyleProps): GuiElement;
 
 /** Legacy engine control observed in native GUI corpora. The supplied upstream CWTools has no rule for this control. */
 
-export declare function TextBox(props: TextBoxProps): GuiElement;
+export declare function Window(props: WindowProps & GuiStyleProps & { children?: GuiChild }): GuiElement;
 
 /** Legacy engine control observed in native GUI corpora. The supplied upstream CWTools has no rule for this control. */
 
-export declare function GuiButton(props: GuiButtonProps): GuiElement;
+export declare function TextBox(props: TextBoxProps & GuiStyleProps): GuiElement;
+
+/** Legacy engine control observed in native GUI corpora. The supplied upstream CWTools has no rule for this control. */
+
+export declare function GuiButton(props: GuiButtonProps & GuiStyleProps): GuiElement;
 
 export interface NativeIntrinsicElements {
-  "containerWindowType": NativeContainerProps & { children?: GuiChild };
-  "dropDownBoxType": DropDownBoxProps & { children?: GuiChild };
-  "buttonType": NativeButtonProps;
-  "OverlappingElementsBoxType": OverlappingElementsBoxProps;
-  "gridBoxType": NativeGridBoxProps;
-  "listBoxType": NativeListBoxProps;
-  "smoothListBoxType": SmoothListBoxProps;
-  "iconType": NativeIconProps;
-  "positionType": PositionProps;
-  "browserType": BrowserProps;
-  "instantTextBoxType": NativeTextProps;
-  "editBoxType": EditBoxProps;
-  "checkboxType": CheckboxProps;
-  "scrollbarType": ScrollbarProps;
-  "extendedScrollbarType": ExtendedScrollbarProps;
-  "windowType": WindowProps & { children?: GuiChild };
-  "textBoxType": TextBoxProps;
-  "guiButtonType": GuiButtonProps;
+  "containerWindowType": NativeContainerProps & GuiStyleProps & { children?: GuiChild };
+  "dropDownBoxType": DropDownBoxProps & GuiStyleProps & { children?: GuiChild };
+  "buttonType": NativeButtonProps & GuiStyleProps;
+  "OverlappingElementsBoxType": OverlappingElementsBoxProps & GuiStyleProps;
+  "gridBoxType": NativeGridBoxProps & GuiStyleProps;
+  "listBoxType": NativeListBoxProps & GuiStyleProps;
+  "smoothListBoxType": SmoothListBoxProps & GuiStyleProps;
+  "iconType": NativeIconProps & GuiStyleProps;
+  "positionType": PositionProps & GuiStyleProps;
+  "browserType": BrowserProps & GuiStyleProps;
+  "instantTextBoxType": NativeTextProps & GuiStyleProps;
+  "editBoxType": EditBoxProps & GuiStyleProps;
+  "checkboxType": CheckboxProps & GuiStyleProps;
+  "scrollbarType": ScrollbarProps & GuiStyleProps;
+  "extendedScrollbarType": ExtendedScrollbarProps & GuiStyleProps;
+  "windowType": WindowProps & GuiStyleProps & { children?: GuiChild };
+  "textBoxType": TextBoxProps & GuiStyleProps;
+  "guiButtonType": GuiButtonProps & GuiStyleProps;
 }

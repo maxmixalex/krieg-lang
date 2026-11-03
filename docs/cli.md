@@ -2,16 +2,18 @@
 
 在安装了 Krieg 的项目中，通过 `npx krieg` 使用命令。`--help` 显示当前实现支持的参数，`--version` 显示版本。项目参数省略时使用当前目录。
 
-| 命令                                         | 用途                                               |
-| -------------------------------------------- | -------------------------------------------------- |
-| `krieg init <directory>`                     | 创建包含事件、决议和中英文本地化的完整示例项目     |
-| `krieg check [project]`                      | 检查配置、类型、脚本、资源与地图，并刷新编辑器声明 |
-| `krieg build [project]`                      | 检查并写出模组和启动器描述文件                     |
-| `krieg pack [project]`                       | 构建并生成可移植 ZIP                               |
-| `krieg world [project]`                      | 刷新 `.krieg` 下的编辑器声明和世界类型             |
-| `krieg watch [project]`                      | 监听项目输入变化并重新构建                         |
-| `krieg import <input> --out <directory>`     | 导入原生文件或目录，生成有序 `.krg.ts` 项目        |
-| `krieg corpus <dataset> --out <report.json>` | 检查本地完整语料目录，并输出逐层报告               |
+| 命令                                         | 用途                                                                                   |
+| -------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `krieg init <directory>`                     | 创建包含事件、决议和中英文本地化的完整示例项目                                         |
+| `krieg check [project]`                      | 检查配置、类型、脚本、资源与地图，并刷新编辑器声明                                     |
+| `krieg build [project]`                      | 检查并写出模组和启动器描述文件                                                         |
+| `krieg pack [project]`                       | 构建并生成可移植 ZIP                                                                   |
+| `krieg world [project]`                      | 刷新 `.krieg` 下的编辑器声明和世界类型                                                 |
+| `krieg watch [project]`                      | 监听项目输入变化并重新构建                                                             |
+| `krieg graph [project] --focus <id>`         | 从编译结果预览国策关系；`--out tree.mmd` 保存 Mermaid 图                               |
+| `krieg trace [project] --at path:line`       | 将游戏文件中的一行定位回源码；`--log error.log` 可批量处理，见[调试指南](debugging.md) |
+| `krieg import <input> --out <directory>`     | 导入原生文件或目录，生成有序 `.krg.ts` 项目                                            |
+| `krieg corpus <dataset> --out <report.json>` | 检查本地完整语料目录，并输出逐层报告                                                   |
 
 ## 创建与构建
 

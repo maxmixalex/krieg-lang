@@ -1,4 +1,5 @@
 import {
+  CountryAction,
   CountryEvent,
   DecisionCategory,
   FocusGraph,
@@ -29,6 +30,15 @@ export const executeBond = ScriptedEffect("srd_redeem_bond", (country: CountrySc
     debug: false,
   });
   country.effects.addToVariable({ var: "srd_gui_dirty", value: 1 });
+});
+// The button shares its eligibility and settlement; focus rewards still grant the bond directly.
+export const redeemBond = CountryAction("srd_redeem", {
+  politicalPowerCost: 0,
+  available: (country) => country.triggers.hasCountryFlag("srd_bonds_unlocked"),
+  perform: (country) => {
+    country.run(executeBond);
+    country.effects.clearCountryFlag("srd_bonds_unlocked");
+  },
 });
 export const successfulInvestment = ScriptedEffect(
   "srd_complete_investment",
@@ -83,6 +93,18 @@ export const partnerVisit = CountryEvent({
   ],
 });
 export const relations = OpinionModifier({ id: "srd_trade_partners", value: 20, decay: 1 });
+// One definition owns each price and settlement across any future event or GUI entry point.
+export const requestInvestment = CountryAction("srd_request_investment", {
+  politicalPowerCost: 25,
+  available: (country) => country.test(ready),
+  perform: (country) => country.schedule(report, { days: 1 }),
+});
+export const sendDelegation = CountryAction("srd_send_delegation", {
+  politicalPowerCost: 15,
+  available: (country) => country.triggers.hasCountryFlag("srd_invested"),
+  perform: (country) => country.schedule(partnerVisit, { days: 2 }),
+});
+
 export const decisions = DecisionCategory({
   id: "srd_assembly",
   icon: "srd_assembly",
@@ -90,17 +112,13 @@ export const decisions = DecisionCategory({
   decisions: [
     {
       id: "srd_invest",
-      cost: 25,
-      available: (country: CountryScope) => country.test(ready),
+      action: requestInvestment,
       visible: (country: CountryScope) => !country.triggers.hasCountryFlag("srd_invested"),
-      completeEffect: (country: CountryScope) => country.schedule(report, { days: 1 }),
     },
     {
       id: "srd_delegation",
-      cost: 15,
+      action: sendDelegation,
       daysReEnable: 30,
-      available: (country: CountryScope) => country.triggers.hasCountryFlag("srd_invested"),
-      completeEffect: (country: CountryScope) => country.schedule(partnerVisit, { days: 2 }),
     },
   ],
 });
@@ -116,12 +134,14 @@ export const focusTree = FocusGraph({
       completionReward: (country: CountryScope) => country.effects.addStability(0.05),
     },
     harbour: {
+      requires: (focus) => focus.charter,
       icon: "GFX_srd_focus",
       position: { x: 0, y: 1 },
       cost: 5,
       completionReward: (country: CountryScope) => country.schedule(report, { days: 1 }),
     },
     bonds: {
+      requires: (focus) => focus.charter,
       icon: "GFX_srd_focus",
       position: { x: 2, y: 1 },
       cost: 5,
@@ -131,17 +151,13 @@ export const focusTree = FocusGraph({
       },
     },
     cooperation: {
+      requires: (focus) => ({ all: [focus.harbour, focus.bonds] }),
       icon: "GFX_srd_focus",
       position: { x: 1, y: 2 },
       cost: 5,
       completionReward: (country: CountryScope) => country.schedule(partnerVisit, { days: 1 }),
     },
   },
-  sequences: [
-    ["charter", "harbour"],
-    ["charter", "bonds"],
-  ],
-  joins: [{ to: "cooperation", all: ["harbour", "bonds"] }],
 });
 export const status = ScriptedLocalisation("Get_srd_ProjectStatus", {
   scope: "country",

@@ -1,0 +1,648 @@
+{
+  "schema": 1,
+  "version": "0.4.0",
+  "generatedAt": "2026-11-03T15:53:28.081Z",
+  "status": "local-static-gates-passed",
+  "scope": "Current v0.4.0 local release verification against the frozen compiled runtime, including the completed three-dataset private corpus run linked below. Remote CI, deployed Pages and an in-game launch are not claimed by this report.",
+  "compiledRuntime": {
+    "files": 261,
+    "sha256": "6c5091d63f28d167f716e1ff7bbc656be13bae3061275ca4a94bcc06039b7cda",
+    "hashAlgorithm": "SHA-256 of compact JSON [{path,sha256},...] sorted by relative dist path",
+    "matchesCompleteExampleValidation": true,
+    "matchesCorpusValidation": true,
+    "matchesRetainedTarball": true
+  },
+  "software": {
+    "node": "v24.22.1",
+    "typescript": "5.9.3",
+    "eslint": "10.14.0",
+    "prettier": "3.9.10",
+    "referenceGenerator": {
+      "name": "TypeDoc",
+      "version": "0.28.20",
+      "markdown": "4.14.1"
+    },
+    "zensical": "0.0.74"
+  },
+  "gates": {
+    "typeCheck": {
+      "status": "passed",
+      "command": "npm run check",
+      "exitCode": 0,
+      "log": {
+        "file": "krieg-v4-tsc.log",
+        "bytes": 158,
+        "sha256": "a7c2c60934628934e5a1283cf355e7aa8fe9046ca7d08c20a8fdbd8621fdfd95"
+      }
+    },
+    "build": {
+      "status": "passed",
+      "command": "npm run build",
+      "exitCode": 0,
+      "log": {
+        "file": "krieg-v4-finalbuild.log",
+        "bytes": 179,
+        "sha256": "291cc8a8d93f951cc073fe34d59fc1c9f01f04796ba4af70548686b62a9cd42d"
+      }
+    },
+    "sdkGeneration": {
+      "status": "passed",
+      "checks": [
+        {
+          "status": "passed",
+          "command": "node scripts/generate-sdk.mjs --check",
+          "exitCode": 0,
+          "log": {
+            "file": "krieg-v4-sdk.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        {
+          "status": "passed",
+          "command": "npm run generate:domains:check",
+          "exitCode": 0,
+          "log": {
+            "file": "krieg-v4-domains.log",
+            "bytes": 866,
+            "sha256": "6ce0a166e868446fb83186fd69e37643b866834e9a67676bb480719eaadc2eb3"
+          },
+          "definitions": 111,
+          "guiElements": 18,
+          "shapes": 472
+        },
+        {
+          "status": "passed",
+          "command": "npm run generate:defines:check",
+          "exitCode": 0,
+          "log": {
+            "file": "krieg-v4-defines.log",
+            "bytes": 280,
+            "sha256": "fefcd7eb61486da5ef8b8cd8331836605286ee3816fbf4230133324fd4e9e76d"
+          },
+          "keys": 4501
+        }
+      ]
+    },
+    "eslint": {
+      "status": "passed",
+      "command": "npm run lint",
+      "exitCode": 0,
+      "log": {
+        "file": "krieg-v4-lint.log",
+        "bytes": 136,
+        "sha256": "c5b131ce54c51164d6cdae7535b2d85d29d88bad2dc50337e36719b331641013"
+      },
+      "finalChangedScriptCheck": {
+        "status": "passed",
+        "command": "node node_modules/eslint/bin/eslint.js scripts/test-package.mjs",
+        "exitCode": 0,
+        "log": {
+          "file": "krieg-v4-final-lint.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    "prettier": {
+      "status": "passed",
+      "command": "npm run format:check",
+      "exitCode": 0,
+      "log": {
+        "file": "krieg-v4-format.log",
+        "bytes": 220,
+        "sha256": "f7c6b72201cb81a6b5f32cef26d59ac332bcb1ae8378475d129efb99840e90e0"
+      }
+    },
+    "unitAndIntegration": {
+      "status": "passed",
+      "command": "npm test",
+      "exitCode": 0,
+      "log": {
+        "file": "krieg-v4-unit.log",
+        "bytes": 25905,
+        "sha256": "388ab193e97736c23a93b1aa4ee81e218ecb332f26fc90fe0a6951622e3fd757"
+      },
+      "concurrency": 2,
+      "tests": 269,
+      "passed": 269,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "durationMs": 154456.96484
+    },
+    "exampleBuilds": {
+      "status": "passed",
+      "command": "npm run test:examples",
+      "exitCode": 0,
+      "log": {
+        "file": "krieg-v4-examples.log",
+        "bytes": 292,
+        "sha256": "10220e1ee67706ea87c32d6b03b224088bddf3b2e07c2dc51a3a285927ff84f5"
+      },
+      "filesByProject": {
+        "first-mod": 6,
+        "kaiserreich-complete": 94,
+        "logistics": 10,
+        "scripted-families": 10,
+        "vanilla-complete": 76
+      },
+      "totalOutputFiles": 196
+    },
+    "installedTarball": {
+      "status": "passed",
+      "command": "KRIEG_VERIFIED_PACKAGE_DIR=<artifact-directory> npm run test:package",
+      "exitCode": 0,
+      "log": {
+        "file": "krieg-v040-verified-package.log",
+        "bytes": 928,
+        "sha256": "0e9df9e0ee1ca7a7c0fcd9f23addcd884d0cea18f66f86ca0350b59173461ff4"
+      },
+      "packageVersion": "0.4.0",
+      "receipt": {
+        "file": "krieg-v040-verified-package-receipt.json",
+        "bytes": 2212,
+        "sha256": "f994a27e934e1ff44df2e812741e1fdc7e2cb5b11987b300c18bb4e77500189f"
+      },
+      "publicPackageEntrypoints": [
+        ".",
+        "./compiler",
+        "./hoi4",
+        "./pdx",
+        "./ui",
+        "./ui/jsx-runtime",
+        "./project",
+        "./eslint",
+        "./schema/krgconfig.schema.json",
+        "./package.json"
+      ],
+      "verified": [
+        "npm pack; install tarball into independent bootstrap; installed CLI init; install tarball into fresh project whose path contains spaces",
+        "Delete gitignored .krieg; npm run check recreates editor declarations pointing only to the project's installed SDK",
+        "Real npm-pack/npm-install of opt-in source package with FocusNodes factory, TSX component, internal relative CSS import and public CSS/focus exports",
+        "Read-only installed source package remains byte-identical; authoring source directory receives no generated sidecar declarations",
+        "FocusNodes cross-package reuse, node-local requires/exclusiveWith, AND/OR groups, old sequences/choices/joins, exact focus IDs, graph CLI output and failure preservation",
+        "CSS Modules class inference, composition/overrides, schema-native controls and intrinsic JSX, real size/font fields, Stack with For and ScriptedWindow bindings",
+        "CountryAction across modules; exact handle names; available/execute in event; UI action binding; Decision action keeps native price and calls settlement without double deduction",
+        "Stock tsc rejects invalid graph selectors, unknown/foreign CSS classes, explicit undefined, state event mismatch, action/decision overrides and invalid state-scope action buttons",
+        "Installed ESLint accepts configured source package imports and rejects any and unsupported CSS",
+        "trace --at and --log resolve exact CSS/TSX/action source locations, preserve prior successful build after failed checks, retain foreign log records",
+        "Real mod ZIP includes expected files and excludes .krieg metadata, authoring TS/CSS and source maps"
+      ],
+      "artifactRetention": "The exact tarball installed and verified by the consumer test is retained with SHA256SUMS after success. The Node 24 CI job is configured to upload it as krieg-npm-package for 30 days; remote CI upload was not observed in this local run.",
+      "completedAt": "2026-11-03T15:49:36.385929+00:00",
+      "elapsedSeconds": 56.153,
+      "retainedTarball": {
+        "file": "krieg-lang-0.4.0.tgz",
+        "bytes": 736338,
+        "sha256": "0d7063470c3d63c5d73f4a64f228607a8813a5b3c1ee83ef63e8658162398860"
+      },
+      "documentedDownloadEntrypoint": {
+        "status": "passed",
+        "steps": [
+          {
+            "command": [
+              "npx",
+              "--yes",
+              "--package=./krieg-lang-0.4.0.tgz",
+              "krieg",
+              "init",
+              "hello-krieg"
+            ],
+            "exit_code": 0,
+            "elapsed_seconds": 4.083
+          },
+          {
+            "command": ["npm", "install", "--save-dev", "../krieg-lang-0.4.0.tgz"],
+            "exit_code": 0,
+            "elapsed_seconds": 3.132
+          },
+          {
+            "command": ["npx", "krieg", "build"],
+            "exit_code": 0,
+            "elapsed_seconds": 1.334
+          }
+        ],
+        "starterModBuilt": true,
+        "log": {
+          "file": "krieg-v040-verified-package-entrypoint.log",
+          "bytes": 773,
+          "sha256": "52adf301f2fd9b906e8de05b7ed7654c11d130aaa728ae7bdfe06b5d41cf8c49"
+        }
+      }
+    },
+    "documentation": {
+      "status": "passed",
+      "checks": [
+        {
+          "status": "passed",
+          "command": "npm run docs:api:check && npm run docs:coverage",
+          "exitCode": 0,
+          "log": {
+            "file": "krieg-v4-docscheck.log",
+            "bytes": 664,
+            "sha256": "eec368899effa77a9cbfa7927285a97d77862f1ed2f6d2978c3bb58a0b7ceb61"
+          }
+        },
+        {
+          "status": "passed",
+          "command": "npm run docs:examples",
+          "exitCode": 0,
+          "log": {
+            "file": "krieg-v4-docexamples.log",
+            "bytes": 240,
+            "sha256": "b9e9047f155f05f84760ab6b4ddbdca871a500d43e1f8501db7595a960f474a4"
+          }
+        },
+        {
+          "status": "passed",
+          "command": "npm run docs:build",
+          "exitCode": 0,
+          "log": {
+            "file": "krieg-v4-docsbuild.log",
+            "bytes": 510,
+            "sha256": "891929053ef134d7e586312b2bf725f957af0927c49a4ea6aae3644a30976017"
+          },
+          "environment": "Zensical from requirements-docs.txt is available on PATH; build uses --clean --strict and checks rendered links/search after writing redirects."
+        }
+      ],
+      "generatedApiFiles": 305,
+      "renderedPages": 1063,
+      "checkedLocalLinksAndAssets": 127959,
+      "directlySearchablePublicExports": 606,
+      "taskReferencePages": 94,
+      "legacyUrls": 747,
+      "legacyAnchors": 36061,
+      "checkedAuthorWorkflows": 13,
+      "compatibilityRedirects": 738,
+      "legacyBaselineVersion": "0.3.0",
+      "legacyBaselinePages": 747,
+      "fixedCommandNames": 1165,
+      "coverageTopicFamilies": 57,
+      "compiledTaskReferenceExamples": 12,
+      "tutorialTypescriptTsxCodeBlocks": 43,
+      "tutorialNamedSourceProjects": ["docs/recipes.md", "docs/styles.md"],
+      "tutorialVerification": "npm test compiles every TypeScript/TSX tutorial block. Named files and the style module are assembled into real compileProject inputs; the paid-action project asserts decision price, event execution, GUI button, focus dependency and exactly one deduction in the shared execution effect.",
+      "renderedSite": {
+        "files": 1079,
+        "sha256": "dab15fae354734463dde7fbf5eede2448acad90bdc3404a88820d3a03c6b43ff",
+        "hashAlgorithm": "SHA-256 of compact JSON [{path,sha256},...] sorted by relative site path"
+      },
+      "browserReaderVerification": {
+        "status": "passed",
+        "scope": "Separate local Chromium reader run against the project-base URL; not deployed Pages.",
+        "receipt": {
+          "file": "reader-result.json",
+          "bytes": 7922,
+          "sha256": "bb82aa3cbd96016244e99cf8acc3b4a61286071e2f90b23af11c2fc538361d06"
+        },
+        "checkedJourneys": 6,
+        "compiledDomExamples": 4,
+        "searchQueries": ["TechnologySpec", "FocusGraph", "GuiClass", "CountryAction", "Stack"],
+        "legacyDeepLinkNavigation": true,
+        "historyNavigation": true,
+        "browserErrors": 0,
+        "failedRequests": 0
+      }
+    },
+    "completeScenarios": {
+      "status": "passed",
+      "report": {
+        "file": "reports/validation/v0.4.0-complete-examples.json",
+        "bytes": 49416,
+        "sha256": "ebb174ec4b47fea870363077b8bbe36d303cd7e8872ba8ce2c2dbde39b03990b"
+      },
+      "inputIntegrityUnchanged": true,
+      "results": [
+        {
+          "name": "vanilla-complete",
+          "projectSuccess": true,
+          "files": 76,
+          "projectDiagnostics": 0,
+          "cwtExitCode": 0,
+          "cwtDiagnostics": 1,
+          "cwtDiagnosticCodes": ["CW251"]
+        },
+        {
+          "name": "kaiserreich-complete",
+          "projectSuccess": true,
+          "files": 94,
+          "projectDiagnostics": 0,
+          "cwtExitCode": 0,
+          "cwtDiagnostics": 1,
+          "cwtDiagnosticCodes": ["CW251"]
+        }
+      ],
+      "scope": "Authored complete-example outputs checked against explicit effective bases. CWT and project validation are static checks, not an in-game launch or save/load test."
+    },
+    "orderedImportCorpus": {
+      "status": "passed",
+      "report": {
+        "file": "reports/validation/v0.4.0-corpus-summary.json",
+        "bytes": 6558,
+        "sha256": "6e19433cfac074c0efb25f631a8fc2394ef17f8cb066464b9036b5cbdee5bb22"
+      },
+      "completedAt": "2026-11-03T15:49:46.147Z",
+      "frozenRuntimeSha256": "6c5091d63f28d167f716e1ff7bbc656be13bae3061275ca4a94bcc06039b7cda",
+      "totals": {
+        "attempted": 17548,
+        "passed": 17548,
+        "failed": 0,
+        "skipped": 32
+      },
+      "datasets": [
+        {
+          "name": "kaiserreich",
+          "inventory": {
+            "files": 6144,
+            "bytes": 175783492,
+            "sha256": "84137a93711da0ac44ccd46038bb5edfca179edbd900fd2bf2a9c2a004f9df32",
+            "byClass": {
+              "pdx": 5041,
+              "documentation": 22,
+              "other": 4,
+              "credits": 1,
+              "localisation": 1076
+            },
+            "byExtension": {
+              ".txt": 4382,
+              ".md": 22,
+              ".info": 2,
+              ".lua": 2,
+              ".gfx": 444,
+              ".gui": 216,
+              ".yml": 1076
+            }
+          },
+          "levels": {
+            "parse": {
+              "attempted": 5041,
+              "passed": 5041,
+              "failed": 0,
+              "skipped": 0
+            },
+            "canonicalSemanticRoundtrip": {
+              "attempted": 5041,
+              "passed": 5041,
+              "failed": 0,
+              "skipped": 0
+            },
+            "constructorStaticRecompile": {
+              "attempted": 0,
+              "passed": 0,
+              "failed": 0,
+              "skipped": 5041
+            },
+            "typescriptCompile": {
+              "attempted": 5041,
+              "passed": 5041,
+              "failed": 0,
+              "skipped": 0
+            },
+            "ancillarySyntax": {
+              "attempted": 1076,
+              "passed": 1076,
+              "failed": 0,
+              "skipped": 0
+            }
+          },
+          "durationMs": 388996,
+          "cliExit": 0
+        },
+        {
+          "name": "tno",
+          "inventory": {
+            "files": 8287,
+            "bytes": 258456745,
+            "sha256": "d45aa518e61e8409acf8f287f2f188ef55a432293a6798a71b0484ef4f0dfb5d",
+            "byClass": {
+              "pdx": 7207,
+              "other": 10,
+              "documentation": 13,
+              "credits": 1,
+              "binary-asset": 2,
+              "localisation": 1054
+            },
+            "byExtension": {
+              ".txt": 6366,
+              "(none)": 1,
+              ".info": 6,
+              ".md": 13,
+              ".lua": 3,
+              ".mod": 1,
+              ".gui": 373,
+              ".gfx": 467,
+              ".dds": 1,
+              ".py": 1,
+              ".yml": 1054,
+              ".png": 1
+            }
+          },
+          "levels": {
+            "parse": {
+              "attempted": 7207,
+              "passed": 7196,
+              "failed": 11,
+              "skipped": 0
+            },
+            "canonicalSemanticRoundtrip": {
+              "attempted": 7196,
+              "passed": 7196,
+              "failed": 0,
+              "skipped": 11
+            },
+            "constructorStaticRecompile": {
+              "attempted": 0,
+              "passed": 0,
+              "failed": 0,
+              "skipped": 7207
+            },
+            "typescriptCompile": {
+              "attempted": 7196,
+              "passed": 7196,
+              "failed": 0,
+              "skipped": 11
+            },
+            "ancillarySyntax": {
+              "attempted": 1054,
+              "passed": 1052,
+              "failed": 2,
+              "skipped": 0
+            }
+          },
+          "durationMs": 496185,
+          "cliExit": 1
+        },
+        {
+          "name": "vanilla",
+          "inventory": {
+            "files": 5479,
+            "bytes": 248588581,
+            "sha256": "a47fdddde674622b0af370407e8fa58227f3f0c3017190e9cc3a7ff06a2eb74f",
+            "byClass": {
+              "pdx": 5332,
+              "documentation": 61,
+              "other": 5,
+              "credits": 1,
+              "binary-asset": 72,
+              "map-table": 8
+            },
+            "byExtension": {
+              ".txt": 4722,
+              ".md": 50,
+              ".lua": 3,
+              ".json": 1,
+              ".html": 11,
+              ".gui": 453,
+              ".gfx": 162,
+              ".info": 1,
+              ".dds": 63,
+              ".sfx": 1,
+              ".csv": 2,
+              ".bmp": 9,
+              ".map": 1
+            }
+          },
+          "levels": {
+            "parse": {
+              "attempted": 5332,
+              "passed": 5311,
+              "failed": 21,
+              "skipped": 0
+            },
+            "canonicalSemanticRoundtrip": {
+              "attempted": 5311,
+              "passed": 5311,
+              "failed": 0,
+              "skipped": 21
+            },
+            "constructorStaticRecompile": {
+              "attempted": 0,
+              "passed": 0,
+              "failed": 0,
+              "skipped": 5332
+            },
+            "typescriptCompile": {
+              "attempted": 5311,
+              "passed": 5311,
+              "failed": 0,
+              "skipped": 21
+            },
+            "ancillarySyntax": {
+              "attempted": 8,
+              "passed": 8,
+              "failed": 0,
+              "skipped": 0
+            }
+          },
+          "durationMs": 407020,
+          "cliExit": 1
+        }
+      ],
+      "originalParseFailures": 32,
+      "ancillaryInputFailures": 2,
+      "scope": "Full strict TypeScript compilation of ordered imports; canonical native semantic identity. The supplied map supplements are separately validated as real map overlays, not mixed into this fixed regression input.",
+      "log": {
+        "file": "krieg-v4-corpora.log",
+        "bytes": 14503,
+        "sha256": "2295494ae624fb6a791405ac5e5c39cfff8a1137e592797415eba2c9640b3cc3"
+      },
+      "note": "Passing means every attempted ordered TypeScript recompilation passed. Original parse failures, skipped files and ancillary input failures remain explicitly counted; no in-game validation is claimed.",
+      "independentAudit": {
+        "status": "passed",
+        "verifiedAt": "2026-11-03T15:50:45.478067+00:00",
+        "scope": "Independent receipt, raw report, file-row inventory, level-count and v0.3.0 baseline verification; no compiler rerun.",
+        "receipt": {
+          "file": "checks/independent-audit.json",
+          "bytes": 3836,
+          "sha256": "d19264ba4de29617c9dacf2245c6914f8e78a9059f140f29943f666ab1112e1a"
+        },
+        "actualInputFilesRehashed": 19910,
+        "allInputManifestsRecomputed": true,
+        "allLevelCountsRecomputed": true,
+        "allOriginalFailurePathsMatchBaseline03": true,
+        "rawReportAndReceiptHashes": [
+          {
+            "name": "kaiserreich",
+            "rawReportSha256": "ab456e6a4c1e93120ccbbb1811bccadeaaf1217dfbb518253cacc6b4b98306f9",
+            "receiptSha256": "2cb6f991503b9de569fa7123d940d58842d73f2f4fd625b4de7118bd3f646d6f"
+          },
+          {
+            "name": "tno",
+            "rawReportSha256": "a2b6795a469d7bd27aed6b64ffaf4ffcb94dc1fd3ae4608d28f49cc2aecccc0b",
+            "receiptSha256": "be9b5700dcaaef77a3ef57192d833bf2940d77c3a09500ce8adba38884db7a62"
+          },
+          {
+            "name": "vanilla",
+            "rawReportSha256": "345870f305b0fa2a2967dcd8e1e050ba0e4640d6536d2c863a771de5402c6f38",
+            "receiptSha256": "1574b822fc49ab34ea063c6050783e67c55c28caa7da17d0c765a88f17bf3c76"
+          }
+        ],
+        "evidenceArchive": {
+          "file": "krieg-0.4.0-corpus-evidence.zip",
+          "bytes": 1101081,
+          "sha256": "d156b69092275abb43b35047a7d048f89399b7ad7483053cdd84f2969ea3d633",
+          "files": 17,
+          "retention": "private"
+        }
+      }
+    }
+  },
+  "verificationCorrection": {
+    "issue": "The first full run exposed an obsolete tutorial harness that compiled named source modules separately, so a documented relative import could not resolve.",
+    "repair": "Assemble each named tutorial project from its published source/CSS blocks and give short style examples complete imports and GuiFile outputs; all tutorial blocks remain covered.",
+    "initialRun": {
+      "tests": 269,
+      "passed": 268,
+      "failed": 1,
+      "skipped": 0,
+      "log": {
+        "file": "krieg-v4-unit-before-tutorial-fix.log",
+        "bytes": 27064,
+        "sha256": "1a77f9f940e222a9f502e3190e336f949ac41ab7f19ceb325d7c7f30a576f307"
+      }
+    },
+    "targetedVerification": {
+      "command": "node --test --test-concurrency=2 tests/toolchain-integration.test.mjs tests/documentation.test.mjs",
+      "tests": 10,
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0,
+      "log": {
+        "file": "krieg-v4-tutorial-fix.log",
+        "bytes": 1077,
+        "sha256": "a35b8119c05244c7e47a77de5c7acb7fa5cbd3505ccfd3d7a3f4b8f9a784dd5e"
+      }
+    },
+    "finalVerification": "The complete npm test suite above passed after the correction; compiled runtime files were unchanged."
+  },
+  "engineValidation": "not-run",
+  "remoteCiValidation": "not-observed-in-this-local-run",
+  "deployedPagesValidation": "not-observed-in-this-local-run",
+  "logArtifactNote": "Log and local receipt names are recorded without machine-specific paths, with SHA-256 and byte counts. Private corpus receipt provenance is retained by the corpus evidence bundle and linked summary.",
+  "distributionPackage": {
+    "check": "The retained file is the exact tarball installed and tested by scripts/test-package.mjs; every package/dist file matches the frozen compiler by path and SHA-256.",
+    "name": "krieg-lang",
+    "version": "0.4.0",
+    "filename": "krieg-lang-0.4.0.tgz",
+    "filesInDistMatchedFrozen": 261,
+    "frozenRuntimeSha256": "6c5091d63f28d167f716e1ff7bbc656be13bae3061275ca4a94bcc06039b7cda",
+    "tarballSha256": "0d7063470c3d63c5d73f4a64f228607a8813a5b3c1ee83ef63e8658162398860",
+    "archiveBytes": 736338,
+    "checksums": {
+      "file": "SHA256SUMS",
+      "bytes": 87,
+      "sha256": "fdeb7f0192e881e5ca3251b5b7c137a965357800df2aa1f95be3aba9671e3099"
+    },
+    "currentPackageFilesMatch": ["README.md", "package.json", "NOTICE.md"],
+    "ciArtifact": {
+      "name": "krieg-npm-package",
+      "node": 24,
+      "retentionDays": 30,
+      "requiresSuccessfulConsumerTest": true,
+      "registryPublish": false,
+      "remoteUploadObserved": false
+    }
+  }
+}

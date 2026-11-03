@@ -2,6 +2,8 @@
 
 一个能响应游戏状态的界面由三部分组成：`.gui` 定义控件布局，`.gfx` 将 sprite 名称连接到图片，`common/scripted_guis` 把点击、显示条件和动态属性连接到游戏脚本。`ScriptedWindow` 把布局和行为合为一个声明，同时生成前后两份原生文件；`SpriteFile` 负责贴图注册。需要连接已有布局、原生修饰键点击或游戏动态列表时，也可以单独使用 `GuiFile` 与 `ScriptedGui`。
 
+重复的坐标、尺寸、字体与 sprite 可放进 [`.krg.css` 样式模块](styles.md)。默认导入提供精确类名补全；`className` 在编译时展开为目标控件的原生字段，支持 token、类组合和明确的覆盖顺序。普通控件、`ui.Button` 等绑定控件、原生组件与 intrinsic 标签都可使用。样式不会创建浏览器 DOM。
+
 ## 同一处声明布局和行为
 
 `ScriptedWindow` 的 `context` 决定 `ui` 控件回调的作用域。下面所有 `country` 都由标准 TypeScript 推导为 `CountryScope`，编辑器可以直接补全合法效果与条件，无须重复注明类型或手写 `economy_click` 这样的连接字符串。
@@ -67,6 +69,8 @@ ScriptedWindow(
 ## 静态组合与复用
 
 `For` 从 `each` 数组推导条目和索引类型，并在编译时按顺序展开控件。每项的效果闭包保留该项参数，所以示例分别生成扣除 25 和 50 政治点数的效果。它共享编译器的展开上限；不是 JavaScript 数组运行时，也不是游戏的 `dynamic_lists`。
+
+`Stack` 可为具有显式数字 `size` 的子控件顺序计算绝对坐标。例如 `<Stack position={{ x: 16, y: 48 }} gap={8}>...</Stack>` 按每个控件高度加 8 排列；`direction="horizontal"` 则使用宽度。子控件不再声明 `position`，并须使用上左锚点、默认缩放和旋转。它不插入原生包装容器，保留 `For` 展开条目的名称与游戏绑定。百分比尺寸、文字自动测量和运行时重排不属于这个静态组合；详见 [静态 Stack 的边界](styles.md#static-stack)。
 
 支持片段、嵌套静态数组、`condition ? element : null` 和静态布尔条件的 `&&` / `||`。布尔值、`null` 和 `undefined` 不产生控件；游戏状态变化应使用控件的 `visible` 条件。`GuiFile` 也支持这些组合形式。
 
@@ -198,6 +202,8 @@ SpriteFile("interface/reconstruction.gfx", [
 ## 项目与编辑器
 
 运行 `krieg world` 更新生成配置，再执行 `tsc --noEmit` 与 `krieg check`。`.krg.tsx` 与 `.krg.ts` 可以相互静态导入；TypeScript JSX 类型入口使用 `krieg-lang/ui/jsx-runtime`。生成的编辑器配置会包含 JSX 设置，ESLint 与 Prettier 也使用原生 TSX 支持。
+
+`.krg.css` 默认导入的类名声明同样由 `krieg world` / `build` / `check` / `watch` 刷新，存放于 `.krieg/styles`，不写入源码包或 `node_modules`。标准 TypeScript 补全真实类名；CSS 与原生控件的语义兼容性由 `krieg check` 校验。在 ESLint flat config 中加入 `krieg.configs.styles` 可直接检查样式语法、token 和组合。Prettier 原生支持其 CSS 格式。详见 [样式的项目与源码包接入](styles.md#editor-source-packages)。
 
 完整布局、翻译与游戏逻辑组合见 [原版与 Kaiserreich 示例](examples.md)。本轮绑定语义核对了所提供离线 Wiki 的 [Scripted GUI modding 修订 105160](https://hoi4.paradoxwikis.com/index.php?title=Scripted_GUI_modding&oldid=105160) 与 [Interface modding 修订 100547](https://hoi4.paradoxwikis.com/index.php?title=Interface_modding&oldid=100547)，以及目标安装的 `common/scripted_guis/_documentation.md` 和 [CWT interface/gui.cwt](https://github.com/cwtools/cwtools-hoi4-config/blob/master/Config/interface/gui.cwt)。
 

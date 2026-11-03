@@ -1,0 +1,1278 @@
+{
+  "schema": 1,
+  "version": "0.4.0",
+  "nodeVersion": "v24.22.1",
+  "typescriptVersion": "5.9.3",
+  "dist": {
+    "files": 261,
+    "sha256": "6c5091d63f28d167f716e1ff7bbc656be13bae3061275ca4a94bcc06039b7cda"
+  },
+  "distHashAlgorithm": "SHA-256 of compact JSON [{path,sha256},...] sorted by relative dist path",
+  "generatedAt": "2026-11-03T15:29:48.432Z",
+  "scope": "Authored complete-example outputs checked against explicit effective bases. CWT and project validation are static checks, not an in-game launch or save/load test.",
+  "limitations": [
+    "Supplied corpus versions are not identified by the downloaded upstream descriptor.",
+    "The supplied snapshots omit proprietary art; original example flags, portraits and UI textures are included.",
+    "The supplied KR map includes native bitmaps and tables. Its revision is not inferred from the separately recorded descriptor."
+  ],
+  "kaiserreichDescriptor": {
+    "source": "https://github.com/Kaiserreich/Kaiserreich-HOI4/blob/b603c934c871c7e4ef1c08a2dad19a77e6342ca1/descriptor.mod",
+    "commit": "b603c934c871c7e4ef1c08a2dad19a77e6342ca1",
+    "sha256": "1ad91873617cf34a53cd2b77397dcaca701e19891f3b0fbd8efbbc711602dc28",
+    "upstreamVersion": "1.7",
+    "upstreamSupportedVersion": "1.19.4.*",
+    "purpose": "Explicit load-order metadata for validation of the supplied stripped Kaiserreich text snapshot. The snapshot does not include its own descriptor or map directory. This fetched descriptor is recorded separately and does not modify or identify the snapshot version.",
+    "replacePath": [
+      "common/abilities",
+      "common/ai_areas",
+      "common/ai_equipment",
+      "common/ai_focuses",
+      "common/ai_navy/fleet",
+      "common/ai_navy/goals",
+      "common/ai_navy/taskforce",
+      "common/ai_strategy",
+      "common/ai_strategy_plans",
+      "common/ai_templates",
+      "common/autonomous_states",
+      "common/bookmarks",
+      "common/bop",
+      "common/characters",
+      "common/collections",
+      "common/continuous_focus",
+      "common/countries",
+      "common/country_leader",
+      "common/country_tag_aliases",
+      "common/country_tags",
+      "common/decisions",
+      "common/decisions/categories",
+      "common/difficulty_settings",
+      "common/dynamic_modifiers",
+      "common/factions/goals",
+      "common/factions/rules",
+      "common/factions/rules/groups",
+      "common/factions/templates",
+      "common/focus_inlay_windows",
+      "common/game_rules",
+      "common/idea_tags",
+      "common/ideas",
+      "common/ideologies",
+      "common/military_industrial_organization/organizations",
+      "common/modifiers",
+      "common/modifier_definitions",
+      "common/names",
+      "common/national_focus",
+      "common/on_actions",
+      "common/operations",
+      "common/opinion_modifiers",
+      "common/peace_conference/ai_peace",
+      "common/peace_conference/categories",
+      "common/peace_conference/cost_modifiers",
+      "common/raids",
+      "common/scorers/country",
+      "common/scripted_diplomatic_actions",
+      "common/scripted_effects",
+      "common/scripted_guis",
+      "common/scripted_localisation",
+      "common/scripted_triggers",
+      "common/special_projects/projects",
+      "common/special_projects/prototype_rewards",
+      "common/state_category",
+      "common/technologies",
+      "common/technology_sharing",
+      "common/technology_tags",
+      "common/units/codenames_operatives",
+      "common/units/names",
+      "common/units/names_divisions",
+      "common/units/names_railway_guns",
+      "common/units/names_ships",
+      "events",
+      "gfx/loadingscreens",
+      "gfx/flags",
+      "gfx/leaders",
+      "history/countries",
+      "history/general",
+      "history/states",
+      "history/units",
+      "map/strategicregions",
+      "map/supplyareas",
+      "portraits",
+      "tests"
+    ]
+  },
+  "mapSupplement": {
+    "source": "User-supplied KR.zip (inside maps.zip)",
+    "files": 295,
+    "bytes": 124878326,
+    "manifestSha256": "122a4c98fab5e27a6e1a45de447a3dde2b601a6fbd0226c421b89af6ca940eb9",
+    "descriptorRevisionMatch": "not asserted",
+    "mapTextComparison": {
+      "referenceCommit": "b603c934c871c7e4ef1c08a2dad19a77e6342ca1",
+      "referenceTextFiles": 285,
+      "exactBytes": 0,
+      "additionalMatchesAfterCrLfNormalization": 285,
+      "caseDifferences": 4,
+      "missing": [],
+      "different": [],
+      "scope": "Compares the pinned map text only. No claim about binary identity or the revision of the rest of the mod."
+    }
+  },
+  "inputIntegrity": {
+    "before": {
+      "vanilla": {
+        "files": 5479,
+        "bytes": 248588581,
+        "manifestSha256": "806fd388dd9e478e73d3f9ec432a2531ba7c6830c67299c4cd1110e3e7ced10f"
+      },
+      "kaiserreich": {
+        "files": 6144,
+        "bytes": 175783492,
+        "manifestSha256": "67f147f790ec4091271a7ea12102b51b0ffcabb6647076f3ce495634f28d55f3"
+      },
+      "providedKaiserreichMap": {
+        "files": 295,
+        "bytes": 124878326,
+        "manifestSha256": "122a4c98fab5e27a6e1a45de447a3dde2b601a6fbd0226c421b89af6ca940eb9"
+      }
+    },
+    "after": {
+      "vanilla": {
+        "files": 5479,
+        "bytes": 248588581,
+        "manifestSha256": "806fd388dd9e478e73d3f9ec432a2531ba7c6830c67299c4cd1110e3e7ced10f"
+      },
+      "kaiserreich": {
+        "files": 6144,
+        "bytes": 175783492,
+        "manifestSha256": "67f147f790ec4091271a7ea12102b51b0ffcabb6647076f3ce495634f28d55f3"
+      },
+      "providedKaiserreichMap": {
+        "files": 295,
+        "bytes": 124878326,
+        "manifestSha256": "122a4c98fab5e27a6e1a45de447a3dde2b601a6fbd0226c421b89af6ca940eb9"
+      }
+    },
+    "unchanged": true
+  },
+  "checks": [
+    {
+      "name": "vanilla-complete",
+      "selectedBase": "supplied vanilla text snapshot",
+      "effectiveBaseFiles": 5479,
+      "project": {
+        "success": true,
+        "diagnostics": [],
+        "world": {
+          "countries": 440,
+          "states": 1081,
+          "assets": 91
+        },
+        "files": [
+          {
+            "path": "common/ai_strategy_plans/krieg_civ_civic_plan.txt",
+            "bytes": 273,
+            "sha256": "60e8657853079fc00dab48d4c7d8f6b9ec114d4ace182c4e978001266f9e6616",
+            "kind": "script"
+          },
+          {
+            "path": "common/autonomous_states/krieg_civ_treaty_associate.txt",
+            "bytes": 447,
+            "sha256": "d672027206bbbef0c54b6a82113542760620f8f1ece71b6a1008671307be199a",
+            "kind": "script"
+          },
+          {
+            "path": "common/bookmarks/krieg_civ_island_start.txt",
+            "bytes": 329,
+            "sha256": "29a3ef00393aa739eeffc88bb311b64eb4f294fd73d7615dbb217f2c307a6356",
+            "kind": "script"
+          },
+          {
+            "path": "common/bop/krieg_civ_assembly_balance.txt",
+            "bytes": 625,
+            "sha256": "a87f10a76d1c8cd7ffb8c601dc8f4d5304f42121b41f45f9dc61f53f3992cdd5",
+            "kind": "script"
+          },
+          {
+            "path": "common/characters/krieg_civ_valenti.txt",
+            "bytes": 356,
+            "sha256": "05ac4d439cee0f79dc9a79f95479aebe8185587bc32a7f61dee1b396cf090b8c",
+            "kind": "script"
+          },
+          {
+            "path": "common/countries/Civic Republic.txt",
+            "bytes": 113,
+            "sha256": "6051d7b7766f57f76819082175ea1627d1efe8a8399c4d006a186abdbe4251a1",
+            "kind": "script"
+          },
+          {
+            "path": "common/country_tags/krieg_KRG.txt",
+            "bytes": 37,
+            "sha256": "f025c7ee56dd5ea52932083b3247e5766565c8f043e96f09c4ee9ebc13d4f2de",
+            "kind": "script"
+          },
+          {
+            "path": "common/decisions/categories/krieg_civ_assembly.txt",
+            "bytes": 68,
+            "sha256": "2e82f9ec56b5845024efb3704637eb176102cf4c4982cc43c4404de9e95ded1c",
+            "kind": "script"
+          },
+          {
+            "path": "common/decisions/categories/krieg_civ_development.txt",
+            "bytes": 50,
+            "sha256": "ba435c785ab1681b16e9d7c35d88b55c89bc5748ff9072d321025efeba24e124",
+            "kind": "script"
+          },
+          {
+            "path": "common/decisions/krieg_civ_assembly.txt",
+            "bytes": 425,
+            "sha256": "6db0f7817d740afbe6c10e14143c4458617da6f52703b628c151ecbc5538023b",
+            "kind": "script"
+          },
+          {
+            "path": "common/decisions/krieg_civ_development.txt",
+            "bytes": 1592,
+            "sha256": "e84d157306a5edd509dd38b3bc40db951b8f3ab3bddeab0a2f11b64a2a196c59",
+            "kind": "script"
+          },
+          {
+            "path": "common/defines/krieg_island_congress_timing.lua",
+            "bytes": 121,
+            "sha256": "5cf31531cc2182412851b0c046db7218354a7aef424ff19b7e1bf3229f556be7",
+            "kind": "script"
+          },
+          {
+            "path": "common/dynamic_modifiers/krieg_civ_workshops.txt",
+            "bytes": 119,
+            "sha256": "3ce3c7648d8c8626c2a1306078324913931559ff813a342776cf744abab7e5c6",
+            "kind": "script"
+          },
+          {
+            "path": "common/ideas/krieg_civ_civic_spirit.txt",
+            "bytes": 182,
+            "sha256": "1cdabb9f36872268e4c06af2a59bd83085f1b2153065e84b301022f9839b3d88",
+            "kind": "script"
+          },
+          {
+            "path": "common/ideologies/krieg_civ_cooperative.txt",
+            "bytes": 404,
+            "sha256": "f385dc38bd6b192db72e97420d8ec36b4e34a9ce4a08e21ba72c93313d45e890",
+            "kind": "script"
+          },
+          {
+            "path": "common/intelligence_agencies/krieg_civ_coastal_service.txt",
+            "bytes": 189,
+            "sha256": "be42e68aedfd13113a1cb453a25eb90027ec11b8185404c6b607503f28d37d8b",
+            "kind": "script"
+          },
+          {
+            "path": "common/intelligence_agency_upgrades/krieg_civ_harbour_contacts.txt",
+            "bytes": 254,
+            "sha256": "4c6bd68a65fea8229f9aa81efca65783ed6a52a01a0ad9bd0a8a777048bbd8a2",
+            "kind": "script"
+          },
+          {
+            "path": "common/military_industrial_organization/organizations/krieg_civ_design_cooperative.txt",
+            "bytes": 292,
+            "sha256": "fb472b08cdf0e68d0c7b9fe774a8bcc14d340deaf22cce044d81c0fdc8743726",
+            "kind": "script"
+          },
+          {
+            "path": "common/national_focus/krieg_civ_island_tree.txt",
+            "bytes": 956,
+            "sha256": "e377d41ba4b7e702abea4979066eb914cb236dcbaac365f8c066d67f9339c3dc",
+            "kind": "script"
+          },
+          {
+            "path": "common/on_actions/civ_startup.txt",
+            "bytes": 136,
+            "sha256": "8ee2c8e705df0116239c340095ca9c2a40c5d7c4d3b80a94f7f4e6fe082d6646",
+            "kind": "script"
+          },
+          {
+            "path": "common/operation_phases/krieg_civ_survey_phase.txt",
+            "bytes": 225,
+            "sha256": "bc87de1a25c77bc37a0410c669d42dd0c547aad9861401de3ea1876c14540a67",
+            "kind": "script"
+          },
+          {
+            "path": "common/operation_tokens/krieg_civ_harbour_charts.txt",
+            "bytes": 170,
+            "sha256": "0616d06e723176646b29eccce4811ba2cd720a2a1114b0c5169f7785ac251951",
+            "kind": "script"
+          },
+          {
+            "path": "common/operations/krieg_civ_coastal_survey.txt",
+            "bytes": 472,
+            "sha256": "7925ad9b546181b4a88d1b2ec3287cc0d7a14fe801618139f40898fb02c248c7",
+            "kind": "script"
+          },
+          {
+            "path": "common/opinion_modifiers/krieg_civ_trade_partners.txt",
+            "bytes": 76,
+            "sha256": "56a61e283b6389c8737c9bc26c4cd26d87696d050e16c752489c4c3f8e94e4cc",
+            "kind": "script"
+          },
+          {
+            "path": "common/raids/categories/krieg_civ_coastal_recon.txt",
+            "bytes": 146,
+            "sha256": "533c5d633c5fd4ace0521c0e8f52d2073c59f819c8935f200c55bde395218df4",
+            "kind": "script"
+          },
+          {
+            "path": "common/raids/krieg_civ_coastal_patrol.txt",
+            "bytes": 1275,
+            "sha256": "70dd9fa018313de72ee29699232ed9c070212a1c1cf12d966f34c7e2115dd5a5",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_effects/krieg_civ_complete_investment.txt",
+            "bytes": 426,
+            "sha256": "a1f5c3d171dcdd3553caa0ecf33ffb13a028875f6fa9d2a695f19b7f4c2424bb",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_effects/krieg_civ_redeem_action.txt",
+            "bytes": 196,
+            "sha256": "d2cf4a8a9441e8fd18da8e90a2d9dadeaf91fd1918864a22ba9a54e9d7b50dad",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_effects/krieg_civ_redeem_bond.txt",
+            "bytes": 196,
+            "sha256": "ff6c241896ee5fa89460a6d7f9a209adc6a62a19e3122060d228ad9a10fc620a",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_effects/krieg_civ_refund.txt",
+            "bytes": 159,
+            "sha256": "e4a76e58a321ce3666f5309093da62ed6eea43c2dfdf8dcb2b5b78ba007ba58d",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_effects/krieg_civ_request_investment_action.txt",
+            "bytes": 265,
+            "sha256": "24cb30e6ce5052f1cbac0f1306b81c8b0152c82364a92cf494329b9c4c148c65",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_effects/krieg_civ_send_delegation_action.txt",
+            "bytes": 253,
+            "sha256": "ff7711735fb240cbc79c82fe25d4411b47f7548e5373ae265978d095a76fb3c1",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_guis/krieg_civ_assembly_panel.txt",
+            "bytes": 363,
+            "sha256": "acdf537603255ab3b71147cb9b27b53692b5c33788709f6c24323b7aa027e1e2",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_localisation/krieg_Get_civ_ProjectStatus.txt",
+            "bytes": 209,
+            "sha256": "d9c87349bd13d7b721f3b419111e96921e0a53da85af75c5e1d3c4ea568bb822",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_triggers/krieg_civ_can_invest.txt",
+            "bytes": 67,
+            "sha256": "c30e745fbcdf89293d48e29d5259f90ef199965b6a3d2aea88ab89abe0987251",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_triggers/krieg_civ_redeem_action.txt",
+            "bytes": 119,
+            "sha256": "54c1f6a77c2f948cd19210a94d1153b78cd829a6ad8ce60eea5472d82792fda7",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_triggers/krieg_civ_request_investment_action.txt",
+            "bytes": 177,
+            "sha256": "bda8c8de4372f0f68c83859eac24e451f4452a9d408f50d090d5574cfa9fc6ad",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_triggers/krieg_civ_send_delegation_action.txt",
+            "bytes": 179,
+            "sha256": "2a2021d24bc5dfa083631eb6742ae6aba5b638c05eb97135a505b50129b79bce",
+            "kind": "script"
+          },
+          {
+            "path": "common/special_projects/projects/krieg_civ_coastal_beacon.txt",
+            "bytes": 529,
+            "sha256": "f8038b990a1d9ff8703aacada68f97338d9cd0e9ce31fe2679d103552d7def79",
+            "kind": "script"
+          },
+          {
+            "path": "common/technologies/krieg_civ_workshop_methods.txt",
+            "bytes": 488,
+            "sha256": "37ccd29c5bc86b997151febbec7080edfb0d9647e72a7939aef6cfde99cd2a31",
+            "kind": "script"
+          },
+          {
+            "path": "common/units/equipment/krieg_civ_field_tools.txt",
+            "bytes": 211,
+            "sha256": "a5cd0e918ebbd4d2af5a2a0c738c6cee271ecf92097bd34758e2a81b74d011dc",
+            "kind": "script"
+          },
+          {
+            "path": "common/units/krieg_civ_island_engineers.txt",
+            "bytes": 449,
+            "sha256": "3d07e2d0140726420af00346ff2ac5b0fec934ba05cfe3f2379890f4bf4e8581",
+            "kind": "script"
+          },
+          {
+            "path": "descriptor.mod",
+            "bytes": 134,
+            "sha256": "39fb6aa61f2e5140a4fea5c7efdb2943246284f21214cf8499bd07a87e9462a6",
+            "kind": "metadata"
+          },
+          {
+            "path": "events/krieg_civ_congress_0.txt",
+            "bytes": 235,
+            "sha256": "69dcbbe536ef01855fba8ce80399c05f9d6bbe6381d07b66c41ab46347b47b01",
+            "kind": "script"
+          },
+          {
+            "path": "events/krieg_civ_congress_1.txt",
+            "bytes": 367,
+            "sha256": "2a6f24dd0ab90936300513254c3f8aa22b95d16f8d61a52fb2a39cba2e2e0a59",
+            "kind": "script"
+          },
+          {
+            "path": "events/krieg_civ_congress_2.txt",
+            "bytes": 306,
+            "sha256": "042e8baa6a064620d27920eec48af4b83be5bf18da604e72bf38e7455491517f",
+            "kind": "script"
+          },
+          {
+            "path": "events/krieg_civ_congress_3.txt",
+            "bytes": 373,
+            "sha256": "46169063a04a92fa1f9a0a9eed43f74d0a64d93caa18ea6b2803e49bbe2526ee",
+            "kind": "script"
+          },
+          {
+            "path": "gfx/flags/KRG_communism.tga",
+            "bytes": 17074,
+            "sha256": "9a66c27baa6067b88f2f8d74e0b2a91c1e63e03b7a84a62c22ca0535fdbaed3d",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRG_democratic.tga",
+            "bytes": 17074,
+            "sha256": "9a66c27baa6067b88f2f8d74e0b2a91c1e63e03b7a84a62c22ca0535fdbaed3d",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRG_fascism.tga",
+            "bytes": 17074,
+            "sha256": "9a66c27baa6067b88f2f8d74e0b2a91c1e63e03b7a84a62c22ca0535fdbaed3d",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRG_neutrality.tga",
+            "bytes": 17074,
+            "sha256": "9a66c27baa6067b88f2f8d74e0b2a91c1e63e03b7a84a62c22ca0535fdbaed3d",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRG.tga",
+            "bytes": 17074,
+            "sha256": "9a66c27baa6067b88f2f8d74e0b2a91c1e63e03b7a84a62c22ca0535fdbaed3d",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRG_communism.tga",
+            "bytes": 4282,
+            "sha256": "df6eb4e71ecc29afd315135864ced56e99b5d0783f90a666a06981bd84452bd0",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRG_democratic.tga",
+            "bytes": 4282,
+            "sha256": "df6eb4e71ecc29afd315135864ced56e99b5d0783f90a666a06981bd84452bd0",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRG_fascism.tga",
+            "bytes": 4282,
+            "sha256": "df6eb4e71ecc29afd315135864ced56e99b5d0783f90a666a06981bd84452bd0",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRG_neutrality.tga",
+            "bytes": 4282,
+            "sha256": "df6eb4e71ecc29afd315135864ced56e99b5d0783f90a666a06981bd84452bd0",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRG.tga",
+            "bytes": 4282,
+            "sha256": "df6eb4e71ecc29afd315135864ced56e99b5d0783f90a666a06981bd84452bd0",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRG_communism.tga",
+            "bytes": 298,
+            "sha256": "d3a0db874970b1c41c5e1d83a86af49678ac17a34833293eef7f9b970078e8fe",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRG_democratic.tga",
+            "bytes": 298,
+            "sha256": "d3a0db874970b1c41c5e1d83a86af49678ac17a34833293eef7f9b970078e8fe",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRG_fascism.tga",
+            "bytes": 298,
+            "sha256": "d3a0db874970b1c41c5e1d83a86af49678ac17a34833293eef7f9b970078e8fe",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRG_neutrality.tga",
+            "bytes": 298,
+            "sha256": "d3a0db874970b1c41c5e1d83a86af49678ac17a34833293eef7f9b970078e8fe",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRG.tga",
+            "bytes": 298,
+            "sha256": "d3a0db874970b1c41c5e1d83a86af49678ac17a34833293eef7f9b970078e8fe",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/interface/civ_button.tga",
+            "bytes": 19218,
+            "sha256": "8ed8942754cea5681fd9a39a24af90ef5711780ee8e3e1b8fc5ae5c27c2e712c",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/interface/civ_icon.tga",
+            "bytes": 16402,
+            "sha256": "7f6a923043e035ac66624a9080d873018f75e03efc9ef542d289bf8bf5bf8d12",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/interface/civ_panel.tga",
+            "bytes": 266018,
+            "sha256": "0b08a181c0687029a10a71804197ad23415d3e1095836810b6e1fe130916e0c8",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/leaders/KRG/civ_leader.tga",
+            "bytes": 131058,
+            "sha256": "e8424b497dc2dc942e148dd56587e2a19460b942fef79984beed5814adc242f7",
+            "kind": "asset"
+          },
+          {
+            "path": "history/countries/KRG - Krieg.txt",
+            "bytes": 641,
+            "sha256": "681dc7e89c09667585baaf8d7cb9286c9c4ddde0110642ae9f050da3ebd9beb0",
+            "kind": "script"
+          },
+          {
+            "path": "history/states/1-France.txt",
+            "bytes": 446,
+            "sha256": "92a931c0e555fb4c9eac0c23ccd14f686187920b8c29d6329fcc7e9d91fb1909",
+            "kind": "script"
+          },
+          {
+            "path": "history/units/civ_1936.txt",
+            "bytes": 386,
+            "sha256": "b8ca3ac562a303041ae72e47b3e90b8c3ce2ffcac34f0dce7e264d2a763c8059",
+            "kind": "script"
+          },
+          {
+            "path": "history/units/civ_engineers.txt",
+            "bytes": 356,
+            "sha256": "eb3f627b241dc13bb08c5ba6c68e9ee406a66255c157c466b9d7b08a56577f1b",
+            "kind": "script"
+          },
+          {
+            "path": "interface/civ_assembly.gui",
+            "bytes": 848,
+            "sha256": "239024ddc79f56e1ebf13ec7563f6781345003b0ded488487f1d3b832e5c206c",
+            "kind": "script"
+          },
+          {
+            "path": "interface/civ_sprites.gfx",
+            "bytes": 594,
+            "sha256": "1e3d4368386bbda48e8eab19e509ee0ba7448ee68b84ff3f668295ca78174179",
+            "kind": "script"
+          },
+          {
+            "path": "localisation/english/civ-civic-kit_english_l_english.yml",
+            "bytes": 50,
+            "sha256": "239cae9cf53d31bff14d3e34c5fa8eee3bb315ae3ffd7d6c08da59bb892cb8f1",
+            "kind": "localisation"
+          },
+          {
+            "path": "localisation/english/vanilla-complete_english_l_english.yml",
+            "bytes": 7258,
+            "sha256": "52cfcedb1f95826c09322f242cb88ff3ed34598fdd07357d88fe3d1afd884c45",
+            "kind": "localisation"
+          },
+          {
+            "path": "localisation/simp_chinese/vanilla-complete_chinese_l_simp_chinese.yml",
+            "bytes": 179,
+            "sha256": "1658bdc2d724d448cfd8246f0b287b4e0d306ad81ca571cb6d4eb6769db28b04",
+            "kind": "localisation"
+          },
+          {
+            "path": "map/strategicregions/169-Tyrrhenian Sea.txt",
+            "bytes": 508,
+            "sha256": "366272799df7ffa2aa345da88cf34bd3ead4e1f9c2fce2859ac1596ee803b611",
+            "kind": "script"
+          }
+        ]
+      },
+      "external": {
+        "status": "completed",
+        "exitCode": 0,
+        "durationMs": 927,
+        "command": [
+          "$CORPORA/cwtools",
+          "validate",
+          "--game",
+          "hoi4",
+          "--directory",
+          "$REPO/examples/vanilla-complete/build/mod",
+          "--rules",
+          "$CORPORA/cwtools-hoi4-config-master/cwtools-hoi4-config-master",
+          "--vanilla",
+          "$SCRATCH/vanilla-complete",
+          "--no-vanilla-cache",
+          "--report-type",
+          "json",
+          "--output-file",
+          "$SCRATCH/vanilla-complete-cwtools.json"
+        ],
+        "stdout": "Wrote json report (0 errors, 1 warnings) to $SCRATCH/vanilla-complete-cwtools.json\n",
+        "stderr": "Validating hoi4 files in $REPO/examples/vanilla-complete/build/mod against rules directory $CORPORA/cwtools-hoi4-config-master/cwtools-hoi4-config-master\n  Loaded 229 types, 123 enums, 1957 aliases\n  Discovered 52 files\n",
+        "diagnostics": [
+          {
+            "file": "$REPO/examples/vanilla-complete/build/mod/common/intelligence_agencies/krieg_civ_coastal_service.txt",
+            "line": 10,
+            "severity": "Warning",
+            "code": "CW251",
+            "message": "This AND is unnecessary",
+            "hash": "8972eb22adea38d8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "kaiserreich-complete",
+      "selectedBase": "supplied vanilla + supplied Kaiserreich text snapshot with pinned official descriptor replacement paths and supplied KR map with native bitmaps",
+      "effectiveBaseFiles": 7239,
+      "project": {
+        "success": true,
+        "diagnostics": [],
+        "world": {
+          "countries": 333,
+          "states": 1125,
+          "assets": 109
+        },
+        "files": [
+          {
+            "path": "common/ai_strategy_plans/krieg_srd_civic_plan.txt",
+            "bytes": 273,
+            "sha256": "a6d746b79d4ddf87db62012ccb032d1eed0d959a1fb33eb22f292d016d590fe0",
+            "kind": "script"
+          },
+          {
+            "path": "common/autonomous_states/krieg_srd_treaty_associate.txt",
+            "bytes": 447,
+            "sha256": "976a3832196551a8ed88abb3821b0b13af2bee9a7a6cbb38839eab265a727790",
+            "kind": "script"
+          },
+          {
+            "path": "common/bookmarks/krieg_srd_island_start.txt",
+            "bytes": 334,
+            "sha256": "e19b23867f3271cb3f8702a89b0825559b24d59f4b231aff320299b22b143354",
+            "kind": "script"
+          },
+          {
+            "path": "common/bop/krieg_srd_assembly_balance.txt",
+            "bytes": 625,
+            "sha256": "212c4d5013c5ae49f7ea6f8413ed4fe369c3d9a885ac9ef80e146423ffd46f19",
+            "kind": "script"
+          },
+          {
+            "path": "common/characters/krieg_srd_serra.txt",
+            "bytes": 363,
+            "sha256": "fd82ac3e61b496ffd489e52021c1810ac15a41176b050795769b3def54d26552",
+            "kind": "script"
+          },
+          {
+            "path": "common/countries/Reconstruction League.txt",
+            "bytes": 113,
+            "sha256": "773cbfefa01c061e7779cc90739e70b3e495fad31e0b9b110e0b35f01ec23d6b",
+            "kind": "script"
+          },
+          {
+            "path": "common/country_tags/krieg_KRL.txt",
+            "bytes": 44,
+            "sha256": "5591dbfe0796fb852aa8884ecc2f10928d8837743ad9f427e7c301a228c225be",
+            "kind": "script"
+          },
+          {
+            "path": "common/decisions/categories/krieg_srd_assembly.txt",
+            "bytes": 68,
+            "sha256": "1b306ae72061829a063fa6333d02f33f1ae301af710e01c8bd3f42d4db063d3f",
+            "kind": "script"
+          },
+          {
+            "path": "common/decisions/categories/krieg_srd_development.txt",
+            "bytes": 50,
+            "sha256": "ce7ed80ea6f15e0b54d8870fc601a56b238c6a41191ba142eea700dc79b29e39",
+            "kind": "script"
+          },
+          {
+            "path": "common/decisions/krieg_srd_assembly.txt",
+            "bytes": 425,
+            "sha256": "7e732b783478a36be7f40bd6b10d1b4d0ce58f6e49a014a54b60d58fef5dd98e",
+            "kind": "script"
+          },
+          {
+            "path": "common/decisions/krieg_srd_development.txt",
+            "bytes": 1594,
+            "sha256": "73f5eb65ee5f1b0f2d3cce5e9931155e4497d2a319a082d17aa3ee24e6c52a10",
+            "kind": "script"
+          },
+          {
+            "path": "common/defines/krieg_island_congress_timing.lua",
+            "bytes": 121,
+            "sha256": "5cf31531cc2182412851b0c046db7218354a7aef424ff19b7e1bf3229f556be7",
+            "kind": "script"
+          },
+          {
+            "path": "common/dynamic_modifiers/krieg_srd_workshops.txt",
+            "bytes": 119,
+            "sha256": "481f9e0a962e3b93c26bc3e241620b823ec4e8207669e50d8590647a5c4ee742",
+            "kind": "script"
+          },
+          {
+            "path": "common/ideas/krieg_srd_civic_spirit.txt",
+            "bytes": 182,
+            "sha256": "da8d4b1175ffef93da062c7d3eb55f545dabe16d7c1e30e12b44cddc3c212a15",
+            "kind": "script"
+          },
+          {
+            "path": "common/ideologies/krieg_srd_cooperative.txt",
+            "bytes": 404,
+            "sha256": "77ce3719740faf717b2a1bcb276bb3ba3a0a88c75a6ecaabc6b78c9cb05ff3a7",
+            "kind": "script"
+          },
+          {
+            "path": "common/intelligence_agencies/krieg_srd_coastal_service.txt",
+            "bytes": 189,
+            "sha256": "6c57149031d25cc097e3b6b90e0caa7325b106e219825ae15e3f2810445596ca",
+            "kind": "script"
+          },
+          {
+            "path": "common/intelligence_agency_upgrades/krieg_srd_harbour_contacts.txt",
+            "bytes": 254,
+            "sha256": "5b8d341c12a0d309437c7f121ff1d00af7a0bb56b79a4c8900b867e522ec2068",
+            "kind": "script"
+          },
+          {
+            "path": "common/military_industrial_organization/organizations/krieg_srd_design_cooperative.txt",
+            "bytes": 292,
+            "sha256": "f0d131bc0fe82e9008ea2bce820e3342da5fee66a8155dbebfaf127759edcd87",
+            "kind": "script"
+          },
+          {
+            "path": "common/national_focus/krieg_srd_island_tree.txt",
+            "bytes": 956,
+            "sha256": "8fd1da2e2e49c2cb512f5faf88cfe07064e6aee0cfb2ea93ed0c0944daa1fbf2",
+            "kind": "script"
+          },
+          {
+            "path": "common/on_actions/srd_startup.txt",
+            "bytes": 136,
+            "sha256": "e6cfabedd974c909dbc1ffb67578d20114b8b8af1d82269fbcd92227fa110662",
+            "kind": "script"
+          },
+          {
+            "path": "common/operation_phases/krieg_srd_survey_phase.txt",
+            "bytes": 225,
+            "sha256": "a65a3810384ae1d954b947c3d086a08f4b9926cf085e58178a05dcd0f6d99720",
+            "kind": "script"
+          },
+          {
+            "path": "common/operation_tokens/krieg_srd_harbour_charts.txt",
+            "bytes": 170,
+            "sha256": "423a403f6e94bc245728dd3a80b2dc2c0c8e56ae162a7a0f122450420f90884d",
+            "kind": "script"
+          },
+          {
+            "path": "common/operations/krieg_srd_coastal_survey.txt",
+            "bytes": 472,
+            "sha256": "de2d8a6c1e6101c39ee0cbdd43b576bf8907a40fa571d841f35d9e32754191e9",
+            "kind": "script"
+          },
+          {
+            "path": "common/opinion_modifiers/krieg_srd_trade_partners.txt",
+            "bytes": 76,
+            "sha256": "ffdd26f69a79d18ee862d6ac23e12cb1ff6314b484ce1aa1c448d620700f0ddd",
+            "kind": "script"
+          },
+          {
+            "path": "common/raids/categories/krieg_srd_coastal_recon.txt",
+            "bytes": 146,
+            "sha256": "fc47243f93e8d44e946b2d05a36beaffe4bf72250ec7f723567b3c09890e7c3c",
+            "kind": "script"
+          },
+          {
+            "path": "common/raids/krieg_srd_coastal_patrol.txt",
+            "bytes": 1275,
+            "sha256": "ba22588b04f2b6345e24a560f9e1e530e595e6d4fd0747658d31fa143cc4190f",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_effects/krieg_srd_complete_investment.txt",
+            "bytes": 437,
+            "sha256": "4c3150817a425e71448b5f81c7acfeb59caf907209c2db74f2d546b6fa320f1f",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_effects/krieg_srd_redeem_action.txt",
+            "bytes": 196,
+            "sha256": "82bf623f863893fb9dfdaaf03c8d0857cc0b5b3c339d2465bbcfdb271cffa088",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_effects/krieg_srd_redeem_bond.txt",
+            "bytes": 196,
+            "sha256": "a3683dfd5a22ddedfdb6c988570e0464f2e8a3c3cfcd88f109785f41b08a786c",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_effects/krieg_srd_refund.txt",
+            "bytes": 159,
+            "sha256": "770ed6255362993fb7dab73154ec25c186825e06ad475a2c37ec46f8d456c634",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_effects/krieg_srd_request_investment_action.txt",
+            "bytes": 265,
+            "sha256": "88622ad7e358ddb8dde6ea9efa3bc2a750b05efdeb24cdda76957dd0989a46a5",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_effects/krieg_srd_send_delegation_action.txt",
+            "bytes": 253,
+            "sha256": "47ffc811650204d08ca2976de41f6e33a2a9b37bd3f5abe733faf1d031cdaff5",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_guis/krieg_srd_assembly_panel.txt",
+            "bytes": 363,
+            "sha256": "da89f50392b243f34d5151762873b284533455c80d0f865be67984cbc7f28735",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_localisation/krieg_Get_srd_ProjectStatus.txt",
+            "bytes": 209,
+            "sha256": "a275ee23860c1231ab4c3fb675cac6673f4df66ab1a1e8d6d7b039f80b7671e5",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_triggers/krieg_srd_can_invest.txt",
+            "bytes": 67,
+            "sha256": "d81ddf2bd955e4851b889f89eb2a6ba458b987c7871514c184f99e0b318331fc",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_triggers/krieg_srd_redeem_action.txt",
+            "bytes": 119,
+            "sha256": "c8235c31c7f76143d6d54e4b0232401baae7a52770d07a9a988bc0f7f1448d1f",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_triggers/krieg_srd_request_investment_action.txt",
+            "bytes": 177,
+            "sha256": "865218aba2f81e966a652c74aab654d015f9f0b1a385b683be524a3ba20ff499",
+            "kind": "script"
+          },
+          {
+            "path": "common/scripted_triggers/krieg_srd_send_delegation_action.txt",
+            "bytes": 179,
+            "sha256": "246f701b75f14fdb8757b36fb4c6756c058835d1c8ce413112fe712a71bd6cb8",
+            "kind": "script"
+          },
+          {
+            "path": "common/special_projects/projects/krieg_srd_coastal_beacon.txt",
+            "bytes": 529,
+            "sha256": "6c9f1237012a7499ec3de3167239a7ef11edce53b8bcd29e88b2270a7bac1c82",
+            "kind": "script"
+          },
+          {
+            "path": "common/technologies/krieg_srd_workshop_methods.txt",
+            "bytes": 488,
+            "sha256": "c57b03047df05d1f8791b89ffb35306ac6c4db4232073e444bb127e88427de29",
+            "kind": "script"
+          },
+          {
+            "path": "common/units/equipment/krieg_srd_field_tools.txt",
+            "bytes": 211,
+            "sha256": "894ced3d1cb1b506b35cc87f75d9b14432ded696134b825e0c376f77057f6b72",
+            "kind": "script"
+          },
+          {
+            "path": "common/units/krieg_srd_island_engineers.txt",
+            "bytes": 449,
+            "sha256": "7d144de09aa844e45ae9f4fd5a2b0a88530c5cc6ada5723f395f136dbcf4f6d7",
+            "kind": "script"
+          },
+          {
+            "path": "descriptor.mod",
+            "bytes": 173,
+            "sha256": "f49b141fe19121761a76767c6f5122fd519cd451c31de906752dc1ef4be3155b",
+            "kind": "metadata"
+          },
+          {
+            "path": "events/krieg_srd_congress_0.txt",
+            "bytes": 235,
+            "sha256": "5ff1c79a5a79576a3aad88861cf900b52dc9d38998c453f810bba54bc9f92ab6",
+            "kind": "script"
+          },
+          {
+            "path": "events/krieg_srd_congress_1.txt",
+            "bytes": 367,
+            "sha256": "a4dad24e8c7bbfa74e3fa72d98b1a6d8a6f4f370fd54b943cacaad893248173c",
+            "kind": "script"
+          },
+          {
+            "path": "events/krieg_srd_congress_2.txt",
+            "bytes": 306,
+            "sha256": "f882a5de33e1859c0e4cc19edd56f56901116c54558c876e1159daaddec7613f",
+            "kind": "script"
+          },
+          {
+            "path": "events/krieg_srd_congress_3.txt",
+            "bytes": 373,
+            "sha256": "be87b89bfbc7a966baf3e466fdc592753189ffa4522a1a9d4f179d94b583538a",
+            "kind": "script"
+          },
+          {
+            "path": "gfx/flags/KRL_authoritarian_democrat.tga",
+            "bytes": 17074,
+            "sha256": "de9693b6d9bc0328a947604414dd63d4c94b99f48b9ae0a68fac43ae786503c3",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRL_market_liberal.tga",
+            "bytes": 17074,
+            "sha256": "de9693b6d9bc0328a947604414dd63d4c94b99f48b9ae0a68fac43ae786503c3",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRL_national_populist.tga",
+            "bytes": 17074,
+            "sha256": "de9693b6d9bc0328a947604414dd63d4c94b99f48b9ae0a68fac43ae786503c3",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRL_paternal_autocrat.tga",
+            "bytes": 17074,
+            "sha256": "de9693b6d9bc0328a947604414dd63d4c94b99f48b9ae0a68fac43ae786503c3",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRL_radical_socialist.tga",
+            "bytes": 17074,
+            "sha256": "de9693b6d9bc0328a947604414dd63d4c94b99f48b9ae0a68fac43ae786503c3",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRL_social_conservative.tga",
+            "bytes": 17074,
+            "sha256": "de9693b6d9bc0328a947604414dd63d4c94b99f48b9ae0a68fac43ae786503c3",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRL_social_democrat.tga",
+            "bytes": 17074,
+            "sha256": "de9693b6d9bc0328a947604414dd63d4c94b99f48b9ae0a68fac43ae786503c3",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRL_social_liberal.tga",
+            "bytes": 17074,
+            "sha256": "de9693b6d9bc0328a947604414dd63d4c94b99f48b9ae0a68fac43ae786503c3",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRL_syndicalist.tga",
+            "bytes": 17074,
+            "sha256": "de9693b6d9bc0328a947604414dd63d4c94b99f48b9ae0a68fac43ae786503c3",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRL_totalist.tga",
+            "bytes": 17074,
+            "sha256": "de9693b6d9bc0328a947604414dd63d4c94b99f48b9ae0a68fac43ae786503c3",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/KRL.tga",
+            "bytes": 17074,
+            "sha256": "de9693b6d9bc0328a947604414dd63d4c94b99f48b9ae0a68fac43ae786503c3",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRL_authoritarian_democrat.tga",
+            "bytes": 4282,
+            "sha256": "04b26828f2565b895d8ff13d0d2e3e84009b4de4a0a8c5a5a3c3645ca9d43ad6",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRL_market_liberal.tga",
+            "bytes": 4282,
+            "sha256": "04b26828f2565b895d8ff13d0d2e3e84009b4de4a0a8c5a5a3c3645ca9d43ad6",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRL_national_populist.tga",
+            "bytes": 4282,
+            "sha256": "04b26828f2565b895d8ff13d0d2e3e84009b4de4a0a8c5a5a3c3645ca9d43ad6",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRL_paternal_autocrat.tga",
+            "bytes": 4282,
+            "sha256": "04b26828f2565b895d8ff13d0d2e3e84009b4de4a0a8c5a5a3c3645ca9d43ad6",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRL_radical_socialist.tga",
+            "bytes": 4282,
+            "sha256": "04b26828f2565b895d8ff13d0d2e3e84009b4de4a0a8c5a5a3c3645ca9d43ad6",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRL_social_conservative.tga",
+            "bytes": 4282,
+            "sha256": "04b26828f2565b895d8ff13d0d2e3e84009b4de4a0a8c5a5a3c3645ca9d43ad6",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRL_social_democrat.tga",
+            "bytes": 4282,
+            "sha256": "04b26828f2565b895d8ff13d0d2e3e84009b4de4a0a8c5a5a3c3645ca9d43ad6",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRL_social_liberal.tga",
+            "bytes": 4282,
+            "sha256": "04b26828f2565b895d8ff13d0d2e3e84009b4de4a0a8c5a5a3c3645ca9d43ad6",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRL_syndicalist.tga",
+            "bytes": 4282,
+            "sha256": "04b26828f2565b895d8ff13d0d2e3e84009b4de4a0a8c5a5a3c3645ca9d43ad6",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRL_totalist.tga",
+            "bytes": 4282,
+            "sha256": "04b26828f2565b895d8ff13d0d2e3e84009b4de4a0a8c5a5a3c3645ca9d43ad6",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/medium/KRL.tga",
+            "bytes": 4282,
+            "sha256": "04b26828f2565b895d8ff13d0d2e3e84009b4de4a0a8c5a5a3c3645ca9d43ad6",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRL_authoritarian_democrat.tga",
+            "bytes": 298,
+            "sha256": "25787cf534994774bd18d92c7dd6f2a85d057d80d7ad1093fde3a5d09c5ce07f",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRL_market_liberal.tga",
+            "bytes": 298,
+            "sha256": "25787cf534994774bd18d92c7dd6f2a85d057d80d7ad1093fde3a5d09c5ce07f",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRL_national_populist.tga",
+            "bytes": 298,
+            "sha256": "25787cf534994774bd18d92c7dd6f2a85d057d80d7ad1093fde3a5d09c5ce07f",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRL_paternal_autocrat.tga",
+            "bytes": 298,
+            "sha256": "25787cf534994774bd18d92c7dd6f2a85d057d80d7ad1093fde3a5d09c5ce07f",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRL_radical_socialist.tga",
+            "bytes": 298,
+            "sha256": "25787cf534994774bd18d92c7dd6f2a85d057d80d7ad1093fde3a5d09c5ce07f",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRL_social_conservative.tga",
+            "bytes": 298,
+            "sha256": "25787cf534994774bd18d92c7dd6f2a85d057d80d7ad1093fde3a5d09c5ce07f",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRL_social_democrat.tga",
+            "bytes": 298,
+            "sha256": "25787cf534994774bd18d92c7dd6f2a85d057d80d7ad1093fde3a5d09c5ce07f",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRL_social_liberal.tga",
+            "bytes": 298,
+            "sha256": "25787cf534994774bd18d92c7dd6f2a85d057d80d7ad1093fde3a5d09c5ce07f",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRL_syndicalist.tga",
+            "bytes": 298,
+            "sha256": "25787cf534994774bd18d92c7dd6f2a85d057d80d7ad1093fde3a5d09c5ce07f",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRL_totalist.tga",
+            "bytes": 298,
+            "sha256": "25787cf534994774bd18d92c7dd6f2a85d057d80d7ad1093fde3a5d09c5ce07f",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/flags/small/KRL.tga",
+            "bytes": 298,
+            "sha256": "25787cf534994774bd18d92c7dd6f2a85d057d80d7ad1093fde3a5d09c5ce07f",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/interface/srd_button.tga",
+            "bytes": 19218,
+            "sha256": "8c2693a247c906d6fe1cf462498efa936baaf8ff5266649ce7d041e326eba87a",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/interface/srd_icon.tga",
+            "bytes": 16402,
+            "sha256": "3d80c9077dbff296857433626ca9d169bee5bf7621a7e60779e1f5d21a065f3b",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/interface/srd_panel.tga",
+            "bytes": 266018,
+            "sha256": "21dec78c445659627b5dba127a2be4bf63962d28d05a069dca0a100e64135457",
+            "kind": "asset"
+          },
+          {
+            "path": "gfx/leaders/KRL/srd_leader.tga",
+            "bytes": 131058,
+            "sha256": "e964c879b3dadfa07e22751dcf4297db5b4536c1ebff12f726861e2a8554abcd",
+            "kind": "asset"
+          },
+          {
+            "path": "history/countries/KRL - Krieg.txt",
+            "bytes": 651,
+            "sha256": "502deae5792e2b0f3966aea520a26fe5154b963e488a2f365e029ceb500eb0a8",
+            "kind": "script"
+          },
+          {
+            "path": "history/states/114 - Sardinia.txt",
+            "bytes": 489,
+            "sha256": "7bddb0ac066ac173bdbc9f7db47600d73ac666578d15f17ea94214ef0455ca5d",
+            "kind": "script"
+          },
+          {
+            "path": "history/units/srd_1936.txt",
+            "bytes": 387,
+            "sha256": "93523960aaf74d8ff93991862aba53fcc55e0cd6ce79a9cdae9a822b0a289572",
+            "kind": "script"
+          },
+          {
+            "path": "history/units/srd_engineers.txt",
+            "bytes": 357,
+            "sha256": "7e3f459f4ff0bce870427508499315e00c4aa2544ecce4e52d36d77cb387d793",
+            "kind": "script"
+          },
+          {
+            "path": "interface/srd_assembly.gui",
+            "bytes": 848,
+            "sha256": "f0a57319b6e89ac0ae3a14e1c93b39c622c2406b87528f46a62d401e8a9a4b17",
+            "kind": "script"
+          },
+          {
+            "path": "interface/srd_sprites.gfx",
+            "bytes": 594,
+            "sha256": "2cb03ebae401a27ddfe303b4891019fbf4c6c3a390b3589becfbf7b9f012211b",
+            "kind": "script"
+          },
+          {
+            "path": "localisation/english/kaiserreich-complete_english_l_english.yml",
+            "bytes": 8426,
+            "sha256": "683c122776e1f448707faab2c037cca8e0bfce1c5d50832545ddcffb751323e6",
+            "kind": "localisation"
+          },
+          {
+            "path": "localisation/english/srd-civic-kit_english_l_english.yml",
+            "bytes": 50,
+            "sha256": "98116b0e6f444ec5e5bde4359573dfd61071df34814d45a510bd8f472e90bab1",
+            "kind": "localisation"
+          },
+          {
+            "path": "localisation/simp_chinese/kaiserreich-complete_chinese_l_simp_chinese.yml",
+            "bytes": 173,
+            "sha256": "c19ac0515beb69c3cf22b0bfc7d1a77fde3edf424f45cae76955ab249fb254db",
+            "kind": "localisation"
+          },
+          {
+            "path": "map/strategicregions/169 - Tyrrhenian Sea.txt",
+            "bytes": 508,
+            "sha256": "366272799df7ffa2aa345da88cf34bd3ead4e1f9c2fce2859ac1596ee803b611",
+            "kind": "script"
+          }
+        ]
+      },
+      "external": {
+        "status": "completed",
+        "exitCode": 0,
+        "durationMs": 2995,
+        "command": [
+          "$CORPORA/cwtools",
+          "validate",
+          "--game",
+          "hoi4",
+          "--directory",
+          "$REPO/examples/kaiserreich-complete/build/mod",
+          "--rules",
+          "$CORPORA/cwtools-hoi4-config-master/cwtools-hoi4-config-master",
+          "--vanilla",
+          "$SCRATCH/kaiserreich-complete",
+          "--no-vanilla-cache",
+          "--report-type",
+          "json",
+          "--output-file",
+          "$SCRATCH/kaiserreich-complete-cwtools.json"
+        ],
+        "stdout": "Wrote json report (0 errors, 1 warnings) to $SCRATCH/kaiserreich-complete-cwtools.json\n",
+        "stderr": "Validating hoi4 files in $REPO/examples/kaiserreich-complete/build/mod against rules directory $CORPORA/cwtools-hoi4-config-master/cwtools-hoi4-config-master\n  Loaded 229 types, 123 enums, 1957 aliases\n  Discovered 52 files\n",
+        "diagnostics": [
+          {
+            "file": "$REPO/examples/kaiserreich-complete/build/mod/common/intelligence_agencies/krieg_srd_coastal_service.txt",
+            "line": 10,
+            "severity": "Warning",
+            "code": "CW251",
+            "message": "This AND is unnecessary",
+            "hash": "252197683e21a644"
+          }
+        ]
+      }
+    }
+  ]
+}

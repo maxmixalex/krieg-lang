@@ -89,6 +89,8 @@
       "level": "semantic",
       "api": [
         "krieg-lang/hoi4:FocusGraph",
+        "krieg-lang/hoi4:FocusNodes",
+        "krieg-lang/compiler:renderFocusTreeMermaid",
         "krieg-lang/hoi4:FocusReference",
         "krieg-lang/hoi4:FocusTree",
         "krieg-lang/hoi4:Focus",
@@ -117,9 +119,13 @@
         {
           "file": "tests/native-domain-audit.test.mjs",
           "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        },
+        {
+          "file": "tests/focus-authoring.test.mjs",
+          "test": "nested alternatives preserve boolean semantics for every completion combination"
         }
       ],
-      "boundary": "常用国策语义 API 与完整原生字段入口并存，覆盖连续、共享、联合国策与样式；引用图、布局、DLC 和运行时行为另行检查。",
+      "boundary": "节点可就近声明 AND、OR 和互斥，或组合可复用的国策组。可预览已编译前置关系；运行时 available、bypass 和实际游戏布局不能从静态图推断。保留连续、共享、联合国策的原生字段入口。",
       "nativeAudit": [
         "NativeFocusTree",
         "ContinuousFocusPalette",
@@ -140,7 +146,8 @@
         "krieg-lang/hoi4:DecisionCategory",
         "krieg-lang/hoi4:Decision",
         "krieg-lang/hoi4:NativeDecisionCategory",
-        "krieg-lang/hoi4:NativeDecision"
+        "krieg-lang/hoi4:NativeDecision",
+        "krieg-lang/hoi4:CountryAction"
       ],
       "guide": "recipes.md",
       "ruleSources": ["Config/common/decisions.cwt"],
@@ -156,9 +163,13 @@
         {
           "file": "tests/native-domain-audit.test.mjs",
           "test": "audited native domain fixtures retain their reviewed paths and output hashes"
+        },
+        {
+          "file": "tests/country-actions.test.mjs",
+          "test": "CountryAction shares named eligibility and settlement across events, buttons and native-cost decisions"
         }
       ],
-      "boundary": "常用语义 API 配合 NativeDecision 覆盖任务、目标、费用与其他原生字段；CWT 子型投射不是所有字段组合的互斥类型证明。",
+      "boundary": "CountryAction 让事件、按钮和普通国家决议共享资格、政治点成本与奖励；决议使用引擎原生 cost，目标决议和特殊费用仍走原生入口。CWT 子型投射不是所有字段组合的互斥证明。",
       "nativeAudit": ["NativeDecisionCategory", "NativeDecision"]
     },
     {
@@ -364,6 +375,10 @@
         {
           "file": "tests/language-ui.test.mjs",
           "test": "scripted GUI emits context, event callbacks, repeated AI targets and dynamic lists"
+        },
+        {
+          "file": "tests/styles.test.mjs",
+          "test": "static Stack and For preserve ScriptedWindow bindings while computing native coordinates"
         }
       ],
       "boundary": "上下文、点击/可用性、动态属性、列表和 AI 字段有类型；布局与 AI 策略的游戏效果需要运行验证。"
@@ -380,7 +395,8 @@
         "krieg-lang/ui:For",
         "krieg-lang/ui:GuiFile",
         "krieg-lang/ui:Container",
-        "krieg-lang/ui:Button"
+        "krieg-lang/ui:Button",
+        "krieg-lang/ui:Stack"
       ],
       "guide": "ui.md",
       "ruleSources": ["Config/interface/gui.cwt"],
@@ -396,9 +412,13 @@
         {
           "file": "tests/native-domains.test.mjs",
           "test": "all declared native GUI control factories use declared fields and exact engine type names"
+        },
+        {
+          "file": "tests/styles.test.mjs",
+          "test": "styles lower native fields with module tokens, composition, ordered overrides and atomic inline props"
         }
       ],
-      "boundary": "六个常用组件及十八种原生控件有静态入口：十五种有 CWT 规则和独立正负审计，三种旧式控件来自真实语料字段投射；布局、字体与输入仍需游戏验证。"
+      "boundary": "六个常用组件及十八种原生控件有静态入口：十五种有 CWT 规则和独立正负审计，三种旧式控件来自真实语料字段投射；布局、字体与输入仍需游戏验证。 可组合 .krg.css 类并对显式尺寸使用 Stack；无浏览器布局引擎。"
     },
     {
       "id": "graphics",

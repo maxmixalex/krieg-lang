@@ -19,6 +19,8 @@ const nodeFields = [
   "continueIfInvalid",
   "completionReward",
   "aiWillDo",
+  "requires",
+  "exclusiveWith",
 ];
 
 function invalid(code: string, message: string): never {
@@ -62,8 +64,75 @@ export interface NormalizedFocusGraph {
   focuses: Record<string, { _krg: "focus-reference"; id: string }>;
 }
 
+type LocalFocusKey = { _krg: "focus-node-key"; key: string };
+type FocusSelector = Record<string, LocalFocusKey>;
+type ResolveFocusSelector = (callback: unknown, selector: FocusSelector) => unknown;
+
+/**
+ * Convert a positive boolean expression to the game's AND-of-OR groups.
+ * Subsumption keeps common `a OR (a AND b)` expressions small. Limits apply
+ * before hostile nesting or distributive products can exhaust the compiler.
+ */
+function focusRequirement(
+  value: unknown,
+  reference: (value: unknown) => string,
+  label: string,
+): string[][] {
+  let combinations = 0;
+  const limit = (): never =>
+    invalid(
+      "KRG2610",
+      `${label} is too complex to expand into native prerequisite groups (maximum 256 groups, 4096 references, 16384 combinations and 64 nesting levels). Introduce intermediate focuses or simplify the nested 'any'/'all' expression.`,
+    );
+  const append = (groups: string[][], group: string[]): void => {
+    const unique = [...new Set(group)];
+    // A implies (A OR B), so the larger clause is redundant inside an AND.
+    if (groups.some((existing) => existing.every((key) => unique.includes(key)))) return;
+    for (let index = groups.length - 1; index >= 0; index--)
+      if (unique.every((key) => groups[index].includes(key))) groups.splice(index, 1);
+    groups.push(unique);
+    if (groups.length > 256 || groups.reduce((size, clause) => size + clause.length, 0) > 4096)
+      limit();
+  };
+  const visit = (expression: unknown, depth: number): string[][] => {
+    if (depth > 64) limit();
+    if (
+      expression &&
+      typeof expression === "object" &&
+      "_krg" in expression &&
+      expression._krg === "focus-node-key"
+    )
+      return [[reference(expression)]];
+    const condition = object(expression, label);
+    fields(condition, ["all", "any"], label);
+    if ((condition.all === undefined) === (condition.any === undefined))
+      invalid("KRG2601", `${label} requires a selected node or exactly one of 'all' and 'any'.`);
+    const inputs = list(condition.all ?? condition.any, label, 1);
+    let groups: string[][] = [];
+    for (const input of inputs) {
+      const next = visit(input, depth + 1);
+      if (condition.all !== undefined || groups.length === 0) {
+        for (const clause of next) append(groups, clause);
+      } else {
+        const product: string[][] = [];
+        for (const left of groups)
+          for (const right of next) {
+            if (++combinations > 16384) limit();
+            append(product, [...left, ...right]);
+          }
+        groups = product;
+      }
+    }
+    return groups;
+  };
+  return visit(value, 0);
+}
+
 /** Expand graph operations into ordinary FocusTree input without executing user code. */
-export function normalizeFocusGraph(value: unknown): NormalizedFocusGraph {
+export function normalizeFocusGraph(
+  value: unknown,
+  resolve?: ResolveFocusSelector,
+): NormalizedFocusGraph {
   const graph = object(value, "FocusGraph");
   fields(
     graph,
@@ -78,11 +147,13 @@ export function normalizeFocusGraph(value: unknown): NormalizedFocusGraph {
   const prerequisites = new Map(keys.map((key) => [key, [] as string[][]]));
   const exclusions = new Map(keys.map((key) => [key, new Set<string>()]));
   const specs = new Map<string, RecordValue>();
+  const selector: FocusSelector = Object.create(null);
   for (const key of keys) {
     identifier(key, "Focus node key");
     const spec = object(nodes[key], `Focus node '${key}'`);
     fields(spec, nodeFields, `Focus node '${key}'`);
     specs.set(key, spec);
+    selector[key] = { _krg: "focus-node-key", key };
   }
   const reference = (value: unknown): string => {
     if (typeof value !== "string" || !Object.hasOwn(nodes, value))
@@ -105,6 +176,47 @@ export function normalizeFocusGraph(value: unknown): NormalizedFocusGraph {
     if (!requirements.some((previous) => [...previous].sort().join("\0") === key))
       requirements.push(from);
   };
+  const localReference = (value: unknown): string => {
+    if (
+      !value ||
+      typeof value !== "object" ||
+      !("key" in value) ||
+      typeof value.key !== "string" ||
+      !Object.hasOwn(selector, value.key) ||
+      selector[value.key] !== value
+    )
+      invalid(
+        "KRG2602",
+        "Focus requirements and exclusions must use nodes from their own selector; external IDs and fabricated node keys are not allowed.",
+      );
+    return value.key;
+  };
+  const select = (value: unknown, label: string): unknown => {
+    if (!resolve) invalid("KRG2601", `${label} requires a statically evaluated selector callback.`);
+    return resolve(value, selector);
+  };
+  for (const key of keys) {
+    const spec = specs.get(key)!;
+    if (spec.requires !== undefined) {
+      const label = `Requirements of focus '${key}'`;
+      const condition = select(spec.requires, label);
+      for (const clause of focusRequirement(condition, localReference, label))
+        addPrerequisite(key, clause);
+    }
+    if (spec.exclusiveWith !== undefined) {
+      const selected = select(spec.exclusiveWith, `Exclusions of focus '${key}'`);
+      const alternatives = Array.isArray(selected)
+        ? list(selected, `Exclusions of focus '${key}'`, 1).map(localReference)
+        : [localReference(selected)];
+      if (new Set(alternatives).size !== alternatives.length)
+        invalid("KRG2601", `Exclusions of focus '${key}' contain a repeated node.`);
+      for (const alternative of alternatives) {
+        if (alternative === key) invalid("KRG2603", `Focus '${key}' cannot exclude itself.`);
+        exclusions.get(key)!.add(alternative);
+        exclusions.get(alternative)!.add(key);
+      }
+    }
+  }
   for (const value of list(graph.sequences ?? [], "FocusGraph.sequences")) {
     const sequence = group(value, "A focus sequence", 2);
     for (let index = 1; index < sequence.length; index++)
@@ -203,7 +315,7 @@ export function normalizeFocusGraph(value: unknown): NormalizedFocusGraph {
   const focuses: NormalizedFocusGraph["focuses"] = Object.create(null);
   const focusSpecs = keys.map((key) => {
     const source = specs.get(key)!;
-    const { position, ...spec } = source;
+    const { position, requires: _requires, exclusiveWith: _exclusiveWith, ...spec } = source;
     const row = depths.get(key)!;
     const column = columns.get(row) ?? 0;
     columns.set(row, column + 1);

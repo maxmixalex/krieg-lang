@@ -24,6 +24,7 @@ export default [
     },
   },
   krieg.configs.recommended,
+  krieg.configs.styles,
   {
     files: ["examples/vanilla-complete/**/*.krg.{ts,tsx}"],
     rules: {

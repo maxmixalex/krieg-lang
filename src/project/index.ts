@@ -22,3 +22,5 @@ export type * from "./types.js";
 export type { WorldFile, ProjectWorld } from "./world.js";
 export type { DependencyGraph } from "./dependencies.js";
 export type { ImportProjectResult } from "./import.js";
+
+export { traceOutput, traceGameLog, type TracedLogEntry, type TracedLocation } from "./trace.js";

@@ -2,6 +2,8 @@ import { VERSION } from "../version.js";
 import ts from "typescript";
 import { parser } from "typescript-eslint";
 import type { ESLint, Linter, Rule, SourceCode } from "eslint";
+import { parseStyleModule } from "../compiler/styles.js";
+import type { KriegDiagnostic } from "../compiler/types.js";
 
 const sourceFiles = new WeakMap<SourceCode, ts.SourceFile>();
 
@@ -77,6 +79,7 @@ function isAllowedImport(value: string, packages: readonly string[]): boolean {
   )
     return true;
   if (value.startsWith("./") || value.startsWith("../")) {
+    if (value.endsWith(".css")) return value.endsWith(".krg.css");
     return !/\.(?:[cm]?jsx?|[cm]?tsx?|json)$/.test(value) || /\.krg\.(?:jsx?|tsx?)$/.test(value);
   }
   return packages.some((name) => value === name || value.startsWith(`${name}/`));
@@ -315,7 +318,8 @@ const explicitParameters: Rule.RuleModule = {
 };
 
 /** ESLint flat-config plugin. The compiler remains the final semantic authority. */
-const plugin: ESLint.Plugin & { configs: { recommended: Linter.Config } } = {
+const styleDiagnostics = new Map<string, KriegDiagnostic[]>();
+const plugin: ESLint.Plugin & { configs: { recommended: Linter.Config; styles: Linter.Config } } = {
   meta: { name: "krieg-lang", version: VERSION },
   rules: {
     "no-any": noAny,
@@ -323,7 +327,34 @@ const plugin: ESLint.Plugin & { configs: { recommended: Linter.Config } } = {
     "supported-syntax": supportedSyntax,
     "explicit-parameters": explicitParameters,
   },
-  configs: { recommended: {} },
+  processors: {
+    styles: {
+      meta: { name: "krieg/styles", version: VERSION },
+      preprocess(text, filename) {
+        styleDiagnostics.set(filename, parseStyleModule(text, filename).diagnostics);
+        return [""];
+      },
+      postprocess(_messages, filename) {
+        const diagnostics = styleDiagnostics.get(filename) ?? [];
+        styleDiagnostics.delete(filename);
+        return diagnostics.map((issue) => ({
+          ruleId: "krieg/styles",
+          severity: 2 as const,
+          message: `${issue.code}: ${issue.message}`,
+          line: issue.line ?? 1,
+          column: issue.column ?? 1,
+        }));
+      },
+      supportsAutofix: false,
+    },
+  },
+  configs: { recommended: {}, styles: {} },
+};
+plugin.configs.styles = {
+  name: "krieg/styles",
+  files: ["**/*.krg.css"],
+  plugins: { krieg: plugin },
+  processor: "krieg/styles",
 };
 
 plugin.configs.recommended = {

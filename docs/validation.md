@@ -2,6 +2,21 @@
 
 一次检查能证明什么，取决于它检查的层次。Krieg 把语言、项目资源和语料往返分开记录，便于定位错误，也避免把不同程度的成功当成同一个结论。
 
+## 如何检查 0.4 的作者体验
+
+| 如果你依赖…                         | 应检查什么                                                                                                      |
+| ----------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| [节点内国策条件](typed-gameplay.md) | 比较生成的原生前置组与布尔表达式的真值；互斥和 OR 单独断言。`krieg graph --focus <id>` 读取最终生成的关系。     |
+| [TSX 样式和排列](styles.md)         | 用真实 TypeScript Language Service 查询模块类名；比较两个来源包、覆盖顺序、原生字段，以及排列后绑定的控件名称。 |
+| [跨入口的付费行动](recipes.md)      | 分别运行原生按钮、事件与决议的结算结构，检查资金恰足、余额不足和资格变化时的支付与奖励次数。                    |
+| [报错定位](debugging.md)            | 从实际生成行反查原始语句、样式声明或展开调用。再修改生成文件，确认命令拒绝使用旧位置。                          |
+
+开发仓库中运行 `npm run build`，然后执行 `node --test tests/focus-authoring.test.mjs tests/styles.test.mjs tests/country-actions.test.mjs tests/native-trace.test.mjs` 可以复核上表。游戏实际绘制效果和运行时选择仍需进游戏验证。
+
+[0.4 两个完整示例的外部验证](https://github.com/maxmixalex/krieg-lang/blob/main/reports/validation/v0.4.0-complete-examples.json)使用提供的原版和 KR 基准。原版生成 76 个文件，KR 生成 94 个。CWTools 均未报错；两份示例的情报机构可用性条件各有一条可省略 `AND` 的提示（CW251）。
+
+同一 0.4.0 冻结构建的[三语料全量复跑报告](https://github.com/maxmixalex/krieg-lang/blob/main/reports/validation/v0.4.0-corpus-summary.json)覆盖 19,910 个输入文件：17,548 个可解析 PDX 文件均完成严格 TypeScript 编译、静态降级及规范原生语义比较。三份输入清单哈希、32 个既有解析失败路径和 TNO 的两个本地化格式异常路径均与 0.3 基线一致；原始报告及运行回执已逐一核对，同样未启动游戏。
+
 ## 如何复核 0.3 的作者接口
 
 [离线 Wiki 对照](coverage.md)记录本次输入的 54 个页面修订。对 API 的检查分三步：用真实项目 `tsconfig.json` 查询 TypeScript 的补全和悬停；让模组构建器降低代码并比较原生文件；从实际 npm 压缩包安装后，用下游 CLI、ESLint 和 `tsc` 重跑作者流程。国策图与事件调度检查跨模块句柄、前置组合、事件接收作用域和命名空间；TSX 检查控件与 Scripted GUI 的绑定以及静态循环的闭包。

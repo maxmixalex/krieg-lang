@@ -1,0 +1,187 @@
+{
+  "version": "0.4.0",
+  "startedAt": "2026-11-03T15:28:11.191Z",
+  "completedAt": "2026-11-03T15:49:46.147Z",
+  "nodeVersion": "v24.22.1",
+  "typescriptVersion": "5.9.3",
+  "dist": {
+    "files": 261,
+    "sha256": "6c5091d63f28d167f716e1ff7bbc656be13bae3061275ca4a94bcc06039b7cda"
+  },
+  "distHashAlgorithm": "SHA-256 of compact JSON [{path,sha256},...] sorted by relative dist path",
+  "scope": "Full strict TypeScript compilation of ordered imports; canonical native semantic identity. The supplied map supplements are separately validated as real map overlays, not mixed into this fixed regression input.",
+  "engineValidation": "not-run",
+  "datasets": [
+    {
+      "name": "kaiserreich",
+      "inventory": {
+        "files": 6144,
+        "bytes": 175783492,
+        "sha256": "84137a93711da0ac44ccd46038bb5edfca179edbd900fd2bf2a9c2a004f9df32",
+        "byClass": {
+          "pdx": 5041,
+          "documentation": 22,
+          "other": 4,
+          "credits": 1,
+          "localisation": 1076
+        },
+        "byExtension": {
+          ".txt": 4382,
+          ".md": 22,
+          ".info": 2,
+          ".lua": 2,
+          ".gfx": 444,
+          ".gui": 216,
+          ".yml": 1076
+        }
+      },
+      "levels": {
+        "parse": { "attempted": 5041, "passed": 5041, "failed": 0, "skipped": 0 },
+        "canonicalSemanticRoundtrip": {
+          "attempted": 5041,
+          "passed": 5041,
+          "failed": 0,
+          "skipped": 0
+        },
+        "constructorStaticRecompile": { "attempted": 0, "passed": 0, "failed": 0, "skipped": 5041 },
+        "typescriptCompile": { "attempted": 5041, "passed": 5041, "failed": 0, "skipped": 0 },
+        "ancillarySyntax": { "attempted": 1076, "passed": 1076, "failed": 0, "skipped": 0 }
+      },
+      "durationMs": 388996,
+      "cliExit": 0,
+      "inputFailurePaths": [],
+      "ancillaryFailurePaths": []
+    },
+    {
+      "name": "tno",
+      "inventory": {
+        "files": 8287,
+        "bytes": 258456745,
+        "sha256": "d45aa518e61e8409acf8f287f2f188ef55a432293a6798a71b0484ef4f0dfb5d",
+        "byClass": {
+          "pdx": 7207,
+          "other": 10,
+          "documentation": 13,
+          "credits": 1,
+          "binary-asset": 2,
+          "localisation": 1054
+        },
+        "byExtension": {
+          ".txt": 6366,
+          "(none)": 1,
+          ".info": 6,
+          ".md": 13,
+          ".lua": 3,
+          ".mod": 1,
+          ".gui": 373,
+          ".gfx": 467,
+          ".dds": 1,
+          ".py": 1,
+          ".yml": 1054,
+          ".png": 1
+        }
+      },
+      "levels": {
+        "parse": { "attempted": 7207, "passed": 7196, "failed": 11, "skipped": 0 },
+        "canonicalSemanticRoundtrip": {
+          "attempted": 7196,
+          "passed": 7196,
+          "failed": 0,
+          "skipped": 11
+        },
+        "constructorStaticRecompile": { "attempted": 0, "passed": 0, "failed": 0, "skipped": 7207 },
+        "typescriptCompile": { "attempted": 7196, "passed": 7196, "failed": 0, "skipped": 11 },
+        "ancillarySyntax": { "attempted": 1054, "passed": 1052, "failed": 2, "skipped": 0 }
+      },
+      "durationMs": 496185,
+      "cliExit": 1,
+      "inputFailurePaths": [
+        "common/decisions/TNO_forpol_JAP.txt",
+        "common/ideas/TNO_Brazil_Dummy.txt",
+        "common/scripted_localisation/TNO_MEX_scripted_localisation.txt",
+        "events/TNO_endo_exo.txt",
+        "history/units/SMO_Collapse.TXT",
+        "interface/Technologies/Technologies_Country_SWE.gfx",
+        "interface/Ukraine/TNO_Ukraine_FUK_election.gui",
+        "interface/backend.gui",
+        "interface/brazil_gui/TNO_brazil_map.gui",
+        "interface/equipmentdesigner/tanks/tank_chassis_MBT_jap.gui",
+        "interface/special_projects/facility.gui"
+      ],
+      "ancillaryFailurePaths": [
+        "localisation/english/TNO_Asturias_l_english.yml",
+        "localisation/english/TNO_Caribbean_l_english.yml"
+      ]
+    },
+    {
+      "name": "vanilla",
+      "inventory": {
+        "files": 5479,
+        "bytes": 248588581,
+        "sha256": "a47fdddde674622b0af370407e8fa58227f3f0c3017190e9cc3a7ff06a2eb74f",
+        "byClass": {
+          "pdx": 5332,
+          "documentation": 61,
+          "other": 5,
+          "credits": 1,
+          "binary-asset": 72,
+          "map-table": 8
+        },
+        "byExtension": {
+          ".txt": 4722,
+          ".md": 50,
+          ".lua": 3,
+          ".json": 1,
+          ".html": 11,
+          ".gui": 453,
+          ".gfx": 162,
+          ".info": 1,
+          ".dds": 63,
+          ".sfx": 1,
+          ".csv": 2,
+          ".bmp": 9,
+          ".map": 1
+        }
+      },
+      "levels": {
+        "parse": { "attempted": 5332, "passed": 5311, "failed": 21, "skipped": 0 },
+        "canonicalSemanticRoundtrip": {
+          "attempted": 5311,
+          "passed": 5311,
+          "failed": 0,
+          "skipped": 21
+        },
+        "constructorStaticRecompile": { "attempted": 0, "passed": 0, "failed": 0, "skipped": 5332 },
+        "typescriptCompile": { "attempted": 5311, "passed": 5311, "failed": 0, "skipped": 21 },
+        "ancillarySyntax": { "attempted": 8, "passed": 8, "failed": 0, "skipped": 0 }
+      },
+      "durationMs": 407020,
+      "cliExit": 1,
+      "inputFailurePaths": [
+        "common/doctrines/subdoctrines/sea/navy_submarine_doctrines.txt",
+        "common/focus_inlay_windows/ast_right_vs_left_campaign_empty_inlay_window.txt",
+        "common/ideas/SOV.txt",
+        "common/ideas/persia.txt",
+        "common/ideas/switzerland.txt",
+        "common/military_industrial_organization/organizations/BRA_organization.txt",
+        "common/national_focus/TSR_lingguang_incident_joint_branch.txt",
+        "common/scripted_guis/AST_cabinet_trust_scripted_gui.txt",
+        "common/units/names_divisions/BRA_names_divisions.txt",
+        "common/units/names_divisions/FIN_names_divisions.txt",
+        "history/countries/NOR - Norway.txt",
+        "history/units/AST_1936.txt",
+        "history/units/FRA_1936.txt",
+        "history/units/FRA_1936_nsb.txt",
+        "history/units/FRA_1939_naval_legacy.txt",
+        "history/units/FRA_1939_naval_mtg.txt",
+        "interface/backend.gui",
+        "interface/ger_monroe_doctrine_scripted_gui.gui",
+        "interface/powerbalanceview.gfx",
+        "interface/sia_movie_theater_campaigns_scripted_gui.gui",
+        "interface/sov_propaganda_campaigns_scripted_gui.gui"
+      ],
+      "ancillaryFailurePaths": []
+    }
+  ],
+  "totals": { "attempted": 17548, "passed": 17548, "failed": 0, "skipped": 32 }
+}

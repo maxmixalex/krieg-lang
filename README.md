@@ -2,7 +2,7 @@
 
 **用严格的 TypeScript 子集编写 Hearts of Iron IV 模组。**
 
-Krieg 把 `.krg.ts` 与 `.krg.tsx` 源文件静态编译为原生 PDX 脚本与 Lua Defines，并处理项目依赖、资源、本地化与模组打包。你可以使用熟悉的 TypeScript 编辑器、类型提示、ESLint 和 Prettier；源文件不会被当作 JavaScript 执行。
+Krieg 把 `.krg.ts`、`.krg.tsx` 和界面样式 `.krg.css` 静态编译为原生 PDX 脚本、GUI 与 Lua Defines，并处理项目依赖、资源、本地化与模组打包。你可以使用熟悉的 TypeScript 编辑器、类型提示、ESLint 和 Prettier；源文件不会被当作 JavaScript 执行。
 
 ```typescript
 import { CountryEvent, Option, loc, type CountryScope } from "krieg-lang/hoi4";
@@ -30,12 +30,15 @@ CountryEvent({
 
 编写成套玩法时，可以直接选择更高层的入口：
 
-| 要写的内容                                 | 作者描述什么                     | Krieg 负责什么                                    |
-| ------------------------------------------ | -------------------------------- | ------------------------------------------------- |
-| [国策图与延时事件](docs/typed-gameplay.md) | 节点、路线、互斥选择和事件句柄   | 推导引用，生成前置组和双向互斥，检查接收作用域    |
-| [可交互界面](docs/ui.md)                   | TSX 控件及其点击、可用和显示条件 | 同时生成布局和 Scripted GUI，绑定正确的原生控件名 |
-| [可复用脚本变体](docs/scripted-content.md) | 一组具名配置和一个有类型的回调   | 为每种配置生成可重复调用的普通游戏脚本            |
-| [地图与铁路](docs/map-atlas.md)            | 途经点、排除区域和铁路等级       | 按真实位图求陆地路径，保留原生基础铁路表          |
+| 要写的内容                                 | 作者描述什么                               | Krieg 负责什么                                       |
+| ------------------------------------------ | ------------------------------------------ | ---------------------------------------------------- |
+| [国策图与延时事件](docs/typed-gameplay.md) | 节点、路线、互斥选择和事件句柄             | 推导引用，生成前置组和双向互斥，检查接收作用域       |
+| [可交互界面](docs/ui.md)                   | TSX 控件及其点击、可用和显示条件           | 同时生成布局和 Scripted GUI，绑定正确的原生控件名    |
+| [界面样式](docs/styles.md)                 | 布局类、可复用的设计变量与每个控件的覆盖值 | 生成原生 GUI 属性，并给导入的类名提供补全            |
+| [还原游戏报错](docs/debugging.md)          | 游戏日志中的文件和行号                     | 定位到源代码及静态辅助函数的调用处                   |
+| [可复用的付费行动](docs/recipes.md)        | 一次声明国家行动的资格、政治点成本与奖励   | 游戏决议按原生费用收费；按钮和事件在执行时重查并支付 |
+| [可复用脚本变体](docs/scripted-content.md) | 一组具名配置和一个有类型的回调             | 为每种配置生成可重复调用的普通游戏脚本               |
+| [地图与铁路](docs/map-atlas.md)            | 途经点、排除区域和铁路等级                 | 按真实位图求陆地路径，保留原生基础铁路表             |
 
 ## 从源码开始
 
@@ -49,12 +52,14 @@ npm run build
 npm pack
 node dist/cli.js init ../hello-krieg
 cd ../hello-krieg
-npm install ../krieg-lang/krieg-lang-0.3.0.tgz
+npm install ../krieg-lang/krieg-lang-0.4.0.tgz
 npx krieg check
 npx krieg build
 ```
 
 从[第一个模组](docs/getting-started.md)继续，了解生成的文件、如何修改事件以及如何查看输出。
+
+也可以从 [GitHub Actions 的成功 CI 运行](https://github.com/maxmixalex/krieg-lang/actions/workflows/ci.yml)下载 `krieg-npm-package` 构建产物（保留 30 天）：内含 Node 24 实际安装并通过消费者验收的 `.tgz` 和 `SHA256SUMS`，安装步骤见[第一个模组](docs/getting-started.md)。这是可下载的 CI 归档；该流程不会向 npm registry 发布版本。
 
 ## 可以做什么
 

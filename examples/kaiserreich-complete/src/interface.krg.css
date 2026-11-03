@@ -1,0 +1,37 @@
+/* Compile-time layout tokens. These are emitted as native GUI fields. */
+:root {
+  --body-font: hoi_16mbs;
+  --heading-font: hoi_18mbs;
+  --content-width: 300px;
+}
+
+.panel {
+  position: 15px 80px;
+  size: 350px 190px;
+}
+
+.background {
+  sprite-type: GFX_srd_panel;
+}
+
+.bodyText {
+  font: var(--body-font);
+  max-width: var(--content-width);
+}
+
+.title {
+  position: 18px 14px;
+  max-height: 26px;
+  font: var(--heading-font);
+}
+
+.status {
+  max-height: 50px;
+}
+
+.redeem {
+  position: 18px 118px;
+  size: 150px 32px;
+  sprite-type: GFX_srd_button;
+  font: var(--body-font);
+}
