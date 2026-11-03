@@ -72,7 +72,7 @@ test("typed local modules are allowed and opted-in npm source packages are confi
   assert.equal(rejected.errorCount, 1);
 });
 
-test("callback parameter annotations and compile-time loop bindings are required", async () => {
+test("standalone parameter annotations and compile-time loop bindings are required", async () => {
   const messages = await lint("const effect = (country) => {};\nfor (let x of [1, 2]) {}\n");
   assert.ok(messages.some((message) => message.ruleId === "krieg/explicit-parameters"));
   assert.ok(messages.some((message) => message.message.includes("const identifier")));

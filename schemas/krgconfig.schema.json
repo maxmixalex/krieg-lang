@@ -11,6 +11,35 @@
     "sourceDir": { "type": "string", "default": "src" },
     "outDir": { "type": "string", "default": "build/mod" },
     "strictAssets": { "type": "boolean", "default": true },
+    "railways": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["routes"],
+      "description": "Plan additive land railways against the final effective map. The entire inherited railways.txt is preserved; conflicting levels are errors.",
+      "properties": {
+        "allowEmptyBase": { "type": "boolean", "default": false },
+        "routes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "level", "via"],
+            "properties": {
+              "name": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$" },
+              "level": { "type": "integer", "minimum": 1, "maximum": 5 },
+              "via": {
+                "type": "array",
+                "minItems": 2,
+                "items": { "type": "integer", "minimum": 1 }
+              },
+              "avoidProvinces": { "$ref": "#/$defs/geographicIds" },
+              "avoidStates": { "$ref": "#/$defs/geographicIds" },
+              "avoidStrategicRegions": { "$ref": "#/$defs/geographicIds" }
+            }
+          }
+        }
+      }
+    },
     "mod": {
       "type": "object",
       "additionalProperties": false,
@@ -106,5 +135,8 @@
       }
     }
   },
-  "$defs": { "strings": { "type": "array", "items": { "type": "string", "minLength": 1 } } }
+  "$defs": {
+    "strings": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "geographicIds": { "type": "array", "items": { "type": "integer", "minimum": 1 } }
+  }
 }

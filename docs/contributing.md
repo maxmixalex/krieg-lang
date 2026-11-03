@@ -1,6 +1,6 @@
 # 参与开发
 
-仓库是一个 TypeScript npm 包。编译器、SDK、PDX 工具、项目构建器和 ESLint 插件通过独立入口组织，测试使用 Node.js 自带的测试运行器。文档使用原生 Zensical 配置；API Reference 由 TypeScript Compiler API 从实际导出与 JSDoc 生成。
+仓库是一个 TypeScript npm 包。编译器、SDK、PDX 工具、项目构建器和 ESLint 插件通过独立入口组织，测试使用 Node.js 自带的测试运行器。文档使用原生 Zensical 配置；API Reference 使用固定版本的 TypeDoc、typedoc-plugin-markdown 和 typedoc-plugin-missing-exports，从公开入口与 JSDoc 生成 Markdown。
 
 ## 本地检查
 
@@ -44,7 +44,7 @@ python -m venv .venv
 Windows 使用 `.venv\Scripts\python` 和 `.venv\Scripts\zensical`。提交前执行干净的严格构建：
 
 ```sh
-.venv/bin/zensical build --clean --strict
+PATH=".venv/bin:$PATH" npm run docs:build
 ```
 
 页面位于 `docs/`，导航和语言设置位于 `zensical.toml`。教程先解释读者要完成的任务，再说明代码与输出；长篇运行日志、数据集清单和实验记录不应替代教程。
@@ -57,11 +57,17 @@ npm run docs:api:check
 npm run docs:coverage
 ```
 
-`docs:api` 读取 `package.json` 的每个 TypeScript 公开入口，解析真实导出、重载、接口字段、JSDoc 和 CWT 命令来源，再生成 `docs/api/`。不手工编辑生成页。`--check` 重新计算相同内容并比较文件，任何缺失、过期或多余页面都会使 CI 失败。新增公开入口也会自动纳入。
+`docs:api` 从 `package.json` 获取每个 TypeScript 公开入口，使用 TypeDoc 解析导出、重载、字段、继承和 JSDoc，由 Markdown 插件生成 `docs/api/reference/`。固定配置位于 `typedoc.json`。不手工编辑生成页；类型声明、`@param`、`@returns`、`@example` 与 `@category` 应写在源码 JSDoc 中。
+
+小型原生嵌套结构使用 TypeDoc 的内联机制，大型共享字段由 missing-exports 插件解析并按使用位置命名。它们通过公共字段链接进入，不增加包导出或占据主导航。不要恢复旧的 `NativeShape` 编号页面。
+
+`scripts/api-guide.md` 是按任务查找的 API 首页源稿。游戏命令和 Defines 目录由 `generate-api-catalogs.mjs` 读取固定元数据与实际声明生成。旧公开页保留锚点并链接到 TypeDoc 详情；公开导航从 TypeDoc 导航模型同步至 `zensical.toml` 的标记区，其余站点导航可直接编辑。
+
+`docs:api:check` 在临时目录重新生成，逐字节检查所有页面、清单与导航，同时拒绝过期页。TypeDoc 自己管理参考页的 Markdown 格式，Prettier 不改写该目录。`docs:build` 执行干净严格构建，然后检查生成 HTML 的内部链接、资源、锚点、每个公开导出的目标以及 API 搜索收录。使用 `PATH=".venv/bin:$PATH" npm run docs:check` 可顺序运行一致性、覆盖清单和站点验证。
 
 `docs/coverage-inventory.json` 将 Wiki 主题与当前 API、原生路径、教程和测试关联。检查器拒绝把仅有 `DataFile` / 有序 PDX 的条目标成语义 API，也检查证据文件和测试名称确实存在。添加功能时，先更新声明和成功/失败测试，再更新清单与教程，最后重新生成 API。新增教程的完整 `typescript` / `tsx` 代码块会进入编译测试。
 
-相关官方说明：[Zensical 配置](https://zensical.org/docs/setup/basics/)、[构建命令](https://zensical.org/docs/usage/build/)、[GitHub Pages 发布](https://zensical.org/docs/publish-your-site/)。
+相关官方说明：[TypeDoc 公开入口](https://typedoc.org/documents/Options.Input.html)、[Markdown 插件配置](https://typedoc-plugin-markdown.org/docs/options)、[Zensical 配置](https://zensical.org/docs/setup/basics/)、[构建命令](https://zensical.org/docs/usage/build/)、[GitHub Pages 发布](https://zensical.org/docs/publish-your-site/)。
 
 ## GitHub Actions
 

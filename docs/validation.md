@@ -2,9 +2,21 @@
 
 一次检查能证明什么，取决于它检查的层次。Krieg 把语言、项目资源和语料往返分开记录，便于定位错误，也避免把不同程度的成功当成同一个结论。
 
+## 如何复核 0.3 的作者接口
+
+[离线 Wiki 对照](coverage.md)记录本次输入的 54 个页面修订。对 API 的检查分三步：用真实项目 `tsconfig.json` 查询 TypeScript 的补全和悬停；让模组构建器降低代码并比较原生文件；从实际 npm 压缩包安装后，用下游 CLI、ESLint 和 `tsc` 重跑作者流程。国策图与事件调度检查跨模块句柄、前置组合、事件接收作用域和命名空间；TSX 检查控件与 Scripted GUI 的绑定以及静态循环的闭包。
+
+给定的地图补充包实际包含 `KR.zip`、`TNO.zip`。原版地图来自 `cwtools` 数据包。将补充包各自解压到含 `map/` 的根目录；例如下面的命令使用本地 KR 位图和表格，不从上游下载替代地图：
+
+```sh
+node scripts/validate-complete-examples.mjs --corpora /path/to/corpora --provided-kr-map /path/to/KR
+```
+
+项目输出与两套真实基准的原生检查见[完整项目验证](https://github.com/maxmixalex/krieg-lang/blob/main/reports/validation/v0.3.0-complete-examples.json)。对同一批原版、Kaiserreich 和 TNO 输入复跑全量严格导入时，使用 `node scripts/verify-supplied-corpora.mjs --corpora /path/to/corpora`；它分别检查输入清单、层级计数及原有解析失败路径，并保留原始报告。所有这些检查均不启动游戏。
+
 ## v0.2.0 的新增验证证据
 
-本轮完整语料检查使用冻结编译产物 `12761686ff11de9ff38e49615ae48c2f23667c1cbf73f027b017b2839f1f383c`：原版 5,311、Kaiserreich 5,041、TNO 7,196 个可解析 PDX 文件，共 **17,548 / 17,548** 完成实际严格 TypeScript 编译、静态降级、确切目标路径与规范 PDX 语义哈希匹配。19,910 个输入文件的清单哈希未变；32 个既有原始解析错误和 TNO 的两个附加格式问题仍原样记录。[v0.2.0 完整报告](https://github.com/maxmixalex/krieg-lang/blob/main/reports/validation/v0.2.0-corpus-summary.json) 说明冻结产物、输入清单和逐层结果。
+v0.2.0 的完整语料检查使用冻结编译产物 `12761686ff11de9ff38e49615ae48c2f23667c1cbf73f027b017b2839f1f383c`：原版 5,311、Kaiserreich 5,041、TNO 7,196 个可解析 PDX 文件，共 **17,548 / 17,548** 完成实际严格 TypeScript 编译、静态降级、确切目标路径与规范 PDX 语义哈希匹配。19,910 个输入文件的清单哈希未变；32 个既有原始解析错误和 TNO 的两个附加格式问题仍原样记录。[v0.2.0 完整报告](https://github.com/maxmixalex/krieg-lang/blob/main/reports/validation/v0.2.0-corpus-summary.json) 说明冻结产物、输入清单和逐层结果。
 
 这组全量结果验证有序迁移通道。随后增加或修正的命名领域、Lua 与 UI 通过对应的独立回归及原生审计；不能把冻结产物的全量结果自动描述为之后每次源码修改都重新跑过全语料。
 

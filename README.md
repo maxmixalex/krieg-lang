@@ -28,6 +28,15 @@ CountryEvent({
 
 这里的 `if` 会生成游戏运行时的条件效果块。编译器读取 TypeScript AST、检查类型和 Krieg 语言规则，再生成原生脚本；它不调用上面的函数。
 
+编写成套玩法时，可以直接选择更高层的入口：
+
+| 要写的内容                                 | 作者描述什么                     | Krieg 负责什么                                    |
+| ------------------------------------------ | -------------------------------- | ------------------------------------------------- |
+| [国策图与延时事件](docs/typed-gameplay.md) | 节点、路线、互斥选择和事件句柄   | 推导引用，生成前置组和双向互斥，检查接收作用域    |
+| [可交互界面](docs/ui.md)                   | TSX 控件及其点击、可用和显示条件 | 同时生成布局和 Scripted GUI，绑定正确的原生控件名 |
+| [可复用脚本变体](docs/scripted-content.md) | 一组具名配置和一个有类型的回调   | 为每种配置生成可重复调用的普通游戏脚本            |
+| [地图与铁路](docs/map-atlas.md)            | 途经点、排除区域和铁路等级       | 按真实位图求陆地路径，保留原生基础铁路表          |
+
 ## 从源码开始
 
 需要 Node.js 22.17 或更新版本。仓库提供本地打包与安装流程，以下命令不依赖已经发布的 npm 版本：
@@ -40,7 +49,7 @@ npm run build
 npm pack
 node dist/cli.js init ../hello-krieg
 cd ../hello-krieg
-npm install ../krieg-lang/krieg-lang-0.2.0.tgz
+npm install ../krieg-lang/krieg-lang-0.3.0.tgz
 npx krieg check
 npx krieg build
 ```
@@ -62,7 +71,7 @@ npx krieg build
 
 文档站点：[maxmixalex.github.io/krieg-lang](https://maxmixalex.github.io/krieg-lang/)。
 
-从[第一个模组](docs/getting-started.md)或[原版与 Kaiserreich 完整示例](docs/examples.md)开始；日常参考包括[语言模型](docs/language.md)、[项目配置](docs/projects.md)、[自动生成 API](docs/api/index.md)和[Wiki 功能覆盖](docs/coverage.md)。覆盖清单明确区分语义 API、CWT 结构校验、原生资源、版本条件和游戏硬编码边界。
+从[第一个模组](docs/getting-started.md)或[原版与 Kaiserreich 完整示例](docs/examples.md)开始；日常参考包括[语言模型](docs/language.md)、[项目配置](docs/projects.md)、[按任务查找 API](docs/api/index.md)和[Wiki 功能覆盖](docs/coverage.md)。覆盖清单明确区分语义 API、CWT 结构校验、原生资源、版本条件和游戏硬编码边界。
 
 Krieg 使用受限的 TypeScript 语法。普通 npm 运行时代码、`any`、异步任务、类以及动态循环不属于语言。CWT 命令元数据、原生语法往返和游戏引擎验证是不同层次；编译或语料检查成功不等于已经在 HOI4 中验证全部行为。
 
@@ -87,6 +96,8 @@ npm run test:package
 python -m venv .venv
 .venv/bin/python -m pip install -r requirements-docs.txt
 .venv/bin/zensical serve
+# 提交前检查：
+PATH=".venv/bin:$PATH" npm run docs:check
 ```
 
-Windows 对应命令位于 `.venv\Scripts\`。API Reference 从真实导出、JSDoc 和 CWT 来源生成；修改声明后运行 `npm run docs:api`，CI 通过 `docs:api:check` 拒绝过期页面。普通 CI 严格构建文档并保留预览；每次推送 `main` 后自动通过 GitHub Actions 部署到 Pages。开发与语料测试约定见[参与开发](docs/contributing.md)。
+Windows 对应命令位于 `.venv\Scripts\`。API Reference 使用固定版本的 [TypeDoc](https://typedoc.org/) 和 [typedoc-plugin-markdown](https://typedoc-plugin-markdown.org/)，从公开入口生成函数、重载、字段、JSDoc 示例与源码链接，并接入 Zensical 的导航和搜索。游戏命令与 Defines 另有数据目录。修改声明后运行 `npm run docs:api`；CI 检查生成一致性、完整 HTML 链接/锚点以及 API 搜索收录。普通 CI 严格构建文档并保留预览；每次推送 `main` 后自动通过 GitHub Actions 部署到 Pages。开发与语料测试约定见[参与开发](docs/contributing.md)。

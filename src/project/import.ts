@@ -1,3 +1,4 @@
+import { VERSION } from "../version.js";
 import {
   cpSync,
   existsSync,
@@ -143,7 +144,7 @@ export function importProject(
           type: "module",
           version: "0.1.0",
           scripts: { build: "krieg build", check: "krieg check" },
-          devDependencies: { "krieg-lang": "^0.2.0" },
+          devDependencies: { "krieg-lang": `^${VERSION}` },
         },
         null,
         2,

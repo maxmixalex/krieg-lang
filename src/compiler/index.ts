@@ -50,7 +50,8 @@ export function compileProject(options: CompileOptions): CompileResult {
     )
     .replace(/['"]\.\.\/pdx\/ast\.js['"]/g, "'krieg-lang/pdx'")
     .replace(/['"]\.\/domains\.js['"]/g, "'krieg-lang/hoi4/domains'")
-    .replace(/['"]\.\/defines\.js['"]/g, "'krieg-lang/hoi4/defines'");
+    .replace(/['"]\.\/defines\.js['"]/g, "'krieg-lang/hoi4/defines'")
+    .replace(/['"]\.\/gameplay\.js['"]/g, "'krieg-lang/hoi4/gameplay'");
   addModule("krieg-lang/hoi4", sdk);
   addModule(
     "krieg-lang/hoi4/domains",
@@ -59,6 +60,10 @@ export function compileProject(options: CompileOptions): CompileResult {
   addModule(
     "krieg-lang/hoi4/defines",
     sdkSource("sdk/defines").replace(/['"]\.\/index\.js['"]/g, "'krieg-lang/hoi4'"),
+  );
+  addModule(
+    "krieg-lang/hoi4/gameplay",
+    sdkSource("sdk/gameplay").replace(/['"]\.\/index\.js['"]/g, "'krieg-lang/hoi4'"),
   );
   addModule("krieg-lang/pdx", PDX_DECLARATIONS);
   addModule(

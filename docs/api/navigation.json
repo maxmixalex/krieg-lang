@@ -1,0 +1,4611 @@
+[
+  {
+    "title": "root",
+    "kind": 2,
+    "path": "root/index.md",
+    "isDeprecated": false,
+    "children": [
+      {
+        "title": "Modules",
+        "children": [
+          {
+            "title": "field-types",
+            "kind": 2,
+            "path": "root/field-types/index.md",
+            "isDeprecated": false,
+            "children": [
+              {
+                "title": "Interfaces",
+                "children": [
+                  {
+                    "title": "CompileOutputBase",
+                    "kind": 256,
+                    "path": "root/field-types/interfaces/CompileOutputBase.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "LocalisationEntry",
+                    "kind": 256,
+                    "path": "root/field-types/interfaces/LocalisationEntry.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "NativeLocalisation",
+                    "kind": 256,
+                    "path": "root/field-types/interfaces/NativeLocalisation.md",
+                    "isDeprecated": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Classes",
+        "children": [
+          {
+            "title": "ProvinceAtlas",
+            "kind": 128,
+            "path": "root/classes/ProvinceAtlas.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ProvinceAtlasError",
+            "kind": 128,
+            "path": "root/classes/ProvinceAtlasError.md",
+            "isDeprecated": false
+          }
+        ]
+      },
+      {
+        "title": "Interfaces",
+        "children": [
+          {
+            "title": "AssetRule",
+            "kind": 256,
+            "path": "root/interfaces/AssetRule.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "AtlasArea",
+            "kind": 256,
+            "path": "root/interfaces/AtlasArea.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "AtlasProvince",
+            "kind": 256,
+            "path": "root/interfaces/AtlasProvince.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "BuildResult",
+            "kind": 256,
+            "path": "root/interfaces/BuildResult.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CompileOptions",
+            "kind": 256,
+            "path": "root/interfaces/CompileOptions.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CompileResult",
+            "kind": 256,
+            "path": "root/interfaces/CompileResult.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CwtCommandRule",
+            "kind": 256,
+            "path": "root/interfaces/CwtCommandRule.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CwtFieldRule",
+            "kind": 256,
+            "path": "root/interfaces/CwtFieldRule.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CwtSchema",
+            "kind": 256,
+            "path": "root/interfaces/CwtSchema.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CwtValueRule",
+            "kind": 256,
+            "path": "root/interfaces/CwtValueRule.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "DependencyGraph",
+            "kind": 256,
+            "path": "root/interfaces/DependencyGraph.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GameRoot",
+            "kind": 256,
+            "path": "root/interfaces/GameRoot.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GeographyIndex",
+            "kind": 256,
+            "path": "root/interfaces/GeographyIndex.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ImportProjectResult",
+            "kind": 256,
+            "path": "root/interfaces/ImportProjectResult.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "KriegConfig",
+            "kind": 256,
+            "path": "root/interfaces/KriegConfig.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "KriegDiagnostic",
+            "kind": 256,
+            "path": "root/interfaces/KriegDiagnostic.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "LandProvinceRef",
+            "kind": 256,
+            "path": "root/interfaces/LandProvinceRef.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "LocalisationRule",
+            "kind": 256,
+            "path": "root/interfaces/LocalisationRule.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "LuaCompileOutput",
+            "kind": 256,
+            "path": "root/interfaces/LuaCompileOutput.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ModMetadata",
+            "kind": 256,
+            "path": "root/interfaces/ModMetadata.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "OutputFile",
+            "kind": 256,
+            "path": "root/interfaces/OutputFile.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "PdxCompileOutput",
+            "kind": 256,
+            "path": "root/interfaces/PdxCompileOutput.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "PlannedRailwayRoute",
+            "kind": 256,
+            "path": "root/interfaces/PlannedRailwayRoute.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ProjectBuildOptions",
+            "kind": 256,
+            "path": "root/interfaces/ProjectBuildOptions.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ProjectDiagnostic",
+            "kind": 256,
+            "path": "root/interfaces/ProjectDiagnostic.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ProjectLayer",
+            "kind": 256,
+            "path": "root/interfaces/ProjectLayer.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ProjectOptions",
+            "kind": 256,
+            "path": "root/interfaces/ProjectOptions.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ProjectWorld",
+            "kind": 256,
+            "path": "root/interfaces/ProjectWorld.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ProvinceAtlasOptions",
+            "kind": 256,
+            "path": "root/interfaces/ProvinceAtlasOptions.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "RailwayOverlayResult",
+            "kind": 256,
+            "path": "root/interfaces/RailwayOverlayResult.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "RailwayPlan",
+            "kind": 256,
+            "path": "root/interfaces/RailwayPlan.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "RailwayRouteRequest",
+            "kind": 256,
+            "path": "root/interfaces/RailwayRouteRequest.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "RailwayRouteSpec",
+            "kind": 256,
+            "path": "root/interfaces/RailwayRouteSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "WorldFile",
+            "kind": 256,
+            "path": "root/interfaces/WorldFile.md",
+            "isDeprecated": false
+          }
+        ]
+      },
+      {
+        "title": "Type Aliases",
+        "children": [
+          {
+            "title": "CompileOutput",
+            "kind": 2097152,
+            "path": "root/type-aliases/CompileOutput.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "RailwayLevel",
+            "kind": 2097152,
+            "path": "root/type-aliases/RailwayLevel.md",
+            "isDeprecated": false
+          }
+        ]
+      },
+      {
+        "title": "Variables",
+        "children": [
+          {
+            "title": "MINIMAL_LIB",
+            "kind": 32,
+            "path": "root/variables/MINIMAL_LIB.md",
+            "isDeprecated": false
+          }
+        ]
+      },
+      {
+        "title": "Functions",
+        "children": [
+          {
+            "title": "applyReplacePaths",
+            "kind": 64,
+            "path": "root/functions/applyReplacePaths.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "buildProject",
+            "kind": 64,
+            "path": "root/functions/buildProject.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "createRailwayOverlay",
+            "kind": 64,
+            "path": "root/functions/createRailwayOverlay.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "createWorld",
+            "kind": 64,
+            "path": "root/functions/createWorld.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "descriptor",
+            "kind": 64,
+            "path": "root/functions/descriptor.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "generateCommandDeclarations",
+            "kind": 64,
+            "path": "root/functions/generateCommandDeclarations.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "geographyDeclaration",
+            "kind": 64,
+            "path": "root/functions/geographyDeclaration.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "importProject",
+            "kind": 64,
+            "path": "root/functions/importProject.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "indexGeography",
+            "kind": 64,
+            "path": "root/functions/indexGeography.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "initProject",
+            "kind": 64,
+            "path": "root/functions/initProject.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "loadConfig",
+            "kind": 64,
+            "path": "root/functions/loadConfig.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "packProject",
+            "kind": 64,
+            "path": "root/functions/packProject.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "parseNativeLocalisation",
+            "kind": 64,
+            "path": "root/functions/parseNativeLocalisation.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "parseRailwayPlan",
+            "kind": 64,
+            "path": "root/functions/parseRailwayPlan.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "resolveDependencies",
+            "kind": 64,
+            "path": "root/functions/resolveDependencies.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "validateCountries",
+            "kind": 64,
+            "path": "root/functions/validateCountries.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "validateLocalisation",
+            "kind": 64,
+            "path": "root/functions/validateLocalisation.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "validateMap",
+            "kind": 64,
+            "path": "root/functions/validateMap.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "writeEditorProject",
+            "kind": 64,
+            "path": "root/functions/writeEditorProject.md",
+            "isDeprecated": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "compiler",
+    "kind": 2,
+    "path": "compiler/index.md",
+    "isDeprecated": false,
+    "children": [
+      {
+        "title": "Functions",
+        "children": [
+          {
+            "title": "compileProject",
+            "kind": 64,
+            "path": "compiler/functions/compileProject.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "compileSource",
+            "kind": 64,
+            "path": "compiler/functions/compileSource.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "emitCompileOutput",
+            "kind": 64,
+            "path": "compiler/functions/emitCompileOutput.md",
+            "isDeprecated": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "eslint",
+    "kind": 2,
+    "path": "eslint/index.md",
+    "isDeprecated": false,
+    "children": [
+      {
+        "title": "Variables",
+        "children": [
+          {
+            "title": "configs",
+            "kind": 32,
+            "path": "eslint/variables/configs.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "default",
+            "kind": 32,
+            "path": "eslint/variables/default.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "rules",
+            "kind": 32,
+            "path": "eslint/variables/rules.md",
+            "isDeprecated": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "pdx",
+    "kind": 2,
+    "path": "pdx/index.md",
+    "isDeprecated": false,
+    "children": [
+      {
+        "title": "Interfaces",
+        "children": [
+          {
+            "title": "EmitPdxOptions",
+            "kind": 256,
+            "path": "pdx/interfaces/EmitPdxOptions.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ParsePdxOptions",
+            "kind": 256,
+            "path": "pdx/interfaces/ParsePdxOptions.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "PdxAtom",
+            "kind": 256,
+            "path": "pdx/interfaces/PdxAtom.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "PdxBlock",
+            "kind": 256,
+            "path": "pdx/interfaces/PdxBlock.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "PdxDiagnostic",
+            "kind": 256,
+            "path": "pdx/interfaces/PdxDiagnostic.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "PdxDocument",
+            "kind": 256,
+            "path": "pdx/interfaces/PdxDocument.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "PdxFile",
+            "kind": 256,
+            "path": "pdx/interfaces/PdxFile.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "PdxLexResult",
+            "kind": 256,
+            "path": "pdx/interfaces/PdxLexResult.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "PdxParseResult",
+            "kind": 256,
+            "path": "pdx/interfaces/PdxParseResult.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "PdxProperty",
+            "kind": 256,
+            "path": "pdx/interfaces/PdxProperty.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "PdxTagged",
+            "kind": 256,
+            "path": "pdx/interfaces/PdxTagged.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "PdxToken",
+            "kind": 256,
+            "path": "pdx/interfaces/PdxToken.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "SourceSpan",
+            "kind": 256,
+            "path": "pdx/interfaces/SourceSpan.md",
+            "isDeprecated": false
+          }
+        ]
+      },
+      {
+        "title": "Type Aliases",
+        "children": [
+          {
+            "title": "PdxItem",
+            "kind": 2097152,
+            "path": "pdx/type-aliases/PdxItem.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "PdxOperator",
+            "kind": 2097152,
+            "path": "pdx/type-aliases/PdxOperator.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "PdxValue",
+            "kind": 2097152,
+            "path": "pdx/type-aliases/PdxValue.md",
+            "isDeprecated": false
+          }
+        ]
+      },
+      {
+        "title": "Variables",
+        "children": [
+          {
+            "title": "entry",
+            "kind": 32,
+            "path": "pdx/variables/entry.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "operators",
+            "kind": 32,
+            "path": "pdx/variables/operators.md",
+            "isDeprecated": false
+          }
+        ]
+      },
+      {
+        "title": "Functions",
+        "children": [
+          {
+            "title": "atom",
+            "kind": 64,
+            "path": "pdx/functions/atom.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "block",
+            "kind": 64,
+            "path": "pdx/functions/block.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "comparePdxSemantic",
+            "kind": 64,
+            "path": "pdx/functions/comparePdxSemantic.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "document",
+            "kind": 64,
+            "path": "pdx/functions/document.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "emitPdx",
+            "kind": 64,
+            "path": "pdx/functions/emitPdx.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "file",
+            "kind": 64,
+            "path": "pdx/functions/file.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "lexPdx",
+            "kind": 64,
+            "path": "pdx/functions/lexPdx.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "parsePdx",
+            "kind": 64,
+            "path": "pdx/functions/parsePdx.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "property",
+            "kind": 64,
+            "path": "pdx/functions/property.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "quoted",
+            "kind": 64,
+            "path": "pdx/functions/quoted.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "semanticPdx",
+            "kind": 64,
+            "path": "pdx/functions/semanticPdx.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "string",
+            "kind": 64,
+            "path": "pdx/functions/string.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "tagged",
+            "kind": 64,
+            "path": "pdx/functions/tagged.md",
+            "isDeprecated": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "project",
+    "kind": 2,
+    "path": "project/index.md",
+    "isDeprecated": false
+  },
+  {
+    "title": "hoi4",
+    "kind": 2,
+    "path": "hoi4/index.md",
+    "isDeprecated": false,
+    "children": [
+      {
+        "title": "Other",
+        "children": [
+          {
+            "title": "field-types",
+            "kind": 2,
+            "path": "hoi4/field-types/index.md",
+            "isDeprecated": false,
+            "children": [
+              {
+                "title": "Interfaces",
+                "children": [
+                  {
+                    "title": "AbilityBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/AbilityBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "AceBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/AceBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "AchievementBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/AchievementBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "AdjacencyRuleBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/AdjacencyRuleBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "AiAreaBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/AiAreaBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "AiEquipmentDesignGroupBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/AiEquipmentDesignGroupBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "AiFactionTheaterBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/AiFactionTheaterBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "AiFocusBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/AiFocusBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "AiPeaceBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/AiPeaceBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "AiStrategyBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/AiStrategyBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "AiStrategyPlanBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/AiStrategyPlanBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "AiTemplateBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/AiTemplateBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "AutonomyStateBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/AutonomyStateBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "BalanceOfPowerBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/BalanceOfPowerBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "BitmapFontBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/BitmapFontBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "BookmarkBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/BookmarkBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "BuildingBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/BuildingBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "CharacterBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/CharacterBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "CollectionBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/CollectionBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "CombatTacticBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/CombatTacticBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "ContinuousFocusPaletteBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/ContinuousFocusPaletteBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "CountryLeaderTraitBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/CountryLeaderTraitBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "CountryScorerBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/CountryScorerBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "CountryTagAliasBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/CountryTagAliasBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "CriticalPartBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/CriticalPartBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "DifficultySettingBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/DifficultySettingBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "DivisionNamesBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/DivisionNamesBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "DoctrineFolderBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/DoctrineFolderBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "DoctrineTrackBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/DoctrineTrackBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "DynamicModifierBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/DynamicModifierBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "EntityBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/EntityBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "EquipmentBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/EquipmentBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "EquipmentGroupBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/EquipmentGroupBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "EquipmentModuleBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/EquipmentModuleBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "EquipmentUpgradeBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/EquipmentUpgradeBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "FactionGoalBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/FactionGoalBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "FactionMemberUpgradeBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/FactionMemberUpgradeBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "FactionRuleBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/FactionRuleBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "FactionRuleGroupBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/FactionRuleGroupBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "FactionTemplateBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/FactionTemplateBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "FactionUpgradeBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/FactionUpgradeBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "FocusStyleBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/FocusStyleBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GameRuleBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GameRuleBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedAnyEffects",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedAnyEffects.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedAnyTriggers",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedAnyTriggers.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedCharacterEffects",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedCharacterEffects.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedCharacterTriggers",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedCharacterTriggers.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedCombatEffects",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedCombatEffects.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedCombatTriggers",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedCombatTriggers.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedCountryEffects",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedCountryEffects.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedCountryTriggers",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedCountryTriggers.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedEffectsByScope",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedEffectsByScope.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedMilitaryIndustrialOrganizationEffects",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedMilitaryIndustrialOrganizationEffects.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedMilitaryIndustrialOrganizationTriggers",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedMilitaryIndustrialOrganizationTriggers.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedOperationEffects",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedOperationEffects.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedOperationTriggers",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedOperationTriggers.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedOperativeEffects",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedOperativeEffects.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedOperativeTriggers",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedOperativeTriggers.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedProjectEffects",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedProjectEffects.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedProjectTriggers",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedProjectTriggers.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedPurchaseContractEffects",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedPurchaseContractEffects.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedPurchaseContractTriggers",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedPurchaseContractTriggers.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedRaidEffects",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedRaidEffects.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedRaidTriggers",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedRaidTriggers.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedStateEffects",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedStateEffects.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedStateTriggers",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedStateTriggers.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedTriggersByScope",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedTriggersByScope.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedUnitEffects",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedUnitEffects.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedUnitLeaderEffects",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedUnitLeaderEffects.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedUnitLeaderTriggers",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedUnitLeaderTriggers.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GeneratedUnitTriggers",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GeneratedUnitTriggers.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GrandDoctrineBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GrandDoctrineBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GraphicalTerrainBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GraphicalTerrainBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "GraphicDatabaseBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/GraphicDatabaseBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "IdeaCategoryBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/IdeaCategoryBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "IdeologyBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/IdeologyBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "IntelligenceAgencyBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/IntelligenceAgencyBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "IntelligenceAgencyUpgradeBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/IntelligenceAgencyUpgradeBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "JointFocusBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/JointFocusBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "LightBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/LightBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "MeanTimeToHappenBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/MeanTimeToHappenBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "MeshBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/MeshBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "MilitaryIndustrialOrganizationBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/MilitaryIndustrialOrganizationBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "MioPolicyBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/MioPolicyBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "ModelAnimationBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/ModelAnimationBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "ModifierDefinitionBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/ModifierDefinitionBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "MusicAssetBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/MusicAssetBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "MusicPlaylistEntryBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/MusicPlaylistEntryBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "NativeCountry",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/NativeCountry.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "NativeCountryEventBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/NativeCountryEventBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "NativeDecisionBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/NativeDecisionBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "NativeDecisionCategoryBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/NativeDecisionCategoryBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "NativeFocusTreeBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/NativeFocusTreeBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "NativeIdeasBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/NativeIdeasBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "NativeNewsEventBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/NativeNewsEventBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "NativeOperativeEventBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/NativeOperativeEventBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "AiTemplateSpec.entries.__index fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/AiTemplateSpec.entries.__index-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "AiEquipmentDesignGroupSpec.entries.__index fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/AiEquipmentDesignGroupSpec.entries.__index-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "UnitSpec.battalionMult fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/UnitSpec.battalionMult-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "SubdoctrineSpec.entries.__index fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/SubdoctrineSpec.entries.__index-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "SubdoctrineSpec.rewards.__index.entries.__index fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/SubdoctrineSpec.rewards.__index.entries.__index-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "EquipmentSpec.forEach fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/EquipmentSpec.forEach-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "EquipmentModuleSpec.missionTypeStats.addStats fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/EquipmentModuleSpec.missionTypeStats.addStats-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "EquipmentModuleSpec.missionTypeStats.addAverageStats fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/EquipmentModuleSpec.missionTypeStats.addAverageStats-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "CriticalPartSpec.modifier fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/CriticalPartSpec.modifier-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "FactionGoalSpec.ratioProgress fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/FactionGoalSpec.ratioProgress-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "IdeologySpec.rules fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/IdeologySpec.rules-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "MilitaryIndustrialOrganizationSpec.trait fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/MilitaryIndustrialOrganizationSpec.trait-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "MilitaryIndustrialOrganizationSpec.addTrait fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/MilitaryIndustrialOrganizationSpec.addTrait-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "MilitaryIndustrialOrganizationSpec.overrideTrait fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/MilitaryIndustrialOrganizationSpec.overrideTrait-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "UnitSpec.river fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/UnitSpec.river-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "RaidSpec.successLevels.criticalSuccess fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/RaidSpec.successLevels.criticalSuccess-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "RaidSpec.successFactors.critical fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/RaidSpec.successFactors.critical-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "SpecialProjectSpec.allowed fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/SpecialProjectSpec.allowed-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "SpecialProjectSpec.projectOutput.subUnitBonus.__index fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/SpecialProjectSpec.projectOutput.subUnitBonus.__index-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "SpecialProjectSpec.projectOutput.equipmentBonus.__index fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/SpecialProjectSpec.projectOutput.equipmentBonus.__index-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "TechnologySpec.entries.__index fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/TechnologySpec.entries.__index-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "TechnologySpec.entries.__index fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/TechnologySpec.entries.__index-fields-1.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "TerrainSpec.units fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/TerrainSpec.units-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "TerrainSpec.entries.__index fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/TerrainSpec.entries.__index-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "UnitLeaderTraitSpec.corpsCommanderModifier fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/UnitLeaderTraitSpec.corpsCommanderModifier-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "UnitSpec.deployedLeaderModifiers fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/UnitSpec.deployedLeaderModifiers-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "EntitySpec.state.event fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/EntitySpec.state.event-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "EntitySpec.state fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/EntitySpec.state-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "UnitSpec.fort fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/UnitSpec.fort-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "ParticleSpec.subsystem.childsystem fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/ParticleSpec.subsystem.childsystem-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "ParticleSpec.subsystem fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/ParticleSpec.subsystem-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "ParticleSpec.animation fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/ParticleSpec.animation-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "UnitHistorySpec.createColonialDivisionTemplate.divisionTemplate fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/UnitHistorySpec.createColonialDivisionTemplate.divisionTemplate-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "UnitHistorySpec.units.division fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/UnitHistorySpec.units.division-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "UnitHistorySpec.navyLeader fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/UnitHistorySpec.navyLeader-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "UnitHistorySpec.fieldMarshal fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/UnitHistorySpec.fieldMarshal-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "UnitHistorySpec.corpsCommander fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/UnitHistorySpec.corpsCommander-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "StrategicRegionSpec.weather.period fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/StrategicRegionSpec.weather.period-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "NativeFocusTreeSpec.focus fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/NativeFocusTreeSpec.focus-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "NativeFocusTreeSpec.focus fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/NativeFocusTreeSpec.focus-fields-1.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "ContinuousFocusPaletteSpec.focus fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/ContinuousFocusPaletteSpec.focus-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "UnitSpec.amphibious fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/UnitSpec.amphibious-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "NativeIdeasSpec.entries.__index.entries.__index.rule fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/NativeIdeasSpec.entries.__index.entries.__index.rule-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "NativeIdeasSpec.entries.__index.__index fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/NativeIdeasSpec.entries.__index.__index-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "NativeIdeasSpec.entries.__index.entries.__index fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/NativeIdeasSpec.entries.__index.entries.__index-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "DropDownBoxProps.background fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/DropDownBoxProps.background-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "DropDownBoxProps.expandButton fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/DropDownBoxProps.expandButton-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "DropDownBoxProps.expandedWindow.buttonType fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/DropDownBoxProps.expandedWindow.buttonType-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "DropDownBoxProps.expandedWindow.OverlappingElementsBoxType fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/DropDownBoxProps.expandedWindow.OverlappingElementsBoxType-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "DropDownBoxProps.expandedWindow.gridBoxType fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/DropDownBoxProps.expandedWindow.gridBoxType-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "DropDownBoxProps.expandedWindow.listBoxType fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/DropDownBoxProps.expandedWindow.listBoxType-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "DropDownBoxProps.expandedWindow.smoothListBoxType fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/DropDownBoxProps.expandedWindow.smoothListBoxType-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "DropDownBoxProps.expandedWindow.browserType fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/DropDownBoxProps.expandedWindow.browserType-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "DropDownBoxProps.expandedWindow.instantTextBoxType fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/DropDownBoxProps.expandedWindow.instantTextBoxType-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "AiStrategySpec.aiStrategy fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/AiStrategySpec.aiStrategy-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "DropDownBoxProps.expandedWindow.editBoxType fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/DropDownBoxProps.expandedWindow.editBoxType-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "DropDownBoxProps.expandedWindow.checkboxType fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/DropDownBoxProps.expandedWindow.checkboxType-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "DropDownBoxProps.expandedWindow.scrollbarType fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/DropDownBoxProps.expandedWindow.scrollbarType-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "ExtendedScrollbarProps.slider fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/ExtendedScrollbarProps.slider-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "ExtendedScrollbarProps.decreaseButton fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/ExtendedScrollbarProps.decreaseButton-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "DropDownBoxProps.expandedWindow.extendedScrollbarType fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/DropDownBoxProps.expandedWindow.extendedScrollbarType-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "DropDownBoxProps.expandedWindow.dropDownBoxType fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/DropDownBoxProps.expandedWindow.dropDownBoxType-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "DropDownBoxProps.expandedWindow.containerWindowType fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/DropDownBoxProps.expandedWindow.containerWindowType-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "DropDownBoxProps.expandedWindow fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/DropDownBoxProps.expandedWindow-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "AiStrategySpec.aiStrategy fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/AiStrategySpec.aiStrategy-fields-1.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "UnitSpec.night fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/UnitSpec.night-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "AiStrategySpec.aiStrategy fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/AiStrategySpec.aiStrategy-fields-2.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "UnitSpec.arcticWater fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/UnitSpec.arcticWater-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "AutonomyStateSpec.rule fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/AutonomyStateSpec.rule-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "BookmarkSpec.entries.__index fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/BookmarkSpec.entries.__index-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "UnitSpec.entries.__index fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/UnitSpec.entries.__index-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "AbilitySpec.unitModifiers fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/AbilitySpec.unitModifiers-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "CharacterSpec.corpsCommander fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/CharacterSpec.corpsCommander-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "CharacterSpec.fieldMarshal fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/CharacterSpec.fieldMarshal-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "CharacterSpec.navyLeader fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/CharacterSpec.navyLeader-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "CharacterSpec.advisor fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/CharacterSpec.advisor-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "CharacterSpec.instance.advisor fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/CharacterSpec.instance.advisor-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "CharacterSpec.instance fields",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/CharacterSpec.instance-fields.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "NativeStateEventBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/NativeStateEventBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "NativeUnitLeaderEventBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/NativeUnitLeaderEventBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "OccupationLawBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/OccupationLawBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "OperationBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/OperationBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "OperationPhaseBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/OperationPhaseBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "OperationTokenBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/OperationTokenBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "OpinionModifierBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/OpinionModifierBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "ParticleBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/ParticleBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "PdxParticleBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/PdxParticleBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "PeaceActionCategoryBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/PeaceActionCategoryBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "PeaceActionModifierBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/PeaceActionModifierBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "PeaceAiDesireBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/PeaceAiDesireBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "PortraitBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/PortraitBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "PrototypeRewardBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/PrototypeRewardBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "RaidBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/RaidBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "RaidCategoryBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/RaidCategoryBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "ResistanceComplianceModifierBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/ResistanceComplianceModifierBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "ResourceBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/ResourceBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "ScientistTraitBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/ScientistTraitBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "ScriptedMapModeBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/ScriptedMapModeBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "SharedFocusBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/SharedFocusBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "ShipNamesBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/ShipNamesBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "SoundAssetBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/SoundAssetBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "SoundCategoryBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/SoundCategoryBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "SoundEffectBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/SoundEffectBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "SpawnPointBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/SpawnPointBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "SpecializationBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/SpecializationBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "SpecialProjectBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/SpecialProjectBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "StateCategoryBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/StateCategoryBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "StaticModifierBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/StaticModifierBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "StrategicLocationBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/StrategicLocationBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "StrategicRegionBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/StrategicRegionBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "SubdoctrineBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/SubdoctrineBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "SupplyAreaBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/SupplyAreaBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "TechnologyBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/TechnologyBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "TechnologySharingGroupBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/TechnologySharingGroupBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "TerrainBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/TerrainBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "UnitBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/UnitBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "UnitHistoryBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/UnitHistoryBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "UnitLeaderTraitBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/UnitLeaderTraitBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "UnitMedalBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/UnitMedalBody.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "WargoalBody",
+                    "kind": 256,
+                    "path": "hoi4/field-types/interfaces/WargoalBody.md",
+                    "isDeprecated": false
+                  }
+                ]
+              },
+              {
+                "title": "Type Aliases",
+                "children": [
+                  {
+                    "title": "DecimalDigit",
+                    "kind": 2097152,
+                    "path": "hoi4/field-types/type-aliases/DecimalDigit.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "DecimalDigits",
+                    "kind": 2097152,
+                    "path": "hoi4/field-types/type-aliases/DecimalDigits.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "LastEventPart",
+                    "kind": 2097152,
+                    "path": "hoi4/field-types/type-aliases/LastEventPart.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "NativeIdeasSpec.entries.__index fields",
+                    "kind": 2097152,
+                    "path": "hoi4/field-types/type-aliases/NativeIdeasSpec.entries.__index-fields.md",
+                    "isDeprecated": false
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "AbilitySpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/AbilitySpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "AceSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/AceSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "AchievementSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/AchievementSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "AdjacencyRuleSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/AdjacencyRuleSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "AiAreaSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/AiAreaSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "AiEquipmentDesignGroupSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/AiEquipmentDesignGroupSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "AiFactionTheaterSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/AiFactionTheaterSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "AiFocusSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/AiFocusSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "AiPeaceSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/AiPeaceSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "AiStrategyPlanSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/AiStrategyPlanSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "AiStrategySpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/AiStrategySpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "AiTemplateSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/AiTemplateSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "AnyScope",
+            "kind": 256,
+            "path": "hoi4/interfaces/AnyScope.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "AutonomyStateSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/AutonomyStateSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "BalanceOfPowerSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/BalanceOfPowerSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "BitmapFontSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/BitmapFontSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "BookmarkSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/BookmarkSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "BrowserProps",
+            "kind": 256,
+            "path": "hoi4/interfaces/BrowserProps.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "BuildingSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/BuildingSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CharacterScope",
+            "kind": 256,
+            "path": "hoi4/interfaces/CharacterScope.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CharacterSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/CharacterSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CheckboxProps",
+            "kind": 256,
+            "path": "hoi4/interfaces/CheckboxProps.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CollectionSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/CollectionSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CombatTacticSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/CombatTacticSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ContinuousFocusPaletteSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/ContinuousFocusPaletteSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CountryDefinitionSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/CountryDefinitionSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CountryEffects",
+            "kind": 256,
+            "path": "hoi4/interfaces/CountryEffects.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CountryHistorySpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/CountryHistorySpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CountryLeaderTraitSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/CountryLeaderTraitSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CountryRef",
+            "kind": 256,
+            "path": "hoi4/interfaces/CountryRef.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CountryScope",
+            "kind": 256,
+            "path": "hoi4/interfaces/CountryScope.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CountryScorerSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/CountryScorerSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CountryTagAliasSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/CountryTagAliasSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CountryTriggers",
+            "kind": 256,
+            "path": "hoi4/interfaces/CountryTriggers.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CriticalPartSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/CriticalPartSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CwtNode",
+            "kind": 256,
+            "path": "hoi4/interfaces/CwtNode.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CwtOpaque",
+            "kind": 256,
+            "path": "hoi4/interfaces/CwtOpaque.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "DataRecord",
+            "kind": 256,
+            "path": "hoi4/interfaces/DataRecord.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "DecisionCategorySpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/DecisionCategorySpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "DecisionSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/DecisionSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "DefineOverrides",
+            "kind": 256,
+            "path": "hoi4/interfaces/DefineOverrides.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Definition",
+            "kind": 256,
+            "path": "hoi4/interfaces/Definition.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "DifficultySettingSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/DifficultySettingSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "DivisionNamesSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/DivisionNamesSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "DoctrineFolderSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/DoctrineFolderSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "DoctrineTrackSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/DoctrineTrackSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "DropDownBoxProps",
+            "kind": 256,
+            "path": "hoi4/interfaces/DropDownBoxProps.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "DynamicModifierSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/DynamicModifierSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "EditBoxProps",
+            "kind": 256,
+            "path": "hoi4/interfaces/EditBoxProps.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "EntitySpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/EntitySpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "EquipmentGroupSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/EquipmentGroupSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "EquipmentModuleSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/EquipmentModuleSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "EquipmentSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/EquipmentSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "EquipmentUpgradeSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/EquipmentUpgradeSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "EventOption",
+            "kind": 256,
+            "path": "hoi4/interfaces/EventOption.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "EventSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/EventSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ExtendedScrollbarProps",
+            "kind": 256,
+            "path": "hoi4/interfaces/ExtendedScrollbarProps.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "FactionGoalSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/FactionGoalSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "FactionMemberUpgradeSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/FactionMemberUpgradeSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "FactionRuleGroupSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/FactionRuleGroupSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "FactionRuleSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/FactionRuleSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "FactionTemplateSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/FactionTemplateSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "FactionUpgradeSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/FactionUpgradeSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "FocusGraphDefinition",
+            "kind": 256,
+            "path": "hoi4/interfaces/FocusGraphDefinition.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "FocusGraphSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/FocusGraphSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "FocusNodeSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/FocusNodeSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "FocusReference",
+            "kind": 256,
+            "path": "hoi4/interfaces/FocusReference.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "FocusSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/FocusSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "FocusStyleSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/FocusStyleSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "FocusTreeSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/FocusTreeSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GameRuleSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/GameRuleSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GrandDoctrineSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/GrandDoctrineSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GraphicalTerrainSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/GraphicalTerrainSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GraphicDatabaseSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/GraphicDatabaseSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GuiAiWeight",
+            "kind": 256,
+            "path": "hoi4/interfaces/GuiAiWeight.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GuiButtonProps",
+            "kind": 256,
+            "path": "hoi4/interfaces/GuiButtonProps.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GuiWeight",
+            "kind": 256,
+            "path": "hoi4/interfaces/GuiWeight.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "IdeaCategorySpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/IdeaCategorySpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "IdeaModifiers",
+            "kind": 256,
+            "path": "hoi4/interfaces/IdeaModifiers.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "IdeaSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/IdeaSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "IdentifiedDefinition",
+            "kind": 256,
+            "path": "hoi4/interfaces/IdentifiedDefinition.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "IdeologySpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/IdeologySpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "IntelligenceAgencySpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/IntelligenceAgencySpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "IntelligenceAgencyUpgradeSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/IntelligenceAgencyUpgradeSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "JointFocusSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/JointFocusSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "LightSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/LightSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "MeanTimeToHappenSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/MeanTimeToHappenSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "MeshSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/MeshSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "MetaEffectSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/MetaEffectSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "MilitaryIndustrialOrganizationSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/MilitaryIndustrialOrganizationSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "MioPolicySpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/MioPolicySpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ModelAnimationSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/ModelAnimationSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ModifierDefinitionSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/ModifierDefinitionSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "MusicAssetSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/MusicAssetSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "MusicPlaylistEntrySpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/MusicPlaylistEntrySpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeButtonProps",
+            "kind": 256,
+            "path": "hoi4/interfaces/NativeButtonProps.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeContainerProps",
+            "kind": 256,
+            "path": "hoi4/interfaces/NativeContainerProps.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeCountryEventSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/NativeCountryEventSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeDecisionCategorySpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/NativeDecisionCategorySpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeDecisionSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/NativeDecisionSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeFocusTreeSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/NativeFocusTreeSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeGridBoxProps",
+            "kind": 256,
+            "path": "hoi4/interfaces/NativeGridBoxProps.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeIconProps",
+            "kind": 256,
+            "path": "hoi4/interfaces/NativeIconProps.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeIdeasSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/NativeIdeasSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeListBoxProps",
+            "kind": 256,
+            "path": "hoi4/interfaces/NativeListBoxProps.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeNewsEventSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/NativeNewsEventSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeOperativeEventSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/NativeOperativeEventSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeStateEventSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/NativeStateEventSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeTextProps",
+            "kind": 256,
+            "path": "hoi4/interfaces/NativeTextProps.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeUnitLeaderEventSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/NativeUnitLeaderEventSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "OccupationLawSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/OccupationLawSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "OperationPhaseSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/OperationPhaseSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "OperationSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/OperationSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "OperationTokenSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/OperationTokenSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "OpinionModifierSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/OpinionModifierSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "OverlappingElementsBoxProps",
+            "kind": 256,
+            "path": "hoi4/interfaces/OverlappingElementsBoxProps.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ParticleSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/ParticleSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "PdxParticleSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/PdxParticleSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "PeaceActionCategorySpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/PeaceActionCategorySpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "PeaceActionModifierSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/PeaceActionModifierSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "PeaceAiDesireSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/PeaceAiDesireSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "PortraitSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/PortraitSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "PositionProps",
+            "kind": 256,
+            "path": "hoi4/interfaces/PositionProps.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "PrototypeRewardSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/PrototypeRewardSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ProvinceBuildings",
+            "kind": 256,
+            "path": "hoi4/interfaces/ProvinceBuildings.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "RaidCategorySpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/RaidCategorySpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "RaidSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/RaidSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ResistanceComplianceModifierSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/ResistanceComplianceModifierSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ResourceSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/ResourceSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScientistTraitSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/ScientistTraitSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Scope",
+            "kind": 256,
+            "path": "hoi4/interfaces/Scope.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScopeBase",
+            "kind": 256,
+            "path": "hoi4/interfaces/ScopeBase.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScopeByName",
+            "kind": 256,
+            "path": "hoi4/interfaces/ScopeByName.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScriptedEffectDefinition",
+            "kind": 256,
+            "path": "hoi4/interfaces/ScriptedEffectDefinition.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScriptedGuiProperties",
+            "kind": 256,
+            "path": "hoi4/interfaces/ScriptedGuiProperties.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScriptedGuiSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/ScriptedGuiSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScriptedLocalisationDefinition",
+            "kind": 256,
+            "path": "hoi4/interfaces/ScriptedLocalisationDefinition.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScriptedLocalisationSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/ScriptedLocalisationSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScriptedMapModeSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/ScriptedMapModeSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScriptedTriggerDefinition",
+            "kind": 256,
+            "path": "hoi4/interfaces/ScriptedTriggerDefinition.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScrollbarProps",
+            "kind": 256,
+            "path": "hoi4/interfaces/ScrollbarProps.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "SharedFocusSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/SharedFocusSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ShipNamesSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/ShipNamesSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "SmoothListBoxProps",
+            "kind": 256,
+            "path": "hoi4/interfaces/SmoothListBoxProps.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "SoundAssetSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/SoundAssetSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "SoundCategorySpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/SoundCategorySpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "SoundEffectSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/SoundEffectSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "SpawnPointSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/SpawnPointSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "SpecializationSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/SpecializationSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "SpecialProjectSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/SpecialProjectSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "StateBuildings",
+            "kind": 256,
+            "path": "hoi4/interfaces/StateBuildings.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "StateCategorySpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/StateCategorySpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "StateEffects",
+            "kind": 256,
+            "path": "hoi4/interfaces/StateEffects.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "StateHistorySpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/StateHistorySpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "StateRef",
+            "kind": 256,
+            "path": "hoi4/interfaces/StateRef.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "StateResources",
+            "kind": 256,
+            "path": "hoi4/interfaces/StateResources.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "StateScope",
+            "kind": 256,
+            "path": "hoi4/interfaces/StateScope.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "StateTriggers",
+            "kind": 256,
+            "path": "hoi4/interfaces/StateTriggers.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "StaticModifierSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/StaticModifierSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "StrategicLocationSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/StrategicLocationSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "StrategicRegionSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/StrategicRegionSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "SubdoctrineSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/SubdoctrineSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "SupplyAreaSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/SupplyAreaSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "TechnologySharingGroupSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/TechnologySharingGroupSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "TechnologySpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/TechnologySpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "TerrainSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/TerrainSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "TextBoxProps",
+            "kind": 256,
+            "path": "hoi4/interfaces/TextBoxProps.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "UnitHistorySpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/UnitHistorySpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "UnitLeaderScope",
+            "kind": 256,
+            "path": "hoi4/interfaces/UnitLeaderScope.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "UnitLeaderTraitSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/UnitLeaderTraitSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "UnitMedalSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/UnitMedalSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "UnitSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/UnitSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "WargoalSpec",
+            "kind": 256,
+            "path": "hoi4/interfaces/WargoalSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "WeightModifier",
+            "kind": 256,
+            "path": "hoi4/interfaces/WeightModifier.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "WindowProps",
+            "kind": 256,
+            "path": "hoi4/interfaces/WindowProps.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "AssetId",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/AssetId.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CombatScope",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/CombatScope.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Country",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/Country.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CwtValue",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/CwtValue.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "DataValue",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/DataValue.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Effect",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/Effect.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "EventId",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/EventId.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "EventIdentifier",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/EventIdentifier.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "FlagId",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/FlagId.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "FocusId",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/FocusId.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "FocusJoin",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/FocusJoin.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "FocusSequence",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/FocusSequence.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GuiAiTestScope",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/GuiAiTestScope.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GuiClickName",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/GuiClickName.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GuiDynamicList",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/GuiDynamicList.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GuiParentWindowToken",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/GuiParentWindowToken.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GuiTriggerName",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/GuiTriggerName.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "IdeaId",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/IdeaId.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "LocalisationKey",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/LocalisationKey.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "MetaParameterNames",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/MetaParameterNames.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "MetaParameterValue",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/MetaParameterValue.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "MilitaryIndustrialOrganizationScope",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/MilitaryIndustrialOrganizationScope.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "OnActionSpec",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/OnActionSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "OperationScope",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/OperationScope.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "OperativeScope",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/OperativeScope.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ProjectScope",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/ProjectScope.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "PurchaseContractScope",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/PurchaseContractScope.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "RaidScope",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/RaidScope.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScopedGuiDynamicList",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/ScopedGuiDynamicList.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScopeName",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/ScopeName.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScriptedEffectFamilyDefinition",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/ScriptedEffectFamilyDefinition.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScriptedGuiContext",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/ScriptedGuiContext.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScriptedGuiScope",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/ScriptedGuiScope.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScriptedLocalisationText",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/ScriptedLocalisationText.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScriptedTriggerFamilyDefinition",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/ScriptedTriggerFamilyDefinition.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScriptedVariants",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/ScriptedVariants.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScriptedVariantValue",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/ScriptedVariantValue.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "State",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/State.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Trigger",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/Trigger.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "UnitScope",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/UnitScope.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "VariableName",
+            "kind": 2097152,
+            "path": "hoi4/type-aliases/VariableName.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Ability",
+            "kind": 64,
+            "path": "hoi4/functions/Ability.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Ace",
+            "kind": 64,
+            "path": "hoi4/functions/Ace.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Achievement",
+            "kind": 64,
+            "path": "hoi4/functions/Achievement.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "AdjacencyRule",
+            "kind": 64,
+            "path": "hoi4/functions/AdjacencyRule.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "AiArea",
+            "kind": 64,
+            "path": "hoi4/functions/AiArea.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "AiEquipmentDesignGroup",
+            "kind": 64,
+            "path": "hoi4/functions/AiEquipmentDesignGroup.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "AiFactionTheater",
+            "kind": 64,
+            "path": "hoi4/functions/AiFactionTheater.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "AiFocus",
+            "kind": 64,
+            "path": "hoi4/functions/AiFocus.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "AiPeace",
+            "kind": 64,
+            "path": "hoi4/functions/AiPeace.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "AiStrategy",
+            "kind": 64,
+            "path": "hoi4/functions/AiStrategy.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "AiStrategyPlan",
+            "kind": 64,
+            "path": "hoi4/functions/AiStrategyPlan.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "AiTemplate",
+            "kind": 64,
+            "path": "hoi4/functions/AiTemplate.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "AutonomyState",
+            "kind": 64,
+            "path": "hoi4/functions/AutonomyState.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "BalanceOfPower",
+            "kind": 64,
+            "path": "hoi4/functions/BalanceOfPower.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "BitmapFont",
+            "kind": 64,
+            "path": "hoi4/functions/BitmapFont.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Bookmark",
+            "kind": 64,
+            "path": "hoi4/functions/Bookmark.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Building",
+            "kind": 64,
+            "path": "hoi4/functions/Building.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Character",
+            "kind": 64,
+            "path": "hoi4/functions/Character.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Collection",
+            "kind": 64,
+            "path": "hoi4/functions/Collection.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CombatTactic",
+            "kind": 64,
+            "path": "hoi4/functions/CombatTactic.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ContinuousFocusPalette",
+            "kind": 64,
+            "path": "hoi4/functions/ContinuousFocusPalette.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "country",
+            "kind": 64,
+            "path": "hoi4/functions/country.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CountryDefinition",
+            "kind": 64,
+            "path": "hoi4/functions/CountryDefinition.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CountryEvent",
+            "kind": 64,
+            "path": "hoi4/functions/CountryEvent.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CountryHistory",
+            "kind": 64,
+            "path": "hoi4/functions/CountryHistory.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CountryLeaderTrait",
+            "kind": 64,
+            "path": "hoi4/functions/CountryLeaderTrait.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CountryScorer",
+            "kind": 64,
+            "path": "hoi4/functions/CountryScorer.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CountryTagAlias",
+            "kind": 64,
+            "path": "hoi4/functions/CountryTagAlias.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "CriticalPart",
+            "kind": 64,
+            "path": "hoi4/functions/CriticalPart.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "cwt",
+            "kind": 64,
+            "path": "hoi4/functions/cwt.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "DataFile",
+            "kind": 64,
+            "path": "hoi4/functions/DataFile.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Decision",
+            "kind": 64,
+            "path": "hoi4/functions/Decision.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "DecisionCategory",
+            "kind": 64,
+            "path": "hoi4/functions/DecisionCategory.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "DefineFile",
+            "kind": 64,
+            "path": "hoi4/functions/DefineFile.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Defines",
+            "kind": 64,
+            "path": "hoi4/functions/Defines.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "DifficultySetting",
+            "kind": 64,
+            "path": "hoi4/functions/DifficultySetting.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "DivisionNames",
+            "kind": 64,
+            "path": "hoi4/functions/DivisionNames.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "DoctrineFolder",
+            "kind": 64,
+            "path": "hoi4/functions/DoctrineFolder.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "DoctrineTrack",
+            "kind": 64,
+            "path": "hoi4/functions/DoctrineTrack.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "DynamicModifier",
+            "kind": 64,
+            "path": "hoi4/functions/DynamicModifier.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Entity",
+            "kind": 64,
+            "path": "hoi4/functions/Entity.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Equipment",
+            "kind": 64,
+            "path": "hoi4/functions/Equipment.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "EquipmentGroup",
+            "kind": 64,
+            "path": "hoi4/functions/EquipmentGroup.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "EquipmentModule",
+            "kind": 64,
+            "path": "hoi4/functions/EquipmentModule.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "EquipmentUpgrade",
+            "kind": 64,
+            "path": "hoi4/functions/EquipmentUpgrade.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "FactionGoal",
+            "kind": 64,
+            "path": "hoi4/functions/FactionGoal.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "FactionMemberUpgrade",
+            "kind": 64,
+            "path": "hoi4/functions/FactionMemberUpgrade.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "FactionRule",
+            "kind": 64,
+            "path": "hoi4/functions/FactionRule.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "FactionRuleGroup",
+            "kind": 64,
+            "path": "hoi4/functions/FactionRuleGroup.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "FactionTemplate",
+            "kind": 64,
+            "path": "hoi4/functions/FactionTemplate.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "FactionUpgrade",
+            "kind": 64,
+            "path": "hoi4/functions/FactionUpgrade.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Focus",
+            "kind": 64,
+            "path": "hoi4/functions/Focus.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "FocusStyle",
+            "kind": 64,
+            "path": "hoi4/functions/FocusStyle.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "FocusTree",
+            "kind": 64,
+            "path": "hoi4/functions/FocusTree.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GameRule",
+            "kind": 64,
+            "path": "hoi4/functions/GameRule.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GrandDoctrine",
+            "kind": 64,
+            "path": "hoi4/functions/GrandDoctrine.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GraphicalTerrain",
+            "kind": 64,
+            "path": "hoi4/functions/GraphicalTerrain.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GraphicDatabase",
+            "kind": 64,
+            "path": "hoi4/functions/GraphicDatabase.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Idea",
+            "kind": 64,
+            "path": "hoi4/functions/Idea.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "IdeaCategory",
+            "kind": 64,
+            "path": "hoi4/functions/IdeaCategory.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Ideology",
+            "kind": 64,
+            "path": "hoi4/functions/Ideology.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "IntelligenceAgency",
+            "kind": 64,
+            "path": "hoi4/functions/IntelligenceAgency.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "IntelligenceAgencyUpgrade",
+            "kind": 64,
+            "path": "hoi4/functions/IntelligenceAgencyUpgrade.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "JointFocus",
+            "kind": 64,
+            "path": "hoi4/functions/JointFocus.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Light",
+            "kind": 64,
+            "path": "hoi4/functions/Light.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "loc",
+            "kind": 64,
+            "path": "hoi4/functions/loc.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "MeanTimeToHappen",
+            "kind": 64,
+            "path": "hoi4/functions/MeanTimeToHappen.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Mesh",
+            "kind": 64,
+            "path": "hoi4/functions/Mesh.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "MetaEffect",
+            "kind": 64,
+            "path": "hoi4/functions/MetaEffect.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "MilitaryIndustrialOrganization",
+            "kind": 64,
+            "path": "hoi4/functions/MilitaryIndustrialOrganization.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "MioPolicy",
+            "kind": 64,
+            "path": "hoi4/functions/MioPolicy.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ModelAnimation",
+            "kind": 64,
+            "path": "hoi4/functions/ModelAnimation.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ModifierDefinition",
+            "kind": 64,
+            "path": "hoi4/functions/ModifierDefinition.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "MusicAsset",
+            "kind": 64,
+            "path": "hoi4/functions/MusicAsset.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "MusicPlaylistEntry",
+            "kind": 64,
+            "path": "hoi4/functions/MusicPlaylistEntry.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeCountryEvent",
+            "kind": 64,
+            "path": "hoi4/functions/NativeCountryEvent.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeDecision",
+            "kind": 64,
+            "path": "hoi4/functions/NativeDecision.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeDecisionCategory",
+            "kind": 64,
+            "path": "hoi4/functions/NativeDecisionCategory.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeFocusTree",
+            "kind": 64,
+            "path": "hoi4/functions/NativeFocusTree.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeIdeas",
+            "kind": 64,
+            "path": "hoi4/functions/NativeIdeas.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeNewsEvent",
+            "kind": 64,
+            "path": "hoi4/functions/NativeNewsEvent.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeOperativeEvent",
+            "kind": 64,
+            "path": "hoi4/functions/NativeOperativeEvent.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeStateEvent",
+            "kind": 64,
+            "path": "hoi4/functions/NativeStateEvent.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeUnitLeaderEvent",
+            "kind": 64,
+            "path": "hoi4/functions/NativeUnitLeaderEvent.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NewsEvent",
+            "kind": 64,
+            "path": "hoi4/functions/NewsEvent.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "OccupationLaw",
+            "kind": 64,
+            "path": "hoi4/functions/OccupationLaw.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "OnAction",
+            "kind": 64,
+            "path": "hoi4/functions/OnAction.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Operation",
+            "kind": 64,
+            "path": "hoi4/functions/Operation.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "OperationPhase",
+            "kind": 64,
+            "path": "hoi4/functions/OperationPhase.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "OperationToken",
+            "kind": 64,
+            "path": "hoi4/functions/OperationToken.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "OpinionModifier",
+            "kind": 64,
+            "path": "hoi4/functions/OpinionModifier.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Option",
+            "kind": 64,
+            "path": "hoi4/functions/Option.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Particle",
+            "kind": 64,
+            "path": "hoi4/functions/Particle.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "PdxParticle",
+            "kind": 64,
+            "path": "hoi4/functions/PdxParticle.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "PeaceActionCategory",
+            "kind": 64,
+            "path": "hoi4/functions/PeaceActionCategory.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "PeaceActionModifier",
+            "kind": 64,
+            "path": "hoi4/functions/PeaceActionModifier.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "PeaceAiDesire",
+            "kind": 64,
+            "path": "hoi4/functions/PeaceAiDesire.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Portrait",
+            "kind": 64,
+            "path": "hoi4/functions/Portrait.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "PrototypeReward",
+            "kind": 64,
+            "path": "hoi4/functions/PrototypeReward.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Raid",
+            "kind": 64,
+            "path": "hoi4/functions/Raid.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "RaidCategory",
+            "kind": 64,
+            "path": "hoi4/functions/RaidCategory.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ResistanceComplianceModifier",
+            "kind": 64,
+            "path": "hoi4/functions/ResistanceComplianceModifier.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Resource",
+            "kind": 64,
+            "path": "hoi4/functions/Resource.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScientistTrait",
+            "kind": 64,
+            "path": "hoi4/functions/ScientistTrait.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScriptedEffect",
+            "kind": 64,
+            "path": "hoi4/functions/ScriptedEffect.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScriptedEffectFamily",
+            "kind": 64,
+            "path": "hoi4/functions/ScriptedEffectFamily.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScriptedGui",
+            "kind": 64,
+            "path": "hoi4/functions/ScriptedGui.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScriptedLocalisation",
+            "kind": 64,
+            "path": "hoi4/functions/ScriptedLocalisation.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScriptedMapMode",
+            "kind": 64,
+            "path": "hoi4/functions/ScriptedMapMode.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScriptedTrigger",
+            "kind": 64,
+            "path": "hoi4/functions/ScriptedTrigger.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScriptedTriggerFamily",
+            "kind": 64,
+            "path": "hoi4/functions/ScriptedTriggerFamily.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "SharedFocus",
+            "kind": 64,
+            "path": "hoi4/functions/SharedFocus.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ShipNames",
+            "kind": 64,
+            "path": "hoi4/functions/ShipNames.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "SoundAsset",
+            "kind": 64,
+            "path": "hoi4/functions/SoundAsset.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "SoundCategory",
+            "kind": 64,
+            "path": "hoi4/functions/SoundCategory.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "SoundEffect",
+            "kind": 64,
+            "path": "hoi4/functions/SoundEffect.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "SourceFile",
+            "kind": 64,
+            "path": "hoi4/functions/SourceFile.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "SpawnPoint",
+            "kind": 64,
+            "path": "hoi4/functions/SpawnPoint.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Specialization",
+            "kind": 64,
+            "path": "hoi4/functions/Specialization.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "SpecialProject",
+            "kind": 64,
+            "path": "hoi4/functions/SpecialProject.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "state",
+            "kind": 64,
+            "path": "hoi4/functions/state.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "StateCategory",
+            "kind": 64,
+            "path": "hoi4/functions/StateCategory.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "StateEvent",
+            "kind": 64,
+            "path": "hoi4/functions/StateEvent.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "StateHistory",
+            "kind": 64,
+            "path": "hoi4/functions/StateHistory.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "StateScriptedEffect",
+            "kind": 64,
+            "path": "hoi4/functions/StateScriptedEffect.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "StateScriptedTrigger",
+            "kind": 64,
+            "path": "hoi4/functions/StateScriptedTrigger.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "StaticModifier",
+            "kind": 64,
+            "path": "hoi4/functions/StaticModifier.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "StrategicLocation",
+            "kind": 64,
+            "path": "hoi4/functions/StrategicLocation.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "StrategicRegion",
+            "kind": 64,
+            "path": "hoi4/functions/StrategicRegion.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Subdoctrine",
+            "kind": 64,
+            "path": "hoi4/functions/Subdoctrine.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "SupplyArea",
+            "kind": 64,
+            "path": "hoi4/functions/SupplyArea.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Technology",
+            "kind": 64,
+            "path": "hoi4/functions/Technology.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "TechnologySharingGroup",
+            "kind": 64,
+            "path": "hoi4/functions/TechnologySharingGroup.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Terrain",
+            "kind": 64,
+            "path": "hoi4/functions/Terrain.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Unit",
+            "kind": 64,
+            "path": "hoi4/functions/Unit.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "UnitHistory",
+            "kind": 64,
+            "path": "hoi4/functions/UnitHistory.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "UnitLeaderTrait",
+            "kind": 64,
+            "path": "hoi4/functions/UnitLeaderTrait.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "UnitMedal",
+            "kind": 64,
+            "path": "hoi4/functions/UnitMedal.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Wargoal",
+            "kind": 64,
+            "path": "hoi4/functions/Wargoal.md",
+            "isDeprecated": false
+          }
+        ]
+      },
+      {
+        "title": "Typed gameplay",
+        "children": [
+          {
+            "title": "EventDefinition",
+            "kind": 256,
+            "path": "hoi4/interfaces/EventDefinition.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "EventDelay",
+            "kind": 256,
+            "path": "hoi4/interfaces/EventDelay.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "FocusGraph",
+            "kind": 64,
+            "path": "hoi4/functions/FocusGraph.md",
+            "isDeprecated": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "ui",
+    "kind": 2,
+    "path": "ui/index.md",
+    "isDeprecated": false,
+    "children": [
+      {
+        "title": "Namespaces",
+        "children": [
+          {
+            "title": "JSX",
+            "kind": 4,
+            "path": "ui/namespaces/JSX/index.md",
+            "isDeprecated": false,
+            "children": [
+              {
+                "title": "Interfaces",
+                "children": [
+                  {
+                    "title": "ElementChildrenAttribute",
+                    "kind": 256,
+                    "path": "ui/namespaces/JSX/interfaces/ElementChildrenAttribute.md",
+                    "isDeprecated": false
+                  }
+                ]
+              },
+              {
+                "title": "Type Aliases",
+                "children": [
+                  {
+                    "title": "Element",
+                    "kind": 2097152,
+                    "path": "ui/namespaces/JSX/type-aliases/Element.md",
+                    "isDeprecated": false
+                  },
+                  {
+                    "title": "IntrinsicElements",
+                    "kind": 2097152,
+                    "path": "ui/namespaces/JSX/type-aliases/IntrinsicElements.md",
+                    "isDeprecated": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Interfaces",
+        "children": [
+          {
+            "title": "ButtonProps",
+            "kind": 256,
+            "path": "ui/interfaces/ButtonProps.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ContainerProps",
+            "kind": 256,
+            "path": "ui/interfaces/ContainerProps.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ElementProps",
+            "kind": 256,
+            "path": "ui/interfaces/ElementProps.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GridBoxProps",
+            "kind": 256,
+            "path": "ui/interfaces/GridBoxProps.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GuiBindings",
+            "kind": 256,
+            "path": "ui/interfaces/GuiBindings.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GuiButtonBindings",
+            "kind": 256,
+            "path": "ui/interfaces/GuiButtonBindings.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GuiElement",
+            "kind": 256,
+            "path": "ui/interfaces/GuiElement.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GuiElementBindings",
+            "kind": 256,
+            "path": "ui/interfaces/GuiElementBindings.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GuiFrameBindings",
+            "kind": 256,
+            "path": "ui/interfaces/GuiFrameBindings.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GuiIconBindings",
+            "kind": 256,
+            "path": "ui/interfaces/GuiIconBindings.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GuiPosition",
+            "kind": 256,
+            "path": "ui/interfaces/GuiPosition.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GuiPositionBindings",
+            "kind": 256,
+            "path": "ui/interfaces/GuiPositionBindings.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GuiSize",
+            "kind": 256,
+            "path": "ui/interfaces/GuiSize.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GuiTextureBindings",
+            "kind": 256,
+            "path": "ui/interfaces/GuiTextureBindings.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GuiVariable",
+            "kind": 256,
+            "path": "ui/interfaces/GuiVariable.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "IconProps",
+            "kind": 256,
+            "path": "ui/interfaces/IconProps.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ListBoxProps",
+            "kind": 256,
+            "path": "ui/interfaces/ListBoxProps.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeIntrinsicElements",
+            "kind": 256,
+            "path": "ui/interfaces/NativeIntrinsicElements.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "SpriteSpec",
+            "kind": 256,
+            "path": "ui/interfaces/SpriteSpec.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "TextProps",
+            "kind": 256,
+            "path": "ui/interfaces/TextProps.md",
+            "isDeprecated": false
+          }
+        ]
+      },
+      {
+        "title": "Type Aliases",
+        "children": [
+          {
+            "title": "GuiChild",
+            "kind": 2097152,
+            "path": "ui/type-aliases/GuiChild.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GuiCoordinate",
+            "kind": 2097152,
+            "path": "ui/type-aliases/GuiCoordinate.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GuiOrientation",
+            "kind": 2097152,
+            "path": "ui/type-aliases/GuiOrientation.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GuiOrigin",
+            "kind": 2097152,
+            "path": "ui/type-aliases/GuiOrigin.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScriptedWindowParent",
+            "kind": 2097152,
+            "path": "ui/type-aliases/ScriptedWindowParent.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScriptedWindowSpec",
+            "kind": 2097152,
+            "path": "ui/type-aliases/ScriptedWindowSpec.md",
+            "isDeprecated": false
+          }
+        ]
+      },
+      {
+        "title": "Functions",
+        "children": [
+          {
+            "title": "Browser",
+            "kind": 64,
+            "path": "ui/functions/Browser.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Button",
+            "kind": 64,
+            "path": "ui/functions/Button.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Checkbox",
+            "kind": 64,
+            "path": "ui/functions/Checkbox.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Container",
+            "kind": 64,
+            "path": "ui/functions/Container.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "DropDownBox",
+            "kind": 64,
+            "path": "ui/functions/DropDownBox.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "EditBox",
+            "kind": 64,
+            "path": "ui/functions/EditBox.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ExtendedScrollbar",
+            "kind": 64,
+            "path": "ui/functions/ExtendedScrollbar.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "For",
+            "kind": 64,
+            "path": "ui/functions/For.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GridBox",
+            "kind": 64,
+            "path": "ui/functions/GridBox.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GuiButton",
+            "kind": 64,
+            "path": "ui/functions/GuiButton.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GuiFile",
+            "kind": 64,
+            "path": "ui/functions/GuiFile.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "GuiVariable",
+            "kind": 64,
+            "path": "ui/functions/GuiVariable.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Icon",
+            "kind": 64,
+            "path": "ui/functions/Icon.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ListBox",
+            "kind": 64,
+            "path": "ui/functions/ListBox.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeButton",
+            "kind": 64,
+            "path": "ui/functions/NativeButton.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeContainer",
+            "kind": 64,
+            "path": "ui/functions/NativeContainer.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeGridBox",
+            "kind": 64,
+            "path": "ui/functions/NativeGridBox.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeIcon",
+            "kind": 64,
+            "path": "ui/functions/NativeIcon.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeListBox",
+            "kind": 64,
+            "path": "ui/functions/NativeListBox.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "NativeText",
+            "kind": 64,
+            "path": "ui/functions/NativeText.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "OverlappingElementsBox",
+            "kind": 64,
+            "path": "ui/functions/OverlappingElementsBox.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Position",
+            "kind": 64,
+            "path": "ui/functions/Position.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "ScriptedWindow",
+            "kind": 64,
+            "path": "ui/functions/ScriptedWindow.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Scrollbar",
+            "kind": 64,
+            "path": "ui/functions/Scrollbar.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "SmoothListBox",
+            "kind": 64,
+            "path": "ui/functions/SmoothListBox.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Sprite",
+            "kind": 64,
+            "path": "ui/functions/Sprite.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "SpriteFile",
+            "kind": 64,
+            "path": "ui/functions/SpriteFile.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Text",
+            "kind": 64,
+            "path": "ui/functions/Text.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "TextBox",
+            "kind": 64,
+            "path": "ui/functions/TextBox.md",
+            "isDeprecated": false
+          },
+          {
+            "title": "Window",
+            "kind": 64,
+            "path": "ui/functions/Window.md",
+            "isDeprecated": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "ui/jsx-runtime",
+    "kind": 2,
+    "path": "ui/jsx-runtime/index.md",
+    "isDeprecated": false
+  }
+]

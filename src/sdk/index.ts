@@ -18,8 +18,10 @@ import type {
   GeneratedTriggersByScope,
 } from "./commands.js";
 import type { PdxDocument, PdxItem } from "../pdx/ast.js";
+import type { EventDefinition, EventDelay, EventIdentifier, FocusReference } from "./gameplay.js";
 export * from "./domains.js";
 export * from "./defines.js";
+export * from "./gameplay.js";
 
 export interface CountryRef {
   readonly kind: "country";
@@ -67,6 +69,33 @@ export interface ScriptedTriggerDefinition<S extends ScopeName> extends Definiti
   readonly __trigger: unique symbol;
 }
 
+/** Literal compile-time inputs, never runtime native text substitutions. */
+export type ScriptedVariantValue = string | number | boolean | CountryRef | StateRef;
+/** Finite variant names mapped to flat, typed parameter records. */
+export type ScriptedVariants = Readonly<
+  Record<string, Readonly<Record<string, ScriptedVariantValue>>>
+>;
+/** Exact keys select ordinary native effect handles for their declared scope. */
+export type ScriptedEffectFamilyDefinition<
+  Prefix extends string,
+  S extends ScopeName,
+  Variants extends ScriptedVariants,
+> = {
+  readonly [Key in keyof Variants]: ScriptedEffectDefinition<S> & {
+    readonly name: `${Prefix}_${Key & (string | number)}`;
+  };
+};
+/** Exact keys select ordinary native trigger handles for their declared scope. */
+export type ScriptedTriggerFamilyDefinition<
+  Prefix extends string,
+  S extends ScopeName,
+  Variants extends ScriptedVariants,
+> = {
+  readonly [Key in keyof Variants]: ScriptedTriggerDefinition<S> & {
+    readonly name: `${Prefix}_${Key & (string | number)}`;
+  };
+};
+
 export interface CountryEffects extends GeneratedCountryEffects {
   addPoliticalPower(amount: number): void;
   addStability(amount: number): void;
@@ -96,7 +125,9 @@ export interface StateTriggers extends GeneratedStateTriggers {
   isControlledBy(country: CountryRef): boolean;
 }
 export interface ScopeBase<S extends ScopeName = ScopeName> {
+  /** Emit one native `name = yes` call; the handle must match the active scope. */
   run(effect: ScriptedEffectDefinition<S>): void;
+  /** Test a native trigger handle; negate with `!scope.test(handle)`. */
   test(trigger: ScriptedTriggerDefinition<S>): boolean;
   country(target: CountryRef, effect: Effect<CountryScope>): void;
   state(target: StateRef, effect: Effect<StateScope>): void;
@@ -115,6 +146,12 @@ export interface CountryScope extends ScopeBase<"country"> {
   readonly stability: number;
   readonly warSupport: number;
   readonly isAI: boolean;
+  /** Deliver a declared country/news event now or after a checked static delay. */
+  schedule(event: EventDefinition<"country">, delay?: EventDelay): void;
+  /** Test a declared focus using its compiler-created graph reference. */
+  hasCompletedFocus(focus: FocusReference): boolean;
+  /** Complete a declared focus using the native complete_national_focus effect. */
+  completeFocus(focus: FocusReference): void;
   everyState(effect: Effect<StateScope>): void;
   everyState(limit: Trigger<StateScope>, effect: Effect<StateScope>): void;
   anyState(trigger: Trigger<StateScope>): boolean;
@@ -126,6 +163,8 @@ export interface StateScope extends ScopeBase<"state"> {
   readonly effects: StateEffects;
   readonly triggers: StateTriggers;
   readonly manpower: number;
+  /** Deliver a declared state event now or after a checked static delay. */
+  schedule(event: EventDefinition<"state">, delay?: EventDelay): void;
   owner(effect: Effect<CountryScope>): void;
   controller(effect: Effect<CountryScope>): void;
 }
@@ -193,9 +232,29 @@ export interface EventSpec<S> {
   meanTimeToHappen?: { days?: number; months?: number; years?: number };
   options?: readonly EventOption<S>[];
 }
-export declare function CountryEvent(spec: EventSpec<CountryScope>): IdentifiedDefinition;
-export declare function StateEvent(spec: EventSpec<StateScope>): IdentifiedDefinition;
-export declare function NewsEvent(spec: EventSpec<CountryScope>): IdentifiedDefinition;
+/** Declare a country event and return its typed handle. Keep the handle when scheduling from another definition: TypeScript checks the receiver scope and preserves the literal event ID.
+ * @example
+ * ```ts
+ * const grant = CountryEvent({
+ *   id: "council.001", hidden: true, isTriggeredOnly: true,
+ *   immediate: country => country.effects.addPoliticalPower(10),
+ * });
+ * // In a country effect callback: country.schedule(grant, { days: 2 }).
+ * ```
+ * @see {@link StateEvent} */
+export declare function CountryEvent<const Id extends string>(
+  spec: EventSpec<CountryScope> & { id: Id & EventIdentifier<Id> },
+): EventDefinition<"country", Id>;
+/** Declare an event received by a state. Its callbacks operate in state scope, and its handle can be passed to a state scope's `schedule` method.
+ * @see {@link CountryEvent} */
+export declare function StateEvent<const Id extends string>(
+  spec: EventSpec<StateScope> & { id: Id & EventIdentifier<Id> },
+): EventDefinition<"state", Id>;
+/** Declare a news event; the scheduling receiver is a country. The returned handle retains the actual event identifier.
+ * @see {@link CountryEvent} */
+export declare function NewsEvent<const Id extends string>(
+  spec: EventSpec<CountryScope> & { id: Id & EventIdentifier<Id> },
+): EventDefinition<"country", Id>;
 export declare function Option<S>(spec: EventOption<S>): EventOption<S>;
 
 export interface FocusSpec {
@@ -222,6 +281,8 @@ export interface FocusTreeSpec {
   focuses: readonly FocusSpec[];
 }
 export declare function Focus(spec: FocusSpec): FocusSpec;
+/** Write a focus tree with explicit native identifiers and per-node layout. Use {@link FocusGraph} when the project owns the nodes and you want completion, graph checks, and automatic layout.
+ * @see {@link FocusTreeSpec} */
 export declare function FocusTree(spec: FocusTreeSpec): IdentifiedDefinition;
 
 export interface DecisionSpec {
@@ -244,6 +305,15 @@ export interface DecisionCategorySpec {
   decisions: readonly DecisionSpec[];
 }
 export declare function Decision(spec: DecisionSpec): DecisionSpec;
+/** Group decisions under one category. `available` checks whether a decision may be taken; `completeEffect` describes the effect of taking it.
+ * @example
+ * ```ts
+ * DecisionCategory({ id: "council_budget", decisions: [{
+ *   id: "council_vote", cost: 25,
+ *   available: country => !country.isAI,
+ *   completeEffect: country => country.effects.setCountryFlag("council_voted"),
+ * }] });
+ * ``` */
 export declare function DecisionCategory(spec: DecisionCategorySpec): IdentifiedDefinition;
 export interface IdeaModifiers {
   stability_factor?: number;
@@ -294,6 +364,58 @@ export declare function StateScriptedTrigger(
   name: string,
   trigger: Trigger<StateScope>,
 ): ScriptedTriggerDefinition<"state">;
+/**
+ * Specialize one typed callback into one native effect per finite variant.
+ * @remarks Each name is `${prefix}_${key}`. Values and arithmetic are evaluated
+ * at compile time; calls use `scope.run(family.key)` without native parameters.
+ * Prefixes and keys must form safe ASCII identifiers; duplicate native names fail.
+ */
+export declare function ScriptedEffectFamily<
+  const Prefix extends string,
+  const Variants extends ScriptedVariants,
+>(
+  prefix: Prefix,
+  variants: Variants,
+  effect: (scope: CountryScope, parameters: NoInfer<Variants[keyof Variants]>) => void,
+): ScriptedEffectFamilyDefinition<Prefix, "country", Variants>;
+/** Explicit scope variant of ScriptedEffectFamily. */
+export declare function ScriptedEffectFamily<
+  const Prefix extends string,
+  S extends ScopeName,
+  const Variants extends ScriptedVariants,
+>(
+  prefix: Prefix,
+  scope: S,
+  variants: Variants,
+  effect: (scope: ScopeByName[NoInfer<S>], parameters: NoInfer<Variants[keyof Variants]>) => void,
+): ScriptedEffectFamilyDefinition<Prefix, S, Variants>;
+/**
+ * Specialize a typed condition into ordinary `${prefix}_${key}` native triggers.
+ * @remarks Select with `scope.test(family.key)`. Parameters are compile-time
+ * values, not `$PARAM$` macros or implicit game variables.
+ */
+export declare function ScriptedTriggerFamily<
+  const Prefix extends string,
+  const Variants extends ScriptedVariants,
+>(
+  prefix: Prefix,
+  variants: Variants,
+  trigger: (scope: CountryScope, parameters: NoInfer<Variants[keyof Variants]>) => boolean,
+): ScriptedTriggerFamilyDefinition<Prefix, "country", Variants>;
+/** Explicit scope variant of ScriptedTriggerFamily. */
+export declare function ScriptedTriggerFamily<
+  const Prefix extends string,
+  S extends ScopeName,
+  const Variants extends ScriptedVariants,
+>(
+  prefix: Prefix,
+  scope: S,
+  variants: Variants,
+  trigger: (
+    scope: ScopeByName[NoInfer<S>],
+    parameters: NoInfer<Variants[keyof Variants]>,
+  ) => boolean,
+): ScriptedTriggerFamilyDefinition<Prefix, S, Variants>;
 /** Complete country history. Set path to the exact original file when replacing an existing history. */
 export interface CountryHistorySpec {
   country: CountryRef;
@@ -303,6 +425,8 @@ export interface CountryHistorySpec {
   history?: Effect<CountryScope>;
   path?: string;
 }
+/** Write the starting history of a country: its capital, government, order of battle and setup effects. The project still needs a country tag, common definition and flags.
+ * @see [Countries and maps](https://maxmixalex.github.io/krieg-lang/countries-maps/) */
 export declare function CountryHistory(spec: CountryHistorySpec): Definition;
 export interface ProvinceBuildings {
   naval_base?: number;
@@ -351,6 +475,14 @@ export interface StateHistorySpec {
   /** Exact game path for replacement of an existing state definition. */
   path?: string;
 }
+/** Write a complete state history file. When replacing an existing state, give its exact native path and preserve the province membership that should remain in the state.
+ * @example
+ * ```ts
+ * StateHistory({ state: state(1), name: "STATE_1", owner: country("KRG"),
+ *   manpower: 180000, category: "rural", provinces: [3838, 9851, 11804],
+ *   buildings: { infrastructure: 2 }, path: "history/states/1-France.txt" });
+ * ```
+ * @see {@link StateHistorySpec} */
 export declare function StateHistory(spec: StateHistorySpec): Definition;
 /** Explicit ordered PDX representation; no semantic-rewrite guarantee is implied. */
 export declare function SourceFile(path: string, document: PdxDocument): Definition;
@@ -360,6 +492,7 @@ export interface DataRecord {
 }
 export type DataValue =
   string | number | boolean | CountryRef | StateRef | DataRecord | readonly DataValue[];
+/** Emit structured native data at an explicit game-relative path. Prefer a named domain constructor for game-specific field checking. For repeated keys, mixed blocks or explicit native operators, use the ordered PDX API instead. */
 export declare function DataFile(path: string, data: DataRecord): Definition;
 export declare function country(tag: string): CountryRef;
 export declare function state(id: number): StateRef;

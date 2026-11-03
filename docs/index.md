@@ -25,23 +25,27 @@ CountryEvent({
 
 ## 文档怎么读
 
-| 你的目标                          | 从这里开始                        |
-| --------------------------------- | --------------------------------- |
-| 跑通第一个项目                    | [第一个模组](getting-started.md)  |
-| 配置补全、类型检查与格式化        | [编辑器与格式化](editor.md)       |
-| 理解 `if`、变量和辅助函数         | [语言与执行模型](language.md)     |
-| 写作用域切换、国策或事件条件      | [作用域、条件与效果](scopes.md)   |
-| 管理图片、本地化和可复用模块      | [项目、资源与依赖](projects.md)   |
-| 迁移现有 Paradox 脚本             | [导入原生脚本](native-import.md)  |
-| 将玩法拆成事件、国策与决议        | [玩法组合](recipes.md)            |
-| 按状态选择文本或使用 meta effect  | [脚本化内容](scripted-content.md) |
-| 用 TSX 编写界面并连接游戏行为     | [界面与 TSX](ui.md)               |
-| 创建国家、修改地区与地图          | [国家与地图](countries-maps.md)   |
-| 写 YAML 翻译或保留原生本地化      | [本地化](localisation.md)         |
-| 从完整原版 / Kaiserreich 项目学习 | [完整示例](examples.md)           |
-| 查精确签名、继承字段与命令作用域  | [API Reference](api/index.md)     |
-| 核对 Wiki 主题与实际支持层次      | [功能覆盖](coverage.md)           |
-| 判断某次检查到底证明了什么        | [验证与兼容性](validation.md)     |
+| 你的目标                          | 从这里开始                            |
+| --------------------------------- | ------------------------------------- |
+| 跑通第一个项目                    | [第一个模组](getting-started.md)      |
+| 配置补全、类型检查与格式化        | [编辑器与格式化](editor.md)           |
+| 理解 `if`、变量和辅助函数         | [语言与执行模型](language.md)         |
+| 写作用域切换、国策或事件条件      | [作用域、条件与效果](scopes.md)       |
+| 管理图片、本地化和可复用模块      | [项目、资源与依赖](projects.md)       |
+| 迁移现有 Paradox 脚本             | [导入原生脚本](native-import.md)      |
+| 将玩法拆成事件、国策与决议        | [玩法组合](recipes.md)                |
+| 从分支、合流和互斥关系生成国策树  | [国策图与事件调度](typed-gameplay.md) |
+| 按状态选择文本或使用 meta effect  | [脚本化内容](scripted-content.md)     |
+| 用 TSX 编写界面并连接游戏行为     | [界面与 TSX](ui.md)                   |
+| 创建国家、修改地区与地图          | [国家与地图](countries-maps.md)       |
+| 按地区查省份、用途经点规划铁路    | [地图索引与铁路规划](map-atlas.md)    |
+| 写 YAML 翻译或保留原生本地化      | [本地化](localisation.md)             |
+| 从完整原版 / Kaiserreich 项目学习 | [完整示例](examples.md)               |
+| 查精确签名、继承字段与命令作用域  | [按任务查找 API](api/index.md)        |
+| 核对 Wiki 主题与实际支持层次      | [功能覆盖](coverage.md)               |
+| 判断某次检查到底证明了什么        | [验证与兼容性](validation.md)         |
+
+API Reference 由 TypeDoc 生成，函数与类型各有独立页面。点击参数或字段类型可继续查看结构，重载分别列出；API 名、字段名和原生命令均进入站内搜索。
 
 ## 内容入口与检查层次
 

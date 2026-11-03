@@ -1,0 +1,5 @@
+{
+  "name": "scripted-families",
+  "sourceDir": "src",
+  "outDir": "build/mod"
+}

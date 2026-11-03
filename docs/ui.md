@@ -1,6 +1,108 @@
 # 界面与 TSX
 
-一个能响应游戏状态的界面由三部分组成：`.gui` 定义控件布局，`.gfx` 将 sprite 名称连接到图片，`common/scripted_guis` 把点击、显示条件和动态属性连接到游戏脚本。Krieg 分别提供 `GuiFile`、`SpriteFile` 与 `ScriptedGui`，使这三份原生内容能够在同一项目中管理。
+一个能响应游戏状态的界面由三部分组成：`.gui` 定义控件布局，`.gfx` 将 sprite 名称连接到图片，`common/scripted_guis` 把点击、显示条件和动态属性连接到游戏脚本。`ScriptedWindow` 把布局和行为合为一个声明，同时生成前后两份原生文件；`SpriteFile` 负责贴图注册。需要连接已有布局、原生修饰键点击或游戏动态列表时，也可以单独使用 `GuiFile` 与 `ScriptedGui`。
+
+## 同一处声明布局和行为
+
+`ScriptedWindow` 的 `context` 决定 `ui` 控件回调的作用域。下面所有 `country` 都由标准 TypeScript 推导为 `CountryScope`，编辑器可以直接补全合法效果与条件，无须重复注明类型或手写 `economy_click` 这样的连接字符串。
+
+```tsx
+import { ScriptedWindow, For, GuiVariable } from "krieg-lang/ui";
+
+const dirty = GuiVariable("reconstruction_dirty");
+const offset = GuiVariable("reconstruction_badge_x");
+const investments = [
+  { name: "economy", text: "reconstruction_economy", cost: 25 },
+  { name: "industry", text: "reconstruction_industry", cost: 50 },
+] as const;
+
+ScriptedWindow(
+  {
+    name: "reconstruction_panel",
+    path: "interface/reconstruction.gui",
+    context: "player_context",
+    parentWindowToken: "politics_tab",
+    dirty: dirty.name,
+    visible: (country) => !country.isAI,
+  },
+  (ui) => (
+    <ui.Container name="reconstruction_window" size={{ width: 360, height: 180 }}>
+      <ui.Icon name="status" spriteType="GFX_reconstruction_badge" properties={{ x: offset }} />
+      <For each={investments}>
+        {(investment, index) => (
+          <ui.Button
+            name={investment.name}
+            text={investment.text}
+            font="hoi_18mbs"
+            position={{ x: 16, y: 48 + index * 44 }}
+            size={{ width: 280, height: 36 }}
+            enabled={(country) => country.politicalPower >= investment.cost}
+            click={(country) => {
+              country.effects.addPoliticalPower(-investment.cost);
+              country.effects.setVariable({ var: offset.name, value: 16 });
+              country.effects.addToVariable({ var: dirty.name, value: 1 });
+            }}
+          />
+        )}
+      </For>
+    </ui.Container>
+  ),
+);
+```
+
+它生成 `interface/reconstruction.gui` 和 `common/scripted_guis/krieg_reconstruction_panel.txt`。`window_name` 自动取自根容器，按钮名称自动生成对应行为键。修改名称会同时修改布局和连接。组件展开后，编译器检查整个窗口中的控件名称唯一；重复列表条目、嵌套组件重名、空根和多个根都会在产生输出前报错。名称须符合 `[A-Za-z_][A-Za-z0-9_]*`。
+
+| 控件声明                | 原生行为                        |
+| ----------------------- | ------------------------------- |
+| `ui.Button.click`       | `effects.<name>_click`          |
+| `ui.Button.enabled`     | `triggers.<name>_click_enabled` |
+| 后代控件的 `visible`    | `triggers.<name>_visible`       |
+| 后代控件的 `properties` | `properties.<name>`             |
+| `ui.Button.aiWeight`    | `ai_weights.<name>_click`       |
+
+所有绑定控件支持动态 `x`、`y`；按钮另有 `frame`；图标另有 `frame` 和 `image`。数值属性接受数字或 `GuiVariable`，防止把普通文案字符串误用成变量；`image` 接受 sprite 或 scripted localisation 字符串。`GuiVariable` 保留原生变量名称，`.name` 可传给 `setVariable`、`addToVariable` 和 `dirty`，因此写入与读取共用同一份标识。它不会创建或初始化变量，也不会自动增加 dirty；示例明确写出了刷新操作。游戏中的变量存放在哪个国家或地区仍由窗口和效果作用域决定。
+
+根容器只声明布局，整个窗口的可见条件放在 `ScriptedWindow` 的 `visible`。窗口只接受一个父级；`decision_category` 上下文禁止父窗口。`selected_state_context` 与 `state_mapicon` 的控件回调自动改为 `StateScope`，误用国家效果会产生 TypeScript 错误；切换到拥有者后才能调用国家效果。
+
+## 静态组合与复用
+
+`For` 从 `each` 数组推导条目和索引类型，并在编译时按顺序展开控件。每项的效果闭包保留该项参数，所以示例分别生成扣除 25 和 50 政治点数的效果。它共享编译器的展开上限；不是 JavaScript 数组运行时，也不是游戏的 `dynamic_lists`。
+
+支持片段、嵌套静态数组、`condition ? element : null` 和静态布尔条件的 `&&` / `||`。布尔值、`null` 和 `undefined` 不产生控件；游戏状态变化应使用控件的 `visible` 条件。`GuiFile` 也支持这些组合形式。
+
+普通组件和导入的源代码组件可一起使用。需要复用行为的组件可以接收 `GuiBindings<CountryScope>`，或相应的地区作用域绑定：
+
+```tsx
+import type { CountryScope } from "krieg-lang/hoi4";
+import { ScriptedWindow, type GuiBindings, type GuiElement } from "krieg-lang/ui";
+
+function InvestButton(props: {
+  ui: GuiBindings<CountryScope>;
+  name: string;
+  cost: number;
+}): GuiElement {
+  return (
+    <props.ui.Button
+      name={props.name}
+      text="reconstruction_invest"
+      enabled={(country) => country.politicalPower >= props.cost}
+      click={(country) => country.effects.addPoliticalPower(-props.cost)}
+    />
+  );
+}
+
+ScriptedWindow(
+  { name: "shared_panel", path: "interface/shared.gui", context: "player_context" },
+  (ui) => (
+    <ui.Container name="shared_window">
+      <InvestButton ui={ui} name="small_investment" cost={10} />
+      <InvestButton ui={ui} name="large_investment" cost={40} />
+    </ui.Container>
+  ),
+);
+```
+
+绑定元数据会穿过片段、普通容器和组件边界，最后由当前窗口统一验证并生成游戏脚本。这里的 `click` 接收游戏作用域，不接受浏览器事件。`onClick`、DOM 控件、React hooks 和运行时组件库不属于该模型。
 
 ## 定义布局
 
@@ -97,4 +199,6 @@ SpriteFile("interface/reconstruction.gfx", [
 
 运行 `krieg world` 更新生成配置，再执行 `tsc --noEmit` 与 `krieg check`。`.krg.tsx` 与 `.krg.ts` 可以相互静态导入；TypeScript JSX 类型入口使用 `krieg-lang/ui/jsx-runtime`。生成的编辑器配置会包含 JSX 设置，ESLint 与 Prettier 也使用原生 TSX 支持。
 
-完整布局、翻译与游戏逻辑组合见 [原版与 Kaiserreich 示例](examples.md)。原生格式参照 [Scripted GUI modding](https://hoi4.paradoxwikis.com/Scripted_GUI_modding)、[Interface modding](https://hoi4.paradoxwikis.com/Interface_modding)、目标安装的 `common/scripted_guis/_documentation.md` 及 [CWT interface/gui.cwt](https://github.com/cwtools/cwtools-hoi4-config/blob/master/Config/interface/gui.cwt)。
+完整布局、翻译与游戏逻辑组合见 [原版与 Kaiserreich 示例](examples.md)。本轮绑定语义核对了所提供离线 Wiki 的 [Scripted GUI modding 修订 105160](https://hoi4.paradoxwikis.com/index.php?title=Scripted_GUI_modding&oldid=105160) 与 [Interface modding 修订 100547](https://hoi4.paradoxwikis.com/index.php?title=Interface_modding&oldid=100547)，以及目标安装的 `common/scripted_guis/_documentation.md` 和 [CWT interface/gui.cwt](https://github.com/cwtools/cwtools-hoi4-config/blob/master/Config/interface/gui.cwt)。
+
+`tests/scripted-window.test.mjs` 使用实际生成的 consumer tsconfig 和标准 TypeScript LanguageService 检查控件属性、国家/地区效果、动态属性与 `For` 条目补全；另有输出、组件组合、负例和展开上限测试。这些检查证明类型与原生文件生成一致，不代替游戏内的窗口挂接、布局或点击运行验证。

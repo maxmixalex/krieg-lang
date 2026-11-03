@@ -29,6 +29,8 @@ function decodeUtf8(bytes: Uint8Array, source: string): string {
 export interface LocalisationEntry {
   key: string;
   line: number;
+  /** Native quoted contents, with game escapes intact. Used in editor hover previews. */
+  text: string;
 }
 export interface NativeLocalisation {
   language: string;
@@ -58,7 +60,7 @@ export function parseNativeLocalisation(text: string, source: string): NativeLoc
     }
     if (!language) fail(index + 1, "Expected an l_language: header before localisation entries.");
     const entry =
-      /^[ \t]+([a-zA-Z0-9_.-]+):(?:[0-9]+)?[ \t]+"(?:[^"\\\x00-\x1f]|\\[^\r\n])*"[ \t]*(?:#.*)?$/.exec(
+      /^[ \t]+([a-zA-Z0-9_.-]+):(?:[0-9]+)?[ \t]+"((?:[^"\\\x00-\x1f]|\\[^\r\n])*)"[ \t]*(?:#.*)?$/.exec(
         line,
       );
     if (!entry)
@@ -69,7 +71,7 @@ export function parseNativeLocalisation(text: string, source: string): NativeLoc
     const key = entry[1];
     if (seen.has(key)) fail(index + 1, `Duplicate localisation key ${language}:${key}.`);
     seen.add(key);
-    entries.push({ key, line: index + 1 });
+    entries.push({ key, line: index + 1, text: entry[2] });
   }
   if (!language) fail(1, "Expected an l_language: header.");
   return { language, entries };

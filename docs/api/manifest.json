@@ -1,3059 +1,3512 @@
 {
-  "formatVersion": 1,
-  "packageVersion": "0.2.0",
+  "formatVersion": 2,
+  "packageVersion": "0.3.0",
+  "generator": {
+    "name": "TypeDoc",
+    "version": "0.28.20",
+    "markdown": "4.14.1"
+  },
   "cwt": {
     "source": "https://github.com/cwtools/cwtools-hoi4-config (uploaded snapshot)",
     "sha256": "4b3e365db80c5bb0cc7ce88d7ca58c37dc7bf66c31667e712605413218c8003c",
     "files": 111
   },
+  "modules": [
+    {
+      "key": ".",
+      "name": "krieg-lang",
+      "short": "root",
+      "source": "src/index.ts",
+      "page": "reference/root/index.md"
+    },
+    {
+      "key": "./compiler",
+      "name": "krieg-lang/compiler",
+      "short": "compiler",
+      "source": "src/compiler/index.ts",
+      "page": "reference/compiler/index.md"
+    },
+    {
+      "key": "./eslint",
+      "name": "krieg-lang/eslint",
+      "short": "eslint",
+      "source": "src/eslint/index.ts",
+      "page": "reference/eslint/index.md"
+    },
+    {
+      "key": "./hoi4",
+      "name": "krieg-lang/hoi4",
+      "short": "hoi4",
+      "source": "src/sdk/index.ts",
+      "page": "reference/hoi4/index.md"
+    },
+    {
+      "key": "./pdx",
+      "name": "krieg-lang/pdx",
+      "short": "pdx",
+      "source": "src/pdx/index.ts",
+      "page": "reference/pdx/index.md"
+    },
+    {
+      "key": "./project",
+      "name": "krieg-lang/project",
+      "short": "project",
+      "source": "src/project/index.ts",
+      "page": "reference/project/index.md"
+    },
+    {
+      "key": "./ui",
+      "name": "krieg-lang/ui",
+      "short": "ui",
+      "source": "src/ui/index.ts",
+      "page": "reference/ui/index.md"
+    },
+    {
+      "key": "./ui/jsx-runtime",
+      "name": "krieg-lang/ui/jsx-runtime",
+      "short": "ui/jsx-runtime",
+      "source": "src/ui/jsx-runtime.ts",
+      "page": "reference/ui/jsx-runtime/index.md"
+    }
+  ],
   "exports": [
     {
       "module": "krieg-lang",
       "name": "applyReplacePaths",
-      "page": "root.md#applyreplacepaths",
+      "page": "reference/root/functions/applyReplacePaths.md",
       "source": "src/project/world.ts"
     },
     {
       "module": "krieg-lang",
       "name": "AssetRule",
-      "page": "root.md#assetrule",
+      "page": "reference/root/interfaces/AssetRule.md",
       "source": "src/project/types.ts"
     },
     {
       "module": "krieg-lang",
+      "name": "AtlasArea",
+      "page": "reference/root/interfaces/AtlasArea.md",
+      "source": "src/project/atlas.ts"
+    },
+    {
+      "module": "krieg-lang",
+      "name": "AtlasProvince",
+      "page": "reference/root/interfaces/AtlasProvince.md",
+      "source": "src/project/atlas.ts"
+    },
+    {
+      "module": "krieg-lang",
       "name": "buildProject",
-      "page": "root.md#buildproject",
+      "page": "reference/root/functions/buildProject.md",
       "source": "src/project/build.ts"
     },
     {
       "module": "krieg-lang",
       "name": "BuildResult",
-      "page": "root.md#buildresult",
+      "page": "reference/root/interfaces/BuildResult.md",
       "source": "src/project/types.ts"
     },
     {
       "module": "krieg-lang",
       "name": "CompileOptions",
-      "page": "root.md#compileoptions",
+      "page": "reference/root/interfaces/CompileOptions.md",
       "source": "src/compiler/types.ts"
     },
     {
       "module": "krieg-lang",
       "name": "CompileOutput",
-      "page": "root.md#compileoutput",
+      "page": "reference/root/type-aliases/CompileOutput.md",
       "source": "src/compiler/types.ts"
     },
     {
       "module": "krieg-lang",
       "name": "compileProject",
-      "page": "root.md#compileproject",
+      "page": "reference/compiler/functions/compileProject.md",
       "source": "src/compiler/index.ts"
     },
     {
       "module": "krieg-lang",
       "name": "CompileResult",
-      "page": "root.md#compileresult",
+      "page": "reference/root/interfaces/CompileResult.md",
       "source": "src/compiler/types.ts"
     },
     {
       "module": "krieg-lang",
       "name": "compileSource",
-      "page": "root.md#compilesource",
+      "page": "reference/compiler/functions/compileSource.md",
       "source": "src/compiler/index.ts"
     },
     {
       "module": "krieg-lang",
+      "name": "createRailwayOverlay",
+      "page": "reference/root/functions/createRailwayOverlay.md",
+      "source": "src/project/atlas-railways.ts"
+    },
+    {
+      "module": "krieg-lang",
       "name": "createWorld",
-      "page": "root.md#createworld",
+      "page": "reference/root/functions/createWorld.md",
       "source": "src/project/world.ts"
     },
     {
       "module": "krieg-lang",
       "name": "CwtCommandRule",
-      "page": "root.md#cwtcommandrule",
+      "page": "reference/root/interfaces/CwtCommandRule.md",
       "source": "src/schema/types.ts"
     },
     {
       "module": "krieg-lang",
       "name": "CwtFieldRule",
-      "page": "root.md#cwtfieldrule",
+      "page": "reference/root/interfaces/CwtFieldRule.md",
       "source": "src/schema/types.ts"
     },
     {
       "module": "krieg-lang",
       "name": "CwtSchema",
-      "page": "root.md#cwtschema",
+      "page": "reference/root/interfaces/CwtSchema.md",
       "source": "src/schema/types.ts"
     },
     {
       "module": "krieg-lang",
       "name": "CwtValueRule",
-      "page": "root.md#cwtvaluerule",
+      "page": "reference/root/interfaces/CwtValueRule.md",
       "source": "src/schema/types.ts"
     },
     {
       "module": "krieg-lang",
       "name": "DependencyGraph",
-      "page": "root.md#dependencygraph",
+      "page": "reference/root/interfaces/DependencyGraph.md",
       "source": "src/project/dependencies.ts"
     },
     {
       "module": "krieg-lang",
       "name": "descriptor",
-      "page": "root.md#descriptor",
+      "page": "reference/root/functions/descriptor.md",
       "source": "src/project/build.ts"
     },
     {
       "module": "krieg-lang",
       "name": "emitCompileOutput",
-      "page": "root.md#emitcompileoutput",
+      "page": "reference/compiler/functions/emitCompileOutput.md",
       "source": "src/compiler/index.ts"
     },
     {
       "module": "krieg-lang",
       "name": "GameRoot",
-      "page": "root.md#gameroot",
+      "page": "reference/root/interfaces/GameRoot.md",
       "source": "src/project/types.ts"
     },
     {
       "module": "krieg-lang",
       "name": "generateCommandDeclarations",
-      "page": "root.md#generatecommanddeclarations",
+      "page": "reference/root/functions/generateCommandDeclarations.md",
       "source": "src/compiler/sdk.ts"
     },
     {
       "module": "krieg-lang",
+      "name": "geographyDeclaration",
+      "page": "reference/root/functions/geographyDeclaration.md",
+      "source": "src/project/atlas.ts"
+    },
+    {
+      "module": "krieg-lang",
+      "name": "GeographyIndex",
+      "page": "reference/root/interfaces/GeographyIndex.md",
+      "source": "src/project/atlas.ts"
+    },
+    {
+      "module": "krieg-lang",
       "name": "importProject",
-      "page": "root.md#importproject",
+      "page": "reference/root/functions/importProject.md",
       "source": "src/project/import.ts"
     },
     {
       "module": "krieg-lang",
       "name": "ImportProjectResult",
-      "page": "root.md#importprojectresult",
+      "page": "reference/root/interfaces/ImportProjectResult.md",
       "source": "src/project/import.ts"
     },
     {
       "module": "krieg-lang",
+      "name": "indexGeography",
+      "page": "reference/root/functions/indexGeography.md",
+      "source": "src/project/atlas.ts"
+    },
+    {
+      "module": "krieg-lang",
       "name": "initProject",
-      "page": "root.md#initproject",
+      "page": "reference/root/functions/initProject.md",
       "source": "src/project/init.ts"
     },
     {
       "module": "krieg-lang",
       "name": "KriegConfig",
-      "page": "root.md#kriegconfig",
+      "page": "reference/root/interfaces/KriegConfig.md",
       "source": "src/project/types.ts"
     },
     {
       "module": "krieg-lang",
       "name": "KriegDiagnostic",
-      "page": "root.md#kriegdiagnostic",
+      "page": "reference/root/interfaces/KriegDiagnostic.md",
       "source": "src/compiler/types.ts"
     },
     {
       "module": "krieg-lang",
+      "name": "LandProvinceRef",
+      "page": "reference/root/interfaces/LandProvinceRef.md",
+      "source": "src/project/atlas.ts"
+    },
+    {
+      "module": "krieg-lang",
       "name": "loadConfig",
-      "page": "root.md#loadconfig",
+      "page": "reference/root/functions/loadConfig.md",
       "source": "src/project/config.ts"
     },
     {
       "module": "krieg-lang",
       "name": "LocalisationRule",
-      "page": "root.md#localisationrule",
+      "page": "reference/root/interfaces/LocalisationRule.md",
       "source": "src/project/types.ts"
     },
     {
       "module": "krieg-lang",
       "name": "LuaCompileOutput",
-      "page": "root.md#luacompileoutput",
+      "page": "reference/root/interfaces/LuaCompileOutput.md",
       "source": "src/compiler/types.ts"
     },
     {
       "module": "krieg-lang",
       "name": "MINIMAL_LIB",
-      "page": "root.md#minimal_lib",
+      "page": "reference/root/variables/MINIMAL_LIB.md",
       "source": "src/compiler/minimal-lib.ts"
     },
     {
       "module": "krieg-lang",
       "name": "ModMetadata",
-      "page": "root.md#modmetadata",
+      "page": "reference/root/interfaces/ModMetadata.md",
       "source": "src/project/types.ts"
     },
     {
       "module": "krieg-lang",
       "name": "OutputFile",
-      "page": "root.md#outputfile",
+      "page": "reference/root/interfaces/OutputFile.md",
       "source": "src/project/types.ts"
     },
     {
       "module": "krieg-lang",
       "name": "packProject",
-      "page": "root.md#packproject",
+      "page": "reference/root/functions/packProject.md",
       "source": "src/project/pack.ts"
     },
     {
       "module": "krieg-lang",
       "name": "parseNativeLocalisation",
-      "page": "root.md#parsenativelocalisation",
+      "page": "reference/root/functions/parseNativeLocalisation.md",
       "source": "src/project/localisation.ts"
     },
     {
       "module": "krieg-lang",
+      "name": "parseRailwayPlan",
+      "page": "reference/root/functions/parseRailwayPlan.md",
+      "source": "src/project/atlas-railways.ts"
+    },
+    {
+      "module": "krieg-lang",
       "name": "pdx",
-      "page": "root.md#pdx",
+      "page": "reference/pdx/index.md",
       "source": "src/pdx/index.ts"
     },
     {
       "module": "krieg-lang",
       "name": "PdxCompileOutput",
-      "page": "root.md#pdxcompileoutput",
+      "page": "reference/root/interfaces/PdxCompileOutput.md",
       "source": "src/compiler/types.ts"
     },
     {
       "module": "krieg-lang",
+      "name": "PlannedRailwayRoute",
+      "page": "reference/root/interfaces/PlannedRailwayRoute.md",
+      "source": "src/project/atlas.ts"
+    },
+    {
+      "module": "krieg-lang",
+      "name": "ProjectBuildOptions",
+      "page": "reference/root/interfaces/ProjectBuildOptions.md",
+      "source": "src/project/types.ts"
+    },
+    {
+      "module": "krieg-lang",
       "name": "ProjectDiagnostic",
-      "page": "root.md#projectdiagnostic",
+      "page": "reference/root/interfaces/ProjectDiagnostic.md",
       "source": "src/project/types.ts"
     },
     {
       "module": "krieg-lang",
       "name": "ProjectLayer",
-      "page": "root.md#projectlayer",
+      "page": "reference/root/interfaces/ProjectLayer.md",
       "source": "src/project/types.ts"
     },
     {
       "module": "krieg-lang",
       "name": "ProjectOptions",
-      "page": "root.md#projectoptions",
+      "page": "reference/root/interfaces/ProjectOptions.md",
       "source": "src/project/types.ts"
     },
     {
       "module": "krieg-lang",
       "name": "ProjectWorld",
-      "page": "root.md#projectworld",
+      "page": "reference/root/interfaces/ProjectWorld.md",
       "source": "src/project/world.ts"
     },
     {
       "module": "krieg-lang",
+      "name": "ProvinceAtlas",
+      "page": "reference/root/classes/ProvinceAtlas.md",
+      "source": "src/project/atlas.ts"
+    },
+    {
+      "module": "krieg-lang",
+      "name": "ProvinceAtlasError",
+      "page": "reference/root/classes/ProvinceAtlasError.md",
+      "source": "src/project/atlas.ts"
+    },
+    {
+      "module": "krieg-lang",
+      "name": "ProvinceAtlasOptions",
+      "page": "reference/root/interfaces/ProvinceAtlasOptions.md",
+      "source": "src/project/atlas.ts"
+    },
+    {
+      "module": "krieg-lang",
+      "name": "RailwayLevel",
+      "page": "reference/root/type-aliases/RailwayLevel.md",
+      "source": "src/project/atlas-railways.ts"
+    },
+    {
+      "module": "krieg-lang",
+      "name": "RailwayOverlayResult",
+      "page": "reference/root/interfaces/RailwayOverlayResult.md",
+      "source": "src/project/atlas-railways.ts"
+    },
+    {
+      "module": "krieg-lang",
+      "name": "RailwayPlan",
+      "page": "reference/root/interfaces/RailwayPlan.md",
+      "source": "src/project/atlas-railways.ts"
+    },
+    {
+      "module": "krieg-lang",
+      "name": "RailwayRouteRequest",
+      "page": "reference/root/interfaces/RailwayRouteRequest.md",
+      "source": "src/project/atlas.ts"
+    },
+    {
+      "module": "krieg-lang",
+      "name": "RailwayRouteSpec",
+      "page": "reference/root/interfaces/RailwayRouteSpec.md",
+      "source": "src/project/atlas-railways.ts"
+    },
+    {
+      "module": "krieg-lang",
       "name": "resolveDependencies",
-      "page": "root.md#resolvedependencies",
+      "page": "reference/root/functions/resolveDependencies.md",
       "source": "src/project/dependencies.ts"
     },
     {
       "module": "krieg-lang",
       "name": "validateCountries",
-      "page": "root.md#validatecountries",
+      "page": "reference/root/functions/validateCountries.md",
       "source": "src/project/countries.ts"
     },
     {
       "module": "krieg-lang",
       "name": "validateLocalisation",
-      "page": "root.md#validatelocalisation",
+      "page": "reference/root/functions/validateLocalisation.md",
       "source": "src/project/localisation.ts"
     },
     {
       "module": "krieg-lang",
       "name": "validateMap",
-      "page": "root.md#validatemap",
+      "page": "reference/root/functions/validateMap.md",
       "source": "src/project/map.ts"
     },
     {
       "module": "krieg-lang",
       "name": "WorldFile",
-      "page": "root.md#worldfile",
+      "page": "reference/root/interfaces/WorldFile.md",
       "source": "src/project/world.ts"
     },
     {
       "module": "krieg-lang",
       "name": "writeEditorProject",
-      "page": "root.md#writeeditorproject",
+      "page": "reference/root/functions/writeEditorProject.md",
       "source": "src/project/editor.ts"
     },
     {
       "module": "krieg-lang/compiler",
       "name": "CompileOptions",
-      "page": "compiler.md#compileoptions",
+      "page": "reference/root/interfaces/CompileOptions.md",
       "source": "src/compiler/types.ts"
     },
     {
       "module": "krieg-lang/compiler",
       "name": "CompileOutput",
-      "page": "compiler.md#compileoutput",
+      "page": "reference/root/type-aliases/CompileOutput.md",
       "source": "src/compiler/types.ts"
     },
     {
       "module": "krieg-lang/compiler",
       "name": "compileProject",
-      "page": "compiler.md#compileproject",
+      "page": "reference/compiler/functions/compileProject.md",
       "source": "src/compiler/index.ts"
     },
     {
       "module": "krieg-lang/compiler",
       "name": "CompileResult",
-      "page": "compiler.md#compileresult",
+      "page": "reference/root/interfaces/CompileResult.md",
       "source": "src/compiler/types.ts"
     },
     {
       "module": "krieg-lang/compiler",
       "name": "compileSource",
-      "page": "compiler.md#compilesource",
+      "page": "reference/compiler/functions/compileSource.md",
       "source": "src/compiler/index.ts"
     },
     {
       "module": "krieg-lang/compiler",
       "name": "CwtCommandRule",
-      "page": "compiler.md#cwtcommandrule",
+      "page": "reference/root/interfaces/CwtCommandRule.md",
       "source": "src/schema/types.ts"
     },
     {
       "module": "krieg-lang/compiler",
       "name": "CwtFieldRule",
-      "page": "compiler.md#cwtfieldrule",
+      "page": "reference/root/interfaces/CwtFieldRule.md",
       "source": "src/schema/types.ts"
     },
     {
       "module": "krieg-lang/compiler",
       "name": "CwtSchema",
-      "page": "compiler.md#cwtschema",
+      "page": "reference/root/interfaces/CwtSchema.md",
       "source": "src/schema/types.ts"
     },
     {
       "module": "krieg-lang/compiler",
       "name": "CwtValueRule",
-      "page": "compiler.md#cwtvaluerule",
+      "page": "reference/root/interfaces/CwtValueRule.md",
       "source": "src/schema/types.ts"
     },
     {
       "module": "krieg-lang/compiler",
       "name": "emitCompileOutput",
-      "page": "compiler.md#emitcompileoutput",
+      "page": "reference/compiler/functions/emitCompileOutput.md",
       "source": "src/compiler/index.ts"
     },
     {
       "module": "krieg-lang/compiler",
       "name": "generateCommandDeclarations",
-      "page": "compiler.md#generatecommanddeclarations",
+      "page": "reference/root/functions/generateCommandDeclarations.md",
       "source": "src/compiler/sdk.ts"
     },
     {
       "module": "krieg-lang/compiler",
       "name": "KriegDiagnostic",
-      "page": "compiler.md#kriegdiagnostic",
+      "page": "reference/root/interfaces/KriegDiagnostic.md",
       "source": "src/compiler/types.ts"
     },
     {
       "module": "krieg-lang/compiler",
       "name": "LuaCompileOutput",
-      "page": "compiler.md#luacompileoutput",
+      "page": "reference/root/interfaces/LuaCompileOutput.md",
       "source": "src/compiler/types.ts"
     },
     {
       "module": "krieg-lang/compiler",
       "name": "MINIMAL_LIB",
-      "page": "compiler.md#minimal_lib",
+      "page": "reference/root/variables/MINIMAL_LIB.md",
       "source": "src/compiler/minimal-lib.ts"
     },
     {
       "module": "krieg-lang/compiler",
       "name": "PdxCompileOutput",
-      "page": "compiler.md#pdxcompileoutput",
+      "page": "reference/root/interfaces/PdxCompileOutput.md",
       "source": "src/compiler/types.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Ability",
-      "page": "domains/ability.md#ability",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "AbilitySpec",
-      "page": "domains/ability.md#abilityspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Ace",
-      "page": "domains/ace.md#ace",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "AceSpec",
-      "page": "domains/ace.md#acespec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Achievement",
-      "page": "domains/achievement.md#achievement",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "AchievementSpec",
-      "page": "domains/achievement.md#achievementspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "AdjacencyRule",
-      "page": "domains/adjacencyrule.md#adjacencyrule",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "AdjacencyRuleSpec",
-      "page": "domains/adjacencyrule.md#adjacencyrulespec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "AiArea",
-      "page": "domains/aiarea.md#aiarea",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "AiAreaSpec",
-      "page": "domains/aiarea.md#aiareaspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "AiEquipmentDesignGroup",
-      "page": "domains/aiequipmentdesigngroup.md#aiequipmentdesigngroup",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "AiEquipmentDesignGroupSpec",
-      "page": "domains/aiequipmentdesigngroup.md#aiequipmentdesigngroupspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "AiFactionTheater",
-      "page": "domains/aifactiontheater.md#aifactiontheater",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "AiFactionTheaterSpec",
-      "page": "domains/aifactiontheater.md#aifactiontheaterspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "AiFocus",
-      "page": "domains/aifocus.md#aifocus",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "AiFocusSpec",
-      "page": "domains/aifocus.md#aifocusspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "AiPeace",
-      "page": "domains/aipeace.md#aipeace",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "AiPeaceSpec",
-      "page": "domains/aipeace.md#aipeacespec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "AiStrategy",
-      "page": "domains/aistrategy.md#aistrategy",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "AiStrategyPlan",
-      "page": "domains/aistrategyplan.md#aistrategyplan",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "AiStrategyPlanSpec",
-      "page": "domains/aistrategyplan.md#aistrategyplanspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "AiStrategySpec",
-      "page": "domains/aistrategy.md#aistrategyspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "AiTemplate",
-      "page": "domains/aitemplate.md#aitemplate",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "AiTemplateSpec",
-      "page": "domains/aitemplate.md#aitemplatespec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "AnyScope",
-      "page": "scopes.md#anyscope",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "AssetId",
-      "page": "hoi4.md#assetid",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "AutonomyState",
-      "page": "domains/autonomystate.md#autonomystate",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "AutonomyStateSpec",
-      "page": "domains/autonomystate.md#autonomystatespec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "BalanceOfPower",
-      "page": "domains/balanceofpower.md#balanceofpower",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "BalanceOfPowerSpec",
-      "page": "domains/balanceofpower.md#balanceofpowerspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "BitmapFont",
-      "page": "domains/bitmapfont.md#bitmapfont",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "BitmapFontSpec",
-      "page": "domains/bitmapfont.md#bitmapfontspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Bookmark",
-      "page": "domains/bookmark.md#bookmark",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "BookmarkSpec",
-      "page": "domains/bookmark.md#bookmarkspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "BrowserProps",
-      "page": "domains/browserprops.md#browserprops",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Building",
-      "page": "domains/building.md#building",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "BuildingSpec",
-      "page": "domains/building.md#buildingspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Character",
-      "page": "domains/character.md#character",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "CharacterScope",
-      "page": "scopes.md#characterscope",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "CharacterSpec",
-      "page": "domains/character.md#characterspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "CheckboxProps",
-      "page": "domains/checkboxprops.md#checkboxprops",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Collection",
-      "page": "domains/collection.md#collection",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "CollectionSpec",
-      "page": "domains/collection.md#collectionspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "CombatScope",
-      "page": "scopes.md#combatscope",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "CombatTactic",
-      "page": "domains/combattactic.md#combattactic",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "CombatTacticSpec",
-      "page": "domains/combattactic.md#combattacticspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ContinuousFocusPalette",
-      "page": "domains/continuousfocuspalette.md#continuousfocuspalette",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ContinuousFocusPaletteSpec",
-      "page": "domains/continuousfocuspalette.md#continuousfocuspalettespec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "country",
-      "page": "hoi4.md#country",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Country",
-      "page": "hoi4.md#country",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "CountryDefinition",
-      "page": "domains/countrydefinition.md#countrydefinition",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "CountryDefinitionSpec",
-      "page": "domains/countrydefinition.md#countrydefinitionspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "CountryEffects",
-      "page": "scopes.md#countryeffects",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "CountryEvent",
-      "page": "hoi4.md#countryevent",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "CountryHistory",
-      "page": "hoi4.md#countryhistory",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "CountryHistorySpec",
-      "page": "hoi4.md#countryhistoryspec",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "CountryLeaderTrait",
-      "page": "domains/countryleadertrait.md#countryleadertrait",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "CountryLeaderTraitSpec",
-      "page": "domains/countryleadertrait.md#countryleadertraitspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "CountryRef",
-      "page": "hoi4.md#countryref",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "CountryScope",
-      "page": "scopes.md#countryscope",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "CountryScorer",
-      "page": "domains/countryscorer.md#countryscorer",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "CountryScorerSpec",
-      "page": "domains/countryscorer.md#countryscorerspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "CountryTagAlias",
-      "page": "domains/countrytagalias.md#countrytagalias",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "CountryTagAliasSpec",
-      "page": "domains/countrytagalias.md#countrytagaliasspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "CountryTriggers",
-      "page": "scopes.md#countrytriggers",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "CriticalPart",
-      "page": "domains/criticalpart.md#criticalpart",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "CriticalPartSpec",
-      "page": "domains/criticalpart.md#criticalpartspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "cwt",
-      "page": "hoi4.md#cwt",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "CwtNode",
-      "page": "hoi4.md#cwtnode",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "CwtOpaque",
-      "page": "hoi4.md#cwtopaque",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "CwtValue",
-      "page": "hoi4.md#cwtvalue",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "DataFile",
-      "page": "hoi4.md#datafile",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "DataRecord",
-      "page": "hoi4.md#datarecord",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "DataValue",
-      "page": "hoi4.md#datavalue",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Decision",
-      "page": "hoi4.md#decision",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "DecisionCategory",
-      "page": "hoi4.md#decisioncategory",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "DecisionCategorySpec",
-      "page": "hoi4.md#decisioncategoryspec",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "DecisionSpec",
-      "page": "hoi4.md#decisionspec",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "DefineFile",
-      "page": "defines.md#definefile",
-      "source": "src/sdk/defines.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "DefineOverrides",
-      "page": "defines.md#defineoverrides",
-      "source": "src/sdk/defines.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Defines",
-      "page": "defines.md#defines",
-      "source": "src/sdk/defines.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Definition",
-      "page": "hoi4.md#definition",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "DifficultySetting",
-      "page": "domains/difficultysetting.md#difficultysetting",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "DifficultySettingSpec",
-      "page": "domains/difficultysetting.md#difficultysettingspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "DivisionNames",
-      "page": "domains/divisionnames.md#divisionnames",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "DivisionNamesSpec",
-      "page": "domains/divisionnames.md#divisionnamesspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "DoctrineFolder",
-      "page": "domains/doctrinefolder.md#doctrinefolder",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "DoctrineFolderSpec",
-      "page": "domains/doctrinefolder.md#doctrinefolderspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "DoctrineTrack",
-      "page": "domains/doctrinetrack.md#doctrinetrack",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "DoctrineTrackSpec",
-      "page": "domains/doctrinetrack.md#doctrinetrackspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "DropDownBoxProps",
-      "page": "domains/dropdownboxprops.md#dropdownboxprops",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "DynamicModifier",
-      "page": "domains/dynamicmodifier.md#dynamicmodifier",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "DynamicModifierSpec",
-      "page": "domains/dynamicmodifier.md#dynamicmodifierspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "EditBoxProps",
-      "page": "domains/editboxprops.md#editboxprops",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Effect",
-      "page": "hoi4.md#effect",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Entity",
-      "page": "domains/entity.md#entity",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "EntitySpec",
-      "page": "domains/entity.md#entityspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Equipment",
-      "page": "domains/equipment.md#equipment",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "EquipmentGroup",
-      "page": "domains/equipmentgroup.md#equipmentgroup",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "EquipmentGroupSpec",
-      "page": "domains/equipmentgroup.md#equipmentgroupspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "EquipmentModule",
-      "page": "domains/equipmentmodule.md#equipmentmodule",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "EquipmentModuleSpec",
-      "page": "domains/equipmentmodule.md#equipmentmodulespec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "EquipmentSpec",
-      "page": "domains/equipment.md#equipmentspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "EquipmentUpgrade",
-      "page": "domains/equipmentupgrade.md#equipmentupgrade",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "EquipmentUpgradeSpec",
-      "page": "domains/equipmentupgrade.md#equipmentupgradespec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "EventId",
-      "page": "hoi4.md#eventid",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "EventOption",
-      "page": "hoi4.md#eventoption",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "EventSpec",
-      "page": "hoi4.md#eventspec",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ExtendedScrollbarProps",
-      "page": "domains/extendedscrollbarprops.md#extendedscrollbarprops",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "FactionGoal",
-      "page": "domains/factiongoal.md#factiongoal",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "FactionGoalSpec",
-      "page": "domains/factiongoal.md#factiongoalspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "FactionMemberUpgrade",
-      "page": "domains/factionmemberupgrade.md#factionmemberupgrade",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "FactionMemberUpgradeSpec",
-      "page": "domains/factionmemberupgrade.md#factionmemberupgradespec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "FactionRule",
-      "page": "domains/factionrule.md#factionrule",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "FactionRuleGroup",
-      "page": "domains/factionrulegroup.md#factionrulegroup",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "FactionRuleGroupSpec",
-      "page": "domains/factionrulegroup.md#factionrulegroupspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "FactionRuleSpec",
-      "page": "domains/factionrule.md#factionrulespec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "FactionTemplate",
-      "page": "domains/factiontemplate.md#factiontemplate",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "FactionTemplateSpec",
-      "page": "domains/factiontemplate.md#factiontemplatespec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "FactionUpgrade",
-      "page": "domains/factionupgrade.md#factionupgrade",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "FactionUpgradeSpec",
-      "page": "domains/factionupgrade.md#factionupgradespec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "FlagId",
-      "page": "hoi4.md#flagid",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Focus",
-      "page": "hoi4.md#focus",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "FocusId",
-      "page": "hoi4.md#focusid",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "FocusSpec",
-      "page": "hoi4.md#focusspec",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "FocusStyle",
-      "page": "domains/focusstyle.md#focusstyle",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "FocusStyleSpec",
-      "page": "domains/focusstyle.md#focusstylespec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "FocusTree",
-      "page": "hoi4.md#focustree",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "FocusTreeSpec",
-      "page": "hoi4.md#focustreespec",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "GameRule",
-      "page": "domains/gamerule.md#gamerule",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "GameRuleSpec",
-      "page": "domains/gamerule.md#gamerulespec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "GrandDoctrine",
-      "page": "domains/granddoctrine.md#granddoctrine",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "GrandDoctrineSpec",
-      "page": "domains/granddoctrine.md#granddoctrinespec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "GraphicalTerrain",
-      "page": "domains/graphicalterrain.md#graphicalterrain",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "GraphicalTerrainSpec",
-      "page": "domains/graphicalterrain.md#graphicalterrainspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "GraphicDatabase",
-      "page": "domains/graphicdatabase.md#graphicdatabase",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "GraphicDatabaseSpec",
-      "page": "domains/graphicdatabase.md#graphicdatabasespec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "GuiAiTestScope",
-      "page": "scopes.md#guiaitestscope",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "GuiAiWeight",
-      "page": "hoi4.md#guiaiweight",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "GuiButtonProps",
-      "page": "domains/guibuttonprops.md#guibuttonprops",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "GuiClickName",
-      "page": "hoi4.md#guiclickname",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "GuiDynamicList",
-      "page": "hoi4.md#guidynamiclist",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "GuiParentWindowToken",
-      "page": "hoi4.md#guiparentwindowtoken",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "GuiTriggerName",
-      "page": "hoi4.md#guitriggername",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "GuiWeight",
-      "page": "hoi4.md#guiweight",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Idea",
-      "page": "hoi4.md#idea",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "IdeaCategory",
-      "page": "domains/ideacategory.md#ideacategory",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "IdeaCategorySpec",
-      "page": "domains/ideacategory.md#ideacategoryspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "IdeaId",
-      "page": "hoi4.md#ideaid",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "IdeaModifiers",
-      "page": "hoi4.md#ideamodifiers",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "IdeaSpec",
-      "page": "hoi4.md#ideaspec",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "IdentifiedDefinition",
-      "page": "hoi4.md#identifieddefinition",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Ideology",
-      "page": "domains/ideology.md#ideology",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "IdeologySpec",
-      "page": "domains/ideology.md#ideologyspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "IntelligenceAgency",
-      "page": "domains/intelligenceagency.md#intelligenceagency",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "IntelligenceAgencySpec",
-      "page": "domains/intelligenceagency.md#intelligenceagencyspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "IntelligenceAgencyUpgrade",
-      "page": "domains/intelligenceagencyupgrade.md#intelligenceagencyupgrade",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "IntelligenceAgencyUpgradeSpec",
-      "page": "domains/intelligenceagencyupgrade.md#intelligenceagencyupgradespec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "JointFocus",
-      "page": "domains/jointfocus.md#jointfocus",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "JointFocusSpec",
-      "page": "domains/jointfocus.md#jointfocusspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Light",
-      "page": "domains/light.md#light",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "LightSpec",
-      "page": "domains/light.md#lightspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "loc",
-      "page": "hoi4.md#loc",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "LocalisationKey",
-      "page": "hoi4.md#localisationkey",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "MeanTimeToHappen",
-      "page": "domains/meantimetohappen.md#meantimetohappen",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "MeanTimeToHappenSpec",
-      "page": "domains/meantimetohappen.md#meantimetohappenspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Mesh",
-      "page": "domains/mesh.md#mesh",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "MeshSpec",
-      "page": "domains/mesh.md#meshspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "MetaEffect",
-      "page": "hoi4.md#metaeffect",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "MetaEffectSpec",
-      "page": "hoi4.md#metaeffectspec",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "MetaParameterNames",
-      "page": "hoi4.md#metaparameternames",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "MetaParameterValue",
-      "page": "hoi4.md#metaparametervalue",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "MilitaryIndustrialOrganization",
-      "page": "domains/militaryindustrialorganization.md#militaryindustrialorganization",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "MilitaryIndustrialOrganizationScope",
-      "page": "scopes.md#militaryindustrialorganizationscope",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "MilitaryIndustrialOrganizationSpec",
-      "page": "domains/militaryindustrialorganization.md#militaryindustrialorganizationspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "MioPolicy",
-      "page": "domains/miopolicy.md#miopolicy",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "MioPolicySpec",
-      "page": "domains/miopolicy.md#miopolicyspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ModelAnimation",
-      "page": "domains/modelanimation.md#modelanimation",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ModelAnimationSpec",
-      "page": "domains/modelanimation.md#modelanimationspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ModifierDefinition",
-      "page": "domains/modifierdefinition.md#modifierdefinition",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ModifierDefinitionSpec",
-      "page": "domains/modifierdefinition.md#modifierdefinitionspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "MusicAsset",
-      "page": "domains/musicasset.md#musicasset",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "MusicAssetSpec",
-      "page": "domains/musicasset.md#musicassetspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "MusicPlaylistEntry",
-      "page": "domains/musicplaylistentry.md#musicplaylistentry",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "MusicPlaylistEntrySpec",
-      "page": "domains/musicplaylistentry.md#musicplaylistentryspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "NativeButtonProps",
-      "page": "domains/nativebuttonprops.md#nativebuttonprops",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "NativeContainerProps",
-      "page": "domains/nativecontainerprops.md#nativecontainerprops",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "NativeCountryEvent",
-      "page": "domains/nativecountryevent.md#nativecountryevent",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "NativeCountryEventSpec",
-      "page": "domains/nativecountryevent.md#nativecountryeventspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "NativeDecision",
-      "page": "domains/nativedecision.md#nativedecision",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "NativeDecisionCategory",
-      "page": "domains/nativedecisioncategory.md#nativedecisioncategory",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "NativeDecisionCategorySpec",
-      "page": "domains/nativedecisioncategory.md#nativedecisioncategoryspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "NativeDecisionSpec",
-      "page": "domains/nativedecision.md#nativedecisionspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "NativeFocusTree",
-      "page": "domains/nativefocustree.md#nativefocustree",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "NativeFocusTreeSpec",
-      "page": "domains/nativefocustree.md#nativefocustreespec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "NativeGridBoxProps",
-      "page": "domains/nativegridboxprops.md#nativegridboxprops",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "NativeIconProps",
-      "page": "domains/nativeiconprops.md#nativeiconprops",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "NativeIdeas",
-      "page": "domains/nativeideas.md#nativeideas",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "NativeIdeasSpec",
-      "page": "domains/nativeideas.md#nativeideasspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "NativeListBoxProps",
-      "page": "domains/nativelistboxprops.md#nativelistboxprops",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "NativeNewsEvent",
-      "page": "domains/nativenewsevent.md#nativenewsevent",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "NativeNewsEventSpec",
-      "page": "domains/nativenewsevent.md#nativenewseventspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "NativeOperativeEvent",
-      "page": "domains/nativeoperativeevent.md#nativeoperativeevent",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "NativeOperativeEventSpec",
-      "page": "domains/nativeoperativeevent.md#nativeoperativeeventspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "NativeStateEvent",
-      "page": "domains/nativestateevent.md#nativestateevent",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "NativeStateEventSpec",
-      "page": "domains/nativestateevent.md#nativestateeventspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "NativeTextProps",
-      "page": "domains/nativetextprops.md#nativetextprops",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "NativeUnitLeaderEvent",
-      "page": "domains/nativeunitleaderevent.md#nativeunitleaderevent",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "NativeUnitLeaderEventSpec",
-      "page": "domains/nativeunitleaderevent.md#nativeunitleadereventspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "NewsEvent",
-      "page": "hoi4.md#newsevent",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "OccupationLaw",
-      "page": "domains/occupationlaw.md#occupationlaw",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "OccupationLawSpec",
-      "page": "domains/occupationlaw.md#occupationlawspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "OnAction",
-      "page": "domains/onaction.md#onaction",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "OnActionSpec",
-      "page": "domains/onaction.md#onactionspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Operation",
-      "page": "domains/operation.md#operation",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "OperationPhase",
-      "page": "domains/operationphase.md#operationphase",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "OperationPhaseSpec",
-      "page": "domains/operationphase.md#operationphasespec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "OperationScope",
-      "page": "scopes.md#operationscope",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "OperationSpec",
-      "page": "domains/operation.md#operationspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "OperationToken",
-      "page": "domains/operationtoken.md#operationtoken",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "OperationTokenSpec",
-      "page": "domains/operationtoken.md#operationtokenspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "OperativeScope",
-      "page": "scopes.md#operativescope",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "OpinionModifier",
-      "page": "domains/opinionmodifier.md#opinionmodifier",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "OpinionModifierSpec",
-      "page": "domains/opinionmodifier.md#opinionmodifierspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Option",
-      "page": "hoi4.md#option",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "OverlappingElementsBoxProps",
-      "page": "domains/overlappingelementsboxprops.md#overlappingelementsboxprops",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Particle",
-      "page": "domains/particle.md#particle",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ParticleSpec",
-      "page": "domains/particle.md#particlespec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "PdxParticle",
-      "page": "domains/pdxparticle.md#pdxparticle",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "PdxParticleSpec",
-      "page": "domains/pdxparticle.md#pdxparticlespec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "PeaceActionCategory",
-      "page": "domains/peaceactioncategory.md#peaceactioncategory",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "PeaceActionCategorySpec",
-      "page": "domains/peaceactioncategory.md#peaceactioncategoryspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "PeaceActionModifier",
-      "page": "domains/peaceactionmodifier.md#peaceactionmodifier",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "PeaceActionModifierSpec",
-      "page": "domains/peaceactionmodifier.md#peaceactionmodifierspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "PeaceAiDesire",
-      "page": "domains/peaceaidesire.md#peaceaidesire",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "PeaceAiDesireSpec",
-      "page": "domains/peaceaidesire.md#peaceaidesirespec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Portrait",
-      "page": "domains/portrait.md#portrait",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "PortraitSpec",
-      "page": "domains/portrait.md#portraitspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "PositionProps",
-      "page": "domains/positionprops.md#positionprops",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ProjectScope",
-      "page": "scopes.md#projectscope",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "PrototypeReward",
-      "page": "domains/prototypereward.md#prototypereward",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "PrototypeRewardSpec",
-      "page": "domains/prototypereward.md#prototyperewardspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ProvinceBuildings",
-      "page": "hoi4.md#provincebuildings",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "PurchaseContractScope",
-      "page": "scopes.md#purchasecontractscope",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Raid",
-      "page": "domains/raid.md#raid",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "RaidCategory",
-      "page": "domains/raidcategory.md#raidcategory",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "RaidCategorySpec",
-      "page": "domains/raidcategory.md#raidcategoryspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "RaidScope",
-      "page": "scopes.md#raidscope",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "RaidSpec",
-      "page": "domains/raid.md#raidspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ResistanceComplianceModifier",
-      "page": "domains/resistancecompliancemodifier.md#resistancecompliancemodifier",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ResistanceComplianceModifierSpec",
-      "page": "domains/resistancecompliancemodifier.md#resistancecompliancemodifierspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Resource",
-      "page": "domains/resource.md#resource",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ResourceSpec",
-      "page": "domains/resource.md#resourcespec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ScientistTrait",
-      "page": "domains/scientisttrait.md#scientisttrait",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ScientistTraitSpec",
-      "page": "domains/scientisttrait.md#scientisttraitspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Scope",
-      "page": "scopes.md#scope",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ScopeBase",
-      "page": "scopes.md#scopebase",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ScopeByName",
-      "page": "scopes.md#scopebyname",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ScopedGuiDynamicList",
-      "page": "hoi4.md#scopedguidynamiclist",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ScopeName",
-      "page": "scopes.md#scopename",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ScriptedEffect",
-      "page": "hoi4.md#scriptedeffect",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ScriptedEffectDefinition",
-      "page": "hoi4.md#scriptedeffectdefinition",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ScriptedGui",
-      "page": "hoi4.md#scriptedgui",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ScriptedGuiContext",
-      "page": "hoi4.md#scriptedguicontext",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ScriptedGuiProperties",
-      "page": "hoi4.md#scriptedguiproperties",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ScriptedGuiScope",
-      "page": "scopes.md#scriptedguiscope",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ScriptedGuiSpec",
-      "page": "hoi4.md#scriptedguispec",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ScriptedLocalisation",
-      "page": "hoi4.md#scriptedlocalisation",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ScriptedLocalisationDefinition",
-      "page": "hoi4.md#scriptedlocalisationdefinition",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ScriptedLocalisationSpec",
-      "page": "hoi4.md#scriptedlocalisationspec",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ScriptedLocalisationText",
-      "page": "hoi4.md#scriptedlocalisationtext",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ScriptedMapMode",
-      "page": "domains/scriptedmapmode.md#scriptedmapmode",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ScriptedMapModeSpec",
-      "page": "domains/scriptedmapmode.md#scriptedmapmodespec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ScriptedTrigger",
-      "page": "hoi4.md#scriptedtrigger",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ScriptedTriggerDefinition",
-      "page": "hoi4.md#scriptedtriggerdefinition",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ScrollbarProps",
-      "page": "domains/scrollbarprops.md#scrollbarprops",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "SharedFocus",
-      "page": "domains/sharedfocus.md#sharedfocus",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "SharedFocusSpec",
-      "page": "domains/sharedfocus.md#sharedfocusspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ShipNames",
-      "page": "domains/shipnames.md#shipnames",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "ShipNamesSpec",
-      "page": "domains/shipnames.md#shipnamesspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "SmoothListBoxProps",
-      "page": "domains/smoothlistboxprops.md#smoothlistboxprops",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "SoundAsset",
-      "page": "domains/soundasset.md#soundasset",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "SoundAssetSpec",
-      "page": "domains/soundasset.md#soundassetspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "SoundCategory",
-      "page": "domains/soundcategory.md#soundcategory",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "SoundCategorySpec",
-      "page": "domains/soundcategory.md#soundcategoryspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "SoundEffect",
-      "page": "domains/soundeffect.md#soundeffect",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "SoundEffectSpec",
-      "page": "domains/soundeffect.md#soundeffectspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "SourceFile",
-      "page": "hoi4.md#sourcefile",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "SpawnPoint",
-      "page": "domains/spawnpoint.md#spawnpoint",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "SpawnPointSpec",
-      "page": "domains/spawnpoint.md#spawnpointspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Specialization",
-      "page": "domains/specialization.md#specialization",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "SpecializationSpec",
-      "page": "domains/specialization.md#specializationspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "SpecialProject",
-      "page": "domains/specialproject.md#specialproject",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "SpecialProjectSpec",
-      "page": "domains/specialproject.md#specialprojectspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "state",
-      "page": "hoi4.md#state",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "State",
-      "page": "hoi4.md#state",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "StateBuildings",
-      "page": "hoi4.md#statebuildings",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "StateCategory",
-      "page": "domains/statecategory.md#statecategory",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "StateCategorySpec",
-      "page": "domains/statecategory.md#statecategoryspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "StateEffects",
-      "page": "scopes.md#stateeffects",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "StateEvent",
-      "page": "hoi4.md#stateevent",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "StateHistory",
-      "page": "hoi4.md#statehistory",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "StateHistorySpec",
-      "page": "hoi4.md#statehistoryspec",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "StateRef",
-      "page": "hoi4.md#stateref",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "StateResources",
-      "page": "hoi4.md#stateresources",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "StateScope",
-      "page": "scopes.md#statescope",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "StateScriptedEffect",
-      "page": "hoi4.md#statescriptedeffect",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "StateScriptedTrigger",
-      "page": "hoi4.md#statescriptedtrigger",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "StateTriggers",
-      "page": "scopes.md#statetriggers",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "StaticModifier",
-      "page": "domains/staticmodifier.md#staticmodifier",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "StaticModifierSpec",
-      "page": "domains/staticmodifier.md#staticmodifierspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "StrategicLocation",
-      "page": "domains/strategiclocation.md#strategiclocation",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "StrategicLocationSpec",
-      "page": "domains/strategiclocation.md#strategiclocationspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "StrategicRegion",
-      "page": "domains/strategicregion.md#strategicregion",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "StrategicRegionSpec",
-      "page": "domains/strategicregion.md#strategicregionspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Subdoctrine",
-      "page": "domains/subdoctrine.md#subdoctrine",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "SubdoctrineSpec",
-      "page": "domains/subdoctrine.md#subdoctrinespec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "SupplyArea",
-      "page": "domains/supplyarea.md#supplyarea",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "SupplyAreaSpec",
-      "page": "domains/supplyarea.md#supplyareaspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Technology",
-      "page": "domains/technology.md#technology",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "TechnologySharingGroup",
-      "page": "domains/technologysharinggroup.md#technologysharinggroup",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "TechnologySharingGroupSpec",
-      "page": "domains/technologysharinggroup.md#technologysharinggroupspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "TechnologySpec",
-      "page": "domains/technology.md#technologyspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Terrain",
-      "page": "domains/terrain.md#terrain",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "TerrainSpec",
-      "page": "domains/terrain.md#terrainspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "TextBoxProps",
-      "page": "domains/textboxprops.md#textboxprops",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Trigger",
-      "page": "hoi4.md#trigger",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Unit",
-      "page": "domains/unit.md#unit",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "UnitHistory",
-      "page": "domains/unithistory.md#unithistory",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "UnitHistorySpec",
-      "page": "domains/unithistory.md#unithistoryspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "UnitLeaderScope",
-      "page": "scopes.md#unitleaderscope",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "UnitLeaderTrait",
-      "page": "domains/unitleadertrait.md#unitleadertrait",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "UnitLeaderTraitSpec",
-      "page": "domains/unitleadertrait.md#unitleadertraitspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "UnitMedal",
-      "page": "domains/unitmedal.md#unitmedal",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "UnitMedalSpec",
-      "page": "domains/unitmedal.md#unitmedalspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "UnitScope",
-      "page": "scopes.md#unitscope",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "UnitSpec",
-      "page": "domains/unit.md#unitspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "VariableName",
-      "page": "hoi4.md#variablename",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "Wargoal",
-      "page": "domains/wargoal.md#wargoal",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "WargoalSpec",
-      "page": "domains/wargoal.md#wargoalspec",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "WeightModifier",
-      "page": "hoi4.md#weightmodifier",
-      "source": "src/sdk/index.ts"
-    },
-    {
-      "module": "krieg-lang/hoi4",
-      "name": "WindowProps",
-      "page": "domains/windowprops.md#windowprops",
-      "source": "src/sdk/domains.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "atom",
-      "page": "pdx.md#atom",
-      "source": "src/pdx/ast.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "block",
-      "page": "pdx.md#block",
-      "source": "src/pdx/ast.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "comparePdxSemantic",
-      "page": "pdx.md#comparepdxsemantic",
-      "source": "src/pdx/emitter.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "document",
-      "page": "pdx.md#document",
-      "source": "src/pdx/ast.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "emitPdx",
-      "page": "pdx.md#emitpdx",
-      "source": "src/pdx/emitter.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "EmitPdxOptions",
-      "page": "pdx.md#emitpdxoptions",
-      "source": "src/pdx/emitter.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "entry",
-      "page": "pdx.md#entry",
-      "source": "src/pdx/ast.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "file",
-      "page": "pdx.md#file",
-      "source": "src/pdx/ast.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "lexPdx",
-      "page": "pdx.md#lexpdx",
-      "source": "src/pdx/lexer.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "operators",
-      "page": "pdx.md#operators",
-      "source": "src/pdx/lexer.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "parsePdx",
-      "page": "pdx.md#parsepdx",
-      "source": "src/pdx/parser.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "ParsePdxOptions",
-      "page": "pdx.md#parsepdxoptions",
-      "source": "src/pdx/parser.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "PdxAtom",
-      "page": "pdx.md#pdxatom",
-      "source": "src/pdx/ast.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "PdxBlock",
-      "page": "pdx.md#pdxblock",
-      "source": "src/pdx/ast.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "PdxDiagnostic",
-      "page": "pdx.md#pdxdiagnostic",
-      "source": "src/pdx/ast.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "PdxDocument",
-      "page": "pdx.md#pdxdocument",
-      "source": "src/pdx/ast.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "PdxFile",
-      "page": "pdx.md#pdxfile",
-      "source": "src/pdx/ast.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "PdxItem",
-      "page": "pdx.md#pdxitem",
-      "source": "src/pdx/ast.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "PdxLexResult",
-      "page": "pdx.md#pdxlexresult",
-      "source": "src/pdx/lexer.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "PdxOperator",
-      "page": "pdx.md#pdxoperator",
-      "source": "src/pdx/ast.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "PdxParseResult",
-      "page": "pdx.md#pdxparseresult",
-      "source": "src/pdx/ast.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "PdxProperty",
-      "page": "pdx.md#pdxproperty",
-      "source": "src/pdx/ast.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "PdxTagged",
-      "page": "pdx.md#pdxtagged",
-      "source": "src/pdx/ast.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "PdxToken",
-      "page": "pdx.md#pdxtoken",
-      "source": "src/pdx/lexer.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "PdxValue",
-      "page": "pdx.md#pdxvalue",
-      "source": "src/pdx/ast.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "property",
-      "page": "pdx.md#property",
-      "source": "src/pdx/ast.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "quoted",
-      "page": "pdx.md#quoted",
-      "source": "src/pdx/ast.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "semanticPdx",
-      "page": "pdx.md#semanticpdx",
-      "source": "src/pdx/emitter.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "SourceSpan",
-      "page": "pdx.md#sourcespan",
-      "source": "src/pdx/ast.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "string",
-      "page": "pdx.md#string",
-      "source": "src/pdx/ast.ts"
-    },
-    {
-      "module": "krieg-lang/pdx",
-      "name": "tagged",
-      "page": "pdx.md#tagged",
-      "source": "src/pdx/ast.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "Browser",
-      "page": "ui.md#browser",
-      "source": "src/ui/native.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "Button",
-      "page": "ui.md#button",
-      "source": "src/ui/index.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "ButtonProps",
-      "page": "ui.md#buttonprops",
-      "source": "src/ui/index.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "Checkbox",
-      "page": "ui.md#checkbox",
-      "source": "src/ui/native.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "Container",
-      "page": "ui.md#container",
-      "source": "src/ui/index.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "ContainerProps",
-      "page": "ui.md#containerprops",
-      "source": "src/ui/index.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "DropDownBox",
-      "page": "ui.md#dropdownbox",
-      "source": "src/ui/native.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "EditBox",
-      "page": "ui.md#editbox",
-      "source": "src/ui/native.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "ElementProps",
-      "page": "ui.md#elementprops",
-      "source": "src/ui/index.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "ExtendedScrollbar",
-      "page": "ui.md#extendedscrollbar",
-      "source": "src/ui/native.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "GridBox",
-      "page": "ui.md#gridbox",
-      "source": "src/ui/index.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "GridBoxProps",
-      "page": "ui.md#gridboxprops",
-      "source": "src/ui/index.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "GuiButton",
-      "page": "ui.md#guibutton",
-      "source": "src/ui/native.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "GuiChild",
-      "page": "ui.md#guichild",
-      "source": "src/ui/index.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "GuiCoordinate",
-      "page": "ui.md#guicoordinate",
-      "source": "src/ui/index.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "GuiElement",
-      "page": "ui.md#guielement",
-      "source": "src/ui/index.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "GuiFile",
-      "page": "ui.md#guifile",
-      "source": "src/ui/index.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "GuiOrientation",
-      "page": "ui.md#guiorientation",
-      "source": "src/ui/index.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "GuiOrigin",
-      "page": "ui.md#guiorigin",
-      "source": "src/ui/index.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "GuiPosition",
-      "page": "ui.md#guiposition",
-      "source": "src/ui/index.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "GuiSize",
-      "page": "ui.md#guisize",
-      "source": "src/ui/index.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "Icon",
-      "page": "ui.md#icon",
-      "source": "src/ui/index.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "IconProps",
-      "page": "ui.md#iconprops",
-      "source": "src/ui/index.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "JSX",
-      "page": "ui.md#jsx",
-      "source": "src/ui/index.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "ListBox",
-      "page": "ui.md#listbox",
-      "source": "src/ui/index.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "ListBoxProps",
-      "page": "ui.md#listboxprops",
-      "source": "src/ui/index.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "NativeButton",
-      "page": "ui.md#nativebutton",
-      "source": "src/ui/native.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "NativeContainer",
-      "page": "ui.md#nativecontainer",
-      "source": "src/ui/native.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "NativeGridBox",
-      "page": "ui.md#nativegridbox",
-      "source": "src/ui/native.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "NativeIcon",
-      "page": "ui.md#nativeicon",
-      "source": "src/ui/native.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "NativeIntrinsicElements",
-      "page": "ui.md#nativeintrinsicelements",
-      "source": "src/ui/native.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "NativeListBox",
-      "page": "ui.md#nativelistbox",
-      "source": "src/ui/native.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "NativeText",
-      "page": "ui.md#nativetext",
-      "source": "src/ui/native.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "OverlappingElementsBox",
-      "page": "ui.md#overlappingelementsbox",
-      "source": "src/ui/native.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "Position",
-      "page": "ui.md#position",
-      "source": "src/ui/native.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "Scrollbar",
-      "page": "ui.md#scrollbar",
-      "source": "src/ui/native.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "SmoothListBox",
-      "page": "ui.md#smoothlistbox",
-      "source": "src/ui/native.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "Sprite",
-      "page": "ui.md#sprite",
-      "source": "src/ui/index.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "SpriteFile",
-      "page": "ui.md#spritefile",
-      "source": "src/ui/index.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "SpriteSpec",
-      "page": "ui.md#spritespec",
-      "source": "src/ui/index.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "Text",
-      "page": "ui.md#text",
-      "source": "src/ui/index.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "TextBox",
-      "page": "ui.md#textbox",
-      "source": "src/ui/native.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "TextProps",
-      "page": "ui.md#textprops",
-      "source": "src/ui/index.ts"
-    },
-    {
-      "module": "krieg-lang/ui",
-      "name": "Window",
-      "page": "ui.md#window",
-      "source": "src/ui/native.ts"
-    },
-    {
-      "module": "krieg-lang/ui/jsx-runtime",
-      "name": "JSX",
-      "page": "ui-jsx-runtime.md#jsx",
-      "source": "src/ui/index.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "applyReplacePaths",
-      "page": "project.md#applyreplacepaths",
-      "source": "src/project/world.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "AssetRule",
-      "page": "project.md#assetrule",
-      "source": "src/project/types.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "buildProject",
-      "page": "project.md#buildproject",
-      "source": "src/project/build.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "BuildResult",
-      "page": "project.md#buildresult",
-      "source": "src/project/types.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "createWorld",
-      "page": "project.md#createworld",
-      "source": "src/project/world.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "DependencyGraph",
-      "page": "project.md#dependencygraph",
-      "source": "src/project/dependencies.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "descriptor",
-      "page": "project.md#descriptor",
-      "source": "src/project/build.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "GameRoot",
-      "page": "project.md#gameroot",
-      "source": "src/project/types.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "importProject",
-      "page": "project.md#importproject",
-      "source": "src/project/import.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "ImportProjectResult",
-      "page": "project.md#importprojectresult",
-      "source": "src/project/import.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "initProject",
-      "page": "project.md#initproject",
-      "source": "src/project/init.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "KriegConfig",
-      "page": "project.md#kriegconfig",
-      "source": "src/project/types.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "loadConfig",
-      "page": "project.md#loadconfig",
-      "source": "src/project/config.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "LocalisationRule",
-      "page": "project.md#localisationrule",
-      "source": "src/project/types.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "ModMetadata",
-      "page": "project.md#modmetadata",
-      "source": "src/project/types.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "OutputFile",
-      "page": "project.md#outputfile",
-      "source": "src/project/types.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "packProject",
-      "page": "project.md#packproject",
-      "source": "src/project/pack.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "parseNativeLocalisation",
-      "page": "project.md#parsenativelocalisation",
-      "source": "src/project/localisation.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "ProjectDiagnostic",
-      "page": "project.md#projectdiagnostic",
-      "source": "src/project/types.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "ProjectLayer",
-      "page": "project.md#projectlayer",
-      "source": "src/project/types.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "ProjectOptions",
-      "page": "project.md#projectoptions",
-      "source": "src/project/types.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "ProjectWorld",
-      "page": "project.md#projectworld",
-      "source": "src/project/world.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "resolveDependencies",
-      "page": "project.md#resolvedependencies",
-      "source": "src/project/dependencies.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "validateCountries",
-      "page": "project.md#validatecountries",
-      "source": "src/project/countries.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "validateLocalisation",
-      "page": "project.md#validatelocalisation",
-      "source": "src/project/localisation.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "validateMap",
-      "page": "project.md#validatemap",
-      "source": "src/project/map.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "WorldFile",
-      "page": "project.md#worldfile",
-      "source": "src/project/world.ts"
-    },
-    {
-      "module": "krieg-lang/project",
-      "name": "writeEditorProject",
-      "page": "project.md#writeeditorproject",
-      "source": "src/project/editor.ts"
     },
     {
       "module": "krieg-lang/eslint",
       "name": "configs",
-      "page": "eslint.md#configs",
+      "page": "reference/eslint/variables/configs.md",
       "source": "src/eslint/index.ts"
     },
     {
       "module": "krieg-lang/eslint",
       "name": "default",
-      "page": "eslint.md#default",
+      "page": "reference/eslint/variables/default.md",
       "source": "src/eslint/index.ts"
     },
     {
       "module": "krieg-lang/eslint",
       "name": "rules",
-      "page": "eslint.md#rules",
+      "page": "reference/eslint/variables/rules.md",
       "source": "src/eslint/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Ability",
+      "page": "reference/hoi4/functions/Ability.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AbilitySpec",
+      "page": "reference/hoi4/interfaces/AbilitySpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Ace",
+      "page": "reference/hoi4/functions/Ace.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AceSpec",
+      "page": "reference/hoi4/interfaces/AceSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Achievement",
+      "page": "reference/hoi4/functions/Achievement.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AchievementSpec",
+      "page": "reference/hoi4/interfaces/AchievementSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AdjacencyRule",
+      "page": "reference/hoi4/functions/AdjacencyRule.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AdjacencyRuleSpec",
+      "page": "reference/hoi4/interfaces/AdjacencyRuleSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AiArea",
+      "page": "reference/hoi4/functions/AiArea.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AiAreaSpec",
+      "page": "reference/hoi4/interfaces/AiAreaSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AiEquipmentDesignGroup",
+      "page": "reference/hoi4/functions/AiEquipmentDesignGroup.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AiEquipmentDesignGroupSpec",
+      "page": "reference/hoi4/interfaces/AiEquipmentDesignGroupSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AiFactionTheater",
+      "page": "reference/hoi4/functions/AiFactionTheater.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AiFactionTheaterSpec",
+      "page": "reference/hoi4/interfaces/AiFactionTheaterSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AiFocus",
+      "page": "reference/hoi4/functions/AiFocus.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AiFocusSpec",
+      "page": "reference/hoi4/interfaces/AiFocusSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AiPeace",
+      "page": "reference/hoi4/functions/AiPeace.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AiPeaceSpec",
+      "page": "reference/hoi4/interfaces/AiPeaceSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AiStrategy",
+      "page": "reference/hoi4/functions/AiStrategy.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AiStrategyPlan",
+      "page": "reference/hoi4/functions/AiStrategyPlan.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AiStrategyPlanSpec",
+      "page": "reference/hoi4/interfaces/AiStrategyPlanSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AiStrategySpec",
+      "page": "reference/hoi4/interfaces/AiStrategySpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AiTemplate",
+      "page": "reference/hoi4/functions/AiTemplate.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AiTemplateSpec",
+      "page": "reference/hoi4/interfaces/AiTemplateSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AnyScope",
+      "page": "reference/hoi4/interfaces/AnyScope.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AssetId",
+      "page": "reference/hoi4/type-aliases/AssetId.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AutonomyState",
+      "page": "reference/hoi4/functions/AutonomyState.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AutonomyStateSpec",
+      "page": "reference/hoi4/interfaces/AutonomyStateSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "BalanceOfPower",
+      "page": "reference/hoi4/functions/BalanceOfPower.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "BalanceOfPowerSpec",
+      "page": "reference/hoi4/interfaces/BalanceOfPowerSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "BitmapFont",
+      "page": "reference/hoi4/functions/BitmapFont.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "BitmapFontSpec",
+      "page": "reference/hoi4/interfaces/BitmapFontSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Bookmark",
+      "page": "reference/hoi4/functions/Bookmark.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "BookmarkSpec",
+      "page": "reference/hoi4/interfaces/BookmarkSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "BrowserProps",
+      "page": "reference/hoi4/interfaces/BrowserProps.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Building",
+      "page": "reference/hoi4/functions/Building.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "BuildingSpec",
+      "page": "reference/hoi4/interfaces/BuildingSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Character",
+      "page": "reference/hoi4/functions/Character.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CharacterScope",
+      "page": "reference/hoi4/interfaces/CharacterScope.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CharacterSpec",
+      "page": "reference/hoi4/interfaces/CharacterSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CheckboxProps",
+      "page": "reference/hoi4/interfaces/CheckboxProps.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Collection",
+      "page": "reference/hoi4/functions/Collection.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CollectionSpec",
+      "page": "reference/hoi4/interfaces/CollectionSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CombatScope",
+      "page": "reference/hoi4/type-aliases/CombatScope.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CombatTactic",
+      "page": "reference/hoi4/functions/CombatTactic.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CombatTacticSpec",
+      "page": "reference/hoi4/interfaces/CombatTacticSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ContinuousFocusPalette",
+      "page": "reference/hoi4/functions/ContinuousFocusPalette.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ContinuousFocusPaletteSpec",
+      "page": "reference/hoi4/interfaces/ContinuousFocusPaletteSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "country",
+      "page": "reference/hoi4/functions/country.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Country",
+      "page": "reference/hoi4/type-aliases/Country.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CountryDefinition",
+      "page": "reference/hoi4/functions/CountryDefinition.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CountryDefinitionSpec",
+      "page": "reference/hoi4/interfaces/CountryDefinitionSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CountryEffects",
+      "page": "reference/hoi4/interfaces/CountryEffects.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CountryEvent",
+      "page": "reference/hoi4/functions/CountryEvent.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CountryHistory",
+      "page": "reference/hoi4/functions/CountryHistory.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CountryHistorySpec",
+      "page": "reference/hoi4/interfaces/CountryHistorySpec.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CountryLeaderTrait",
+      "page": "reference/hoi4/functions/CountryLeaderTrait.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CountryLeaderTraitSpec",
+      "page": "reference/hoi4/interfaces/CountryLeaderTraitSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CountryRef",
+      "page": "reference/hoi4/interfaces/CountryRef.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CountryScope",
+      "page": "reference/hoi4/interfaces/CountryScope.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CountryScorer",
+      "page": "reference/hoi4/functions/CountryScorer.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CountryScorerSpec",
+      "page": "reference/hoi4/interfaces/CountryScorerSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CountryTagAlias",
+      "page": "reference/hoi4/functions/CountryTagAlias.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CountryTagAliasSpec",
+      "page": "reference/hoi4/interfaces/CountryTagAliasSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CountryTriggers",
+      "page": "reference/hoi4/interfaces/CountryTriggers.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CriticalPart",
+      "page": "reference/hoi4/functions/CriticalPart.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CriticalPartSpec",
+      "page": "reference/hoi4/interfaces/CriticalPartSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "cwt",
+      "page": "reference/hoi4/functions/cwt.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CwtNode",
+      "page": "reference/hoi4/interfaces/CwtNode.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CwtOpaque",
+      "page": "reference/hoi4/interfaces/CwtOpaque.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CwtValue",
+      "page": "reference/hoi4/type-aliases/CwtValue.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "DataFile",
+      "page": "reference/hoi4/functions/DataFile.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "DataRecord",
+      "page": "reference/hoi4/interfaces/DataRecord.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "DataValue",
+      "page": "reference/hoi4/type-aliases/DataValue.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Decision",
+      "page": "reference/hoi4/functions/Decision.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "DecisionCategory",
+      "page": "reference/hoi4/functions/DecisionCategory.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "DecisionCategorySpec",
+      "page": "reference/hoi4/interfaces/DecisionCategorySpec.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "DecisionSpec",
+      "page": "reference/hoi4/interfaces/DecisionSpec.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "DefineFile",
+      "page": "reference/hoi4/functions/DefineFile.md",
+      "source": "src/sdk/defines.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "DefineOverrides",
+      "page": "reference/hoi4/interfaces/DefineOverrides.md",
+      "source": "src/sdk/defines.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Defines",
+      "page": "reference/hoi4/functions/Defines.md",
+      "source": "src/sdk/defines.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Definition",
+      "page": "reference/hoi4/interfaces/Definition.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "DifficultySetting",
+      "page": "reference/hoi4/functions/DifficultySetting.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "DifficultySettingSpec",
+      "page": "reference/hoi4/interfaces/DifficultySettingSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "DivisionNames",
+      "page": "reference/hoi4/functions/DivisionNames.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "DivisionNamesSpec",
+      "page": "reference/hoi4/interfaces/DivisionNamesSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "DoctrineFolder",
+      "page": "reference/hoi4/functions/DoctrineFolder.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "DoctrineFolderSpec",
+      "page": "reference/hoi4/interfaces/DoctrineFolderSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "DoctrineTrack",
+      "page": "reference/hoi4/functions/DoctrineTrack.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "DoctrineTrackSpec",
+      "page": "reference/hoi4/interfaces/DoctrineTrackSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "DropDownBoxProps",
+      "page": "reference/hoi4/interfaces/DropDownBoxProps.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "DynamicModifier",
+      "page": "reference/hoi4/functions/DynamicModifier.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "DynamicModifierSpec",
+      "page": "reference/hoi4/interfaces/DynamicModifierSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "EditBoxProps",
+      "page": "reference/hoi4/interfaces/EditBoxProps.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Effect",
+      "page": "reference/hoi4/type-aliases/Effect.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Entity",
+      "page": "reference/hoi4/functions/Entity.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "EntitySpec",
+      "page": "reference/hoi4/interfaces/EntitySpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Equipment",
+      "page": "reference/hoi4/functions/Equipment.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "EquipmentGroup",
+      "page": "reference/hoi4/functions/EquipmentGroup.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "EquipmentGroupSpec",
+      "page": "reference/hoi4/interfaces/EquipmentGroupSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "EquipmentModule",
+      "page": "reference/hoi4/functions/EquipmentModule.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "EquipmentModuleSpec",
+      "page": "reference/hoi4/interfaces/EquipmentModuleSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "EquipmentSpec",
+      "page": "reference/hoi4/interfaces/EquipmentSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "EquipmentUpgrade",
+      "page": "reference/hoi4/functions/EquipmentUpgrade.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "EquipmentUpgradeSpec",
+      "page": "reference/hoi4/interfaces/EquipmentUpgradeSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "EventDefinition",
+      "page": "reference/hoi4/interfaces/EventDefinition.md",
+      "source": "src/sdk/gameplay.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "EventDelay",
+      "page": "reference/hoi4/interfaces/EventDelay.md",
+      "source": "src/sdk/gameplay.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "EventId",
+      "page": "reference/hoi4/type-aliases/EventId.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "EventIdentifier",
+      "page": "reference/hoi4/type-aliases/EventIdentifier.md",
+      "source": "src/sdk/gameplay.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "EventOption",
+      "page": "reference/hoi4/interfaces/EventOption.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "EventSpec",
+      "page": "reference/hoi4/interfaces/EventSpec.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ExtendedScrollbarProps",
+      "page": "reference/hoi4/interfaces/ExtendedScrollbarProps.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "FactionGoal",
+      "page": "reference/hoi4/functions/FactionGoal.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "FactionGoalSpec",
+      "page": "reference/hoi4/interfaces/FactionGoalSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "FactionMemberUpgrade",
+      "page": "reference/hoi4/functions/FactionMemberUpgrade.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "FactionMemberUpgradeSpec",
+      "page": "reference/hoi4/interfaces/FactionMemberUpgradeSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "FactionRule",
+      "page": "reference/hoi4/functions/FactionRule.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "FactionRuleGroup",
+      "page": "reference/hoi4/functions/FactionRuleGroup.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "FactionRuleGroupSpec",
+      "page": "reference/hoi4/interfaces/FactionRuleGroupSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "FactionRuleSpec",
+      "page": "reference/hoi4/interfaces/FactionRuleSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "FactionTemplate",
+      "page": "reference/hoi4/functions/FactionTemplate.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "FactionTemplateSpec",
+      "page": "reference/hoi4/interfaces/FactionTemplateSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "FactionUpgrade",
+      "page": "reference/hoi4/functions/FactionUpgrade.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "FactionUpgradeSpec",
+      "page": "reference/hoi4/interfaces/FactionUpgradeSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "FlagId",
+      "page": "reference/hoi4/type-aliases/FlagId.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Focus",
+      "page": "reference/hoi4/functions/Focus.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "FocusGraph",
+      "page": "reference/hoi4/functions/FocusGraph.md",
+      "source": "src/sdk/gameplay.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "FocusGraphDefinition",
+      "page": "reference/hoi4/interfaces/FocusGraphDefinition.md",
+      "source": "src/sdk/gameplay.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "FocusGraphSpec",
+      "page": "reference/hoi4/interfaces/FocusGraphSpec.md",
+      "source": "src/sdk/gameplay.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "FocusId",
+      "page": "reference/hoi4/type-aliases/FocusId.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "FocusJoin",
+      "page": "reference/hoi4/type-aliases/FocusJoin.md",
+      "source": "src/sdk/gameplay.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "FocusNodeSpec",
+      "page": "reference/hoi4/interfaces/FocusNodeSpec.md",
+      "source": "src/sdk/gameplay.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "FocusReference",
+      "page": "reference/hoi4/interfaces/FocusReference.md",
+      "source": "src/sdk/gameplay.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "FocusSequence",
+      "page": "reference/hoi4/type-aliases/FocusSequence.md",
+      "source": "src/sdk/gameplay.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "FocusSpec",
+      "page": "reference/hoi4/interfaces/FocusSpec.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "FocusStyle",
+      "page": "reference/hoi4/functions/FocusStyle.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "FocusStyleSpec",
+      "page": "reference/hoi4/interfaces/FocusStyleSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "FocusTree",
+      "page": "reference/hoi4/functions/FocusTree.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "FocusTreeSpec",
+      "page": "reference/hoi4/interfaces/FocusTreeSpec.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "GameRule",
+      "page": "reference/hoi4/functions/GameRule.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "GameRuleSpec",
+      "page": "reference/hoi4/interfaces/GameRuleSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "GrandDoctrine",
+      "page": "reference/hoi4/functions/GrandDoctrine.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "GrandDoctrineSpec",
+      "page": "reference/hoi4/interfaces/GrandDoctrineSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "GraphicalTerrain",
+      "page": "reference/hoi4/functions/GraphicalTerrain.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "GraphicalTerrainSpec",
+      "page": "reference/hoi4/interfaces/GraphicalTerrainSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "GraphicDatabase",
+      "page": "reference/hoi4/functions/GraphicDatabase.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "GraphicDatabaseSpec",
+      "page": "reference/hoi4/interfaces/GraphicDatabaseSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "GuiAiTestScope",
+      "page": "reference/hoi4/type-aliases/GuiAiTestScope.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "GuiAiWeight",
+      "page": "reference/hoi4/interfaces/GuiAiWeight.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "GuiButtonProps",
+      "page": "reference/hoi4/interfaces/GuiButtonProps.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "GuiClickName",
+      "page": "reference/hoi4/type-aliases/GuiClickName.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "GuiDynamicList",
+      "page": "reference/hoi4/type-aliases/GuiDynamicList.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "GuiParentWindowToken",
+      "page": "reference/hoi4/type-aliases/GuiParentWindowToken.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "GuiTriggerName",
+      "page": "reference/hoi4/type-aliases/GuiTriggerName.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "GuiWeight",
+      "page": "reference/hoi4/interfaces/GuiWeight.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Idea",
+      "page": "reference/hoi4/functions/Idea.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "IdeaCategory",
+      "page": "reference/hoi4/functions/IdeaCategory.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "IdeaCategorySpec",
+      "page": "reference/hoi4/interfaces/IdeaCategorySpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "IdeaId",
+      "page": "reference/hoi4/type-aliases/IdeaId.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "IdeaModifiers",
+      "page": "reference/hoi4/interfaces/IdeaModifiers.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "IdeaSpec",
+      "page": "reference/hoi4/interfaces/IdeaSpec.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "IdentifiedDefinition",
+      "page": "reference/hoi4/interfaces/IdentifiedDefinition.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Ideology",
+      "page": "reference/hoi4/functions/Ideology.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "IdeologySpec",
+      "page": "reference/hoi4/interfaces/IdeologySpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "IntelligenceAgency",
+      "page": "reference/hoi4/functions/IntelligenceAgency.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "IntelligenceAgencySpec",
+      "page": "reference/hoi4/interfaces/IntelligenceAgencySpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "IntelligenceAgencyUpgrade",
+      "page": "reference/hoi4/functions/IntelligenceAgencyUpgrade.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "IntelligenceAgencyUpgradeSpec",
+      "page": "reference/hoi4/interfaces/IntelligenceAgencyUpgradeSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "JointFocus",
+      "page": "reference/hoi4/functions/JointFocus.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "JointFocusSpec",
+      "page": "reference/hoi4/interfaces/JointFocusSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Light",
+      "page": "reference/hoi4/functions/Light.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "LightSpec",
+      "page": "reference/hoi4/interfaces/LightSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "loc",
+      "page": "reference/hoi4/functions/loc.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "LocalisationKey",
+      "page": "reference/hoi4/type-aliases/LocalisationKey.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "MeanTimeToHappen",
+      "page": "reference/hoi4/functions/MeanTimeToHappen.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "MeanTimeToHappenSpec",
+      "page": "reference/hoi4/interfaces/MeanTimeToHappenSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Mesh",
+      "page": "reference/hoi4/functions/Mesh.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "MeshSpec",
+      "page": "reference/hoi4/interfaces/MeshSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "MetaEffect",
+      "page": "reference/hoi4/functions/MetaEffect.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "MetaEffectSpec",
+      "page": "reference/hoi4/interfaces/MetaEffectSpec.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "MetaParameterNames",
+      "page": "reference/hoi4/type-aliases/MetaParameterNames.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "MetaParameterValue",
+      "page": "reference/hoi4/type-aliases/MetaParameterValue.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "MilitaryIndustrialOrganization",
+      "page": "reference/hoi4/functions/MilitaryIndustrialOrganization.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "MilitaryIndustrialOrganizationScope",
+      "page": "reference/hoi4/type-aliases/MilitaryIndustrialOrganizationScope.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "MilitaryIndustrialOrganizationSpec",
+      "page": "reference/hoi4/interfaces/MilitaryIndustrialOrganizationSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "MioPolicy",
+      "page": "reference/hoi4/functions/MioPolicy.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "MioPolicySpec",
+      "page": "reference/hoi4/interfaces/MioPolicySpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ModelAnimation",
+      "page": "reference/hoi4/functions/ModelAnimation.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ModelAnimationSpec",
+      "page": "reference/hoi4/interfaces/ModelAnimationSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ModifierDefinition",
+      "page": "reference/hoi4/functions/ModifierDefinition.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ModifierDefinitionSpec",
+      "page": "reference/hoi4/interfaces/ModifierDefinitionSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "MusicAsset",
+      "page": "reference/hoi4/functions/MusicAsset.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "MusicAssetSpec",
+      "page": "reference/hoi4/interfaces/MusicAssetSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "MusicPlaylistEntry",
+      "page": "reference/hoi4/functions/MusicPlaylistEntry.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "MusicPlaylistEntrySpec",
+      "page": "reference/hoi4/interfaces/MusicPlaylistEntrySpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "NativeButtonProps",
+      "page": "reference/hoi4/interfaces/NativeButtonProps.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "NativeContainerProps",
+      "page": "reference/hoi4/interfaces/NativeContainerProps.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "NativeCountryEvent",
+      "page": "reference/hoi4/functions/NativeCountryEvent.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "NativeCountryEventSpec",
+      "page": "reference/hoi4/interfaces/NativeCountryEventSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "NativeDecision",
+      "page": "reference/hoi4/functions/NativeDecision.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "NativeDecisionCategory",
+      "page": "reference/hoi4/functions/NativeDecisionCategory.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "NativeDecisionCategorySpec",
+      "page": "reference/hoi4/interfaces/NativeDecisionCategorySpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "NativeDecisionSpec",
+      "page": "reference/hoi4/interfaces/NativeDecisionSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "NativeFocusTree",
+      "page": "reference/hoi4/functions/NativeFocusTree.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "NativeFocusTreeSpec",
+      "page": "reference/hoi4/interfaces/NativeFocusTreeSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "NativeGridBoxProps",
+      "page": "reference/hoi4/interfaces/NativeGridBoxProps.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "NativeIconProps",
+      "page": "reference/hoi4/interfaces/NativeIconProps.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "NativeIdeas",
+      "page": "reference/hoi4/functions/NativeIdeas.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "NativeIdeasSpec",
+      "page": "reference/hoi4/interfaces/NativeIdeasSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "NativeListBoxProps",
+      "page": "reference/hoi4/interfaces/NativeListBoxProps.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "NativeNewsEvent",
+      "page": "reference/hoi4/functions/NativeNewsEvent.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "NativeNewsEventSpec",
+      "page": "reference/hoi4/interfaces/NativeNewsEventSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "NativeOperativeEvent",
+      "page": "reference/hoi4/functions/NativeOperativeEvent.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "NativeOperativeEventSpec",
+      "page": "reference/hoi4/interfaces/NativeOperativeEventSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "NativeStateEvent",
+      "page": "reference/hoi4/functions/NativeStateEvent.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "NativeStateEventSpec",
+      "page": "reference/hoi4/interfaces/NativeStateEventSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "NativeTextProps",
+      "page": "reference/hoi4/interfaces/NativeTextProps.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "NativeUnitLeaderEvent",
+      "page": "reference/hoi4/functions/NativeUnitLeaderEvent.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "NativeUnitLeaderEventSpec",
+      "page": "reference/hoi4/interfaces/NativeUnitLeaderEventSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "NewsEvent",
+      "page": "reference/hoi4/functions/NewsEvent.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "OccupationLaw",
+      "page": "reference/hoi4/functions/OccupationLaw.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "OccupationLawSpec",
+      "page": "reference/hoi4/interfaces/OccupationLawSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "OnAction",
+      "page": "reference/hoi4/functions/OnAction.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "OnActionSpec",
+      "page": "reference/hoi4/type-aliases/OnActionSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Operation",
+      "page": "reference/hoi4/functions/Operation.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "OperationPhase",
+      "page": "reference/hoi4/functions/OperationPhase.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "OperationPhaseSpec",
+      "page": "reference/hoi4/interfaces/OperationPhaseSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "OperationScope",
+      "page": "reference/hoi4/type-aliases/OperationScope.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "OperationSpec",
+      "page": "reference/hoi4/interfaces/OperationSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "OperationToken",
+      "page": "reference/hoi4/functions/OperationToken.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "OperationTokenSpec",
+      "page": "reference/hoi4/interfaces/OperationTokenSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "OperativeScope",
+      "page": "reference/hoi4/type-aliases/OperativeScope.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "OpinionModifier",
+      "page": "reference/hoi4/functions/OpinionModifier.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "OpinionModifierSpec",
+      "page": "reference/hoi4/interfaces/OpinionModifierSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Option",
+      "page": "reference/hoi4/functions/Option.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "OverlappingElementsBoxProps",
+      "page": "reference/hoi4/interfaces/OverlappingElementsBoxProps.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Particle",
+      "page": "reference/hoi4/functions/Particle.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ParticleSpec",
+      "page": "reference/hoi4/interfaces/ParticleSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "PdxParticle",
+      "page": "reference/hoi4/functions/PdxParticle.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "PdxParticleSpec",
+      "page": "reference/hoi4/interfaces/PdxParticleSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "PeaceActionCategory",
+      "page": "reference/hoi4/functions/PeaceActionCategory.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "PeaceActionCategorySpec",
+      "page": "reference/hoi4/interfaces/PeaceActionCategorySpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "PeaceActionModifier",
+      "page": "reference/hoi4/functions/PeaceActionModifier.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "PeaceActionModifierSpec",
+      "page": "reference/hoi4/interfaces/PeaceActionModifierSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "PeaceAiDesire",
+      "page": "reference/hoi4/functions/PeaceAiDesire.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "PeaceAiDesireSpec",
+      "page": "reference/hoi4/interfaces/PeaceAiDesireSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Portrait",
+      "page": "reference/hoi4/functions/Portrait.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "PortraitSpec",
+      "page": "reference/hoi4/interfaces/PortraitSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "PositionProps",
+      "page": "reference/hoi4/interfaces/PositionProps.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ProjectScope",
+      "page": "reference/hoi4/type-aliases/ProjectScope.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "PrototypeReward",
+      "page": "reference/hoi4/functions/PrototypeReward.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "PrototypeRewardSpec",
+      "page": "reference/hoi4/interfaces/PrototypeRewardSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ProvinceBuildings",
+      "page": "reference/hoi4/interfaces/ProvinceBuildings.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "PurchaseContractScope",
+      "page": "reference/hoi4/type-aliases/PurchaseContractScope.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Raid",
+      "page": "reference/hoi4/functions/Raid.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "RaidCategory",
+      "page": "reference/hoi4/functions/RaidCategory.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "RaidCategorySpec",
+      "page": "reference/hoi4/interfaces/RaidCategorySpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "RaidScope",
+      "page": "reference/hoi4/type-aliases/RaidScope.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "RaidSpec",
+      "page": "reference/hoi4/interfaces/RaidSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ResistanceComplianceModifier",
+      "page": "reference/hoi4/functions/ResistanceComplianceModifier.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ResistanceComplianceModifierSpec",
+      "page": "reference/hoi4/interfaces/ResistanceComplianceModifierSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Resource",
+      "page": "reference/hoi4/functions/Resource.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ResourceSpec",
+      "page": "reference/hoi4/interfaces/ResourceSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScientistTrait",
+      "page": "reference/hoi4/functions/ScientistTrait.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScientistTraitSpec",
+      "page": "reference/hoi4/interfaces/ScientistTraitSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Scope",
+      "page": "reference/hoi4/interfaces/Scope.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScopeBase",
+      "page": "reference/hoi4/interfaces/ScopeBase.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScopeByName",
+      "page": "reference/hoi4/interfaces/ScopeByName.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScopedGuiDynamicList",
+      "page": "reference/hoi4/type-aliases/ScopedGuiDynamicList.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScopeName",
+      "page": "reference/hoi4/type-aliases/ScopeName.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScriptedEffect",
+      "page": "reference/hoi4/functions/ScriptedEffect.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScriptedEffectDefinition",
+      "page": "reference/hoi4/interfaces/ScriptedEffectDefinition.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScriptedEffectFamily",
+      "page": "reference/hoi4/functions/ScriptedEffectFamily.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScriptedEffectFamilyDefinition",
+      "page": "reference/hoi4/type-aliases/ScriptedEffectFamilyDefinition.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScriptedGui",
+      "page": "reference/hoi4/functions/ScriptedGui.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScriptedGuiContext",
+      "page": "reference/hoi4/type-aliases/ScriptedGuiContext.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScriptedGuiProperties",
+      "page": "reference/hoi4/interfaces/ScriptedGuiProperties.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScriptedGuiScope",
+      "page": "reference/hoi4/type-aliases/ScriptedGuiScope.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScriptedGuiSpec",
+      "page": "reference/hoi4/interfaces/ScriptedGuiSpec.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScriptedLocalisation",
+      "page": "reference/hoi4/functions/ScriptedLocalisation.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScriptedLocalisationDefinition",
+      "page": "reference/hoi4/interfaces/ScriptedLocalisationDefinition.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScriptedLocalisationSpec",
+      "page": "reference/hoi4/interfaces/ScriptedLocalisationSpec.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScriptedLocalisationText",
+      "page": "reference/hoi4/type-aliases/ScriptedLocalisationText.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScriptedMapMode",
+      "page": "reference/hoi4/functions/ScriptedMapMode.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScriptedMapModeSpec",
+      "page": "reference/hoi4/interfaces/ScriptedMapModeSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScriptedTrigger",
+      "page": "reference/hoi4/functions/ScriptedTrigger.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScriptedTriggerDefinition",
+      "page": "reference/hoi4/interfaces/ScriptedTriggerDefinition.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScriptedTriggerFamily",
+      "page": "reference/hoi4/functions/ScriptedTriggerFamily.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScriptedTriggerFamilyDefinition",
+      "page": "reference/hoi4/type-aliases/ScriptedTriggerFamilyDefinition.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScriptedVariants",
+      "page": "reference/hoi4/type-aliases/ScriptedVariants.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScriptedVariantValue",
+      "page": "reference/hoi4/type-aliases/ScriptedVariantValue.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScrollbarProps",
+      "page": "reference/hoi4/interfaces/ScrollbarProps.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "SharedFocus",
+      "page": "reference/hoi4/functions/SharedFocus.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "SharedFocusSpec",
+      "page": "reference/hoi4/interfaces/SharedFocusSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ShipNames",
+      "page": "reference/hoi4/functions/ShipNames.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ShipNamesSpec",
+      "page": "reference/hoi4/interfaces/ShipNamesSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "SmoothListBoxProps",
+      "page": "reference/hoi4/interfaces/SmoothListBoxProps.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "SoundAsset",
+      "page": "reference/hoi4/functions/SoundAsset.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "SoundAssetSpec",
+      "page": "reference/hoi4/interfaces/SoundAssetSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "SoundCategory",
+      "page": "reference/hoi4/functions/SoundCategory.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "SoundCategorySpec",
+      "page": "reference/hoi4/interfaces/SoundCategorySpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "SoundEffect",
+      "page": "reference/hoi4/functions/SoundEffect.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "SoundEffectSpec",
+      "page": "reference/hoi4/interfaces/SoundEffectSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "SourceFile",
+      "page": "reference/hoi4/functions/SourceFile.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "SpawnPoint",
+      "page": "reference/hoi4/functions/SpawnPoint.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "SpawnPointSpec",
+      "page": "reference/hoi4/interfaces/SpawnPointSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Specialization",
+      "page": "reference/hoi4/functions/Specialization.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "SpecializationSpec",
+      "page": "reference/hoi4/interfaces/SpecializationSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "SpecialProject",
+      "page": "reference/hoi4/functions/SpecialProject.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "SpecialProjectSpec",
+      "page": "reference/hoi4/interfaces/SpecialProjectSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "state",
+      "page": "reference/hoi4/functions/state.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "State",
+      "page": "reference/hoi4/type-aliases/State.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "StateBuildings",
+      "page": "reference/hoi4/interfaces/StateBuildings.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "StateCategory",
+      "page": "reference/hoi4/functions/StateCategory.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "StateCategorySpec",
+      "page": "reference/hoi4/interfaces/StateCategorySpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "StateEffects",
+      "page": "reference/hoi4/interfaces/StateEffects.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "StateEvent",
+      "page": "reference/hoi4/functions/StateEvent.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "StateHistory",
+      "page": "reference/hoi4/functions/StateHistory.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "StateHistorySpec",
+      "page": "reference/hoi4/interfaces/StateHistorySpec.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "StateRef",
+      "page": "reference/hoi4/interfaces/StateRef.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "StateResources",
+      "page": "reference/hoi4/interfaces/StateResources.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "StateScope",
+      "page": "reference/hoi4/interfaces/StateScope.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "StateScriptedEffect",
+      "page": "reference/hoi4/functions/StateScriptedEffect.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "StateScriptedTrigger",
+      "page": "reference/hoi4/functions/StateScriptedTrigger.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "StateTriggers",
+      "page": "reference/hoi4/interfaces/StateTriggers.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "StaticModifier",
+      "page": "reference/hoi4/functions/StaticModifier.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "StaticModifierSpec",
+      "page": "reference/hoi4/interfaces/StaticModifierSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "StrategicLocation",
+      "page": "reference/hoi4/functions/StrategicLocation.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "StrategicLocationSpec",
+      "page": "reference/hoi4/interfaces/StrategicLocationSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "StrategicRegion",
+      "page": "reference/hoi4/functions/StrategicRegion.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "StrategicRegionSpec",
+      "page": "reference/hoi4/interfaces/StrategicRegionSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Subdoctrine",
+      "page": "reference/hoi4/functions/Subdoctrine.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "SubdoctrineSpec",
+      "page": "reference/hoi4/interfaces/SubdoctrineSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "SupplyArea",
+      "page": "reference/hoi4/functions/SupplyArea.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "SupplyAreaSpec",
+      "page": "reference/hoi4/interfaces/SupplyAreaSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Technology",
+      "page": "reference/hoi4/functions/Technology.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "TechnologySharingGroup",
+      "page": "reference/hoi4/functions/TechnologySharingGroup.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "TechnologySharingGroupSpec",
+      "page": "reference/hoi4/interfaces/TechnologySharingGroupSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "TechnologySpec",
+      "page": "reference/hoi4/interfaces/TechnologySpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Terrain",
+      "page": "reference/hoi4/functions/Terrain.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "TerrainSpec",
+      "page": "reference/hoi4/interfaces/TerrainSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "TextBoxProps",
+      "page": "reference/hoi4/interfaces/TextBoxProps.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Trigger",
+      "page": "reference/hoi4/type-aliases/Trigger.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Unit",
+      "page": "reference/hoi4/functions/Unit.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "UnitHistory",
+      "page": "reference/hoi4/functions/UnitHistory.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "UnitHistorySpec",
+      "page": "reference/hoi4/interfaces/UnitHistorySpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "UnitLeaderScope",
+      "page": "reference/hoi4/interfaces/UnitLeaderScope.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "UnitLeaderTrait",
+      "page": "reference/hoi4/functions/UnitLeaderTrait.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "UnitLeaderTraitSpec",
+      "page": "reference/hoi4/interfaces/UnitLeaderTraitSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "UnitMedal",
+      "page": "reference/hoi4/functions/UnitMedal.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "UnitMedalSpec",
+      "page": "reference/hoi4/interfaces/UnitMedalSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "UnitScope",
+      "page": "reference/hoi4/type-aliases/UnitScope.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "UnitSpec",
+      "page": "reference/hoi4/interfaces/UnitSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "VariableName",
+      "page": "reference/hoi4/type-aliases/VariableName.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "Wargoal",
+      "page": "reference/hoi4/functions/Wargoal.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "WargoalSpec",
+      "page": "reference/hoi4/interfaces/WargoalSpec.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "WeightModifier",
+      "page": "reference/hoi4/interfaces/WeightModifier.md",
+      "source": "src/sdk/index.ts"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "WindowProps",
+      "page": "reference/hoi4/interfaces/WindowProps.md",
+      "source": "src/sdk/domains.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "atom",
+      "page": "reference/pdx/functions/atom.md",
+      "source": "src/pdx/ast.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "block",
+      "page": "reference/pdx/functions/block.md",
+      "source": "src/pdx/ast.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "comparePdxSemantic",
+      "page": "reference/pdx/functions/comparePdxSemantic.md",
+      "source": "src/pdx/emitter.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "document",
+      "page": "reference/pdx/functions/document.md",
+      "source": "src/pdx/ast.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "emitPdx",
+      "page": "reference/pdx/functions/emitPdx.md",
+      "source": "src/pdx/emitter.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "EmitPdxOptions",
+      "page": "reference/pdx/interfaces/EmitPdxOptions.md",
+      "source": "src/pdx/emitter.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "entry",
+      "page": "reference/pdx/variables/entry.md",
+      "source": "src/pdx/ast.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "file",
+      "page": "reference/pdx/functions/file.md",
+      "source": "src/pdx/ast.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "lexPdx",
+      "page": "reference/pdx/functions/lexPdx.md",
+      "source": "src/pdx/lexer.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "operators",
+      "page": "reference/pdx/variables/operators.md",
+      "source": "src/pdx/lexer.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "parsePdx",
+      "page": "reference/pdx/functions/parsePdx.md",
+      "source": "src/pdx/parser.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "ParsePdxOptions",
+      "page": "reference/pdx/interfaces/ParsePdxOptions.md",
+      "source": "src/pdx/parser.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "PdxAtom",
+      "page": "reference/pdx/interfaces/PdxAtom.md",
+      "source": "src/pdx/ast.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "PdxBlock",
+      "page": "reference/pdx/interfaces/PdxBlock.md",
+      "source": "src/pdx/ast.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "PdxDiagnostic",
+      "page": "reference/pdx/interfaces/PdxDiagnostic.md",
+      "source": "src/pdx/ast.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "PdxDocument",
+      "page": "reference/pdx/interfaces/PdxDocument.md",
+      "source": "src/pdx/ast.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "PdxFile",
+      "page": "reference/pdx/interfaces/PdxFile.md",
+      "source": "src/pdx/ast.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "PdxItem",
+      "page": "reference/pdx/type-aliases/PdxItem.md",
+      "source": "src/pdx/ast.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "PdxLexResult",
+      "page": "reference/pdx/interfaces/PdxLexResult.md",
+      "source": "src/pdx/lexer.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "PdxOperator",
+      "page": "reference/pdx/type-aliases/PdxOperator.md",
+      "source": "src/pdx/ast.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "PdxParseResult",
+      "page": "reference/pdx/interfaces/PdxParseResult.md",
+      "source": "src/pdx/ast.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "PdxProperty",
+      "page": "reference/pdx/interfaces/PdxProperty.md",
+      "source": "src/pdx/ast.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "PdxTagged",
+      "page": "reference/pdx/interfaces/PdxTagged.md",
+      "source": "src/pdx/ast.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "PdxToken",
+      "page": "reference/pdx/interfaces/PdxToken.md",
+      "source": "src/pdx/lexer.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "PdxValue",
+      "page": "reference/pdx/type-aliases/PdxValue.md",
+      "source": "src/pdx/ast.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "property",
+      "page": "reference/pdx/functions/property.md",
+      "source": "src/pdx/ast.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "quoted",
+      "page": "reference/pdx/functions/quoted.md",
+      "source": "src/pdx/ast.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "semanticPdx",
+      "page": "reference/pdx/functions/semanticPdx.md",
+      "source": "src/pdx/emitter.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "SourceSpan",
+      "page": "reference/pdx/interfaces/SourceSpan.md",
+      "source": "src/pdx/ast.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "string",
+      "page": "reference/pdx/functions/string.md",
+      "source": "src/pdx/ast.ts"
+    },
+    {
+      "module": "krieg-lang/pdx",
+      "name": "tagged",
+      "page": "reference/pdx/functions/tagged.md",
+      "source": "src/pdx/ast.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "applyReplacePaths",
+      "page": "reference/root/functions/applyReplacePaths.md",
+      "source": "src/project/world.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "AssetRule",
+      "page": "reference/root/interfaces/AssetRule.md",
+      "source": "src/project/types.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "AtlasArea",
+      "page": "reference/root/interfaces/AtlasArea.md",
+      "source": "src/project/atlas.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "AtlasProvince",
+      "page": "reference/root/interfaces/AtlasProvince.md",
+      "source": "src/project/atlas.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "buildProject",
+      "page": "reference/root/functions/buildProject.md",
+      "source": "src/project/build.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "BuildResult",
+      "page": "reference/root/interfaces/BuildResult.md",
+      "source": "src/project/types.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "createRailwayOverlay",
+      "page": "reference/root/functions/createRailwayOverlay.md",
+      "source": "src/project/atlas-railways.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "createWorld",
+      "page": "reference/root/functions/createWorld.md",
+      "source": "src/project/world.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "DependencyGraph",
+      "page": "reference/root/interfaces/DependencyGraph.md",
+      "source": "src/project/dependencies.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "descriptor",
+      "page": "reference/root/functions/descriptor.md",
+      "source": "src/project/build.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "GameRoot",
+      "page": "reference/root/interfaces/GameRoot.md",
+      "source": "src/project/types.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "geographyDeclaration",
+      "page": "reference/root/functions/geographyDeclaration.md",
+      "source": "src/project/atlas.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "GeographyIndex",
+      "page": "reference/root/interfaces/GeographyIndex.md",
+      "source": "src/project/atlas.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "importProject",
+      "page": "reference/root/functions/importProject.md",
+      "source": "src/project/import.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "ImportProjectResult",
+      "page": "reference/root/interfaces/ImportProjectResult.md",
+      "source": "src/project/import.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "indexGeography",
+      "page": "reference/root/functions/indexGeography.md",
+      "source": "src/project/atlas.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "initProject",
+      "page": "reference/root/functions/initProject.md",
+      "source": "src/project/init.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "KriegConfig",
+      "page": "reference/root/interfaces/KriegConfig.md",
+      "source": "src/project/types.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "LandProvinceRef",
+      "page": "reference/root/interfaces/LandProvinceRef.md",
+      "source": "src/project/atlas.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "loadConfig",
+      "page": "reference/root/functions/loadConfig.md",
+      "source": "src/project/config.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "LocalisationRule",
+      "page": "reference/root/interfaces/LocalisationRule.md",
+      "source": "src/project/types.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "ModMetadata",
+      "page": "reference/root/interfaces/ModMetadata.md",
+      "source": "src/project/types.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "OutputFile",
+      "page": "reference/root/interfaces/OutputFile.md",
+      "source": "src/project/types.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "packProject",
+      "page": "reference/root/functions/packProject.md",
+      "source": "src/project/pack.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "parseNativeLocalisation",
+      "page": "reference/root/functions/parseNativeLocalisation.md",
+      "source": "src/project/localisation.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "parseRailwayPlan",
+      "page": "reference/root/functions/parseRailwayPlan.md",
+      "source": "src/project/atlas-railways.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "PlannedRailwayRoute",
+      "page": "reference/root/interfaces/PlannedRailwayRoute.md",
+      "source": "src/project/atlas.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "ProjectBuildOptions",
+      "page": "reference/root/interfaces/ProjectBuildOptions.md",
+      "source": "src/project/types.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "ProjectDiagnostic",
+      "page": "reference/root/interfaces/ProjectDiagnostic.md",
+      "source": "src/project/types.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "ProjectLayer",
+      "page": "reference/root/interfaces/ProjectLayer.md",
+      "source": "src/project/types.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "ProjectOptions",
+      "page": "reference/root/interfaces/ProjectOptions.md",
+      "source": "src/project/types.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "ProjectWorld",
+      "page": "reference/root/interfaces/ProjectWorld.md",
+      "source": "src/project/world.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "ProvinceAtlas",
+      "page": "reference/root/classes/ProvinceAtlas.md",
+      "source": "src/project/atlas.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "ProvinceAtlasError",
+      "page": "reference/root/classes/ProvinceAtlasError.md",
+      "source": "src/project/atlas.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "ProvinceAtlasOptions",
+      "page": "reference/root/interfaces/ProvinceAtlasOptions.md",
+      "source": "src/project/atlas.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "RailwayLevel",
+      "page": "reference/root/type-aliases/RailwayLevel.md",
+      "source": "src/project/atlas-railways.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "RailwayOverlayResult",
+      "page": "reference/root/interfaces/RailwayOverlayResult.md",
+      "source": "src/project/atlas-railways.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "RailwayPlan",
+      "page": "reference/root/interfaces/RailwayPlan.md",
+      "source": "src/project/atlas-railways.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "RailwayRouteRequest",
+      "page": "reference/root/interfaces/RailwayRouteRequest.md",
+      "source": "src/project/atlas.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "RailwayRouteSpec",
+      "page": "reference/root/interfaces/RailwayRouteSpec.md",
+      "source": "src/project/atlas-railways.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "resolveDependencies",
+      "page": "reference/root/functions/resolveDependencies.md",
+      "source": "src/project/dependencies.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "validateCountries",
+      "page": "reference/root/functions/validateCountries.md",
+      "source": "src/project/countries.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "validateLocalisation",
+      "page": "reference/root/functions/validateLocalisation.md",
+      "source": "src/project/localisation.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "validateMap",
+      "page": "reference/root/functions/validateMap.md",
+      "source": "src/project/map.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "WorldFile",
+      "page": "reference/root/interfaces/WorldFile.md",
+      "source": "src/project/world.ts"
+    },
+    {
+      "module": "krieg-lang/project",
+      "name": "writeEditorProject",
+      "page": "reference/root/functions/writeEditorProject.md",
+      "source": "src/project/editor.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "Browser",
+      "page": "reference/ui/functions/Browser.md",
+      "source": "src/ui/native.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "Button",
+      "page": "reference/ui/functions/Button.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "ButtonProps",
+      "page": "reference/ui/interfaces/ButtonProps.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "Checkbox",
+      "page": "reference/ui/functions/Checkbox.md",
+      "source": "src/ui/native.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "Container",
+      "page": "reference/ui/functions/Container.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "ContainerProps",
+      "page": "reference/ui/interfaces/ContainerProps.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "DropDownBox",
+      "page": "reference/ui/functions/DropDownBox.md",
+      "source": "src/ui/native.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "EditBox",
+      "page": "reference/ui/functions/EditBox.md",
+      "source": "src/ui/native.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "ElementProps",
+      "page": "reference/ui/interfaces/ElementProps.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "ExtendedScrollbar",
+      "page": "reference/ui/functions/ExtendedScrollbar.md",
+      "source": "src/ui/native.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "For",
+      "page": "reference/ui/functions/For.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "GridBox",
+      "page": "reference/ui/functions/GridBox.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "GridBoxProps",
+      "page": "reference/ui/interfaces/GridBoxProps.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "GuiBindings",
+      "page": "reference/ui/interfaces/GuiBindings.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "GuiButton",
+      "page": "reference/ui/functions/GuiButton.md",
+      "source": "src/ui/native.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "GuiButtonBindings",
+      "page": "reference/ui/interfaces/GuiButtonBindings.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "GuiChild",
+      "page": "reference/ui/type-aliases/GuiChild.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "GuiCoordinate",
+      "page": "reference/ui/type-aliases/GuiCoordinate.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "GuiElement",
+      "page": "reference/ui/interfaces/GuiElement.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "GuiElementBindings",
+      "page": "reference/ui/interfaces/GuiElementBindings.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "GuiFile",
+      "page": "reference/ui/functions/GuiFile.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "GuiFrameBindings",
+      "page": "reference/ui/interfaces/GuiFrameBindings.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "GuiIconBindings",
+      "page": "reference/ui/interfaces/GuiIconBindings.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "GuiOrientation",
+      "page": "reference/ui/type-aliases/GuiOrientation.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "GuiOrigin",
+      "page": "reference/ui/type-aliases/GuiOrigin.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "GuiPosition",
+      "page": "reference/ui/interfaces/GuiPosition.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "GuiPositionBindings",
+      "page": "reference/ui/interfaces/GuiPositionBindings.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "GuiSize",
+      "page": "reference/ui/interfaces/GuiSize.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "GuiTextureBindings",
+      "page": "reference/ui/interfaces/GuiTextureBindings.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "GuiVariable",
+      "page": "reference/ui/interfaces/GuiVariable.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "GuiVariable",
+      "page": "reference/ui/functions/GuiVariable.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "Icon",
+      "page": "reference/ui/functions/Icon.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "IconProps",
+      "page": "reference/ui/interfaces/IconProps.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "JSX",
+      "page": "reference/ui/namespaces/JSX/index.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "ListBox",
+      "page": "reference/ui/functions/ListBox.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "ListBoxProps",
+      "page": "reference/ui/interfaces/ListBoxProps.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "NativeButton",
+      "page": "reference/ui/functions/NativeButton.md",
+      "source": "src/ui/native.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "NativeContainer",
+      "page": "reference/ui/functions/NativeContainer.md",
+      "source": "src/ui/native.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "NativeGridBox",
+      "page": "reference/ui/functions/NativeGridBox.md",
+      "source": "src/ui/native.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "NativeIcon",
+      "page": "reference/ui/functions/NativeIcon.md",
+      "source": "src/ui/native.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "NativeIntrinsicElements",
+      "page": "reference/ui/interfaces/NativeIntrinsicElements.md",
+      "source": "src/ui/native.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "NativeListBox",
+      "page": "reference/ui/functions/NativeListBox.md",
+      "source": "src/ui/native.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "NativeText",
+      "page": "reference/ui/functions/NativeText.md",
+      "source": "src/ui/native.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "OverlappingElementsBox",
+      "page": "reference/ui/functions/OverlappingElementsBox.md",
+      "source": "src/ui/native.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "Position",
+      "page": "reference/ui/functions/Position.md",
+      "source": "src/ui/native.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "ScriptedWindow",
+      "page": "reference/ui/functions/ScriptedWindow.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "ScriptedWindowParent",
+      "page": "reference/ui/type-aliases/ScriptedWindowParent.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "ScriptedWindowSpec",
+      "page": "reference/ui/type-aliases/ScriptedWindowSpec.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "Scrollbar",
+      "page": "reference/ui/functions/Scrollbar.md",
+      "source": "src/ui/native.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "SmoothListBox",
+      "page": "reference/ui/functions/SmoothListBox.md",
+      "source": "src/ui/native.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "Sprite",
+      "page": "reference/ui/functions/Sprite.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "SpriteFile",
+      "page": "reference/ui/functions/SpriteFile.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "SpriteSpec",
+      "page": "reference/ui/interfaces/SpriteSpec.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "Text",
+      "page": "reference/ui/functions/Text.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "TextBox",
+      "page": "reference/ui/functions/TextBox.md",
+      "source": "src/ui/native.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "TextProps",
+      "page": "reference/ui/interfaces/TextProps.md",
+      "source": "src/ui/index.ts"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "Window",
+      "page": "reference/ui/functions/Window.md",
+      "source": "src/ui/native.ts"
+    },
+    {
+      "module": "krieg-lang/ui/jsx-runtime",
+      "name": "JSX",
+      "page": "reference/ui/namespaces/JSX/index.md",
+      "source": "src/ui/index.ts"
     }
   ],
   "commands": [
@@ -10166,462 +10619,6 @@
       "NativeDecision",
       "NativeIdeas",
       "OnAction"
-    ],
-    "shapes": [
-      "NativeShape1",
-      "NativeShape2",
-      "NativeShape3",
-      "NativeShape4",
-      "NativeShape5",
-      "NativeShape6",
-      "NativeShape7",
-      "NativeShape8",
-      "NativeShape9",
-      "NativeShape10",
-      "AbilityBody",
-      "NativeShape12",
-      "AceBody",
-      "NativeShape14",
-      "AchievementBody",
-      "NativeShape16",
-      "NativeShape17",
-      "NativeShape18",
-      "NativeShape19",
-      "NativeShape20",
-      "NativeShape21",
-      "NativeShape22",
-      "NativeShape23",
-      "NativeShape24",
-      "NativeShape25",
-      "NativeShape26",
-      "NativeShape27",
-      "NativeShape28",
-      "NativeShape29",
-      "NativeShape30",
-      "NativeShape31",
-      "NativeShape32",
-      "NativeShape33",
-      "NativeShape34",
-      "NativeShape35",
-      "NativeShape36",
-      "NativeShape37",
-      "NativeShape38",
-      "NativeShape39",
-      "NativeShape40",
-      "NativeShape41",
-      "NativeShape42",
-      "NativeShape43",
-      "NativeShape44",
-      "NativeShape45",
-      "NativeShape46",
-      "NativeShape47",
-      "NativeShape48",
-      "NativeShape49",
-      "NativeShape50",
-      "NativeShape51",
-      "NativeShape52",
-      "NativeShape53",
-      "NativeShape54",
-      "NativeShape55",
-      "AiStrategyBody",
-      "NativeShape57",
-      "NativeShape58",
-      "AiStrategyPlanBody",
-      "NativeShape60",
-      "NativeShape61",
-      "NativeShape62",
-      "AutonomyStateBody",
-      "NativeShape64",
-      "NativeShape65",
-      "NativeShape66",
-      "BookmarkBody",
-      "NativeShape68",
-      "NativeShape69",
-      "NativeShape70",
-      "BalanceOfPowerBody",
-      "NativeShape72",
-      "NativeShape73",
-      "NativeShape74",
-      "NativeShape75",
-      "NativeShape76",
-      "NativeShape77",
-      "NativeShape78",
-      "NativeShape79",
-      "BuildingBody",
-      "SpawnPointBody",
-      "NativeShape82",
-      "NativeShape83",
-      "NativeShape84",
-      "NativeShape85",
-      "NativeShape86",
-      "NativeShape87",
-      "NativeShape88",
-      "NativeShape89",
-      "NativeShape90",
-      "NativeShape91",
-      "NativeShape92",
-      "NativeShape93",
-      "CharacterBody",
-      "NativeShape95",
-      "CollectionBody",
-      "NativeShape97",
-      "NativeShape98",
-      "NativeShape99",
-      "CombatTacticBody",
-      "AiAreaBody",
-      "NativeShape102",
-      "AiFocusBody",
-      "NativeShape104",
-      "NativeShape105",
-      "AiPeaceBody",
-      "NativeShape107",
-      "NativeShape108",
-      "AiTemplateBody",
-      "NativeShape110",
-      "NativeShape111",
-      "NativeShape112",
-      "NativeShape113",
-      "NativeShape114",
-      "AiEquipmentDesignGroupBody",
-      "NativeShape116",
-      "AiFactionTheaterBody",
-      "CountryTagAliasBody",
-      "DifficultySettingBody",
-      "DoctrineFolderBody",
-      "NativeShape123",
-      "NativeShape124",
-      "NativeShape125",
-      "NativeShape126",
-      "GrandDoctrineBody",
-      "NativeShape128",
-      "NativeShape129",
-      "NativeShape130",
-      "SubdoctrineBody",
-      "DoctrineTrackBody",
-      "DynamicModifierBody",
-      "EquipmentGroupBody",
-      "NativeShape135",
-      "NativeShape136",
-      "NativeShape137",
-      "NativeShape138",
-      "NativeShape139",
-      "NativeShape140",
-      "NativeShape141",
-      "EquipmentBody",
-      "NativeShape143",
-      "NativeShape144",
-      "EquipmentUpgradeBody",
-      "NativeShape146",
-      "NativeShape147",
-      "NativeShape148",
-      "EquipmentModuleBody",
-      "NativeShape150",
-      "CriticalPartBody",
-      "NativeShape152",
-      "NativeShape153",
-      "NativeShape154",
-      "NativeShape155",
-      "NativeShape156",
-      "FactionGoalBody",
-      "FactionMemberUpgradeBody",
-      "FactionRuleBody",
-      "FactionRuleGroupBody",
-      "FactionTemplateBody",
-      "FactionUpgradeBody",
-      "NativeShape163",
-      "GameRuleBody",
-      "IdeaCategoryBody",
-      "NativeShape166",
-      "NativeShape167",
-      "IdeologyBody",
-      "IntelligenceAgencyBody",
-      "NativeShape170",
-      "IntelligenceAgencyUpgradeBody",
-      "NativeShape172",
-      "NativeShape173",
-      "NativeShape174",
-      "ScriptedMapModeBody",
-      "NativeShape176",
-      "NativeShape177",
-      "NativeShape178",
-      "NativeShape179",
-      "NativeShape180",
-      "NativeShape181",
-      "NativeShape182",
-      "NativeShape183",
-      "NativeShape184",
-      "NativeShape185",
-      "NativeShape186",
-      "MilitaryIndustrialOrganizationBody",
-      "NativeShape188",
-      "MioPolicyBody",
-      "ModifierDefinitionBody",
-      "MeanTimeToHappenBody",
-      "OccupationLawBody",
-      "NativeShape192",
-      "NativeShape193",
-      "OperationPhaseBody",
-      "OperationTokenBody",
-      "NativeShape196",
-      "OperationBody",
-      "OpinionModifierBody",
-      "PeaceActionCategoryBody",
-      "PeaceAiDesireBody",
-      "PeaceActionModifierBody",
-      "RaidCategoryBody",
-      "NativeShape203",
-      "NativeShape204",
-      "NativeShape205",
-      "NativeShape206",
-      "NativeShape207",
-      "NativeShape208",
-      "NativeShape209",
-      "NativeShape210",
-      "NativeShape211",
-      "NativeShape212",
-      "NativeShape213",
-      "NativeShape214",
-      "NativeShape215",
-      "NativeShape216",
-      "NativeShape217",
-      "NativeShape218",
-      "NativeShape219",
-      "NativeShape220",
-      "NativeShape221",
-      "NativeShape222",
-      "NativeShape223",
-      "NativeShape224",
-      "NativeShape225",
-      "NativeShape226",
-      "RaidBody",
-      "ResistanceComplianceModifierBody",
-      "ResourceBody",
-      "NativeShape230",
-      "CountryScorerBody",
-      "NativeShape232",
-      "NativeShape233",
-      "NativeShape234",
-      "NativeShape235",
-      "NativeShape236",
-      "NativeShape237",
-      "NativeShape238",
-      "NativeShape239",
-      "NativeShape240",
-      "NativeShape241",
-      "NativeShape242",
-      "NativeShape243",
-      "NativeShape244",
-      "NativeShape245",
-      "NativeShape246",
-      "NativeShape247",
-      "NativeShape248",
-      "NativeShape249",
-      "NativeShape250",
-      "NativeShape251",
-      "NativeShape252",
-      "SpecialProjectBody",
-      "PrototypeRewardBody",
-      "SpecializationBody",
-      "StaticModifierBody",
-      "StrategicLocationBody",
-      "NativeShape256",
-      "NativeShape257",
-      "NativeShape258",
-      "NativeShape259",
-      "NativeShape260",
-      "NativeShape261",
-      "NativeShape262",
-      "TechnologyBody",
-      "TechnologySharingGroupBody",
-      "NativeShape265",
-      "NativeShape266",
-      "TerrainBody",
-      "GraphicalTerrainBody",
-      "NativeShape269",
-      "CountryLeaderTraitBody",
-      "NativeShape271",
-      "NativeShape272",
-      "NativeShape273",
-      "UnitLeaderTraitBody",
-      "ScientistTraitBody",
-      "UnitMedalBody",
-      "NativeShape277",
-      "UnitBody",
-      "DivisionNamesBody",
-      "ShipNamesBody",
-      "WargoalBody",
-      "NativeShape282",
-      "NativeShape283",
-      "GraphicDatabaseBody",
-      "NativeShape284",
-      "NativeShape285",
-      "NativeShape286",
-      "LightBody",
-      "NativeShape288",
-      "NativeShape289",
-      "NativeShape290",
-      "MeshBody",
-      "NativeShape292",
-      "NativeShape293",
-      "NativeShape294",
-      "NativeShape295",
-      "NativeShape296",
-      "NativeShape297",
-      "NativeShape298",
-      "NativeShape299",
-      "EntityBody",
-      "ModelAnimationBody",
-      "PdxParticleBody",
-      "NativeShape303",
-      "NativeShape304",
-      "NativeShape305",
-      "NativeShape306",
-      "NativeShape307",
-      "NativeShape308",
-      "NativeShape309",
-      "NativeShape310",
-      "ParticleBody",
-      "NativeShape312",
-      "NativeShape313",
-      "NativeShape314",
-      "NativeShape315",
-      "NativeShape316",
-      "NativeShape317",
-      "NativeShape318",
-      "NativeShape319",
-      "NativeShape320",
-      "NativeShape321",
-      "NativeShape322",
-      "NativeShape323",
-      "NativeShape324",
-      "NativeShape325",
-      "NativeShape326",
-      "NativeShape327",
-      "NativeShape328",
-      "NativeShape329",
-      "NativeShape330",
-      "NativeShape331",
-      "NativeShape332",
-      "NativeShape333",
-      "NativeShape334",
-      "NativeShape335",
-      "NativeShape336",
-      "NativeShape337",
-      "NativeShape338",
-      "NativeShape339",
-      "NativeShape340",
-      "UnitHistoryBody",
-      "StateCategoryBody",
-      "BitmapFontBody",
-      "NativeShape344",
-      "NativeShape345",
-      "AdjacencyRuleBody",
-      "SupplyAreaBody",
-      "NativeShape348",
-      "NativeShape349",
-      "StrategicRegionBody",
-      "MusicPlaylistEntryBody",
-      "MusicAssetBody",
-      "NativeShape353",
-      "PortraitBody",
-      "NativeShape355",
-      "SoundCategoryBody",
-      "NativeShape357",
-      "NativeShape358",
-      "NativeShape359",
-      "SoundEffectBody",
-      "SoundAssetBody",
-      "NativeShape362",
-      "NativeShape363",
-      "NativeShape364",
-      "NativeShape365",
-      "NativeCountryEventBody",
-      "NativeShape367",
-      "NativeShape368",
-      "NativeShape369",
-      "NativeShape370",
-      "NativeStateEventBody",
-      "NativeNewsEventBody",
-      "NativeShape372",
-      "NativeShape373",
-      "NativeShape374",
-      "NativeShape375",
-      "NativeUnitLeaderEventBody",
-      "NativeShape377",
-      "NativeShape378",
-      "NativeShape379",
-      "NativeShape380",
-      "NativeShape381",
-      "NativeOperativeEventBody",
-      "NativeShape383",
-      "NativeShape384",
-      "NativeShape385",
-      "NativeShape386",
-      "NativeShape387",
-      "NativeShape388",
-      "NativeShape389",
-      "NativeShape390",
-      "NativeShape391",
-      "NativeShape392",
-      "NativeFocusTreeBody",
-      "NativeShape394",
-      "ContinuousFocusPaletteBody",
-      "SharedFocusBody",
-      "JointFocusBody",
-      "FocusStyleBody",
-      "NativeShape398",
-      "NativeShape399",
-      "NativeShape400",
-      "NativeShape401",
-      "NativeShape402",
-      "NativeDecisionCategoryBody",
-      "NativeShape404",
-      "NativeShape405",
-      "NativeShape406",
-      "NativeDecisionBody",
-      "NativeShape408",
-      "NativeShape409",
-      "NativeShape410",
-      "NativeShape411",
-      "NativeShape412",
-      "NativeIdeasBody",
-      "NativeShape413",
-      "NativeShape414",
-      "NativeShape415",
-      "NativeShape416",
-      "NativeShape417",
-      "NativeShape418",
-      "NativeShape419",
-      "NativeShape420",
-      "NativeShape421",
-      "NativeShape422",
-      "NativeCountry",
-      "NativeShape423",
-      "NativeShape424",
-      "NativeShape425",
-      "NativeShape426",
-      "NativeShape427",
-      "NativeShape428",
-      "NativeShape429",
-      "NativeShape431",
-      "NativeShape432",
-      "NativeShape433",
-      "NativeShape434",
-      "NativeShape435",
-      "NativeShape436",
-      "NativeShape437",
-      "NativeShape438",
-      "NativeShape439",
-      "NativeShape440",
-      "NativeShape441",
-      "NativeShape442",
-      "NativeShape443",
-      "NativeShape444",
-      "NativeShape445",
-      "NativeShape446",
-      "NativeShape447",
-      "NativeShape448",
-      "NativeShape449"
     ],
     "limitations": [
       "CWT subtype branches are merged as optional alternatives; native CWTools remains authoritative for branch-dependent requirements.",

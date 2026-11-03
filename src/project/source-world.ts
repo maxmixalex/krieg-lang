@@ -27,7 +27,13 @@ const metadataModules = new Map<string, Intrinsic["module"]>([
   ["krieg-lang/pdx", "pdx"],
   ["@project/states", "states"],
 ]);
-const metadataNames = new Set(["DataFile", "SourceFile", "StateHistory", "CountryDefinition"]);
+const metadataNames = new Set([
+  "DataFile",
+  "SourceFile",
+  "StateHistory",
+  "StrategicRegion",
+  "CountryDefinition",
+]);
 
 function record(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === "object" && !Array.isArray(value);
@@ -41,7 +47,9 @@ function tagged<T extends string>(
 }
 
 function isMetadataPath(path: string): boolean {
-  return /^(common\/country_tags|history\/states)\/.+\.txt$/.test(path.replaceAll("\\", "/"));
+  return /^(common\/country_tags|history\/states|map\/strategicregions)\/.+\.txt$/.test(
+    path.replaceAll("\\", "/"),
+  );
 }
 
 function containsUnknown(value: unknown): boolean {
@@ -62,7 +70,7 @@ export function discoverSourceWorld(config: KriegConfig): {
     const source = readFileSync(file, "utf8");
     // Canonical imports retain their destination literal. Avoid parsing large event/UI imports.
     if (
-      !/country_tags|history[\\/]+states|StateHistory|DataFile|SourceFile|CountryDefinition/.test(
+      !/country_tags|history[\\/]+states|strategicregions|StateHistory|StrategicRegion|DataFile|SourceFile|CountryDefinition/.test(
         source,
       )
     )
@@ -226,6 +234,32 @@ export function discoverSourceWorld(config: KriegConfig): {
             pdx.document([pdx.property(spec.id, pdx.string(countryPath.slice("common/".length)))]),
           );
         }
+        if (intrinsic.name === "StrategicRegion") {
+          const spec = args[0];
+          if (
+            !record(spec) ||
+            typeof spec.id !== "number" ||
+            !Number.isSafeInteger(spec.id) ||
+            spec.id <= 0
+          ) {
+            warn(node, "StrategicRegion's ID is not a statically discoverable positive integer.");
+            return unknownValue;
+          }
+          const outputPath = spec.outputPath ?? `map/strategicregions/krieg_${spec.id}.txt`;
+          if (typeof outputPath !== "string") {
+            warn(node, "StrategicRegion's output path is not a literal value.");
+            return unknownValue;
+          }
+          const metadata: pdx.PdxItem[] = [pdx.property("id", pdx.atom(String(spec.id)))];
+          for (const key of ["name", "provinces"]) {
+            const value = dataValue(spec[key]);
+            if (value) metadata.push(pdx.property(key, value));
+          }
+          return declaration(
+            outputPath,
+            pdx.document([pdx.property("strategic_region", pdx.block(metadata))]),
+          );
+        }
         if (intrinsic.name === "StateHistory") {
           const spec = args[0];
           const reference = record(spec) ? spec.state : undefined;
@@ -250,15 +284,18 @@ export function discoverSourceWorld(config: KriegConfig): {
             warn(node, "StateHistory's output path is not a literal value.");
             return unknownValue;
           }
-          // This projection indexes only a declaration's identity. The compiler supplies the full file.
+          // Keep discoverable geography as well as identity. An absent list is explicitly
+          // incomplete; the editor must not silently inherit the replaced state's old list.
+          const metadata: pdx.PdxItem[] = [pdx.property("id", pdx.atom(String(reference.id)))];
+          if (record(spec)) {
+            for (const key of ["name", "impassable", "provinces"]) {
+              const value = dataValue(spec[key]);
+              if (value) metadata.push(pdx.property(key, value));
+            }
+          }
           return declaration(
             outputPath,
-            pdx.document([
-              pdx.property(
-                "state",
-                pdx.block([pdx.property("id", pdx.atom(String(reference.id)))]),
-              ),
-            ]),
+            pdx.document([pdx.property("state", pdx.block(metadata))]),
           );
         }
         if (intrinsic.name === "DataFile") {

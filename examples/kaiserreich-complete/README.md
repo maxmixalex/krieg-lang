@@ -1,5 +1,7 @@
 # Sardinian Reconstruction League
 
+For the typed authoring workflow, start with `src/programme.krg.ts`: `FocusGraph` describes the progression and returns handles for decisions and event callbacks. `src/interface.krg.tsx` uses `ScriptedWindow` to bind layout and game behavior together; text keys come from the project's generated localisation catalogue. Both examples use the same interfaces available to an installed package consumer.
+
 This complete authored example creates the fictional **KRL** government in Kaiserreich's actual state **114**. It includes a full country definition, an elected fictional leader, country and state histories, an initial four-battalion guard, original flags in all three sizes, a schematic original portrait, and a connected programme of focuses, decisions, events, politics, research, production and optional DLC systems. All art and narrative text in this folder are original; game and Kaiserreich files are read from a separately selected installation.
 
 Enable Kaiserreich first and this example after it; the generated launcher descriptor declares the Kaiserreich dependency. This is a separate Kaiserreich scenario, with its own ideology, state category, history filename, region filename and diplomatic partner.
@@ -67,10 +69,10 @@ The base map supplies all other states, province definitions, bitmaps, supply ta
 Run the external native checker against the supplied text corpora with:
 
 ```sh
-node scripts/validate-complete-examples.mjs --corpora /path/to/corpora --fetch-kr-map
+node scripts/validate-complete-examples.mjs --corpora /path/to/corpora --provided-kr-map /path/to/extracted/KR
 ```
 
-The command records selected base layers, output hashes, external diagnostics and input fingerprints in `reports/validation/complete-examples.json`. Its default use of the fetched Kaiserreich map is explained below. Static compilation and CWTools validation have been performed; an HOI4 launch, game UI inspection, save/load and multiplayer run remain separate engine checks. The recorded native run has zero errors and two `CW251` warnings per example: the compiler emits explicit `AND` blocks for the investment condition and the agency's country/DLC condition, where native syntax already implies conjunction. The warnings remain visible in the report; no diagnostic is suppressed.
+The command records selected base layers, output hashes, external diagnostics and input fingerprints in `reports/validation/v0.3.0-complete-examples.json`. The provided KR directory must contain `map/definition.csv`, `map/provinces.bmp` and the native strategic regions. Static compilation and CWTools validation have been performed; an HOI4 launch, game UI inspection, save/load and multiplayer run remain separate engine checks. The historical 0.2.0 native run had zero errors and two `CW251` warnings per example: the compiler emits explicit `AND` blocks for the investment condition and the agency's country/DLC condition, where native syntax already implies conjunction. The warnings remain visible in the report; no diagnostic is suppressed.
 
 ## Kaiserreich validation provenance
 

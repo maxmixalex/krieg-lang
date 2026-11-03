@@ -1,13 +1,14 @@
 {
   "formatVersion": 1,
-  "reviewedAt": "2026-11-02",
+  "reviewedAt": "2026-11-03",
   "scope": "Wiki topic families plus newer families present in the supplied CWT snapshot; individual commands live in the generated API reference.",
   "provenance": {
     "wiki": "https://hoi4.paradoxwikis.com/Modding",
     "archiveIndex": "https://github.com/thelight0211/hoi4-wiki",
-    "access": "Live official Wiki requests returned HTTP 401; archived page titles locate the topical outline. Technical claims are verified against repository source, tests, supplied game documentation and CWT rules.",
+    "access": "The supplied Category:Modding export contains 54 source pages. Every page and its revision are verified against the export manifest; reports/validation/offline-wiki-inventory.json maps all 54 to topic families. Game data, CWT rules and executable authoring tests provide separate native evidence.",
     "cwt": "https://github.com/cwtools/cwtools-hoi4-config",
-    "cwtSha256": "4b3e365db80c5bb0cc7ce88d7ca58c37dc7bf66c31667e712605413218c8003c"
+    "cwtSha256": "4b3e365db80c5bb0cc7ce88d7ca58c37dc7bf66c31667e712605413218c8003c",
+    "offlineInventory": "reports/validation/offline-wiki-inventory.json"
   },
   "families": [
     {
@@ -36,6 +37,8 @@
       "nativePaths": ["events/*.txt"],
       "level": "semantic",
       "api": [
+        "krieg-lang/hoi4:EventDefinition",
+        "krieg-lang/hoi4:EventDelay",
         "krieg-lang/hoi4:CountryEvent",
         "krieg-lang/hoi4:StateEvent",
         "krieg-lang/hoi4:NewsEvent",
@@ -48,6 +51,10 @@
       "guide": "recipes.md",
       "ruleSources": ["Config/events.cwt"],
       "tests": [
+        {
+          "file": "tests/typed-gameplay.test.mjs",
+          "test": "declared event chains support forward references, cycles and self-rescheduling without expansion"
+        },
         {
           "file": "tests/compiler.test.mjs",
           "test": "semantic event emits scoped trigger, helper effects, runtime if/else and namespace"
@@ -81,6 +88,8 @@
       "nativePaths": ["common/national_focus/*.txt", "common/ai_strategy_plans/*.txt"],
       "level": "semantic",
       "api": [
+        "krieg-lang/hoi4:FocusGraph",
+        "krieg-lang/hoi4:FocusReference",
         "krieg-lang/hoi4:FocusTree",
         "krieg-lang/hoi4:Focus",
         "krieg-lang/hoi4:NativeFocusTree",
@@ -90,9 +99,13 @@
         "krieg-lang/hoi4:FocusStyle",
         "krieg-lang/hoi4:AiStrategyPlan"
       ],
-      "guide": "recipes.md",
+      "guide": "typed-gameplay.md",
       "ruleSources": ["Config/common/national_focus.cwt"],
       "tests": [
+        {
+          "file": "tests/typed-gameplay.test.mjs",
+          "test": "FocusGraph expands paths, all/any joins, symmetric choices and stable automatic layout"
+        },
         {
           "file": "tests/compiler.test.mjs",
           "test": "all high-level domains compile with explicit file conventions"
@@ -186,16 +199,24 @@
       "wiki": ["https://hoi4.paradoxwikis.com/Effects"],
       "nativePaths": ["common/scripted_effects/*.txt", "common/scripted_triggers/*.txt"],
       "level": "semantic",
-      "api": ["krieg-lang/hoi4:ScriptedEffect"],
-      "guide": "language.md",
+      "api": ["krieg-lang/hoi4:ScriptedEffect", "krieg-lang/hoi4:ScriptedEffectFamily"],
+      "guide": "scripted-content.md",
       "ruleSources": ["Config/effects.cwt", "Config/triggers.cwt", "Config/variables.cwt"],
       "tests": [
         {
           "file": "tests/compiler.test.mjs",
           "test": "scripted handles invoke emitted scripts and preserve scope types"
+        },
+        {
+          "file": "tests/scripted-families.test.mjs",
+          "test": "finite effect families specialize typed scalar data into ordinary native effects"
+        },
+        {
+          "file": "tests/scripted-families.test.mjs",
+          "test": "source packages and project batches emit each family variant once across many consumers"
         }
       ],
-      "boundary": "固定命令按 CWT 生成；动态 CWT 键、特殊值表达式与游戏运行时行为保留明确边界。"
+      "boundary": "固定命令按 CWT 生成；有限参数表在编译期生成具名普通效果，每个变体一次定义，调用为 name = yes。没有 $PARAM$ 原生参数宏或隐式游戏临时变量；动态值与游戏行为仍有原生边界。"
     },
     {
       "id": "triggers",
@@ -204,16 +225,24 @@
       "wiki": ["https://hoi4.paradoxwikis.com/Triggers"],
       "nativePaths": ["common/scripted_effects/*.txt", "common/scripted_triggers/*.txt"],
       "level": "semantic",
-      "api": ["krieg-lang/hoi4:ScriptedTrigger"],
-      "guide": "language.md",
+      "api": ["krieg-lang/hoi4:ScriptedTrigger", "krieg-lang/hoi4:ScriptedTriggerFamily"],
+      "guide": "scripted-content.md",
       "ruleSources": ["Config/effects.cwt", "Config/triggers.cwt", "Config/variables.cwt"],
       "tests": [
         {
           "file": "tests/compiler.test.mjs",
           "test": "generated CWT command types include legal scopes and block fields"
+        },
+        {
+          "file": "tests/scripted-families.test.mjs",
+          "test": "trigger and state families preserve live game conditions and native scope calls"
+        },
+        {
+          "file": "tests/scripted-families.test.mjs",
+          "test": "published types and editor completion retain exact family keys, payload fields and scope"
         }
       ],
-      "boundary": "固定命令按 CWT 生成；动态 CWT 键、特殊值表达式与游戏运行时行为保留明确边界。"
+      "boundary": "固定命令按 CWT 生成；有限参数在编译期特化，作用域查询仍在游戏运行时检查，调用为 name = yes/no。精确变体键与国家/地区句柄由 TypeScript 和编译器检查；不声称支持 $PARAM$ 宏。"
     },
     {
       "id": "scopes",
@@ -294,10 +323,18 @@
       "wiki": ["https://hoi4.paradoxwikis.com/Localisation"],
       "nativePaths": ["localisation/*/*.yml"],
       "level": "semantic",
-      "api": ["krieg-lang/project:buildProject", "krieg-lang/project:LocalisationRule"],
+      "api": [
+        "krieg-lang/project:writeEditorProject",
+        "krieg-lang/project:buildProject",
+        "krieg-lang/project:LocalisationRule"
+      ],
       "guide": "localisation.md",
       "ruleSources": [],
       "tests": [
+        {
+          "file": "tests/project-messages.test.mjs",
+          "test": "project messages complete real keys, preview translations and reject incompletely translated keys"
+        },
         {
           "file": "tests/project.test.mjs",
           "test": "starter builds events, decisions, BOM localisation, descriptors and deterministic manifest"
@@ -312,10 +349,18 @@
       "wiki": ["https://hoi4.paradoxwikis.com/Scripted_GUI_modding"],
       "nativePaths": ["common/scripted_guis/*.txt"],
       "level": "semantic",
-      "api": ["krieg-lang/hoi4:ScriptedGui"],
+      "api": [
+        "krieg-lang/ui:ScriptedWindow",
+        "krieg-lang/ui:GuiVariable",
+        "krieg-lang/hoi4:ScriptedGui"
+      ],
       "guide": "ui.md",
       "ruleSources": ["Config/common/scripted_guis.cwt"],
       "tests": [
+        {
+          "file": "tests/scripted-window.test.mjs",
+          "test": "expanded bindings reject extra fields hidden by structural TypeScript assignment"
+        },
         {
           "file": "tests/language-ui.test.mjs",
           "test": "scripted GUI emits context, event callbacks, repeated AI targets and dynamic lists"
@@ -330,10 +375,20 @@
       "wiki": ["https://hoi4.paradoxwikis.com/Interface_modding"],
       "nativePaths": ["interface/*.gui"],
       "level": "semantic",
-      "api": ["krieg-lang/ui:GuiFile", "krieg-lang/ui:Container", "krieg-lang/ui:Button"],
+      "api": [
+        "krieg-lang/ui:ScriptedWindow",
+        "krieg-lang/ui:For",
+        "krieg-lang/ui:GuiFile",
+        "krieg-lang/ui:Container",
+        "krieg-lang/ui:Button"
+      ],
       "guide": "ui.md",
       "ruleSources": ["Config/interface/gui.cwt"],
       "tests": [
+        {
+          "file": "tests/scripted-window.test.mjs",
+          "test": "real TypeScript LanguageService offers component, scope, row and prop-specific completions"
+        },
         {
           "file": "tests/language-ui.test.mjs",
           "test": "TSX components, fragments, source helpers and native tags emit ordered native GUI"
@@ -427,10 +482,19 @@
         "map/supply_nodes.txt"
       ],
       "level": "native-asset",
-      "api": ["krieg-lang/project:validateMap", "krieg-lang/project:buildProject"],
-      "guide": "countries-maps.md",
+      "api": [
+        "krieg-lang/project:ProvinceAtlas",
+        "krieg-lang/project:createRailwayOverlay",
+        "krieg-lang/project:validateMap",
+        "krieg-lang/project:buildProject"
+      ],
+      "guide": "map-atlas.md",
       "ruleSources": [],
       "tests": [
+        {
+          "file": "tests/atlas.test.mjs",
+          "test": "railway overlays preserve every original byte and share equal-level edges"
+        },
         {
           "file": "tests/project.test.mjs",
           "test": "map validates colors, province references and railway row lengths"

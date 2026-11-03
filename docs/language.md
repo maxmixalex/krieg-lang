@@ -24,7 +24,9 @@ ScriptedEffect("reward_prepared_country", (country: CountryScope) => {
 
 ## 常量与可复用函数
 
-`const` 可以保存可静态求值的字符串、数字、布尔值、数组或对象。辅助函数需要给参数写出类型：
+`const` 可以保存可静态求值的字符串、数字、布尔值、数组或对象。独立辅助函数需要给参数写出类型；传给 SDK、TSX 属性和有类型函数的内联回调可以从上下文推导参数。严格 TypeScript 检查继续拒绝隐式 `any`。例如 `ScriptedEffect("reward", country => country.effects.addPoliticalPower(5))` 的 `country` 自动获得国家作用域及其补全。
+
+复用辅助函数时：
 
 ```typescript
 import { ScriptedEffect, type CountryScope } from "krieg-lang/hoi4";

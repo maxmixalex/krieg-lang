@@ -1,3 +1,6 @@
+import type { ProvinceAtlas } from "./atlas.js";
+import type { RailwayPlan } from "./atlas-railways.js";
+
 export interface ModMetadata {
   name: string;
   version: string;
@@ -31,6 +34,14 @@ export interface GameRoot {
 export interface ProjectOptions {
   /** Override configured game roots, in vanilla-to-mod load order. Paths are resolved from the current directory. */
   gameRoots?: readonly (string | GameRoot)[];
+  /** Additional routes planned against the final compiled world. A callback may use checked land references. */
+  railways?: RailwayPlan | ((atlas: ProvinceAtlas) => RailwayPlan);
+}
+
+/** Options for workflows that can refresh editor declarations from the same resolved inputs. */
+export interface ProjectBuildOptions extends ProjectOptions {
+  /** Write `.krieg` declarations as part of this build. Enabled by the CLI. */
+  writeEditor?: boolean;
 }
 
 export interface KriegConfig {
@@ -46,6 +57,7 @@ export interface KriegConfig {
   gameRoots: GameRoot[];
   world: { countries: string[]; states: number[] };
   strictAssets: boolean;
+  railways?: RailwayPlan;
 }
 
 export interface ProjectDiagnostic {

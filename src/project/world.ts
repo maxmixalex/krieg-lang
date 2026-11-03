@@ -4,6 +4,9 @@ import { parsePdx } from "../pdx/index.js";
 import type { PdxItem, PdxProperty } from "../pdx/ast.js";
 import { slash, walkFiles } from "./files.js";
 import { discoverSourceWorld } from "./source-world.js";
+import { messagesDeclaration } from "./messages.js";
+import { geographyDeclaration, indexGeography } from "./atlas.js";
+import type { GeographyIndex } from "./atlas.js";
 import type { KriegConfig, OutputFile, ProjectDiagnostic } from "./types.js";
 
 export interface WorldFile {
@@ -17,6 +20,8 @@ export interface ProjectWorld {
   virtualModules: Record<string, string>;
   effectiveFiles: Map<string, WorldFile>;
   diagnostics: ProjectDiagnostic[];
+  geography: GeographyIndex;
+  baseGeography: GeographyIndex;
 }
 
 export function fileBytes(file: WorldFile): Uint8Array {
@@ -46,6 +51,7 @@ export function createWorld(
   layers: Array<{ config: KriegConfig; files: OutputFile[] }>,
 ): ProjectWorld {
   const effectiveFiles = new Map<string, WorldFile>();
+  const projectTranslations = new Map<WorldFile, OutputFile>();
   const diagnostics: ProjectDiagnostic[] = [];
   for (const root of config.gameRoots) {
     if (!existsSync(root.path)) throw new Error(`Game data root does not exist: ${root.path}`);
@@ -53,10 +59,17 @@ export function createWorld(
     for (const path of walkFiles(root.path))
       effectiveFiles.set(slash(relative(root.path, path)), { source: path });
   }
+  const geographyPath = (path: string): boolean =>
+    path === "map/definition.csv" ||
+    /^(history\/states|map\/strategicregions)\/.+\.txt$/i.test(path);
+  const baseGeographyFiles = new Map([...effectiveFiles].filter(([path]) => geographyPath(path)));
   for (const layer of layers) {
     applyReplacePaths(effectiveFiles, layer.config.mod.replacePath);
-    for (const file of layer.files)
-      effectiveFiles.set(file.path, { source: file.source, bytes: file.bytes });
+    for (const file of layer.files) {
+      const entry = { source: file.source, bytes: file.bytes };
+      effectiveFiles.set(file.path, entry);
+      if (/^localisation\/.+\.yml$/i.test(file.path)) projectTranslations.set(entry, file);
+    }
     const discovered = discoverSourceWorld(layer.config);
     diagnostics.push(...discovered.diagnostics);
     for (const file of discovered.files)
@@ -105,10 +118,35 @@ export function createWorld(
   const assets = [...effectiveFiles.keys()]
     .filter((p) => /\.(dds|tga|png|bmp|jpg|jpeg|ogg|wav|mesh|anim)$/i.test(p))
     .sort();
+  const geography = indexGeography(effectiveFiles);
+  const currentGeographyFiles = [...effectiveFiles].filter(([path]) => geographyPath(path));
+  const baseGeography =
+    currentGeographyFiles.length === baseGeographyFiles.size &&
+    currentGeographyFiles.every(([path, file]) => baseGeographyFiles.get(path) === file)
+      ? geography
+      : indexGeography(baseGeographyFiles);
+  diagnostics.push(
+    ...geography.diagnostics.filter((diagnostic) => diagnostic.code === "KRG_ATLAS_INCOMPLETE"),
+  );
   const virtualModules: Record<string, string> = {
+    "@project/geography": geographyDeclaration(geography, baseGeography),
+    "@project/localisation": messagesDeclaration(
+      [...projectTranslations]
+        .filter(([entry, file]) => effectiveFiles.get(file.path) === entry)
+        .map(([, file]) => file),
+    ),
     "@project/countries": `import type { CountryRef } from "krieg-lang/hoi4";\nexport declare const countries: {\n${countries.map((tag) => `readonly ${tag}: CountryRef & {readonly tag:${JSON.stringify(tag)}};`).join("\n")}\n};\n`,
     "@project/states": `import type { StateRef } from "krieg-lang/hoi4";\nexport declare const states: {\n${states.map((id) => `readonly ${id}: StateRef & {readonly id:${id}};`).join("\n")}\n};\n`,
     "@project/assets": `export declare const assets: {\n${assets.map((p) => `readonly ${JSON.stringify(p)}:${JSON.stringify(p)};`).join("\n")}\n};\n`,
   };
-  return { countries, states, assets, virtualModules, effectiveFiles, diagnostics };
+  return {
+    countries,
+    states,
+    assets,
+    virtualModules,
+    effectiveFiles,
+    diagnostics,
+    geography,
+    baseGeography,
+  };
 }

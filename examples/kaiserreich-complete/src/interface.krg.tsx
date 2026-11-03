@@ -1,16 +1,7 @@
-import { ScriptedGui, type CountryScope } from "krieg-lang/hoi4";
-import {
-  GuiFile,
-  SpriteFile,
-  Sprite,
-  Container,
-  Icon,
-  Button,
-  Text,
-  type GuiElement,
-} from "krieg-lang/ui";
+import { ScriptedWindow, SpriteFile, Sprite, Text, type GuiElement } from "krieg-lang/ui";
 import { countries } from "@project/countries";
 import { assets } from "@project/assets";
+import { messages } from "@project/localisation";
 import { executeBond } from "./programme.krg.ts";
 
 function StatusLine(props: { text: string; y: number }): GuiElement {
@@ -36,49 +27,45 @@ export const sprites = SpriteFile("interface/srd_sprites.gfx", [
   }),
   Sprite({ name: "GFX_srd_leader", textureFile: assets["gfx/leaders/KRL/srd_leader.tga"] }),
 ]);
-export const panel = GuiFile(
-  "interface/srd_assembly.gui",
-  <Container
-    name="srd_assembly_window"
-    position={{ x: 15, y: 80 }}
-    size={{ width: 350, height: 190 }}
-  >
-    <Icon name="background" spriteType="GFX_srd_panel" />
-    <Text
-      name="title"
-      position={{ x: 18, y: 14 }}
-      maxWidth={300}
-      maxHeight={26}
-      font="hoi_18mbs"
-      text="srd_gui_title"
-    />
-    <StatusLine text="srd_gui_status" y={54} />
-    <Button
-      name="redeem"
-      position={{ x: 18, y: 118 }}
-      size={{ width: 150, height: 32 }}
-      spriteType="GFX_srd_button"
-      font="hoi_16mbs"
-      text="srd_gui_redeem"
-      tooltip="srd_gui_redeem_tt"
-    />
-  </Container>,
+export const panel = ScriptedWindow(
+  {
+    name: "srd_assembly_panel",
+    path: "interface/srd_assembly.gui",
+    context: "player_context",
+    parentWindowToken: "politics_tab",
+    dirty: "srd_gui_dirty",
+    visible: (country) => country.triggers.tag(countries.KRL),
+  },
+  (ui) => (
+    <ui.Container
+      name="srd_assembly_window"
+      position={{ x: 15, y: 80 }}
+      size={{ width: 350, height: 190 }}
+    >
+      <ui.Icon name="background" spriteType="GFX_srd_panel" />
+      <ui.Text
+        name="title"
+        position={{ x: 18, y: 14 }}
+        maxWidth={300}
+        maxHeight={26}
+        font="hoi_18mbs"
+        text={messages["srd_gui_title"]}
+      />
+      <StatusLine text={messages["srd_gui_status"]} y={54} />
+      <ui.Button
+        name="redeem"
+        position={{ x: 18, y: 118 }}
+        size={{ width: 150, height: 32 }}
+        spriteType="GFX_srd_button"
+        font="hoi_16mbs"
+        text="srd_gui_redeem"
+        tooltip="srd_gui_redeem_tt"
+        click={(country) => {
+          country.run(executeBond);
+          country.effects.clearCountryFlag("srd_bonds_unlocked");
+        }}
+        enabled={(country) => country.triggers.hasCountryFlag("srd_bonds_unlocked")}
+      />
+    </ui.Container>
+  ),
 );
-export const scriptedPanel = ScriptedGui({
-  name: "srd_assembly_panel",
-  windowName: "srd_assembly_window",
-  context: "player_context",
-  parentWindowToken: "politics_tab",
-  dirty: "srd_gui_dirty",
-  visible: (country: CountryScope) => country.triggers.tag(countries.KRL),
-  effects: {
-    redeem_click: (country: CountryScope) => {
-      country.run(executeBond);
-      country.effects.clearCountryFlag("srd_bonds_unlocked");
-    },
-  },
-  triggers: {
-    redeem_click_enabled: (country: CountryScope) =>
-      country.triggers.hasCountryFlag("srd_bonds_unlocked"),
-  },
-});

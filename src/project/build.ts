@@ -1,3 +1,4 @@
+import { writeEditorDeclarations } from "./editor.js";
 import { VERSION } from "../version.js";
 import { createHash, randomUUID } from "node:crypto";
 import {
@@ -12,13 +13,17 @@ import {
 import { basename, dirname, relative, resolve } from "node:path";
 import { compileProjectChunks } from "./compilation.js";
 import { emitCompileOutput } from "../compiler/index.js";
+import { validateEventIdentifier } from "../compiler/gameplay.js";
 import { comparePdxSemantic, parsePdx } from "../pdx/index.js";
 import { classifyCorpusPath, decodeCorpusText } from "../corpus/index.js";
 import { loadConfig } from "./config.js";
 import { resolveDependencies } from "./dependencies.js";
 import { collectAssets, validateAsset } from "./assets.js";
 import { localisationFiles, validateLocalisation } from "./localisation.js";
-import { createWorld } from "./world.js";
+import { createWorld, properties } from "./world.js";
+import { ProvinceAtlas, ProvinceAtlasError } from "./atlas.js";
+import { createRailwayOverlay } from "./atlas-railways.js";
+import type { RailwayPlan } from "./atlas-railways.js";
 import { validateCountries } from "./countries.js";
 import { validateFileReferences, validateMap } from "./map.js";
 import { gamePath, safeChild, slash, walkFiles } from "./files.js";
@@ -28,7 +33,7 @@ import type {
   ModMetadata,
   OutputFile,
   ProjectDiagnostic,
-  ProjectOptions,
+  ProjectBuildOptions,
 } from "./types.js";
 
 export function descriptor(mod: ModMetadata, launcherPath?: string): string {
@@ -48,9 +53,15 @@ export function descriptor(mod: ModMetadata, launcherPath?: string): string {
   return lines.join("\n") + "\n";
 }
 
+/** Compile the source-package graph against the effective game roots and validate the resulting mod. A failed build leaves the last successful output in place.
+ * @example
+ * ```ts
+ * const result = buildProject("./my-mod", { gameRoots: ["/games/hoi4", "/mods/Kaiserreich"] });
+ * if (!result.success) console.error(result.diagnostics);
+ * ``` */
 export function buildProject(
   project = ".",
-  options: ProjectOptions & { check?: boolean } = {},
+  options: ProjectBuildOptions & { check?: boolean } = {},
 ): BuildResult {
   const diagnostics: ProjectDiagnostic[] = [];
   let config: KriegConfig | undefined;
@@ -75,6 +86,7 @@ export function buildProject(
       files: [...collectAssets(layer), ...localisationFiles(layer)],
     }));
     const world = createWorld(config, layers);
+    if (options.writeEditor) writeEditorDeclarations(config, graph, world);
     diagnostics.push(...world.diagnostics);
     result.world = {
       countries: world.countries.length,
@@ -83,7 +95,10 @@ export function buildProject(
     };
     const output = new Map<string, OutputFile>();
     const casePaths = new Map<string, string>();
-    function add(file: OutputFile, override = false): void {
+    // Compiler batches have separate ID registries. Retain only semantic event
+    // identities that survive the final project layer/explicit override rules.
+    const semanticEvents = new Map<string, readonly string[]>();
+    function add(file: OutputFile, override = false, eventIds: readonly string[] = []): void {
       const path = gamePath(file.path);
       const casePrevious = casePaths.get(path.toLowerCase());
       if (casePrevious && casePrevious !== path) {
@@ -107,6 +122,8 @@ export function buildProject(
       }
       output.set(path, { ...file, path });
       casePaths.set(path.toLowerCase(), path);
+      semanticEvents.delete(path);
+      if (eventIds.length) semanticEvents.set(path, eventIds);
     }
     for (const layer of layers) {
       for (const path of layer.config.mod.replacePath)
@@ -114,6 +131,7 @@ export function buildProject(
           if (slash(dirname(previous)) === path) {
             output.delete(previous);
             casePaths.delete(previous.toLowerCase());
+            semanticEvents.delete(previous);
           }
       for (const file of layer.files) {
         if (layer.config.strictAssets) diagnostics.push(...validateAsset(file));
@@ -166,12 +184,85 @@ export function buildProject(
                 message: `Emitting ${path} changes its ordered syntax tree; use valid atoms and escaped strings.`,
               });
           }
-          add({ path, bytes: Buffer.from(text, "utf8"), source: file.sourceFile, kind: "script" });
+          const eventIds: string[] = [];
+          if (file.format === "pdx" && file.representation === "semantic")
+            for (const event of properties(file.document.items)) {
+              if (
+                !["country_event", "state_event", "news_event"].includes(event.key.text) ||
+                event.value.kind !== "block"
+              )
+                continue;
+              const id = properties(event.value.items).find(
+                (property) => property.key.text === "id",
+              );
+              if (id?.value.kind === "atom") eventIds.push(id.value.text);
+            }
+          add(
+            { path, bytes: Buffer.from(text, "utf8"), source: file.sourceFile, kind: "script" },
+            false,
+            eventIds,
+          );
         }
       }
     }
+    const eventOwners = new Map<string, { id: string; path: string; source: string }>();
+    for (const [path, ids] of semanticEvents)
+      for (const id of ids) {
+        const identity = validateEventIdentifier(id);
+        const source = output.get(path)!.source;
+        const previous = eventOwners.get(identity);
+        if (previous)
+          diagnostics.push({
+            code: "KRG2607",
+            severity: "error",
+            file: source,
+            message: `Semantic event '${id}' in ${source} (${path}) duplicates '${previous.id}' from ${previous.source} (${previous.path}); both identify '${identity}'.`,
+          });
+        else eventOwners.set(identity, { id, path, source });
+      }
     for (const [path, file] of output)
       world.effectiveFiles.set(path, { source: file.source, bytes: file.bytes });
+    const railwayPlans = layers
+      .map((layer) => layer.config.railways)
+      .filter((plan): plan is RailwayPlan => plan !== undefined);
+    if (options.railways || railwayPlans.some((plan) => plan.routes.length)) {
+      try {
+        const atlas = new ProvinceAtlas(world.effectiveFiles);
+        if (options.railways)
+          railwayPlans.push(
+            typeof options.railways === "function" ? options.railways(atlas) : options.railways,
+          );
+        const overlay = createRailwayOverlay(
+          world.effectiveFiles,
+          {
+            routes: railwayPlans.flatMap((plan) => plan.routes),
+            allowEmptyBase: railwayPlans.some((plan) => plan.allowEmptyBase),
+          },
+          config.configPath,
+          atlas,
+        );
+        diagnostics.push(...overlay.diagnostics);
+        if (overlay.file) {
+          // The planner has preserved the full effective baseline, including any authored file.
+          add(overlay.file, true);
+          world.effectiveFiles.set(overlay.file.path, {
+            source: overlay.file.source,
+            bytes: overlay.file.bytes,
+          });
+        }
+      } catch (error) {
+        diagnostics.push({
+          code: error instanceof ProvinceAtlasError ? error.code : "KRG_RAILWAY_PLAN",
+          severity: "error",
+          message: error instanceof Error ? error.message : String(error),
+          file:
+            error instanceof ProvinceAtlasError
+              ? (error.file ?? config.configPath)
+              : config.configPath,
+          line: error instanceof ProvinceAtlasError ? error.line : undefined,
+        });
+      }
+    }
     diagnostics.push(...validateLocalisation(output.values()));
     diagnostics.push(...validateMap(world.effectiveFiles, new Set(output.keys())));
     diagnostics.push(

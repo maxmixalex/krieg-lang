@@ -1,7 +1,7 @@
 import {
   CountryEvent,
   DecisionCategory,
-  FocusTree,
+  FocusGraph,
   Idea,
   ScriptedEffect,
   ScriptedLocalisation,
@@ -93,64 +93,55 @@ export const decisions = DecisionCategory({
       cost: 25,
       available: (country: CountryScope) => country.test(ready),
       visible: (country: CountryScope) => !country.triggers.hasCountryFlag("civ_invested"),
-      completeEffect: (country: CountryScope) =>
-        country.effects.countryEvent({ id: report.id, days: 1 }),
+      completeEffect: (country: CountryScope) => country.schedule(report, { days: 1 }),
     },
     {
       id: "civ_delegation",
       cost: 15,
       daysReEnable: 30,
       available: (country: CountryScope) => country.triggers.hasCountryFlag("civ_invested"),
-      completeEffect: (country: CountryScope) =>
-        country.effects.countryEvent({ id: partnerVisit.id, days: 2 }),
+      completeEffect: (country: CountryScope) => country.schedule(partnerVisit, { days: 2 }),
     },
   ],
 });
-export const focusTree = FocusTree({
+export const focusTree = FocusGraph({
   id: "civ_island_tree",
+  prefix: "civ",
   country: (country: CountryScope) => country.triggers.tag(countries.KRG),
-  focuses: [
-    {
-      id: "civ_charter",
+  nodes: {
+    charter: {
       icon: "GFX_civ_focus",
-      x: 1,
-      y: 0,
+      position: { x: 1, y: 0 },
       cost: 3,
       completionReward: (country: CountryScope) => country.effects.addStability(0.05),
     },
-    {
-      id: "civ_harbour",
+    harbour: {
       icon: "GFX_civ_focus",
-      x: 0,
-      y: 1,
+      position: { x: 0, y: 1 },
       cost: 5,
-      prerequisites: [["civ_charter"]],
-      completionReward: (country: CountryScope) =>
-        country.effects.countryEvent({ id: report.id, days: 1 }),
+      completionReward: (country: CountryScope) => country.schedule(report, { days: 1 }),
     },
-    {
-      id: "civ_bonds",
+    bonds: {
       icon: "GFX_civ_focus",
-      x: 2,
-      y: 1,
+      position: { x: 2, y: 1 },
       cost: 5,
-      prerequisites: [["civ_charter"]],
       completionReward: (country: CountryScope) => {
         country.effects.setCountryFlag("civ_bonds_unlocked");
         country.run(executeBond);
       },
     },
-    {
-      id: "civ_cooperation",
+    cooperation: {
       icon: "GFX_civ_focus",
-      x: 1,
-      y: 2,
+      position: { x: 1, y: 2 },
       cost: 5,
-      prerequisites: [["civ_harbour"], ["civ_bonds"]],
-      completionReward: (country: CountryScope) =>
-        country.effects.countryEvent({ id: partnerVisit.id, days: 1 }),
+      completionReward: (country: CountryScope) => country.schedule(partnerVisit, { days: 1 }),
     },
+  },
+  sequences: [
+    ["charter", "harbour"],
+    ["charter", "bonds"],
   ],
+  joins: [{ to: "cooperation", all: ["harbour", "bonds"] }],
 });
 export const status = ScriptedLocalisation("Get_civ_ProjectStatus", {
   scope: "country",
@@ -188,7 +179,7 @@ export const startup = OnAction({
   effect: [
     (world: AnyScope) =>
       world.country(countries.KRG, (country: CountryScope) =>
-        country.effects.countryEvent({ id: introduction.id, days: 2 }),
+        country.schedule(introduction, { days: 2 }),
       ),
   ],
 });

@@ -1,29 +1,46 @@
-import { mkdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { MINIMAL_LIB } from "../compiler/minimal-lib.js";
 import { loadConfig } from "./config.js";
-import { resolveDependencies } from "./dependencies.js";
+import { resolveDependencies, type DependencyGraph } from "./dependencies.js";
 import { collectAssets } from "./assets.js";
+import { localisationFiles } from "./localisation.js";
 import { createWorld } from "./world.js";
 import { safeChild, slash } from "./files.js";
-import type { ProjectOptions } from "./types.js";
+import type { KriegConfig, ProjectOptions } from "./types.js";
 import type { ProjectWorld } from "./world.js";
 
+// Keeping mtimes stable lets TypeScript reuse unchanged declaration files while Krieg watches a project.
+function writeChanged(path: string, contents: string): void {
+  if (!existsSync(path) || readFileSync(path, "utf8") !== contents) writeFileSync(path, contents);
+}
+
+/** Refresh the declarations and tsconfig used by the author's TypeScript editor. Uses the same layer order as a build, including translations from source-package dependencies. Unchanged files keep their modification times. */
 export function writeEditorProject(project = ".", options: ProjectOptions = {}): ProjectWorld {
   const config = loadConfig(project, options);
   const graph = resolveDependencies(config);
   const layers = graph.layers.map(({ config: layer }) => ({
     config: layer,
-    files: collectAssets(layer),
+    files: [...collectAssets(layer), ...localisationFiles(layer)],
   }));
   const world = createWorld(config, layers);
+  writeEditorDeclarations(config, graph, world);
+  return world;
+}
+
+/** Internal: write the same world and source-package resolution that the build actually uses. */
+export function writeEditorDeclarations(
+  config: KriegConfig,
+  graph: DependencyGraph,
+  world: ProjectWorld,
+): void {
   const generated = safeChild(config.rootDir, ".krieg");
   const types = resolve(generated, "types");
   mkdirSync(types, { recursive: true });
   for (const [name, contents] of Object.entries(world.virtualModules))
-    writeFileSync(resolve(types, name.slice("@project/".length) + ".d.ts"), contents);
-  writeFileSync(resolve(types, "lib.d.ts"), MINIMAL_LIB);
+    writeChanged(resolve(types, name.slice("@project/".length) + ".d.ts"), contents);
+  writeChanged(resolve(types, "lib.d.ts"), MINIMAL_LIB);
   const paths: Record<string, string[]> = {
     "@project/*": ["./types/*.d.ts"],
     "krieg-lang/hoi4": [
@@ -41,7 +58,7 @@ export function writeEditorProject(project = ".", options: ProjectOptions = {}):
   };
   for (const [name, path] of Object.entries(graph.moduleFiles))
     paths[name] = [slash(relative(generated, path))];
-  writeFileSync(
+  writeChanged(
     resolve(generated, "tsconfig.json"),
     JSON.stringify(
       {
@@ -66,5 +83,4 @@ export function writeEditorProject(project = ".", options: ProjectOptions = {}):
       2,
     ) + "\n",
   );
-  return world;
 }

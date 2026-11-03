@@ -7,13 +7,32 @@ import { commandAllowed } from "./sdk.js";
 import { commandValueError } from "./command-validation.js";
 import { DOMAIN_DEFINITIONS, DOMAIN_SCHEMA, type NativeValue } from "./domain-registry.js";
 import { lowerDefines } from "./defines.js";
+import { normalizeScriptedFamily, ScriptedFamilyError } from "./scripted-families.js";
+import {
+  GameplayError,
+  normalizeEventDelay,
+  normalizeFocusGraph,
+  validateEventIdentifier,
+} from "./gameplay.js";
+import {
+  composeScriptedWindow,
+  guiElements,
+  GUI_BINDING_KEYS,
+  SCRIPTED_WINDOW_COMPONENTS,
+  type GuiElementValue,
+} from "./scripted-window.js";
 import type { CompileOptions, CompileOutput, PdxCompileOutput, KriegDiagnostic } from "./types.js";
 
 type Value = unknown;
 type Environment = Map<ts.Symbol, Value>;
 type Scope = { _krg: "scope"; name: string; id: number; parent?: Scope };
 type Callable = { _krg: "function"; node: ts.FunctionLikeDeclaration; env: Environment };
-type Builtin = { _krg: "builtin"; name: string; module: "sdk" | "pdx" | "ui" };
+type Builtin = {
+  _krg: "builtin";
+  name: string;
+  module: "sdk" | "pdx" | "ui";
+  guiOwner?: number;
+};
 type Member = { _krg: "member"; object: Value; name: string };
 type Trigger = { _krg: "trigger"; items: pdx.PdxItem[] };
 type Variable = { _krg: "variable"; name: string; scope: Scope; mutable: boolean };
@@ -26,6 +45,9 @@ type Definition = {
   name?: string;
   scope?: string;
   definitionKind?: "effect" | "trigger";
+  eventScope?: "country" | "state";
+  focuses?: Record<string, { _krg: "focus-reference"; id: string }>;
+  pendingOutput?: () => CompileOutput[];
 };
 interface Context {
   env: Environment;
@@ -133,8 +155,12 @@ export class Lowerer {
   private readonly calls: ts.FunctionLikeDeclaration[] = [];
   private readonly outputs: CompileOutput[] = [];
   private readonly outputDefinitions = new Set<Definition>();
+  private readonly scriptedFamilies = new WeakMap<object, Definition[]>();
+  private readonly scriptedNames = new Set<string>();
+  private readonly gameplayIds = new Set<string>();
   private count = 0;
   private sequence = 0;
+  private guiSequence = 0;
   private readonly schema: CwtSchema;
   constructor(
     private readonly program: ts.Program,
@@ -145,12 +171,17 @@ export class Lowerer {
     this.sources = program.getSourceFiles().filter((source) => !source.isDeclarationFile);
     this.schema = options.schema;
   }
-  private report(node: ts.Node, code: string, message: string): void {
+  private report(
+    node: ts.Node,
+    code: string,
+    message: string,
+    severity: KriegDiagnostic["severity"] = "error",
+  ): void {
     const source = node.getSourceFile();
     const position = source.getLineAndCharacterOfPosition(node.getStart(source));
     this.diagnostics.push({
       code,
-      severity: "error",
+      severity,
       message,
       file: source.fileName,
       line: position.line + 1,
@@ -262,11 +293,14 @@ export class Lowerer {
               "Async functions and generators cannot be lowered to game script.",
             );
           for (const parameter of node.parameters) {
-            if (!parameter.type)
+            if (
+              !parameter.type &&
+              this.checker.getTypeAtLocation(parameter).flags & ts.TypeFlags.Any
+            )
               this.report(
                 parameter,
                 "KRG1005",
-                "Every function and callback parameter must have an explicit type annotation.",
+                "A parameter requires an explicit type or a safe type inferred from its callback context.",
               );
             if (!ts.isIdentifier(parameter.name) || parameter.dotDotDotToken)
               this.report(
@@ -402,6 +436,10 @@ export class Lowerer {
     return [...merged.values()].sort((a, b) => a.path.localeCompare(b.path));
   }
   private emitValue(value: Value, node: ts.Node): void {
+    if (record(value) && this.scriptedFamilies.has(value)) {
+      this.scriptedFamilies.get(value)!.forEach((definition) => this.emitValue(definition, node));
+      return;
+    }
     if (Array.isArray(value)) {
       value.forEach((item) => this.emitValue(item, node));
       return;
@@ -410,6 +448,10 @@ export class Lowerer {
       const definition = value as Definition;
       if (!this.outputDefinitions.has(definition)) {
         this.outputDefinitions.add(definition);
+        if (definition.pendingOutput) {
+          definition.outputs = definition.pendingOutput();
+          delete definition.pendingOutput;
+        }
         this.outputs.push(...definition.outputs);
       }
     } else if (record(value) && value.kind === "file") {
@@ -507,9 +549,12 @@ export class Lowerer {
       this.fail(identifier, "KRG2006", `No static declaration for '${identifier.text}'.`);
     const module = declaration.getSourceFile().fileName;
     if (
-      ["krieg-lang_hoi4.d.ts", "krieg-lang_hoi4_domains.d.ts", "krieg-lang_hoi4_defines.d.ts"].some(
-        (file) => module === path.join(this.options.rootDir, ".krieg-compiler-virtual", file),
-      )
+      [
+        "krieg-lang_hoi4.d.ts",
+        "krieg-lang_hoi4_domains.d.ts",
+        "krieg-lang_hoi4_defines.d.ts",
+        "krieg-lang_hoi4_gameplay.d.ts",
+      ].some((file) => module === path.join(this.options.rootDir, ".krieg-compiler-virtual", file))
     )
       return { _krg: "builtin", name: symbol.name, module: "sdk" } as Builtin;
     if (module === path.join(this.options.rootDir, ".krieg-compiler-virtual/krieg-lang_pdx.d.ts"))
@@ -601,6 +646,43 @@ export class Lowerer {
       );
     return result;
   }
+  // A project map may contain tens of thousands of literal provinces. Resolve a
+  // literal access from its genuine ambient root without materializing every area.
+  // Walk the declaration's own type; source casts and asserted property types are
+  // deliberately not trusted as compile-time values.
+  private projectPropertyValue(node: ts.Expression): { value: Value } | undefined {
+    const keys: string[] = [];
+    let root = node;
+    while (ts.isPropertyAccessExpression(root) || ts.isElementAccessExpression(root)) {
+      if (ts.isPropertyAccessExpression(root)) keys.unshift(root.name.text);
+      else if (
+        ts.isStringLiteral(root.argumentExpression) ||
+        ts.isNumericLiteral(root.argumentExpression)
+      )
+        keys.unshift(root.argumentExpression.text);
+      else return undefined;
+      root = root.expression;
+    }
+    if (!ts.isIdentifier(root) || !keys.length) return undefined;
+    const symbol = this.symbol(root);
+    const declaration = symbol?.valueDeclaration;
+    const trustedRoot = path.join(this.options.rootDir, ".krieg-compiler-virtual") + path.sep;
+    if (
+      !declaration ||
+      !ts.isVariableDeclaration(declaration) ||
+      declaration.initializer ||
+      !declaration.getSourceFile().isDeclarationFile ||
+      !declaration.getSourceFile().fileName.startsWith(trustedRoot)
+    )
+      return undefined;
+    let type = this.checker.getTypeAtLocation(declaration);
+    for (const key of keys) {
+      const property = this.checker.getPropertyOfType(type, key);
+      if (!property) return undefined;
+      type = this.checker.getTypeOfSymbolAtLocation(property, declaration);
+    }
+    return { value: this.typeValue(type, node, 0) };
+  }
   private evaluate(node: ts.Expression, context: Context): Value {
     this.tick(node);
     if (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) return node.text;
@@ -669,6 +751,8 @@ export class Lowerer {
     if (ts.isArrowFunction(node) || ts.isFunctionExpression(node))
       return { _krg: "function", node, env: new Map(context.env) } as Callable;
     if (ts.isPropertyAccessExpression(node) || ts.isElementAccessExpression(node)) {
+      const projectValue = this.projectPropertyValue(node);
+      if (projectValue) return projectValue.value;
       const object = this.evaluate(node.expression, context);
       const key = ts.isPropertyAccessExpression(node)
         ? node.name.text
@@ -796,7 +880,7 @@ export class Lowerer {
       return builtin.module === "pdx"
         ? this.pdxCall(builtin.name, args, node)
         : builtin.module === "ui"
-          ? this.uiCall(builtin.name, args, node, context)
+          ? this.uiCall(builtin.name, args, node, context, builtin.guiOwner)
           : this.sdkCall(builtin.name, args, node, context);
     }
     if (tagged(callable, "function")) return this.invoke(callable as Callable, args, node, context);
@@ -874,6 +958,20 @@ export class Lowerer {
   }
   private sdkCall(name: string, args: Value[], node: ts.Node, context: Context): Value {
     if (name === "MetaEffect") return this.metaEffect(args, node, context);
+    if (name === "ScriptedEffectFamily" || name === "ScriptedTriggerFamily")
+      return this.scriptedFamily(name, args, node, context);
+    if (name === "FocusGraph") {
+      if (context.mode !== "top")
+        this.fail(node, "KRG2028", "Focus graphs belong at module scope.");
+      const graph = this.gameplay(node, () => normalizeFocusGraph(args[0]));
+      return {
+        _krg: "definition",
+        id: graph.spec.id,
+        focuses: graph.focuses,
+        outputs: [],
+        pendingOutput: () => this.definition("FocusTree", [graph.spec], node, context),
+      } as Definition;
+    }
     if (name === "country") {
       const tag = this.string(args[0], node);
       if (!/^[A-Z][A-Z0-9]{2}$/.test(tag))
@@ -900,6 +998,20 @@ export class Lowerer {
           "KRG2028",
           "Game declarations belong at module scope; effect helpers may only produce effects.",
         );
+      // Publish event identity before lowering its callbacks. This allows declared
+      // event chains (including a delayed self-loop) without recursive expansion.
+      if (["CountryEvent", "StateEvent", "NewsEvent"].includes(name)) {
+        const spec = this.object(args[0], node);
+        const id = this.string(spec.id, node);
+        this.gameplay(node, () => validateEventIdentifier(id));
+        return {
+          _krg: "definition",
+          outputs: [],
+          id,
+          eventScope: name === "StateEvent" ? "state" : "country",
+          pendingOutput: () => this.definition(name, args, node, context),
+        } as Definition;
+      }
       const result: Definition = {
         _krg: "definition",
         outputs: this.definition(name, args, node, context),
@@ -922,6 +1034,73 @@ export class Lowerer {
       return result;
     }
     this.fail(node, "KRG2029", `SDK declaration '${name}' has no static lowering.`);
+  }
+
+  private claimScriptedName(kind: "effect" | "trigger", name: string, node: ts.Node): void {
+    const key = `${kind}:${name}`;
+    if (this.scriptedNames.has(key))
+      this.fail(node, "KRG2611", `Duplicate scripted ${kind} name '${name}'.`);
+    this.scriptedNames.add(key);
+  }
+
+  private scriptedFamily(name: string, args: Value[], node: ts.Node, context: Context): Value {
+    if (context.mode !== "top")
+      this.fail(node, "KRG2028", "Scripted families belong at module scope.");
+    const explicitScope = args.length === 4;
+    const scope = explicitScope ? this.string(args[1], node) : "country";
+    const mode = name === "ScriptedTriggerFamily" ? "trigger" : "effect";
+    const callback = args[explicitScope ? 3 : 2];
+    let variants;
+    try {
+      variants = normalizeScriptedFamily(args[0], args[explicitScope ? 2 : 1]);
+    } catch (error) {
+      if (error instanceof ScriptedFamilyError) this.fail(node, "KRG2610", error.message);
+      throw error;
+    }
+    const handles: Record<string, Definition> = Object.create(null);
+    for (const variant of variants) {
+      this.claimScriptedName(mode, variant.name, node);
+      const items = this.callback(
+        callback,
+        scope,
+        mode,
+        node,
+        { ...context, prefix: variant.name },
+        undefined,
+        [variant.parameters],
+      );
+      handles[variant.key] = {
+        _krg: "definition",
+        name: variant.name,
+        scope,
+        definitionKind: mode,
+        outputs: [
+          this.output(
+            `common/scripted_${mode}s/krieg_${variant.name}.txt`,
+            pdx.document([pdx.property(variant.name, pdx.block(items))]),
+            node,
+          ),
+        ],
+      };
+    }
+    this.scriptedFamilies.set(handles, Object.values(handles));
+    return handles;
+  }
+
+  private gameplay<T>(node: ts.Node, action: () => T): T {
+    try {
+      return action();
+    } catch (error) {
+      if (error instanceof GameplayError) this.fail(node, error.code, error.message);
+      throw error;
+    }
+  }
+
+  private claimGameplayId(kind: "event" | "focus", id: string, node: ts.Node): void {
+    const key = `${kind}:${id}`;
+    if (this.gameplayIds.has(key))
+      this.fail(node, "KRG2607", `Duplicate ${kind} ID '${id}' in semantic declarations.`);
+    this.gameplayIds.add(key);
   }
 
   private jsx(
@@ -994,15 +1173,109 @@ export class Lowerer {
     return this.call(this.evaluate(tag, context), [props], node, context);
   }
   private guiChildren(value: Value, node: ts.Node): pdx.PdxProperty[] {
-    if (value === undefined || value === false) return [];
-    if (Array.isArray(value)) return value.flatMap((item) => this.guiChildren(item, node));
-    if (tagged(value, "gui-fragment")) return this.guiChildren(value.children, node);
-    if (tagged(value, "gui-element")) return [value.property as pdx.PdxProperty];
-    this.fail(node, "KRG2087", "GUI children must be statically authored interface elements.");
+    return guiElements(value, node, (origin, code, message) =>
+      this.fail(origin, code, message),
+    ).map((element) => element.property);
   }
-  private uiCall(name: string, args: Value[], node: ts.Node, context: Context): Value {
+  private uiCall(
+    name: string,
+    args: Value[],
+    node: ts.Node,
+    context: Context,
+    guiOwner?: number,
+  ): Value {
     if (context.mode !== "top")
       this.fail(node, "KRG2080", "GUI declarations belong at module scope.");
+    if (guiOwner !== undefined) {
+      const props = this.object(args[0], node);
+      const element = this.uiCall(
+        name,
+        [
+          Object.fromEntries(
+            Object.entries(props).filter(([key]) => !GUI_BINDING_KEYS.includes(key)),
+          ),
+        ],
+        node,
+        context,
+      ) as GuiElementValue;
+      return {
+        ...element,
+        binding: {
+          owner: guiOwner,
+          props: Object.fromEntries(
+            Object.entries(props).filter(([key]) => GUI_BINDING_KEYS.includes(key)),
+          ),
+        },
+      } satisfies GuiElementValue;
+    }
+    if (name === "GuiVariable") {
+      const variable = this.string(args[0], node);
+      if (!/^[A-Za-z_][A-Za-z0-9_.:]*$/.test(variable))
+        this.fail(node, "KRG2136", "GuiVariable requires a non-empty native variable name.");
+      return { _krg: "gui-variable", name: variable };
+    }
+    if (name === "For") {
+      const props = this.object(args[0], node);
+      this.checkKeys(props, ["each", "children"], node, "For");
+      const children =
+        Array.isArray(props.children) && props.children.length === 1
+          ? props.children[0]
+          : props.children;
+      if (!tagged(children, "function"))
+        this.fail(node, "KRG2137", "For requires one static child-rendering callback.");
+      return {
+        _krg: "gui-fragment",
+        children: this.array(props.each, node).map((item, index) => {
+          this.tick(node);
+          return this.invoke(children as Callable, [item, index], node, context);
+        }),
+      };
+    }
+    if (name === "ScriptedWindow") {
+      const spec = this.object(args[0], node);
+      this.checkKeys(
+        spec,
+        [
+          "name",
+          "path",
+          "context",
+          "parentWindowToken",
+          "parentWindowName",
+          "parentScriptedGui",
+          "dirty",
+          "visible",
+          "aiEnabled",
+          "aiCheck",
+          "aiCheckScope",
+          "aiTestParent",
+          "aiTestInterval",
+          "aiTestVariance",
+          "aiTestScopes",
+          "aiMaxWeightTakenPerTest",
+          "mapiconTargets",
+        ],
+        node,
+        "ScriptedWindow",
+      );
+      if (!tagged(args[1], "function"))
+        this.fail(node, "KRG2137", "ScriptedWindow requires a static layout callback.");
+      const owner = ++this.guiSequence;
+      const components = Object.fromEntries(
+        SCRIPTED_WINDOW_COMPONENTS.map((component) => [
+          component,
+          { _krg: "builtin", name: component, module: "ui", guiOwner: owner } satisfies Builtin,
+        ]),
+      );
+      const layout = this.invoke(args[1] as Callable, [components], node, context);
+      const scripted = composeScriptedWindow(spec, layout, owner, node, (origin, code, message) =>
+        this.fail(origin, code, message),
+      );
+      const gui = this.uiCall("GuiFile", [spec.path, layout], node, context) as Definition;
+      return {
+        _krg: "definition",
+        outputs: [...gui.outputs, ...this.scriptedGui([scripted], node, context)],
+      } as Definition;
+    }
     if (name === "GuiFile" || name === "SpriteFile") {
       const file = this.string(args[0], node);
       const extension = name === "GuiFile" ? ".gui" : ".gfx";
@@ -1053,7 +1326,12 @@ export class Lowerer {
           this.fail(node, "KRG2120", `${name} does not accept nested GUI controls.`);
         block.items.push(...this.guiChildren(spec.children, node));
       }
-      return { _krg: "gui-element", property: pdx.property(native[0], block) };
+      return {
+        _krg: "gui-element",
+        property: pdx.property(native[0], block),
+        children: spec.children,
+        source: node,
+      } satisfies GuiElementValue;
     }
     const base: Record<string, string> = {
       name: "name",
@@ -1201,7 +1479,12 @@ export class Lowerer {
         );
       });
     if (spec.children !== undefined) items.push(...this.guiChildren(spec.children, node));
-    return { _krg: "gui-element", property: pdx.property(kind.type, pdx.block(items)) };
+    return {
+      _krg: "gui-element",
+      property: pdx.property(kind.type, pdx.block(items)),
+      children: spec.children,
+      source: node,
+    } satisfies GuiElementValue;
   }
   private metaEffect(args: Value[], node: ts.Node, context: Context): Value {
     if (context.mode !== "effect" || !tagged(args[0], "scope"))
@@ -1262,9 +1545,10 @@ export class Lowerer {
     node: ts.Node,
     outer: Context,
     parent?: Scope,
+    parameters: Value[] = [],
   ): pdx.PdxItem[] {
     if (!tagged(value, "function"))
-      this.fail(node, "KRG2030", "Expected an explicitly typed game scope callback.");
+      this.fail(node, "KRG2030", "Expected a typed game scope callback.");
     const scope: Scope = {
       _krg: "scope",
       name: scopeName,
@@ -1273,7 +1557,7 @@ export class Lowerer {
     };
     const sink: pdx.PdxItem[] = [];
     const context: Context = { env: new Map(), mode, sink, scope, prefix: outer.prefix };
-    const result = this.invoke(value as Callable, [scope], node, context);
+    const result = this.invoke(value as Callable, [scope, ...parameters], node, context);
     if (mode === "trigger") return this.trigger(result, node, context);
     if (result !== undefined) this.fail(node, "KRG2031", "An effect callback must return void.");
     return sink;
@@ -1372,6 +1656,46 @@ export class Lowerer {
     if (!tagged(member.object, "scope"))
       this.fail(node, "KRG2038", "Arbitrary JavaScript methods are not available.");
     const scope = member.object as Scope;
+    if (member.name === "schedule") {
+      if (context.mode !== "effect")
+        this.fail(node, "KRG2037", "Events can only be scheduled inside an effect callback.");
+      const event = args[0];
+      if (!tagged(event, "definition") || event.eventScope !== scope.name)
+        this.fail(node, "KRG2608", `Expected a declared event for ${scope.name} recipients.`);
+      const delay = this.gameplay(node, () => normalizeEventDelay(args[1]));
+      const body = this.toPdx({ id: this.string(event.id, node), ...delay }, node, context);
+      context.sink.push(
+        ...this.inScope(
+          [pdx.property(scope.name === "state" ? "state_event" : "country_event", body)],
+          scope,
+          context,
+          node,
+        ),
+      );
+      return undefined;
+    }
+    if (member.name === "hasCompletedFocus" || member.name === "completeFocus") {
+      const focus = args[0];
+      if (scope.name !== "country" || !tagged(focus, "focus-reference"))
+        this.fail(node, "KRG2608", "Expected a declared focus graph reference in country scope.");
+      const isTrigger = member.name === "hasCompletedFocus";
+      const items = this.inScope(
+        [
+          pdx.property(
+            isTrigger ? "has_completed_focus" : "complete_national_focus",
+            pdx.atom(this.string(focus.id, node)),
+          ),
+        ],
+        scope,
+        context,
+        node,
+      );
+      if (isTrigger) return { _krg: "trigger", items } as Trigger;
+      if (context.mode !== "effect")
+        this.fail(node, "KRG2037", "Focus completion requires an effect callback.");
+      context.sink.push(...items);
+      return undefined;
+    }
     if (member.name === "run" || member.name === "test") {
       const kind = member.name === "run" ? "effect" : "trigger";
       const definition = args[0];
@@ -1489,6 +1813,11 @@ export class Lowerer {
     const left = this.evaluate(node.left, context);
     if (operator === ts.SyntaxKind.AmpersandAmpersandToken && left === false) return false;
     if (operator === ts.SyntaxKind.BarBarToken && left === true) return true;
+    if (
+      (operator === ts.SyntaxKind.AmpersandAmpersandToken && left === true) ||
+      (operator === ts.SyntaxKind.BarBarToken && left === false)
+    )
+      return this.evaluate(node.right, context);
     const right = this.evaluate(node.right, context);
     if (
       operator === ts.SyntaxKind.AmpersandAmpersandToken ||
@@ -1986,6 +2315,7 @@ export class Lowerer {
     if (name.includes("ScriptedEffect") || name.includes("ScriptedTrigger")) {
       const id = this.string(args[0], node);
       const mode = name.endsWith("Trigger") ? "trigger" : "effect";
+      this.claimScriptedName(mode, id, node);
       const scope =
         args.length === 3
           ? this.string(args[1], node)
@@ -2122,6 +2452,15 @@ export class Lowerer {
           pdx.property(target, pdx.block(this.callback(object[key], scope, mode, node, ctx))),
         );
     if (name.endsWith("Event")) {
+      const identity = this.gameplay(node, () => validateEventIdentifier(id));
+      this.claimGameplayId("event", identity, node);
+      if (identity.slice(identity.lastIndexOf(".") + 1).length > 5)
+        this.report(
+          node,
+          "KRG2609",
+          `Event '${id}' uses a suffix above 99999. The game accepts it, but it can collide with another namespace's internal event IDs.`,
+          "warning",
+        );
       this.checkKeys(
         spec,
         [
@@ -2224,6 +2563,7 @@ export class Lowerer {
       else items.push(pdx.property("country", pdx.block([pdx.property("factor", pdx.atom("1"))])));
       for (const focusValue of this.array(spec.focuses, node)) {
         const focus = this.object(focusValue, node);
+        this.claimGameplayId("focus", this.string(focus.id, node), node);
         this.checkKeys(
           focus,
           [

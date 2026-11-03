@@ -1,6 +1,6 @@
 {
   "name": "krieg-lang",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A statically compiled TypeScript subset and project toolchain for Hearts of Iron IV mods",
   "type": "module",
   "license": "UNLICENSED",
@@ -78,7 +78,10 @@
     "generate:defines": "node scripts/generate-defines.mjs --from-schema",
     "generate:defines:check": "node scripts/generate-defines.mjs --check",
     "audit:gui": "node scripts/audit-native-gui.mjs",
-    "audit:domains": "node scripts/audit-native-domains.mjs"
+    "audit:domains": "node scripts/audit-native-domains.mjs",
+    "docs:build": "node scripts/build-docs.mjs",
+    "docs:check": "npm run docs:api:check && npm run docs:coverage && npm run docs:build",
+    "docs:links": "node scripts/check-docs.mjs"
   },
   "dependencies": {
     "fflate": "0.8.2",
@@ -90,6 +93,9 @@
     "@types/node": "22.20.5",
     "eslint": "10.14.0",
     "luaparse": "0.3.1",
-    "prettier": "3.9.10"
+    "prettier": "3.9.10",
+    "typedoc": "0.28.20",
+    "typedoc-plugin-markdown": "4.14.1",
+    "typedoc-plugin-missing-exports": "4.1.4"
   }
 }

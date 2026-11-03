@@ -1,0 +1,430 @@
+{
+  "schema": 1,
+  "packageVersion": "0.3.0",
+  "scope": "Supplied bitmap and text snapshots; deterministic geographic planning, actual TypeScript 5.9 language service, native CLI build, complete-base railway preservation. No game launch or runtime supply simulation.",
+  "wiki": {
+    "title": "Map modding",
+    "pageid": 4482,
+    "revision_id": 105627,
+    "revision_timestamp": "2026-10-21T22:28:23Z",
+    "source_url": "https://hoi4.paradoxwikis.com/wiki/Map_modding",
+    "file": "pages/Map_modding__4482.wiki",
+    "sha256": "f6673abce51914345f662074d05a9191b1a439c009b42ec0f656414278d4c5b5"
+  },
+  "maps": [
+    {
+      "name": "Vanilla",
+      "matchedStateLayer": false,
+      "stateHistory": {
+        "files": 1081,
+        "manifestSha256": "c4244356e9980eba0205c10b34eac522899233a783ff5f9e529f8400b02f8fb5"
+      },
+      "inputs": {
+        "map/definition.csv": {
+          "bytes": 465289,
+          "sha256": "86846be71198d6772c651638aa22e3656133198de9b7c49c6234ed48cf33d87b"
+        },
+        "map/provinces.bmp": {
+          "bytes": 34603062,
+          "sha256": "e131d30e5dcb13d9c2a8598f820a2de0ae9828f3a24f2bddc1bcfff40f71660a"
+        },
+        "map/adjacencies.csv": {
+          "bytes": 13091,
+          "sha256": "26a26c3f42a4b01fb905c99659024e857ffc05e3172fcd9953395321fb76ed64"
+        },
+        "map/railways.txt": {
+          "bytes": 27762,
+          "sha256": "86cc3fba40f39442bb4bf883a51740951c09073c5234e6b7b744d966fa2ee455"
+        }
+      },
+      "width": 5632,
+      "height": 2048,
+      "provincesIncludingSentinel": 13414,
+      "states": 1081,
+      "strategicRegions": 304,
+      "physicalBorders": 39715,
+      "physicalLandBorders": 27033,
+      "safeRailwayBorders": 26360,
+      "route": [2, 62, 97],
+      "level": 1,
+      "preservedBaseRows": 909,
+      "addedRows": 1,
+      "basePreservedByteForByte": true,
+      "noOpRepeatedOverlay": true,
+      "conflictRejected": true,
+      "inputCompatibility": "compatible",
+      "checkedExclusions": ["province", "state", "strategic region", "non-land", "nonexistent"],
+      "editor": {
+        "engine": "TypeScript 5.9.3",
+        "selectedState": 248,
+        "completionIds": [
+          2, 62, 97, 121, 164, 231, 252, 3077, 3116, 3190, 3220, 6056, 6101, 6143, 6167, 6356, 9122,
+          9188, 9345, 11039, 11099, 11166, 11205, 13128
+        ],
+        "exactAreaCompletion": true,
+        "hoverLiteralId": true,
+        "semanticDiagnostics": 0,
+        "declarationBytes": 3839966
+      },
+      "cli": {
+        "builds": 2,
+        "deterministicNativeSha256": "d5896d3fd0fceb691811e695a48d33179db19195b9d1c009c0e793f00b2032cf",
+        "success": true,
+        "nativeOutputWritten": true,
+        "diagnostics": [],
+        "outputPaths": ["common/krieg/atlas_probe.txt", "descriptor.mod", "map/railways.txt"]
+      },
+      "timingsMs": {
+        "editorGeneration": 321,
+        "atlas": 587,
+        "languageService": 989,
+        "firstCliBuild": 4753,
+        "repeatedCliBuild": 4468
+      }
+    },
+    {
+      "name": "Kaiserreich",
+      "matchedStateLayer": false,
+      "stateHistory": {
+        "files": 1125,
+        "manifestSha256": "1a4a02b8c9fd0411fa07a990f20003a69bc7f3dc7ab2fea6c3e15f68d2bbada8"
+      },
+      "inputs": {
+        "map/definition.csv": {
+          "bytes": 498482,
+          "sha256": "7b3d4a9d63f3c43b57181f430af9a16fbc262b5cbfda4244c9378c51fae5f604"
+        },
+        "map/provinces.bmp": {
+          "bytes": 34603062,
+          "sha256": "ca97fb53fb73542f100238c6d0d2079490f6d0b376674afd5a70313c00395a70"
+        },
+        "map/adjacencies.csv": {
+          "bytes": 12196,
+          "sha256": "39f7d577b45ed68047a0a6fdb54137312952c0d1505585e535d894c37f39c449"
+        },
+        "map/railways.txt": {
+          "bytes": 33686,
+          "sha256": "13da4f436c5db76444f4203b92d7eb7d3a2178e46847e9c476b5092647118c12"
+        }
+      },
+      "width": 5632,
+      "height": 2048,
+      "provincesIncludingSentinel": 13951,
+      "states": 1125,
+      "strategicRegions": 275,
+      "physicalBorders": 41372,
+      "physicalLandBorders": 28642,
+      "safeRailwayBorders": 27423,
+      "route": [2, 62, 97],
+      "level": 1,
+      "preservedBaseRows": 1030,
+      "addedRows": 0,
+      "basePreservedByteForByte": null,
+      "noOpRepeatedOverlay": null,
+      "conflictRejected": null,
+      "inputCompatibility": "blocked: inherited railway provinces lack painted land/state membership",
+      "checkedExclusions": ["province", "state", "strategic region", "non-land", "nonexistent"],
+      "editor": {
+        "engine": "TypeScript 5.9.3",
+        "selectedState": 248,
+        "completionIds": [
+          2, 62, 97, 121, 164, 231, 252, 3077, 3116, 3190, 3220, 6056, 6101, 6143, 6167, 6356, 9122,
+          9188, 9345, 11039, 11099, 11166, 11205, 13128
+        ],
+        "exactAreaCompletion": true,
+        "hoverLiteralId": true,
+        "semanticDiagnostics": 0,
+        "declarationBytes": 3996905
+      },
+      "cli": {
+        "builds": 2,
+        "deterministicNativeSha256": null,
+        "success": false,
+        "nativeOutputWritten": false,
+        "diagnostics": [
+          {
+            "code": "KRG_RAILWAY_BASE_LAND",
+            "severity": "error",
+            "message": "Inherited railway province 13909 must be painted land with a state. Supply matching map and state-history snapshots; the original network has not been altered.",
+            "file": "$PROVIDED_MAPS/KR/map/railways.txt",
+            "line": 66
+          },
+          {
+            "code": "KRG_RAILWAY_BASE_LAND",
+            "severity": "error",
+            "message": "Inherited railway province 13946 must be painted land with a state. Supply matching map and state-history snapshots; the original network has not been altered.",
+            "file": "$PROVIDED_MAPS/KR/map/railways.txt",
+            "line": 348
+          },
+          {
+            "code": "KRG_RAILWAY_BASE_LAND",
+            "severity": "error",
+            "message": "Inherited railway province 13947 must be painted land with a state. Supply matching map and state-history snapshots; the original network has not been altered.",
+            "file": "$PROVIDED_MAPS/KR/map/railways.txt",
+            "line": 348
+          },
+          {
+            "code": "KRG_RAILWAY_BASE_LAND",
+            "severity": "error",
+            "message": "Inherited railway province 13950 must be painted land with a state. Supply matching map and state-history snapshots; the original network has not been altered.",
+            "file": "$PROVIDED_MAPS/KR/map/railways.txt",
+            "line": 352
+          },
+          {
+            "code": "KRG_RAILWAY_BASE_LAND",
+            "severity": "error",
+            "message": "Inherited railway province 13933 must be painted land with a state. Supply matching map and state-history snapshots; the original network has not been altered.",
+            "file": "$PROVIDED_MAPS/KR/map/railways.txt",
+            "line": 835
+          },
+          {
+            "code": "KRG_RAILWAY_BASE_LAND",
+            "severity": "error",
+            "message": "Inherited railway province 13926 must be painted land with a state. Supply matching map and state-history snapshots; the original network has not been altered.",
+            "file": "$PROVIDED_MAPS/KR/map/railways.txt",
+            "line": 835
+          },
+          {
+            "code": "KRG_RAILWAY_BASE_LAND",
+            "severity": "error",
+            "message": "Inherited railway province 13928 must be painted land with a state. Supply matching map and state-history snapshots; the original network has not been altered.",
+            "file": "$PROVIDED_MAPS/KR/map/railways.txt",
+            "line": 835
+          },
+          {
+            "code": "KRG_RAILWAY_BASE_LAND",
+            "severity": "error",
+            "message": "Inherited railway province 13929 must be painted land with a state. Supply matching map and state-history snapshots; the original network has not been altered.",
+            "file": "$PROVIDED_MAPS/KR/map/railways.txt",
+            "line": 835
+          },
+          {
+            "code": "KRG_RAILWAY_BASE_LAND",
+            "severity": "error",
+            "message": "Inherited railway province 13930 must be painted land with a state. Supply matching map and state-history snapshots; the original network has not been altered.",
+            "file": "$PROVIDED_MAPS/KR/map/railways.txt",
+            "line": 835
+          },
+          {
+            "code": "KRG_RAILWAY_BASE_LAND",
+            "severity": "error",
+            "message": "Inherited railway province 13920 must be painted land with a state. Supply matching map and state-history snapshots; the original network has not been altered.",
+            "file": "$PROVIDED_MAPS/KR/map/railways.txt",
+            "line": 850
+          },
+          {
+            "code": "KRG_RAILWAY_BASE_LAND",
+            "severity": "error",
+            "message": "Inherited railway province 13919 must be painted land with a state. Supply matching map and state-history snapshots; the original network has not been altered.",
+            "file": "$PROVIDED_MAPS/KR/map/railways.txt",
+            "line": 850
+          },
+          {
+            "code": "KRG_RAILWAY_BASE_LAND",
+            "severity": "error",
+            "message": "Inherited railway province 13911 must be painted land with a state. Supply matching map and state-history snapshots; the original network has not been altered.",
+            "file": "$PROVIDED_MAPS/KR/map/railways.txt",
+            "line": 865
+          },
+          {
+            "code": "KRG_RAILWAY_BASE_LAND",
+            "severity": "error",
+            "message": "Inherited railway province 13910 must be painted land with a state. Supply matching map and state-history snapshots; the original network has not been altered.",
+            "file": "$PROVIDED_MAPS/KR/map/railways.txt",
+            "line": 867
+          },
+          {
+            "code": "KRG_RAILWAY_BASE_LAND",
+            "severity": "error",
+            "message": "Inherited railway province 13942 must be painted land with a state. Supply matching map and state-history snapshots; the original network has not been altered.",
+            "file": "$PROVIDED_MAPS/KR/map/railways.txt",
+            "line": 953
+          },
+          {
+            "code": "KRG_RAILWAY_BASE_LAND",
+            "severity": "error",
+            "message": "Inherited railway province 13923 must be painted land with a state. Supply matching map and state-history snapshots; the original network has not been altered.",
+            "file": "$PROVIDED_MAPS/KR/map/railways.txt",
+            "line": 1027
+          },
+          {
+            "code": "KRG_RAILWAY_BASE_LAND",
+            "severity": "error",
+            "message": "Inherited railway province 13922 must be painted land with a state. Supply matching map and state-history snapshots; the original network has not been altered.",
+            "file": "$PROVIDED_MAPS/KR/map/railways.txt",
+            "line": 1027
+          },
+          {
+            "code": "KRG_RAILWAY_BASE_LAND",
+            "severity": "error",
+            "message": "Inherited railway province 13918 must be painted land with a state. Supply matching map and state-history snapshots; the original network has not been altered.",
+            "file": "$PROVIDED_MAPS/KR/map/railways.txt",
+            "line": 1028
+          },
+          {
+            "code": "KRG_RAILWAY_BASE_LAND",
+            "severity": "error",
+            "message": "Inherited railway province 13938 must be painted land with a state. Supply matching map and state-history snapshots; the original network has not been altered.",
+            "file": "$PROVIDED_MAPS/KR/map/railways.txt",
+            "line": 1029
+          }
+        ],
+        "outputPaths": ["common/krieg/atlas_probe.txt", "descriptor.mod"]
+      },
+      "timingsMs": {
+        "editorGeneration": 378,
+        "atlas": 473,
+        "languageService": 688,
+        "firstCliBuild": 3950,
+        "repeatedCliBuild": 4073
+      }
+    },
+    {
+      "name": "TNO",
+      "matchedStateLayer": false,
+      "stateHistory": {
+        "files": 2525,
+        "manifestSha256": "a59526f662adad16809d093a1217017663c561a775d63c1e20bacb4696423734"
+      },
+      "inputs": {
+        "map/definition.csv": {
+          "bytes": 739150,
+          "sha256": "f4599ad15a55d6a82ead56b02a48f9ad79b32e56c8c7bcfad527c657b4db8252"
+        },
+        "map/provinces.bmp": {
+          "bytes": 39321654,
+          "sha256": "0adf3a9f06fec3ef355d21575c7821d2be9616dafcbc0da572e5b78571175f9d"
+        },
+        "map/adjacencies.csv": {
+          "bytes": 37500,
+          "sha256": "f9016d24ed2fdbc561309397493d244b9339f74b28d9e8478516f863f0fba648"
+        },
+        "map/railways.txt": {
+          "bytes": 91724,
+          "sha256": "99b5ddac29ad6e9b09027cf5ddeac8929db8145281daeb5beca86fe9a98b7d4b"
+        }
+      },
+      "width": 5120,
+      "height": 2560,
+      "provincesIncludingSentinel": 20006,
+      "states": 2525,
+      "strategicRegions": 297,
+      "physicalBorders": 59464,
+      "physicalLandBorders": 44078,
+      "safeRailwayBorders": 42942,
+      "route": [2, 6143, 3124],
+      "level": 1,
+      "preservedBaseRows": 2756,
+      "addedRows": 1,
+      "basePreservedByteForByte": true,
+      "noOpRepeatedOverlay": true,
+      "conflictRejected": true,
+      "inputCompatibility": "compatible",
+      "checkedExclusions": ["province", "state", "strategic region", "non-land", "nonexistent"],
+      "editor": {
+        "engine": "TypeScript 5.9.3",
+        "selectedState": 246,
+        "completionIds": [
+          2, 121, 231, 252, 3077, 3220, 6056, 6101, 6143, 9122, 9188, 9345, 11039, 11099, 11166,
+          11205, 13128, 13325, 13328, 18263, 18264, 18272, 18276, 18277, 18281, 18282
+        ],
+        "exactAreaCompletion": true,
+        "hoverLiteralId": true,
+        "semanticDiagnostics": 0,
+        "declarationBytes": 6006001
+      },
+      "cli": {
+        "builds": 2,
+        "deterministicNativeSha256": "ac5d5813dc2c4699672d2053eb491b3f9b293ea87ffa1a312ca1fd3241c7fd7a",
+        "success": true,
+        "nativeOutputWritten": true,
+        "diagnostics": [],
+        "outputPaths": ["common/krieg/atlas_probe.txt", "descriptor.mod", "map/railways.txt"]
+      },
+      "timingsMs": {
+        "editorGeneration": 423,
+        "atlas": 736,
+        "languageService": 1185,
+        "firstCliBuild": 5683,
+        "repeatedCliBuild": 5605
+      }
+    },
+    {
+      "name": "Kaiserreich-matched",
+      "matchedStateLayer": true,
+      "stateHistory": {
+        "files": 1125,
+        "manifestSha256": "3dc56adb6306294b154e0797be3397b125ff4f02a7955747aac11cb7317c84f8"
+      },
+      "inputs": {
+        "map/definition.csv": {
+          "bytes": 498482,
+          "sha256": "7b3d4a9d63f3c43b57181f430af9a16fbc262b5cbfda4244c9378c51fae5f604"
+        },
+        "map/provinces.bmp": {
+          "bytes": 34603062,
+          "sha256": "ca97fb53fb73542f100238c6d0d2079490f6d0b376674afd5a70313c00395a70"
+        },
+        "map/adjacencies.csv": {
+          "bytes": 12196,
+          "sha256": "39f7d577b45ed68047a0a6fdb54137312952c0d1505585e535d894c37f39c449"
+        },
+        "map/railways.txt": {
+          "bytes": 33686,
+          "sha256": "13da4f436c5db76444f4203b92d7eb7d3a2178e46847e9c476b5092647118c12"
+        }
+      },
+      "width": 5632,
+      "height": 2048,
+      "provincesIncludingSentinel": 13951,
+      "states": 1125,
+      "strategicRegions": 275,
+      "physicalBorders": 41372,
+      "physicalLandBorders": 28642,
+      "safeRailwayBorders": 27624,
+      "route": [2, 62, 97],
+      "level": 1,
+      "preservedBaseRows": 1030,
+      "addedRows": 1,
+      "basePreservedByteForByte": true,
+      "noOpRepeatedOverlay": true,
+      "conflictRejected": true,
+      "inputCompatibility": "compatible",
+      "checkedExclusions": ["province", "state", "strategic region", "non-land", "nonexistent"],
+      "editor": {
+        "engine": "TypeScript 5.9.3",
+        "selectedState": 248,
+        "completionIds": [
+          2, 62, 97, 121, 164, 231, 252, 3077, 3116, 3190, 3220, 6056, 6101, 6143, 6167, 6356, 9122,
+          9188, 9345, 11039, 11099, 11166, 11205, 13128
+        ],
+        "exactAreaCompletion": true,
+        "hoverLiteralId": true,
+        "semanticDiagnostics": 0,
+        "declarationBytes": 4000413
+      },
+      "cli": {
+        "builds": 2,
+        "deterministicNativeSha256": "f502e0d8c66ea1bf904008f13f660f4243ad42dc6a2c5e25e87129aaead1eb97",
+        "success": true,
+        "nativeOutputWritten": true,
+        "diagnostics": [],
+        "outputPaths": ["common/krieg/atlas_probe.txt", "descriptor.mod", "map/railways.txt"]
+      },
+      "timingsMs": {
+        "editorGeneration": 336,
+        "atlas": 586,
+        "languageService": 584,
+        "firstCliBuild": 4215,
+        "repeatedCliBuild": 3875
+      }
+    }
+  ],
+  "referenceStateLayer": {
+    "commit": "b603c934c871c7e4ef1c08a2dad19a77e6342ca1",
+    "repository": "https://github.com/Kaiserreich/Kaiserreich-HOI4.git",
+    "files": 1125,
+    "manifestSha256": "7c106aa5bc60da84227a0e0ef0ccda9afd28587c2646484353009215b6295ed5",
+    "scope": "Independent official reference layer. Original supplied state corpus remains unchanged and its 18 unassigned railway provinces remain a separately reported blocked input. This validates map text provenance and official state memberships, not binary map provenance, complete mod version identity, game launch, or supply simulation."
+  }
+}

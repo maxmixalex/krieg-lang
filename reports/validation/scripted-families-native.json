@@ -1,0 +1,78 @@
+{
+  "name": "scripted-families-native-audit",
+  "exitCode": 0,
+  "durationMs": 873,
+  "cwtoolsVersion": "cwtools 2.3.0",
+  "cwtoolsSha256": "06161387481cffb9c593cda101994748f0e7640b3154af552b96843bfb5ba665",
+  "command": [
+    "$CORPORA/cwtools",
+    "validate",
+    "--game",
+    "hoi4",
+    "--directory",
+    "$REPO/examples/scripted-families/build/mod",
+    "--rules",
+    "$CORPORA/cwtools-hoi4-config-master/cwtools-hoi4-config-master",
+    "--vanilla",
+    "$CORPORA/Hearts of Iron IV",
+    "--no-vanilla-cache",
+    "--report-type",
+    "json",
+    "--output-file",
+    "$SCRATCH/diagnostics.json"
+  ],
+  "counts": {
+    "Error": 0,
+    "Warning": 0,
+    "Information": 0
+  },
+  "diagnostics": [],
+  "generatedFiles": [
+    {
+      "path": "common/scripted_effects/krieg_family_refresh_display.txt",
+      "sha256": "774b6c2dc559f8e665537050c13053a5e2a975bacbe9874d4f2ec60dfb271147"
+    },
+    {
+      "path": "common/scripted_effects/krieg_family_set_position_high.txt",
+      "sha256": "85a16f6a8f8a979488fafe15b4e3b7382d086b116053e45d066bf2e02f713799"
+    },
+    {
+      "path": "common/scripted_effects/krieg_family_set_position_low.txt",
+      "sha256": "a1f02fa91f0b20a06868a0b98286d1e5500ca839b695046b3f2561f68b079225"
+    },
+    {
+      "path": "common/scripted_effects/krieg_family_set_position_medium.txt",
+      "sha256": "7ef6440566c13b358a4b5be5da331afce88f7e17ad0d93066b62a4a484c4a8ae"
+    },
+    {
+      "path": "common/scripted_triggers/krieg_family_can_set_position_high.txt",
+      "sha256": "0c13855ac8b30cf39a7878726c9c8b13357f221a1465e50a23308801123baf3b"
+    },
+    {
+      "path": "common/scripted_triggers/krieg_family_can_set_position_low.txt",
+      "sha256": "c1b7da84510bb58fdba067181d03710a7d3aca66d93c7544cef93336e91396f9"
+    },
+    {
+      "path": "common/scripted_triggers/krieg_family_can_set_position_medium.txt",
+      "sha256": "dd35c33184c6eae36ccc5353cb230bcf90d28c12804c58df748cfc2cba46f9fe"
+    },
+    {
+      "path": "descriptor.mod",
+      "sha256": "dcbd72815af9d06ccb8b5a0932d1ad88115f3caffc3c3fba58b44274483ebc89"
+    },
+    {
+      "path": "events/krieg_family_positions_1.txt",
+      "sha256": "c4b3562c14bd077329d1048d14aef7c4c0fc4cf774931b58f6877d050c51b57c"
+    },
+    {
+      "path": "events/krieg_family_positions_2.txt",
+      "sha256": "36d6fce531fd67329d7d8658bc2d4cbf39b7d53abefb55aa9062992c561a752d"
+    }
+  ],
+  "engineValidation": "not-run",
+  "nativeContract": {
+    "effectCall": "name = yes",
+    "triggerCall": "name = yes/no",
+    "specialization": "Each finite variant is a separate ordinary native definition. No native parameter block or $PARAM$ substitution is generated."
+  }
+}

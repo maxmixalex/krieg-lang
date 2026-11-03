@@ -4,12 +4,14 @@ import { zipSync, type Zippable } from "fflate";
 import { buildProject } from "./build.js";
 import { loadConfig } from "./config.js";
 import { slash, walkFiles } from "./files.js";
-import type { BuildResult, ProjectOptions } from "./types.js";
+import type { BuildResult, ProjectBuildOptions } from "./types.js";
 
+/** Build and package a relocatable mod ZIP. `archive` is present on success; on failure inspect `build.diagnostics`.
+ * @see {@link buildProject} */
 export function packProject(
   project = ".",
   destination?: string,
-  options: ProjectOptions = {},
+  options: ProjectBuildOptions = {},
 ): { build: BuildResult; archive?: string } {
   const config = loadConfig(project, options);
   const build = buildProject(project, options);

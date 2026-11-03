@@ -68,13 +68,15 @@
 npx krieg world
 ```
 
-生成的声明提供三个虚拟模块：
+生成的声明提供按当前项目裁剪的虚拟模块：
 
-| 模块                 | 示例                                  |
-| -------------------- | ------------------------------------- |
-| `@project/countries` | `countries.GER`                       |
-| `@project/states`    | `states[1]`                           |
-| `@project/assets`    | `assets["gfx/interface/example.dds"]` |
+| 模块                    | 示例                                                                                    |
+| ----------------------- | --------------------------------------------------------------------------------------- |
+| `@project/countries`    | `countries.GER`                                                                         |
+| `@project/states`       | `states[1]`                                                                             |
+| `@project/assets`       | `assets["gfx/interface/example.dds"]`                                                   |
+| `@project/localisation` | `messages.reconstruction_title`（键名和译文预览）、`translated`（全部项目语言均有译文） |
+| `@project/geography`    | `geography.states[1].provinces[3838].id`（按地区缩小省份选择范围）                      |
 
 这些成员来自当前有效视图。依赖与替换路径改变世界内容后，旧成员可能消失，相关引用会得到类型诊断。
 

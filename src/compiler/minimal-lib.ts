@@ -21,4 +21,5 @@ type Pick<T, K extends keyof T> = { [P in K]: T[P] };
 type Exclude<T, U> = T extends U ? never : T;
 type Extract<T, U> = T extends U ? T : never;
 type Omit<T, K extends string | number | symbol> = Pick<T, Exclude<keyof T, K>>;
+type NoInfer<T> = intrinsic;
 `;

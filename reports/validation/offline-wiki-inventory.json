@@ -1,0 +1,496 @@
+{
+  "source": "https://hoi4.paradoxwikis.com",
+  "category": "Category:Modding",
+  "exportedAt": "2026-11-02T15:03:56+00:00",
+  "unavailable": [],
+  "verifiedPageCount": 54,
+  "scope": "Every saved page was verified against its manifest SHA-256 and linked to the authoring coverage inventory. These are topic-level relationships, not claims that every example or engine behavior was tested.",
+  "pages": [
+    {
+      "pageId": 1002,
+      "title": "Console commands",
+      "revision": 105778,
+      "revisionTimestamp": "2026-10-29T12:14:28Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Console_commands",
+      "sha256": "4f11e6a83a000a1f72a42ce92dc661779b717b9905b5781edb5352f79ac047d4",
+      "families": ["console"]
+    },
+    {
+      "pageId": 1832,
+      "title": "Modding",
+      "revision": 105601,
+      "revisionTimestamp": "2026-10-17T11:05:55Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Modding",
+      "sha256": "b9647421b97c4f0ac32558beb48eaf093b27061d1a88afeb22cdf86861c2261a",
+      "families": ["project", "troubleshooting"]
+    },
+    {
+      "pageId": 1833,
+      "title": "Scopes",
+      "revision": 103725,
+      "revisionTimestamp": "2026-07-11T13:08:24Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Scopes",
+      "sha256": "a3fb5ca81aa7b2255f259f45070337afcbaf8a1a72a9194581896dda30134bf6",
+      "families": ["scopes"]
+    },
+    {
+      "pageId": 1927,
+      "title": "Event modding",
+      "revision": 102070,
+      "revisionTimestamp": "2026-05-27T10:22:05Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Event_modding",
+      "sha256": "c69d282d70a7acfe525b036b5139b3c4a6c9c7e933ad30eb514e1a6a891fec71",
+      "families": ["events"]
+    },
+    {
+      "pageId": 1931,
+      "title": "Mods",
+      "revision": 105602,
+      "revisionTimestamp": "2026-10-17T11:06:01Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Mods",
+      "sha256": "b5f640fea28e874a824cd7c57208f230c9022f967710b927a8004975adbe73a2",
+      "families": ["project"]
+    },
+    {
+      "pageId": 1996,
+      "title": "Triggers",
+      "revision": 105091,
+      "revisionTimestamp": "2026-09-07T17:15:09Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Triggers",
+      "sha256": "f6df7bac76cc032c312a6d2393f1994eee8647b806647ec88aaff17d6208341c",
+      "families": ["triggers"]
+    },
+    {
+      "pageId": 2144,
+      "title": "Modifiers",
+      "revision": 102188,
+      "revisionTimestamp": "2026-06-03T00:17:54Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Modifiers",
+      "sha256": "2bde59ab48685c2a9a512be70141234c85f9ae3f2e9b877b3c8af1f81db4ee29",
+      "families": ["modifiers"]
+    },
+    {
+      "pageId": 2434,
+      "title": "Effect",
+      "revision": 105661,
+      "revisionTimestamp": "2026-10-26T15:56:17Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Effect",
+      "sha256": "bbe5440bebcaafc644a578cb26938f44d7f9f3c6345c04a4ecee40f43446af64",
+      "families": ["effects", "meta-effects"]
+    },
+    {
+      "pageId": 2679,
+      "title": "Cosmetic tag modding",
+      "revision": 67378,
+      "revisionTimestamp": "2024-02-06T09:04:31Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Cosmetic_tag_modding",
+      "sha256": "218d109d8cfd23715b9978e56d8e1476901599c8329116d872c09d8284eccde5",
+      "families": ["cosmetic-tags"]
+    },
+    {
+      "pageId": 2754,
+      "title": "Country creation",
+      "revision": 71937,
+      "revisionTimestamp": "2024-08-16T20:42:02Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Country_creation",
+      "sha256": "245cf16dabfe2ee76cfbe8bb70645e013eb03405fc97adb827ea218ad10f176b",
+      "families": ["country"]
+    },
+    {
+      "pageId": 3938,
+      "title": "National focus modding",
+      "revision": 105626,
+      "revisionTimestamp": "2026-10-21T22:26:12Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/National_focus_modding",
+      "sha256": "a66a58792847afa55faefada06a8a70db262559349a0e1614b62248a587857ed",
+      "families": ["focus"]
+    },
+    {
+      "pageId": 3939,
+      "title": "Unit modding",
+      "revision": 71837,
+      "revisionTimestamp": "2024-08-10T22:24:04Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Unit_modding",
+      "sha256": "80f7716bcdee2b5cd5181cb0609a8bc5c7129c500cc6c4f35ae8b4c46c93db46",
+      "families": ["units"]
+    },
+    {
+      "pageId": 3940,
+      "title": "Equipment modding",
+      "revision": 104717,
+      "revisionTimestamp": "2026-08-19T14:14:45Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Equipment_modding",
+      "sha256": "538742a300f174cd1c6eb39b39978767a6b61262382f15f5fa3a8d09eb7b7a81",
+      "families": ["equipment"]
+    },
+    {
+      "pageId": 3942,
+      "title": "Localisation",
+      "revision": 105503,
+      "revisionTimestamp": "2026-10-13T11:21:58Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Localisation",
+      "sha256": "a3f931da593a20d2cef919350f3cdca532c41a151ebda2eaa268656332815e56",
+      "families": ["localisation", "scripted-localisation"]
+    },
+    {
+      "pageId": 3943,
+      "title": "Troubleshooting",
+      "revision": 105132,
+      "revisionTimestamp": "2026-09-11T05:51:47Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Troubleshooting",
+      "sha256": "68c1c147abe34bc1fb08d5ace94fc1d02f4f415ccd7c877c7bf62480c9fa5fe4",
+      "families": ["troubleshooting"]
+    },
+    {
+      "pageId": 3952,
+      "title": "Music modding",
+      "revision": 88012,
+      "revisionTimestamp": "2025-08-07T13:51:00Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Music_modding",
+      "sha256": "4eeebe44bd64e4c922f08e712e7356be995d0a40f8deaf210ec0f13e63d42b1c",
+      "families": ["music"]
+    },
+    {
+      "pageId": 3968,
+      "title": "Ideology modding",
+      "revision": 90513,
+      "revisionTimestamp": "2025-10-08T12:26:19Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Ideology_modding",
+      "sha256": "783ed53f01922b3f6e3f4ef5aa90737d71e1ce93a2b14edc150536f52b5748d7",
+      "families": ["ideologies"]
+    },
+    {
+      "pageId": 3998,
+      "title": "Idea modding",
+      "revision": 99295,
+      "revisionTimestamp": "2026-03-25T18:03:18Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Idea_modding",
+      "sha256": "81cb6ac8f714db468de988870c99573ed006f40d798429572ea1da0499c77be0",
+      "families": ["ideas"]
+    },
+    {
+      "pageId": 4005,
+      "title": "Resources modding",
+      "revision": 73143,
+      "revisionTimestamp": "2024-09-25T07:04:18Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Resources_modding",
+      "sha256": "c1734bdac699563903ccd3cd8326eeb6bdefa9057f4820d5e17ca477afe497e3",
+      "families": ["resources"]
+    },
+    {
+      "pageId": 4009,
+      "title": "Decision modding",
+      "revision": 103880,
+      "revisionTimestamp": "2026-07-22T08:48:09Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Decision_modding",
+      "sha256": "55026662755e5e1db9d3c0327cfbef1f03441abead523a165feaa0cd0f688552",
+      "families": ["decisions"]
+    },
+    {
+      "pageId": 4438,
+      "title": "Division modding",
+      "revision": 105820,
+      "revisionTimestamp": "2026-11-01T13:28:10Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Division_modding",
+      "sha256": "1613cac513b51de3d47acb8bd4a0848610d29cd0788e5d373d5da82c7e0c0144",
+      "families": ["divisions"]
+    },
+    {
+      "pageId": 4482,
+      "title": "Map modding",
+      "revision": 105627,
+      "revisionTimestamp": "2026-10-21T22:28:23Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Map_modding",
+      "sha256": "f6673abce51914345f662074d05a9191b1a439c009b42ec0f656414278d4c5b5",
+      "families": ["map", "terrain"]
+    },
+    {
+      "pageId": 4484,
+      "title": "Technology modding",
+      "revision": 104524,
+      "revisionTimestamp": "2026-08-14T14:57:55Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Technology_modding",
+      "sha256": "e9bf2f0f7abd8f0a4f81d6a9954e629c2d3b1cc099afdb7086de1b9d94801fe8",
+      "families": ["technology"]
+    },
+    {
+      "pageId": 4486,
+      "title": "AI modding",
+      "revision": 105110,
+      "revisionTimestamp": "2026-09-09T16:31:41Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/AI_modding",
+      "sha256": "ae273d0e6acf36db554fc570d5ce45cd3ddcad8df33e16921067f0fa28f88383",
+      "families": ["ai"]
+    },
+    {
+      "pageId": 4488,
+      "title": "Bookmark modding",
+      "revision": 81580,
+      "revisionTimestamp": "2025-03-28T17:35:06Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Bookmark_modding",
+      "sha256": "eeeeba60b2dab1e9a1160d5de7d089d36d3fa6f389a0b94951f46f68424b5755",
+      "families": ["bookmarks"]
+    },
+    {
+      "pageId": 4505,
+      "title": "State modding",
+      "revision": 67186,
+      "revisionTimestamp": "2024-01-14T12:25:03Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/State_modding",
+      "sha256": "6fce18796e1314d044cac114b8db10fa0b6915423d79999fa0bf5928a15e7727",
+      "families": ["states"]
+    },
+    {
+      "pageId": 4506,
+      "title": "Supply areas modding",
+      "revision": 67235,
+      "revisionTimestamp": "2024-01-20T08:51:38Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Supply_areas_modding",
+      "sha256": "6bca441c37980d1545c679cd7a1548d67cba609bbf1c550c7e323a2faf3ca28f",
+      "families": ["legacy-supply"]
+    },
+    {
+      "pageId": 4507,
+      "title": "Strategic region modding",
+      "revision": 54730,
+      "revisionTimestamp": "2022-09-03T23:43:30Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Strategic_region_modding",
+      "sha256": "00f9441156d92a3b7375432c77168c098254dcbc442e1e02682583d43d17ad9a",
+      "families": ["regions"]
+    },
+    {
+      "pageId": 4508,
+      "title": "Mod structure",
+      "revision": 96970,
+      "revisionTimestamp": "2026-02-03T19:01:06Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Mod_structure",
+      "sha256": "f3ff582f2ee5604249c5b0209bec0e7469e4785ca6856eb41af66c9b1e457d83",
+      "families": ["project"]
+    },
+    {
+      "pageId": 4509,
+      "title": "Defines",
+      "revision": 104682,
+      "revisionTimestamp": "2026-08-19T08:08:10Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Defines",
+      "sha256": "46aea072bbd7372d0d7af991dbb93383e4d5687ffe73828e5debfcfb2636f9ac",
+      "families": ["defines"]
+    },
+    {
+      "pageId": 4513,
+      "title": "Namelist modding",
+      "revision": 93543,
+      "revisionTimestamp": "2025-11-28T17:36:19Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Namelist_modding",
+      "sha256": "26c09aba2f2797f4f72b509a8f60715c1b6d7a183ef236a03145830013d189ee",
+      "families": ["namelists"]
+    },
+    {
+      "pageId": 4514,
+      "title": "AI focuses",
+      "revision": 34354,
+      "revisionTimestamp": "2020-02-06T09:22:37Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/AI_focuses",
+      "sha256": "11d6dbccde6c1fa7084327f09ba8aba42b5b83abb0b4c559c0a22d23ed780989",
+      "families": ["ai", "focus"]
+    },
+    {
+      "pageId": 4554,
+      "title": "Building modding",
+      "revision": 104005,
+      "revisionTimestamp": "2026-07-28T21:22:52Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Building_modding",
+      "sha256": "dac98f6d044755b6cbaaa529177978c415173b81fede9966adad28637e9a74b5",
+      "families": ["buildings"]
+    },
+    {
+      "pageId": 4564,
+      "title": "Scripted GUI modding",
+      "revision": 105160,
+      "revisionTimestamp": "2026-09-17T13:04:08Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Scripted_GUI_modding",
+      "sha256": "e33e1f842cc94782f683593c2f500197994022bb615ac7061274855d77b0b1cd",
+      "families": ["scripted-gui"]
+    },
+    {
+      "pageId": 4565,
+      "title": "Interface modding",
+      "revision": 100547,
+      "revisionTimestamp": "2026-04-27T13:24:13Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Interface_modding",
+      "sha256": "8ad2685a2e140501fb7f1a2c10f39c607b178aa6262cde06a957b275fd5216e9",
+      "families": ["interface"]
+    },
+    {
+      "pageId": 4566,
+      "title": "Graphical asset modding",
+      "revision": 73705,
+      "revisionTimestamp": "2024-10-21T17:42:30Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Graphical_asset_modding",
+      "sha256": "10ad67371c291be4c52db507dc5f7de0191dfc02fd18d09cc10c222bf3a02954",
+      "families": ["graphics"]
+    },
+    {
+      "pageId": 4567,
+      "title": "Portrait modding",
+      "revision": 97039,
+      "revisionTimestamp": "2026-02-07T22:58:07Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Portrait_modding",
+      "sha256": "f350ae4585c3e3f3b00cc049a11467fe0ae9baa050522584ae968833e47cac9e",
+      "families": ["portraits"]
+    },
+    {
+      "pageId": 4568,
+      "title": "Sound modding",
+      "revision": 79549,
+      "revisionTimestamp": "2025-03-09T10:15:13Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Sound_modding",
+      "sha256": "b0863ec980dd08ad49a0ca60ce0568651896ed9ecbc230016106be11f1972768",
+      "families": ["sound"]
+    },
+    {
+      "pageId": 4569,
+      "title": "Posteffect modding",
+      "revision": 23212,
+      "revisionTimestamp": "2018-06-21T13:17:36Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Posteffect_modding",
+      "sha256": "171691d8afc7e8f849957c09b1d6af5dea17f0c9d294827eea0372c53a509133",
+      "families": ["posteffects"]
+    },
+    {
+      "pageId": 4576,
+      "title": "Font modding",
+      "revision": 72880,
+      "revisionTimestamp": "2024-09-12T06:24:08Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Font_modding",
+      "sha256": "34252f5bc5dcc42a53fb205e766b7677ae8a7caa6ea9098e988f414f05aa1df4",
+      "families": ["fonts"]
+    },
+    {
+      "pageId": 4577,
+      "title": "Entity modding",
+      "revision": 23379,
+      "revisionTimestamp": "2018-07-16T09:43:19Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Entity_modding",
+      "sha256": "12061ac8a5841c7d4f0486be875329bed7b8890b2ba8fd6c74041e73f30c6373",
+      "families": ["entities"]
+    },
+    {
+      "pageId": 4578,
+      "title": "Particle modding",
+      "revision": 71496,
+      "revisionTimestamp": "2024-07-15T06:47:32Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Particle_modding",
+      "sha256": "2d33fafa855cfed5f74c7e78011dc233e02bcb41d52db87a856201e477d91e07",
+      "families": ["particles"]
+    },
+    {
+      "pageId": 4647,
+      "title": "On actions",
+      "revision": 102346,
+      "revisionTimestamp": "2026-06-08T07:51:06Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/On_actions",
+      "sha256": "4b9b21375d0c7ae626b28d80b7c4cc77920c8cb0e540ca64f5fd6b9cb8c62dcc",
+      "families": ["on-actions"]
+    },
+    {
+      "pageId": 4742,
+      "title": "List of modifiers",
+      "revision": 87096,
+      "revisionTimestamp": "2025-06-11T22:10:49Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/List_of_modifiers",
+      "sha256": "4b59d37d546c8a1c90f3faccdc6cfe729d006b83d91ae1a43fc4b05c58ea5858",
+      "families": ["modifiers"]
+    },
+    {
+      "pageId": 6716,
+      "title": "Autonomy state modding",
+      "revision": 100160,
+      "revisionTimestamp": "2026-04-24T22:26:46Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Autonomy_state_modding",
+      "sha256": "3a38db336f2b1faed38d04f1101fd49c109f23e9cec24be9c1dce80b09aa921c",
+      "families": ["autonomy"]
+    },
+    {
+      "pageId": 7373,
+      "title": "Character modding",
+      "revision": 99479,
+      "revisionTimestamp": "2026-04-06T22:57:09Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Character_modding",
+      "sha256": "b10fbe93359d7edf0e3915067bf34b412824084e3c426437af1583606f855cd1",
+      "families": ["characters"]
+    },
+    {
+      "pageId": 8351,
+      "title": "Doctrine modding",
+      "revision": 96850,
+      "revisionTimestamp": "2026-01-28T00:37:45Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Doctrine_modding",
+      "sha256": "e49bbccff6af9abc3149a84eea40b6ff76b72f97548d8b14f42643798a7ed7c1",
+      "families": ["doctrines"]
+    },
+    {
+      "pageId": 8392,
+      "title": "Data structures",
+      "revision": 103616,
+      "revisionTimestamp": "2026-07-01T21:09:02Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Data_structures",
+      "sha256": "563beb5dd8e03a0780c3fa474303d0609bd3e2201adb8120045b9ead55882e94",
+      "families": ["collections", "variables"]
+    },
+    {
+      "pageId": 8913,
+      "title": "Balance of power modding",
+      "revision": 67049,
+      "revisionTimestamp": "2023-12-20T17:53:00Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Balance_of_power_modding",
+      "sha256": "6526519579647b43f4bcee8511786cb28985612e412d30231f3c9027f2fd5866",
+      "families": ["balance-power"]
+    },
+    {
+      "pageId": 9546,
+      "title": "Achievement modding",
+      "revision": 101492,
+      "revisionTimestamp": "2026-05-12T11:27:53Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Achievement_modding",
+      "sha256": "59dca87843de1ca5668fcd19d9b538e375b9f45fb49c315962943cd1ad4bd75f",
+      "families": ["achievements"]
+    },
+    {
+      "pageId": 9678,
+      "title": "Nudger",
+      "revision": 97432,
+      "revisionTimestamp": "2026-02-18T20:04:08Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Nudger",
+      "sha256": "443f1409761ed3aa717b80110467769aaab85fe74ea08ad7bf547039b731bf51",
+      "families": ["map", "troubleshooting"]
+    },
+    {
+      "pageId": 10478,
+      "title": "Military industrial organization modding",
+      "revision": 76388,
+      "revisionTimestamp": "2024-12-04T19:59:43Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Military_industrial_organization_modding",
+      "sha256": "ba7550805a175fe11503fb4fe6b9b7eb2d1cb8b47c1aec2f7f134514986e18b5",
+      "families": ["mio"]
+    },
+    {
+      "pageId": 17284,
+      "title": "Intelligence agency modding",
+      "revision": 91095,
+      "revisionTimestamp": "2025-10-21T16:45:39Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Intelligence_agency_modding",
+      "sha256": "fcb7ceda386cb982c447e4278beffd0b7b93ff3ee7b0d466e40d28135de3f038",
+      "families": ["intelligence"]
+    },
+    {
+      "pageId": 18526,
+      "title": "Faction modding",
+      "revision": 104712,
+      "revisionTimestamp": "2026-08-19T13:10:34Z",
+      "sourceUrl": "https://hoi4.paradoxwikis.com/wiki/Faction_modding",
+      "sha256": "5f7b6cbd14a9526860fb80bba3d5632117d1c8cad4f8b73cf6eba4034576e895",
+      "families": ["factions"]
+    }
+  ]
+}

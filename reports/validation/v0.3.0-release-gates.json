@@ -1,0 +1,95 @@
+{
+  "version": "0.3.0",
+  "createdAt": "2026-11-03T12:57:21.700577+00:00",
+  "scope": "Local release verification. Remote CI and Pages are independently recorded in GitHub Actions. No game client was run.",
+  "compiledRuntime": {
+    "files": 229,
+    "sha256": "79f52098de33266ab153b24542580cbf3c2489ece87586d3c95cbd407bf1b76c",
+    "matchesFullCorpusAndExternalExampleRuns": true
+  },
+  "software": {
+    "node": "v24.22.1",
+    "typescript": "5.9.3",
+    "referenceGenerator": {
+      "name": "TypeDoc",
+      "version": "0.28.20",
+      "markdown": "4.14.1"
+    }
+  },
+  "gates": {
+    "typeCheck": "passed",
+    "cleanBuild": "passed",
+    "sdkDomainAndDefinesGeneration": "passed",
+    "eslint": "passed",
+    "prettier": "passed",
+    "unitAndIntegration": {
+      "passed": 235,
+      "failed": 0,
+      "skipped": 0
+    },
+    "exampleBuilds": {
+      "first-mod": 6,
+      "logistics": 10,
+      "vanilla-complete": 70,
+      "kaiserreich-complete": 88,
+      "scripted-families": 10
+    },
+    "installedTarball": "Passed public entrypoints, downstream CLI, stock TypeScript and ESLint positive/negative cases, TSX/For/GuiVariable, localised text keys, typed event and focus handles, Lua output and the portable mod archive.",
+    "apiReference": {
+      "generatedFiles": 948,
+      "renderedPages": 967,
+      "checkedLocalLinksAndAssets": 271422,
+      "publicExportRecords": 573,
+      "fixedCommandNames": 1165,
+      "typeDocGeneration": "passed",
+      "zensicalStrict": "passed",
+      "renderedLinkAndSearchCheck": "passed"
+    }
+  },
+  "evidence": {
+    "wiki": {
+      "pagesVerified": 54,
+      "file": "offline-wiki-inventory.json"
+    },
+    "completeScenarios": {
+      "file": "v0.3.0-complete-examples.json",
+      "results": [
+        {
+          "name": "vanilla-complete",
+          "files": 70,
+          "diagnostics": 0,
+          "cwtExit": 0,
+          "cwtDiagnostics": 2
+        },
+        {
+          "name": "kaiserreich-complete",
+          "files": 88,
+          "diagnostics": 0,
+          "cwtExit": 0,
+          "cwtDiagnostics": 2
+        }
+      ]
+    },
+    "scriptFamilies": {
+      "file": "scripted-families-native.json",
+      "cwtExit": 0,
+      "diagnostics": 0
+    },
+    "mapWorkflows": {
+      "file": "map-atlas.json",
+      "referenceStateProvenance": "kr-map-state-provenance.json",
+      "cases": ["Vanilla", "Kaiserreich", "TNO", "Kaiserreich-matched"],
+      "scope": "Three positive full-overlay CLI workflows and a separate expected refusal for the original inconsistent KR map/history combination. No simulation of supply throughput or movement."
+    },
+    "orderedImportCorpus": {
+      "file": "v0.3.0-corpus-summary.json",
+      "attempted": 17548,
+      "passed": 17548,
+      "failed": 0,
+      "skipped": 32,
+      "knownAncillaryInputFailures": 2,
+      "scope": "Every parseable original PDX input in the three fixed data sets; does not measure high-level authoring API coverage."
+    }
+  },
+  "engineValidation": "not-run"
+}

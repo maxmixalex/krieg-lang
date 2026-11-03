@@ -1,3 +1,4 @@
+import { VERSION } from "../version.js";
 import ts from "typescript";
 import { parser } from "typescript-eslint";
 import type { ESLint, Linter, Rule, SourceCode } from "eslint";
@@ -65,7 +66,16 @@ const noAny: Rule.RuleModule = {
 function isAllowedImport(value: string, packages: readonly string[]): boolean {
   if (value === "krieg-lang/hoi4" || value === "krieg-lang/pdx" || value === "krieg-lang/ui")
     return true;
-  if (["@project/countries", "@project/states", "@project/assets"].includes(value)) return true;
+  if (
+    [
+      "@project/countries",
+      "@project/states",
+      "@project/assets",
+      "@project/localisation",
+      "@project/geography",
+    ].includes(value)
+  )
+    return true;
   if (value.startsWith("./") || value.startsWith("../")) {
     return !/\.(?:[cm]?jsx?|[cm]?tsx?|json)$/.test(value) || /\.krg\.(?:jsx?|tsx?)$/.test(value);
   }
@@ -267,12 +277,12 @@ const explicitParameters: Rule.RuleModule = {
   meta: {
     type: "problem",
     docs: {
-      description: "Make callback scope and helper argument types explicit",
+      description: "Annotate standalone helpers while allowing contextually typed callbacks",
       url: "https://maxmixalex.github.io/krieg-lang/scopes/",
     },
     schema: [],
     messages: {
-      annotation: "Annotate this Krieg parameter explicitly, for example (country: CountryScope).",
+      annotation: "Annotate this standalone parameter or supply a typed callback context.",
     },
   },
   create(context) {
@@ -283,11 +293,20 @@ const explicitParameters: Rule.RuleModule = {
           if (
             ts.isParameter(node) &&
             !node.type &&
+            !node.initializer &&
             (ts.isFunctionDeclaration(node.parent) ||
               ts.isFunctionExpression(node.parent) ||
               ts.isArrowFunction(node.parent))
           ) {
-            report(context, file, node, "annotation");
+            let expression: ts.Node = node.parent;
+            while (ts.isParenthesizedExpression(expression.parent)) expression = expression.parent;
+            // This rule is syntax-only. The compiler checks inferred callback types with
+            // strict/noImplicitAny, including arrows passed through JSX and generic helpers.
+            if (
+              ts.isFunctionDeclaration(node.parent) ||
+              (ts.isVariableDeclaration(expression.parent) && !expression.parent.type)
+            )
+              report(context, file, node, "annotation");
           }
         });
       },
@@ -297,7 +316,7 @@ const explicitParameters: Rule.RuleModule = {
 
 /** ESLint flat-config plugin. The compiler remains the final semantic authority. */
 const plugin: ESLint.Plugin & { configs: { recommended: Linter.Config } } = {
-  meta: { name: "krieg-lang", version: "0.2.0" },
+  meta: { name: "krieg-lang", version: VERSION },
   rules: {
     "no-any": noAny,
     "allowed-imports": allowedImports,

@@ -2,6 +2,7 @@ import { existsSync, readFileSync, statSync } from "node:fs";
 import { basename, dirname, resolve } from "node:path";
 import { gamePath, inside, safeChild } from "./files.js";
 import type { KriegConfig, ProjectOptions } from "./types.js";
+import { parseRailwayPlan } from "./atlas-railways.js";
 
 export function readJson(path: string): Record<string, unknown> {
   let data: unknown;
@@ -65,6 +66,7 @@ export function loadConfig(path = ".", options: ProjectOptions = {}): KriegConfi
       "gameRoots",
       "world",
       "strictAssets",
+      "railways",
     ],
     "configuration",
   );
@@ -163,6 +165,7 @@ export function loadConfig(path = ".", options: ProjectOptions = {}): KriegConfi
     }),
     world: { countries: [...new Set(countryTags)], states: [...new Set(states as number[])] },
     strictAssets: data.strictAssets !== false,
+    ...(data.railways === undefined ? {} : { railways: parseRailwayPlan(data.railways) }),
   };
   if (options.gameRoots !== undefined)
     config.gameRoots = options.gameRoots.map((root) =>

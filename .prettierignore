@@ -16,5 +16,7 @@ src/ui/native.ts
 src/schema/hoi4-domains.json
 src/sdk/defines.ts
 src/schema/hoi4-defines.json
+# TypeDoc owns Markdown rendering and whitespace; docs:api:check verifies it.
+docs/api/reference/
 examples/**/localisation/**/*.yml
 tests/fixtures/**/localisation/**/*.yml

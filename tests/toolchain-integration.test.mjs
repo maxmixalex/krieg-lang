@@ -11,6 +11,7 @@ import { initProject, writeEditorProject } from "../dist/project/index.js";
 
 const repository = fileURLToPath(new URL("../", import.meta.url));
 const virtualModules = {
+  "@project/localisation": `export declare const messages: { reconstruction_desc: "reconstruction_desc"; "reconstruction.1.a": "reconstruction.1.a" }; export declare const translated: { reconstruction_title: "reconstruction_title" };`,
   "@project/countries": `import type { CountryRef } from "krieg-lang/hoi4";
     export declare const countries: { readonly GER: CountryRef & { readonly tag: "GER" } };`,
   "@project/states": `import type { StateRef } from "krieg-lang/hoi4";

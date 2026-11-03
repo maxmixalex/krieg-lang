@@ -6,8 +6,11 @@
 | ---------------------- | ---------------------- | --------------------------------------------------- |
 | `first-mod`            | 第一个事件与决议       | 初始化布局、构建、本地化                            |
 | `logistics`            | 复用后勤与地区逻辑     | 作用域、辅助函数、依赖                              |
+| `scripted-families`    | 有限参数表与具名变体   | 类型化参数、跨模块句柄、普通原生调用                |
 | `vanilla-complete`     | 科西嘉公民共和国 `KRG` | 原版地区 1 的完整替换、国家创建、重建玩法           |
 | `kaiserreich-complete` | 撒丁重建联盟 `KRL`     | Kaiserreich 地区 114 的完整替换、依赖叠加与重建玩法 |
+
+两个完整示例已使用新作者接口：`programme.krg.ts` 中的 `FocusGraph` 用节点和关系描述玩法，决议通过类型化句柄查询国策、安排事件；`interface.krg.tsx` 中的 `ScriptedWindow` 把控件和点击、显示条件写在同一处。实际写法见[国策图与事件调度](typed-gameplay.md)、[界面与 TSX](ui.md)和[本地化键补全](localisation.md)。
 
 ## 从仓库执行
 
@@ -20,6 +23,14 @@ npm run test:examples
 ```
 
 最后一条命令会检查仓库中的独立示例，不要求你提交本地游戏文件。要根据实际安装核对完整引用，再执行对应的基础目录命令。
+
+### 有限脚本变体 {#scripted-families}
+
+`scripted-families/src/positions.krg.ts` 用一张固定百分比与成本表生成三个效果和三个条件，`main.krg.ts` 中两个事件复用同一个 `medium` 句柄。每个变体只定义一次，事件中只写原生 `name = yes` 调用。这种结构适合滑块档位、固定奖励和预设建设计划。参数在编译期确定，游戏条件仍在运行时检查；详细边界见[脚本化内容](scripted-content.md)。
+
+```sh
+node dist/cli.js build examples/scripted-families
+```
 
 ### 原版项目
 

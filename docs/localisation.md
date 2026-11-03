@@ -56,6 +56,25 @@ l_english:
 
 ## 重复键与依赖
 
+### 在 TypeScript 中选择已有译文
+
+`krieg types` 为本项目和依赖包最终提供的译文生成 `@project/localisation`。`messages` 收录至少一种语言提供的键；悬停可看语言列表和一段译文预览。`translated` 只收录项目实际提供的每一种语言都有的键，适合不允许回退的界面或事件。带点、短横线的键使用方括号访问。
+
+```typescript
+import { CountryEvent } from "krieg-lang/hoi4";
+import { messages, translated } from "@project/localisation";
+
+CountryEvent({
+  id: "reconstruction.1",
+  isTriggeredOnly: true,
+  title: translated.reconstruction_title,
+  description: messages.reconstruction_desc,
+  options: [{ name: messages["reconstruction.1.a"] }],
+});
+```
+
+例如项目含英文和简体中文，但只有英文提供 `reconstruction_desc`，那么 `translated.reconstruction_desc` 会在编辑器中报错。这两个目录都使用经过依赖覆盖和 `replace_path` 处理的项目文件；它们不扫描整个游戏的翻译，也不限制手工使用游戏内置键。修改译文后可运行 `krieg types` 刷新编辑器，或在开发期间使用 `krieg watch` 自动刷新。内容没变的声明文件不会被重写。`krieg check` 和 `krieg build` 总是读取当前输入。
+
 同一个输入内的重复键会失败，包括 JSON 的重复属性。最终项目与依赖的有效输出也会检查 `(language, key)` 重复，包含通过 `assets` 放入的原生本地化文件。不同语言可以使用相同键；同一语言应只保留一个有效定义。
 
 需要替换依赖文件时，按 [资源覆盖规则](projects.md) 显式声明同路径覆盖；覆盖发生后才检查最终文件集合。新文件里重新定义另一个仍存在文件的同语言键，会作为重复定义报告。基础游戏视图不会被重新打包为项目本地化。

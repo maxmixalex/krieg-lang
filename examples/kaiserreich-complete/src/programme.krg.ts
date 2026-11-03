@@ -1,7 +1,7 @@
 import {
   CountryEvent,
   DecisionCategory,
-  FocusTree,
+  FocusGraph,
   Idea,
   ScriptedEffect,
   ScriptedLocalisation,
@@ -93,64 +93,55 @@ export const decisions = DecisionCategory({
       cost: 25,
       available: (country: CountryScope) => country.test(ready),
       visible: (country: CountryScope) => !country.triggers.hasCountryFlag("srd_invested"),
-      completeEffect: (country: CountryScope) =>
-        country.effects.countryEvent({ id: report.id, days: 1 }),
+      completeEffect: (country: CountryScope) => country.schedule(report, { days: 1 }),
     },
     {
       id: "srd_delegation",
       cost: 15,
       daysReEnable: 30,
       available: (country: CountryScope) => country.triggers.hasCountryFlag("srd_invested"),
-      completeEffect: (country: CountryScope) =>
-        country.effects.countryEvent({ id: partnerVisit.id, days: 2 }),
+      completeEffect: (country: CountryScope) => country.schedule(partnerVisit, { days: 2 }),
     },
   ],
 });
-export const focusTree = FocusTree({
+export const focusTree = FocusGraph({
   id: "srd_island_tree",
+  prefix: "srd",
   country: (country: CountryScope) => country.triggers.tag(countries.KRL),
-  focuses: [
-    {
-      id: "srd_charter",
+  nodes: {
+    charter: {
       icon: "GFX_srd_focus",
-      x: 1,
-      y: 0,
+      position: { x: 1, y: 0 },
       cost: 3,
       completionReward: (country: CountryScope) => country.effects.addStability(0.05),
     },
-    {
-      id: "srd_harbour",
+    harbour: {
       icon: "GFX_srd_focus",
-      x: 0,
-      y: 1,
+      position: { x: 0, y: 1 },
       cost: 5,
-      prerequisites: [["srd_charter"]],
-      completionReward: (country: CountryScope) =>
-        country.effects.countryEvent({ id: report.id, days: 1 }),
+      completionReward: (country: CountryScope) => country.schedule(report, { days: 1 }),
     },
-    {
-      id: "srd_bonds",
+    bonds: {
       icon: "GFX_srd_focus",
-      x: 2,
-      y: 1,
+      position: { x: 2, y: 1 },
       cost: 5,
-      prerequisites: [["srd_charter"]],
       completionReward: (country: CountryScope) => {
         country.effects.setCountryFlag("srd_bonds_unlocked");
         country.run(executeBond);
       },
     },
-    {
-      id: "srd_cooperation",
+    cooperation: {
       icon: "GFX_srd_focus",
-      x: 1,
-      y: 2,
+      position: { x: 1, y: 2 },
       cost: 5,
-      prerequisites: [["srd_harbour"], ["srd_bonds"]],
-      completionReward: (country: CountryScope) =>
-        country.effects.countryEvent({ id: partnerVisit.id, days: 1 }),
+      completionReward: (country: CountryScope) => country.schedule(partnerVisit, { days: 1 }),
     },
+  },
+  sequences: [
+    ["charter", "harbour"],
+    ["charter", "bonds"],
   ],
+  joins: [{ to: "cooperation", all: ["harbour", "bonds"] }],
 });
 export const status = ScriptedLocalisation("Get_srd_ProjectStatus", {
   scope: "country",
@@ -188,7 +179,7 @@ export const startup = OnAction({
   effect: [
     (world: AnyScope) =>
       world.country(countries.KRL, (country: CountryScope) =>
-        country.effects.countryEvent({ id: introduction.id, days: 2 }),
+        country.schedule(introduction, { days: 2 }),
       ),
   ],
 });

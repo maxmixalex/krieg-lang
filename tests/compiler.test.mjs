@@ -189,10 +189,7 @@ test("no JavaScript ambient universe and no execution of source", () => {
 });
 
 test("unsafe language features fail before any output is returned", () => {
-  fail(
-    `${imports}export default CountryEvent({id:'bad.1',immediate:(c)=>c.effects.addPoliticalPower(5)});`,
-    "KRG1005",
-  );
+  fail(`${imports}function untyped(c) { c.effects.addPoliticalPower(5); }`, "KRG1005");
   fail(`const value:any=5;`, "KRG1002");
   fail(`class X {}`, "KRG1001");
   fail(
@@ -262,7 +259,7 @@ test("numeric const and helper arguments snapshot values before mutable updates"
 
 test("expanded semantic records reject fields hidden by TypeScript structural assignment", () => {
   fail(
-    `${imports}const spec={id:'unknown.1',unsupported:true};export default CountryEvent(spec);`,
+    `${imports}const spec={id:'unknown.1' as const,unsupported:true};export default CountryEvent(spec);`,
     "KRG2070",
   );
   fail(

@@ -120,9 +120,8 @@ async function main(): Promise<void> {
     }
     case "check":
     case "build": {
-      writeEditorProject(project, projectOptions);
       showBuild(
-        buildProject(project, { ...projectOptions, check: command === "check" }),
+        buildProject(project, { ...projectOptions, writeEditor: true, check: command === "check" }),
         values.json === true,
       );
       break;
@@ -134,6 +133,9 @@ async function main(): Promise<void> {
         countries: world.countries.length,
         states: world.states.length,
         assets: world.assets.length,
+        provinces: world.geography.provinces.size,
+        strategicRegions: world.geography.strategicRegions.size,
+        modules: Object.keys(world.virtualModules).sort(),
         diagnostics: world.diagnostics,
       };
       console.log(JSON.stringify(summary, null, 2));
@@ -141,8 +143,7 @@ async function main(): Promise<void> {
       break;
     }
     case "pack": {
-      writeEditorProject(project, projectOptions);
-      const result = packProject(project, values.out, projectOptions);
+      const result = packProject(project, values.out, { ...projectOptions, writeEditor: true });
       if (values.json) console.log(JSON.stringify(result, null, 2));
       else {
         showBuild(result.build, false);
@@ -221,8 +222,7 @@ async function main(): Promise<void> {
         if (building) return;
         building = true;
         try {
-          writeEditorProject(project, projectOptions);
-          showBuild(buildProject(project, projectOptions), false);
+          showBuild(buildProject(project, { ...projectOptions, writeEditor: true }), false);
         } catch (error) {
           console.error((error as Error).message);
         } finally {
