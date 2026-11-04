@@ -11,7 +11,7 @@ Adds an element to a temporary array.
 作用域：`any`
 
 ```ts
-"add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef; "index"?: "int_variable_field_32" } | CwtNode): boolean;
+"add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef; "index"?: number } | CwtNode): boolean;
 "add_to_temp_array"(value: CwtNode): boolean;
 ```
 
@@ -28,7 +28,7 @@ Adds a value or a variable to a temp variable. Can define numerical variable wit
 
 ```ts
 "add_to_temp_variable"(value: CwtNode): boolean;
-"add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+"add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
 ```
 
 CWT 来源：
@@ -1204,7 +1204,7 @@ Checks for amount manpower currently the target state with option to specify a t
 作用域：`country`
 
 ```ts
-"army_manpower_in_state"(value: { "state": StateRef | number; "amount": number; "type"?: string } | CwtNode): boolean;
+"army_manpower_in_state"(value: { "state": StateRef | StateTargetRef | number; "amount": number; "type"?: string } | CwtNode): boolean;
 ```
 
 CWT 来源：
@@ -1326,7 +1326,7 @@ Checks if a railway can be built according to specifications
 ```ts
 "can_build_railway"(value: { "path": readonly (number)[]; "build_only_on_allied"?: boolean; "fallback"?: boolean } | CwtNode): boolean;
 "can_build_railway"(value: { "build_only_on_allied"?: boolean; "start_province": number; "target_province": number; "fallback"?: boolean } | CwtNode): boolean;
-"can_build_railway"(value: { "build_only_on_allied"?: boolean; "start_state": StateRef; "target_state": StateRef; "fallback"?: boolean } | CwtNode): boolean;
+"can_build_railway"(value: { "build_only_on_allied"?: boolean; "start_state": StateRef | StateTargetRef; "target_state": StateRef | StateTargetRef; "fallback"?: boolean } | CwtNode): boolean;
 ```
 
 CWT 来源：
@@ -1482,7 +1482,7 @@ Compares a variable to a number or variable.
 
 ```ts
 "check_variable"(value: CwtNode): boolean;
-"check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef; "value": string | number | boolean | CountryRef | StateRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
+"check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef | StateTargetRef; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
 ```
 
 CWT 来源：
@@ -1726,7 +1726,7 @@ Check controller for state(s).
 作用域：`country`
 
 ```ts
-"controls_state"(value: StateRef): boolean;
+"controls_state"(value: StateRef | StateTargetRef): boolean;
 ```
 
 CWT 来源：

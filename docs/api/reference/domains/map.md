@@ -618,4 +618,4 @@ Defined in: [src/sdk/domains.ts:5520](https://github.com/maxmixalex/krieg-lang/b
 
 ## 完整示例与工作流
 
-[阅读地图、地区与环境指南](../../../content-domains.md)
+[阅读地图、地区与环境指南](../../../guide/domains/index.md)

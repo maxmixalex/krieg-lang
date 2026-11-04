@@ -5,9 +5,9 @@
 
 [API 任务入口](../../index.md) · [公开模块](../index.md)
 
-把重复的静态 GUI 外观写进 `.krg.css` 并在 TSX 中引用，可让多个窗口共享间距、尺寸和字体等设置。样式在编译时转换为原生 GUI 属性；可复制的 CSS 与 TSX 双文件示例见[样式模块入门](../../../styles.md#style-module)。`Stack` 用于组织有明确间距的静态子元素；涉及游戏状态的 visible、enabled 与 click 仍通过 ScriptedWindow 的绑定提供。
+把重复的静态 GUI 外观写进 `.krg.css` 并在 TSX 中引用，可让多个窗口共享间距、尺寸和字体等设置。样式在编译时转换为原生 GUI 属性，可复制的 CSS 与 TSX 双文件示例见[样式模块入门](../../../guide/styles.md#style-module)。`Stack` 用于组织有明确间距的静态子元素，涉及游戏状态的 visible、enabled 与 click 仍通过 ScriptedWindow 的绑定提供。
 
-下例生成两个纵向按钮，原生位置分别为 `(16, 48)` 与 `(16, 88)`：第二个按钮在第一个按钮的 32 高度之后再留出 8 的间距。Stack 不生成额外容器；子控件必须提供数值尺寸，详细限制见 [Stack 布局边界](../../../styles.md#static-stack)。
+下例生成两个纵向按钮，原生位置分别为 `(16, 48)` 与 `(16, 88)`。第二个按钮在第一个按钮的 32 高度之后再留出 8 的间距。子控件必须提供数值尺寸，详细限制见 [Stack 布局边界](../../../guide/styles.md#static-stack)。
 
 ## 使用示例
 
@@ -73,7 +73,7 @@ Classes apply left to right; explicit component props override the resulting sty
 
 > **Stack**(`props`: [`StackProps`](#stackprops)): [`GuiElement`](layout.md#guielement)
 
-Defined in: [src/ui/index.ts:292](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L292)
+Defined in: [src/ui/index.ts:336](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L336)
 
 Children need a numeric size and upper-left anchoring; no automatic text measurement.
 
@@ -90,7 +90,7 @@ Children need a numeric size and upper-left anchoring; no automatic text measure
 
 ## StackProps { #stackprops }
 
-Defined in: [src/ui/index.ts:285](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L285)
+Defined in: [src/ui/index.ts:329](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L329)
 
 Static absolute layout of explicitly sized children. Emits no extra native container.
 
@@ -98,17 +98,17 @@ Static absolute layout of explicitly sized children. Emits no extra native conta
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="stackprops-property-children"></a> `children?` | [`GuiChild`](layout.md#guichild) | [src/ui/index.ts:289](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L289) |
-| <a id="stackprops-property-direction"></a> `direction?` | `"horizontal"` \| `"vertical"` | [src/ui/index.ts:286](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L286) |
-| <a id="stackprops-property-gap"></a> `gap?` | `number` | [src/ui/index.ts:287](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L287) |
-| <a id="stackprops-property-position"></a> `position?` | `object` | [src/ui/index.ts:288](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L288) |
-| `position.x` | `number` | [src/ui/index.ts:288](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L288) |
-| `position.y` | `number` | [src/ui/index.ts:288](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L288) |
+| <a id="stackprops-property-children"></a> `children?` | [`GuiChild`](layout.md#guichild) | [src/ui/index.ts:333](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L333) |
+| <a id="stackprops-property-direction"></a> `direction?` | `"horizontal"` \| `"vertical"` | [src/ui/index.ts:330](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L330) |
+| <a id="stackprops-property-gap"></a> `gap?` | `number` | [src/ui/index.ts:331](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L331) |
+| <a id="stackprops-property-position"></a> `position?` | `object` | [src/ui/index.ts:332](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L332) |
+| `position.x` | `number` | [src/ui/index.ts:332](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L332) |
+| `position.y` | `number` | [src/ui/index.ts:332](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L332) |
 
 
 ## IconBaseProps { #iconbaseprops }
 
-Defined in: [src/ui/index.ts:90](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L90)
+Defined in: [src/ui/index.ts:99](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L99)
 
 Classes apply left to right; explicit component props override the resulting style.
 
@@ -120,10 +120,11 @@ Classes apply left to right; explicit component props override the resulting sty
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="iconbaseprops-property-alwaystransparent"></a> `alwaysTransparent?` | `boolean` | [src/ui/index.ts:92](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L92) |
-| <a id="iconbaseprops-property-centerposition"></a> `centerPosition?` | `boolean` | [src/ui/index.ts:93](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L93) |
+| <a id="iconbaseprops-property-alwaystransparent"></a> `alwaysTransparent?` | `boolean` | [src/ui/index.ts:101](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L101) |
+| <a id="iconbaseprops-property-centerposition"></a> `centerPosition?` | `boolean` | [src/ui/index.ts:102](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L102) |
 | <a id="iconbaseprops-property-classname"></a> `className?` | [`GuiClass`](#guiclass)&lt;`object`&gt; \| readonly [`GuiClass`](#guiclass)&lt;`object`&gt;[] | [src/ui/index.ts:28](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L28) |
-| <a id="iconbaseprops-property-frame"></a> `frame?` | `number` | [src/ui/index.ts:91](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L91) |
+| <a id="iconbaseprops-property-clicksound"></a> `clickSound?` | `string` | [src/ui/index.ts:103](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L103) |
+| <a id="iconbaseprops-property-frame"></a> `frame?` | `number` | [src/ui/index.ts:100](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L100) |
 | <a id="iconbaseprops-property-hide"></a> `hide?` | `boolean` | [src/ui/index.ts:74](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L74) |
 | <a id="iconbaseprops-property-name"></a> `name` | `string` | [src/ui/index.ts:67](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L67) |
 | <a id="iconbaseprops-property-orientation"></a> `orientation?` | [`GuiOrientation`](layout.md#guiorientation) | [src/ui/index.ts:70](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L70) |
@@ -131,6 +132,7 @@ Classes apply left to right; explicit component props override the resulting sty
 | <a id="iconbaseprops-property-position"></a> `position?` | [`GuiPosition`](layout.md#guiposition) | [src/ui/index.ts:68](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L68) |
 | <a id="iconbaseprops-property-rotation"></a> `rotation?` | `number` | [src/ui/index.ts:73](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L73) |
 | <a id="iconbaseprops-property-scale"></a> `scale?` | `number` | [src/ui/index.ts:72](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L72) |
+| <a id="iconbaseprops-property-shortcut"></a> `shortcut?` | `string` | [src/ui/index.ts:104](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L104) |
 | <a id="iconbaseprops-property-size"></a> `size?` | [`GuiSize`](layout.md#guisize) | [src/ui/index.ts:69](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L69) |
 | <a id="iconbaseprops-property-tooltip"></a> `tooltip?` | `string` | [src/ui/index.ts:75](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L75) |
 | <a id="iconbaseprops-property-tooltipdelayed"></a> `tooltipDelayed?` | `string` | [src/ui/index.ts:76](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L76) |
@@ -138,4 +140,4 @@ Classes apply left to right; explicit component props override the resulting sty
 
 ## 完整示例与工作流
 
-[阅读样式类与 Stack 布局指南](../../../styles.md)
+[阅读样式类与 Stack 布局指南](../../../guide/styles.md)

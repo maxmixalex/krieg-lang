@@ -28,7 +28,7 @@
 
 > **Container**(`props`: [`ContainerProps`](#containerprops)): [`GuiElement`](#guielement)
 
-Defined in: [src/ui/index.ts:145](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L145)
+Defined in: [src/ui/index.ts:160](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L160)
 
 ### Parameters { #container-section-parameters }
 
@@ -55,14 +55,26 @@ Classes apply left to right; explicit component props override the resulting sty
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
+| <a id="containerprops-property-animationtime"></a> `animationTime?` | `number` | [src/ui/index.ts:96](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L96) |
 | <a id="containerprops-property-autohidescrollbars"></a> `autohideScrollbars?` | `boolean` | [src/ui/index.ts:85](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L85) |
+| <a id="containerprops-property-background"></a> `background?` | `object` | [src/ui/index.ts:89](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L89) |
+| `background.name` | `string` | [src/ui/index.ts:89](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L89) |
+| `background.spriteType` | `string` | [src/ui/index.ts:89](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L89) |
 | <a id="containerprops-property-children"></a> `children?` | [`GuiChild`](#guichild) | [src/ui/index.ts:79](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L79) |
 | <a id="containerprops-property-classname"></a> `className?` | [`GuiClass`](styles.md#guiclass)&lt;`object`&gt; \| readonly [`GuiClass`](styles.md#guiclass)&lt;`object`&gt;[] | [src/ui/index.ts:28](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L28) |
 | <a id="containerprops-property-clicktofront"></a> `clickToFront?` | `boolean` | [src/ui/index.ts:86](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L86) |
 | <a id="containerprops-property-clipping"></a> `clipping?` | `boolean` | [src/ui/index.ts:81](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L81) |
+| <a id="containerprops-property-fadetime"></a> `fadeTime?` | `number` | [src/ui/index.ts:91](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L91) |
+| <a id="containerprops-property-fadetype"></a> `fadeType?` | `"decelerated"` \| `"accelerated"` \| `"linear"` | [src/ui/index.ts:92](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L92) |
 | <a id="containerprops-property-fullscreen"></a> `fullscreen?` | `boolean` | [src/ui/index.ts:82](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L82) |
 | <a id="containerprops-property-hide"></a> `hide?` | `boolean` | [src/ui/index.ts:74](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L74) |
+| <a id="containerprops-property-hideanimationtype"></a> `hideAnimationType?` | `"decelerated"` \| `"accelerated"` \| `"linear"` | [src/ui/index.ts:95](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L95) |
 | <a id="containerprops-property-horizontalscrollbar"></a> `horizontalScrollbar?` | `string` | [src/ui/index.ts:84](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L84) |
+| <a id="containerprops-property-margin"></a> `margin?` | `object` | [src/ui/index.ts:97](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L97) |
+| `margin.bottom?` | `number` | [src/ui/index.ts:97](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L97) |
+| `margin.left?` | `number` | [src/ui/index.ts:97](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L97) |
+| `margin.right?` | `number` | [src/ui/index.ts:97](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L97) |
+| `margin.top?` | `number` | [src/ui/index.ts:97](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L97) |
 | <a id="containerprops-property-moveable"></a> `moveable?` | `boolean` | [src/ui/index.ts:80](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L80) |
 | <a id="containerprops-property-name"></a> `name` | `string` | [src/ui/index.ts:67](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L67) |
 | <a id="containerprops-property-orientation"></a> `orientation?` | [`GuiOrientation`](#guiorientation) | [src/ui/index.ts:70](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L70) |
@@ -71,6 +83,9 @@ Classes apply left to right; explicit component props override the resulting sty
 | <a id="containerprops-property-rotation"></a> `rotation?` | `number` | [src/ui/index.ts:73](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L73) |
 | <a id="containerprops-property-scale"></a> `scale?` | `number` | [src/ui/index.ts:72](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L72) |
 | <a id="containerprops-property-scrollwheelfactor"></a> `scrollWheelFactor?` | `number` | [src/ui/index.ts:88](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L88) |
+| <a id="containerprops-property-showanimationtype"></a> `showAnimationType?` | `"decelerated"` \| `"accelerated"` \| `"linear"` | [src/ui/index.ts:94](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L94) |
+| <a id="containerprops-property-showposition"></a> `showPosition?` | [`GuiPosition`](#guiposition) | [src/ui/index.ts:93](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L93) |
+| <a id="containerprops-property-showsound"></a> `showSound?` | `string` | [src/ui/index.ts:90](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L90) |
 | <a id="containerprops-property-size"></a> `size?` | [`GuiSize`](#guisize) | [src/ui/index.ts:69](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L69) |
 | <a id="containerprops-property-smoothscrolling"></a> `smoothScrolling?` | `number` \| `boolean` | [src/ui/index.ts:87](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L87) |
 | <a id="containerprops-property-tooltip"></a> `tooltip?` | `string` | [src/ui/index.ts:75](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L75) |
@@ -82,7 +97,7 @@ Classes apply left to right; explicit component props override the resulting sty
 
 > **For**&lt;`T`&gt;(`props`: `object`): [`GuiElement`](#guielement)
 
-Defined in: [src/ui/index.ts:279](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L279)
+Defined in: [src/ui/index.ts:323](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L323)
 
 Expand a typed, compile-time array into ordered GUI children.
 The callback is interpreted once for each source item. This is not a game
@@ -119,7 +134,7 @@ dynamic_list: use ScriptedGui.dynamicLists for arrays whose contents change in g
 
 > **GuiFile**(`path`: `string`, `elements`: [`GuiChild`](#guichild)): [`Definition`](../hoi4/scope-selection.md#definition)
 
-Defined in: [src/ui/index.ts:152](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L152)
+Defined in: [src/ui/index.ts:167](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L167)
 
 Repeated children stay in source order and lower to repeated native guiTypes entries.
 
@@ -215,7 +230,7 @@ Defined in: [src/ui/index.ts:35](https://github.com/maxmixalex/krieg-lang/blob/m
 
 ## GuiCoordinate { #guicoordinate }
 
-> **GuiCoordinate** = `number` \| `` `${number}%` `` \| `` `@${string}` ``
+> **GuiCoordinate** = `number` \| `` `${number}%` `` \| `` `${number}%%` `` \| `` `@${string}` ``
 
 Defined in: [src/ui/index.ts:30](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L30)
 
@@ -236,4 +251,4 @@ Defined in: [src/ui/index.ts:54](https://github.com/maxmixalex/krieg-lang/blob/m
 
 ## 完整示例与工作流
 
-[阅读容器、重复内容与基础几何指南](../../../ui.md)
+[阅读容器、重复内容与基础几何指南](../../../guide/ui.md)

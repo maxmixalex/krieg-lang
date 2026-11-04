@@ -420,4 +420,4 @@ Native common/resistance_compliance_modifiers; schema: common/resistance_complia
 
 ## 完整示例与工作流
 
-[阅读情报与行动指南](../../../content-domains.md)
+[阅读情报与行动指南](../../../guide/domains/index.md)

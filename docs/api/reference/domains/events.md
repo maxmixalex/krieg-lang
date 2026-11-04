@@ -352,4 +352,4 @@ Native events; schema: events.cwt:39.
 
 ## 完整示例与工作流
 
-[阅读原生事件指南](../../../content-domains.md)
+[阅读原生事件指南](../../../guide/domains/index.md)

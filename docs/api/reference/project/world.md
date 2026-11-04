@@ -86,4 +86,4 @@ Defined in: [src/project/world.ts:12](https://github.com/maxmixalex/krieg-lang/b
 
 ## 完整示例与工作流
 
-[阅读有效游戏世界与文件覆盖指南](../../../projects.md)
+[阅读有效游戏世界与文件覆盖指南](../../../guide/projects.md)

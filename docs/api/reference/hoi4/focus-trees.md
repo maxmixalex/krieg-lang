@@ -36,7 +36,7 @@ FocusTree({
 
 > **FocusTree**(`spec`: [`FocusTreeSpec`](#focustreespec)): [`IdentifiedDefinition`](scope-selection.md#identifieddefinition)
 
-Defined in: [src/sdk/index.ts:292](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L292)
+Defined in: [src/sdk/index.ts:547](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L547)
 
 Write a focus tree with explicit native identifiers and per-node layout. Use [FocusGraph](focus-graphs.md#focusgraph) when the project owns the nodes and you want completion, graph checks, and automatic layout.
 
@@ -57,23 +57,23 @@ Write a focus tree with explicit native identifiers and per-node layout. Use [Fo
 
 ## FocusTreeSpec { #focustreespec }
 
-Defined in: [src/sdk/index.ts:283](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L283)
+Defined in: [src/sdk/index.ts:538](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L538)
 
 ### Properties { #focustreespec-section-properties }
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="focustreespec-property-country"></a> `country?` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | [src/sdk/index.ts:285](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L285) |
-| <a id="focustreespec-property-default"></a> `default?` | `boolean` | [src/sdk/index.ts:286](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L286) |
-| <a id="focustreespec-property-focuses"></a> `focuses` | readonly [`FocusSpec`](#focusspec)[] | [src/sdk/index.ts:287](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L287) |
-| <a id="focustreespec-property-id"></a> `id` | `string` | [src/sdk/index.ts:284](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L284) |
+| <a id="focustreespec-property-country"></a> `country?` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | [src/sdk/index.ts:540](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L540) |
+| <a id="focustreespec-property-default"></a> `default?` | `boolean` | [src/sdk/index.ts:541](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L541) |
+| <a id="focustreespec-property-focuses"></a> `focuses` | readonly [`FocusSpec`](#focusspec)[] | [src/sdk/index.ts:542](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L542) |
+| <a id="focustreespec-property-id"></a> `id` | `string` | [src/sdk/index.ts:539](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L539) |
 
 
 ## Focus() { #focus }
 
 > **Focus**(`spec`: [`FocusSpec`](#focusspec)): [`FocusSpec`](#focusspec)
 
-Defined in: [src/sdk/index.ts:289](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L289)
+Defined in: [src/sdk/index.ts:544](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L544)
 
 ### Parameters { #focus-section-parameters }
 
@@ -88,35 +88,35 @@ Defined in: [src/sdk/index.ts:289](https://github.com/maxmixalex/krieg-lang/blob
 
 ## FocusSpec { #focusspec }
 
-Defined in: [src/sdk/index.ts:266](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L266)
+Defined in: [src/sdk/index.ts:521](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L521)
 
 ### Properties { #focusspec-section-properties }
 
 | Property | Type | Description | Defined in |
 | ------ | ------ | ------ | ------ |
-| <a id="focusspec-property-aiwilldo"></a> `aiWillDo?` | `number` | - | [src/sdk/index.ts:281](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L281) |
-| <a id="focusspec-property-available"></a> `available?` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | - | [src/sdk/index.ts:276](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L276) |
-| <a id="focusspec-property-bypass"></a> `bypass?` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | - | [src/sdk/index.ts:277](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L277) |
-| <a id="focusspec-property-cancelifinvalid"></a> `cancelIfInvalid?` | `boolean` | - | [src/sdk/index.ts:278](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L278) |
-| <a id="focusspec-property-completionreward"></a> `completionReward?` | [`Effect`](scope-selection.md#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | - | [src/sdk/index.ts:280](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L280) |
-| <a id="focusspec-property-continueifinvalid"></a> `continueIfInvalid?` | `boolean` | - | [src/sdk/index.ts:279](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L279) |
-| <a id="focusspec-property-cost"></a> `cost?` | `number` | - | [src/sdk/index.ts:271](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L271) |
-| <a id="focusspec-property-icon"></a> `icon?` | `string` | - | [src/sdk/index.ts:268](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L268) |
-| <a id="focusspec-property-id"></a> `id` | `string` | - | [src/sdk/index.ts:267](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L267) |
-| <a id="focusspec-property-mutuallyexclusive"></a> `mutuallyExclusive?` | readonly `string`[] | - | [src/sdk/index.ts:275](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L275) |
-| <a id="focusspec-property-prerequisites"></a> `prerequisites?` | readonly (readonly `string`[])[] | Each inner list is an OR group; separate groups must all be completed. | [src/sdk/index.ts:274](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L274) |
-| <a id="focusspec-property-relativepositionid"></a> `relativePositionId?` | `string` | - | [src/sdk/index.ts:272](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L272) |
-| <a id="focusspec-property-x"></a> `x?` | `number` | - | [src/sdk/index.ts:269](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L269) |
-| <a id="focusspec-property-y"></a> `y?` | `number` | - | [src/sdk/index.ts:270](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L270) |
+| <a id="focusspec-property-aiwilldo"></a> `aiWillDo?` | `number` | - | [src/sdk/index.ts:536](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L536) |
+| <a id="focusspec-property-available"></a> `available?` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | - | [src/sdk/index.ts:531](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L531) |
+| <a id="focusspec-property-bypass"></a> `bypass?` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | - | [src/sdk/index.ts:532](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L532) |
+| <a id="focusspec-property-cancelifinvalid"></a> `cancelIfInvalid?` | `boolean` | - | [src/sdk/index.ts:533](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L533) |
+| <a id="focusspec-property-completionreward"></a> `completionReward?` | [`Effect`](scope-selection.md#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | - | [src/sdk/index.ts:535](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L535) |
+| <a id="focusspec-property-continueifinvalid"></a> `continueIfInvalid?` | `boolean` | - | [src/sdk/index.ts:534](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L534) |
+| <a id="focusspec-property-cost"></a> `cost?` | `number` | - | [src/sdk/index.ts:526](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L526) |
+| <a id="focusspec-property-icon"></a> `icon?` | `string` | - | [src/sdk/index.ts:523](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L523) |
+| <a id="focusspec-property-id"></a> `id` | `string` | - | [src/sdk/index.ts:522](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L522) |
+| <a id="focusspec-property-mutuallyexclusive"></a> `mutuallyExclusive?` | readonly `string`[] | - | [src/sdk/index.ts:530](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L530) |
+| <a id="focusspec-property-prerequisites"></a> `prerequisites?` | readonly (readonly `string`[])[] | Each inner list is an OR group; separate groups must all be completed. | [src/sdk/index.ts:529](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L529) |
+| <a id="focusspec-property-relativepositionid"></a> `relativePositionId?` | `string` | - | [src/sdk/index.ts:527](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L527) |
+| <a id="focusspec-property-x"></a> `x?` | `number` | - | [src/sdk/index.ts:524](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L524) |
+| <a id="focusspec-property-y"></a> `y?` | `number` | - | [src/sdk/index.ts:525](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L525) |
 
 
 ## FocusId { #focusid }
 
 > **FocusId** = `string`
 
-Defined in: [src/sdk/index.ts:44](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L44)
+Defined in: [src/sdk/index.ts:66](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L66)
 
 
 ## 完整示例与工作流
 
-[阅读精确编排国策树指南](../../../recipes.md)
+[阅读精确编排国策树指南](../../../guide/actions.md)

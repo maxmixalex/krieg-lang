@@ -7,7 +7,7 @@
 
 先用 `Decision` 描述单项决议，再放入 `DecisionCategory.decisions`。类别控制一组决议的可见性和解锁条件；决议自己的条件控制这一项是否出现、能否点击。`completeEffect` 是玩家执行决议时的效果，`cost` 是政治点数成本。
 
-所有条件与效果回调在游戏的国家作用域中解释。需要更多原生任务字段时，可查询 [原生内容领域](../../domains.md) 的 `NativeDecision` 与 `NativeDecisionCategory`；下方是日常写作时更紧凑的类型化入口。
+`mission: { days, activation, cancel, timeout }` 描述定时任务，保留游戏的任务条与取消语义。`days` 必须是正整数；任务与 `CountryAction` 互斥。类别支持 `scriptedGui` 绑定 TSX 窗口，类别和决议均支持 `priority`。所有条件与效果回调在游戏的国家作用域中解释。
 
 ## 使用示例
 
@@ -30,12 +30,13 @@ DecisionCategory({
 - [Decision](#decision)
 - [DecisionSpec](#decisionspec)
 - [DecisionBaseSpec](#decisionbasespec)（共享字段）
+- [DecisionMissionSpec](#decisionmissionspec)
 
 ## DecisionCategory() { #decisioncategory }
 
 > **DecisionCategory**(`spec`: [`DecisionCategorySpec`](#decisioncategoryspec)): [`IdentifiedDefinition`](scope-selection.md#identifieddefinition)
 
-Defined in: [src/sdk/index.ts:336](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L336)
+Defined in: [src/sdk/index.ts:605](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L605)
 
 Group decisions under one category. `available` checks whether a decision may be taken; `completeEffect` describes the effect of taking it.
 
@@ -62,24 +63,26 @@ DecisionCategory({ id: "council_budget", decisions: [{
 
 ## DecisionCategorySpec { #decisioncategoryspec }
 
-Defined in: [src/sdk/index.ts:319](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L319)
+Defined in: [src/sdk/index.ts:586](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L586)
 
 ### Properties { #decisioncategoryspec-section-properties }
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="decisioncategoryspec-property-allowed"></a> `allowed?` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | [src/sdk/index.ts:323](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L323) |
-| <a id="decisioncategoryspec-property-decisions"></a> `decisions` | readonly [`DecisionSpec`](#decisionspec)[] | [src/sdk/index.ts:324](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L324) |
-| <a id="decisioncategoryspec-property-icon"></a> `icon?` | `string` | [src/sdk/index.ts:321](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L321) |
-| <a id="decisioncategoryspec-property-id"></a> `id` | `string` | [src/sdk/index.ts:320](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L320) |
-| <a id="decisioncategoryspec-property-visible"></a> `visible?` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | [src/sdk/index.ts:322](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L322) |
+| <a id="decisioncategoryspec-property-allowed"></a> `allowed?` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | [src/sdk/index.ts:590](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L590) |
+| <a id="decisioncategoryspec-property-decisions"></a> `decisions` | readonly [`DecisionSpec`](#decisionspec)[] | [src/sdk/index.ts:593](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L593) |
+| <a id="decisioncategoryspec-property-icon"></a> `icon?` | `string` | [src/sdk/index.ts:588](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L588) |
+| <a id="decisioncategoryspec-property-id"></a> `id` | `string` | [src/sdk/index.ts:587](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L587) |
+| <a id="decisioncategoryspec-property-priority"></a> `priority?` | `number` | [src/sdk/index.ts:591](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L591) |
+| <a id="decisioncategoryspec-property-scriptedgui"></a> `scriptedGui?` | `string` | [src/sdk/index.ts:592](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L592) |
+| <a id="decisioncategoryspec-property-visible"></a> `visible?` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | [src/sdk/index.ts:589](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L589) |
 
 
 ## Decision() { #decision }
 
 > **Decision**(`spec`: [`DecisionSpec`](#decisionspec)): [`DecisionSpec`](#decisionspec)
 
-Defined in: [src/sdk/index.ts:326](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L326)
+Defined in: [src/sdk/index.ts:595](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L595)
 
 ### Parameters { #decision-section-parameters }
 
@@ -94,30 +97,49 @@ Defined in: [src/sdk/index.ts:326](https://github.com/maxmixalex/krieg-lang/blob
 
 ## DecisionSpec { #decisionspec }
 
-> **DecisionSpec** = [`DecisionBaseSpec`](#decisionbasespec) & (\{ `action`: [`CountryActionDefinition`](actions.md#countryactiondefinition); `available?`: `never`; `completeEffect?`: `never`; `cost?`: `never`; \} \| \{ `action?`: `never`; `available?`: [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;; `completeEffect?`: [`Effect`](scope-selection.md#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;; `cost?`: `number`; \})
+> **DecisionSpec** = [`DecisionBaseSpec`](#decisionbasespec) & (\{ `action`: [`CountryActionDefinition`](actions.md#countryactiondefinition); `available?`: `never`; `completeEffect?`: `never`; `cost?`: `never`; `mission?`: `never`; \} \| \{ `action?`: `never`; `available?`: [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;; `completeEffect?`: [`Effect`](scope-selection.md#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;; `cost?`: `number`; `mission?`: [`DecisionMissionSpec`](#decisionmissionspec); \})
 
-Defined in: [src/sdk/index.ts:304](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L304)
+Defined in: [src/sdk/index.ts:569](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L569)
 
 A manual decision or a shared action; an action owns its cost, eligibility and settlement.
 
 
 ## DecisionBaseSpec { #decisionbasespec }
 
-Defined in: [src/sdk/index.ts:294](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L294)
+Defined in: [src/sdk/index.ts:549](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L549)
 
 ### Properties { #decisionbasespec-section-properties }
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="decisionbasespec-property-aiwilldo"></a> `aiWillDo?` | `number` | [src/sdk/index.ts:301](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L301) |
-| <a id="decisionbasespec-property-daysreenable"></a> `daysReEnable?` | `number` | [src/sdk/index.ts:298](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L298) |
-| <a id="decisionbasespec-property-daysremove"></a> `daysRemove?` | `number` | [src/sdk/index.ts:297](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L297) |
-| <a id="decisionbasespec-property-icon"></a> `icon?` | `string` | [src/sdk/index.ts:296](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L296) |
-| <a id="decisionbasespec-property-id"></a> `id` | `string` | [src/sdk/index.ts:295](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L295) |
-| <a id="decisionbasespec-property-removeeffect"></a> `removeEffect?` | [`Effect`](scope-selection.md#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | [src/sdk/index.ts:300](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L300) |
-| <a id="decisionbasespec-property-visible"></a> `visible?` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | [src/sdk/index.ts:299](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L299) |
+| <a id="decisionbasespec-property-aiwilldo"></a> `aiWillDo?` | `number` | [src/sdk/index.ts:556](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L556) |
+| <a id="decisionbasespec-property-daysreenable"></a> `daysReEnable?` | `number` | [src/sdk/index.ts:553](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L553) |
+| <a id="decisionbasespec-property-daysremove"></a> `daysRemove?` | `number` | [src/sdk/index.ts:552](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L552) |
+| <a id="decisionbasespec-property-icon"></a> `icon?` | `string` | [src/sdk/index.ts:551](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L551) |
+| <a id="decisionbasespec-property-id"></a> `id` | `string` | [src/sdk/index.ts:550](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L550) |
+| <a id="decisionbasespec-property-priority"></a> `priority?` | `number` | [src/sdk/index.ts:557](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L557) |
+| <a id="decisionbasespec-property-removeeffect"></a> `removeEffect?` | [`Effect`](scope-selection.md#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | [src/sdk/index.ts:555](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L555) |
+| <a id="decisionbasespec-property-visible"></a> `visible?` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | [src/sdk/index.ts:554](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L554) |
+
+
+## DecisionMissionSpec { #decisionmissionspec }
+
+Defined in: [src/sdk/index.ts:560](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L560)
+
+A timed decision mission. Its timeout runs only if cancellation has not fired.
+
+### Properties { #decisionmissionspec-section-properties }
+
+| Property | Type | Defined in |
+| ------ | ------ | ------ |
+| <a id="decisionmissionspec-property-activation"></a> `activation?` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | [src/sdk/index.ts:562](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L562) |
+| <a id="decisionmissionspec-property-cancel"></a> `cancel?` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | [src/sdk/index.ts:563](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L563) |
+| <a id="decisionmissionspec-property-days"></a> `days` | `number` | [src/sdk/index.ts:561](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L561) |
+| <a id="decisionmissionspec-property-isgood"></a> `isGood?` | `boolean` | [src/sdk/index.ts:566](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L566) |
+| <a id="decisionmissionspec-property-selectable"></a> `selectable?` | `boolean` | [src/sdk/index.ts:565](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L565) |
+| <a id="decisionmissionspec-property-timeout"></a> `timeout` | [`Effect`](scope-selection.md#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | [src/sdk/index.ts:564](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L564) |
 
 
 ## 完整示例与工作流
 
-[阅读决议类别、决议与条件指南](../../../typed-gameplay.md)
+[阅读决议类别、决议与条件指南](../../../guide/focuses.md)

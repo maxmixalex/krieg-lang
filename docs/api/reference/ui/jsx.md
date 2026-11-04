@@ -63,29 +63,29 @@ Defined in: [src/ui/native.ts:49](https://github.com/maxmixalex/krieg-lang/blob/
 
 ## ElementChildrenAttribute { #elementchildrenattribute }
 
-Defined in: [src/ui/index.ts:314](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L314)
+Defined in: [src/ui/index.ts:368](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L368)
 
 ### Properties { #elementchildrenattribute-section-properties }
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="elementchildrenattribute-property-children"></a> `children` | `unknown` | [src/ui/index.ts:315](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L315) |
+| <a id="elementchildrenattribute-property-children"></a> `children` | `unknown` | [src/ui/index.ts:369](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L369) |
 
 
 ## Element { #element }
 
 > **Element** = [`GuiElement`](layout.md#guielement)
 
-Defined in: [src/ui/index.ts:313](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L313)
+Defined in: [src/ui/index.ts:367](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L367)
 
 
 ## IntrinsicElements { #intrinsicelements }
 
 > **IntrinsicElements** = [`NativeIntrinsicElements`](#nativeintrinsicelements)
 
-Defined in: [src/ui/index.ts:317](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L317)
+Defined in: [src/ui/index.ts:371](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L371)
 
 
 ## 完整示例与工作流
 
-[阅读JSX 类型与原生标签指南](../../../ui.md)
+[阅读JSX 类型与原生标签指南](../../../guide/ui.md)

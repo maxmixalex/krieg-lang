@@ -515,4 +515,4 @@ Native common/technology_sharing; schema: common/technologies.cwt:278.
 
 ## 完整示例与工作流
 
-[阅读科技与学说指南](../../../content-domains.md)
+[阅读科技与学说指南](../../../guide/domains/index.md)

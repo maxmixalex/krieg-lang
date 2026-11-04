@@ -1,0 +1,15 @@
+.small {
+  font: hoi_16mbs;
+  max-height: 24;
+  format: center;
+}
+.header {
+  font: hoi_24header;
+  max-width: 350;
+  max-height: 24;
+  format: center;
+}
+.sort {
+  font: hoi_16mbs;
+  sprite-type: GFX_sort_button_100x29;
+}

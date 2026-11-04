@@ -1,0 +1,14 @@
+{
+  "name": "krieg-hearts-of-uno-rewrite",
+  "private": true,
+  "type": "module",
+  "version": "0.5.0",
+  "scripts": {
+    "check": "krieg check",
+    "build": "krieg build",
+    "pack": "krieg pack"
+  },
+  "devDependencies": {
+    "krieg-lang": "file:../../.."
+  }
+}

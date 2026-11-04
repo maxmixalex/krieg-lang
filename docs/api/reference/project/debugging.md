@@ -100,4 +100,4 @@ One recognized native filename and line number from a HOI4 text log.
 
 ## 完整示例与工作流
 
-[阅读从原生文件定位源码指南](../../../debugging.md)
+[阅读从原生文件定位源码指南](../../../guide/debugging.md)

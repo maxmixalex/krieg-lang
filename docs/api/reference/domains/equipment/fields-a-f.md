@@ -65,4 +65,4 @@ Defined in: [src/sdk/domains.ts:2975](https://github.com/maxmixalex/krieg-lang/b
 
 ## 完整示例与工作流
 
-[阅读装备与模块：复杂字段 A-F指南](../../../../content-domains.md)
+[阅读装备与模块：复杂字段 A-F指南](../../../../guide/domains/index.md)

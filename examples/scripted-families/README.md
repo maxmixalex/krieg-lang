@@ -11,4 +11,4 @@ npm run build
 node dist/cli.js build examples/scripted-families
 ```
 
-`ScriptedEffectFamily` 的参数在编译期确定。游戏执行原生定义时仍会读取实时政治点数并检查条件。见[脚本化内容指南](../../docs/scripted-content.md)。
+`ScriptedEffectFamily` 的参数在编译期确定。游戏执行原生定义时仍会读取实时政治点数并检查条件。见[脚本化内容指南](../../docs/guide/scripted-content.md)。

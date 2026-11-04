@@ -83,7 +83,7 @@ Activates targeted decisions or mission, ignoring its normal trigger conditions,
 
 ```ts
 "activate_targeted_decision"(value: { "target": CountryRef; "decision": string } | CwtNode): void;
-"activate_targeted_decision"(value: { "target": StateRef; "decision": string } | CwtNode): void;
+"activate_targeted_decision"(value: { "target": StateRef | StateTargetRef; "decision": string } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -135,23 +135,23 @@ Adds strategy entry to country AI.
 "add_ai_strategy"(value: { "type": "naval_dominance"; "id": string; "value": number } | CwtNode): void;
 "add_ai_strategy"(value: { "type": string; "id": string } | CwtNode): void;
 "add_ai_strategy"(value: { "type": string; "value": number } | CwtNode): void;
-"add_ai_strategy"(value: { "type": string; "target": StateRef; "value": number } | CwtNode): void;
-"add_ai_strategy"(value: { "type": string; "id": StateRef; "value": number } | CwtNode): void;
+"add_ai_strategy"(value: { "type": string; "target": StateRef | StateTargetRef; "value": number } | CwtNode): void;
+"add_ai_strategy"(value: { "type": string; "id": StateRef | StateTargetRef; "value": number } | CwtNode): void;
 "add_ai_strategy"(value: { "type": string; "id": string; "target": number; "value": number } | CwtNode): void;
 "add_ai_strategy"(value: { "type": string; "id": CountryRef; "target": string; "value": number } | CwtNode): void;
 "add_ai_strategy"(value: { "type": "research_tech"; "id": string | number; "value": number } | CwtNode): void;
-"add_ai_strategy"(value: { "type": "scorched_earth_prio"; "id": CountryRef; "value"?: number; "states"?: readonly (StateRef)[] } | CwtNode): void;
-"add_ai_strategy"(value: { "type": "put_unit_buffers"; "ratio": number; "order_id"?: number; "states"?: readonly (StateRef)[]; "area"?: string; "subtract_invasions_from_need"?: boolean; "subtract_fronts_from_need"?: boolean } | CwtNode): void;
-"add_ai_strategy"(value: { "type": "front_control"; "tag"?: CountryRef; "id"?: CountryRef; "state"?: StateRef; "area"?: string; "strategic_region"?: string; "country_trigger"?: CwtNode; "state_trigger"?: CwtNode; "ratio"?: number; "priority"?: number; "ordertype"?: string; "execution_type"?: string; "execute_order"?: boolean; "manual_attack"?: boolean; "value"?: number } | CwtNode): void;
-"add_ai_strategy"(value: { "type": string; "tag"?: CountryRef; "id"?: CountryRef; "state"?: StateRef; "strategic_region"?: string; "area"?: string; "country_trigger"?: CwtNode; "state_trigger"?: CwtNode; "value": number; "ratio"?: number } | CwtNode): void;
+"add_ai_strategy"(value: { "type": "scorched_earth_prio"; "id": CountryRef; "value"?: number; "states"?: readonly (StateRef | StateTargetRef)[] } | CwtNode): void;
+"add_ai_strategy"(value: { "type": "put_unit_buffers"; "ratio": number; "order_id"?: number; "states"?: readonly (StateRef | StateTargetRef)[]; "area"?: string; "subtract_invasions_from_need"?: boolean; "subtract_fronts_from_need"?: boolean } | CwtNode): void;
+"add_ai_strategy"(value: { "type": "front_control"; "tag"?: CountryRef; "id"?: CountryRef; "state"?: StateRef | StateTargetRef; "area"?: string; "strategic_region"?: string; "country_trigger"?: CwtNode; "state_trigger"?: CwtNode; "ratio"?: number; "priority"?: number; "ordertype"?: string; "execution_type"?: string; "execute_order"?: boolean; "manual_attack"?: boolean; "value"?: number } | CwtNode): void;
+"add_ai_strategy"(value: { "type": string; "tag"?: CountryRef; "id"?: CountryRef; "state"?: StateRef | StateTargetRef; "strategic_region"?: string; "area"?: string; "country_trigger"?: CwtNode; "state_trigger"?: CwtNode; "value": number; "ratio"?: number } | CwtNode): void;
 "add_ai_strategy"(value: { "type": "intelligence_agency_branch_desire_factor"; "id": string; "value": number } | CwtNode): void;
 "add_ai_strategy"(value: { "type": "spent_faction_initiative_priority"; "id": string; "value": number } | CwtNode): void;
 "add_ai_strategy"(value: { "type": "asking_foreign_garrison"; "value": number; "id"?: CountryRef } | CwtNode): void;
-"add_ai_strategy"(value: { "type": "operative_mission"; "mission": string; "value": number; "mission_target"?: CountryRef; "state"?: StateRef; "priority"?: number; "num_operatives"?: number } | CwtNode): void;
+"add_ai_strategy"(value: { "type": "operative_mission"; "mission": string; "value": number; "mission_target"?: CountryRef; "state"?: StateRef | StateTargetRef; "priority"?: number; "num_operatives"?: number } | CwtNode): void;
 "add_ai_strategy"(value: { "type": "operative_operation"; "operation": string | number; "value": number; "operation_target": CountryRef | number } | CwtNode): void;
 "add_ai_strategy"(value: { "type": string; "equipment_type"?: string; "seller"?: CountryRef; "value": number } | CwtNode): void;
-"add_ai_strategy"(value: { "type": "force_concentration_front_factor"; "tag"?: CountryRef; "state"?: StateRef; "strategic_region"?: string; "area"?: string; "country_trigger"?: CwtNode; "state_trigger"?: CwtNode; "ratio"?: number; "value": number } | CwtNode): void;
-"add_ai_strategy"(value: { "type": "force_concentration_target_weight"; "tag"?: CountryRef; "state"?: StateRef; "strategic_region"?: string; "area"?: string; "country_trigger"?: CwtNode; "state_trigger"?: CwtNode; "value": number } | CwtNode): void;
+"add_ai_strategy"(value: { "type": "force_concentration_front_factor"; "tag"?: CountryRef; "state"?: StateRef | StateTargetRef; "strategic_region"?: string; "area"?: string; "country_trigger"?: CwtNode; "state_trigger"?: CwtNode; "ratio"?: number; "value": number } | CwtNode): void;
+"add_ai_strategy"(value: { "type": "force_concentration_target_weight"; "tag"?: CountryRef; "state"?: StateRef | StateTargetRef; "strategic_region"?: string; "area"?: string; "country_trigger"?: CwtNode; "state_trigger"?: CwtNode; "value": number } | CwtNode): void;
 "add_ai_strategy"(value: { "type": "convoy_raiding_target"; "id": CountryRef; "value": number } | CwtNode): void;
 "add_ai_strategy"(value: { "type": "naval_blockade"; "target_country": CountryRef; "id": string; "value": number } | CwtNode): void;
 ```
@@ -259,7 +259,7 @@ Add breakthrough progress to one specialization or all for a country scope.The v
 作用域：`country`
 
 ```ts
-"add_breakthrough_progress"(value: { "value": number | string | number | boolean | CountryRef | StateRef; "specialization": string | "all" } | CwtNode): void;
+"add_breakthrough_progress"(value: { "value": number | string | number | boolean | CountryRef | StateRef | StateTargetRef; "specialization": string | "all" } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -375,7 +375,7 @@ Adds a contested owner to a state. The effect can be used either from a country 
 作用域：`state`、`country`
 
 ```ts
-"add_contested_owner"(value: StateRef): void;
+"add_contested_owner"(value: StateRef | StateTargetRef): void;
 "add_contested_owner"(value: CountryRef): void;
 ```
 
@@ -532,7 +532,7 @@ Add free bonus design discount to given types with a set of uses.The value for u
 作用域：`country`
 
 ```ts
-"add_design_template_bonus"(value: { "name"?: string; "uses": number | string | number | boolean | CountryRef | StateRef; "cost_factor": number | string | number | boolean | CountryRef | StateRef; "equipment": string } | CwtNode): void;
+"add_design_template_bonus"(value: { "name"?: string; "uses": number | string | number | boolean | CountryRef | StateRef | StateTargetRef; "cost_factor": number | string | number | boolean | CountryRef | StateRef | StateTargetRef; "equipment": string } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -574,7 +574,7 @@ Adds a dynamic modifier to country/state/unit leader.
 作用域：`state`、`country`、`character`、`project`
 
 ```ts
-"add_dynamic_modifier"(value: { "modifier": string; "scope"?: CountryRef | StateRef | string | CwtOpaque; "days"?: number } | CwtNode): void;
+"add_dynamic_modifier"(value: { "modifier": string; "scope"?: CountryRef | StateRef | StateTargetRef | string | CwtOpaque; "days"?: number } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -602,7 +602,7 @@ Adds an equipment production.
 作用域：`country`
 
 ```ts
-"add_equipment_production"(value: { "equipment": { "type": string; "creator"?: CountryRef; "version_name"?: string; "version"?: number } | CwtNode; "name"?: string | number | boolean | CountryRef | StateRef; "amount"?: number; "requested_factories"?: number; "progress"?: number; "efficiency"?: number; "industrial_manufacturer"?: string } | CwtNode): void;
+"add_equipment_production"(value: { "equipment": { "type": string; "creator"?: CountryRef; "version_name"?: string; "version"?: number } | CwtNode; "name"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "amount"?: number; "requested_factories"?: number; "progress"?: number; "efficiency"?: number; "industrial_manufacturer"?: string } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -1095,7 +1095,7 @@ Adds new namespace.
 作用域：`any`
 
 ```ts
-"add_namespace"(value: string | number | boolean | CountryRef | StateRef): void;
+"add_namespace"(value: string | number | boolean | CountryRef | StateRef | StateTargetRef): void;
 ```
 
 CWT 来源：
@@ -1434,7 +1434,7 @@ Adds resource production to state.
 作用域：`country`、`state`
 
 ```ts
-"add_resource"(value: { "type": string; "amount": number; "state": StateRef } | CwtNode): void;
+"add_resource"(value: { "type": string; "amount": number; "state": StateRef | StateTargetRef } | CwtNode): void;
 "add_resource"(value: { "type": string; "amount": number; "show_state_in_tooltip"?: boolean } | CwtNode): void;
 ```
 
@@ -1550,7 +1550,7 @@ Add claim on state.
 作用域：`country`
 
 ```ts
-"add_state_claim"(value: StateRef): void;
+"add_state_claim"(value: StateRef | StateTargetRef): void;
 ```
 
 CWT 来源：
@@ -1565,7 +1565,7 @@ Add core on state.
 作用域：`country`
 
 ```ts
-"add_state_core"(value: StateRef): void;
+"add_state_core"(value: StateRef | StateTargetRef): void;
 ```
 
 CWT 来源：
@@ -1594,7 +1594,7 @@ Adds either a resistance or compliance modifier to a state. Can only use modifie
 作用域：`any`
 
 ```ts
-"add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+"add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -1664,7 +1664,7 @@ Adds an element to an array.
 作用域：`any`
 
 ```ts
-"add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+"add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
 "add_to_array"(value: CwtNode): void;
 ```
 
@@ -1709,7 +1709,7 @@ Adds an element to a temporary array.
 作用域：`any`
 
 ```ts
-"add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+"add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
 "add_to_temp_array"(value: CwtNode): void;
 ```
 
@@ -1726,7 +1726,7 @@ Adds a value or a variable to a temp variable. Can define numerical variable wit
 
 ```ts
 "add_to_temp_variable"(value: CwtNode): void;
-"add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+"add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -1743,7 +1743,7 @@ Adds a value or a variable to another one. Can define numerical variable with va
 
 ```ts
 "add_to_variable"(value: CwtNode): void;
-"add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+"add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -2019,7 +2019,7 @@ Starts railway construction for amount of levels in specified state or province.
 ```ts
 "build_railway"(value: { "path": readonly (number)[]; "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "fallback"?: boolean } | CwtNode): void;
 "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_province": number; "target_province": number; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
-"build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef; "target_state": StateRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
+"build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef | StateTargetRef; "target_state": StateRef | StateTargetRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -2035,7 +2035,7 @@ Cancel border war between two states.
 作用域：`state`、`country`
 
 ```ts
-"cancel_border_war"(value: { "dont_fire_events"?: boolean; "attacker": StateRef; "defender": StateRef } | CwtNode): void;
+"cancel_border_war"(value: { "dont_fire_events"?: boolean; "attacker": StateRef | StateTargetRef; "defender": StateRef | StateTargetRef } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -2181,7 +2181,7 @@ Clamps a variable between two a values or another variables.
 作用域：`any`
 
 ```ts
-"clamp_variable"(value: { "var": CwtOpaque; "min"?: number | string; "max"?: number | string } | CwtNode): void;
+"clamp_variable"(value: { "var": string; "min"?: number | string; "max"?: number | string } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -2282,7 +2282,7 @@ Clears a variable. The input is NOT validated
 
 ```ts
 "clear_variable"(value: number): void;
-"clear_variable"(value: CwtOpaque): void;
+"clear_variable"(value: string): void;
 ```
 
 CWT 来源：
@@ -2442,7 +2442,7 @@ Complete a special project for the country in scope. This effect will not take i
 ```ts
 "complete_special_project"(value: CwtOpaque): void;
 "complete_special_project"(value: string): void;
-"complete_special_project"(value: { "project": CwtOpaque | string; "scientist"?: string; "state"?: StateRef; "iteration_output"?: readonly (string)[]; "show_modifiers"?: boolean } | CwtNode): void;
+"complete_special_project"(value: { "project": CwtOpaque | string; "scientist"?: string; "state"?: StateRef | StateTargetRef; "iteration_output"?: readonly (string)[]; "show_modifiers"?: boolean } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -2530,7 +2530,7 @@ Creates a corps commander for country in scope.
 作用域：`country`
 
 ```ts
-"create_corps_commander"(value: { "name"?: string | number | boolean | CountryRef | StateRef; "desc"?: string; "picture"?: string | number | boolean | CountryRef | StateRef; "portrait_path"?: string | number | boolean | CountryRef | StateRef; "gfx"?: string; "traits": readonly (string)[]; "skill": number; "attack_skill": number; "defense_skill": number; "planning_skill": number; "logistics_skill": number; "id"?: string; "legacy_id"?: string; "female"?: boolean } | CwtNode): void;
+"create_corps_commander"(value: { "name"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "desc"?: string; "picture"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "portrait_path"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "gfx"?: string; "traits": readonly (string)[]; "skill": number; "attack_skill": number; "defense_skill": number; "planning_skill": number; "logistics_skill": number; "id"?: string; "legacy_id"?: string; "female"?: boolean } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -2544,7 +2544,7 @@ Creates a leader and adds it to proper party in country.
 作用域：`country`
 
 ```ts
-"create_country_leader"(value: { "name": string | number | boolean | CountryRef | StateRef; "desc"?: string; "picture": string | number | boolean | CountryRef | StateRef; "ideology": string; "expire"?: string; "traits"?: readonly (string)[]; "id"?: string; "female"?: boolean } | CwtNode): void;
+"create_country_leader"(value: { "name": string | number | boolean | CountryRef | StateRef | StateTargetRef; "desc"?: string; "picture": string | number | boolean | CountryRef | StateRef | StateTargetRef; "ideology": string; "expire"?: string; "traits"?: readonly (string)[]; "id"?: string; "female"?: boolean } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -2572,7 +2572,7 @@ Creates an enitity Uses the the same coordinate system that the map uses. A posi
 作用域：`any`
 
 ```ts
-"create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
+"create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef | StateTargetRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -2630,7 +2630,7 @@ Creates a field marshal for country in scope.
 作用域：`country`
 
 ```ts
-"create_field_marshal"(value: { "name": string | number | boolean | CountryRef | StateRef; "desc"?: string; "picture": string | number | boolean | CountryRef | StateRef; "portrait_path"?: string | number | boolean | CountryRef | StateRef; "gfx"?: string; "traits": readonly (string)[]; "skill": number; "attack_skill": number; "defense_skill": number; "planning_skill": number; "logistics_skill": number; "id"?: string; "legacy_id"?: string; "female"?: boolean } | CwtNode): void;
+"create_field_marshal"(value: { "name": string | number | boolean | CountryRef | StateRef | StateTargetRef; "desc"?: string; "picture": string | number | boolean | CountryRef | StateRef | StateTargetRef; "portrait_path"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "gfx"?: string; "traits": readonly (string)[]; "skill": number; "attack_skill": number; "defense_skill": number; "planning_skill": number; "logistics_skill": number; "id"?: string; "legacy_id"?: string; "female"?: boolean } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -2674,7 +2674,7 @@ Creates an admiral for country in scope.
 作用域：`country`
 
 ```ts
-"create_navy_leader"(value: { "name": string | number | boolean | CountryRef | StateRef; "desc"?: string; "picture"?: string | number | boolean | CountryRef | StateRef; "portrait_path"?: string | number | boolean | CountryRef | StateRef; "gfx"?: string; "traits": readonly (string)[]; "skill": number; "attack_skill": number; "defense_skill": number; "maneuvering_skill": number; "coordination_skill": number; "id"?: string; "legacy_id"?: string; "female"?: boolean } | CwtNode): void;
+"create_navy_leader"(value: { "name": string | number | boolean | CountryRef | StateRef | StateTargetRef; "desc"?: string; "picture"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "portrait_path"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "gfx"?: string; "traits": readonly (string)[]; "skill": number; "attack_skill": number; "defense_skill": number; "maneuvering_skill": number; "coordination_skill": number; "id"?: string; "legacy_id"?: string; "female"?: boolean } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -2688,7 +2688,7 @@ Create operative for country.
 作用域：`COUNTRY`
 
 ```ts
-"create_operative_leader"(value: { "name"?: string | number | boolean | CountryRef | StateRef; "desc"?: string; "picture"?: string | number | boolean | CountryRef | StateRef; "portrait_path"?: string | number | boolean | CountryRef | StateRef; "gfx"?: string; "traits"?: readonly (string)[]; "id"?: string; "available_to_spy_master"?: boolean; "bypass_recruitment"?: boolean; "nationalities"?: readonly (CountryRef)[]; "portrait_tag_override"?: CountryRef; "skill"?: number; "gender"?: "male" | "female" } | CwtNode): void;
+"create_operative_leader"(value: { "name"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "desc"?: string; "picture"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "portrait_path"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "gfx"?: string; "traits"?: readonly (string)[]; "id"?: string; "available_to_spy_master"?: boolean; "bypass_recruitment"?: boolean; "nationalities"?: readonly (CountryRef)[]; "portrait_tag_override"?: CountryRef; "skill"?: number; "gender"?: "male" | "female" } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -2744,7 +2744,7 @@ Create a ship from another country and assign it to the reserve fleet. 'creator'
 作用域：`COUNTRY`
 
 ```ts
-"create_ship"(value: { "type": string; "equipment_variant": string | number | boolean | CountryRef | StateRef; "creator"?: CountryRef; "name"?: string | number | boolean | CountryRef | StateRef } | CwtNode): void;
+"create_ship"(value: { "type": string; "equipment_variant": string | number | boolean | CountryRef | StateRef | StateTargetRef; "creator"?: CountryRef; "name"?: string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -2758,7 +2758,7 @@ Creates a unit effect, just like in OOB, from effect with specified parameters: 
 作用域：`state`
 
 ```ts
-"create_unit"(value: { "division": string | number | boolean | CountryRef | StateRef; "owner": CountryRef; "prioritize_location"?: number; "allow_spawning_on_enemy_provs"?: boolean; "count"?: number; "officer"?: { "name"?: string; "portraits"?: { "army": { "large": string; "small": string } | CwtNode } | CwtNode } | CwtNode; "country_score"?: CwtNode; "id"?: number; "divisional_commander_xp"?: number; "acclimatization"?: CwtNode; "army_manpower"?: { "army_manpower_value"?: { "value": { "tag": CountryRef; "value": number } | CwtNode } | CwtNode; "army_manpower_need"?: { "value": { "tag": CountryRef; "value": number } | CwtNode } | CwtNode } | CwtNode } | CwtNode): void;
+"create_unit"(value: { "division": string | number | boolean | CountryRef | StateRef | StateTargetRef; "owner": CountryRef; "prioritize_location"?: number; "allow_spawning_on_enemy_provs"?: boolean; "count"?: number; "officer"?: { "name"?: string; "portraits"?: { "army": { "large": string; "small": string } | CwtNode } | CwtNode } | CwtNode; "country_score"?: CwtNode; "id"?: number; "divisional_commander_xp"?: number; "acclimatization"?: CwtNode; "army_manpower"?: { "army_manpower_value"?: { "value": { "tag": CountryRef; "value": number } | CwtNode } | CwtNode; "army_manpower_need"?: { "value": { "tag": CountryRef; "value": number } | CwtNode } | CwtNode } | CwtNode } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -2772,7 +2772,7 @@ Creates wargoal for country in scope.
 作用域：`country`
 
 ```ts
-"create_wargoal"(value: { "target": CountryRef; "type": string; "generator"?: readonly (StateRef)[] | "core_states" | "owned_states" | string | CwtOpaque | StateRef; "expire"?: string | number } | CwtNode): void;
+"create_wargoal"(value: { "target": CountryRef; "type": string; "generator"?: readonly (StateRef | StateTargetRef)[] | "core_states" | "owned_states" | string | CwtOpaque | StateRef | StateTargetRef; "expire"?: string | number } | CwtNode): void;
 ```
 
 CWT 来源：

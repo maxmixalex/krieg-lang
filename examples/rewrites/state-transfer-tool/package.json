@@ -1,0 +1,13 @@
+{
+  "name": "@krieg-rewrites/state-transfer-tool",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "krieg build",
+    "check": "krieg check",
+    "pack": "krieg pack"
+  },
+  "devDependencies": {
+    "krieg-lang": "file:../../.."
+  }
+}

@@ -120,8 +120,16 @@
     "path": "reference/hoi4/events.md"
   },
   {
+    "title": "从有限表生成连续编号内容",
+    "path": "reference/hoi4/series.md"
+  },
+  {
     "title": "战斗、行动与特殊作用域",
     "path": "reference/hoi4/scopes-specialized.md"
+  },
+  {
+    "title": "可交互音效库",
+    "path": "reference/hoi4/audio-banks.md"
   },
   {
     "title": "音频、音乐与字体",
@@ -138,6 +146,10 @@
   {
     "title": "国家作用域：条件与效果",
     "path": "reference/hoi4/country-scope.md"
+  },
+  {
+    "title": "按国家数值绘制地图",
+    "path": "reference/hoi4/country-heatmaps.md"
   },
   {
     "title": "国家引用与历史",
@@ -184,6 +196,10 @@
     "path": "reference/hoi4/meta-effects.md"
   },
   {
+    "title": "军工组织作用域引用",
+    "path": "reference/hoi4/mio-scope-targets.md"
+  },
+  {
     "title": "原生决议",
     "path": "reference/domains/decisions.md"
   },
@@ -208,12 +224,20 @@
     "path": "reference/hoi4/state-scope.md"
   },
   {
+    "title": "持久变量、动态作用域与运行时集合",
+    "path": "reference/hoi4/runtime-state.md"
+  },
+  {
     "title": "样式类与 Stack 布局",
     "path": "reference/ui/styles.md"
   },
   {
     "title": "JSX 类型与原生标签",
     "path": "reference/ui/jsx.md"
+  },
+  {
+    "title": "Sprite 与纹理资源",
+    "path": "reference/ui/sprites.md"
   },
   {
     "title": "按钮、图标与文本",
@@ -226,9 +250,5 @@
   {
     "title": "ScriptedWindow：布局与游戏行为",
     "path": "reference/ui/windows.md"
-  },
-  {
-    "title": "Sprite 与纹理资源",
-    "path": "reference/ui/sprites.md"
   }
 ]

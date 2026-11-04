@@ -11,8 +11,8 @@ Damages buildings in the current state.
 作用域：`state`
 
 ```ts
-"damage_building"(value: { "type": string; "damage": number; "province"?: number | string; "state"?: StateRef; "repair_speed_modifier"?: number } | CwtNode): void;
-"damage_building"(value: { "tags": string | readonly (string)[]; "damage": number; "province"?: number | string; "state"?: StateRef; "repair_speed_modifier"?: number } | CwtNode): void;
+"damage_building"(value: { "type": string; "damage": number; "province"?: number | string; "state"?: StateRef | StateTargetRef; "repair_speed_modifier"?: number } | CwtNode): void;
+"damage_building"(value: { "tags": string | readonly (string)[]; "damage": number; "province"?: number | string; "state"?: StateRef | StateTargetRef; "repair_speed_modifier"?: number } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -27,7 +27,7 @@ damages units for given conditions. no tooltip generated
 作用域：`country`、`state`、`unit_leader`
 
 ```ts
-"damage_units"(value: { "province"?: number; "state"?: StateRef; "region"?: string; "limit"?: CwtNode; "damage"?: number; "org_damage"?: number; "str_damage"?: number; "ratio"?: boolean; "template"?: string; "division_template"?: string; "army"?: boolean; "navy"?: boolean } | CwtNode): void;
+"damage_units"(value: { "province"?: number; "state"?: StateRef | StateTargetRef; "region"?: string; "limit"?: CwtNode; "damage"?: number; "org_damage"?: number; "str_damage"?: number; "ratio"?: boolean; "template"?: string; "division_template"?: string; "army"?: boolean; "navy"?: boolean } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -70,7 +70,7 @@ Declares war on specified country.
 作用域：`country`
 
 ```ts
-"declare_war_on"(value: { "target": CountryRef; "type": string; "generator"?: readonly (StateRef)[] | string | CwtOpaque | StateRef } | CwtNode): void;
+"declare_war_on"(value: { "target": CountryRef; "type": string; "generator"?: readonly (StateRef | StateTargetRef)[] | string | CwtOpaque | StateRef | StateTargetRef } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -84,7 +84,7 @@ Delete units of a country. No tooltip is generated.
 作用域：`COUNTRY`
 
 ```ts
-"delete_unit"(value: { "template"?: string | number | boolean | CountryRef | StateRef; "division_template"?: string; "id"?: number; "state"?: StateRef; "disband"?: boolean } | CwtNode): void;
+"delete_unit"(value: { "template"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "division_template"?: string; "id"?: number; "state"?: StateRef | StateTargetRef; "disband"?: boolean } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -211,7 +211,7 @@ Divides a temp variable to a value or another variable.
 
 ```ts
 "divide_temp_variable"(value: CwtNode): void;
-"divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+"divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -228,7 +228,7 @@ Divides a variable to a value or another variable.
 
 ```ts
 "divide_variable"(value: CwtNode): void;
-"divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+"divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -756,7 +756,7 @@ Finalizes border war between two states, wins or cancels it.
 作用域：`state`、`country`
 
 ```ts
-"finalize_border_war"(value: { "attacker": StateRef; "defender": StateRef; "attacker_win"?: boolean; "defender_win"?: boolean } | CwtNode): void;
+"finalize_border_war"(value: { "attacker": StateRef | StateTargetRef; "defender": StateRef | StateTargetRef; "attacker_win"?: boolean; "defender_win"?: boolean } | CwtNode): void;
 ```
 
 CWT 来源：

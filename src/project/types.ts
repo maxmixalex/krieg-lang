@@ -69,6 +69,8 @@ export interface KriegConfig {
   gameRoots: GameRoot[];
   world: { countries: string[]; states: number[] };
   strictAssets: boolean;
+  /** Optional static evaluation budget for this project layer. */
+  compiler?: { maxExpansion: number };
   railways?: RailwayPlan;
 }
 

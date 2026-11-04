@@ -1,0 +1,38 @@
+{
+  "name": "twr-gdp-screen-krieg",
+  "sourceDir": "src",
+  "outDir": "build/mod",
+  "mod": {
+    "name": "TWR GDP Screen \u2014 Krieg rewrite",
+    "version": "0.5.0",
+    "supportedVersion": "1.13.5",
+    "tags": ["Gameplay", "Translation"],
+    "dependencies": [
+      "Red World Fan Fork",
+      "Darkest Hour v1.0 The Road to War",
+      "Kaiserreich",
+      "Kaiserredux: A Kaiserreich Expansion",
+      "Red Flood",
+      "The Road to 56",
+      "Equestria at War",
+      "Thousand Week Reich",
+      "Old World Blues",
+      "Pax Britannica: An Imperial Timeline",
+      "World Ablaze (7.0)",
+      "The Sun Shining on the World",
+      "Total War Mod",
+      "Kaiserredux",
+      "Thousand Week Reich",
+      "Cold War Iron Curtain: A World Divided",
+      "Millennium Dawn: A Modern Day mod",
+      "Judgement Day: Aftermath of the Red Flood",
+      "Fuhrerredux: A Fuhrerreich Expansion"
+    ]
+  },
+  "assets": [
+    {
+      "from": "original-assets",
+      "to": ""
+    }
+  ]
+}

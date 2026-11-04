@@ -87,4 +87,4 @@ Defined in: [src/sdk/domains.ts:4498](https://github.com/maxmixalex/krieg-lang/b
 
 ## 完整示例与工作流
 
-[阅读工业、建筑与科研项目：复杂字段 A-F指南](../../../../content-domains.md)
+[阅读工业、建筑与科研项目：复杂字段 A-F指南](../../../../guide/domains/index.md)

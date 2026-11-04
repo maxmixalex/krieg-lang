@@ -635,4 +635,4 @@ Native history/units; schema: history/oobs.cwt:68.
 
 ## 完整示例与工作流
 
-[阅读部队、历史与战斗指南](../../../content-domains.md)
+[阅读部队、历史与战斗指南](../../../guide/domains/index.md)

@@ -159,6 +159,7 @@ export function buildProject(
         virtualModules: world.virtualModules,
         moduleFiles: graph.moduleFiles,
         emitDependencies: false,
+        ...(layer.config.compiler ? { maxExpansion: layer.config.compiler.maxExpansion } : {}),
         traceSources: !options.check,
       })) {
         diagnostics.push(...compiled.diagnostics);

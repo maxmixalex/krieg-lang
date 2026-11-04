@@ -155,4 +155,4 @@ Defined in: [src/sdk/domains.ts:2766](https://github.com/maxmixalex/krieg-lang/b
 
 ## 完整示例与工作流
 
-[阅读科技与学说：复杂字段 N-S指南](../../../../content-domains.md)
+[阅读科技与学说：复杂字段 N-S指南](../../../../guide/domains/index.md)

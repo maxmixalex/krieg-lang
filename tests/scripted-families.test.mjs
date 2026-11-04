@@ -148,7 +148,7 @@ test("family data rejects wrong payload types, unknown keys and unsupported nati
   rejected(
     `const f=ScriptedEffectFamily('ok',{one:{amount:1}},(c,p)=>{});
     ScriptedEffect('bad',c=>c.run(f.one,{amount:2}));`,
-    "TS2554",
+    "TS2345",
   );
 });
 

@@ -52,7 +52,7 @@ Sets a temp variable to a value or another variable.
 
 ```ts
 "set_temp_variable"(value: CwtNode): boolean;
-"set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+"set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
 ```
 
 CWT 来源：
@@ -98,7 +98,7 @@ Checks for amount of ships in specified state's ports.
 作用域：`country`
 
 ```ts
-"ships_in_state_ports"(value: { "state": StateRef; "size": number; "type"?: string } | CwtNode): boolean;
+"ships_in_state_ports"(value: { "state": StateRef | StateTargetRef; "size": number; "type"?: string } | CwtNode): boolean;
 ```
 
 CWT 来源：
@@ -140,7 +140,7 @@ Check state id.
 作用域：`state`
 
 ```ts
-"state"(value: StateRef): boolean;
+"state"(value: StateRef | StateTargetRef): boolean;
 ```
 
 CWT 来源：
@@ -245,7 +245,7 @@ Subtracts a value or a variable to a temp variable.
 
 ```ts
 "subtract_from_temp_variable"(value: CwtNode): boolean;
-"subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+"subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
 ```
 
 CWT 来源：

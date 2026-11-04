@@ -17,15 +17,19 @@
 
 ## country() { #country-function }
 
-> **country**(`tag`: `string`): [`CountryRef`](#countryref)
+> **country**(`tag`: `string`, `options?`: `object`): [`CountryRef`](#countryref)
 
-Defined in: [src/sdk/index.ts:516](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L516)
+Defined in: [src/sdk/index.ts:788](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L788)
+
+A native country tag. Preserve a mixed-case three-character token only when matching an existing mod's exact spelling.
 
 ### Parameters { #country-function-section-parameters }
 
 | Parameter | Type |
 | ------ | ------ |
 | `tag` | `string` |
+| `options?` | \{ `spelling`: `"verbatim"`; \} |
+| `options.spelling` | `"verbatim"` |
 
 ### Returns { #country-function-section-returns }
 
@@ -36,7 +40,7 @@ Defined in: [src/sdk/index.ts:516](https://github.com/maxmixalex/krieg-lang/blob
 
 > **Country** = [`CountryRef`](#countryref)
 
-Defined in: [src/sdk/index.ts:40](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L40)
+Defined in: [src/sdk/index.ts:62](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L62)
 
 
 ## CountryRef { #countryref }
@@ -55,7 +59,7 @@ Defined in: [src/sdk/index.ts:32](https://github.com/maxmixalex/krieg-lang/blob/
 
 > **CountryHistory**(`spec`: [`CountryHistorySpec`](#countryhistoryspec)): [`Definition`](scope-selection.md#definition)
 
-Defined in: [src/sdk/index.ts:449](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L449)
+Defined in: [src/sdk/index.ts:720](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L720)
 
 Write the starting history of a country: its capital, government, order of battle and setup effects. The project still needs a country tag, common definition and flags.
 
@@ -76,7 +80,7 @@ Write the starting history of a country: its capital, government, order of battl
 
 ## CountryHistorySpec { #countryhistoryspec }
 
-Defined in: [src/sdk/index.ts:439](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L439)
+Defined in: [src/sdk/index.ts:710](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L710)
 
 Complete country history. Set path to the exact original file when replacing an existing history.
 
@@ -84,14 +88,14 @@ Complete country history. Set path to the exact original file when replacing an 
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="countryhistoryspec-property-capital"></a> `capital` | [`StateRef`](states.md#stateref) | [src/sdk/index.ts:441](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L441) |
-| <a id="countryhistoryspec-property-country"></a> `country` | [`CountryRef`](#countryref) | [src/sdk/index.ts:440](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L440) |
-| <a id="countryhistoryspec-property-history"></a> `history?` | [`Effect`](scope-selection.md#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | [src/sdk/index.ts:444](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L444) |
-| <a id="countryhistoryspec-property-oob"></a> `oob?` | `string` | [src/sdk/index.ts:442](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L442) |
-| <a id="countryhistoryspec-property-path"></a> `path?` | `string` | [src/sdk/index.ts:445](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L445) |
-| <a id="countryhistoryspec-property-startingtrainbuffer"></a> `startingTrainBuffer?` | `number` | [src/sdk/index.ts:443](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L443) |
+| <a id="countryhistoryspec-property-capital"></a> `capital` | [`StateRef`](states.md#stateref) | [src/sdk/index.ts:712](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L712) |
+| <a id="countryhistoryspec-property-country"></a> `country` | [`CountryRef`](#countryref) | [src/sdk/index.ts:711](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L711) |
+| <a id="countryhistoryspec-property-history"></a> `history?` | [`Effect`](scope-selection.md#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | [src/sdk/index.ts:715](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L715) |
+| <a id="countryhistoryspec-property-oob"></a> `oob?` | `string` | [src/sdk/index.ts:713](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L713) |
+| <a id="countryhistoryspec-property-path"></a> `path?` | `string` | [src/sdk/index.ts:716](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L716) |
+| <a id="countryhistoryspec-property-startingtrainbuffer"></a> `startingTrainBuffer?` | `number` | [src/sdk/index.ts:714](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L714) |
 
 
 ## 完整示例与工作流
 
-[阅读国家引用与历史指南](../../../countries-maps.md)
+[阅读国家引用与历史指南](../../../guide/countries-maps.md)

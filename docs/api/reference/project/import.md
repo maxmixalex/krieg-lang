@@ -62,4 +62,4 @@ Defined in: [src/project/import.ts:22](https://github.com/maxmixalex/krieg-lang/
 
 ## 完整示例与工作流
 
-[阅读导入原生项目与转换结果指南](../../../native-import.md)
+[阅读导入原生项目与转换结果指南](../../../guide/native-import.md)

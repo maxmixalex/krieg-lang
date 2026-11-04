@@ -1,13 +1,20 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { docUrl } from "./write-doc-redirects.mjs";
 import { apiUrl } from "./write-api-redirects.mjs";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 const site = path.join(root, "site");
 const manifest = JSON.parse(fs.readFileSync(path.join(root, "docs/api/manifest.json"), "utf8"));
-const baseUrl = new URL(
-  fs.readFileSync(path.join(root, "zensical.toml"), "utf8").match(/^site_url\s*=\s*"([^"]+)"/m)[1],
+const siteConfig = fs.readFileSync(path.join(root, "zensical.toml"), "utf8");
+const baseUrl = new URL(siteConfig.match(/^site_url\s*=\s*"([^"]+)"/m)[1]);
+const readerSections = ["tutorials", "guide", "ports", "reference"];
+const readerPages = readerSections.flatMap((section) =>
+  fs
+    .readdirSync(path.join(root, "docs", section), { recursive: true })
+    .filter((file) => file.endsWith(".md"))
+    .map((file) => `${section}/${file.replaceAll(path.sep, "/")}`),
 );
 if (!fs.existsSync(path.join(site, "index.html")))
   throw new Error("Build the documentation first: zensical build --clean --strict");
@@ -15,7 +22,20 @@ const files = fs.readdirSync(site, { recursive: true }).filter((file) => file.en
 const pages = new Map();
 const failures = [];
 const redirects = JSON.parse(fs.readFileSync(path.join(root, "docs/api/redirects.json"), "utf8"));
-const redirectByUrl = new Map(redirects.map((entry) => [`${apiUrl(entry.from)}index.html`, entry]));
+const guideRedirects = JSON.parse(fs.readFileSync(path.join(root, "docs/redirects.json"), "utf8"));
+const allRedirects = [
+  ...redirects.map((entry) => ({
+    from: `api/${entry.from}`,
+    to: `api/${entry.to}`,
+    anchors: Object.fromEntries(
+      Object.entries(entry.anchors).map(([anchor, target]) => [anchor, `api/${target}`]),
+    ),
+  })),
+  ...guideRedirects,
+];
+const redirectByUrl = new Map(
+  allRedirects.map((entry) => [`${docUrl(entry.from)}index.html`, entry]),
+);
 const authorApis = [
   {
     name: "CountryEvent",
@@ -125,7 +145,7 @@ function checkHref(file, href) {
   const redirect = redirectByUrl.get(target);
   if (redirect) {
     const anchor = decodeURIComponent(url.hash.slice(1));
-    checkHref("index.html", apiUrl(redirect.anchors[anchor] ?? redirect.to));
+    checkHref("index.html", docUrl(redirect.anchors[anchor] ?? redirect.to));
     checked++;
     return;
   }
@@ -141,6 +161,36 @@ for (const [file, { source }] of pages) {
     checkHref(file, match[1]);
   for (const match of source.matchAll(/<(?:img|script|source)\b[^>]*\bsrc=["']([^"']*)["']/g))
     checkHref(file, match[1]);
+}
+
+// Every authored page must be reachable from its section. Rendered tabs must
+// switch between tutorials, the categorized manual, examples, lookup and API.
+const navigation = siteConfig.match(/^nav = \[([\s\S]*?)^\]/m)?.[1] ?? "";
+for (const page of readerPages)
+  if (!navigation.includes(JSON.stringify(page)))
+    failures.push(`Reader page is missing from section navigation: ${page}`);
+for (const section of [...readerSections, "api"]) {
+  const file = `${section}/index.html`;
+  const tabs = pages.get(file)?.source.match(/<nav\b[^>]*class="md-tabs"[\s\S]*?<\/nav>/)?.[0];
+  if (!tabs) {
+    failures.push(`${section}: separate section tabs were not rendered`);
+    continue;
+  }
+  const tabUrls = [...tabs.matchAll(/<a\b[^>]*href="([^"]+)"/g)].map(
+    (match) => new URL(unescape(match[1]), new URL(file, baseUrl)).href,
+  );
+  for (const destination of [...readerSections, "api"])
+    if (!tabUrls.includes(new URL(`${destination}/`, baseUrl).href))
+      failures.push(`${section}: section tab is missing for ${destination}`);
+  const active = tabs.match(
+    /<li\b[^>]*class="md-tabs__item md-tabs__item--active"[^>]*>\s*<a\b[^>]*href="([^"]+)"/,
+  );
+  if (
+    !active ||
+    new URL(unescape(active[1]), new URL(file, baseUrl)).href !==
+      new URL(`${section}/`, baseUrl).href
+  )
+    failures.push(`${section}: current section tab is not active`);
 }
 
 // Every real export must lead to a rendered page/anchor, including re-exports.
@@ -178,6 +228,29 @@ for (const file of apiFiles.filter((file) => file.endsWith(".md"))) {
     );
 }
 
+// 0.4 captured every published content URL and fragment before the editorial move.
+const docsBaseline = JSON.parse(
+  fs.readFileSync(path.join(root, "scripts/docs-legacy-0.4.json"), "utf8"),
+);
+for (const entry of docsBaseline.pages) {
+  checkHref("index.html", docUrl(entry.page));
+  for (const anchor of entry.anchors) checkHref("index.html", `${docUrl(entry.page)}#${anchor}`);
+}
+for (const redirect of guideRedirects) {
+  if (fs.existsSync(path.join(root, "docs", redirect.from)))
+    failures.push(`Guide redirect still has a Markdown source: ${redirect.from}`);
+  const old = docsBaseline.pages.find((entry) => entry.page === redirect.from);
+  for (const anchor of old?.anchors.filter((item) => item !== "__skip") ?? [])
+    if (!redirect.anchors[anchor])
+      failures.push(`Guide fragment has no explicit destination: ${redirect.from}#${anchor}`);
+  checkHref("index.html", docUrl(redirect.to));
+  for (const target of new Set(Object.values(redirect.anchors)))
+    checkHref("index.html", docUrl(target));
+  const html = pages.get(`${docUrl(redirect.from)}index.html`)?.source ?? "";
+  if (!html.includes('name="robots" content="noindex"') || !html.includes("location.replace("))
+    failures.push(`Guide compatibility URL is not a lightweight redirect: ${redirect.from}`);
+}
+
 // Check the actual search artifact, rather than assuming successful Markdown
 // rendering implies that the site-wide search has indexed API content.
 const searchPath = path.join(site, "search.json");
@@ -203,9 +276,13 @@ else {
         `Public export is not directly searchable: ${entry.module}:${entry.name} (${apiUrl(entry.page)})`,
       );
   }
-  for (const redirect of redirects)
-    if (records.some((record) => record.location?.split("#")[0] === apiUrl(redirect.from)))
+  for (const redirect of allRedirects)
+    if (records.some((record) => record.location?.split("#")[0] === docUrl(redirect.from)))
       failures.push(`Compatibility redirect pollutes search: ${redirect.from}`);
+  for (const page of readerPages) {
+    if (!records.some((record) => record.location?.split("#")[0] === docUrl(page)))
+      failures.push(`Reader section is not searchable: ${page}`);
+  }
   for (const api of authorApis) {
     const entry = manifest.exports.find(
       (item) => item.name === api.name && item.module === api.module,
@@ -220,13 +297,28 @@ else {
       failures.push(`Search index is missing the canonical ${api.name} reference page`);
     const page = pages.get(`${location}index.html`);
     const article = page?.source.match(/<article\b[\s\S]*?<\/article>/)?.[0] ?? "";
-    if (!article.includes(">Parameters<"))
+    const anchor = entry.page.split("#")[1];
+    const headings = [...article.matchAll(/<h([1-6])\b[^>]*\bid=["']([^"']+)["'][^>]*>/g)];
+    const start = headings.findIndex((heading) => heading[2] === anchor);
+    const end =
+      start < 0
+        ? undefined
+        : headings
+            .slice(start + 1)
+            .find((heading) => Number(heading[1]) <= Number(headings[start][1]));
+    const symbolSection =
+      start < 0 ? "" : article.slice(headings[start].index, end?.index ?? article.length);
+    if (!symbolSection.includes(">Parameters<"))
       failures.push(`${api.name}: rendered parameter documentation is missing`);
-    if (api.example && !article.includes(">Example<"))
+    if (api.example && !symbolSection.includes(">Example<"))
       failures.push(`${api.name}: rendered JSDoc example is missing`);
     if (!article.includes("完整示例与工作流"))
       failures.push(`${api.name}: tested workflow guide is missing`);
-    if (!article.includes(`https://github.com/maxmixalex/krieg-lang/blob/main/${entry.source}#L`))
+    if (
+      !symbolSection.includes(
+        `https://github.com/maxmixalex/krieg-lang/blob/main/${entry.source}#L`,
+      )
+    )
       failures.push(`${api.name}: source link is missing`);
     for (const type of api.types) {
       const target = manifest.exports.find(
@@ -257,5 +349,5 @@ if (failures.length)
     `Documentation verification failed:\n${failures.slice(0, 100).join("\n")}\n${failures.length} total failures`,
   );
 console.log(
-  `Checked ${pages.size} rendered pages, ${checked} local links/assets, ${manifest.exports.length} directly searchable public exports, ${manifest.referencePages.length} bounded task reference pages, ${baseline.pages.length} legacy URLs with ${manifest.compatibility.anchors} anchors, and ${authorApis.length} author workflows with parameters, source and type links.`,
+  `Checked ${pages.size} rendered pages, ${checked} local links/assets, ${readerPages.length} navigable and searchable reader pages with separate section tabs, ${manifest.exports.length} directly searchable public exports, ${manifest.referencePages.length} bounded task reference pages, ${baseline.pages.length} legacy URLs with ${manifest.compatibility.anchors} anchors, ${docsBaseline.pages.length} frozen 0.4 pages, and ${authorApis.length} author workflows with symbol-bound parameters, source and type links.`,
 );

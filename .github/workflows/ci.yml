@@ -35,12 +35,14 @@ jobs:
       - run: npm run generate:defines:check
       - run: npm run docs:api:check
       - run: npm run docs:examples
+      - run: npm run docs:tutorials
       - run: npm run docs:coverage
       - run: npm run check
       - run: npm run lint
       - run: npm run format:check
       - run: npm test
       - run: npm run test:examples
+      - run: npm run test:rewrite-sources
       - name: Test installed npm package
         id: package_test
         run: npm run test:package
@@ -72,6 +74,7 @@ jobs:
       - run: npm run build
       - run: npm run docs:api:check
       - run: npm run docs:examples
+      - run: npm run docs:tutorials
       - run: npm run docs:coverage
       - uses: actions/setup-python@v6
         with:

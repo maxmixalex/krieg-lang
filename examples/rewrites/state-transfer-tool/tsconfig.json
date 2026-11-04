@@ -1,0 +1,4 @@
+{
+  "extends": "./.krieg/tsconfig.json",
+  "include": ["src/**/*.krg.ts", "src/**/*.krg.tsx", ".krieg/types/**/*.d.ts"]
+}

@@ -1,0 +1,13 @@
+.label {
+  font: hoi_16mbs;
+  max-width: 766;
+  max-height: 23;
+  format: left;
+  always-transparent: yes;
+}
+.white {
+  sprite-type: GFX_PI_Ivory;
+}
+.black {
+  sprite-type: GFX_PI_Ebony;
+}

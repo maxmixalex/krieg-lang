@@ -5,7 +5,7 @@ import { resolve, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 import test from "node:test";
-import { compileProject, compileSource, emitCompileOutput } from "../dist/compiler/index.js";
+import { compileProject, compileSource } from "../dist/compiler/index.js";
 import { emitPdx } from "../dist/pdx/index.js";
 import { initProject, writeEditorProject } from "../dist/project/index.js";
 
@@ -30,13 +30,13 @@ function assertSuccess(result, label = "source") {
   assert.equal(result.success, true, `${label}: ${JSON.stringify(result.diagnostics, null, 2)}`);
 }
 
-test("the tutorials' complete TypeScript examples compile against the public SDK", () => {
-  const pages = readdirSync(join(repository, "docs"))
+test("complete examples in the subject handbooks compile against the public SDK", () => {
+  const pages = readdirSync(join(repository, "docs/guide"), { recursive: true })
     .filter((file) => file.endsWith(".md"))
     .sort();
   let checked = 0;
   for (const page of pages) {
-    const markdown = readFileSync(join(repository, "docs", page), "utf8");
+    const markdown = readFileSync(join(repository, "docs/guide", page), "utf8");
     const snippets = [...markdown.matchAll(/```(typescript|tsx|css)\n([\s\S]*?)```/g)].map(
       (match) => ({
         language: match[1],
@@ -65,26 +65,8 @@ test("the tutorials' complete TypeScript examples compile against the public SDK
       });
       assertSuccess(result, `${page} named source project`);
       assert.ok(result.outputs.length > 0, `${page} named source project should generate content`);
-      if (page === "recipes.md") {
-        const outputs = new Map(
-          result.outputs.map((output) => [output.path, emitCompileOutput(output)]),
-        );
-        assert.match(
-          outputs.get("common/decisions/krieg_reconstruction_decisions.txt") ?? "",
-          /cost = 25/,
-        );
-        assert.match(outputs.get("interface/reconstruction.gui") ?? "", /name = "request_aid"/);
-        assert.match(
-          outputs.get("events/krieg_reconstruction_1.txt") ?? "",
-          /emergency_aid_execute = yes/,
-        );
-        assert.match(
-          outputs.get("common/national_focus/krieg_reconstruction_tree.txt") ?? "",
-          /focus = reconstruction_authorize/,
-        );
-        const action = outputs.get("common/scripted_effects/krieg_emergency_aid_action.txt") ?? "";
-        assert.equal((action.match(/add_political_power = -25/g) ?? []).length, 1);
-      }
+      // The sequential tutorial's action/decision/button assertions now run
+      // in scripts/check-tutorials.mjs, using the actual layered lesson files.
       checked += files.length;
     }
     for (let index = 0; index < snippets.length; index++) {
@@ -165,7 +147,7 @@ test("explicit any, assertion escapes, ambient calls, and runtime APIs are rejec
     "const value = Math.random();",
     'const value = JSON.parse("{}");',
     'fetch("https://example.invalid");',
-    "const value = [1, 2].map((value: number) => value + 1);",
+    "const value = [1, 2].reduce((sum: number, value: number) => sum + value, 0);",
     'import { readFileSync } from "node:fs"; const value = readFileSync("secret");',
   ]) {
     const result = compile(source);

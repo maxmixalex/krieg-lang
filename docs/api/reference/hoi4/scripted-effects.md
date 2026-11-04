@@ -25,7 +25,7 @@
 
 > **ScriptedEffect**(`name`: `string`, `effect`: [`Effect`](scope-selection.md#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;): [`ScriptedEffectDefinition`](#scriptedeffectdefinition)&lt;`"country"`&gt;
 
-Defined in: [src/sdk/index.ts:360](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L360)
+Defined in: [src/sdk/index.ts:631](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L631)
 
 #### Parameters { #scriptedeffect-section-parameters }
 
@@ -42,7 +42,7 @@ Defined in: [src/sdk/index.ts:360](https://github.com/maxmixalex/krieg-lang/blob
 
 > **ScriptedEffect**&lt;`S` *extends* keyof [`GeneratedEffectsByScope`](../../commands/index.md)&gt;(`name`: `string`, `scope`: `S`, `effect`: [`Effect`](scope-selection.md#effect)&lt;[`ScopeByName`](scope-selection.md#scopebyname)\[`S`\]&gt;): [`ScriptedEffectDefinition`](#scriptedeffectdefinition)&lt;`S`&gt;
 
-Defined in: [src/sdk/index.ts:364](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L364)
+Defined in: [src/sdk/index.ts:635](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L635)
 
 #### Type Parameters { #scriptedeffect-section-type-parameters }
 
@@ -67,7 +67,7 @@ Defined in: [src/sdk/index.ts:364](https://github.com/maxmixalex/krieg-lang/blob
 
 > **StateScriptedEffect**(`name`: `string`, `effect`: [`Effect`](scope-selection.md#effect)&lt;[`StateScope`](state-scope.md#statescope)&gt;): [`ScriptedEffectDefinition`](#scriptedeffectdefinition)&lt;`"state"`&gt;
 
-Defined in: [src/sdk/index.ts:378](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L378)
+Defined in: [src/sdk/index.ts:649](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L649)
 
 ### Parameters { #statescriptedeffect-section-parameters }
 
@@ -83,7 +83,7 @@ Defined in: [src/sdk/index.ts:378](https://github.com/maxmixalex/krieg-lang/blob
 
 ## ScriptedEffectDefinition&lt;S *extends* [`ScopeName`](scope-selection.md#scopename)&gt; { #scriptedeffectdefinition }
 
-Defined in: [src/sdk/index.ts:67](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L67)
+Defined in: [src/sdk/index.ts:193](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L193)
 
 ### Extends { #scriptedeffectdefinition-section-extends }
 
@@ -99,10 +99,10 @@ Defined in: [src/sdk/index.ts:67](https://github.com/maxmixalex/krieg-lang/blob/
 
 | Property | Modifier | Type | Defined in |
 | ------ | ------ | ------ | ------ |
-| <a id="scriptedeffectdefinition-property-__effect"></a> `__effect` | `readonly` | *typeof* `__effect` | [src/sdk/index.ts:70](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L70) |
-| <a id="scriptedeffectdefinition-property-__kriegdefinition"></a> `__kriegDefinition` | `readonly` | *typeof* [`__kriegDefinition`](scope-selection.md#definition-property-__kriegdefinition) | [src/sdk/index.ts:62](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L62) |
-| <a id="scriptedeffectdefinition-property-name"></a> `name` | `readonly` | `string` | [src/sdk/index.ts:68](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L68) |
-| <a id="scriptedeffectdefinition-property-scope"></a> `scope` | `readonly` | `S` | [src/sdk/index.ts:69](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L69) |
+| <a id="scriptedeffectdefinition-property-__effect"></a> `__effect` | `readonly` | *typeof* `__effect` | [src/sdk/index.ts:196](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L196) |
+| <a id="scriptedeffectdefinition-property-__kriegdefinition"></a> `__kriegDefinition` | `readonly` | *typeof* [`__kriegDefinition`](scope-selection.md#definition-property-__kriegdefinition) | [src/sdk/index.ts:84](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L84) |
+| <a id="scriptedeffectdefinition-property-name"></a> `name` | `readonly` | `string` | [src/sdk/index.ts:194](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L194) |
+| <a id="scriptedeffectdefinition-property-scope"></a> `scope` | `readonly` | `S` | [src/sdk/index.ts:195](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L195) |
 
 
 ## ScriptedEffectFamily() { #scriptedeffectfamily }
@@ -111,7 +111,7 @@ Defined in: [src/sdk/index.ts:67](https://github.com/maxmixalex/krieg-lang/blob/
 
 > **ScriptedEffectFamily**&lt;`Prefix` *extends* `string`, `Variants` *extends* `Readonly`&lt;`Record`&lt;`string`, `Readonly`&lt;`Record`&lt;`string`, [`ScriptedVariantValue`](#scriptedvariantvalue)&gt;&gt;&gt;&gt;&gt;(`prefix`: `Prefix`, `variants`: `Variants`, `effect`: (`scope`: [`CountryScope`](country-scope.md#countryscope), `parameters`: `NoInfer`&lt;`Variants`\[keyof `Variants`\]&gt;) => `void`): [`ScriptedEffectFamilyDefinition`](#scriptedeffectfamilydefinition)&lt;`Prefix`, `"country"`, `Variants`&gt;
 
-Defined in: [src/sdk/index.ts:392](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L392)
+Defined in: [src/sdk/index.ts:663](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L663)
 
 Specialize one typed callback into one native effect per finite variant.
 
@@ -144,7 +144,7 @@ Prefixes and keys must form safe ASCII identifiers; duplicate native names fail.
 
 > **ScriptedEffectFamily**&lt;`Prefix` *extends* `string`, `S` *extends* keyof [`GeneratedEffectsByScope`](../../commands/index.md), `Variants` *extends* `Readonly`&lt;`Record`&lt;`string`, `Readonly`&lt;`Record`&lt;`string`, [`ScriptedVariantValue`](#scriptedvariantvalue)&gt;&gt;&gt;&gt;&gt;(`prefix`: `Prefix`, `scope`: `S`, `variants`: `Variants`, `effect`: (`scope`: [`ScopeByName`](scope-selection.md#scopebyname)\[`NoInfer`&lt;`S`&gt;\], `parameters`: `NoInfer`&lt;`Variants`\[keyof `Variants`\]&gt;) => `void`): [`ScriptedEffectFamilyDefinition`](#scriptedeffectfamilydefinition)&lt;`Prefix`, `S`, `Variants`&gt;
 
-Defined in: [src/sdk/index.ts:401](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L401)
+Defined in: [src/sdk/index.ts:672](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L672)
 
 Explicit scope variant of ScriptedEffectFamily.
 
@@ -174,7 +174,7 @@ Explicit scope variant of ScriptedEffectFamily.
 
 > **ScriptedEffectFamilyDefinition**&lt;`Prefix` *extends* `string`, `S` *extends* [`ScopeName`](scope-selection.md#scopename), `Variants` *extends* [`ScriptedVariants`](#scriptedvariants)&gt; = \{ readonly \[Key in keyof Variants\]: ScriptedEffectDefinition\<S\> & \{ name: \`$\{Prefix\}\_$\{Key & (string \| number)\}\` \} \}
 
-Defined in: [src/sdk/index.ts:85](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L85)
+Defined in: [src/sdk/index.ts:211](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L211)
 
 Exact keys select ordinary native effect handles for their declared scope.
 
@@ -191,7 +191,7 @@ Exact keys select ordinary native effect handles for their declared scope.
 
 > **ScriptedVariants** = `Readonly`&lt;`Record`&lt;`string`, `Readonly`&lt;`Record`&lt;`string`, [`ScriptedVariantValue`](#scriptedvariantvalue)&gt;&gt;&gt;&gt;
 
-Defined in: [src/sdk/index.ts:81](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L81)
+Defined in: [src/sdk/index.ts:207](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L207)
 
 Finite variant names mapped to flat, typed parameter records.
 
@@ -200,11 +200,11 @@ Finite variant names mapped to flat, typed parameter records.
 
 > **ScriptedVariantValue** = `string` \| `number` \| `boolean` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref)
 
-Defined in: [src/sdk/index.ts:79](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L79)
+Defined in: [src/sdk/index.ts:205](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L205)
 
 Literal compile-time inputs, never runtime native text substitutions.
 
 
 ## 完整示例与工作流
 
-[阅读可复用效果与有限变体指南](../../../scripted-content.md)
+[阅读可复用效果与有限变体指南](../../../guide/scripted-content.md)

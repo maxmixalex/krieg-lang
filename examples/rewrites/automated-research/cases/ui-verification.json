@@ -1,0 +1,57 @@
+{
+  "scope": "Independent interpretation of uploaded native script and generated native output; no HOI4 client",
+  "originalLocalisationDefinitions": 27043,
+  "rewriteLocalisationDefinitions": 1969,
+  "checks": 193091,
+  "groups": [
+    {
+      "name": "552 national technology labels, DLC artwork and tree labels",
+      "checks": 39542,
+      "milliseconds": 182433
+    },
+    {
+      "name": "525 organization names, icons, types and all 16 tree slots",
+      "checks": 14202,
+      "milliseconds": 6045
+    },
+    {
+      "name": "69 input characters, saved names and 1400 flag frames",
+      "checks": 2467,
+      "milliseconds": 1662
+    },
+    {
+      "name": "display singleton branch boundaries",
+      "checks": 1894,
+      "milliseconds": 65
+    },
+    {
+      "name": "combined queue states and positive save-compatibility branches",
+      "checks": 2188,
+      "milliseconds": 35
+    },
+    {
+      "name": "native entry hosts, keyboard, all 467 tree rectangles and marker geometry",
+      "checks": 3379,
+      "milliseconds": 25
+    },
+    {
+      "name": "queue, settings, typing, save, history and alert visibility states",
+      "checks": 83832,
+      "milliseconds": 233
+    },
+    {
+      "name": "all sprite facts and custom interface references",
+      "checks": 4959,
+      "milliseconds": 26
+    },
+    {
+      "name": "tree hit visibility, marker ranges and all click modifiers",
+      "checks": 40628,
+      "milliseconds": 205
+    }
+  ],
+  "unverified": [
+    "Actual rendering, engine event dispatch and keyboard focus",
+    "HOI4 1.19 client and DLC-specific runtime layout"
+  ]
+}

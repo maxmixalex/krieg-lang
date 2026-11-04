@@ -325,4 +325,4 @@ Ordered concrete PDX syntax. Objects must never be used as property maps.
 
 ## 完整示例与工作流
 
-[阅读构造有序 PDX 文档指南](../../../native-import.md)
+[阅读构造有序 PDX 文档指南](../../../guide/native-import.md)

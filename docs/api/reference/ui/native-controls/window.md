@@ -66,4 +66,4 @@ Defined in: [src/sdk/domains.ts:8651](https://github.com/maxmixalex/krieg-lang/b
 
 ## 完整示例与工作流
 
-[阅读原生 GUI 控件与完整属性指南](../../../../ui.md)
+[阅读原生 GUI 控件与完整属性指南](../../../../guide/ui.md)

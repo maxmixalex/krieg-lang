@@ -90,4 +90,4 @@ Defined in: [src/sdk/domains.ts:1339](https://github.com/maxmixalex/krieg-lang/b
 
 ## 完整示例与工作流
 
-[阅读部队、历史与战斗：复杂字段 A-F · OTHER指南](../../../../../content-domains.md)
+[阅读部队、历史与战斗：复杂字段 A-F · OTHER指南](../../../../../guide/domains/index.md)

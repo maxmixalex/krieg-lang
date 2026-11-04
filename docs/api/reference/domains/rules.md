@@ -514,4 +514,4 @@ Native common/modifiers; schema: common/static_modifiers.cwt:13.
 
 ## 完整示例与工作流
 
-[阅读规则、修正与其他定义指南](../../../content-domains.md)
+[阅读规则、修正与其他定义指南](../../../guide/domains/index.md)

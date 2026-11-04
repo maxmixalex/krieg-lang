@@ -19,7 +19,7 @@
       "nativePaths": ["descriptor.mod", "common/", "history/"],
       "level": "semantic",
       "api": ["krieg-lang/project:buildProject", "krieg-lang/project:descriptor"],
-      "guide": "projects.md",
+      "guide": "guide/projects.md",
       "ruleSources": [],
       "tests": [
         {
@@ -48,7 +48,7 @@
         "krieg-lang/hoi4:NativeUnitLeaderEvent",
         "krieg-lang/hoi4:NativeOperativeEvent"
       ],
-      "guide": "recipes.md",
+      "guide": "guide/actions.md",
       "ruleSources": ["Config/events.cwt"],
       "tests": [
         {
@@ -101,7 +101,7 @@
         "krieg-lang/hoi4:FocusStyle",
         "krieg-lang/hoi4:AiStrategyPlan"
       ],
-      "guide": "typed-gameplay.md",
+      "guide": "guide/focuses.md",
       "ruleSources": ["Config/common/national_focus.cwt"],
       "tests": [
         {
@@ -149,7 +149,7 @@
         "krieg-lang/hoi4:NativeDecision",
         "krieg-lang/hoi4:CountryAction"
       ],
-      "guide": "recipes.md",
+      "guide": "guide/actions.md",
       "ruleSources": ["Config/common/decisions.cwt"],
       "tests": [
         {
@@ -184,7 +184,7 @@
         "krieg-lang/hoi4:NativeIdeas",
         "krieg-lang/hoi4:IdeaCategory"
       ],
-      "guide": "recipes.md",
+      "guide": "guide/actions.md",
       "ruleSources": ["Config/common/ideas.cwt"],
       "tests": [
         {
@@ -211,7 +211,7 @@
       "nativePaths": ["common/scripted_effects/*.txt", "common/scripted_triggers/*.txt"],
       "level": "semantic",
       "api": ["krieg-lang/hoi4:ScriptedEffect", "krieg-lang/hoi4:ScriptedEffectFamily"],
-      "guide": "scripted-content.md",
+      "guide": "guide/scripted-content.md",
       "ruleSources": ["Config/effects.cwt", "Config/triggers.cwt", "Config/variables.cwt"],
       "tests": [
         {
@@ -237,7 +237,7 @@
       "nativePaths": ["common/scripted_effects/*.txt", "common/scripted_triggers/*.txt"],
       "level": "semantic",
       "api": ["krieg-lang/hoi4:ScriptedTrigger", "krieg-lang/hoi4:ScriptedTriggerFamily"],
-      "guide": "scripted-content.md",
+      "guide": "guide/scripted-content.md",
       "ruleSources": ["Config/effects.cwt", "Config/triggers.cwt", "Config/variables.cwt"],
       "tests": [
         {
@@ -263,7 +263,7 @@
       "nativePaths": ["common/scripted_effects/*.txt", "common/scripted_triggers/*.txt"],
       "level": "semantic",
       "api": ["krieg-lang/hoi4:CountryScope", "krieg-lang/hoi4:StateScope"],
-      "guide": "scopes.md",
+      "guide": "guide/scopes.md",
       "ruleSources": ["Config/effects.cwt", "Config/triggers.cwt", "Config/variables.cwt"],
       "tests": [
         {
@@ -281,7 +281,7 @@
       "nativePaths": ["common/scripted_effects/*.txt", "common/scripted_triggers/*.txt"],
       "level": "semantic",
       "api": ["krieg-lang/hoi4:CountryScope"],
-      "guide": "language.md",
+      "guide": "guide/language.md",
       "ruleSources": ["Config/effects.cwt", "Config/triggers.cwt", "Config/variables.cwt"],
       "tests": [
         {
@@ -299,7 +299,7 @@
       "nativePaths": ["common/scripted_effects/*.txt"],
       "level": "semantic",
       "api": ["krieg-lang/hoi4:MetaEffect"],
-      "guide": "scripted-content.md",
+      "guide": "guide/scripted-content.md",
       "ruleSources": ["Config/effects.cwt"],
       "tests": [
         {
@@ -317,7 +317,7 @@
       "nativePaths": ["common/scripted_localisation/*.txt"],
       "level": "semantic",
       "api": ["krieg-lang/hoi4:ScriptedLocalisation"],
-      "guide": "scripted-content.md",
+      "guide": "guide/scripted-content.md",
       "ruleSources": ["Config/common/scripted_effects_locs_and_triggers.cwt"],
       "tests": [
         {
@@ -339,7 +339,7 @@
         "krieg-lang/project:buildProject",
         "krieg-lang/project:LocalisationRule"
       ],
-      "guide": "localisation.md",
+      "guide": "guide/localisation.md",
       "ruleSources": [],
       "tests": [
         {
@@ -365,7 +365,7 @@
         "krieg-lang/ui:GuiVariable",
         "krieg-lang/hoi4:ScriptedGui"
       ],
-      "guide": "ui.md",
+      "guide": "guide/ui.md",
       "ruleSources": ["Config/common/scripted_guis.cwt"],
       "tests": [
         {
@@ -398,7 +398,7 @@
         "krieg-lang/ui:Button",
         "krieg-lang/ui:Stack"
       ],
-      "guide": "ui.md",
+      "guide": "guide/ui.md",
       "ruleSources": ["Config/interface/gui.cwt"],
       "tests": [
         {
@@ -428,7 +428,7 @@
       "nativePaths": ["interface/*.gfx", "gfx/**/*.dds", "gfx/**/*.tga", "gfx/**/*.png"],
       "level": "semantic",
       "api": ["krieg-lang/ui:Sprite", "krieg-lang/ui:SpriteFile"],
-      "guide": "ui.md",
+      "guide": "guide/ui.md",
       "ruleSources": ["Config/interface/gfx.cwt"],
       "tests": [
         {
@@ -455,7 +455,7 @@
         "krieg-lang/hoi4:CountryHistory",
         "krieg-lang/project:buildProject"
       ],
-      "guide": "countries-maps.md",
+      "guide": "guide/countries-maps.md",
       "ruleSources": ["Config/common/countries.cwt", "Config/history/country_history.cwt"],
       "tests": [
         {
@@ -478,7 +478,7 @@
       "nativePaths": ["history/states/*.txt"],
       "level": "semantic",
       "api": ["krieg-lang/hoi4:StateHistory", "krieg-lang/project:validateMap"],
-      "guide": "countries-maps.md",
+      "guide": "guide/countries-maps.md",
       "ruleSources": ["Config/history/states.cwt"],
       "tests": [
         {
@@ -508,7 +508,7 @@
         "krieg-lang/project:validateMap",
         "krieg-lang/project:buildProject"
       ],
-      "guide": "map-atlas.md",
+      "guide": "guide/map-atlas.md",
       "ruleSources": [],
       "tests": [
         {
@@ -551,7 +551,7 @@
         "krieg-lang/hoi4:AiEquipmentDesignGroup",
         "krieg-lang/hoi4:AiFactionTheater"
       ],
-      "guide": "content-domains.md",
+      "guide": "guide/domains/index.md",
       "ruleSources": ["Config/common/ai_strategy.cwt", "Config/common/consolidated_ai.cwt"],
       "tests": [
         {
@@ -583,7 +583,7 @@
       "nativePaths": ["common/achievements/*"],
       "level": "schema",
       "api": ["krieg-lang/hoi4:Achievement"],
-      "guide": "content-domains.md",
+      "guide": "guide/domains/index.md",
       "ruleSources": ["Config/common/achievements.cwt"],
       "tests": [
         {
@@ -606,7 +606,7 @@
       "nativePaths": ["common/autonomous_states/*"],
       "level": "schema",
       "api": ["krieg-lang/hoi4:AutonomyState"],
-      "guide": "content-domains.md",
+      "guide": "guide/domains/index.md",
       "ruleSources": ["Config/common/autonomous_states.cwt"],
       "tests": [
         {
@@ -629,7 +629,7 @@
       "nativePaths": ["common/bop/*"],
       "level": "schema",
       "api": ["krieg-lang/hoi4:BalanceOfPower"],
-      "guide": "content-domains.md",
+      "guide": "guide/domains/index.md",
       "ruleSources": ["Config/common/bop.cwt"],
       "tests": [
         {
@@ -652,7 +652,7 @@
       "nativePaths": ["common/bookmarks/*", "common/difficulty_settings/*"],
       "level": "schema",
       "api": ["krieg-lang/hoi4:Bookmark", "krieg-lang/hoi4:DifficultySetting"],
-      "guide": "content-domains.md",
+      "guide": "guide/domains/index.md",
       "ruleSources": ["Config/common/bookmarks.cwt", "Config/common/difficulty_settings.cwt"],
       "tests": [
         {
@@ -675,7 +675,7 @@
       "nativePaths": ["common/buildings/*"],
       "level": "schema",
       "api": ["krieg-lang/hoi4:Building", "krieg-lang/hoi4:SpawnPoint"],
-      "guide": "content-domains.md",
+      "guide": "guide/domains/index.md",
       "ruleSources": ["Config/common/buildings.cwt"],
       "tests": [
         {
@@ -710,7 +710,7 @@
         "krieg-lang/hoi4:ScientistTrait",
         "krieg-lang/hoi4:UnitMedal"
       ],
-      "guide": "content-domains.md",
+      "guide": "guide/domains/index.md",
       "ruleSources": [
         "Config/common/characters.cwt",
         "Config/common/traits.cwt",
@@ -743,7 +743,7 @@
       "nativePaths": ["localisation/*/*.yml", "gfx/flags/", "common/countries/colors.txt"],
       "level": "native-asset",
       "api": ["krieg-lang/hoi4:CountryEffects", "krieg-lang/project:buildProject"],
-      "guide": "content-domains.md",
+      "guide": "guide/domains/index.md",
       "ruleSources": ["Config/common/countries.cwt"],
       "tests": [
         {
@@ -761,7 +761,7 @@
       "nativePaths": ["history/units/*", "common/units/names_divisions/*"],
       "level": "schema",
       "api": ["krieg-lang/hoi4:UnitHistory", "krieg-lang/hoi4:DivisionNames"],
-      "guide": "content-domains.md",
+      "guide": "guide/domains/index.md",
       "ruleSources": ["Config/history/oobs.cwt", "Config/common/units.cwt"],
       "tests": [
         {
@@ -794,7 +794,7 @@
         "krieg-lang/hoi4:Subdoctrine",
         "krieg-lang/hoi4:DoctrineTrack"
       ],
-      "guide": "content-domains.md",
+      "guide": "guide/domains/index.md",
       "ruleSources": [
         "Config/common/doctrine_folders.cwt",
         "Config/common/doctrine_grand_doctrines.cwt",
@@ -834,7 +834,7 @@
         "krieg-lang/hoi4:EquipmentModule",
         "krieg-lang/hoi4:CriticalPart"
       ],
-      "guide": "content-domains.md",
+      "guide": "guide/domains/index.md",
       "ruleSources": ["Config/common/equipment.cwt", "Config/common/equipment_groups.cwt"],
       "tests": [
         {
@@ -877,7 +877,7 @@
         "krieg-lang/hoi4:FactionTemplate",
         "krieg-lang/hoi4:FactionUpgrade"
       ],
-      "guide": "content-domains.md",
+      "guide": "guide/domains/index.md",
       "ruleSources": ["Config/common/factions.cwt"],
       "tests": [
         {
@@ -907,7 +907,7 @@
       "nativePaths": ["common/ideologies/*"],
       "level": "schema",
       "api": ["krieg-lang/hoi4:Ideology"],
-      "guide": "content-domains.md",
+      "guide": "guide/domains/index.md",
       "ruleSources": ["Config/common/ideologies.cwt"],
       "tests": [
         {
@@ -942,7 +942,7 @@
         "krieg-lang/hoi4:OperationPhase",
         "krieg-lang/hoi4:OperationToken"
       ],
-      "guide": "content-domains.md",
+      "guide": "guide/domains/index.md",
       "ruleSources": [
         "Config/common/intelligence_agencies.cwt",
         "Config/common/intelligence_agency_updates.cwt",
@@ -980,7 +980,7 @@
       ],
       "level": "schema",
       "api": ["krieg-lang/hoi4:MilitaryIndustrialOrganization", "krieg-lang/hoi4:MioPolicy"],
-      "guide": "content-domains.md",
+      "guide": "guide/domains/index.md",
       "ruleSources": [
         "Config/common/military_industrial_organizations.cwt",
         "Config/common/mio_policies.cwt"
@@ -1020,7 +1020,7 @@
         "krieg-lang/hoi4:ResistanceComplianceModifier",
         "krieg-lang/hoi4:MeanTimeToHappen"
       ],
-      "guide": "content-domains.md",
+      "guide": "guide/domains/index.md",
       "ruleSources": [
         "Config/common/dynamic_modifiers.cwt",
         "Config/common/static_modifiers.cwt",
@@ -1057,7 +1057,7 @@
       "nativePaths": ["common/units/names_divisions/*", "common/units/names_ships/*"],
       "level": "schema",
       "api": ["krieg-lang/hoi4:DivisionNames", "krieg-lang/hoi4:ShipNames"],
-      "guide": "content-domains.md",
+      "guide": "guide/domains/index.md",
       "ruleSources": ["Config/common/units.cwt"],
       "tests": [
         {
@@ -1080,7 +1080,7 @@
       "nativePaths": ["common/on_actions/*"],
       "level": "schema",
       "api": ["krieg-lang/hoi4:OnAction"],
-      "guide": "content-domains.md",
+      "guide": "guide/domains/index.md",
       "ruleSources": ["Config/on_actions.cwt"],
       "tests": [
         {
@@ -1103,7 +1103,7 @@
       "nativePaths": ["common/resources/*"],
       "level": "schema",
       "api": ["krieg-lang/hoi4:Resource"],
-      "guide": "content-domains.md",
+      "guide": "guide/domains/index.md",
       "ruleSources": ["Config/common/resources.cwt"],
       "tests": [
         {
@@ -1126,7 +1126,7 @@
       "nativePaths": ["map/strategicregions/*", "common/strategic_locations/*"],
       "level": "schema",
       "api": ["krieg-lang/hoi4:StrategicRegion", "krieg-lang/hoi4:StrategicLocation"],
-      "guide": "content-domains.md",
+      "guide": "guide/domains/index.md",
       "ruleSources": ["Config/map/regions.cwt", "Config/common/strategic_locations.cwt"],
       "tests": [
         {
@@ -1149,7 +1149,7 @@
       "nativePaths": ["common/technologies/*", "common/technology_sharing/*"],
       "level": "schema",
       "api": ["krieg-lang/hoi4:Technology", "krieg-lang/hoi4:TechnologySharingGroup"],
-      "guide": "content-domains.md",
+      "guide": "guide/domains/index.md",
       "ruleSources": ["Config/common/technologies.cwt"],
       "tests": [
         {
@@ -1177,7 +1177,7 @@
         "krieg-lang/hoi4:CombatTactic",
         "krieg-lang/hoi4:Ace"
       ],
-      "guide": "content-domains.md",
+      "guide": "guide/domains/index.md",
       "ruleSources": [
         "Config/common/units.cwt",
         "Config/common/abilities.cwt",
@@ -1205,7 +1205,7 @@
       "nativePaths": ["common/game_rules/*"],
       "level": "schema",
       "api": ["krieg-lang/hoi4:GameRule"],
-      "guide": "content-domains.md",
+      "guide": "guide/domains/index.md",
       "ruleSources": ["Config/common/game_rules.cwt"],
       "tests": [
         {
@@ -1236,7 +1236,7 @@
         "krieg-lang/hoi4:PrototypeReward",
         "krieg-lang/hoi4:Specialization"
       ],
-      "guide": "content-domains.md",
+      "guide": "guide/domains/index.md",
       "ruleSources": ["Config/common/special_projects.cwt"],
       "tests": [
         {
@@ -1259,7 +1259,7 @@
       "nativePaths": ["common/raids/*", "common/raids/categories/*"],
       "level": "schema",
       "api": ["krieg-lang/hoi4:Raid", "krieg-lang/hoi4:RaidCategory"],
-      "guide": "content-domains.md",
+      "guide": "guide/domains/index.md",
       "ruleSources": ["Config/common/raids.cwt"],
       "tests": [
         {
@@ -1294,7 +1294,7 @@
         "krieg-lang/hoi4:Wargoal",
         "krieg-lang/hoi4:OccupationLaw"
       ],
-      "guide": "content-domains.md",
+      "guide": "guide/domains/index.md",
       "ruleSources": [
         "Config/common/peace_conference.cwt",
         "Config/common/wargoals.cwt",
@@ -1330,7 +1330,7 @@
       "nativePaths": ["common/collections/*", "common/scorers/country/*"],
       "level": "schema",
       "api": ["krieg-lang/hoi4:Collection", "krieg-lang/hoi4:CountryScorer"],
-      "guide": "content-domains.md",
+      "guide": "guide/domains/index.md",
       "ruleSources": ["Config/common/collections.cwt", "Config/common/scorers.cwt"],
       "tests": [
         {
@@ -1353,7 +1353,7 @@
       "nativePaths": ["interface/*"],
       "level": "schema",
       "api": ["krieg-lang/hoi4:BitmapFont"],
-      "guide": "assets.md",
+      "guide": "guide/assets.md",
       "ruleSources": ["Config/interface/gfx.cwt"],
       "tests": [
         {
@@ -1381,7 +1381,7 @@
         "krieg-lang/hoi4:ModelAnimation",
         "krieg-lang/hoi4:Light"
       ],
-      "guide": "assets.md",
+      "guide": "guide/assets.md",
       "ruleSources": ["Config/gfx/model_entities.cwt", "Config/gfx/lights.cwt"],
       "tests": [
         {
@@ -1404,7 +1404,7 @@
       "nativePaths": ["gfx/models/*"],
       "level": "schema",
       "api": ["krieg-lang/hoi4:Particle", "krieg-lang/hoi4:PdxParticle"],
-      "guide": "assets.md",
+      "guide": "guide/assets.md",
       "ruleSources": ["Config/gfx/particles.cwt"],
       "tests": [
         {
@@ -1427,7 +1427,7 @@
       "nativePaths": ["portraits/*"],
       "level": "schema",
       "api": ["krieg-lang/hoi4:Portrait"],
-      "guide": "assets.md",
+      "guide": "guide/assets.md",
       "ruleSources": ["Config/portraits.cwt"],
       "tests": [
         {
@@ -1450,7 +1450,7 @@
       "nativePaths": ["gfx/FX/", "gfx/map/"],
       "level": "native-asset",
       "api": ["krieg-lang/project:buildProject", "krieg-lang/project:AssetRule"],
-      "guide": "assets.md",
+      "guide": "guide/assets.md",
       "ruleSources": [],
       "tests": [
         {
@@ -1468,7 +1468,7 @@
       "nativePaths": ["music/*"],
       "level": "schema",
       "api": ["krieg-lang/hoi4:MusicAsset", "krieg-lang/hoi4:MusicPlaylistEntry"],
-      "guide": "assets.md",
+      "guide": "guide/assets.md",
       "ruleSources": ["Config/music.cwt"],
       "tests": [
         {
@@ -1495,7 +1495,7 @@
         "krieg-lang/hoi4:SoundEffect",
         "krieg-lang/hoi4:SoundCategory"
       ],
-      "guide": "assets.md",
+      "guide": "guide/assets.md",
       "ruleSources": ["Config/sound.cwt"],
       "tests": [
         {
@@ -1522,7 +1522,7 @@
         "krieg-lang/hoi4:DefineFile",
         "krieg-lang/hoi4:DefineOverrides"
       ],
-      "guide": "assets.md",
+      "guide": "guide/assets.md",
       "ruleSources": [],
       "tests": [
         {
@@ -1544,7 +1544,7 @@
       "nativePaths": ["common/terrain/*"],
       "level": "schema",
       "api": ["krieg-lang/hoi4:Terrain", "krieg-lang/hoi4:GraphicalTerrain"],
-      "guide": "assets.md",
+      "guide": "guide/assets.md",
       "ruleSources": ["Config/common/terrain.cwt"],
       "tests": [
         {
@@ -1567,7 +1567,7 @@
       "nativePaths": ["map/supplyareas/"],
       "level": "version-conditional",
       "api": ["krieg-lang/hoi4:SupplyArea"],
-      "guide": "countries-maps.md",
+      "guide": "guide/countries-maps.md",
       "ruleSources": [],
       "tests": [
         {
@@ -1590,7 +1590,7 @@
       "nativePaths": [],
       "level": "hardcoded",
       "api": [],
-      "guide": "validation.md",
+      "guide": "guide/validation.md",
       "ruleSources": [],
       "tests": [],
       "boundary": "控制台是游戏进程的调试界面，不是要编译到模组中的定义；Krieg 不实现或调用游戏控制台。"
@@ -1603,7 +1603,7 @@
       "nativePaths": ["logs/error.log"],
       "level": "not-applicable",
       "api": [],
-      "guide": "validation.md",
+      "guide": "guide/validation.md",
       "ruleSources": [],
       "tests": [],
       "boundary": "Krieg 提供构建诊断与本地语料检查；游戏加载、事件触发、渲染与玩法仍由目标安装和日志验证。"

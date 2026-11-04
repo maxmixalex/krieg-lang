@@ -22,7 +22,7 @@
 
 > **state**(`id`: `number`): [`StateRef`](#stateref)
 
-Defined in: [src/sdk/index.ts:517](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L517)
+Defined in: [src/sdk/index.ts:792](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L792)
 
 ### Parameters { #state-function-section-parameters }
 
@@ -39,7 +39,7 @@ Defined in: [src/sdk/index.ts:517](https://github.com/maxmixalex/krieg-lang/blob
 
 > **State** = [`StateRef`](#stateref)
 
-Defined in: [src/sdk/index.ts:41](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L41)
+Defined in: [src/sdk/index.ts:63](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L63)
 
 
 ## StateRef { #stateref }
@@ -58,7 +58,7 @@ Defined in: [src/sdk/index.ts:36](https://github.com/maxmixalex/krieg-lang/blob/
 
 > **StateHistory**(`spec`: [`StateHistorySpec`](#statehistoryspec)): [`Definition`](scope-selection.md#definition)
 
-Defined in: [src/sdk/index.ts:505](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L505)
+Defined in: [src/sdk/index.ts:776](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L776)
 
 Write a complete state history file. When replacing an existing state, give its exact native path and preserve the province membership that should remain in the state.
 
@@ -87,7 +87,7 @@ StateHistory({ state: state(1), name: "STATE_1", owner: country("KRG"),
 
 ## StateHistorySpec { #statehistoryspec }
 
-Defined in: [src/sdk/index.ts:479](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L479)
+Defined in: [src/sdk/index.ts:750](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L750)
 
 A complete state definition; state-history edits are not automatically merged into vanilla files.
 
@@ -95,26 +95,26 @@ A complete state definition; state-history edits are not automatically merged in
 
 | Property | Type | Description | Defined in |
 | ------ | ------ | ------ | ------ |
-| <a id="statehistoryspec-property-buildings"></a> `buildings?` | [`StateBuildings`](#statebuildings) | - | [src/sdk/index.ts:488](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L488) |
-| <a id="statehistoryspec-property-category"></a> `category` | `string` | - | [src/sdk/index.ts:483](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L483) |
-| <a id="statehistoryspec-property-controller"></a> `controller?` | [`CountryRef`](countries.md#countryref) | - | [src/sdk/index.ts:486](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L486) |
-| <a id="statehistoryspec-property-cores"></a> `cores?` | readonly [`CountryRef`](countries.md#countryref)[] | - | [src/sdk/index.ts:487](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L487) |
-| <a id="statehistoryspec-property-history"></a> `history?` | [`Effect`](scope-selection.md#effect)&lt;[`StateScope`](state-scope.md#statescope)&gt; | - | [src/sdk/index.ts:493](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L493) |
-| <a id="statehistoryspec-property-impassable"></a> `impassable?` | `true` | - | [src/sdk/index.ts:492](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L492) |
-| <a id="statehistoryspec-property-localsupplies"></a> `localSupplies?` | `number` | - | [src/sdk/index.ts:491](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L491) |
-| <a id="statehistoryspec-property-manpower"></a> `manpower` | `number` | - | [src/sdk/index.ts:482](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L482) |
-| <a id="statehistoryspec-property-name"></a> `name` | `string` | - | [src/sdk/index.ts:481](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L481) |
-| <a id="statehistoryspec-property-owner"></a> `owner` | [`CountryRef`](countries.md#countryref) | - | [src/sdk/index.ts:485](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L485) |
-| <a id="statehistoryspec-property-path"></a> `path?` | `string` | Exact game path for replacement of an existing state definition. | [src/sdk/index.ts:495](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L495) |
-| <a id="statehistoryspec-property-provinces"></a> `provinces` | readonly `number`[] | - | [src/sdk/index.ts:484](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L484) |
-| <a id="statehistoryspec-property-resources"></a> `resources?` | [`StateResources`](#stateresources) | - | [src/sdk/index.ts:489](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L489) |
-| <a id="statehistoryspec-property-state"></a> `state` | [`StateRef`](#stateref) | - | [src/sdk/index.ts:480](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L480) |
-| <a id="statehistoryspec-property-victorypoints"></a> `victoryPoints?` | readonly `object`[] | - | [src/sdk/index.ts:490](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L490) |
+| <a id="statehistoryspec-property-buildings"></a> `buildings?` | [`StateBuildings`](#statebuildings) | - | [src/sdk/index.ts:759](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L759) |
+| <a id="statehistoryspec-property-category"></a> `category` | `string` | - | [src/sdk/index.ts:754](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L754) |
+| <a id="statehistoryspec-property-controller"></a> `controller?` | [`CountryRef`](countries.md#countryref) | - | [src/sdk/index.ts:757](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L757) |
+| <a id="statehistoryspec-property-cores"></a> `cores?` | readonly [`CountryRef`](countries.md#countryref)[] | - | [src/sdk/index.ts:758](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L758) |
+| <a id="statehistoryspec-property-history"></a> `history?` | [`Effect`](scope-selection.md#effect)&lt;[`StateScope`](state-scope.md#statescope)&gt; | - | [src/sdk/index.ts:764](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L764) |
+| <a id="statehistoryspec-property-impassable"></a> `impassable?` | `true` | - | [src/sdk/index.ts:763](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L763) |
+| <a id="statehistoryspec-property-localsupplies"></a> `localSupplies?` | `number` | - | [src/sdk/index.ts:762](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L762) |
+| <a id="statehistoryspec-property-manpower"></a> `manpower` | `number` | - | [src/sdk/index.ts:753](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L753) |
+| <a id="statehistoryspec-property-name"></a> `name` | `string` | - | [src/sdk/index.ts:752](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L752) |
+| <a id="statehistoryspec-property-owner"></a> `owner` | [`CountryRef`](countries.md#countryref) | - | [src/sdk/index.ts:756](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L756) |
+| <a id="statehistoryspec-property-path"></a> `path?` | `string` | Exact game path for replacement of an existing state definition. | [src/sdk/index.ts:766](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L766) |
+| <a id="statehistoryspec-property-provinces"></a> `provinces` | readonly `number`[] | - | [src/sdk/index.ts:755](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L755) |
+| <a id="statehistoryspec-property-resources"></a> `resources?` | [`StateResources`](#stateresources) | - | [src/sdk/index.ts:760](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L760) |
+| <a id="statehistoryspec-property-state"></a> `state` | [`StateRef`](#stateref) | - | [src/sdk/index.ts:751](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L751) |
+| <a id="statehistoryspec-property-victorypoints"></a> `victoryPoints?` | readonly `object`[] | - | [src/sdk/index.ts:761](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L761) |
 
 
 ## StateBuildings { #statebuildings }
 
-Defined in: [src/sdk/index.ts:456](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L456)
+Defined in: [src/sdk/index.ts:727](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L727)
 
 ### Indexable { #statebuildings-section-indexable }
 
@@ -124,49 +124,49 @@ Defined in: [src/sdk/index.ts:456](https://github.com/maxmixalex/krieg-lang/blob
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="statebuildings-property-air_base"></a> `air_base?` | `number` | [src/sdk/index.ts:461](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L461) |
-| <a id="statebuildings-property-anti_air_building"></a> `anti_air_building?` | `number` | [src/sdk/index.ts:462](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L462) |
-| <a id="statebuildings-property-arms_factory"></a> `arms_factory?` | `number` | [src/sdk/index.ts:459](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L459) |
-| <a id="statebuildings-property-dockyard"></a> `dockyard?` | `number` | [src/sdk/index.ts:460](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L460) |
-| <a id="statebuildings-property-fuel_silo"></a> `fuel_silo?` | `number` | [src/sdk/index.ts:465](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L465) |
-| <a id="statebuildings-property-industrial_complex"></a> `industrial_complex?` | `number` | [src/sdk/index.ts:458](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L458) |
-| <a id="statebuildings-property-infrastructure"></a> `infrastructure?` | `number` | [src/sdk/index.ts:457](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L457) |
-| <a id="statebuildings-property-nuclear_reactor"></a> `nuclear_reactor?` | `number` | [src/sdk/index.ts:467](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L467) |
-| <a id="statebuildings-property-radar_station"></a> `radar_station?` | `number` | [src/sdk/index.ts:463](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L463) |
-| <a id="statebuildings-property-rocket_site"></a> `rocket_site?` | `number` | [src/sdk/index.ts:466](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L466) |
-| <a id="statebuildings-property-synthetic_refinery"></a> `synthetic_refinery?` | `number` | [src/sdk/index.ts:464](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L464) |
+| <a id="statebuildings-property-air_base"></a> `air_base?` | `number` | [src/sdk/index.ts:732](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L732) |
+| <a id="statebuildings-property-anti_air_building"></a> `anti_air_building?` | `number` | [src/sdk/index.ts:733](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L733) |
+| <a id="statebuildings-property-arms_factory"></a> `arms_factory?` | `number` | [src/sdk/index.ts:730](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L730) |
+| <a id="statebuildings-property-dockyard"></a> `dockyard?` | `number` | [src/sdk/index.ts:731](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L731) |
+| <a id="statebuildings-property-fuel_silo"></a> `fuel_silo?` | `number` | [src/sdk/index.ts:736](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L736) |
+| <a id="statebuildings-property-industrial_complex"></a> `industrial_complex?` | `number` | [src/sdk/index.ts:729](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L729) |
+| <a id="statebuildings-property-infrastructure"></a> `infrastructure?` | `number` | [src/sdk/index.ts:728](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L728) |
+| <a id="statebuildings-property-nuclear_reactor"></a> `nuclear_reactor?` | `number` | [src/sdk/index.ts:738](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L738) |
+| <a id="statebuildings-property-radar_station"></a> `radar_station?` | `number` | [src/sdk/index.ts:734](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L734) |
+| <a id="statebuildings-property-rocket_site"></a> `rocket_site?` | `number` | [src/sdk/index.ts:737](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L737) |
+| <a id="statebuildings-property-synthetic_refinery"></a> `synthetic_refinery?` | `number` | [src/sdk/index.ts:735](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L735) |
 
 
 ## ProvinceBuildings { #provincebuildings }
 
-Defined in: [src/sdk/index.ts:450](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L450)
+Defined in: [src/sdk/index.ts:721](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L721)
 
 ### Properties { #provincebuildings-section-properties }
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="provincebuildings-property-bunker"></a> `bunker?` | `number` | [src/sdk/index.ts:452](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L452) |
-| <a id="provincebuildings-property-coastal_bunker"></a> `coastal_bunker?` | `number` | [src/sdk/index.ts:453](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L453) |
-| <a id="provincebuildings-property-naval_base"></a> `naval_base?` | `number` | [src/sdk/index.ts:451](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L451) |
-| <a id="provincebuildings-property-supply_node"></a> `supply_node?` | `number` | [src/sdk/index.ts:454](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L454) |
+| <a id="provincebuildings-property-bunker"></a> `bunker?` | `number` | [src/sdk/index.ts:723](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L723) |
+| <a id="provincebuildings-property-coastal_bunker"></a> `coastal_bunker?` | `number` | [src/sdk/index.ts:724](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L724) |
+| <a id="provincebuildings-property-naval_base"></a> `naval_base?` | `number` | [src/sdk/index.ts:722](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L722) |
+| <a id="provincebuildings-property-supply_node"></a> `supply_node?` | `number` | [src/sdk/index.ts:725](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L725) |
 
 
 ## StateResources { #stateresources }
 
-Defined in: [src/sdk/index.ts:470](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L470)
+Defined in: [src/sdk/index.ts:741](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L741)
 
 ### Properties { #stateresources-section-properties }
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="stateresources-property-aluminium"></a> `aluminium?` | `number` | [src/sdk/index.ts:472](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L472) |
-| <a id="stateresources-property-chromium"></a> `chromium?` | `number` | [src/sdk/index.ts:474](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L474) |
-| <a id="stateresources-property-oil"></a> `oil?` | `number` | [src/sdk/index.ts:475](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L475) |
-| <a id="stateresources-property-rubber"></a> `rubber?` | `number` | [src/sdk/index.ts:476](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L476) |
-| <a id="stateresources-property-steel"></a> `steel?` | `number` | [src/sdk/index.ts:471](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L471) |
-| <a id="stateresources-property-tungsten"></a> `tungsten?` | `number` | [src/sdk/index.ts:473](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L473) |
+| <a id="stateresources-property-aluminium"></a> `aluminium?` | `number` | [src/sdk/index.ts:743](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L743) |
+| <a id="stateresources-property-chromium"></a> `chromium?` | `number` | [src/sdk/index.ts:745](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L745) |
+| <a id="stateresources-property-oil"></a> `oil?` | `number` | [src/sdk/index.ts:746](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L746) |
+| <a id="stateresources-property-rubber"></a> `rubber?` | `number` | [src/sdk/index.ts:747](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L747) |
+| <a id="stateresources-property-steel"></a> `steel?` | `number` | [src/sdk/index.ts:742](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L742) |
+| <a id="stateresources-property-tungsten"></a> `tungsten?` | `number` | [src/sdk/index.ts:744](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L744) |
 
 
 ## 完整示例与工作流
 
-[阅读地区引用与历史指南](../../../countries-maps.md)
+[阅读地区引用与历史指南](../../../guide/countries-maps.md)

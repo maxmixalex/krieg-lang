@@ -1,6 +1,6 @@
 {
   "formatVersion": 3,
-  "packageVersion": "0.4.0",
+  "packageVersion": "0.5.0",
   "generator": {
     "name": "TypeDoc",
     "version": "0.28.20",
@@ -880,6 +880,14 @@
     },
     {
       "module": "krieg-lang/hoi4",
+      "name": "AchievementStorageBank",
+      "page": "reference/hoi4/series.md#achievementstoragebank",
+      "source": "src/sdk/index.ts",
+      "legacyPage": "reference/hoi4/interfaces/AchievementStorageBank.md",
+      "kind": "Interface"
+    },
+    {
+      "module": "krieg-lang/hoi4",
       "name": "AdjacencyRule",
       "page": "reference/domains/map.md#adjacencyrule",
       "source": "src/sdk/domains.ts",
@@ -1037,6 +1045,30 @@
       "source": "src/sdk/index.ts",
       "legacyPage": "reference/hoi4/type-aliases/AssetId.md",
       "kind": "TypeAlias"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AudioBank",
+      "page": "reference/hoi4/audio-banks.md#audiobank",
+      "source": "src/sdk/index.ts",
+      "legacyPage": "reference/hoi4/functions/AudioBank.md",
+      "kind": "Function"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AudioBankDefinition",
+      "page": "reference/hoi4/audio-banks.md#audiobankdefinition",
+      "source": "src/sdk/index.ts",
+      "legacyPage": "reference/hoi4/interfaces/AudioBankDefinition.md",
+      "kind": "Interface"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "AudioBankSpec",
+      "page": "reference/hoi4/audio-banks.md#audiobankspec",
+      "source": "src/sdk/index.ts",
+      "legacyPage": "reference/hoi4/interfaces/AudioBankSpec.md",
+      "kind": "Interface"
     },
     {
       "module": "krieg-lang/hoi4",
@@ -1288,6 +1320,22 @@
     },
     {
       "module": "krieg-lang/hoi4",
+      "name": "CountryHeatmap",
+      "page": "reference/hoi4/country-heatmaps.md#countryheatmap",
+      "source": "src/sdk/index.ts",
+      "legacyPage": "reference/hoi4/functions/CountryHeatmap.md",
+      "kind": "Function"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "CountryHeatmapSpec",
+      "page": "reference/hoi4/country-heatmaps.md#countryheatmapspec",
+      "source": "src/sdk/index.ts",
+      "legacyPage": "reference/hoi4/interfaces/CountryHeatmapSpec.md",
+      "kind": "Interface"
+    },
+    {
+      "module": "krieg-lang/hoi4",
       "name": "CountryHistory",
       "page": "reference/hoi4/countries.md#countryhistory",
       "source": "src/sdk/index.ts",
@@ -1365,6 +1413,14 @@
       "source": "src/sdk/domains.ts",
       "legacyPage": "reference/hoi4/interfaces/CountryTagAliasSpec.md",
       "kind": "Interface"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "countryTarget",
+      "page": "reference/hoi4/runtime-state.md#countrytarget",
+      "source": "src/sdk/index.ts",
+      "legacyPage": "reference/hoi4/functions/countryTarget.md",
+      "kind": "Function"
     },
     {
       "module": "krieg-lang/hoi4",
@@ -1472,6 +1528,14 @@
     },
     {
       "module": "krieg-lang/hoi4",
+      "name": "DecisionMissionSpec",
+      "page": "reference/hoi4/decisions.md#decisionmissionspec",
+      "source": "src/sdk/index.ts",
+      "legacyPage": "reference/hoi4/interfaces/DecisionMissionSpec.md",
+      "kind": "Interface"
+    },
+    {
+      "module": "krieg-lang/hoi4",
       "name": "DecisionSpec",
       "page": "reference/hoi4/decisions.md#decisionspec",
       "source": "src/sdk/index.ts",
@@ -1509,6 +1573,14 @@
       "source": "src/sdk/index.ts",
       "legacyPage": "reference/hoi4/interfaces/Definition.md",
       "kind": "Interface"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "DefinitionSeries",
+      "page": "reference/hoi4/series.md#definitionseries",
+      "source": "src/sdk/index.ts",
+      "legacyPage": "reference/hoi4/functions/DefinitionSeries.md",
+      "kind": "Function"
     },
     {
       "module": "krieg-lang/hoi4",
@@ -1848,6 +1920,22 @@
     },
     {
       "module": "krieg-lang/hoi4",
+      "name": "FlagAchievements",
+      "page": "reference/hoi4/series.md#flagachievements",
+      "source": "src/sdk/index.ts",
+      "legacyPage": "reference/hoi4/functions/FlagAchievements.md",
+      "kind": "Function"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "FlagAchievementSpec",
+      "page": "reference/hoi4/series.md#flagachievementspec",
+      "source": "src/sdk/index.ts",
+      "legacyPage": "reference/hoi4/interfaces/FlagAchievementSpec.md",
+      "kind": "Interface"
+    },
+    {
+      "module": "krieg-lang/hoi4",
       "name": "FlagId",
       "page": "reference/hoi4/scope-selection.md#flagid",
       "source": "src/sdk/index.ts",
@@ -2029,6 +2117,14 @@
       "source": "src/sdk/domains.ts",
       "legacyPage": "reference/hoi4/interfaces/GameRuleSpec.md",
       "kind": "Interface"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "gameScripts",
+      "page": "reference/hoi4/series.md#gamescripts",
+      "source": "src/sdk/index.ts",
+      "legacyPage": "reference/hoi4/functions/gameScripts.md",
+      "kind": "Function"
     },
     {
       "module": "krieg-lang/hoi4",
@@ -2216,6 +2312,14 @@
     },
     {
       "module": "krieg-lang/hoi4",
+      "name": "indexBy",
+      "page": "reference/hoi4/series.md#indexby",
+      "source": "src/sdk/index.ts",
+      "legacyPage": "reference/hoi4/functions/indexBy.md",
+      "kind": "Function"
+    },
+    {
+      "module": "krieg-lang/hoi4",
       "name": "IntelligenceAgency",
       "page": "reference/domains/intelligence.md#intelligenceagency",
       "source": "src/sdk/domains.ts",
@@ -2292,6 +2396,14 @@
       "page": "reference/hoi4/localisation.md#localisationkey",
       "source": "src/sdk/index.ts",
       "legacyPage": "reference/hoi4/type-aliases/LocalisationKey.md",
+      "kind": "TypeAlias"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "MapColor",
+      "page": "reference/hoi4/country-heatmaps.md#mapcolor",
+      "source": "src/sdk/index.ts",
+      "legacyPage": "reference/hoi4/type-aliases/MapColor.md",
       "kind": "TypeAlias"
     },
     {
@@ -2397,6 +2509,22 @@
       "source": "src/sdk/domains.ts",
       "legacyPage": "reference/hoi4/interfaces/MioPolicySpec.md",
       "kind": "Interface"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "MioScopeRef",
+      "page": "reference/hoi4/mio-scope-targets.md#mioscoperef",
+      "source": "src/sdk/index.ts",
+      "legacyPage": "reference/hoi4/interfaces/MioScopeRef.md",
+      "kind": "Interface"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "mioTarget",
+      "page": "reference/hoi4/mio-scope-targets.md#miotarget",
+      "source": "src/sdk/index.ts",
+      "legacyPage": "reference/hoi4/functions/mioTarget.md",
+      "kind": "Function"
     },
     {
       "module": "krieg-lang/hoi4",
@@ -3008,6 +3136,14 @@
     },
     {
       "module": "krieg-lang/hoi4",
+      "name": "RuntimeScopePath",
+      "page": "reference/hoi4/runtime-state.md#runtimescopepath",
+      "source": "src/sdk/index.ts",
+      "legacyPage": "reference/hoi4/type-aliases/RuntimeScopePath.md",
+      "kind": "TypeAlias"
+    },
+    {
+      "module": "krieg-lang/hoi4",
       "name": "ScientistTrait",
       "page": "reference/domains/characters.md#scientisttrait",
       "source": "src/sdk/domains.ts",
@@ -3493,6 +3629,22 @@
       "source": "src/sdk/index.ts",
       "legacyPage": "reference/hoi4/functions/StateScriptedTrigger.md",
       "kind": "Function"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "stateTarget",
+      "page": "reference/hoi4/runtime-state.md#statetarget",
+      "source": "src/sdk/index.ts",
+      "legacyPage": "reference/hoi4/functions/stateTarget.md",
+      "kind": "Function"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "StateTargetRef",
+      "page": "reference/hoi4/runtime-state.md#statetargetref",
+      "source": "src/sdk/index.ts",
+      "legacyPage": "reference/hoi4/interfaces/StateTargetRef.md",
+      "kind": "Interface"
     },
     {
       "module": "krieg-lang/hoi4",
@@ -4424,6 +4576,22 @@
     },
     {
       "module": "krieg-lang/ui",
+      "name": "AnimatedSprite",
+      "page": "reference/ui/sprites.md#animatedsprite",
+      "source": "src/ui/index.ts",
+      "legacyPage": "reference/ui/functions/AnimatedSprite.md",
+      "kind": "Function"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "AnimatedSpriteSpec",
+      "page": "reference/ui/sprites.md#animatedspritespec",
+      "source": "src/ui/index.ts",
+      "legacyPage": "reference/ui/interfaces/AnimatedSpriteSpec.md",
+      "kind": "Interface"
+    },
+    {
+      "module": "krieg-lang/ui",
       "name": "Browser",
       "page": "reference/ui/native-controls/browser.md#browser",
       "source": "src/ui/native.ts",
@@ -4612,6 +4780,30 @@
       "page": "reference/ui/windows.md#guiiconbindings",
       "source": "src/ui/index.ts",
       "legacyPage": "reference/ui/interfaces/GuiIconBindings.md",
+      "kind": "Interface"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "GuiListBinding",
+      "page": "reference/ui/windows.md#guilistbinding",
+      "source": "src/ui/index.ts",
+      "legacyPage": "reference/ui/interfaces/GuiListBinding.md",
+      "kind": "Interface"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "GuiListBindings",
+      "page": "reference/ui/windows.md#guilistbindings",
+      "source": "src/ui/index.ts",
+      "legacyPage": "reference/ui/interfaces/GuiListBindings.md",
+      "kind": "Interface"
+    },
+    {
+      "module": "krieg-lang/ui",
+      "name": "GuiMouseEvents",
+      "page": "reference/ui/windows.md#guimouseevents",
+      "source": "src/ui/index.ts",
+      "legacyPage": "reference/ui/interfaces/GuiMouseEvents.md",
       "kind": "Interface"
     },
     {
@@ -12217,7 +12409,8 @@
         "DecisionCategorySpec",
         "Decision",
         "DecisionSpec",
-        "DecisionBaseSpec"
+        "DecisionBaseSpec",
+        "DecisionMissionSpec"
       ]
     },
     {
@@ -12544,6 +12737,18 @@
       ]
     },
     {
+      "page": "reference/hoi4/series.md",
+      "title": "从有限表生成连续编号内容",
+      "symbols": [
+        "DefinitionSeries",
+        "FlagAchievements",
+        "FlagAchievementSpec",
+        "AchievementStorageBank",
+        "indexBy",
+        "gameScripts"
+      ]
+    },
+    {
       "page": "reference/hoi4/scopes-specialized.md",
       "title": "战斗、行动与特殊作用域",
       "symbols": [
@@ -12556,6 +12761,11 @@
         "RaidScope",
         "UnitScope"
       ]
+    },
+    {
+      "page": "reference/hoi4/audio-banks.md",
+      "title": "可交互音效库",
+      "symbols": ["AudioBank", "AudioBankSpec", "AudioBankDefinition"]
     },
     {
       "page": "reference/domains/audio.md",
@@ -12589,6 +12799,11 @@
       "page": "reference/hoi4/country-scope.md",
       "title": "国家作用域：条件与效果",
       "symbols": ["CountryScope", "CountryEffects", "CountryTriggers"]
+    },
+    {
+      "page": "reference/hoi4/country-heatmaps.md",
+      "title": "按国家数值绘制地图",
+      "symbols": ["CountryHeatmap", "CountryHeatmapSpec", "MapColor"]
     },
     {
       "page": "reference/hoi4/countries.md",
@@ -12724,6 +12939,11 @@
       "symbols": ["MetaEffect", "MetaEffectSpec", "MetaParameterNames", "MetaParameterValue"]
     },
     {
+      "page": "reference/hoi4/mio-scope-targets.md",
+      "title": "军工组织作用域引用",
+      "symbols": ["MioScopeRef", "mioTarget"]
+    },
+    {
       "page": "reference/domains/decisions.md",
       "title": "原生决议",
       "symbols": [
@@ -12789,6 +13009,11 @@
       "symbols": ["StateScope", "StateEffects", "StateTriggers"]
     },
     {
+      "page": "reference/hoi4/runtime-state.md",
+      "title": "持久变量、动态作用域与运行时集合",
+      "symbols": ["RuntimeScopePath", "StateTargetRef", "countryTarget", "stateTarget"]
+    },
+    {
       "page": "reference/ui/styles.md",
       "title": "样式类与 Stack 布局",
       "symbols": ["GuiClass", "GuiStyleProps", "Stack", "StackProps", "IconBaseProps"]
@@ -12803,6 +13028,11 @@
         "Element",
         "IntrinsicElements"
       ]
+    },
+    {
+      "page": "reference/ui/sprites.md",
+      "title": "Sprite 与纹理资源",
+      "symbols": ["Sprite", "SpriteSpec", "SpriteFile", "AnimatedSprite", "AnimatedSpriteSpec"]
     },
     {
       "page": "reference/ui/buttons-text.md",
@@ -12837,18 +13067,16 @@
         "GuiBindings",
         "GuiElementBindings",
         "GuiButtonBindings",
+        "GuiMouseEvents",
         "GuiIconBindings",
+        "GuiListBinding",
+        "GuiListBindings",
         "GuiPositionBindings",
         "GuiFrameBindings",
         "GuiTextureBindings",
         "GuiVariable",
         "GuiVariable"
       ]
-    },
-    {
-      "page": "reference/ui/sprites.md",
-      "title": "Sprite 与纹理资源",
-      "symbols": ["Sprite", "SpriteSpec", "SpriteFile"]
     },
     {
       "page": "reference/domains/units/fields-a-f.md",

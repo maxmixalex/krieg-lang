@@ -421,4 +421,4 @@ Generate precise per-area values for stock TypeScript completion, hover and chec
 
 ## 完整示例与工作流
 
-[阅读地图索引、已检查引用与 ProvinceAtlas指南](../../../map-atlas.md)
+[阅读地图索引、已检查引用与 ProvinceAtlas指南](../../../guide/map-atlas.md)

@@ -396,7 +396,7 @@ Prints all variables in scope and temp variables to a file.
 作用域：`any`
 
 ```ts
-"print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
+"print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
 ```
 
 CWT 来源：
@@ -482,8 +482,8 @@ Removes an element from a temporary array using value or index.
 作用域：`any`
 
 ```ts
-"remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef } | CwtNode): boolean;
-"remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): boolean;
+"remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef } | CwtNode): boolean;
+"remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): boolean;
 "remove_from_temp_array"(value: CwtNode): boolean;
 ```
 
@@ -556,7 +556,7 @@ Resizes a temp array.
 作用域：`any`
 
 ```ts
-"resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): boolean;
+"resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): boolean;
 "resize_temp_array"(value: CwtNode): boolean;
 ```
 

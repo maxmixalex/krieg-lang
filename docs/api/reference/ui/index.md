@@ -7,6 +7,8 @@
 
 | 公开符号 | 任务参考 |
 | --- | --- |
+| `AnimatedSprite` | [AnimatedSprite](sprites.md#animatedsprite) |
+| `AnimatedSpriteSpec` | [AnimatedSpriteSpec](sprites.md#animatedspritespec) |
 | `Browser` | [Browser](native-controls/browser.md#browser) |
 | `Button` | [Button](buttons-text.md#button) |
 | `ButtonProps` | [ButtonProps](buttons-text.md#buttonprops) |
@@ -31,6 +33,9 @@
 | `GuiFile` | [GuiFile](layout.md#guifile) |
 | `GuiFrameBindings` | [GuiFrameBindings](windows.md#guiframebindings) |
 | `GuiIconBindings` | [GuiIconBindings](windows.md#guiiconbindings) |
+| `GuiListBinding` | [GuiListBinding](windows.md#guilistbinding) |
+| `GuiListBindings` | [GuiListBindings](windows.md#guilistbindings) |
+| `GuiMouseEvents` | [GuiMouseEvents](windows.md#guimouseevents) |
 | `GuiOrientation` | [GuiOrientation](layout.md#guiorientation) |
 | `GuiOrigin` | [GuiOrigin](layout.md#guiorigin) |
 | `GuiPosition` | [GuiPosition](layout.md#guiposition) |

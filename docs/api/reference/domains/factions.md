@@ -510,4 +510,4 @@ Native common/wargoals; schema: common/wargoals.cwt:9.
 
 ## 完整示例与工作流
 
-[阅读阵营与外交指南](../../../content-domains.md)
+[阅读阵营与外交指南](../../../guide/domains/index.md)

@@ -123,4 +123,4 @@ Defined in: [src/pdx/lexer.ts:2](https://github.com/maxmixalex/krieg-lang/blob/m
 
 ## 完整示例与工作流
 
-[阅读词法、解析与原生诊断指南](../../../native-import.md)
+[阅读词法、解析与原生诊断指南](../../../guide/native-import.md)

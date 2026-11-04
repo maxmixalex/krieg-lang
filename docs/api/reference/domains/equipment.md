@@ -611,4 +611,4 @@ Native common/special_projects/prototype_rewards; schema: common/special_project
 
 ## 完整示例与工作流
 
-[阅读装备与模块指南](../../../content-domains.md)
+[阅读装备与模块指南](../../../guide/domains/index.md)

@@ -1,6 +1,6 @@
 {
   "name": "krieg-lang",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "A statically compiled TypeScript subset and project toolchain for Hearts of Iron IV mods",
   "type": "module",
   "license": "UNLICENSED",
@@ -80,9 +80,11 @@
     "audit:gui": "node scripts/audit-native-gui.mjs",
     "audit:domains": "node scripts/audit-native-domains.mjs",
     "docs:build": "node scripts/build-docs.mjs",
-    "docs:check": "npm run build && npm run docs:api:check && npm run docs:examples && npm run docs:coverage && npm run docs:build",
+    "docs:check": "npm run build && npm run docs:api:check && npm run docs:examples && npm run docs:tutorials && npm run docs:coverage && npm run docs:build",
     "docs:links": "node scripts/check-docs.mjs",
-    "docs:examples": "node scripts/check-api-examples.mjs"
+    "docs:examples": "node scripts/check-api-examples.mjs",
+    "docs:tutorials": "node scripts/check-tutorials.mjs",
+    "test:rewrite-sources": "node scripts/check-rewrite-sources.mjs"
   },
   "dependencies": {
     "fflate": "0.8.2",

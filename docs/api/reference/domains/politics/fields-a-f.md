@@ -178,4 +178,4 @@ Defined in: [src/sdk/domains.ts:7344](https://github.com/maxmixalex/krieg-lang/b
 
 ## 完整示例与工作流
 
-[阅读政治、理念与国家规则：复杂字段 A-F指南](../../../../content-domains.md)
+[阅读政治、理念与国家规则：复杂字段 A-F指南](../../../../guide/domains/index.md)

@@ -352,4 +352,4 @@ Defined in: [src/sdk/domains.ts:3202](https://github.com/maxmixalex/krieg-lang/b
 
 ## 完整示例与工作流
 
-[阅读装备与模块：复杂字段 G-M指南](../../../../content-domains.md)
+[阅读装备与模块：复杂字段 G-M指南](../../../../guide/domains/index.md)

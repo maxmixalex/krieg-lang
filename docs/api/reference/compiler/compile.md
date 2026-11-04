@@ -328,4 +328,4 @@ These indices refer to the final merged document; do not reuse them after editin
 
 ## 完整示例与工作流
 
-[阅读编译源码、读取诊断与序列化输出指南](../../../language.md)
+[阅读编译源码、读取诊断与序列化输出指南](../../../guide/language.md)

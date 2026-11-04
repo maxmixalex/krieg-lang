@@ -35,8 +35,9 @@ function property(block, key) {
 }
 
 test("the Chinese guide compiles and its checked-in static preview matches actual native output", () => {
-  const guide = readFileSync("docs/typed-gameplay.md", "utf8");
-  const source = guide.match(/```typescript\n([\s\S]*?)\n```/)[1];
+  const guide = readFileSync("docs/guide/focuses.md", "utf8");
+  assert.ok(guide.includes("../assets/focus-authoring.krg.ts"));
+  const source = readFileSync("docs/assets/focus-authoring.krg.ts", "utf8");
   const result = compileSource(source);
   assert.equal(result.success, true, JSON.stringify(result.diagnostics));
   const output = result.outputs.find((file) => file.path.startsWith("common/national_focus/"));

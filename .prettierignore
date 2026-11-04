@@ -24,3 +24,7 @@ tests/fixtures/**/localisation/**/*.yml
 # Immutable published URL baseline and generated compact redirect maps.
 scripts/api-legacy-0.3.json
 docs/api/redirects.json
+
+scripts/docs-legacy-0.4.json
+examples/rewrites/*/original-assets/
+examples/rewrites/*/.hydrated-input.json

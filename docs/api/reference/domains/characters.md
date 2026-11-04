@@ -746,4 +746,4 @@ Native common/unit_medals; schema: common/unit_medals.cwt:10.
 
 ## 完整示例与工作流
 
-[阅读人物、领袖与特质指南](../../../content-domains.md)
+[阅读人物、领袖与特质指南](../../../guide/domains/index.md)

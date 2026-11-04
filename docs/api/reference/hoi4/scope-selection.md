@@ -23,7 +23,7 @@
 
 ## ScopeBase&lt;S *extends* [`ScopeName`](#scopename) = [`ScopeName`](#scopename)&gt; { #scopebase }
 
-Defined in: [src/sdk/index.ts:133](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L133)
+Defined in: [src/sdk/index.ts:259](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L259)
 
 ### Extended by { #scopebase-section-extended-by }
 
@@ -42,21 +42,63 @@ Defined in: [src/sdk/index.ts:133](https://github.com/maxmixalex/krieg-lang/blob
 
 ### Methods { #scopebase-section-methods }
 
+<a id="scopebase-addtempvariable"></a>
+
+#### addTempVariable() { #scopebase-section-addtempvariable }
+
+> **addTempVariable**(`name`: `string`, `value`: `number`): `void`
+
+Defined in: [src/sdk/index.ts:323](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L323)
+
+##### Parameters { #scopebase-section-parameters }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` |
+
+##### Returns { #scopebase-section-returns }
+
+`void`
+
+***
+
+<a id="scopebase-addvariable"></a>
+
+#### addVariable() { #scopebase-section-addvariable }
+
+> **addVariable**(`name`: `string`, `value`: `number`): `void`
+
+Defined in: [src/sdk/index.ts:314](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L314)
+
+##### Parameters { #scopebase-section-parameters-1 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` |
+
+##### Returns { #scopebase-section-returns-1 }
+
+`void`
+
+***
+
 <a id="scopebase-allcountries"></a>
 
 #### allCountries() { #scopebase-section-allcountries }
 
 > **allCountries**(`trigger`: [`Trigger`](#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;): `boolean`
 
-Defined in: [src/sdk/index.ts:145](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L145)
+Defined in: [src/sdk/index.ts:366](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L366)
 
-##### Parameters { #scopebase-section-parameters }
+##### Parameters { #scopebase-section-parameters-2 }
 
 | Parameter | Type |
 | ------ | ------ |
 | `trigger` | [`Trigger`](#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; |
 
-##### Returns { #scopebase-section-returns }
+##### Returns { #scopebase-section-returns-2 }
 
 `boolean`
 
@@ -68,17 +110,272 @@ Defined in: [src/sdk/index.ts:145](https://github.com/maxmixalex/krieg-lang/blob
 
 > **anyCountry**(`trigger`: [`Trigger`](#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;): `boolean`
 
-Defined in: [src/sdk/index.ts:144](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L144)
+Defined in: [src/sdk/index.ts:365](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L365)
 
-##### Parameters { #scopebase-section-parameters-1 }
+##### Parameters { #scopebase-section-parameters-3 }
 
 | Parameter | Type |
 | ------ | ------ |
 | `trigger` | [`Trigger`](#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; |
 
-##### Returns { #scopebase-section-returns-1 }
+##### Returns { #scopebase-section-returns-3 }
 
 `boolean`
+
+***
+
+<a id="scopebase-arrayat"></a>
+
+#### arrayAt() { #scopebase-section-arrayat }
+
+> **arrayAt**(`name`: `string`, `index`: `number`): `number`
+
+Defined in: [src/sdk/index.ts:333](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L333)
+
+##### Parameters { #scopebase-section-parameters-4 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `index` | `number` |
+
+##### Returns { #scopebase-section-returns-4 }
+
+`number`
+
+***
+
+<a id="scopebase-arraycontains"></a>
+
+#### arrayContains() { #scopebase-section-arraycontains }
+
+> **arrayContains**(`name`: `string`, `value`: `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref)): `boolean`
+
+Defined in: [src/sdk/index.ts:330](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L330)
+
+##### Parameters { #scopebase-section-parameters-5 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref) |
+
+##### Returns { #scopebase-section-returns-5 }
+
+`boolean`
+
+***
+
+<a id="scopebase-arrayinsert"></a>
+
+#### arrayInsert() { #scopebase-section-arrayinsert }
+
+> **arrayInsert**(`name`: `string`, `index`: `number`, `value`: `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref)): `void`
+
+Defined in: [src/sdk/index.ts:339](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L339)
+
+##### Parameters { #scopebase-section-parameters-6 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `index` | `number` |
+| `value` | `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref) |
+
+##### Returns { #scopebase-section-returns-6 }
+
+`void`
+
+***
+
+<a id="scopebase-arraylength"></a>
+
+#### arrayLength() { #scopebase-section-arraylength }
+
+> **arrayLength**(`name`: `string`): `number`
+
+Defined in: [src/sdk/index.ts:332](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L332)
+
+##### Parameters { #scopebase-section-parameters-7 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+
+##### Returns { #scopebase-section-returns-7 }
+
+`number`
+
+***
+
+<a id="scopebase-arraypush"></a>
+
+#### arrayPush() { #scopebase-section-arraypush }
+
+> **arrayPush**(`name`: `string`, `value`: `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref)): `void`
+
+Defined in: [src/sdk/index.ts:331](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L331)
+
+##### Parameters { #scopebase-section-parameters-8 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref) |
+
+##### Returns { #scopebase-section-returns-8 }
+
+`void`
+
+***
+
+<a id="scopebase-arrayremoveat"></a>
+
+#### arrayRemoveAt() { #scopebase-section-arrayremoveat }
+
+> **arrayRemoveAt**(`name`: `string`, `index`: `number`): `void`
+
+Defined in: [src/sdk/index.ts:344](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L344)
+
+##### Parameters { #scopebase-section-parameters-9 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `index` | `number` |
+
+##### Returns { #scopebase-section-returns-9 }
+
+`void`
+
+***
+
+<a id="scopebase-arrayremovevalue"></a>
+
+#### arrayRemoveValue() { #scopebase-section-arrayremovevalue }
+
+> **arrayRemoveValue**(`name`: `string`, `value`: `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref)): `void`
+
+Defined in: [src/sdk/index.ts:345](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L345)
+
+##### Parameters { #scopebase-section-parameters-10 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref) |
+
+##### Returns { #scopebase-section-returns-10 }
+
+`void`
+
+***
+
+<a id="scopebase-arrayset"></a>
+
+#### arraySet() { #scopebase-section-arrayset }
+
+> **arraySet**(`name`: `string`, `index`: `number`, `value`: `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref)): `void`
+
+Defined in: [src/sdk/index.ts:334](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L334)
+
+##### Parameters { #scopebase-section-parameters-11 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `index` | `number` |
+| `value` | `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref) |
+
+##### Returns { #scopebase-section-returns-11 }
+
+`void`
+
+***
+
+<a id="scopebase-clamptempvariable"></a>
+
+#### clampTempVariable() { #scopebase-section-clamptempvariable }
+
+> **clampTempVariable**(`name`: `string`, `bounds`: `object`): `void`
+
+Defined in: [src/sdk/index.ts:329](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L329)
+
+##### Parameters { #scopebase-section-parameters-12 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `bounds` | \{ `max?`: `number`; `min?`: `number`; \} |
+| `bounds.max?` | `number` |
+| `bounds.min?` | `number` |
+
+##### Returns { #scopebase-section-returns-12 }
+
+`void`
+
+***
+
+<a id="scopebase-clampvariable"></a>
+
+#### clampVariable() { #scopebase-section-clampvariable }
+
+> **clampVariable**(`name`: `string`, `bounds`: `object`): `void`
+
+Defined in: [src/sdk/index.ts:328](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L328)
+
+##### Parameters { #scopebase-section-parameters-13 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `bounds` | \{ `max?`: `number`; `min?`: `number`; \} |
+| `bounds.max?` | `number` |
+| `bounds.min?` | `number` |
+
+##### Returns { #scopebase-section-returns-13 }
+
+`void`
+
+***
+
+<a id="scopebase-cleararray"></a>
+
+#### clearArray() { #scopebase-section-cleararray }
+
+> **clearArray**(`name`: `string`): `void`
+
+Defined in: [src/sdk/index.ts:352](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L352)
+
+##### Parameters { #scopebase-section-parameters-14 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+
+##### Returns { #scopebase-section-returns-14 }
+
+`void`
+
+***
+
+<a id="scopebase-clearvariable"></a>
+
+#### clearVariable() { #scopebase-section-clearvariable }
+
+> **clearVariable**(`name`: `string`): `void`
+
+Defined in: [src/sdk/index.ts:327](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L327)
+
+##### Parameters { #scopebase-section-parameters-15 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+
+##### Returns { #scopebase-section-returns-15 }
+
+`void`
 
 ***
 
@@ -88,16 +385,180 @@ Defined in: [src/sdk/index.ts:144](https://github.com/maxmixalex/krieg-lang/blob
 
 > **country**(`target`: [`CountryRef`](countries.md#countryref), `effect`: [`Effect`](#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;): `void`
 
-Defined in: [src/sdk/index.ts:138](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L138)
+Defined in: [src/sdk/index.ts:290](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L290)
 
-##### Parameters { #scopebase-section-parameters-2 }
+##### Parameters { #scopebase-section-parameters-16 }
 
 | Parameter | Type |
 | ------ | ------ |
 | `target` | [`CountryRef`](countries.md#countryref) |
 | `effect` | [`Effect`](#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; |
 
-##### Returns { #scopebase-section-returns-2 }
+##### Returns { #scopebase-section-returns-16 }
+
+`void`
+
+***
+
+<a id="scopebase-countrymatches"></a>
+
+#### countryMatches() { #scopebase-section-countrymatches }
+
+> **countryMatches**(`target`: [`CountryRef`](countries.md#countryref), `trigger`: [`Trigger`](#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;): `boolean`
+
+Defined in: [src/sdk/index.ts:292](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L292)
+
+##### Parameters { #scopebase-section-parameters-17 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `target` | [`CountryRef`](countries.md#countryref) |
+| `trigger` | [`Trigger`](#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; |
+
+##### Returns { #scopebase-section-returns-17 }
+
+`boolean`
+
+***
+
+<a id="scopebase-dateafter"></a>
+
+#### dateAfter() { #scopebase-section-dateafter }
+
+> **dateAfter**(`date`: `string`): `boolean`
+
+Defined in: [src/sdk/index.ts:306](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L306)
+
+##### Parameters { #scopebase-section-parameters-18 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `date` | `string` |
+
+##### Returns { #scopebase-section-returns-18 }
+
+`boolean`
+
+***
+
+<a id="scopebase-datebefore"></a>
+
+#### dateBefore() { #scopebase-section-datebefore }
+
+> **dateBefore**(`date`: `string`): `boolean`
+
+Defined in: [src/sdk/index.ts:305](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L305)
+
+Compare the in-game calendar, including non-1936 starts. Dates are static YYYY.M.D or YYYY.M.D.H.
+
+##### Parameters { #scopebase-section-parameters-19 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `date` | `string` |
+
+##### Returns { #scopebase-section-returns-19 }
+
+`boolean`
+
+***
+
+<a id="scopebase-dateonorafter"></a>
+
+#### dateOnOrAfter() { #scopebase-section-dateonorafter }
+
+> **dateOnOrAfter**(`date`: `string`): `boolean`
+
+Defined in: [src/sdk/index.ts:308](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L308)
+
+True on the given date and after it; the complement of dateBefore.
+
+##### Parameters { #scopebase-section-parameters-20 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `date` | `string` |
+
+##### Returns { #scopebase-section-returns-20 }
+
+`boolean`
+
+***
+
+<a id="scopebase-dispatchbyindex"></a>
+
+#### dispatchByIndex() { #scopebase-section-dispatchbyindex }
+
+> **dispatchByIndex**&lt;`Row`&gt;(`variable`: `string`, `rows`: readonly `Row`[], `apply`: (`scope`: [`ScopeByName`](#scopebyname)\[`S`\], `row`: `Row`, `index`: `number`) => `void`, `options?`: `object`): `void`
+
+Defined in: [src/sdk/index.ts:267](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L267)
+
+Look up a game-time numeric index in an author-time catalogue. The callback
+receives this scope, the precisely inferred row, and its public ordinal.
+A balanced tree tests one branch per level, even for hundreds of rows.
+Numeric values select half-open buckets; unexpected indices do nothing
+unless `outOfRange: "clamp"` is requested for compatibility.
+
+##### Type Parameters { #scopebase-section-type-parameters-1 }
+
+| Type Parameter |
+| ------ |
+| <a id="scopebase-type-parameter-row"></a> `Row` |
+
+##### Parameters { #scopebase-section-parameters-21 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `variable` | `string` |
+| `rows` | readonly `Row`[] |
+| `apply` | (`scope`: [`ScopeByName`](#scopebyname)\[`S`\], `row`: `Row`, `index`: `number`) => `void` |
+| `options?` | \{ `first?`: `number`; `outOfRange?`: `"ignore"` \| `"clamp"`; \} |
+| `options.first?` | `number` |
+| `options.outOfRange?` | `"ignore"` \| `"clamp"` |
+
+##### Returns { #scopebase-section-returns-21 }
+
+`void`
+
+***
+
+<a id="scopebase-dividetempvariable"></a>
+
+#### divideTempVariable() { #scopebase-section-dividetempvariable }
+
+> **divideTempVariable**(`name`: `string`, `value`: `number`): `void`
+
+Defined in: [src/sdk/index.ts:326](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L326)
+
+##### Parameters { #scopebase-section-parameters-22 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` |
+
+##### Returns { #scopebase-section-returns-22 }
+
+`void`
+
+***
+
+<a id="scopebase-dividevariable"></a>
+
+#### divideVariable() { #scopebase-section-dividevariable }
+
+> **divideVariable**(`name`: `string`, `value`: `number`): `void`
+
+Defined in: [src/sdk/index.ts:317](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L317)
+
+##### Parameters { #scopebase-section-parameters-23 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` |
+
+##### Returns { #scopebase-section-returns-23 }
 
 `void`
 
@@ -111,15 +572,15 @@ Defined in: [src/sdk/index.ts:138](https://github.com/maxmixalex/krieg-lang/blob
 
 > **everyCountry**(`effect`: [`Effect`](#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;): `void`
 
-Defined in: [src/sdk/index.ts:140](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L140)
+Defined in: [src/sdk/index.ts:361](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L361)
 
-###### Parameters { #scopebase-section-parameters-3 }
+###### Parameters { #scopebase-section-parameters-24 }
 
 | Parameter | Type |
 | ------ | ------ |
 | `effect` | [`Effect`](#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; |
 
-###### Returns { #scopebase-section-returns-3 }
+###### Returns { #scopebase-section-returns-24 }
 
 `void`
 
@@ -127,16 +588,262 @@ Defined in: [src/sdk/index.ts:140](https://github.com/maxmixalex/krieg-lang/blob
 
 > **everyCountry**(`limit`: [`Trigger`](#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;, `effect`: [`Effect`](#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;): `void`
 
-Defined in: [src/sdk/index.ts:141](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L141)
+Defined in: [src/sdk/index.ts:362](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L362)
 
-###### Parameters { #scopebase-section-parameters-4 }
+###### Parameters { #scopebase-section-parameters-25 }
 
 | Parameter | Type |
 | ------ | ------ |
 | `limit` | [`Trigger`](#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; |
 | `effect` | [`Effect`](#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; |
 
-###### Returns { #scopebase-section-returns-4 }
+###### Returns { #scopebase-section-returns-25 }
+
+`void`
+
+***
+
+<a id="scopebase-everyglobalstate"></a>
+
+#### everyGlobalState() { #scopebase-section-everyglobalstate }
+
+##### Call Signature { #scopebase-section-call-signature-2 }
+
+> **everyGlobalState**(`effect`: [`Effect`](#effect)&lt;[`StateScope`](state-scope.md#statescope)&gt;): `void`
+
+Defined in: [src/sdk/index.ts:300](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L300)
+
+All world states, unlike CountryScope.everyState, which selects owned states.
+
+###### Parameters { #scopebase-section-parameters-26 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `effect` | [`Effect`](#effect)&lt;[`StateScope`](state-scope.md#statescope)&gt; |
+
+###### Returns { #scopebase-section-returns-26 }
+
+`void`
+
+##### Call Signature { #scopebase-section-call-signature-3 }
+
+> **everyGlobalState**(`limit`: [`Trigger`](#trigger)&lt;[`StateScope`](state-scope.md#statescope)&gt;, `effect`: [`Effect`](#effect)&lt;[`StateScope`](state-scope.md#statescope)&gt;): `void`
+
+Defined in: [src/sdk/index.ts:301](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L301)
+
+###### Parameters { #scopebase-section-parameters-27 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `limit` | [`Trigger`](#trigger)&lt;[`StateScope`](state-scope.md#statescope)&gt; |
+| `effect` | [`Effect`](#effect)&lt;[`StateScope`](state-scope.md#statescope)&gt; |
+
+###### Returns { #scopebase-section-returns-27 }
+
+`void`
+
+***
+
+<a id="scopebase-foreachcountryinarray"></a>
+
+#### forEachCountryInArray() { #scopebase-section-foreachcountryinarray }
+
+> **forEachCountryInArray**(`name`: `string`, `effect`: [`Effect`](#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;): `void`
+
+Defined in: [src/sdk/index.ts:353](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L353)
+
+##### Parameters { #scopebase-section-parameters-28 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `effect` | [`Effect`](#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; |
+
+##### Returns { #scopebase-section-returns-28 }
+
+`void`
+
+***
+
+<a id="scopebase-foreachvalue"></a>
+
+#### forEachValue() { #scopebase-section-foreachvalue }
+
+> **forEachValue**(`name`: `string`, `bindings`: `object`, `effect`: [`Effect`](#effect)&lt;[`ScopeByName`](#scopebyname)\[`S`\]&gt;): `void`
+
+Defined in: [src/sdk/index.ts:347](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L347)
+
+Native value loop; named temporary bindings are read with variable(). No scope change.
+
+##### Parameters { #scopebase-section-parameters-29 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `bindings` | \{ `break?`: `string`; `index?`: `string`; `value?`: `string`; \} |
+| `bindings.break?` | `string` |
+| `bindings.index?` | `string` |
+| `bindings.value?` | `string` |
+| `effect` | [`Effect`](#effect)&lt;[`ScopeByName`](#scopebyname)\[`S`\]&gt; |
+
+##### Returns { #scopebase-section-returns-29 }
+
+`void`
+
+***
+
+<a id="scopebase-forrange"></a>
+
+#### forRange() { #scopebase-section-forrange }
+
+> **forRange**(`range`: `object`, `effect`: [`Effect`](#effect)&lt;[`ScopeByName`](#scopebyname)\[`S`\]&gt;): `void`
+
+Defined in: [src/sdk/index.ts:355](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L355)
+
+Engine loop with an exclusive upper bound; it does not change the active scope.
+
+##### Parameters { #scopebase-section-parameters-30 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `range` | \{ `end`: `number`; `index?`: `string`; `start`: `number`; `step?`: `number`; \} |
+| `range.end` | `number` |
+| `range.index?` | `string` |
+| `range.start` | `number` |
+| `range.step?` | `number` |
+| `effect` | [`Effect`](#effect)&lt;[`ScopeByName`](#scopebyname)\[`S`\]&gt; |
+
+##### Returns { #scopebase-section-returns-30 }
+
+`void`
+
+***
+
+<a id="scopebase-hiddeneffect"></a>
+
+#### hiddenEffect() { #scopebase-section-hiddeneffect }
+
+> **hiddenEffect**(`effects`: [`Effect`](#effect)&lt;[`ScopeByName`](#scopebyname)\[`S`\]&gt;): `void`
+
+Defined in: [src/sdk/index.ts:275](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L275)
+
+Execute effects on this same scope without exposing their automatic tooltip.
+
+##### Parameters { #scopebase-section-parameters-31 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `effects` | [`Effect`](#effect)&lt;[`ScopeByName`](#scopebyname)\[`S`\]&gt; |
+
+##### Returns { #scopebase-section-returns-31 }
+
+`void`
+
+***
+
+<a id="scopebase-militaryorganization"></a>
+
+#### militaryOrganization() { #scopebase-section-militaryorganization }
+
+> **militaryOrganization**(`target`: [`MioScopeRef`](mio-scope-targets.md#mioscoperef), `effect`: [`Effect`](#effect)&lt;[`MilitaryIndustrialOrganizationScope`](scopes-specialized.md#militaryindustrialorganizationscope)&gt;): `void`
+
+Defined in: [src/sdk/index.ts:295](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L295)
+
+Enter an engine organization scope saved by a MIO iteration or target.
+
+##### Parameters { #scopebase-section-parameters-32 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `target` | [`MioScopeRef`](mio-scope-targets.md#mioscoperef) |
+| `effect` | [`Effect`](#effect)&lt;[`MilitaryIndustrialOrganizationScope`](scopes-specialized.md#militaryindustrialorganizationscope)&gt; |
+
+##### Returns { #scopebase-section-returns-32 }
+
+`void`
+
+***
+
+<a id="scopebase-modulovariable"></a>
+
+#### moduloVariable() { #scopebase-section-modulovariable }
+
+> **moduloVariable**(`name`: `string`, `value`: `number`): `void`
+
+Defined in: [src/sdk/index.ts:318](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L318)
+
+##### Parameters { #scopebase-section-parameters-33 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` |
+
+##### Returns { #scopebase-section-returns-33 }
+
+`void`
+
+***
+
+<a id="scopebase-multiplytempvariable"></a>
+
+#### multiplyTempVariable() { #scopebase-section-multiplytempvariable }
+
+> **multiplyTempVariable**(`name`: `string`, `value`: `number`): `void`
+
+Defined in: [src/sdk/index.ts:325](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L325)
+
+##### Parameters { #scopebase-section-parameters-34 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` |
+
+##### Returns { #scopebase-section-returns-34 }
+
+`void`
+
+***
+
+<a id="scopebase-multiplyvariable"></a>
+
+#### multiplyVariable() { #scopebase-section-multiplyvariable }
+
+> **multiplyVariable**(`name`: `string`, `value`: `number`): `void`
+
+Defined in: [src/sdk/index.ts:316](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L316)
+
+##### Parameters { #scopebase-section-parameters-35 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` |
+
+##### Returns { #scopebase-section-returns-35 }
+
+`void`
+
+***
+
+<a id="scopebase-randomchoice"></a>
+
+#### randomChoice() { #scopebase-section-randomchoice }
+
+> **randomChoice**(`choices`: readonly `object`[]): `void`
+
+Defined in: [src/sdk/index.ts:278](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L278)
+
+Choose one weighted effect. False `when` conditions zero its native weight.
+
+##### Parameters { #scopebase-section-parameters-36 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `choices` | readonly `object`[] |
+
+##### Returns { #scopebase-section-returns-36 }
 
 `void`
 
@@ -146,36 +853,36 @@ Defined in: [src/sdk/index.ts:141](https://github.com/maxmixalex/krieg-lang/blob
 
 #### randomCountry() { #scopebase-section-randomcountry }
 
-##### Call Signature { #scopebase-section-call-signature-2 }
+##### Call Signature { #scopebase-section-call-signature-4 }
 
 > **randomCountry**(`effect`: [`Effect`](#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;): `void`
 
-Defined in: [src/sdk/index.ts:142](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L142)
+Defined in: [src/sdk/index.ts:363](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L363)
 
-###### Parameters { #scopebase-section-parameters-5 }
+###### Parameters { #scopebase-section-parameters-37 }
 
 | Parameter | Type |
 | ------ | ------ |
 | `effect` | [`Effect`](#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; |
 
-###### Returns { #scopebase-section-returns-5 }
+###### Returns { #scopebase-section-returns-37 }
 
 `void`
 
-##### Call Signature { #scopebase-section-call-signature-3 }
+##### Call Signature { #scopebase-section-call-signature-5 }
 
 > **randomCountry**(`limit`: [`Trigger`](#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;, `effect`: [`Effect`](#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;): `void`
 
-Defined in: [src/sdk/index.ts:143](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L143)
+Defined in: [src/sdk/index.ts:364](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L364)
 
-###### Parameters { #scopebase-section-parameters-6 }
+###### Parameters { #scopebase-section-parameters-38 }
 
 | Parameter | Type |
 | ------ | ------ |
 | `limit` | [`Trigger`](#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; |
 | `effect` | [`Effect`](#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; |
 
-###### Returns { #scopebase-section-returns-6 }
+###### Returns { #scopebase-section-returns-38 }
 
 `void`
 
@@ -185,19 +892,63 @@ Defined in: [src/sdk/index.ts:143](https://github.com/maxmixalex/krieg-lang/blob
 
 #### run() { #scopebase-section-run }
 
-> **run**(`effect`: [`ScriptedEffectDefinition`](scripted-effects.md#scriptedeffectdefinition)&lt;`S`&gt;): `void`
+> **run**(`effect`: [`ScriptedEffectDefinition`](scripted-effects.md#scriptedeffectdefinition)&lt;`S`&gt;, `invocationValue?`: `boolean`): `void`
 
-Defined in: [src/sdk/index.ts:135](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L135)
+Defined in: [src/sdk/index.ts:287](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L287)
 
-Emit one native `name = yes` call; the handle must match the active scope.
+Emit a native effect call; the handle must match the active scope.
+The optional yes/no invocation literal is preserved, not treated as a condition.
 
-##### Parameters { #scopebase-section-parameters-7 }
+##### Parameters { #scopebase-section-parameters-39 }
 
 | Parameter | Type |
 | ------ | ------ |
 | `effect` | [`ScriptedEffectDefinition`](scripted-effects.md#scriptedeffectdefinition)&lt;`S`&gt; |
+| `invocationValue?` | `boolean` |
 
-##### Returns { #scopebase-section-returns-7 }
+##### Returns { #scopebase-section-returns-39 }
+
+`void`
+
+***
+
+<a id="scopebase-settempvariable"></a>
+
+#### setTempVariable() { #scopebase-section-settempvariable }
+
+> **setTempVariable**(`name`: `string`, `value`: `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref) \| [`MioScopeRef`](mio-scope-targets.md#mioscoperef)): `void`
+
+Defined in: [src/sdk/index.ts:319](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L319)
+
+##### Parameters { #scopebase-section-parameters-40 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref) \| [`MioScopeRef`](mio-scope-targets.md#mioscoperef) |
+
+##### Returns { #scopebase-section-returns-40 }
+
+`void`
+
+***
+
+<a id="scopebase-setvariable"></a>
+
+#### setVariable() { #scopebase-section-setvariable }
+
+> **setVariable**(`name`: `string`, `value`: `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref) \| [`MioScopeRef`](mio-scope-targets.md#mioscoperef)): `void`
+
+Defined in: [src/sdk/index.ts:310](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L310)
+
+##### Parameters { #scopebase-section-parameters-41 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref) \| [`MioScopeRef`](mio-scope-targets.md#mioscoperef) |
+
+##### Returns { #scopebase-section-returns-41 }
 
 `void`
 
@@ -207,18 +958,81 @@ Emit one native `name = yes` call; the handle must match the active scope.
 
 #### state() { #scopebase-section-state }
 
-> **state**(`target`: [`StateRef`](states.md#stateref), `effect`: [`Effect`](#effect)&lt;[`StateScope`](state-scope.md#statescope)&gt;): `void`
+> **state**(`target`: [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref), `effect`: [`Effect`](#effect)&lt;[`StateScope`](state-scope.md#statescope)&gt;): `void`
 
-Defined in: [src/sdk/index.ts:139](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L139)
+Defined in: [src/sdk/index.ts:291](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L291)
 
-##### Parameters { #scopebase-section-parameters-8 }
+##### Parameters { #scopebase-section-parameters-42 }
 
 | Parameter | Type |
 | ------ | ------ |
-| `target` | [`StateRef`](states.md#stateref) |
+| `target` | [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref) |
 | `effect` | [`Effect`](#effect)&lt;[`StateScope`](state-scope.md#statescope)&gt; |
 
-##### Returns { #scopebase-section-returns-8 }
+##### Returns { #scopebase-section-returns-42 }
+
+`void`
+
+***
+
+<a id="scopebase-statematches"></a>
+
+#### stateMatches() { #scopebase-section-statematches }
+
+> **stateMatches**(`target`: [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref), `trigger`: [`Trigger`](#trigger)&lt;[`StateScope`](state-scope.md#statescope)&gt;): `boolean`
+
+Defined in: [src/sdk/index.ts:293](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L293)
+
+##### Parameters { #scopebase-section-parameters-43 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `target` | [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref) |
+| `trigger` | [`Trigger`](#trigger)&lt;[`StateScope`](state-scope.md#statescope)&gt; |
+
+##### Returns { #scopebase-section-returns-43 }
+
+`boolean`
+
+***
+
+<a id="scopebase-subtracttempvariable"></a>
+
+#### subtractTempVariable() { #scopebase-section-subtracttempvariable }
+
+> **subtractTempVariable**(`name`: `string`, `value`: `number`): `void`
+
+Defined in: [src/sdk/index.ts:324](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L324)
+
+##### Parameters { #scopebase-section-parameters-44 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` |
+
+##### Returns { #scopebase-section-returns-44 }
+
+`void`
+
+***
+
+<a id="scopebase-subtractvariable"></a>
+
+#### subtractVariable() { #scopebase-section-subtractvariable }
+
+> **subtractVariable**(`name`: `string`, `value`: `number`): `void`
+
+Defined in: [src/sdk/index.ts:315](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L315)
+
+##### Parameters { #scopebase-section-parameters-45 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` |
+
+##### Returns { #scopebase-section-returns-45 }
 
 `void`
 
@@ -230,24 +1044,69 @@ Defined in: [src/sdk/index.ts:139](https://github.com/maxmixalex/krieg-lang/blob
 
 > **test**(`trigger`: [`ScriptedTriggerDefinition`](scripted-triggers.md#scriptedtriggerdefinition)&lt;`S`&gt;): `boolean`
 
-Defined in: [src/sdk/index.ts:137](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L137)
+Defined in: [src/sdk/index.ts:289](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L289)
 
 Test a native trigger handle; negate with `!scope.test(handle)`.
 
-##### Parameters { #scopebase-section-parameters-9 }
+##### Parameters { #scopebase-section-parameters-46 }
 
 | Parameter | Type |
 | ------ | ------ |
 | `trigger` | [`ScriptedTriggerDefinition`](scripted-triggers.md#scriptedtriggerdefinition)&lt;`S`&gt; |
 
-##### Returns { #scopebase-section-returns-9 }
+##### Returns { #scopebase-section-returns-46 }
 
 `boolean`
+
+***
+
+<a id="scopebase-variable"></a>
+
+#### variable() { #scopebase-section-variable }
+
+> **variable**(`name`: `string`): `number`
+
+Defined in: [src/sdk/index.ts:303](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L303)
+
+Read an existing persistent, temporary, global, or engine numeric variable.
+
+##### Parameters { #scopebase-section-parameters-47 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+
+##### Returns { #scopebase-section-returns-47 }
+
+`number`
+
+***
+
+<a id="scopebase-whileloop"></a>
+
+#### whileLoop() { #scopebase-section-whileloop }
+
+> **whileLoop**(`condition`: [`Trigger`](#trigger)&lt;[`ScopeByName`](#scopebyname)\[`S`\]&gt;, `effect`: [`Effect`](#effect)&lt;[`ScopeByName`](#scopebyname)\[`S`\]&gt;): `void`
+
+Defined in: [src/sdk/index.ts:360](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L360)
+
+Engine loop, subject to HOI4's MAX_EFFECT_ITERATION limit.
+
+##### Parameters { #scopebase-section-parameters-48 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `condition` | [`Trigger`](#trigger)&lt;[`ScopeByName`](#scopebyname)\[`S`\]&gt; |
+| `effect` | [`Effect`](#effect)&lt;[`ScopeByName`](#scopebyname)\[`S`\]&gt; |
+
+##### Returns { #scopebase-section-returns-48 }
+
+`void`
 
 
 ## Scope&lt;S *extends* [`ScopeName`](#scopename)&gt; { #scope }
 
-Defined in: [src/sdk/index.ts:192](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L192)
+Defined in: [src/sdk/index.ts:445](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L445)
 
 ### Extends { #scope-section-extends }
 
@@ -263,11 +1122,61 @@ Defined in: [src/sdk/index.ts:192](https://github.com/maxmixalex/krieg-lang/blob
 
 | Property | Modifier | Type | Defined in |
 | ------ | ------ | ------ | ------ |
-| <a id="scope-property-effects"></a> `effects` | `readonly` | [`GeneratedEffectsByScope`](../../commands/index.md)\[`S`\] | [src/sdk/index.ts:194](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L194) |
-| <a id="scope-property-scope"></a> `scope` | `readonly` | `S` | [src/sdk/index.ts:193](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L193) |
-| <a id="scope-property-triggers"></a> `triggers` | `readonly` | [`GeneratedTriggersByScope`](../../commands/index.md)\[`S`\] | [src/sdk/index.ts:195](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L195) |
+| <a id="scope-property-effects"></a> `effects` | `readonly` | [`GeneratedEffectsByScope`](../../commands/index.md)\[`S`\] | [src/sdk/index.ts:447](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L447) |
+| <a id="scope-property-scope"></a> `scope` | `readonly` | `S` | [src/sdk/index.ts:446](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L446) |
+| <a id="scope-property-triggers"></a> `triggers` | `readonly` | [`GeneratedTriggersByScope`](../../commands/index.md)\[`S`\] | [src/sdk/index.ts:448](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L448) |
 
 ### Methods { #scope-section-methods }
+
+<a id="scope-addtempvariable"></a>
+
+#### addTempVariable() { #scope-section-addtempvariable }
+
+> **addTempVariable**(`name`: `string`, `value`: `number`): `void`
+
+Defined in: [src/sdk/index.ts:323](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L323)
+
+##### Parameters { #scope-section-parameters }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` |
+
+##### Returns { #scope-section-returns }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from }
+
+[`ScopeBase`](#scopebase).[`addTempVariable`](#scopebase-addtempvariable)
+
+***
+
+<a id="scope-addvariable"></a>
+
+#### addVariable() { #scope-section-addvariable }
+
+> **addVariable**(`name`: `string`, `value`: `number`): `void`
+
+Defined in: [src/sdk/index.ts:314](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L314)
+
+##### Parameters { #scope-section-parameters-1 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` |
+
+##### Returns { #scope-section-returns-1 }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from-1 }
+
+[`ScopeBase`](#scopebase).[`addVariable`](#scopebase-addvariable)
+
+***
 
 <a id="scope-allcountries"></a>
 
@@ -275,19 +1184,19 @@ Defined in: [src/sdk/index.ts:192](https://github.com/maxmixalex/krieg-lang/blob
 
 > **allCountries**(`trigger`: [`Trigger`](#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;): `boolean`
 
-Defined in: [src/sdk/index.ts:145](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L145)
+Defined in: [src/sdk/index.ts:366](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L366)
 
-##### Parameters { #scope-section-parameters }
+##### Parameters { #scope-section-parameters-2 }
 
 | Parameter | Type |
 | ------ | ------ |
 | `trigger` | [`Trigger`](#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; |
 
-##### Returns { #scope-section-returns }
+##### Returns { #scope-section-returns-2 }
 
 `boolean`
 
-##### Inherited from { #scope-section-inherited-from }
+##### Inherited from { #scope-section-inherited-from-2 }
 
 [`ScopeBase`](#scopebase).[`allCountries`](#scopebase-allcountries)
 
@@ -299,21 +1208,324 @@ Defined in: [src/sdk/index.ts:145](https://github.com/maxmixalex/krieg-lang/blob
 
 > **anyCountry**(`trigger`: [`Trigger`](#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;): `boolean`
 
-Defined in: [src/sdk/index.ts:144](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L144)
+Defined in: [src/sdk/index.ts:365](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L365)
 
-##### Parameters { #scope-section-parameters-1 }
+##### Parameters { #scope-section-parameters-3 }
 
 | Parameter | Type |
 | ------ | ------ |
 | `trigger` | [`Trigger`](#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; |
 
-##### Returns { #scope-section-returns-1 }
+##### Returns { #scope-section-returns-3 }
 
 `boolean`
 
-##### Inherited from { #scope-section-inherited-from-1 }
+##### Inherited from { #scope-section-inherited-from-3 }
 
 [`ScopeBase`](#scopebase).[`anyCountry`](#scopebase-anycountry)
+
+***
+
+<a id="scope-arrayat"></a>
+
+#### arrayAt() { #scope-section-arrayat }
+
+> **arrayAt**(`name`: `string`, `index`: `number`): `number`
+
+Defined in: [src/sdk/index.ts:333](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L333)
+
+##### Parameters { #scope-section-parameters-4 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `index` | `number` |
+
+##### Returns { #scope-section-returns-4 }
+
+`number`
+
+##### Inherited from { #scope-section-inherited-from-4 }
+
+[`ScopeBase`](#scopebase).[`arrayAt`](#scopebase-arrayat)
+
+***
+
+<a id="scope-arraycontains"></a>
+
+#### arrayContains() { #scope-section-arraycontains }
+
+> **arrayContains**(`name`: `string`, `value`: `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref)): `boolean`
+
+Defined in: [src/sdk/index.ts:330](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L330)
+
+##### Parameters { #scope-section-parameters-5 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref) |
+
+##### Returns { #scope-section-returns-5 }
+
+`boolean`
+
+##### Inherited from { #scope-section-inherited-from-5 }
+
+[`ScopeBase`](#scopebase).[`arrayContains`](#scopebase-arraycontains)
+
+***
+
+<a id="scope-arrayinsert"></a>
+
+#### arrayInsert() { #scope-section-arrayinsert }
+
+> **arrayInsert**(`name`: `string`, `index`: `number`, `value`: `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref)): `void`
+
+Defined in: [src/sdk/index.ts:339](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L339)
+
+##### Parameters { #scope-section-parameters-6 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `index` | `number` |
+| `value` | `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref) |
+
+##### Returns { #scope-section-returns-6 }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from-6 }
+
+[`ScopeBase`](#scopebase).[`arrayInsert`](#scopebase-arrayinsert)
+
+***
+
+<a id="scope-arraylength"></a>
+
+#### arrayLength() { #scope-section-arraylength }
+
+> **arrayLength**(`name`: `string`): `number`
+
+Defined in: [src/sdk/index.ts:332](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L332)
+
+##### Parameters { #scope-section-parameters-7 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+
+##### Returns { #scope-section-returns-7 }
+
+`number`
+
+##### Inherited from { #scope-section-inherited-from-7 }
+
+[`ScopeBase`](#scopebase).[`arrayLength`](#scopebase-arraylength)
+
+***
+
+<a id="scope-arraypush"></a>
+
+#### arrayPush() { #scope-section-arraypush }
+
+> **arrayPush**(`name`: `string`, `value`: `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref)): `void`
+
+Defined in: [src/sdk/index.ts:331](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L331)
+
+##### Parameters { #scope-section-parameters-8 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref) |
+
+##### Returns { #scope-section-returns-8 }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from-8 }
+
+[`ScopeBase`](#scopebase).[`arrayPush`](#scopebase-arraypush)
+
+***
+
+<a id="scope-arrayremoveat"></a>
+
+#### arrayRemoveAt() { #scope-section-arrayremoveat }
+
+> **arrayRemoveAt**(`name`: `string`, `index`: `number`): `void`
+
+Defined in: [src/sdk/index.ts:344](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L344)
+
+##### Parameters { #scope-section-parameters-9 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `index` | `number` |
+
+##### Returns { #scope-section-returns-9 }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from-9 }
+
+[`ScopeBase`](#scopebase).[`arrayRemoveAt`](#scopebase-arrayremoveat)
+
+***
+
+<a id="scope-arrayremovevalue"></a>
+
+#### arrayRemoveValue() { #scope-section-arrayremovevalue }
+
+> **arrayRemoveValue**(`name`: `string`, `value`: `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref)): `void`
+
+Defined in: [src/sdk/index.ts:345](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L345)
+
+##### Parameters { #scope-section-parameters-10 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref) |
+
+##### Returns { #scope-section-returns-10 }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from-10 }
+
+[`ScopeBase`](#scopebase).[`arrayRemoveValue`](#scopebase-arrayremovevalue)
+
+***
+
+<a id="scope-arrayset"></a>
+
+#### arraySet() { #scope-section-arrayset }
+
+> **arraySet**(`name`: `string`, `index`: `number`, `value`: `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref)): `void`
+
+Defined in: [src/sdk/index.ts:334](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L334)
+
+##### Parameters { #scope-section-parameters-11 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `index` | `number` |
+| `value` | `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref) |
+
+##### Returns { #scope-section-returns-11 }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from-11 }
+
+[`ScopeBase`](#scopebase).[`arraySet`](#scopebase-arrayset)
+
+***
+
+<a id="scope-clamptempvariable"></a>
+
+#### clampTempVariable() { #scope-section-clamptempvariable }
+
+> **clampTempVariable**(`name`: `string`, `bounds`: `object`): `void`
+
+Defined in: [src/sdk/index.ts:329](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L329)
+
+##### Parameters { #scope-section-parameters-12 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `bounds` | \{ `max?`: `number`; `min?`: `number`; \} |
+| `bounds.max?` | `number` |
+| `bounds.min?` | `number` |
+
+##### Returns { #scope-section-returns-12 }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from-12 }
+
+[`ScopeBase`](#scopebase).[`clampTempVariable`](#scopebase-clamptempvariable)
+
+***
+
+<a id="scope-clampvariable"></a>
+
+#### clampVariable() { #scope-section-clampvariable }
+
+> **clampVariable**(`name`: `string`, `bounds`: `object`): `void`
+
+Defined in: [src/sdk/index.ts:328](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L328)
+
+##### Parameters { #scope-section-parameters-13 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `bounds` | \{ `max?`: `number`; `min?`: `number`; \} |
+| `bounds.max?` | `number` |
+| `bounds.min?` | `number` |
+
+##### Returns { #scope-section-returns-13 }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from-13 }
+
+[`ScopeBase`](#scopebase).[`clampVariable`](#scopebase-clampvariable)
+
+***
+
+<a id="scope-cleararray"></a>
+
+#### clearArray() { #scope-section-cleararray }
+
+> **clearArray**(`name`: `string`): `void`
+
+Defined in: [src/sdk/index.ts:352](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L352)
+
+##### Parameters { #scope-section-parameters-14 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+
+##### Returns { #scope-section-returns-14 }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from-14 }
+
+[`ScopeBase`](#scopebase).[`clearArray`](#scopebase-cleararray)
+
+***
+
+<a id="scope-clearvariable"></a>
+
+#### clearVariable() { #scope-section-clearvariable }
+
+> **clearVariable**(`name`: `string`): `void`
+
+Defined in: [src/sdk/index.ts:327](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L327)
+
+##### Parameters { #scope-section-parameters-15 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+
+##### Returns { #scope-section-returns-15 }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from-15 }
+
+[`ScopeBase`](#scopebase).[`clearVariable`](#scopebase-clearvariable)
 
 ***
 
@@ -323,22 +1535,214 @@ Defined in: [src/sdk/index.ts:144](https://github.com/maxmixalex/krieg-lang/blob
 
 > **country**(`target`: [`CountryRef`](countries.md#countryref), `effect`: [`Effect`](#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;): `void`
 
-Defined in: [src/sdk/index.ts:138](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L138)
+Defined in: [src/sdk/index.ts:290](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L290)
 
-##### Parameters { #scope-section-parameters-2 }
+##### Parameters { #scope-section-parameters-16 }
 
 | Parameter | Type |
 | ------ | ------ |
 | `target` | [`CountryRef`](countries.md#countryref) |
 | `effect` | [`Effect`](#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; |
 
-##### Returns { #scope-section-returns-2 }
+##### Returns { #scope-section-returns-16 }
 
 `void`
 
-##### Inherited from { #scope-section-inherited-from-2 }
+##### Inherited from { #scope-section-inherited-from-16 }
 
 [`ScopeBase`](#scopebase).[`country`](#scopebase-country)
+
+***
+
+<a id="scope-countrymatches"></a>
+
+#### countryMatches() { #scope-section-countrymatches }
+
+> **countryMatches**(`target`: [`CountryRef`](countries.md#countryref), `trigger`: [`Trigger`](#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;): `boolean`
+
+Defined in: [src/sdk/index.ts:292](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L292)
+
+##### Parameters { #scope-section-parameters-17 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `target` | [`CountryRef`](countries.md#countryref) |
+| `trigger` | [`Trigger`](#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; |
+
+##### Returns { #scope-section-returns-17 }
+
+`boolean`
+
+##### Inherited from { #scope-section-inherited-from-17 }
+
+[`ScopeBase`](#scopebase).[`countryMatches`](#scopebase-countrymatches)
+
+***
+
+<a id="scope-dateafter"></a>
+
+#### dateAfter() { #scope-section-dateafter }
+
+> **dateAfter**(`date`: `string`): `boolean`
+
+Defined in: [src/sdk/index.ts:306](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L306)
+
+##### Parameters { #scope-section-parameters-18 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `date` | `string` |
+
+##### Returns { #scope-section-returns-18 }
+
+`boolean`
+
+##### Inherited from { #scope-section-inherited-from-18 }
+
+[`ScopeBase`](#scopebase).[`dateAfter`](#scopebase-dateafter)
+
+***
+
+<a id="scope-datebefore"></a>
+
+#### dateBefore() { #scope-section-datebefore }
+
+> **dateBefore**(`date`: `string`): `boolean`
+
+Defined in: [src/sdk/index.ts:305](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L305)
+
+Compare the in-game calendar, including non-1936 starts. Dates are static YYYY.M.D or YYYY.M.D.H.
+
+##### Parameters { #scope-section-parameters-19 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `date` | `string` |
+
+##### Returns { #scope-section-returns-19 }
+
+`boolean`
+
+##### Inherited from { #scope-section-inherited-from-19 }
+
+[`ScopeBase`](#scopebase).[`dateBefore`](#scopebase-datebefore)
+
+***
+
+<a id="scope-dateonorafter"></a>
+
+#### dateOnOrAfter() { #scope-section-dateonorafter }
+
+> **dateOnOrAfter**(`date`: `string`): `boolean`
+
+Defined in: [src/sdk/index.ts:308](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L308)
+
+True on the given date and after it; the complement of dateBefore.
+
+##### Parameters { #scope-section-parameters-20 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `date` | `string` |
+
+##### Returns { #scope-section-returns-20 }
+
+`boolean`
+
+##### Inherited from { #scope-section-inherited-from-20 }
+
+[`ScopeBase`](#scopebase).[`dateOnOrAfter`](#scopebase-dateonorafter)
+
+***
+
+<a id="scope-dispatchbyindex"></a>
+
+#### dispatchByIndex() { #scope-section-dispatchbyindex }
+
+> **dispatchByIndex**&lt;`Row`&gt;(`variable`: `string`, `rows`: readonly `Row`[], `apply`: (`scope`: [`ScopeByName`](#scopebyname)\[`S`\], `row`: `Row`, `index`: `number`) => `void`, `options?`: `object`): `void`
+
+Defined in: [src/sdk/index.ts:267](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L267)
+
+Look up a game-time numeric index in an author-time catalogue. The callback
+receives this scope, the precisely inferred row, and its public ordinal.
+A balanced tree tests one branch per level, even for hundreds of rows.
+Numeric values select half-open buckets; unexpected indices do nothing
+unless `outOfRange: "clamp"` is requested for compatibility.
+
+##### Type Parameters { #scope-section-type-parameters-1 }
+
+| Type Parameter |
+| ------ |
+| <a id="scope-type-parameter-row"></a> `Row` |
+
+##### Parameters { #scope-section-parameters-21 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `variable` | `string` |
+| `rows` | readonly `Row`[] |
+| `apply` | (`scope`: [`ScopeByName`](#scopebyname)\[`S`\], `row`: `Row`, `index`: `number`) => `void` |
+| `options?` | \{ `first?`: `number`; `outOfRange?`: `"ignore"` \| `"clamp"`; \} |
+| `options.first?` | `number` |
+| `options.outOfRange?` | `"ignore"` \| `"clamp"` |
+
+##### Returns { #scope-section-returns-21 }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from-21 }
+
+[`ScopeBase`](#scopebase).[`dispatchByIndex`](#scopebase-dispatchbyindex)
+
+***
+
+<a id="scope-dividetempvariable"></a>
+
+#### divideTempVariable() { #scope-section-dividetempvariable }
+
+> **divideTempVariable**(`name`: `string`, `value`: `number`): `void`
+
+Defined in: [src/sdk/index.ts:326](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L326)
+
+##### Parameters { #scope-section-parameters-22 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` |
+
+##### Returns { #scope-section-returns-22 }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from-22 }
+
+[`ScopeBase`](#scopebase).[`divideTempVariable`](#scopebase-dividetempvariable)
+
+***
+
+<a id="scope-dividevariable"></a>
+
+#### divideVariable() { #scope-section-dividevariable }
+
+> **divideVariable**(`name`: `string`, `value`: `number`): `void`
+
+Defined in: [src/sdk/index.ts:317](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L317)
+
+##### Parameters { #scope-section-parameters-23 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` |
+
+##### Returns { #scope-section-returns-23 }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from-23 }
+
+[`ScopeBase`](#scopebase).[`divideVariable`](#scopebase-dividevariable)
 
 ***
 
@@ -350,19 +1754,19 @@ Defined in: [src/sdk/index.ts:138](https://github.com/maxmixalex/krieg-lang/blob
 
 > **everyCountry**(`effect`: [`Effect`](#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;): `void`
 
-Defined in: [src/sdk/index.ts:140](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L140)
+Defined in: [src/sdk/index.ts:361](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L361)
 
-###### Parameters { #scope-section-parameters-3 }
+###### Parameters { #scope-section-parameters-24 }
 
 | Parameter | Type |
 | ------ | ------ |
 | `effect` | [`Effect`](#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; |
 
-###### Returns { #scope-section-returns-3 }
+###### Returns { #scope-section-returns-24 }
 
 `void`
 
-###### Inherited from { #scope-section-inherited-from-3 }
+###### Inherited from { #scope-section-inherited-from-24 }
 
 [`ScopeBase`](#scopebase).[`everyCountry`](#scopebase-everycountry)
 
@@ -370,22 +1774,312 @@ Defined in: [src/sdk/index.ts:140](https://github.com/maxmixalex/krieg-lang/blob
 
 > **everyCountry**(`limit`: [`Trigger`](#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;, `effect`: [`Effect`](#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;): `void`
 
-Defined in: [src/sdk/index.ts:141](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L141)
+Defined in: [src/sdk/index.ts:362](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L362)
 
-###### Parameters { #scope-section-parameters-4 }
+###### Parameters { #scope-section-parameters-25 }
 
 | Parameter | Type |
 | ------ | ------ |
 | `limit` | [`Trigger`](#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; |
 | `effect` | [`Effect`](#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; |
 
-###### Returns { #scope-section-returns-4 }
+###### Returns { #scope-section-returns-25 }
 
 `void`
 
-###### Inherited from { #scope-section-inherited-from-4 }
+###### Inherited from { #scope-section-inherited-from-25 }
 
 [`ScopeBase`](#scopebase).[`everyCountry`](#scopebase-everycountry)
+
+***
+
+<a id="scope-everyglobalstate"></a>
+
+#### everyGlobalState() { #scope-section-everyglobalstate }
+
+##### Call Signature { #scope-section-call-signature-2 }
+
+> **everyGlobalState**(`effect`: [`Effect`](#effect)&lt;[`StateScope`](state-scope.md#statescope)&gt;): `void`
+
+Defined in: [src/sdk/index.ts:300](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L300)
+
+All world states, unlike CountryScope.everyState, which selects owned states.
+
+###### Parameters { #scope-section-parameters-26 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `effect` | [`Effect`](#effect)&lt;[`StateScope`](state-scope.md#statescope)&gt; |
+
+###### Returns { #scope-section-returns-26 }
+
+`void`
+
+###### Inherited from { #scope-section-inherited-from-26 }
+
+[`ScopeBase`](#scopebase).[`everyGlobalState`](#scopebase-everyglobalstate)
+
+##### Call Signature { #scope-section-call-signature-3 }
+
+> **everyGlobalState**(`limit`: [`Trigger`](#trigger)&lt;[`StateScope`](state-scope.md#statescope)&gt;, `effect`: [`Effect`](#effect)&lt;[`StateScope`](state-scope.md#statescope)&gt;): `void`
+
+Defined in: [src/sdk/index.ts:301](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L301)
+
+###### Parameters { #scope-section-parameters-27 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `limit` | [`Trigger`](#trigger)&lt;[`StateScope`](state-scope.md#statescope)&gt; |
+| `effect` | [`Effect`](#effect)&lt;[`StateScope`](state-scope.md#statescope)&gt; |
+
+###### Returns { #scope-section-returns-27 }
+
+`void`
+
+###### Inherited from { #scope-section-inherited-from-27 }
+
+[`ScopeBase`](#scopebase).[`everyGlobalState`](#scopebase-everyglobalstate)
+
+***
+
+<a id="scope-foreachcountryinarray"></a>
+
+#### forEachCountryInArray() { #scope-section-foreachcountryinarray }
+
+> **forEachCountryInArray**(`name`: `string`, `effect`: [`Effect`](#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;): `void`
+
+Defined in: [src/sdk/index.ts:353](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L353)
+
+##### Parameters { #scope-section-parameters-28 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `effect` | [`Effect`](#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; |
+
+##### Returns { #scope-section-returns-28 }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from-28 }
+
+[`ScopeBase`](#scopebase).[`forEachCountryInArray`](#scopebase-foreachcountryinarray)
+
+***
+
+<a id="scope-foreachvalue"></a>
+
+#### forEachValue() { #scope-section-foreachvalue }
+
+> **forEachValue**(`name`: `string`, `bindings`: `object`, `effect`: [`Effect`](#effect)&lt;[`ScopeByName`](#scopebyname)\[`S`\]&gt;): `void`
+
+Defined in: [src/sdk/index.ts:347](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L347)
+
+Native value loop; named temporary bindings are read with variable(). No scope change.
+
+##### Parameters { #scope-section-parameters-29 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `bindings` | \{ `break?`: `string`; `index?`: `string`; `value?`: `string`; \} |
+| `bindings.break?` | `string` |
+| `bindings.index?` | `string` |
+| `bindings.value?` | `string` |
+| `effect` | [`Effect`](#effect)&lt;[`ScopeByName`](#scopebyname)\[`S`\]&gt; |
+
+##### Returns { #scope-section-returns-29 }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from-29 }
+
+[`ScopeBase`](#scopebase).[`forEachValue`](#scopebase-foreachvalue)
+
+***
+
+<a id="scope-forrange"></a>
+
+#### forRange() { #scope-section-forrange }
+
+> **forRange**(`range`: `object`, `effect`: [`Effect`](#effect)&lt;[`ScopeByName`](#scopebyname)\[`S`\]&gt;): `void`
+
+Defined in: [src/sdk/index.ts:355](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L355)
+
+Engine loop with an exclusive upper bound; it does not change the active scope.
+
+##### Parameters { #scope-section-parameters-30 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `range` | \{ `end`: `number`; `index?`: `string`; `start`: `number`; `step?`: `number`; \} |
+| `range.end` | `number` |
+| `range.index?` | `string` |
+| `range.start` | `number` |
+| `range.step?` | `number` |
+| `effect` | [`Effect`](#effect)&lt;[`ScopeByName`](#scopebyname)\[`S`\]&gt; |
+
+##### Returns { #scope-section-returns-30 }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from-30 }
+
+[`ScopeBase`](#scopebase).[`forRange`](#scopebase-forrange)
+
+***
+
+<a id="scope-hiddeneffect"></a>
+
+#### hiddenEffect() { #scope-section-hiddeneffect }
+
+> **hiddenEffect**(`effects`: [`Effect`](#effect)&lt;[`ScopeByName`](#scopebyname)\[`S`\]&gt;): `void`
+
+Defined in: [src/sdk/index.ts:275](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L275)
+
+Execute effects on this same scope without exposing their automatic tooltip.
+
+##### Parameters { #scope-section-parameters-31 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `effects` | [`Effect`](#effect)&lt;[`ScopeByName`](#scopebyname)\[`S`\]&gt; |
+
+##### Returns { #scope-section-returns-31 }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from-31 }
+
+[`ScopeBase`](#scopebase).[`hiddenEffect`](#scopebase-hiddeneffect)
+
+***
+
+<a id="scope-militaryorganization"></a>
+
+#### militaryOrganization() { #scope-section-militaryorganization }
+
+> **militaryOrganization**(`target`: [`MioScopeRef`](mio-scope-targets.md#mioscoperef), `effect`: [`Effect`](#effect)&lt;[`MilitaryIndustrialOrganizationScope`](scopes-specialized.md#militaryindustrialorganizationscope)&gt;): `void`
+
+Defined in: [src/sdk/index.ts:295](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L295)
+
+Enter an engine organization scope saved by a MIO iteration or target.
+
+##### Parameters { #scope-section-parameters-32 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `target` | [`MioScopeRef`](mio-scope-targets.md#mioscoperef) |
+| `effect` | [`Effect`](#effect)&lt;[`MilitaryIndustrialOrganizationScope`](scopes-specialized.md#militaryindustrialorganizationscope)&gt; |
+
+##### Returns { #scope-section-returns-32 }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from-32 }
+
+[`ScopeBase`](#scopebase).[`militaryOrganization`](#scopebase-militaryorganization)
+
+***
+
+<a id="scope-modulovariable"></a>
+
+#### moduloVariable() { #scope-section-modulovariable }
+
+> **moduloVariable**(`name`: `string`, `value`: `number`): `void`
+
+Defined in: [src/sdk/index.ts:318](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L318)
+
+##### Parameters { #scope-section-parameters-33 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` |
+
+##### Returns { #scope-section-returns-33 }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from-33 }
+
+[`ScopeBase`](#scopebase).[`moduloVariable`](#scopebase-modulovariable)
+
+***
+
+<a id="scope-multiplytempvariable"></a>
+
+#### multiplyTempVariable() { #scope-section-multiplytempvariable }
+
+> **multiplyTempVariable**(`name`: `string`, `value`: `number`): `void`
+
+Defined in: [src/sdk/index.ts:325](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L325)
+
+##### Parameters { #scope-section-parameters-34 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` |
+
+##### Returns { #scope-section-returns-34 }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from-34 }
+
+[`ScopeBase`](#scopebase).[`multiplyTempVariable`](#scopebase-multiplytempvariable)
+
+***
+
+<a id="scope-multiplyvariable"></a>
+
+#### multiplyVariable() { #scope-section-multiplyvariable }
+
+> **multiplyVariable**(`name`: `string`, `value`: `number`): `void`
+
+Defined in: [src/sdk/index.ts:316](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L316)
+
+##### Parameters { #scope-section-parameters-35 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` |
+
+##### Returns { #scope-section-returns-35 }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from-35 }
+
+[`ScopeBase`](#scopebase).[`multiplyVariable`](#scopebase-multiplyvariable)
+
+***
+
+<a id="scope-randomchoice"></a>
+
+#### randomChoice() { #scope-section-randomchoice }
+
+> **randomChoice**(`choices`: readonly `object`[]): `void`
+
+Defined in: [src/sdk/index.ts:278](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L278)
+
+Choose one weighted effect. False `when` conditions zero its native weight.
+
+##### Parameters { #scope-section-parameters-36 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `choices` | readonly `object`[] |
+
+##### Returns { #scope-section-returns-36 }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from-36 }
+
+[`ScopeBase`](#scopebase).[`randomChoice`](#scopebase-randomchoice)
 
 ***
 
@@ -393,44 +2087,44 @@ Defined in: [src/sdk/index.ts:141](https://github.com/maxmixalex/krieg-lang/blob
 
 #### randomCountry() { #scope-section-randomcountry }
 
-##### Call Signature { #scope-section-call-signature-2 }
+##### Call Signature { #scope-section-call-signature-4 }
 
 > **randomCountry**(`effect`: [`Effect`](#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;): `void`
 
-Defined in: [src/sdk/index.ts:142](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L142)
+Defined in: [src/sdk/index.ts:363](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L363)
 
-###### Parameters { #scope-section-parameters-5 }
+###### Parameters { #scope-section-parameters-37 }
 
 | Parameter | Type |
 | ------ | ------ |
 | `effect` | [`Effect`](#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; |
 
-###### Returns { #scope-section-returns-5 }
+###### Returns { #scope-section-returns-37 }
 
 `void`
 
-###### Inherited from { #scope-section-inherited-from-5 }
+###### Inherited from { #scope-section-inherited-from-37 }
 
 [`ScopeBase`](#scopebase).[`randomCountry`](#scopebase-randomcountry)
 
-##### Call Signature { #scope-section-call-signature-3 }
+##### Call Signature { #scope-section-call-signature-5 }
 
 > **randomCountry**(`limit`: [`Trigger`](#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;, `effect`: [`Effect`](#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;): `void`
 
-Defined in: [src/sdk/index.ts:143](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L143)
+Defined in: [src/sdk/index.ts:364](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L364)
 
-###### Parameters { #scope-section-parameters-6 }
+###### Parameters { #scope-section-parameters-38 }
 
 | Parameter | Type |
 | ------ | ------ |
 | `limit` | [`Trigger`](#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; |
 | `effect` | [`Effect`](#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; |
 
-###### Returns { #scope-section-returns-6 }
+###### Returns { #scope-section-returns-38 }
 
 `void`
 
-###### Inherited from { #scope-section-inherited-from-6 }
+###### Inherited from { #scope-section-inherited-from-38 }
 
 [`ScopeBase`](#scopebase).[`randomCountry`](#scopebase-randomcountry)
 
@@ -440,25 +2134,77 @@ Defined in: [src/sdk/index.ts:143](https://github.com/maxmixalex/krieg-lang/blob
 
 #### run() { #scope-section-run }
 
-> **run**(`effect`: [`ScriptedEffectDefinition`](scripted-effects.md#scriptedeffectdefinition)&lt;`S`&gt;): `void`
+> **run**(`effect`: [`ScriptedEffectDefinition`](scripted-effects.md#scriptedeffectdefinition)&lt;`S`&gt;, `invocationValue?`: `boolean`): `void`
 
-Defined in: [src/sdk/index.ts:135](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L135)
+Defined in: [src/sdk/index.ts:287](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L287)
 
-Emit one native `name = yes` call; the handle must match the active scope.
+Emit a native effect call; the handle must match the active scope.
+The optional yes/no invocation literal is preserved, not treated as a condition.
 
-##### Parameters { #scope-section-parameters-7 }
+##### Parameters { #scope-section-parameters-39 }
 
 | Parameter | Type |
 | ------ | ------ |
 | `effect` | [`ScriptedEffectDefinition`](scripted-effects.md#scriptedeffectdefinition)&lt;`S`&gt; |
+| `invocationValue?` | `boolean` |
 
-##### Returns { #scope-section-returns-7 }
+##### Returns { #scope-section-returns-39 }
 
 `void`
 
-##### Inherited from { #scope-section-inherited-from-7 }
+##### Inherited from { #scope-section-inherited-from-39 }
 
 [`ScopeBase`](#scopebase).[`run`](#scopebase-run)
+
+***
+
+<a id="scope-settempvariable"></a>
+
+#### setTempVariable() { #scope-section-settempvariable }
+
+> **setTempVariable**(`name`: `string`, `value`: `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref) \| [`MioScopeRef`](mio-scope-targets.md#mioscoperef)): `void`
+
+Defined in: [src/sdk/index.ts:319](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L319)
+
+##### Parameters { #scope-section-parameters-40 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref) \| [`MioScopeRef`](mio-scope-targets.md#mioscoperef) |
+
+##### Returns { #scope-section-returns-40 }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from-40 }
+
+[`ScopeBase`](#scopebase).[`setTempVariable`](#scopebase-settempvariable)
+
+***
+
+<a id="scope-setvariable"></a>
+
+#### setVariable() { #scope-section-setvariable }
+
+> **setVariable**(`name`: `string`, `value`: `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref) \| [`MioScopeRef`](mio-scope-targets.md#mioscoperef)): `void`
+
+Defined in: [src/sdk/index.ts:310](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L310)
+
+##### Parameters { #scope-section-parameters-41 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref) \| [`MioScopeRef`](mio-scope-targets.md#mioscoperef) |
+
+##### Returns { #scope-section-returns-41 }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from-41 }
+
+[`ScopeBase`](#scopebase).[`setVariable`](#scopebase-setvariable)
 
 ***
 
@@ -466,24 +2212,99 @@ Emit one native `name = yes` call; the handle must match the active scope.
 
 #### state() { #scope-section-state }
 
-> **state**(`target`: [`StateRef`](states.md#stateref), `effect`: [`Effect`](#effect)&lt;[`StateScope`](state-scope.md#statescope)&gt;): `void`
+> **state**(`target`: [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref), `effect`: [`Effect`](#effect)&lt;[`StateScope`](state-scope.md#statescope)&gt;): `void`
 
-Defined in: [src/sdk/index.ts:139](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L139)
+Defined in: [src/sdk/index.ts:291](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L291)
 
-##### Parameters { #scope-section-parameters-8 }
+##### Parameters { #scope-section-parameters-42 }
 
 | Parameter | Type |
 | ------ | ------ |
-| `target` | [`StateRef`](states.md#stateref) |
+| `target` | [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref) |
 | `effect` | [`Effect`](#effect)&lt;[`StateScope`](state-scope.md#statescope)&gt; |
 
-##### Returns { #scope-section-returns-8 }
+##### Returns { #scope-section-returns-42 }
 
 `void`
 
-##### Inherited from { #scope-section-inherited-from-8 }
+##### Inherited from { #scope-section-inherited-from-42 }
 
 [`ScopeBase`](#scopebase).[`state`](#scopebase-state)
+
+***
+
+<a id="scope-statematches"></a>
+
+#### stateMatches() { #scope-section-statematches }
+
+> **stateMatches**(`target`: [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref), `trigger`: [`Trigger`](#trigger)&lt;[`StateScope`](state-scope.md#statescope)&gt;): `boolean`
+
+Defined in: [src/sdk/index.ts:293](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L293)
+
+##### Parameters { #scope-section-parameters-43 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `target` | [`StateRef`](states.md#stateref) \| [`StateTargetRef`](runtime-state.md#statetargetref) |
+| `trigger` | [`Trigger`](#trigger)&lt;[`StateScope`](state-scope.md#statescope)&gt; |
+
+##### Returns { #scope-section-returns-43 }
+
+`boolean`
+
+##### Inherited from { #scope-section-inherited-from-43 }
+
+[`ScopeBase`](#scopebase).[`stateMatches`](#scopebase-statematches)
+
+***
+
+<a id="scope-subtracttempvariable"></a>
+
+#### subtractTempVariable() { #scope-section-subtracttempvariable }
+
+> **subtractTempVariable**(`name`: `string`, `value`: `number`): `void`
+
+Defined in: [src/sdk/index.ts:324](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L324)
+
+##### Parameters { #scope-section-parameters-44 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` |
+
+##### Returns { #scope-section-returns-44 }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from-44 }
+
+[`ScopeBase`](#scopebase).[`subtractTempVariable`](#scopebase-subtracttempvariable)
+
+***
+
+<a id="scope-subtractvariable"></a>
+
+#### subtractVariable() { #scope-section-subtractvariable }
+
+> **subtractVariable**(`name`: `string`, `value`: `number`): `void`
+
+Defined in: [src/sdk/index.ts:315](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L315)
+
+##### Parameters { #scope-section-parameters-45 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `value` | `number` |
+
+##### Returns { #scope-section-returns-45 }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from-45 }
+
+[`ScopeBase`](#scopebase).[`subtractVariable`](#scopebase-subtractvariable)
 
 ***
 
@@ -493,60 +2314,113 @@ Defined in: [src/sdk/index.ts:139](https://github.com/maxmixalex/krieg-lang/blob
 
 > **test**(`trigger`: [`ScriptedTriggerDefinition`](scripted-triggers.md#scriptedtriggerdefinition)&lt;`S`&gt;): `boolean`
 
-Defined in: [src/sdk/index.ts:137](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L137)
+Defined in: [src/sdk/index.ts:289](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L289)
 
 Test a native trigger handle; negate with `!scope.test(handle)`.
 
-##### Parameters { #scope-section-parameters-9 }
+##### Parameters { #scope-section-parameters-46 }
 
 | Parameter | Type |
 | ------ | ------ |
 | `trigger` | [`ScriptedTriggerDefinition`](scripted-triggers.md#scriptedtriggerdefinition)&lt;`S`&gt; |
 
-##### Returns { #scope-section-returns-9 }
+##### Returns { #scope-section-returns-46 }
 
 `boolean`
 
-##### Inherited from { #scope-section-inherited-from-9 }
+##### Inherited from { #scope-section-inherited-from-46 }
 
 [`ScopeBase`](#scopebase).[`test`](#scopebase-test)
+
+***
+
+<a id="scope-variable"></a>
+
+#### variable() { #scope-section-variable }
+
+> **variable**(`name`: `string`): `number`
+
+Defined in: [src/sdk/index.ts:303](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L303)
+
+Read an existing persistent, temporary, global, or engine numeric variable.
+
+##### Parameters { #scope-section-parameters-47 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+
+##### Returns { #scope-section-returns-47 }
+
+`number`
+
+##### Inherited from { #scope-section-inherited-from-47 }
+
+[`ScopeBase`](#scopebase).[`variable`](#scopebase-variable)
+
+***
+
+<a id="scope-whileloop"></a>
+
+#### whileLoop() { #scope-section-whileloop }
+
+> **whileLoop**(`condition`: [`Trigger`](#trigger)&lt;[`ScopeByName`](#scopebyname)\[`S`\]&gt;, `effect`: [`Effect`](#effect)&lt;[`ScopeByName`](#scopebyname)\[`S`\]&gt;): `void`
+
+Defined in: [src/sdk/index.ts:360](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L360)
+
+Engine loop, subject to HOI4's MAX_EFFECT_ITERATION limit.
+
+##### Parameters { #scope-section-parameters-48 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `condition` | [`Trigger`](#trigger)&lt;[`ScopeByName`](#scopebyname)\[`S`\]&gt; |
+| `effect` | [`Effect`](#effect)&lt;[`ScopeByName`](#scopebyname)\[`S`\]&gt; |
+
+##### Returns { #scope-section-returns-48 }
+
+`void`
+
+##### Inherited from { #scope-section-inherited-from-48 }
+
+[`ScopeBase`](#scopebase).[`whileLoop`](#scopebase-whileloop)
 
 
 ## ScopeByName { #scopebyname }
 
-Defined in: [src/sdk/index.ts:205](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L205)
+Defined in: [src/sdk/index.ts:458](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L458)
 
 ### Properties { #scopebyname-section-properties }
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="scopebyname-property-any"></a> `any` | [`AnyScope`](scopes-specialized.md#anyscope) | [src/sdk/index.ts:218](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L218) |
-| <a id="scopebyname-property-character"></a> `character` | [`CharacterScope`](scopes-people.md#characterscope) | [src/sdk/index.ts:208](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L208) |
-| <a id="scopebyname-property-combat"></a> `combat` | [`CombatScope`](scopes-specialized.md#combatscope) | [src/sdk/index.ts:212](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L212) |
-| <a id="scopebyname-property-country"></a> `country` | [`CountryScope`](country-scope.md#countryscope) | [src/sdk/index.ts:206](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L206) |
-| <a id="scopebyname-property-military_industrial_organization"></a> `military_industrial_organization` | [`MilitaryIndustrialOrganizationScope`](scopes-specialized.md#militaryindustrialorganizationscope) | [src/sdk/index.ts:213](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L213) |
-| <a id="scopebyname-property-operation"></a> `operation` | [`OperationScope`](scopes-specialized.md#operationscope) | [src/sdk/index.ts:217](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L217) |
-| <a id="scopebyname-property-operative"></a> `operative` | [`OperativeScope`](scopes-people.md#operativescope) | [src/sdk/index.ts:210](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L210) |
-| <a id="scopebyname-property-project"></a> `project` | [`ProjectScope`](scopes-specialized.md#projectscope) | [src/sdk/index.ts:211](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L211) |
-| <a id="scopebyname-property-purchase_contract"></a> `purchase_contract` | [`PurchaseContractScope`](scopes-specialized.md#purchasecontractscope) | [src/sdk/index.ts:214](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L214) |
-| <a id="scopebyname-property-raid"></a> `raid` | [`RaidScope`](scopes-specialized.md#raidscope) | [src/sdk/index.ts:216](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L216) |
-| <a id="scopebyname-property-state"></a> `state` | [`StateScope`](state-scope.md#statescope) | [src/sdk/index.ts:207](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L207) |
-| <a id="scopebyname-property-unit"></a> `unit` | [`UnitScope`](scopes-specialized.md#unitscope) | [src/sdk/index.ts:215](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L215) |
-| <a id="scopebyname-property-unit_leader"></a> `unit_leader` | [`UnitLeaderScope`](scopes-people.md#unitleaderscope) | [src/sdk/index.ts:209](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L209) |
+| <a id="scopebyname-property-any"></a> `any` | [`AnyScope`](scopes-specialized.md#anyscope) | [src/sdk/index.ts:471](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L471) |
+| <a id="scopebyname-property-character"></a> `character` | [`CharacterScope`](scopes-people.md#characterscope) | [src/sdk/index.ts:461](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L461) |
+| <a id="scopebyname-property-combat"></a> `combat` | [`CombatScope`](scopes-specialized.md#combatscope) | [src/sdk/index.ts:465](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L465) |
+| <a id="scopebyname-property-country"></a> `country` | [`CountryScope`](country-scope.md#countryscope) | [src/sdk/index.ts:459](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L459) |
+| <a id="scopebyname-property-military_industrial_organization"></a> `military_industrial_organization` | [`MilitaryIndustrialOrganizationScope`](scopes-specialized.md#militaryindustrialorganizationscope) | [src/sdk/index.ts:466](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L466) |
+| <a id="scopebyname-property-operation"></a> `operation` | [`OperationScope`](scopes-specialized.md#operationscope) | [src/sdk/index.ts:470](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L470) |
+| <a id="scopebyname-property-operative"></a> `operative` | [`OperativeScope`](scopes-people.md#operativescope) | [src/sdk/index.ts:463](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L463) |
+| <a id="scopebyname-property-project"></a> `project` | [`ProjectScope`](scopes-specialized.md#projectscope) | [src/sdk/index.ts:464](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L464) |
+| <a id="scopebyname-property-purchase_contract"></a> `purchase_contract` | [`PurchaseContractScope`](scopes-specialized.md#purchasecontractscope) | [src/sdk/index.ts:467](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L467) |
+| <a id="scopebyname-property-raid"></a> `raid` | [`RaidScope`](scopes-specialized.md#raidscope) | [src/sdk/index.ts:469](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L469) |
+| <a id="scopebyname-property-state"></a> `state` | [`StateScope`](state-scope.md#statescope) | [src/sdk/index.ts:460](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L460) |
+| <a id="scopebyname-property-unit"></a> `unit` | [`UnitScope`](scopes-specialized.md#unitscope) | [src/sdk/index.ts:468](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L468) |
+| <a id="scopebyname-property-unit_leader"></a> `unit_leader` | [`UnitLeaderScope`](scopes-people.md#unitleaderscope) | [src/sdk/index.ts:462](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L462) |
 
 
 ## ScopeName { #scopename }
 
 > **ScopeName** = keyof [`GeneratedEffectsByScope`](../../commands/index.md)
 
-Defined in: [src/sdk/index.ts:49](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L49)
+Defined in: [src/sdk/index.ts:71](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L71)
 
 
 ## Effect&lt;S&gt; { #effect }
 
 > **Effect**&lt;`S`&gt; = (`scope`: `S`) => `void`
 
-Defined in: [src/sdk/index.ts:59](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L59)
+Defined in: [src/sdk/index.ts:81](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L81)
 
 ### Type Parameters { #effect-section-type-parameters }
 
@@ -569,7 +2443,7 @@ Defined in: [src/sdk/index.ts:59](https://github.com/maxmixalex/krieg-lang/blob/
 
 > **Trigger**&lt;`S`&gt; = (`scope`: `S`) => `boolean`
 
-Defined in: [src/sdk/index.ts:60](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L60)
+Defined in: [src/sdk/index.ts:82](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L82)
 
 ### Type Parameters { #trigger-section-type-parameters }
 
@@ -590,10 +2464,12 @@ Defined in: [src/sdk/index.ts:60](https://github.com/maxmixalex/krieg-lang/blob/
 
 ## Definition { #definition }
 
-Defined in: [src/sdk/index.ts:61](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L61)
+Defined in: [src/sdk/index.ts:83](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L83)
 
 ### Extended by { #definition-section-extended-by }
 
+- [`AchievementStorageBank`](series.md#achievementstoragebank)
+- [`AudioBankDefinition`](audio-banks.md#audiobankdefinition)
 - [`IdentifiedDefinition`](#identifieddefinition)
 - [`ScriptedEffectDefinition`](scripted-effects.md#scriptedeffectdefinition)
 - [`ScriptedTriggerDefinition`](scripted-triggers.md#scriptedtriggerdefinition)
@@ -603,12 +2479,12 @@ Defined in: [src/sdk/index.ts:61](https://github.com/maxmixalex/krieg-lang/blob/
 
 | Property | Modifier | Type | Defined in |
 | ------ | ------ | ------ | ------ |
-| <a id="definition-property-__kriegdefinition"></a> `__kriegDefinition` | `readonly` | *typeof* [`__kriegDefinition`](#definition-property-__kriegdefinition) | [src/sdk/index.ts:62](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L62) |
+| <a id="definition-property-__kriegdefinition"></a> `__kriegDefinition` | `readonly` | *typeof* [`__kriegDefinition`](#definition-property-__kriegdefinition) | [src/sdk/index.ts:84](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L84) |
 
 
 ## IdentifiedDefinition { #identifieddefinition }
 
-Defined in: [src/sdk/index.ts:64](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L64)
+Defined in: [src/sdk/index.ts:190](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L190)
 
 ### Extends { #identifieddefinition-section-extends }
 
@@ -624,31 +2500,31 @@ Defined in: [src/sdk/index.ts:64](https://github.com/maxmixalex/krieg-lang/blob/
 
 | Property | Modifier | Type | Defined in |
 | ------ | ------ | ------ | ------ |
-| <a id="identifieddefinition-property-__kriegdefinition"></a> `__kriegDefinition` | `readonly` | *typeof* [`__kriegDefinition`](#definition-property-__kriegdefinition) | [src/sdk/index.ts:62](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L62) |
-| <a id="identifieddefinition-property-id"></a> `id` | `readonly` | `string` | [src/sdk/index.ts:65](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L65) |
+| <a id="identifieddefinition-property-__kriegdefinition"></a> `__kriegDefinition` | `readonly` | *typeof* [`__kriegDefinition`](#definition-property-__kriegdefinition) | [src/sdk/index.ts:84](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L84) |
+| <a id="identifieddefinition-property-id"></a> `id` | `readonly` | `string` | [src/sdk/index.ts:191](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L191) |
 
 
 ## FlagId { #flagid }
 
 > **FlagId** = `string`
 
-Defined in: [src/sdk/index.ts:46](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L46)
+Defined in: [src/sdk/index.ts:68](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L68)
 
 
 ## VariableName { #variablename }
 
 > **VariableName** = `string`
 
-Defined in: [src/sdk/index.ts:48](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L48)
+Defined in: [src/sdk/index.ts:70](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L70)
 
 
 ## AssetId { #assetid }
 
 > **AssetId** = `string`
 
-Defined in: [src/sdk/index.ts:47](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L47)
+Defined in: [src/sdk/index.ts:69](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L69)
 
 
 ## 完整示例与工作流
 
-[阅读作用域切换与通用回调指南](../../../scopes.md)
+[阅读作用域切换与通用回调指南](../../../guide/scopes.md)

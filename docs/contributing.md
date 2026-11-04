@@ -47,7 +47,11 @@ Windows 使用 `.venv\Scripts\python` 和 `.venv\Scripts\zensical`。提交前�
 PATH=".venv/bin:$PATH" npm run docs:build
 ```
 
-页面位于 `docs/`，导航和语言设置位于 `zensical.toml`。教程先解释读者要完成的任务，再说明代码与输出；长篇运行日志、数据集清单和实验记录不应替代教程。
+页面位于 `docs/`，导航和语言设置位于 `zensical.toml`。`tutorials/` 按顺序完成一个项目，`guide/` 按领域提供可独立查阅的规则和例子，`ports/` 记录完整案例，`reference/` 提供 CLI 查询。生成的 API 位于 `api/`，独立显示在顶部标签中。
+
+教程中的完整文件在代码块前用 `<!-- tutorial:file src/example.krg.ts -->` 标记，配置和本地化也使用同一标记。`npm run docs:tutorials` 按课程顺序把这些文件写入临时项目并实际构建，再检查事件、收费、GUI 绑定和原生往返结果。手册中可独立编译的完整示例使用 `<!-- example:compile -->` 标记，由 `npm run docs:examples` 直接提取并检查。引用其他章节的片段应先补成完整文件，再加入检查。
+
+移动已发布页面时更新 `docs/redirects.json`，将 `scripts/docs-legacy-0.4.json` 中的旧锚点逐一指向新位置。构建后检查所有手写页面均进入导航和搜索，并确认各区标签指向正确首页。
 
 ### API 与覆盖清单
 
@@ -71,7 +75,7 @@ npm run docs:coverage
 
 `docs:api:check` 在临时目录重新生成，逐字节检查所有页面、清单与导航，同时拒绝过期页。TypeDoc 自己管理参考页的 Markdown 格式，Prettier 不改写该目录。`docs:build` 执行干净严格构建，然后检查生成 HTML 的内部链接、资源、锚点、每个公开导出的目标以及 API 搜索收录。使用 `PATH=".venv/bin:$PATH" npm run docs:check` 可顺序运行一致性、覆盖清单和站点验证。
 
-`docs/coverage-inventory.json` 将 Wiki 主题与当前 API、原生路径、教程和测试关联。检查器拒绝把仅有 `DataFile` / 有序 PDX 的条目标成语义 API，也检查证据文件和测试名称确实存在。添加功能时，先更新声明和成功/失败测试，再更新清单与教程，最后重新生成 API。新增教程的完整 `typescript` / `tsx` 代码块会进入编译测试。
+`docs/coverage-inventory.json` 将 Wiki 主题与当前 API、原生路径、教程和测试关联。检查器拒绝把仅有 `DataFile` / 有序 PDX 的条目标成语义 API，也检查证据文件和测试名称确实存在。添加功能时，先更新声明和成功/失败测试，再更新清单与带检查标记的教程，最后重新生成 API。
 
 相关官方说明：[TypeDoc 公开入口](https://typedoc.org/documents/Options.Input.html)、[Markdown 插件配置](https://typedoc-plugin-markdown.org/docs/options)、[Zensical 配置](https://zensical.org/docs/setup/basics/)、[构建命令](https://zensical.org/docs/usage/build/)、[GitHub Pages 发布](https://zensical.org/docs/publish-your-site/)。
 
@@ -91,7 +95,7 @@ node dist/cli.js corpus /path/to/local/game --out /tmp/krieg-game-report.json
 
 大型语料不放进每次 PR 的普通 CI。需要自动运行时，为可信 Linux runner 添加 `krieg-corpus` 标签，手动从 `main` 运行 `Validate local corpus`，填写 runner 本机的数据集绝对路径。
 
-这个工作流只读取本地数据并在 runner 的临时目录写报告，不自动上传游戏文件或重建文件。语料层次的含义和失败处理见[验证与兼容性](validation.md)。
+这个工作流只读取本地数据并在 runner 的临时目录写报告，不自动上传游戏文件或重建文件。语料层次的含义和失败处理见[验证与兼容性](guide/validation.md)。
 
 ## 更新规则和对比外部检查器
 

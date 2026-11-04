@@ -1,0 +1,50 @@
+{
+  "checks": 10466,
+  "groups": [
+    {
+      "name": "All 552 bonus category sets and 273 engine-presence categories",
+      "checks": 1098,
+      "milliseconds": 119
+    },
+    {
+      "name": "1234 focus discoveries are idempotent with DLC, technology and special-project branches",
+      "checks": 4936,
+      "milliseconds": 4305
+    },
+    {
+      "name": "bonus competition, queue reservations, partial progress, native adoption and consumed-use reconciliation",
+      "checks": 43,
+      "milliseconds": 56
+    },
+    {
+      "name": "525 organization IDs and their cached identity bits",
+      "checks": 1050,
+      "milliseconds": 339
+    },
+    {
+      "name": "552 MIO eligibility sets, exact equipment preference, funds and design variants",
+      "checks": 3312,
+      "milliseconds": 141
+    },
+    {
+      "name": "MIO scope assignment, bonus, invalidation, used flags and completion growth",
+      "checks": 15,
+      "milliseconds": 5
+    },
+    {
+      "name": "maintenance cost counts concurrent lanes, resets per tick and removes stale modifiers",
+      "checks": 4,
+      "milliseconds": 3
+    },
+    {
+      "name": "popup list ordering, assigned state, saved-scope restore and native task matching",
+      "checks": 8,
+      "milliseconds": 40
+    }
+  ],
+  "limitations": [
+    "Native PDX interpreter, not an HOI4 engine run.",
+    "Base-game focus/project/DLC and organization availability queries are modeled inputs.",
+    "Focus political-relation combinations beyond the explicit scenario matrix need in-game verification."
+  ]
+}

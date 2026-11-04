@@ -154,7 +154,6 @@ test("native element discriminants reject unsupported bindings and browser event
   for (const element of [
     `<ui.Text name="text" text="TEXT" click={country=>country.effects.addPoliticalPower(1)}/>`,
     `<ui.Text name="text" text="TEXT" properties={{image:'GFX_image'}}/>`,
-    `<ui.Button name="button" properties={{image:'GFX_image'}}/>`,
     `<ui.Button name="button" onClick={country=>country.effects.addPoliticalPower(1)}/>`,
     `<ui.Icon name="icon" spriteType="GFX_icon" properties={{frame:'untyped_variable'}}/>`,
     `<ui.Icon name="icon" spriteType="GFX_icon" properties={{width:10}}/>`,

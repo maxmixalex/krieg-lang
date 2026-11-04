@@ -97,4 +97,4 @@ Defined in: [src/sdk/domains.ts:3846](https://github.com/maxmixalex/krieg-lang/b
 
 ## 完整示例与工作流
 
-[阅读政治、理念与国家规则：复杂字段 N-S指南](../../../../content-domains.md)
+[阅读政治、理念与国家规则：复杂字段 N-S指南](../../../../guide/domains/index.md)

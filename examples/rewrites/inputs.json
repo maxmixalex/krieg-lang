@@ -1,0 +1,38 @@
+{
+  "automated-research": {
+    "source": "Automated-Research",
+    "inputFiles": 146,
+    "treeSha256": "48fe26c5ad0200aa820a1a4efd0ca6ab515a37fb91592342629951d391f7ee55",
+    "zipSha256": "4a8473b01d02cd3eee18e216cf003c5a5603217f031fbbbdf19e46b456cf9370"
+  },
+  "hearts-of-gamble": {
+    "source": "Hearts-of-Gamble",
+    "inputFiles": 272,
+    "treeSha256": "ab6391dabd917fcecd70840ec560636200fffa7a1b65cf4830ee03ac31568faa",
+    "zipSha256": "dc81d89b82e98bf68640fca3bfb55371ebf2f28304dc938aed03deb7ff2a5c11"
+  },
+  "hearts-of-uno": {
+    "source": "Hearts-of-UNO",
+    "inputFiles": 103,
+    "treeSha256": "3518259392e8bf0442b813b9e9637a22e76eb51cd6aa8a31b979e11932824c21",
+    "zipSha256": "a757814b64d3192ea4fd1b5a571c8c11bb850b7bd85aa2137b0fde97a8c68751"
+  },
+  "playable-piano": {
+    "source": "Playable-Piano",
+    "inputFiles": 62,
+    "treeSha256": "93e0de2a52b015d9a2fb6b57a1cbc23723c1f235c151480ed1afe065a7d99172",
+    "zipSha256": "af48b27499be23fca4c0a20cee3b26917946b29ef88756180211b0b787de865a"
+  },
+  "state-transfer-tool": {
+    "source": "State-Transfer-Tool",
+    "inputFiles": 14,
+    "treeSha256": "80fd740dde98f733a276fca9a23cf37c61fb1c15e033e6474275e617ee6fbf15",
+    "zipSha256": "f5faa9f017d6821281a016079f546a037954eb6674abc02fbc858d8b55b8056e"
+  },
+  "twr-gdp-screen": {
+    "source": "TWR-GDP-Screen",
+    "inputFiles": 18,
+    "treeSha256": "0080ace082d45de0024cd30273c08e239f0c2a8403d40708a967d7ed4b598aff",
+    "zipSha256": "431b733f010d3e3f851213bbe15d865b9f5c149bc1b7729be6a2589c1be8dae8"
+  }
+}

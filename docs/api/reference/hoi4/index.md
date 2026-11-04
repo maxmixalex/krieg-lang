@@ -13,6 +13,7 @@
 | `AceSpec` | [AceSpec](../domains/characters.md#acespec) |
 | `Achievement` | [Achievement](../domains/rules.md#achievement) |
 | `AchievementSpec` | [AchievementSpec](../domains/rules.md#achievementspec) |
+| `AchievementStorageBank` | [AchievementStorageBank](series.md#achievementstoragebank) |
 | `AdjacencyRule` | [AdjacencyRule](../domains/map.md#adjacencyrule) |
 | `AdjacencyRuleSpec` | [AdjacencyRuleSpec](../domains/map.md#adjacencyrulespec) |
 | `AiArea` | [AiArea](../domains/ai.md#aiarea) |
@@ -33,6 +34,9 @@
 | `AiTemplateSpec` | [AiTemplateSpec](../domains/ai.md#aitemplatespec) |
 | `AnyScope` | [AnyScope](scopes-specialized.md#anyscope) |
 | `AssetId` | [AssetId](scope-selection.md#assetid) |
+| `AudioBank` | [AudioBank](audio-banks.md#audiobank) |
+| `AudioBankDefinition` | [AudioBankDefinition](audio-banks.md#audiobankdefinition) |
+| `AudioBankSpec` | [AudioBankSpec](audio-banks.md#audiobankspec) |
 | `AutonomyState` | [AutonomyState](../domains/politics.md#autonomystate) |
 | `AutonomyStateSpec` | [AutonomyStateSpec](../domains/politics.md#autonomystatespec) |
 | `BalanceOfPower` | [BalanceOfPower](../domains/politics.md#balanceofpower) |
@@ -64,6 +68,8 @@
 | `CountryDefinitionSpec` | [CountryDefinitionSpec](../domains/politics.md#countrydefinitionspec) |
 | `CountryEffects` | [CountryEffects](country-scope.md#countryeffects) |
 | `CountryEvent` | [CountryEvent](events.md#countryevent) |
+| `CountryHeatmap` | [CountryHeatmap](country-heatmaps.md#countryheatmap) |
+| `CountryHeatmapSpec` | [CountryHeatmapSpec](country-heatmaps.md#countryheatmapspec) |
 | `CountryHistory` | [CountryHistory](countries.md#countryhistory) |
 | `CountryHistorySpec` | [CountryHistorySpec](countries.md#countryhistoryspec) |
 | `CountryLeaderTrait` | [CountryLeaderTrait](../domains/politics.md#countryleadertrait) |
@@ -74,6 +80,7 @@
 | `CountryScorerSpec` | [CountryScorerSpec](../domains/politics.md#countryscorerspec) |
 | `CountryTagAlias` | [CountryTagAlias](../domains/politics.md#countrytagalias) |
 | `CountryTagAliasSpec` | [CountryTagAliasSpec](../domains/politics.md#countrytagaliasspec) |
+| `countryTarget` | [countryTarget](runtime-state.md#countrytarget) |
 | `CountryTriggers` | [CountryTriggers](country-scope.md#countrytriggers) |
 | `CriticalPart` | [CriticalPart](../domains/equipment.md#criticalpart) |
 | `CriticalPartSpec` | [CriticalPartSpec](../domains/equipment.md#criticalpartspec) |
@@ -87,11 +94,13 @@
 | `Decision` | [Decision](decisions.md#decision) |
 | `DecisionCategory` | [DecisionCategory](decisions.md#decisioncategory) |
 | `DecisionCategorySpec` | [DecisionCategorySpec](decisions.md#decisioncategoryspec) |
+| `DecisionMissionSpec` | [DecisionMissionSpec](decisions.md#decisionmissionspec) |
 | `DecisionSpec` | [DecisionSpec](decisions.md#decisionspec) |
 | `DefineFile` | [DefineFile](defines.md#definefile) |
 | `DefineOverrides` | [DefineOverrides](defines.md#defineoverrides) |
 | `Defines` | [Defines](defines.md#defines) |
 | `Definition` | [Definition](scope-selection.md#definition) |
+| `DefinitionSeries` | [DefinitionSeries](series.md#definitionseries) |
 | `DifficultySetting` | [DifficultySetting](../domains/rules.md#difficultysetting) |
 | `DifficultySettingSpec` | [DifficultySettingSpec](../domains/rules.md#difficultysettingspec) |
 | `DivisionNames` | [DivisionNames](../domains/units.md#divisionnames) |
@@ -134,6 +143,8 @@
 | `FactionTemplateSpec` | [FactionTemplateSpec](../domains/factions.md#factiontemplatespec) |
 | `FactionUpgrade` | [FactionUpgrade](../domains/factions.md#factionupgrade) |
 | `FactionUpgradeSpec` | [FactionUpgradeSpec](../domains/factions.md#factionupgradespec) |
+| `FlagAchievements` | [FlagAchievements](series.md#flagachievements) |
+| `FlagAchievementSpec` | [FlagAchievementSpec](series.md#flagachievementspec) |
 | `FlagId` | [FlagId](scope-selection.md#flagid) |
 | `Focus` | [Focus](focus-trees.md#focus) |
 | `FocusGraph` | [FocusGraph](focus-graphs.md#focusgraph) |
@@ -157,6 +168,7 @@
 | `FocusTreeSpec` | [FocusTreeSpec](focus-trees.md#focustreespec) |
 | `GameRule` | [GameRule](../domains/politics.md#gamerule) |
 | `GameRuleSpec` | [GameRuleSpec](../domains/politics.md#gamerulespec) |
+| `gameScripts` | [gameScripts](series.md#gamescripts) |
 | `GrandDoctrine` | [GrandDoctrine](../domains/technology.md#granddoctrine) |
 | `GrandDoctrineSpec` | [GrandDoctrineSpec](../domains/technology.md#granddoctrinespec) |
 | `GraphicalTerrain` | [GraphicalTerrain](../domains/map.md#graphicalterrain) |
@@ -180,6 +192,7 @@
 | `IdentifiedDefinition` | [IdentifiedDefinition](scope-selection.md#identifieddefinition) |
 | `Ideology` | [Ideology](../domains/politics.md#ideology) |
 | `IdeologySpec` | [IdeologySpec](../domains/politics.md#ideologyspec) |
+| `indexBy` | [indexBy](series.md#indexby) |
 | `IntelligenceAgency` | [IntelligenceAgency](../domains/intelligence.md#intelligenceagency) |
 | `IntelligenceAgencySpec` | [IntelligenceAgencySpec](../domains/intelligence.md#intelligenceagencyspec) |
 | `IntelligenceAgencyUpgrade` | [IntelligenceAgencyUpgrade](../domains/intelligence.md#intelligenceagencyupgrade) |
@@ -190,6 +203,7 @@
 | `LightSpec` | [LightSpec](../domains/graphics.md#lightspec) |
 | `loc` | [loc](localisation.md#loc) |
 | `LocalisationKey` | [LocalisationKey](localisation.md#localisationkey) |
+| `MapColor` | [MapColor](country-heatmaps.md#mapcolor) |
 | `MeanTimeToHappen` | [MeanTimeToHappen](../domains/events.md#meantimetohappen) |
 | `MeanTimeToHappenSpec` | [MeanTimeToHappenSpec](../domains/events.md#meantimetohappenspec) |
 | `Mesh` | [Mesh](../domains/graphics.md#mesh) |
@@ -203,6 +217,8 @@
 | `MilitaryIndustrialOrganizationSpec` | [MilitaryIndustrialOrganizationSpec](../domains/industry.md#militaryindustrialorganizationspec) |
 | `MioPolicy` | [MioPolicy](../domains/industry.md#miopolicy) |
 | `MioPolicySpec` | [MioPolicySpec](../domains/industry.md#miopolicyspec) |
+| `MioScopeRef` | [MioScopeRef](mio-scope-targets.md#mioscoperef) |
+| `mioTarget` | [mioTarget](mio-scope-targets.md#miotarget) |
 | `ModelAnimation` | [ModelAnimation](../domains/graphics.md#modelanimation) |
 | `ModelAnimationSpec` | [ModelAnimationSpec](../domains/graphics.md#modelanimationspec) |
 | `ModifierDefinition` | [ModifierDefinition](../domains/rules.md#modifierdefinition) |
@@ -279,6 +295,7 @@
 | `ResistanceComplianceModifierSpec` | [ResistanceComplianceModifierSpec](../domains/intelligence.md#resistancecompliancemodifierspec) |
 | `Resource` | [Resource](../domains/industry.md#resource) |
 | `ResourceSpec` | [ResourceSpec](../domains/industry.md#resourcespec) |
+| `RuntimeScopePath` | [RuntimeScopePath](runtime-state.md#runtimescopepath) |
 | `ScientistTrait` | [ScientistTrait](../domains/characters.md#scientisttrait) |
 | `ScientistTraitSpec` | [ScientistTraitSpec](../domains/characters.md#scientisttraitspec) |
 | `Scope` | [Scope](scope-selection.md#scope) |
@@ -340,6 +357,8 @@
 | `StateScope` | [StateScope](state-scope.md#statescope) |
 | `StateScriptedEffect` | [StateScriptedEffect](scripted-effects.md#statescriptedeffect) |
 | `StateScriptedTrigger` | [StateScriptedTrigger](scripted-triggers.md#statescriptedtrigger) |
+| `stateTarget` | [stateTarget](runtime-state.md#statetarget) |
+| `StateTargetRef` | [StateTargetRef](runtime-state.md#statetargetref) |
 | `StateTriggers` | [StateTriggers](state-scope.md#statetriggers) |
 | `StaticModifier` | [StaticModifier](../domains/rules.md#staticmodifier) |
 | `StaticModifierSpec` | [StaticModifierSpec](../domains/rules.md#staticmodifierspec) |

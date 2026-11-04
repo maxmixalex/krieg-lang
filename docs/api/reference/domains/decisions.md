@@ -175,4 +175,4 @@ Native common/decisions/categories; schema: common/decisions.cwt:80.
 
 ## 完整示例与工作流
 
-[阅读原生决议指南](../../../content-domains.md)
+[阅读原生决议指南](../../../guide/domains/index.md)

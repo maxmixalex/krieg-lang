@@ -50,23 +50,25 @@ Defined in: [src/project/types.ts:59](https://github.com/maxmixalex/krieg-lang/b
 
 ### Properties { #kriegconfig-section-properties }
 
-| Property | Type | Defined in |
-| ------ | ------ | ------ |
-| <a id="kriegconfig-property-assets"></a> `assets` | [`AssetRule`](#assetrule)[] | [src/project/types.ts:67](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L67) |
-| <a id="kriegconfig-property-configpath"></a> `configPath` | `string` | [src/project/types.ts:62](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L62) |
-| <a id="kriegconfig-property-dependencies"></a> `dependencies` | `string`[] | [src/project/types.ts:66](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L66) |
-| <a id="kriegconfig-property-gameroots"></a> `gameRoots` | [`GameRoot`](#gameroot)[] | [src/project/types.ts:69](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L69) |
-| <a id="kriegconfig-property-localisation"></a> `localisation` | [`LocalisationRule`](#localisationrule)[] | [src/project/types.ts:68](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L68) |
-| <a id="kriegconfig-property-mod"></a> `mod` | [`ModMetadata`](build.md#modmetadata) | [src/project/types.ts:65](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L65) |
-| <a id="kriegconfig-property-name"></a> `name` | `string` | [src/project/types.ts:60](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L60) |
-| <a id="kriegconfig-property-outdir"></a> `outDir` | `string` | [src/project/types.ts:64](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L64) |
-| <a id="kriegconfig-property-railways"></a> `railways?` | [`RailwayPlan`](railways.md#railwayplan) | [src/project/types.ts:72](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L72) |
-| <a id="kriegconfig-property-rootdir"></a> `rootDir` | `string` | [src/project/types.ts:61](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L61) |
-| <a id="kriegconfig-property-sourcedir"></a> `sourceDir` | `string` | [src/project/types.ts:63](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L63) |
-| <a id="kriegconfig-property-strictassets"></a> `strictAssets` | `boolean` | [src/project/types.ts:71](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L71) |
-| <a id="kriegconfig-property-world"></a> `world` | `object` | [src/project/types.ts:70](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L70) |
-| `world.countries` | `string`[] | [src/project/types.ts:70](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L70) |
-| `world.states` | `number`[] | [src/project/types.ts:70](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L70) |
+| Property | Type | Description | Defined in |
+| ------ | ------ | ------ | ------ |
+| <a id="kriegconfig-property-assets"></a> `assets` | [`AssetRule`](#assetrule)[] | - | [src/project/types.ts:67](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L67) |
+| <a id="kriegconfig-property-compiler"></a> `compiler?` | `object` | Optional static evaluation budget for this project layer. | [src/project/types.ts:73](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L73) |
+| `compiler.maxExpansion` | `number` | - | [src/project/types.ts:73](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L73) |
+| <a id="kriegconfig-property-configpath"></a> `configPath` | `string` | - | [src/project/types.ts:62](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L62) |
+| <a id="kriegconfig-property-dependencies"></a> `dependencies` | `string`[] | - | [src/project/types.ts:66](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L66) |
+| <a id="kriegconfig-property-gameroots"></a> `gameRoots` | [`GameRoot`](#gameroot)[] | - | [src/project/types.ts:69](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L69) |
+| <a id="kriegconfig-property-localisation"></a> `localisation` | [`LocalisationRule`](#localisationrule)[] | - | [src/project/types.ts:68](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L68) |
+| <a id="kriegconfig-property-mod"></a> `mod` | [`ModMetadata`](build.md#modmetadata) | - | [src/project/types.ts:65](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L65) |
+| <a id="kriegconfig-property-name"></a> `name` | `string` | - | [src/project/types.ts:60](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L60) |
+| <a id="kriegconfig-property-outdir"></a> `outDir` | `string` | - | [src/project/types.ts:64](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L64) |
+| <a id="kriegconfig-property-railways"></a> `railways?` | [`RailwayPlan`](railways.md#railwayplan) | - | [src/project/types.ts:74](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L74) |
+| <a id="kriegconfig-property-rootdir"></a> `rootDir` | `string` | - | [src/project/types.ts:61](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L61) |
+| <a id="kriegconfig-property-sourcedir"></a> `sourceDir` | `string` | - | [src/project/types.ts:63](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L63) |
+| <a id="kriegconfig-property-strictassets"></a> `strictAssets` | `boolean` | - | [src/project/types.ts:71](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L71) |
+| <a id="kriegconfig-property-world"></a> `world` | `object` | - | [src/project/types.ts:70](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L70) |
+| `world.countries` | `string`[] | - | [src/project/types.ts:70](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L70) |
+| `world.states` | `number`[] | - | [src/project/types.ts:70](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L70) |
 
 
 ## GameRoot { #gameroot }
@@ -154,14 +156,14 @@ Defined in: [src/project/dependencies.ts:7](https://github.com/maxmixalex/krieg-
 
 ## ProjectLayer { #projectlayer }
 
-Defined in: [src/project/types.ts:84](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L84)
+Defined in: [src/project/types.ts:86](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L86)
 
 ### Properties { #projectlayer-section-properties }
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="projectlayer-property-config"></a> `config` | [`KriegConfig`](#kriegconfig) | [src/project/types.ts:85](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L85) |
-| <a id="projectlayer-property-packagename"></a> `packageName?` | `string` | [src/project/types.ts:86](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L86) |
+| <a id="projectlayer-property-config"></a> `config` | [`KriegConfig`](#kriegconfig) | [src/project/types.ts:87](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L87) |
+| <a id="projectlayer-property-packagename"></a> `packageName?` | `string` | [src/project/types.ts:88](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L88) |
 
 
 ## initProject() { #initproject }
@@ -273,4 +275,4 @@ Defined in: [src/project/localisation.ts:35](https://github.com/maxmixalex/krieg
 
 ## 完整示例与工作流
 
-[阅读项目配置、依赖与编辑器指南](../../../projects.md)
+[阅读项目配置、依赖与编辑器指南](../../../guide/projects.md)

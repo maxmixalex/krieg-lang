@@ -9,8 +9,16 @@ interface String { readonly length: number }
 interface Number {}
 interface Boolean {}
 interface RegExp {}
-interface Array<T> { readonly length: number; [index: number]: T }
-interface ReadonlyArray<T> { readonly length: number; readonly [index: number]: T }
+interface Array<T> extends ReadonlyArray<T> { [index: number]: T }
+interface ReadonlyArray<T> {
+  readonly length: number;
+  readonly [index: number]: T;
+  map<U>(callback: (value: T, index: number, array: readonly T[]) => U): U[];
+  flatMap<U>(callback: (value: T, index: number, array: readonly T[]) => U | readonly U[]): U[];
+  filter(callback: (value: T, index: number, array: readonly T[]) => boolean): T[];
+  some(callback: (value: T, index: number, array: readonly T[]) => boolean): boolean;
+  every(callback: (value: T, index: number, array: readonly T[]) => boolean): boolean;
+}
 // Type-only support for the PDX lexer declaration exported by krieg-lang/pdx.
 // There is deliberately no Set constructor value in the source language.
 interface Set<T> { readonly size: number; has(value: T): boolean }

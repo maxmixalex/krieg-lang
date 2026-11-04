@@ -182,7 +182,7 @@ Gives rights to take resources from specified state. give_resource_rights = { re
 作用域：`country`
 
 ```ts
-"give_resource_rights"(value: { "receiver": CountryRef; "state": StateRef; "resources"?: readonly (string)[] } | CwtNode): void;
+"give_resource_rights"(value: { "receiver": CountryRef; "state": StateRef | StateTargetRef; "resources"?: readonly (string)[] } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -224,7 +224,7 @@ Goes to stated state.
 作用域：`any`
 
 ```ts
-"goto_state"(value: StateRef): void;
+"goto_state"(value: StateRef | StateTargetRef): void;
 ```
 
 CWT 来源：

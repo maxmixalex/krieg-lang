@@ -209,7 +209,7 @@ Modulos a variable with another.
 
 ```ts
 "modulo_variable"(value: CwtNode): void;
-"modulo_variable"(value: { "var": CwtOpaque; "value": number } | CwtNode): void;
+"modulo_variable"(value: { "var": string; "value": number } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -225,7 +225,7 @@ Multiplies a temp variable to a value or another variable.
 
 ```ts
 "multiply_temp_variable"(value: CwtNode): void;
-"multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+"multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -242,7 +242,7 @@ Multiplies a variable to a value or another variable.
 
 ```ts
 "multiply_variable"(value: CwtNode): void;
-"multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+"multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
 ```
 
 CWT 来源：

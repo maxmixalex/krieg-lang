@@ -1,0 +1,21 @@
+{
+  "name": "automated-research",
+  "sourceDir": "src",
+  "assets": [
+    {
+      "from": "original-assets",
+      "to": ""
+    }
+  ],
+  "strictAssets": true,
+  "compiler": {
+    "maxExpansion": 20000000
+  },
+  "mod": {
+    "name": "Research Queue — Krieg rewrite",
+    "version": "0.5.0",
+    "supportedVersion": "1.19.*",
+    "picture": "thumbnail.png",
+    "tags": ["Utilities", "Gameplay"]
+  }
+}

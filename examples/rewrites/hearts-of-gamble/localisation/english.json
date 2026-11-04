@@ -1,0 +1,9 @@
+{
+  "KG_CLOSE": "Close table",
+  "KG_LEDGER": "Active stakes",
+  "KG_BLACKJACK_SCORE": "Player: [?blackjack_player|0]   Dealer: [?blackjack_dealer|0]",
+  "KG_HIGHLOW_SCORE": "Current payout: ×[?multiplier|0]",
+  "KG_BET_HELP": "Place stakes using the game’s decisions, then start a round.",
+  "KG_CASINO_TITLE": "Hearts of Gamble",
+  "KG_WAIT": "The dealer is preparing the table…"
+}

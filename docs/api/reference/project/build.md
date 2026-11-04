@@ -110,21 +110,21 @@ Defined in: [src/project/build.ts:40](https://github.com/maxmixalex/krieg-lang/b
 
 ## BuildResult { #buildresult }
 
-Defined in: [src/project/types.ts:98](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L98)
+Defined in: [src/project/types.ts:100](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L100)
 
 ### Properties { #buildresult-section-properties }
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="buildresult-property-diagnostics"></a> `diagnostics` | [`ProjectDiagnostic`](#projectdiagnostic)[] | [src/project/types.ts:100](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L100) |
-| <a id="buildresult-property-files"></a> `files` | `object`[] | [src/project/types.ts:101](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L101) |
-| <a id="buildresult-property-launcherfile"></a> `launcherFile?` | `string` | [src/project/types.ts:103](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L103) |
-| <a id="buildresult-property-outdir"></a> `outDir` | `string` | [src/project/types.ts:102](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L102) |
-| <a id="buildresult-property-success"></a> `success` | `boolean` | [src/project/types.ts:99](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L99) |
-| <a id="buildresult-property-world"></a> `world` | `object` | [src/project/types.ts:104](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L104) |
-| `world.assets` | `number` | [src/project/types.ts:104](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L104) |
-| `world.countries` | `number` | [src/project/types.ts:104](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L104) |
-| `world.states` | `number` | [src/project/types.ts:104](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L104) |
+| <a id="buildresult-property-diagnostics"></a> `diagnostics` | [`ProjectDiagnostic`](#projectdiagnostic)[] | [src/project/types.ts:102](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L102) |
+| <a id="buildresult-property-files"></a> `files` | `object`[] | [src/project/types.ts:103](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L103) |
+| <a id="buildresult-property-launcherfile"></a> `launcherFile?` | `string` | [src/project/types.ts:105](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L105) |
+| <a id="buildresult-property-outdir"></a> `outDir` | `string` | [src/project/types.ts:104](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L104) |
+| <a id="buildresult-property-success"></a> `success` | `boolean` | [src/project/types.ts:101](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L101) |
+| <a id="buildresult-property-world"></a> `world` | `object` | [src/project/types.ts:106](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L106) |
+| `world.assets` | `number` | [src/project/types.ts:106](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L106) |
+| `world.countries` | `number` | [src/project/types.ts:106](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L106) |
+| `world.states` | `number` | [src/project/types.ts:106](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L106) |
 
 
 ## ProjectBuildOptions { #projectbuildoptions }
@@ -149,33 +149,33 @@ Options for workflows that can refresh editor declarations from the same resolve
 
 ## ProjectDiagnostic { #projectdiagnostic }
 
-Defined in: [src/project/types.ts:75](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L75)
+Defined in: [src/project/types.ts:77](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L77)
 
 ### Properties { #projectdiagnostic-section-properties }
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="projectdiagnostic-property-code"></a> `code` | `string` | [src/project/types.ts:76](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L76) |
-| <a id="projectdiagnostic-property-column"></a> `column?` | `number` | [src/project/types.ts:81](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L81) |
-| <a id="projectdiagnostic-property-file"></a> `file?` | `string` | [src/project/types.ts:79](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L79) |
-| <a id="projectdiagnostic-property-line"></a> `line?` | `number` | [src/project/types.ts:80](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L80) |
-| <a id="projectdiagnostic-property-message"></a> `message` | `string` | [src/project/types.ts:78](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L78) |
-| <a id="projectdiagnostic-property-severity"></a> `severity` | `"error"` \| `"warning"` | [src/project/types.ts:77](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L77) |
+| <a id="projectdiagnostic-property-code"></a> `code` | `string` | [src/project/types.ts:78](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L78) |
+| <a id="projectdiagnostic-property-column"></a> `column?` | `number` | [src/project/types.ts:83](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L83) |
+| <a id="projectdiagnostic-property-file"></a> `file?` | `string` | [src/project/types.ts:81](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L81) |
+| <a id="projectdiagnostic-property-line"></a> `line?` | `number` | [src/project/types.ts:82](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L82) |
+| <a id="projectdiagnostic-property-message"></a> `message` | `string` | [src/project/types.ts:80](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L80) |
+| <a id="projectdiagnostic-property-severity"></a> `severity` | `"error"` \| `"warning"` | [src/project/types.ts:79](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L79) |
 
 
 ## OutputFile { #outputfile }
 
-Defined in: [src/project/types.ts:89](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L89)
+Defined in: [src/project/types.ts:91](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L91)
 
 ### Properties { #outputfile-section-properties }
 
 | Property | Type | Description | Defined in |
 | ------ | ------ | ------ | ------ |
-| <a id="outputfile-property-bytes"></a> `bytes` | `Uint8Array` | - | [src/project/types.ts:93](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L93) |
-| <a id="outputfile-property-kind"></a> `kind` | `"script"` \| `"asset"` \| `"localisation"` \| `"metadata"` | - | [src/project/types.ts:95](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L95) |
-| <a id="outputfile-property-origins"></a> `origins?` | [`NativeLineOrigin`](../compiler/compile.md#nativelineorigin)[] | Internal build provenance, stored only in the local build marker. | [src/project/types.ts:91](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L91) |
-| <a id="outputfile-property-path"></a> `path` | `string` | - | [src/project/types.ts:92](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L92) |
-| <a id="outputfile-property-source"></a> `source` | `string` | - | [src/project/types.ts:94](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L94) |
+| <a id="outputfile-property-bytes"></a> `bytes` | `Uint8Array` | - | [src/project/types.ts:95](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L95) |
+| <a id="outputfile-property-kind"></a> `kind` | `"script"` \| `"asset"` \| `"localisation"` \| `"metadata"` | - | [src/project/types.ts:97](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L97) |
+| <a id="outputfile-property-origins"></a> `origins?` | [`NativeLineOrigin`](../compiler/compile.md#nativelineorigin)[] | Internal build provenance, stored only in the local build marker. | [src/project/types.ts:93](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L93) |
+| <a id="outputfile-property-path"></a> `path` | `string` | - | [src/project/types.ts:94](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L94) |
+| <a id="outputfile-property-source"></a> `source` | `string` | - | [src/project/types.ts:96](https://github.com/maxmixalex/krieg-lang/blob/main/src/project/types.ts#L96) |
 
 
 ## ModMetadata { #modmetadata }
@@ -198,4 +198,4 @@ Defined in: [src/project/types.ts:4](https://github.com/maxmixalex/krieg-lang/bl
 
 ## 完整示例与工作流
 
-[阅读构建、打包与诊断结果指南](../../../projects.md)
+[阅读构建、打包与诊断结果指南](../../../guide/projects.md)

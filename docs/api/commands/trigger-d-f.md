@@ -137,7 +137,7 @@ Check distance between two states.
 作用域：`state`
 
 ```ts
-"distance_to"(value: { "value": number; "target": StateRef } | CwtNode): boolean;
+"distance_to"(value: { "value": number; "target": StateRef | StateTargetRef } | CwtNode): boolean;
 ```
 
 CWT 来源：
@@ -152,7 +152,7 @@ Divides a temp variable to a value or another variable.
 
 ```ts
 "divide_temp_variable"(value: CwtNode): boolean;
-"divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
+"divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
 ```
 
 CWT 来源：
@@ -196,7 +196,7 @@ Checks for amount of divisions in specified state owned by current country.
 作用域：`country`
 
 ```ts
-"divisions_in_border_state"(value: { "type"?: string; "size": number; "state": StateRef; "border_state": StateRef } | CwtNode): boolean;
+"divisions_in_border_state"(value: { "type"?: string; "size": number; "state": StateRef | StateTargetRef; "border_state": StateRef | StateTargetRef } | CwtNode): boolean;
 ```
 
 CWT 来源：
@@ -210,7 +210,7 @@ Checks for amount of divisions in specified state owned by current country.
 作用域：`country`
 
 ```ts
-"divisions_in_state"(value: { "size": number; "state": StateRef; "unit"?: string; "type"?: string } | CwtNode): boolean;
+"divisions_in_state"(value: { "size": number; "state": StateRef | StateTargetRef; "unit"?: string; "type"?: string } | CwtNode): boolean;
 ```
 
 CWT 来源：

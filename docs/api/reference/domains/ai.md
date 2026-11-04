@@ -580,4 +580,4 @@ Defined in: [src/sdk/domains.ts:2417](https://github.com/maxmixalex/krieg-lang/b
 
 ## 完整示例与工作流
 
-[阅读AI 定义指南](../../../content-domains.md)
+[阅读AI 定义指南](../../../guide/domains/index.md)

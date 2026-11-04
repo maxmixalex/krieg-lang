@@ -1,0 +1,140 @@
+{
+  "version": "0.5.0",
+  "scope": "Original and emitted native scripts were compared on a pinned six-mod upload. Game executable, live UI, audio playback, multiplayer determinism and engine frame time were not tested. Lines include data and comments; counts describe authoring form, not time saved.",
+  "cwtoolsSha256": "06161387481cffb9c593cda101994748f0e7640b3154af552b96843bfb5ba665",
+  "ports": {
+    "playable-piano": {
+      "inputTreeSha256": "93e0de2a52b015d9a2fb6b57a1cbc23723c1f235c151480ed1afe065a7d99172",
+      "nativeText": {
+        "files": 4,
+        "linesIncludingComments": 797
+      },
+      "kriegTypeScript": {
+        "files": 3,
+        "linesIncludingCommentsAndData": 227,
+        "tableFilenameCount": 0
+      },
+      "packedGameFiles": 64,
+      "cwtoolsDiagnostics": {
+        "original": 4,
+        "compiled": 4,
+        "addedMessageGroups": 0
+      },
+      "keysCompared": 25
+    },
+    "state-transfer-tool": {
+      "inputTreeSha256": "80fd740dde98f733a276fca9a23cf37c61fb1c15e033e6474275e617ee6fbf15",
+      "nativeText": {
+        "files": 6,
+        "linesIncludingComments": 513
+      },
+      "kriegTypeScript": {
+        "files": 3,
+        "linesIncludingCommentsAndData": 378,
+        "tableFilenameCount": 0
+      },
+      "packedGameFiles": 18,
+      "cwtoolsDiagnostics": {
+        "original": 0,
+        "compiled": 0,
+        "addedMessageGroups": 0
+      },
+      "actionChecks": 42
+    },
+    "twr-gdp-screen": {
+      "inputTreeSha256": "0080ace082d45de0024cd30273c08e239f0c2a8403d40708a967d7ed4b598aff",
+      "nativeText": {
+        "files": 10,
+        "linesIncludingComments": 2555
+      },
+      "kriegTypeScript": {
+        "files": 7,
+        "linesIncludingCommentsAndData": 1080,
+        "tableFilenameCount": 0
+      },
+      "packedGameFiles": 32,
+      "cwtoolsDiagnostics": {
+        "original": 2,
+        "compiled": 1,
+        "addedMessageGroups": 0
+      },
+      "oracle": {
+        "scenarios": 3,
+        "mapModes": 2,
+        "sortSpecializations": 12
+      }
+    },
+    "hearts-of-gamble": {
+      "inputTreeSha256": "ab6391dabd917fcecd70840ec560636200fffa7a1b65cf4830ee03ac31568faa",
+      "nativeText": {
+        "files": 37,
+        "linesIncludingComments": 46220
+      },
+      "kriegTypeScript": {
+        "files": 10,
+        "linesIncludingCommentsAndData": 2182,
+        "tableFilenameCount": 1
+      },
+      "packedGameFiles": 439,
+      "cwtoolsDiagnostics": {
+        "original": 459,
+        "compiled": 14,
+        "addedMessageGroups": 0
+      },
+      "oracleCases": 20258
+    },
+    "automated-research": {
+      "inputTreeSha256": "48fe26c5ad0200aa820a1a4efd0ca6ab515a37fb91592342629951d391f7ee55",
+      "nativeText": {
+        "files": 40,
+        "linesIncludingComments": 881751
+      },
+      "kriegTypeScript": {
+        "files": 51,
+        "linesIncludingCommentsAndData": 19212,
+        "tableFilenameCount": 15
+      },
+      "packedGameFiles": 2585,
+      "cwtoolsDiagnostics": {
+        "original": 7275,
+        "compiled": 5163,
+        "addedMessageGroups": 0,
+        "rawOriginal": 2637,
+        "rawCompiled": 5165,
+        "comparison": "All files checked after compacting or splitting oversized text in temporary validation copies; direct scans silently omit inputs over the validator size limit."
+      },
+      "oracleChecks": {
+        "core": 18831,
+        "mioAndBonus": 10466,
+        "uiAndLocalisation": 193091
+      }
+    },
+    "hearts-of-uno": {
+      "inputTreeSha256": "3518259392e8bf0442b813b9e9637a22e76eb51cd6aa8a31b979e11932824c21",
+      "nativeText": {
+        "files": 9,
+        "linesIncludingComments": 70697
+      },
+      "kriegTypeScript": {
+        "files": 7,
+        "linesIncludingCommentsAndData": 1043,
+        "tableFilenameCount": 1
+      },
+      "packedGameFiles": 221,
+      "cwtoolsDiagnostics": {
+        "original": 500,
+        "compiled": 1,
+        "addedMessageGroups": 0
+      },
+      "oracleChecks": {
+        "cardTransitions": 5664,
+        "cardAcceptance": 77760,
+        "wildReplacement": 384,
+        "aiWeights": 56106,
+        "localizationCounters": 45,
+        "decisions": 13,
+        "controlVisibility": 39852
+      }
+    }
+  }
+}

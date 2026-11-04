@@ -8,6 +8,8 @@
 
 | 公开符号                                                       | 详细参考                                                                                |
 | -------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| <a id="animatedsprite"></a> `AnimatedSprite`                   | [查看 AnimatedSprite](reference/ui/sprites.md#animatedsprite)                           |
+| <a id="animatedspritespec"></a> `AnimatedSpriteSpec`           | [查看 AnimatedSpriteSpec](reference/ui/sprites.md#animatedspritespec)                   |
 | <a id="browser"></a> `Browser`                                 | [查看 Browser](reference/ui/native-controls/browser.md#browser)                         |
 | <a id="button"></a> `Button`                                   | [查看 Button](reference/ui/buttons-text.md#button)                                      |
 | <a id="buttonprops"></a> `ButtonProps`                         | [查看 ButtonProps](reference/ui/buttons-text.md#buttonprops)                            |
@@ -32,6 +34,9 @@
 | <a id="guifile"></a> `GuiFile`                                 | [查看 GuiFile](reference/ui/layout.md#guifile)                                          |
 | <a id="guiframebindings"></a> `GuiFrameBindings`               | [查看 GuiFrameBindings](reference/ui/windows.md#guiframebindings)                       |
 | <a id="guiiconbindings"></a> `GuiIconBindings`                 | [查看 GuiIconBindings](reference/ui/windows.md#guiiconbindings)                         |
+| <a id="guilistbinding"></a> `GuiListBinding`                   | [查看 GuiListBinding](reference/ui/windows.md#guilistbinding)                           |
+| <a id="guilistbindings"></a> `GuiListBindings`                 | [查看 GuiListBindings](reference/ui/windows.md#guilistbindings)                         |
+| <a id="guimouseevents"></a> `GuiMouseEvents`                   | [查看 GuiMouseEvents](reference/ui/windows.md#guimouseevents)                           |
 | <a id="guiorientation"></a> `GuiOrientation`                   | [查看 GuiOrientation](reference/ui/layout.md#guiorientation)                            |
 | <a id="guiorigin"></a> `GuiOrigin`                             | [查看 GuiOrigin](reference/ui/layout.md#guiorigin)                                      |
 | <a id="guiposition"></a> `GuiPosition`                         | [查看 GuiPosition](reference/ui/layout.md#guiposition)                                  |
@@ -70,4 +75,4 @@
 | <a id="textprops"></a> `TextProps`                             | [查看 TextProps](reference/ui/buttons-text.md#textprops)                                |
 | <a id="window"></a> `Window`                                   | [查看 Window](reference/ui/native-controls/window.md#window)                            |
 
-[组件、布局与游戏行为](../ui.md)
+[组件、布局与游戏行为](../guide/ui.md)

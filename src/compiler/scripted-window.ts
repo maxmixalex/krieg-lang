@@ -1,5 +1,6 @@
 import type ts from "typescript";
 import type { PdxProperty } from "../pdx/ast.js";
+import { composeGuiMouseEvents } from "./gui-events.js";
 
 /** Static element metadata survives source components, fragments and arrays. */
 export interface GuiElementValue {
@@ -19,7 +20,16 @@ export const SCRIPTED_WINDOW_COMPONENTS = [
   "GridBox",
   "ListBox",
 ] as const;
-export const GUI_BINDING_KEYS = ["visible", "properties", "click", "enabled", "aiWeight", "action"];
+export const GUI_BINDING_KEYS = [
+  "visible",
+  "properties",
+  "click",
+  "enabled",
+  "aiWeight",
+  "action",
+  "list",
+  "events",
+];
 
 function record(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -43,6 +53,7 @@ export function composeScriptedWindow(
   node: ts.Node,
   fail: Fail,
   bindButton: (props: Record<string, unknown>, node: ts.Node) => Record<string, unknown>,
+  templates: GuiElementValue[] = [],
 ): Record<string, unknown> {
   const roots = guiElements(layout, node, fail);
   if (roots.length !== 1 || roots[0].property.key.text !== "containerWindowType")
@@ -52,6 +63,7 @@ export function composeScriptedWindow(
   const triggers: Record<string, unknown> = Object.create(null);
   const properties: Record<string, unknown> = Object.create(null);
   const aiWeights: Record<string, unknown> = Object.create(null);
+  const dynamicLists: Record<string, unknown> = Object.create(null);
   let windowName = "";
 
   const visit = (element: GuiElementValue, root = false): void => {
@@ -89,23 +101,92 @@ export function composeScriptedWindow(
       const button = element.property.key.text === "buttonType";
       if (
         !button &&
-        ["click", "enabled", "aiWeight", "action"].some((key) => props[key] !== undefined)
+        ["click", "enabled", "aiWeight", "action", "events"].some((key) => props[key] !== undefined)
       )
         fail(origin, "KRG2134", "Only a bound Button accepts click, enabled, action and aiWeight.");
       if (button) props = bindButton(props, origin);
       if (props.click !== undefined) effects[`${name}_click`] = props.click;
+      if (props.events !== undefined)
+        composeGuiMouseEvents(name, props.events, effects, origin, fail);
       if (props.enabled !== undefined) triggers[`${name}_click_enabled`] = props.enabled;
       if (props.visible !== undefined) triggers[`${name}_visible`] = props.visible;
       if (props.aiWeight !== undefined) aiWeights[`${name}_click`] = props.aiWeight;
+      if (props.list !== undefined) {
+        if (!["gridBoxType", "listBoxType"].includes(element.property.key.text))
+          fail(origin, "KRG2140", "Only a bound GridBox or ListBox accepts a game-array list.");
+        const list = props.list;
+        if (
+          !record(list) ||
+          Object.keys(list).some(
+            (key) => !["array", "index", "value", "entry", "entryScope"].includes(key),
+          )
+        )
+          fail(
+            origin,
+            "KRG2141",
+            "A GUI list requires array, entry, and optional index/value references.",
+          );
+        if (typeof list.array !== "string" || !/^[A-Za-z_][A-Za-z0-9_.:]*$/.test(list.array))
+          fail(origin, "KRG2141", "A GUI list array must be a native array identifier.");
+        const entries = guiElements(list.entry, origin, fail);
+        if (entries.length !== 1 || entries[0].property.key.text !== "containerWindowType")
+          fail(origin, "KRG2142", "A GUI list entry requires exactly one root Container.");
+        const entry = entries[0];
+        const entryBlock = entry.property.value;
+        const entryName =
+          entryBlock.kind === "block"
+            ? entryBlock.items.find((item) => item.kind === "property" && item.key.text === "name")
+            : undefined;
+        if (!entryName || entryName.kind !== "property" || entryName.value.kind !== "atom")
+          fail(origin, "KRG2142", "A GUI list entry requires a named Container.");
+        const definition: Record<string, unknown> = {
+          array: list.array,
+          entryContainer: entryName.value.text,
+        };
+        if (list.entryScope !== undefined) {
+          const context = specification.context;
+          const scope =
+            context === "selected_state_context" || context === "state_mapicon"
+              ? "state"
+              : context === "global_context"
+                ? "any"
+                : "country";
+          if (list.entryScope !== scope)
+            fail(
+              origin,
+              "KRG2144",
+              "A colocated list entryScope must match its window scope; use ScriptedGui for cross-scope arrays.",
+            );
+          definition.entryScope = list.entryScope;
+        }
+        for (const key of ["index", "value"]) {
+          const reference = list[key];
+          if (reference === undefined) continue;
+          if (
+            !record(reference) ||
+            reference._krg !== "gui-variable" ||
+            typeof reference.name !== "string"
+          )
+            fail(origin, "KRG2141", `A GUI list ${key} requires a GuiVariable reference.`);
+          definition[key] = reference.name;
+        }
+        dynamicLists[name] = definition;
+        const previousWeights = new Set(Object.keys(aiWeights));
+        visit(entry);
+        const entryWeights: Record<string, unknown> = Object.create(null);
+        for (const key of Object.keys(aiWeights)) {
+          if (previousWeights.has(key)) continue;
+          entryWeights[key] = aiWeights[key];
+          delete aiWeights[key];
+        }
+        if (Object.keys(entryWeights).length) definition.aiWeights = entryWeights;
+        templates.push(entry);
+      }
       if (props.properties !== undefined) {
         if (!record(props.properties))
           fail(origin, "KRG2135", "GUI property bindings require a static property record.");
         const icon = element.property.key.text === "iconType";
-        const supported = icon
-          ? ["image", "frame", "x", "y"]
-          : button
-            ? ["frame", "x", "y"]
-            : ["x", "y"];
+        const supported = icon || button ? ["image", "frame", "x", "y"] : ["x", "y"];
         const values: Record<string, unknown> = Object.create(null);
         for (const [key, value] of Object.entries(props.properties)) {
           if (value === undefined) continue;
@@ -146,7 +227,13 @@ export function composeScriptedWindow(
   };
   visit(roots[0], true);
   const result: Record<string, unknown> = { ...specification, windowName };
-  for (const [key, value] of Object.entries({ effects, triggers, properties, aiWeights }))
+  for (const [key, value] of Object.entries({
+    effects,
+    triggers,
+    properties,
+    aiWeights,
+    dynamicLists,
+  }))
     if (Object.keys(value).length) result[key] = value;
   delete result.path;
   return result;

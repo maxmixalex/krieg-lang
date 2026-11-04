@@ -85,7 +85,7 @@ Multiplies a temp variable to a value or another variable.
 
 ```ts
 "multiply_temp_variable"(value: CwtNode): boolean;
-"multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+"multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
 ```
 
 CWT 来源：
@@ -143,8 +143,8 @@ Checks network strength you have in a country.
 作用域：`COUNTRY`
 
 ```ts
-"network_strength"(value: { "target": CountryRef; "state"?: StateRef; "value": number } | CwtNode): boolean;
-"network_strength"(value: { "state": StateRef; "value": number } | CwtNode): boolean;
+"network_strength"(value: { "target": CountryRef; "state"?: StateRef | StateTargetRef; "value": number } | CwtNode): boolean;
+"network_strength"(value: { "state": StateRef | StateTargetRef; "value": number } | CwtNode): boolean;
 ```
 
 CWT 来源：
@@ -213,7 +213,7 @@ Checks if states have divisions
 作用域：`country`
 
 ```ts
-"num_battalions_in_states"(value: { "count": number; "states": readonly (StateRef)[]; "types"?: readonly (string)[]; "exclude"?: readonly (string)[] } | CwtNode): boolean;
+"num_battalions_in_states"(value: { "count": number; "states": readonly (StateRef | StateTargetRef)[]; "types"?: readonly (string)[]; "exclude"?: readonly (string)[] } | CwtNode): boolean;
 ```
 
 CWT 来源：
@@ -255,7 +255,7 @@ Checks if states have divisions
 作用域：`country`
 
 ```ts
-"num_divisions_in_states"(value: { "count": number; "states": readonly (StateRef)[]; "types"?: readonly (string)[]; "exclude"?: readonly (string)[] } | CwtNode): boolean;
+"num_divisions_in_states"(value: { "count": number; "states": readonly (StateRef | StateTargetRef)[]; "types"?: readonly (string)[]; "exclude"?: readonly (string)[] } | CwtNode): boolean;
 ```
 
 CWT 来源：
@@ -785,7 +785,7 @@ Check if the country owns any of the states in the list
 作用域：`country`
 
 ```ts
-"owns_any_state_of"(value: readonly (StateRef)[]): boolean;
+"owns_any_state_of"(value: readonly (StateRef | StateTargetRef)[]): boolean;
 ```
 
 CWT 来源：
@@ -799,7 +799,7 @@ Check owner for state(s).
 作用域：`country`
 
 ```ts
-"owns_state"(value: StateRef): boolean;
+"owns_state"(value: StateRef | StateTargetRef): boolean;
 ```
 
 CWT 来源：

@@ -1,3 +1,5 @@
+import { flagStorage } from "./flag-storage.js";
+import { indexDispatch } from "./indexed-dispatch.js";
 import ts from "typescript";
 import path from "node:path";
 import * as pdx from "../pdx/ast.js";
@@ -9,6 +11,8 @@ import { commandValueError } from "./command-validation.js";
 import { CountryActions } from "./country-actions.js";
 import { DOMAIN_DEFINITIONS, DOMAIN_SCHEMA, type NativeValue } from "./domain-registry.js";
 import { lowerDefines } from "./defines.js";
+import { audioBank } from "./audio-bank.js";
+import { countryHeatmap } from "./country-heatmap.js";
 import { stackElements } from "./stack.js";
 import {
   STYLE_NATIVE_NAMES,
@@ -45,7 +49,13 @@ type Builtin = {
 type Member = { _krg: "member"; object: Value; name: string };
 type Trigger = { _krg: "trigger"; items: pdx.PdxItem[] };
 type Variable = { _krg: "variable"; name: string; scope: Scope; mutable: boolean };
-type Query = { _krg: "query"; name: string; scope: Scope; boolean?: boolean };
+type Query = {
+  _krg: "query";
+  name: string;
+  scope: Scope;
+  boolean?: boolean;
+  metric?: { field: string; before: pdx.PdxItem[]; after: pdx.PdxItem[] };
+};
 type Arithmetic = { _krg: "arithmetic"; operator: ts.SyntaxKind; left: Value; right: Value };
 type Definition = {
   _krg: "definition";
@@ -106,11 +116,22 @@ const aliases: Record<string, string> = {
   addToVariable: "add_to_variable",
 };
 const queries: Record<string, string> = {
+  availableManpower: "has_manpower",
+  commandPower: "command_power",
+  militaryFactories: "num_of_military_factories",
+  civilianFactories: "num_of_civilian_factories",
+  navalFactories: "num_of_naval_factories",
   politicalPower: "has_political_power",
+  armyExperience: "has_army_experience",
+  navyExperience: "has_navy_experience",
+  airExperience: "has_air_experience",
   stability: "has_stability",
   warSupport: "has_war_support",
   manpower: "state_population",
   isAI: "is_ai",
+  energyRatio: "energy_ratio",
+  factories: "num_of_factories",
+  surrenderProgress: "surrender_progress",
 };
 const definitions = new Set([
   ...Object.keys(DOMAIN_DEFINITIONS),
@@ -449,9 +470,27 @@ export class Lowerer {
             message: `Output '${output.path}' mixes semantic and ordered-PDX declarations. Give them distinct explicit paths.`,
             file: output.sourceFile,
           });
-        if (previous.format === "pdx" && output.format === "pdx")
-          previous.document.items.push(...output.document.items);
-        else if (previous.format === "lua" && output.format === "lua") {
+        if (previous.format === "pdx" && output.format === "pdx") {
+          // The engine schema permits one map-mode wrapper per file. Semantic
+          // map declarations share that wrapper; ordered documents stay literal.
+          const left = previous.document.items[0];
+          const right = output.document.items[0];
+          if (
+            previous.representation === "semantic" &&
+            output.representation === "semantic" &&
+            output.path.startsWith("common/map_modes/") &&
+            previous.document.items.length === 1 &&
+            output.document.items.length === 1 &&
+            left?.kind === "property" &&
+            right?.kind === "property" &&
+            left.key.text === "scripted_map_modes" &&
+            right.key.text === "scripted_map_modes" &&
+            left.value.kind === "block" &&
+            right.value.kind === "block"
+          )
+            left.value.items.push(...right.value.items);
+          else previous.document.items.push(...output.document.items);
+        } else if (previous.format === "lua" && output.format === "lua") {
           if (output.lineOrigins?.length) {
             const offset = previous.text.split("\n").length - 1;
             (previous.lineOrigins ??= []).push(
@@ -850,7 +889,11 @@ export class Lowerer {
         return { _krg: "member", object, name } as Member;
       }
       if (tagged(object, "member")) return { _krg: "member", object, name } as Member;
-      if (Array.isArray(object)) return name === "length" ? object.length : object[Number(name)];
+      if (Array.isArray(object)) {
+        if (["map", "flatMap", "filter", "some", "every"].includes(name))
+          return { _krg: "member", object, name } as Member;
+        return name === "length" ? object.length : object[Number(name)];
+      }
       if (typeof object === "string" && name === "length") return object.length;
       if (record(object) && Object.hasOwn(object, name)) return object[name];
       this.fail(node, "KRG2016", `Property '${name}' does not have a static value.`);
@@ -974,7 +1017,9 @@ export class Lowerer {
       }
       if (symbol) env.set(symbol, argument);
     }
-    const inner = { ...context, env };
+    // A return exits this helper, not the runtime branch that called it.
+    // Branches opened inside the helper still mark their own dynamic context.
+    const inner = { ...context, env, dynamicBranch: false };
     const traceHelper =
       this.options.traceSources &&
       ts.isCallExpression(call) &&
@@ -1023,6 +1068,270 @@ export class Lowerer {
     }
   }
   private sdkCall(name: string, args: Value[], node: ts.Node, context: Context): Value {
+    if (name === "CountryHeatmap") {
+      if (context.mode !== "top")
+        this.fail(node, "KRG2028", "Country heatmaps belong at module scope.");
+      try {
+        const map = countryHeatmap(args[0]);
+        return {
+          _krg: "definition",
+          id: map.id,
+          outputs: [this.output(map.path, map.document, node)],
+        };
+      } catch (error) {
+        this.fail(
+          node,
+          "KRG2707",
+          error instanceof Error ? error.message : "Invalid CountryHeatmap.",
+        );
+      }
+    }
+    if (name === "gameScripts") {
+      const scope = this.string(args[0], node);
+      if (
+        !this.schema.scopes.some((s) => s.toLowerCase() === scope.toLowerCase()) &&
+        !["country", "state", "character", "unit_leader", "any"].includes(scope)
+      )
+        this.fail(node, "KRG2735", "Unsupported scope in external script contract: " + scope);
+      const spec = this.object(args[1], node);
+      this.checkKeys(spec, ["triggers", "effects"], node, "External scripts");
+      const handles = (items: Value, kind: "effect" | "trigger") => {
+        const out: Record<string, Definition> = Object.create(null);
+        for (const n of this.array(items ?? [], node)) {
+          if (
+            typeof n !== "string" ||
+            !/^[A-Za-z_][A-Za-z0-9_]*$/.test(n) ||
+            ["_krg", "constructor", "prototype", "__proto__"].includes(n) ||
+            Object.hasOwn(out, n)
+          )
+            this.fail(node, "KRG2735", "A script contract requires distinct native identifiers.");
+          out[n] = { _krg: "definition", scope, definitionKind: kind, name: n, outputs: [] };
+        }
+        return out;
+      };
+      return {
+        triggers: handles(spec.triggers, "trigger"),
+        effects: handles(spec.effects, "effect"),
+      };
+    }
+    if (name === "indexBy") {
+      const [rows, select, project] = args;
+      if (
+        !Array.isArray(rows) ||
+        rows.length > 16384 ||
+        !tagged(select, "function") ||
+        (project !== undefined && !tagged(project, "function"))
+      )
+        this.fail(
+          node,
+          "KRG2734",
+          "indexBy requires a finite table and static key/value functions (at most 16384 rows).",
+        );
+      const result: Record<string, Value> = Object.create(null);
+      for (let i = 0; i < rows.length; i++) {
+        this.tick(node);
+        const parameters = [rows[i], i],
+          pure: Context = { ...context, mode: "top", sink: [] };
+        const key = this.invoke(select as Callable, parameters, node, pure);
+        if (
+          typeof key !== "string" ||
+          !key ||
+          ["__proto__", "prototype", "constructor", "_krg"].includes(key)
+        )
+          this.fail(node, "KRG2734", "indexBy keys must be nonempty, non-reserved static strings.");
+        if (Object.hasOwn(result, key))
+          this.fail(node, "KRG2734", "Duplicate catalogue key '" + key + "' at row " + i + ".");
+        result[key] =
+          project === undefined
+            ? rows[i]
+            : this.invoke(project as Callable, parameters, node, pure);
+      }
+      return result;
+    }
+    if (name === "DefinitionSeries") {
+      if (context.mode !== "top")
+        this.fail(node, "KRG2732", "DefinitionSeries belongs at module scope.");
+      const [first, count, make] = args;
+      if (
+        typeof first !== "number" ||
+        typeof count !== "number" ||
+        !Number.isSafeInteger(first) ||
+        !Number.isSafeInteger(count) ||
+        count < 1 ||
+        count > 16384 ||
+        !Number.isSafeInteger(first + count) ||
+        !tagged(make, "function")
+      )
+        this.fail(
+          node,
+          "KRG2732",
+          "A series requires a safe first index, 1–16384 entries, and a static declaration factory.",
+        );
+      const members: Definition[] = [];
+      for (let i = 0; i < count; i++) {
+        this.tick(node);
+        const batch = this.invoke(make as Callable, [first + i], node, context);
+        for (const child of Array.isArray(batch) ? batch : [batch]) {
+          if (!tagged(child, "definition"))
+            this.fail(
+              node,
+              "KRG2732",
+              "Series callbacks must return compiler-created declarations.",
+            );
+          members.push(child as Definition);
+        }
+      }
+      const handle = Object.create(null) as Record<string, Value>;
+      this.scriptedFamilies.set(handle, members);
+      return handle;
+    }
+    if (name === "FlagAchievements") {
+      if (context.mode !== "top")
+        this.fail(node, "KRG2732", "FlagAchievements belongs at module scope.");
+      const id = this.string(args[0], node),
+        opts = this.object(args[1], node);
+      this.checkKeys(
+        opts,
+        ["prefix", "count", "first", "scope", "outputPath", "storage"],
+        node,
+        "FlagAchievements",
+      );
+      const { prefix, count } = opts,
+        first = opts.first ?? 0,
+        variant = opts.scope ?? "global";
+      if (
+        !/^[a-zA-Z_][a-zA-Z0-9_]*$/.test(id) ||
+        typeof prefix !== "string" ||
+        !/^[a-zA-Z_][a-zA-Z0-9_]*$/.test(prefix) ||
+        typeof count !== "number" ||
+        typeof first !== "number" ||
+        !Number.isSafeInteger(count) ||
+        !Number.isSafeInteger(first) ||
+        first < 0 ||
+        !Number.isSafeInteger(first + count) ||
+        count < 1 ||
+        count > 16384 ||
+        !["country", "global"].includes(String(variant))
+      )
+        this.fail(
+          node,
+          "KRG2732",
+          "Expected valid identifiers, a numbered flag range of 1–16384, and a country or global scope.",
+        );
+      const path =
+        opts.outputPath === undefined
+          ? `common/achievements/krieg_${id}.txt`
+          : this.string(opts.outputPath, node);
+      if (!/^common\/achievements\/[a-zA-Z0-9_.-]+\.txt$/.test(path))
+        this.fail(
+          node,
+          "KRG2732",
+          "Achievement groups must be written to common/achievements/*.txt.",
+        );
+      const items: pdx.PdxItem[] = [pdx.property("unique_id", pdx.atom(id))];
+      for (let i = 0; i < count; i++) {
+        this.tick(node);
+        const flag = prefix + (first + i);
+        items.push(
+          pdx.property(
+            flag,
+            pdx.block([
+              pdx.property("possible", pdx.block([pdx.property("always", pdx.atom("yes"))])),
+              pdx.property(
+                "happened",
+                pdx.block([
+                  pdx.property(
+                    variant === "global" ? "has_global_flag" : "has_country_flag",
+                    pdx.atom(flag),
+                  ),
+                ]),
+              ),
+            ]),
+          ),
+        );
+      }
+      const outputs = [this.output(path, pdx.document(items), node)];
+      if (opts.storage !== undefined) {
+        const storage = this.object(opts.storage, node);
+        this.checkKeys(storage, ["array", "index", "load", "mark"], node, "Flag storage");
+        const { array, index, load, mark } = storage;
+        if (
+          first !== 0 ||
+          typeof array !== "string" ||
+          typeof index !== "string" ||
+          typeof load !== "string" ||
+          typeof mark !== "string" ||
+          ![array, index, load, mark].every((n) => /^[A-Za-z_][A-Za-z0-9_]*$/.test(n)) ||
+          array === index ||
+          load === mark
+        )
+          this.fail(
+            node,
+            "KRG2732",
+            "Storage requires distinct load/mark script names and array/index names, with zero-based achievement flags.",
+          );
+        const routines = flagStorage(
+          id,
+          prefix,
+          count,
+          variant as "global" | "country",
+          array,
+          index,
+        );
+        const handle = (name: string, body: pdx.PdxItem[]) => {
+          this.claimScriptedName("effect", name, node);
+          outputs.push(
+            this.output(
+              "common/scripted_effects/krieg_" + name + ".txt",
+              pdx.document([pdx.property(name, pdx.block(body))]),
+              node,
+            ),
+          );
+          return {
+            _krg: "definition",
+            scope: "country",
+            definitionKind: "effect",
+            name,
+            outputs: [],
+          } as Definition;
+        };
+        return {
+          _krg: "definition",
+          load: handle(load, routines.load),
+          mark: handle(mark, routines.mark),
+          outputs,
+        } as Definition;
+      }
+      return { _krg: "definition", outputs } as Definition;
+    }
+    if (name === "AudioBank") {
+      if (context.mode !== "top") this.fail(node, "KRG2028", "Audio banks belong at module scope.");
+      try {
+        const bank = audioBank(args[0], args[1]);
+        return {
+          _krg: "definition",
+          sounds: bank.sounds,
+          outputs: [this.output(bank.path, bank.document, node)],
+        };
+      } catch (error) {
+        this.fail(node, "KRG2705", error instanceof Error ? error.message : "Invalid AudioBank.");
+      }
+    }
+    if (name === "countryTarget" || name === "stateTarget" || name === "mioTarget") {
+      const target = this.string(args[0], node);
+      if (
+        !/^(?:(?:ROOT|THIS|PREV|FROM)(?:\.(?:ROOT|THIS|PREV|FROM))*|(?:var|event_target):[A-Za-z_][A-Za-z0-9_.]*(?:\^[A-Za-z0-9_]+)?)$/.test(
+          target,
+        )
+      )
+        this.fail(node, "KRG2701", `Invalid engine scope target '${target}'.`);
+      return name === "countryTarget"
+        ? { kind: "country", tag: target }
+        : {
+            kind: name === "mioTarget" ? "military_industrial_organization" : "state",
+            path: target,
+          };
+    }
     if (name === "MetaEffect") return this.metaEffect(args, node, context);
     if (name === "CountryAction") {
       if (context.mode !== "top")
@@ -1065,7 +1374,15 @@ export class Lowerer {
     }
     if (name === "country") {
       const tag = this.string(args[0], node);
-      if (!/^[A-Z][A-Z0-9]{2}$/.test(tag))
+      const spelling = args[1] === undefined ? {} : this.object(args[1], node);
+      this.checkKeys(spelling, ["spelling"], node, "Country tag spelling");
+      if (spelling.spelling !== undefined && spelling.spelling !== "verbatim")
+        this.fail(node, "KRG2026", "Unknown country tag spelling mode.");
+      if (
+        !(
+          spelling.spelling === "verbatim" ? /^[A-Za-z][A-Za-z0-9]{2}$/ : /^[A-Z][A-Z0-9]{2}$/
+        ).test(tag)
+      )
         this.fail(
           node,
           "KRG2026",
@@ -1305,7 +1622,7 @@ export class Lowerer {
     }
     if (name === "GuiVariable") {
       const variable = this.string(args[0], node);
-      if (!/^[A-Za-z_][A-Za-z0-9_.:]*$/.test(variable))
+      if (!/^[A-Za-z_][A-Za-z0-9_.:]*(?:\^(?:[A-Za-z_][A-Za-z0-9_.:]*|\d+))?$/.test(variable))
         this.fail(node, "KRG2136", "GuiVariable requires a non-empty native variable name.");
       return { _krg: "gui-variable", name: variable };
     }
@@ -1377,6 +1694,7 @@ export class Lowerer {
         ]),
       );
       const layout = this.invoke(args[1] as Callable, [components], node, context);
+      const templates: GuiElementValue[] = [];
       const scripted = composeScriptedWindow(
         spec,
         layout,
@@ -1384,8 +1702,14 @@ export class Lowerer {
         node,
         (origin, code, message) => this.fail(origin, code, message),
         (props, origin) => this.countryActions.button(props, spec.context, origin),
+        templates,
       );
-      const gui = this.uiCall("GuiFile", [spec.path, layout], node, context) as Definition;
+      const gui = this.uiCall(
+        "GuiFile",
+        [spec.path, [layout, ...templates]],
+        node,
+        context,
+      ) as Definition;
       return {
         _krg: "definition",
         outputs: [...gui.outputs, ...this.scriptedGui([scripted], node, context)],
@@ -1398,7 +1722,10 @@ export class Lowerer {
         this.fail(node, "KRG2088", `${name} requires an interface/*${extension} game path.`);
       const elements = this.guiChildren(args[1], node);
       for (const element of elements) {
-        if ((name === "SpriteFile") !== (element.key.text === "spriteType"))
+        if (
+          (name === "SpriteFile") !==
+          ["spriteType", "frameAnimatedSpriteType"].includes(element.key.text)
+        )
           this.fail(
             node,
             "KRG2089",
@@ -1484,6 +1811,15 @@ export class Lowerer {
           clickToFront: "click_to_front",
           smoothScrolling: "smooth_scrolling",
           scrollWheelFactor: "scroll_wheel_factor",
+          background: "background",
+          showSound: "show_sound",
+          fadeTime: "fade_time",
+          fadeType: "fade_type",
+          showPosition: "show_position",
+          showAnimationType: "show_animation_type",
+          hideAnimationType: "hide_animation_type",
+          animationTime: "animation_time",
+          margin: "margin",
         },
       },
       Icon: {
@@ -1493,6 +1829,8 @@ export class Lowerer {
           frame: "frame",
           alwaysTransparent: "alwaystransparent",
           centerPosition: "centerposition",
+          clickSound: "clicksound",
+          shortcut: "shortcut",
         },
       },
       Button: {
@@ -1507,6 +1845,9 @@ export class Lowerer {
           format: "format",
           multiline: "multiline",
           noClickSound: "no_clicksound",
+          clickSound: "clicksound",
+          overSound: "oversound",
+          webLink: "web_link",
         },
       },
       Text: {
@@ -1520,6 +1861,7 @@ export class Lowerer {
           verticalAlignment: "vertical_alignment",
           multiline: "multiline",
           fixedSize: "fixedsize",
+          truncate: "truncate",
           alwaysTransparent: "alwaystransparent",
           borderSize: "borderSize",
         },
@@ -1555,17 +1897,34 @@ export class Lowerer {
           effectFile: "effectFile",
           transparenceCheck: "transparencecheck",
           loadType: "loadType",
-          lazyLoad: "lazyLoad",
+          lazyLoad: "legacy_lazy_load",
+        },
+      },
+      AnimatedSprite: {
+        type: "frameAnimatedSpriteType",
+        fields: {
+          name: "name",
+          textureFile: "texturefile",
+          noOfFrames: "noOfFrames",
+          effectFile: "effectFile",
+          transparenceCheck: "transparencecheck",
+          loadType: "loadType",
+          lazyLoad: "legacy_lazy_load",
+          animationRateFps: "animation_rate_fps",
+          looping: "looping",
+          playOnShow: "play_on_show",
+          pauseOnLoop: "pause_on_loop",
+          alwaysTransparent: "alwaystransparent",
         },
       },
     };
     const kind = kinds[name];
     if (!kind) this.fail(node, "KRG2090", `Unknown interface constructor '${name}'.`);
-    const mapping = name === "Sprite" ? kind.fields : { ...base, ...kind.fields };
-    const spec =
-      name === "Sprite"
-        ? this.object(args[0], node)
-        : this.styledProps(this.object(args[0], node), kind.type, node, mapping);
+    const sprite = name === "Sprite" || name === "AnimatedSprite";
+    const mapping = sprite ? kind.fields : { ...base, ...kind.fields };
+    const spec = sprite
+      ? this.object(args[0], node)
+      : this.styledProps(this.object(args[0], node), kind.type, node, mapping);
     this.checkKeys(
       spec,
       [...Object.keys(mapping), ...(name === "Container" ? ["children"] : [])],
@@ -1574,6 +1933,24 @@ export class Lowerer {
     );
     if (!this.string(spec.name, node))
       this.fail(node, "KRG2091", "GUI elements require non-empty names.");
+    if (
+      name === "AnimatedSprite" &&
+      (typeof spec.noOfFrames !== "number" ||
+        !Number.isInteger(spec.noOfFrames) ||
+        spec.noOfFrames < 1 ||
+        typeof spec.animationRateFps !== "number" ||
+        !Number.isFinite(spec.animationRateFps) ||
+        spec.animationRateFps <= 0 ||
+        (spec.pauseOnLoop !== undefined &&
+          (typeof spec.pauseOnLoop !== "number" ||
+            !Number.isFinite(spec.pauseOnLoop) ||
+            spec.pauseOnLoop < 0)))
+    )
+      this.fail(
+        node,
+        "KRG2143",
+        "AnimatedSprite requires positive frames/FPS and a nonnegative loop pause.",
+      );
     if (name === "Icon" && typeof spec.spriteType !== "string")
       this.fail(
         node,
@@ -1587,11 +1964,29 @@ export class Lowerer {
       "verticalAlignment",
       "maxWidth",
       "maxHeight",
+      "fadeType",
+      "showSound",
+      "clickSound",
+      "overSound",
     ]);
     const items = Object.entries(mapping)
       .filter(([key]) => spec[key] !== undefined)
       .map(([key, target]) => {
         const value = spec[key];
+        if (key === "background") {
+          const background = this.object(value, node);
+          this.checkKeys(background, ["name", "spriteType"], node, "Container.background");
+          return pdx.property(
+            target,
+            pdx.block([
+              pdx.property("name", pdx.string(this.string(background.name, node))),
+              pdx.property(
+                "quadTextureSprite",
+                pdx.string(this.string(background.spriteType, node)),
+              ),
+            ]),
+          );
+        }
         if (["position", "offset", "size", "slotsize", "borderSize"].includes(key)) {
           const coordinates = this.object(value, node);
           this.checkKeys(
@@ -1783,7 +2178,7 @@ export class Lowerer {
     const sink: pdx.PdxItem[] = [];
     const context: Context = { env: new Map(), mode, sink, scope, prefix: outer.prefix };
     const result = this.invoke(value as Callable, [scope, ...parameters], node, context);
-    if (mode === "trigger") return this.trigger(result, node, context);
+    if (mode === "trigger") return this.flattenLogical(this.trigger(result, node, context));
     if (result !== undefined) this.fail(node, "KRG2031", "An effect callback must return void.");
     return sink;
   }
@@ -1814,6 +2209,52 @@ export class Lowerer {
     return scopePath ? [pdx.property(scopePath, pdx.block(items))] : items;
   }
   private memberCall(member: Member, args: Value[], node: ts.Node, context: Context): Value {
+    if (
+      Array.isArray(member.object) &&
+      ["map", "flatMap", "filter", "some", "every"].includes(member.name)
+    ) {
+      if (args.length !== 1 || !tagged(args[0], "function"))
+        this.fail(node, "KRG2720", "Static array transforms require one source callback.");
+      const output: Value[] = [];
+      for (let index = 0; index < member.object.length; index++) {
+        this.tick(node);
+        const item = member.object[index];
+        const result = this.invoke(
+          args[0] as Callable,
+          [item, index, member.object],
+          node,
+          context,
+        );
+        if (member.name === "some" || member.name === "every") {
+          if (typeof result === "boolean") {
+            if (member.name === "some" && result) return true;
+            if (member.name === "every" && !result) return false;
+          } else output.push(result);
+        } else if (member.name === "filter") {
+          if (typeof result !== "boolean")
+            this.fail(
+              node,
+              "KRG2721",
+              "Static array filter predicates require compile-time booleans.",
+            );
+          if (result) output.push(item);
+        } else if (member.name === "flatMap" && Array.isArray(result)) output.push(...result);
+        else output.push(result);
+      }
+      if (member.name === "some" || member.name === "every") {
+        if (!output.length) return member.name === "every";
+        return {
+          _krg: "trigger",
+          items: [
+            pdx.property(
+              member.name === "some" ? "OR" : "AND",
+              pdx.block(output.flatMap((value) => this.trigger(value, node, context))),
+            ),
+          ],
+        } as Trigger;
+      }
+      return output;
+    }
     if (tagged(member.object, "member")) {
       const namespace = member.object as Member;
       if (!tagged(namespace.object, "scope") || !["effects", "triggers"].includes(namespace.name))
@@ -1881,6 +2322,533 @@ export class Lowerer {
     if (!tagged(member.object, "scope"))
       this.fail(node, "KRG2038", "Arbitrary JavaScript methods are not available.");
     const scope = member.object as Scope;
+    if (
+      [
+        "arrayLength",
+        "arrayAt",
+        "arraySet",
+        "arrayInsert",
+        "arrayRemoveAt",
+        "arrayRemoveValue",
+        "forEachValue",
+      ].includes(member.name)
+    ) {
+      const name = this.string(args[0], node);
+      if (!/^[A-Za-z_][A-Za-z0-9_.]*$/.test(name))
+        this.fail(node, "KRG2702", "Invalid array name.");
+      const read = member.name === "arrayLength" || member.name === "arrayAt";
+      if (!read && context.mode !== "effect")
+        this.fail(node, "KRG2037", "Array mutations require an effect callback.");
+      const local: Context = { ...context, scope, sink: [] };
+      const indexToken = (index: Value): string => {
+        if (typeof index !== "number" && !tagged(index, "variable") && !tagged(index, "arithmetic"))
+          this.fail(node, "KRG2708", "Array indices must be numeric.");
+        if (typeof index === "number" && (!Number.isSafeInteger(index) || index < 0))
+          this.fail(node, "KRG2708", "Literal array indices must be non-negative integers.");
+        const encoded = this.toPdx(index, node, local);
+        if (encoded.kind !== "atom") this.fail(node, "KRG2708", "Invalid array index.");
+        return encoded.text;
+      };
+      if (read) {
+        const token = member.name === "arrayLength" ? "num" : indexToken(args[1]);
+        context.sink.push(...this.inScope(local.sink, scope, context, node));
+        return { _krg: "variable", name: `${name}^${token}`, scope, mutable: false } as Variable;
+      }
+      if (member.name === "arraySet")
+        this.variableEffect("set_variable", `${name}^${indexToken(args[1])}`, args[2], node, local);
+      else if (member.name === "forEachValue") {
+        const bindings = this.object(args[1], node);
+        this.checkKeys(bindings, ["value", "index", "break"], node, "Array loop bindings");
+        const fields = [pdx.property("array", pdx.atom(name))];
+        for (const [key, value] of Object.entries(bindings)) {
+          if (typeof value !== "string" || !/^[A-Za-z_][A-Za-z0-9_]*$/.test(value))
+            this.fail(node, "KRG2708", "Array loop binding names must be simple identifiers.");
+          fields.push(pdx.property(key, pdx.atom(value)));
+        }
+        if (!tagged(args[2], "function"))
+          this.fail(node, "KRG2030", "Array loops require a typed callback.");
+        const body: Context = { ...local, sink: [] };
+        const result = this.invoke(args[2] as Callable, [scope], node, body);
+        if (result !== undefined)
+          this.fail(node, "KRG2031", "Array loop effects must return void.");
+        local.sink.push(pdx.property("for_each_loop", pdx.block([...fields, ...body.sink])));
+      } else {
+        const fields = [pdx.property("array", pdx.atom(name))];
+        if (member.name === "arrayInsert" || member.name === "arrayRemoveAt")
+          fields.push(pdx.property("index", pdx.atom(indexToken(args[1]))));
+        if (member.name !== "arrayRemoveAt")
+          fields.push(
+            pdx.property(
+              "value",
+              this.toPdx(args[member.name === "arrayInsert" ? 2 : 1], node, local),
+            ),
+          );
+        local.sink.push(
+          pdx.property(
+            member.name === "arrayInsert" ? "add_to_array" : "remove_from_array",
+            pdx.block(fields),
+          ),
+        );
+      }
+      context.sink.push(...this.inScope(local.sink, scope, context, node));
+      return undefined;
+    }
+    if (member.name === "forRange" || member.name === "whileLoop") {
+      if (context.mode !== "effect")
+        this.fail(node, "KRG2037", "Runtime loops require an effect callback.");
+      const local: Context = { ...context, scope, sink: [] };
+      const invokeHere = (value: Value, mode: "effect" | "trigger"): pdx.PdxItem[] => {
+        if (!tagged(value, "function"))
+          this.fail(node, "KRG2030", "Runtime loops require typed callbacks.");
+        const inner: Context = { ...local, mode, sink: [] };
+        const result = this.invoke(value as Callable, [scope], node, inner);
+        if (mode === "trigger") return this.flattenLogical(this.trigger(result, node, inner));
+        if (result !== undefined) this.fail(node, "KRG2031", "Loop effects must return void.");
+        return inner.sink;
+      };
+      const fields: pdx.PdxItem[] = [];
+      if (member.name === "forRange") {
+        const range = this.object(args[0], node);
+        this.checkKeys(range, ["start", "end", "step", "index"], node, "Runtime range");
+        for (const key of ["start", "end"])
+          if (
+            typeof range[key] !== "number" &&
+            !tagged(range[key], "variable") &&
+            !tagged(range[key], "arithmetic")
+          )
+            this.fail(node, "KRG2706", "Runtime ranges require numeric bounds.");
+        if (
+          range.step !== undefined &&
+          (typeof range.step !== "number" || !Number.isFinite(range.step) || range.step === 0)
+        )
+          this.fail(
+            node,
+            "KRG2706",
+            "Runtime range step must be a finite, non-zero compile-time number.",
+          );
+        const index = range.index ?? "v";
+        if (typeof index !== "string" || !/^[A-Za-z_][A-Za-z0-9_]*$/.test(index))
+          this.fail(node, "KRG2706", "Runtime range index must be a simple variable name.");
+        fields.push(
+          pdx.property("start", this.toPdx(range.start, node, local)),
+          pdx.property("end", this.toPdx(range.end, node, local)),
+        );
+        if (range.step !== undefined)
+          fields.push(pdx.property("add", this.toPdx(range.step, node, local)));
+        if (typeof range.step === "number" && range.step < 0)
+          fields.push(pdx.property("compare", pdx.atom("greater_than")));
+        fields.push(pdx.property("value", pdx.atom(index)));
+      } else fields.push(pdx.property("limit", pdx.block(invokeHere(args[0], "trigger"))));
+      fields.push(...invokeHere(args[1], "effect"));
+      local.sink.push(
+        pdx.property(
+          member.name === "forRange" ? "for_loop_effect" : "while_loop_effect",
+          pdx.block(fields),
+        ),
+      );
+      context.sink.push(...this.inScope(local.sink, scope, context, node));
+      return undefined;
+    }
+    if (member.name === "buildingLevel") {
+      const building = this.string(args[0], node);
+      if (scope.name !== "state" || !/^[A-Za-z][A-Za-z0-9_]*$/.test(building))
+        this.fail(node, "KRG2736", "Building levels require a state scope and a building ID.");
+      return { _krg: "query", name: building, scope } as Query;
+    }
+    if (member.name === "hasEquipment") {
+      if (scope.name !== "country")
+        this.fail(node, "KRG2734", "Equipment stockpiles require a country scope.");
+      const equipment = this.string(args[0], node),
+        comparison = args[2] ?? "atLeast";
+      if (
+        !/^[A-Za-z0-9_]+$/.test(equipment) ||
+        (comparison !== "atLeast" && comparison !== "moreThan")
+      )
+        this.fail(node, "KRG2734", "Expected an equipment ID and atLeast or moreThan comparison.");
+      if (typeof args[1] !== "number" || !Number.isFinite(args[1]) || args[1] < 0)
+        this.fail(node, "KRG2734", "Equipment thresholds must be finite non-negative numbers.");
+      const check = pdx.property(
+        "has_equipment",
+        pdx.block([
+          pdx.property(equipment, pdx.atom(String(args[1])), comparison === "atLeast" ? "<" : ">"),
+        ]),
+      );
+      const items = [comparison === "atLeast" ? pdx.property("NOT", pdx.block([check])) : check];
+      return { _krg: "trigger", items: this.inScope(items, scope, context, node) } as Trigger;
+    }
+    if (
+      member.name === "dateBefore" ||
+      member.name === "dateAfter" ||
+      member.name === "dateOnOrAfter"
+    ) {
+      const date = this.string(args[0], node),
+        m = /^(\d{1,4})\.(\d{1,2})\.(\d{1,2})(?:\.(\d{1,2}))?$/.exec(date);
+      const days = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+      if (
+        !m ||
+        +m[1] < 1 ||
+        +m[2] < 1 ||
+        +m[2] > 12 ||
+        +m[3] < 1 ||
+        +m[3] > days[+m[2] - 1] ||
+        (m[4] !== undefined && +m[4] > 23)
+      )
+        this.fail(node, "KRG2733", "Expected a game date in YYYY.M.D or YYYY.M.D.H format.");
+      const before = pdx.property("date", pdx.atom(date), member.name === "dateAfter" ? ">" : "<");
+      return {
+        _krg: "trigger",
+        items:
+          member.name !== "dateOnOrAfter" ? [before] : [pdx.property("NOT", pdx.block([before]))],
+      } as Trigger;
+    }
+    if (member.name === "anyOriginalCountry" || member.name === "overlordMatches") {
+      if (scope.name !== "country")
+        this.fail(node, "KRG2731", "This history query requires a country scope.");
+      const filtered = member.name === "anyOriginalCountry",
+        body: pdx.PdxItem[] = [];
+      if (filtered) {
+        const target = args[0];
+        if (
+          !record(target) ||
+          target.kind !== "country" ||
+          typeof target.tag !== "string" ||
+          !/^[A-Z][A-Z0-9]{2}$/.test(target.tag)
+        )
+          this.fail(node, "KRG2731", "anyOriginalCountry requires an explicit country tag.");
+        body.push(pdx.property("original_tag_to_check", pdx.atom(target.tag)));
+      }
+      body.push(
+        ...this.callback(
+          args[filtered ? 1 : 0],
+          "country",
+          "trigger",
+          node,
+          { ...context, scope },
+          scope,
+        ),
+      );
+      return {
+        _krg: "trigger",
+        items: this.inScope(
+          [pdx.property(filtered ? "any_country_with_original_tag" : "OVERLORD", pdx.block(body))],
+          scope,
+          context,
+          node,
+        ),
+      } as Trigger;
+    }
+    if (
+      [
+        "deployedAircraft",
+        "navySize",
+        "estimatedMaxArmor",
+        "opinionOf",
+        "resource",
+        "importedResource",
+      ].includes(member.name)
+    ) {
+      if (scope.name !== "country")
+        this.fail(node, "KRG2731", "This query requires a country scope.");
+      let name: string,
+        field = "size";
+      const before: pdx.PdxItem[] = [],
+        after: pdx.PdxItem[] = [];
+      if (member.name === "deployedAircraft" || member.name === "navySize") {
+        name = member.name === "navySize" ? "has_navy_size" : "has_deployed_air_force_size";
+        if (args[0] !== undefined) {
+          const role = this.string(args[0], node);
+          if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(role))
+            this.fail(node, "KRG2731", "Invalid equipment role.");
+          (member.name === "navySize" ? before : after).push(pdx.property("type", pdx.atom(role)));
+        }
+      } else if (member.name === "estimatedMaxArmor" || member.name === "opinionOf") {
+        if (!record(args[0]) || args[0].kind !== "country" || typeof args[0].tag !== "string")
+          this.fail(node, "KRG2731", "Expected a country target.");
+        name = member.name === "opinionOf" ? "has_opinion" : "estimated_intel_max_armor";
+        field = "value";
+        before.push(
+          pdx.property(member.name === "opinionOf" ? "target" : "tag", pdx.atom(args[0].tag)),
+        );
+      } else {
+        const resource = this.string(args[0], node);
+        if (
+          !["oil", "rubber", "aluminium", "steel", "chromium", "coal", "tungsten"].includes(
+            resource,
+          )
+        )
+          this.fail(node, "KRG2731", "Unknown resource: " + resource);
+        if (member.name === "resource") return { _krg: "query", scope, name: resource } as Query;
+        name = "has_resources_in_country";
+        field = "amount";
+        before.push(pdx.property("resource", pdx.atom(resource)));
+        after.push(pdx.property("only_imported", pdx.atom("yes")));
+      }
+      return { _krg: "query", scope, name, metric: { field, before, after } } as Query;
+    }
+    if (member.name === "grantTechnology") {
+      if (scope.name !== "country" || context.mode !== "effect")
+        this.fail(node, "KRG2731", "grantTechnology requires a country effect.");
+      const tech = this.string(args[0], node);
+      if (!/^[A-Za-z0-9_]+$/.test(tech) || tech === "popup")
+        this.fail(node, "KRG2731", "Expected a technology ID.");
+      const opt = args[1] === undefined ? {} : this.object(args[1], node);
+      this.checkKeys(opt, ["popup"], node, "grantTechnology");
+      if (opt.popup !== undefined && typeof opt.popup !== "boolean")
+        this.fail(node, "KRG2731", "popup must be a boolean.");
+      context.sink.push(
+        pdx.property(
+          "set_technology",
+          pdx.block([
+            pdx.property(tech, pdx.atom("1")),
+            ...(opt.popup === undefined
+              ? []
+              : [pdx.property("popup", pdx.atom(opt.popup ? "yes" : "no"))]),
+          ]),
+        ),
+      );
+      return undefined;
+    }
+    if (member.name === "hiddenEffect") {
+      if (context.mode !== "effect")
+        this.fail(node, "KRG2037", "Hidden effects require an effect callback.");
+      const inner = { ...context, scope, sink: [] as pdx.PdxItem[] };
+      const [body] = args;
+      const shared = this.countryActions.callback(body, scope.name, "effect", node);
+      if (shared) inner.sink.push(...shared);
+      else {
+        if (!tagged(body, "function"))
+          this.fail(node, "KRG2030", "Expected a typed effect callback.");
+        const result = this.invoke(body as Callable, [scope], node, inner);
+        if (result !== undefined)
+          this.fail(node, "KRG2031", "An effect callback must return void.");
+      }
+      context.sink.push(
+        ...this.inScope(
+          [pdx.property("hidden_effect", pdx.block(inner.sink))],
+          scope,
+          context,
+          node,
+        ),
+      );
+      return undefined;
+    }
+    if (member.name === "dispatchByIndex") {
+      if (context.mode !== "effect") this.fail(node, "KRG2037", "Catalogue dispatch is an effect.");
+      const [variable, rows, apply, raw] = args;
+      if (typeof variable !== "string" || !/^[A-Za-z_][A-Za-z0-9_.]*$/.test(variable))
+        this.fail(node, "KRG2730", "dispatchByIndex requires a static numeric variable name.");
+      if (
+        !Array.isArray(rows) ||
+        rows.length < 1 ||
+        rows.length > 4096 ||
+        !tagged(apply, "function")
+      )
+        this.fail(
+          node,
+          "KRG2730",
+          "dispatchByIndex requires 1–4096 finite rows and an effect callback.",
+        );
+      const opts = raw === undefined ? {} : this.object(raw, node);
+      this.checkKeys(opts, ["first", "outOfRange"], node, "Catalogue dispatch");
+      const first = opts.first ?? 0,
+        outside = opts.outOfRange ?? "ignore";
+      if (
+        typeof first !== "number" ||
+        !Number.isSafeInteger(first) ||
+        !Number.isSafeInteger(first + rows.length) ||
+        (outside !== "clamp" && outside !== "ignore")
+      )
+        this.fail(
+          node,
+          "KRG2730",
+          "Catalogue bounds must be safe integers; outOfRange must be ignore or clamp.",
+        );
+      context.sink.push(
+        ...indexDispatch(variable, rows.length, first, outside, (offset) => {
+          this.tick(node);
+          return this.callback(
+            apply,
+            scope.name,
+            "effect",
+            node,
+            { ...context, scope },
+            undefined,
+            [rows[offset], first + offset],
+          );
+        }),
+      );
+      return undefined;
+    }
+    if (member.name === "randomChoice") {
+      if (context.mode !== "effect")
+        this.fail(node, "KRG2037", "Random choices require an effect callback.");
+      const choices = this.array(args[0], node);
+      if (!choices.length) this.fail(node, "KRG2722", "Random choices require at least one entry.");
+      const local: Context = { ...context, scope, sink: [] };
+      const entries = choices.map((value) => {
+        this.tick(node);
+        const choice = this.object(value, node);
+        this.checkKeys(choice, ["weight", "when", "effects"], node, "Random choice");
+        const weight = choice.weight;
+        if (
+          !(typeof weight === "number" && Number.isInteger(weight) && weight >= 0) &&
+          !tagged(weight, "variable")
+        )
+          this.fail(
+            node,
+            "KRG2723",
+            "Random weights must be nonnegative integer constants or named game variables.",
+          );
+        const key = this.toPdx(weight, node, local);
+        if (key.kind !== "atom")
+          this.fail(node, "KRG2723", "Random weights must be scalar values.");
+        const fields: pdx.PdxItem[] = [];
+        if (choice.when !== undefined) {
+          if (!tagged(choice.when, "function"))
+            this.fail(node, "KRG2030", "Expected a typed random-choice trigger.");
+          const condition = this.invoke(choice.when as Callable, [scope], node, {
+            ...local,
+            mode: "trigger",
+            sink: [],
+          });
+          fields.push(
+            pdx.property(
+              "modifier",
+              pdx.block([
+                pdx.property("factor", pdx.atom("0")),
+                pdx.property(
+                  "NOT",
+                  pdx.block(this.flattenLogical(this.trigger(condition, node, local))),
+                ),
+              ]),
+            ),
+          );
+        }
+        if (!tagged(choice.effects, "function"))
+          this.fail(node, "KRG2030", "Expected a typed random-choice effect.");
+        const result = this.invoke(choice.effects as Callable, [scope], node, {
+          ...local,
+          sink: fields,
+        });
+        if (result !== undefined)
+          this.fail(node, "KRG2031", "A random-choice effect must return void.");
+        return pdx.property(key.text, pdx.block(fields));
+      });
+      context.sink.push(
+        ...this.inScope(
+          [...local.sink, pdx.property("random_list", pdx.block(entries))],
+          scope,
+          context,
+          node,
+        ),
+      );
+      return undefined;
+    }
+    const variableOperations: Record<string, string> = {
+      setVariable: "set_variable",
+      addVariable: "add_to_variable",
+      subtractVariable: "subtract_from_variable",
+      multiplyVariable: "multiply_variable",
+      divideVariable: "divide_variable",
+      moduloVariable: "modulo_variable",
+      setTempVariable: "set_temp_variable",
+      addTempVariable: "add_to_temp_variable",
+      subtractTempVariable: "subtract_from_temp_variable",
+      multiplyTempVariable: "multiply_temp_variable",
+      divideTempVariable: "divide_temp_variable",
+    };
+    if (
+      member.name === "variable" ||
+      variableOperations[member.name] ||
+      [
+        "clearVariable",
+        "clampVariable",
+        "clampTempVariable",
+        "arrayContains",
+        "arrayPush",
+        "clearArray",
+        "forEachCountryInArray",
+      ].includes(member.name)
+    ) {
+      const name = this.string(args[0], node);
+      if (!/^[A-Za-z_][A-Za-z0-9_.@]*(?:\^[A-Za-z0-9_.]+)*$/.test(name))
+        this.fail(node, "KRG2702", `Invalid variable or array name '${name}'.`);
+      if (member.name === "variable")
+        return { _krg: "variable", name, scope, mutable: false } as Variable;
+      if (member.name !== "arrayContains" && context.mode !== "effect")
+        this.fail(node, "KRG2037", "Variable and array mutations require an effect callback.");
+      const local: Context = { ...context, scope, sink: [] };
+      if (variableOperations[member.name]) {
+        const value = args[1];
+        if (!(
+          typeof value === "number" ||
+          tagged(value, "variable") ||
+          tagged(value, "arithmetic") ||
+          (member.name.startsWith("set") &&
+            record(value) &&
+            ["country", "state", "military_industrial_organization"].includes(String(value.kind)))
+        ))
+          this.fail(
+            node,
+            "KRG2703",
+            "Variable operations require a number, numeric expression, or a scope reference for set.",
+          );
+        if (
+          (member.name === "divideVariable" ||
+            member.name === "divideTempVariable" ||
+            member.name === "moduloVariable") &&
+          value === 0
+        )
+          this.fail(node, "KRG2704", "Division or modulo by constant zero is invalid.");
+        this.variableEffect(variableOperations[member.name], name, value, node, local);
+      } else if (member.name === "clearVariable" || member.name === "clearArray") {
+        local.sink.push(
+          pdx.property(
+            member.name === "clearArray" ? "clear_array" : "clear_variable",
+            pdx.atom(name),
+          ),
+        );
+      } else if (member.name === "clampVariable" || member.name === "clampTempVariable") {
+        const bounds = this.object(args[1], node);
+        this.checkKeys(bounds, ["min", "max"], node, "Variable clamp");
+        if (bounds.min === undefined && bounds.max === undefined)
+          this.fail(node, "KRG2703", "A variable clamp requires at least one bound.");
+        if (
+          typeof bounds.min === "number" &&
+          typeof bounds.max === "number" &&
+          bounds.min > bounds.max
+        )
+          this.fail(node, "KRG2703", "Variable clamp minimum exceeds maximum.");
+        local.sink.push(
+          pdx.property(
+            member.name === "clampVariable" ? "clamp_variable" : "clamp_temp_variable",
+            this.toPdx({ var: name, ...bounds }, node, local),
+          ),
+        );
+      } else if (member.name === "forEachCountryInArray") {
+        local.sink.push(
+          pdx.property(
+            "for_each_scope_loop",
+            pdx.block([
+              pdx.property("array", pdx.atom(name)),
+              ...this.callback(args[1], "country", "effect", node, local, scope),
+            ]),
+          ),
+        );
+      } else {
+        const body = pdx.block([
+          pdx.property("array", pdx.atom(name)),
+          pdx.property("value", this.toPdx(args[1], node, local)),
+        ]);
+        local.sink.push(
+          pdx.property(member.name === "arrayContains" ? "is_in_array" : "add_to_array", body),
+        );
+      }
+      const items = this.inScope(local.sink, scope, context, node);
+      if (member.name === "arrayContains") return { _krg: "trigger", items } as Trigger;
+      context.sink.push(...items);
+      return undefined;
+    }
     if (member.name === "schedule") {
       if (context.mode !== "effect")
         this.fail(node, "KRG2037", "Events can only be scheduled inside an effect callback.");
@@ -1931,7 +2899,12 @@ export class Lowerer {
       )
         this.fail(node, "KRG2066", `Expected a scripted ${kind} handle for ${scope.name} scope.`);
       const items = this.inScope(
-        [pdx.property(this.string(definition.name, node), pdx.atom("yes"))],
+        [
+          pdx.property(
+            this.string(definition.name, node),
+            pdx.atom(args[1] === false ? "no" : "yes"),
+          ),
+        ],
         scope,
         context,
         node,
@@ -1948,6 +2921,15 @@ export class Lowerer {
     > = {
       country: { key: "", scope: "country", mode: "effect", target: true },
       state: { key: "", scope: "state", mode: "effect", target: true },
+      militaryOrganization: {
+        key: "",
+        scope: "military_industrial_organization",
+        mode: "effect",
+        target: true,
+      },
+      countryMatches: { key: "", scope: "country", mode: "trigger", target: true },
+      stateMatches: { key: "", scope: "state", mode: "trigger", target: true },
+      everyGlobalState: { key: "every_state", scope: "state", mode: "effect" },
       everyCountry: { key: "every_country", scope: "country", mode: "effect" },
       randomCountry: { key: "random_country", scope: "country", mode: "effect" },
       anyCountry: { key: "any_country", scope: "country", mode: "trigger" },
@@ -1970,7 +2952,7 @@ export class Lowerer {
       const reference = this.object(args[0], node);
       if (reference.kind !== method.scope)
         this.fail(node, "KRG2041", `Expected a ${method.scope} reference.`);
-      key = String(method.scope === "country" ? reference.tag : reference.id);
+      key = String(method.scope === "country" ? reference.tag : (reference.path ?? reference.id));
       body = args[1];
     } else {
       body = args[args.length - 1];
@@ -1990,6 +2972,18 @@ export class Lowerer {
     return undefined;
   }
 
+  /** A trigger/limit block is already a conjunction. Only unwrap AND in
+   * that context; OR and NOT retain their explicitly grouped operands. */
+  private flattenLogical(items: pdx.PdxItem[], key: "AND" | "OR" = "AND"): pdx.PdxItem[] {
+    return items.flatMap((item) =>
+      item.kind === "property" &&
+      item.key.text === key &&
+      item.operator === "=" &&
+      item.value.kind === "block"
+        ? this.flattenLogical(item.value.items, key)
+        : [item],
+    );
+  }
   private trigger(value: Value, node: ts.Node, context: Context): pdx.PdxItem[] {
     if (typeof value === "boolean") return [pdx.property("always", pdx.atom(value ? "yes" : "no"))];
     if (tagged(value, "trigger")) return (value as Trigger).items;
@@ -2009,6 +3003,7 @@ export class Lowerer {
       return /^[^\s{}=#"<>!?]+$/.test(value) && value !== "" ? pdx.atom(value) : pdx.string(value);
     if (tagged(value, "variable")) {
       const variable = value as Variable;
+      if (/^(?:global|ROOT|FROM)\./i.test(variable.name)) return pdx.atom(variable.name);
       const prefix = this.scopePath(variable.scope, context.scope, node);
       return pdx.atom(prefix ? `${prefix}.${variable.name}` : variable.name);
     }
@@ -2018,7 +3013,9 @@ export class Lowerer {
       return pdx.block(value.map((item) => this.toPdx(item, node, context)));
     if (record(value)) {
       if (value.kind === "country") return pdx.atom(this.string(value.tag, node));
-      if (value.kind === "state") return pdx.atom(String(value.id));
+      if (value.kind === "state") return pdx.atom(String(value.path ?? value.id));
+      if (value.kind === "military_industrial_organization")
+        return pdx.atom(this.string(value.path, node));
       if (value.kind === "cwt") return pdx.block(value.items as pdx.PdxItem[]);
       if (["_krg"].some((key) => key in value))
         this.fail(node, "KRG2044", "This runtime value cannot be used as a game command argument.");
@@ -2051,17 +3048,16 @@ export class Lowerer {
       if (typeof left === "boolean" && typeof right === "boolean")
         return operator === ts.SyntaxKind.AmpersandAmpersandToken ? left && right : left || right;
       const key = operator === ts.SyntaxKind.AmpersandAmpersandToken ? "AND" : "OR";
+      const leftItems = this.trigger(left, node.left, context),
+        rightItems = this.trigger(right, node.right, context);
+      // Several sibling triggers form an implicit AND. Preserve that grouping when
+      // they contribute a single alternative to an OR.
+      const children = [leftItems, rightItems].flatMap((items) =>
+        key === "OR" && items.length > 1 ? [pdx.property("AND", pdx.block(items))] : items,
+      );
       return {
         _krg: "trigger",
-        items: [
-          pdx.property(
-            key,
-            pdx.block([
-              ...this.trigger(left, node.left, context),
-              ...this.trigger(right, node.right, context),
-            ]),
-          ),
-        ],
+        items: [pdx.property(key, pdx.block(this.flattenLogical(children, key)))],
       } as Trigger;
     }
     const comparisons: Partial<Record<ts.SyntaxKind, pdx.PdxOperator>> = {
@@ -2163,8 +3159,19 @@ export class Lowerer {
     if (tagged(left, "query")) {
       const query = left as Query;
       const value = this.toPdx(right, node, { ...context, scope: query.scope });
-      const less = pdx.property(query.name, value, "<");
-      const greater = pdx.property(query.name, value, ">");
+      const compared = (op: pdx.PdxOperator) =>
+        query.metric
+          ? pdx.property(
+              query.name,
+              pdx.block([
+                ...query.metric.before,
+                pdx.property(query.metric.field, value, op),
+                ...query.metric.after,
+              ]),
+            )
+          : pdx.property(query.name, value, op);
+      const less = compared("<");
+      const greater = compared(">");
       const not = (item: pdx.PdxItem): pdx.PdxProperty => pdx.property("NOT", pdx.block([item]));
       let items: pdx.PdxItem[];
       if (query.boolean) {
@@ -2441,7 +3448,9 @@ export class Lowerer {
           const thenItems: pdx.PdxItem[] = [
             pdx.property(
               "limit",
-              pdx.block(this.trigger(condition, statement.expression, context)),
+              pdx.block(
+                this.flattenLogical(this.trigger(condition, statement.expression, context)),
+              ),
             ),
           ];
           this.statements([statement.thenStatement], {
@@ -2710,6 +3719,7 @@ export class Lowerer {
           "major",
           "hidden",
           "meanTimeToHappen",
+          "timeoutDays",
           "trigger",
           "immediate",
           "options",
@@ -2747,6 +3757,7 @@ export class Lowerer {
         major: "major",
         hidden: "hidden",
         meanTimeToHappen: "mean_time_to_happen",
+        timeoutDays: "timeout_days",
       });
       items.push(
         ...callbackFields(
@@ -2887,12 +3898,12 @@ export class Lowerer {
     if (name === "DecisionCategory") {
       this.checkKeys(
         spec,
-        ["id", "icon", "visible", "allowed", "decisions"],
+        ["id", "icon", "visible", "allowed", "decisions", "priority", "scriptedGui"],
         node,
         "DecisionCategory",
       );
       const category = [
-        ...scalarFields({ icon: "icon" }),
+        ...scalarFields({ icon: "icon", priority: "priority", scriptedGui: "scripted_gui" }),
         ...callbackFields({ visible: ["trigger", "visible"], allowed: ["trigger", "allowed"] }),
       ];
       const decisions: pdx.PdxItem[] = [];
@@ -2911,14 +3922,59 @@ export class Lowerer {
             "completeEffect",
             "removeEffect",
             "aiWillDo",
+            "priority",
+            "mission",
           ],
           node,
           "Decision",
         );
         const items = scalarFields(
-          { icon: "icon", cost: "cost", daysRemove: "days_remove", daysReEnable: "days_re_enable" },
+          {
+            icon: "icon",
+            cost: "cost",
+            daysRemove: "days_remove",
+            daysReEnable: "days_re_enable",
+            priority: "priority",
+          },
           decision,
         );
+        if (decision.mission !== undefined) {
+          const mission = this.object(decision.mission, node);
+          this.checkKeys(
+            mission,
+            ["days", "activation", "cancel", "timeout", "selectable", "isGood"],
+            node,
+            "Decision mission",
+          );
+          if (
+            decision.action !== undefined ||
+            typeof mission.days !== "number" ||
+            !Number.isSafeInteger(mission.days) ||
+            mission.days < 1 ||
+            mission.timeout === undefined
+          )
+            this.fail(
+              node,
+              "KRG2735",
+              "A mission requires positive whole days, a timeout effect, and cannot bind a CountryAction.",
+            );
+          items.push(
+            ...scalarFields(
+              { days: "days_mission_timeout", selectable: "selectable_mission", isGood: "is_good" },
+              mission,
+            ),
+          );
+          items.push(
+            ...callbackFields(
+              {
+                activation: ["trigger", "activation"],
+                cancel: ["trigger", "cancel_trigger"],
+                timeout: ["effect", "timeout_effect"],
+              },
+              mission,
+            ),
+          );
+        }
         items.push(
           ...callbackFields(
             {
@@ -2955,7 +4011,17 @@ export class Lowerer {
     if (name === "Idea") {
       this.checkKeys(
         spec,
-        ["id", "picture", "allowed", "visible", "removalCost", "modifier", "onAdd", "onRemove"],
+        [
+          "id",
+          "picture",
+          "allowed",
+          "allowedCivilWar",
+          "visible",
+          "removalCost",
+          "modifier",
+          "onAdd",
+          "onRemove",
+        ],
         node,
         "Idea",
       );
@@ -2981,6 +4047,7 @@ export class Lowerer {
         ...scalarFields({ picture: "picture", removalCost: "removal_cost", modifier: "modifier" }),
         ...callbackFields({
           allowed: ["trigger", "allowed"],
+          allowedCivilWar: ["trigger", "allowed_civil_war"],
           visible: ["trigger", "visible"],
           onAdd: ["effect", "on_add"],
           onRemove: ["effect", "on_remove"],

@@ -66,6 +66,7 @@ export function loadConfig(path = ".", options: ProjectOptions = {}): KriegConfi
       "gameRoots",
       "world",
       "strictAssets",
+      "compiler",
       "railways",
     ],
     "configuration",
@@ -111,7 +112,16 @@ export function loadConfig(path = ".", options: ProjectOptions = {}): KriegConfi
     throw new Error("outDir and sourceDir must be separate directories.");
   if (outDir.split("/").some((p) => ["node_modules", ".git", ".krieg"].includes(p)))
     throw new Error("outDir cannot be inside a managed package or metadata directory.");
+  const compiler = data.compiler === undefined ? {} : object(data.compiler, "compiler");
+  keys(compiler, ["maxExpansion"], "compiler");
+  const limit = compiler.maxExpansion;
+  if (
+    limit !== undefined &&
+    (typeof limit !== "number" || !Number.isSafeInteger(limit) || limit < 1 || limit > 20_000_000)
+  )
+    throw new Error("compiler.maxExpansion must be an integer between 1 and 20000000.");
   const config: KriegConfig = {
+    ...(typeof limit === "number" ? { compiler: { maxExpansion: limit } } : {}),
     name,
     rootDir,
     configPath,

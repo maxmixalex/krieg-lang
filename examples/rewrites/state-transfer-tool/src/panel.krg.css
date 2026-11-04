@@ -1,0 +1,15 @@
+.title {
+  font: hoi_18mbs;
+  max-width: 200;
+  max-height: 23;
+  format: left;
+}
+.action {
+  font: hoi_18mbs;
+  sprite-type: GFX_standard_button_88;
+}
+.state {
+  font: hoi_18mbs;
+  sprite-type: GFX_sort_button_140x29;
+  position: 15 35;
+}

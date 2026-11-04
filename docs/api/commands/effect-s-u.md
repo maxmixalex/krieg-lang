@@ -49,7 +49,7 @@ CWT 来源：
 作用域：`country`
 
 ```ts
-"scoped_play_song"(value: string | number | boolean | CountryRef | StateRef): void;
+"scoped_play_song"(value: string | number | boolean | CountryRef | StateRef | StateTargetRef): void;
 ```
 
 CWT 来源：
@@ -180,7 +180,7 @@ Update border war properties.
 作用域：`state`、`country`
 
 ```ts
-"set_border_war_data"(value: { "attacker": StateRef; "defender": StateRef; "attacker_modifier"?: number; "defender_modifier"?: number; "combat_width"?: number } | CwtNode): void;
+"set_border_war_data"(value: { "attacker": StateRef | StateTargetRef; "defender": StateRef | StateTargetRef; "attacker_modifier"?: number; "defender_modifier"?: number; "combat_width"?: number } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -222,7 +222,7 @@ Move capital to state.
 作用域：`country`
 
 ```ts
-"set_capital"(value: { "state": StateRef; "remember_old_capital"?: boolean } | CwtNode): void;
+"set_capital"(value: { "state": StateRef | StateTargetRef; "remember_old_capital"?: boolean } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -480,7 +480,7 @@ Sets the position of an existing entity. IDs are set by the create_entity effect
 作用域：`any`
 
 ```ts
-"set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef } | CwtNode): void;
+"set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef | StateTargetRef } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -748,7 +748,7 @@ Registers an Order of Battle (OOB) file to be loaded for a country at game start
 作用域：`country`
 
 ```ts
-"set_keyed_oob"(value: { "key": string | number | boolean | CountryRef | StateRef; "name": string } | CwtNode): void;
+"set_keyed_oob"(value: { "key": string | number | boolean | CountryRef | StateRef | StateTargetRef; "name": string } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -1354,7 +1354,7 @@ Set controller for state.
 作用域：`country`
 
 ```ts
-"set_state_controller"(value: StateRef): void;
+"set_state_controller"(value: StateRef | StateTargetRef): void;
 ```
 
 CWT 来源：
@@ -1414,7 +1414,7 @@ Set owner for state.
 作用域：`country`
 
 ```ts
-"set_state_owner"(value: StateRef): void;
+"set_state_owner"(value: StateRef | StateTargetRef): void;
 ```
 
 CWT 来源：
@@ -1489,7 +1489,7 @@ Sets a temp variable to a value or another variable.
 
 ```ts
 "set_temp_variable"(value: CwtNode): void;
-"set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+"set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -1566,7 +1566,7 @@ Sets a variable to a value or another variable.
 
 ```ts
 "set_variable"(value: CwtNode): void;
-"set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+"set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -1688,7 +1688,7 @@ Start a border war between two states.
 作用域：`state`、`country`
 
 ```ts
-"start_border_war"(value: { "change_state_after_war": boolean; "combat_width"?: number; "minimum_duration_in_days"?: number; "attacker": { "state": StateRef; "num_provinces": number; "on_win"?: string; "on_lose"?: string; "on_cancel"?: string; "leader_score"?: CwtNode; "dig_in_factor"?: number; "terrain_factor"?: number; "modifier"?: number } | CwtNode; "defender": { "state": StateRef; "num_provinces": number; "on_win"?: string; "on_lose"?: string; "on_cancel"?: string; "modifier"?: number } | CwtNode } | CwtNode): void;
+"start_border_war"(value: { "change_state_after_war": boolean; "combat_width"?: number; "minimum_duration_in_days"?: number; "attacker": { "state": StateRef | StateTargetRef; "num_provinces": number; "on_win"?: string; "on_lose"?: string; "on_cancel"?: string; "leader_score"?: CwtNode; "dig_in_factor"?: number; "terrain_factor"?: number; "modifier"?: number } | CwtNode; "defender": { "state": StateRef | StateTargetRef; "num_provinces": number; "on_win"?: string; "on_lose"?: string; "on_cancel"?: string; "modifier"?: number } | CwtNode } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -1807,7 +1807,7 @@ Subtracts a value or a variable to a temp variable.
 
 ```ts
 "subtract_from_temp_variable"(value: CwtNode): void;
-"subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+"subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -1824,7 +1824,7 @@ Subtracts a value or a variable to another one. Can define numerical variable wi
 
 ```ts
 "subtract_from_variable"(value: CwtNode): void;
-"subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+"subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -1893,7 +1893,7 @@ Teleport armies in state to another state or province.
 作用域：`STATE`
 
 ```ts
-"teleport_armies"(value: { "limit"?: CwtNode; "to_state"?: StateRef; "to_state_array"?: string; "to_province"?: number } | CwtNode): void;
+"teleport_armies"(value: { "limit"?: CwtNode; "to_state"?: StateRef | StateTargetRef; "to_state_array"?: string; "to_province"?: number } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -1935,7 +1935,7 @@ Transfers ship from scope country to target country.
 作用域：`country`
 
 ```ts
-"transfer_ship"(value: { "prefer_name"?: string | number | boolean | CountryRef | StateRef; "type": string; "target": CountryRef; "exclude_refitting"?: boolean } | CwtNode): void;
+"transfer_ship"(value: { "prefer_name"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "type": string; "target": CountryRef; "exclude_refitting"?: boolean } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -1949,7 +1949,7 @@ Set owner and controller for state.
 作用域：`country`
 
 ```ts
-"transfer_state"(value: StateRef): void;
+"transfer_state"(value: StateRef | StateTargetRef): void;
 ```
 
 CWT 来源：

@@ -1,0 +1,13 @@
+{
+  "name": "state-transfer-tool-krieg",
+  "sourceDir": "src",
+  "outDir": "build/mod",
+  "mod": {
+    "name": "State Transfer Tool — Krieg rewrite",
+    "version": "0.5.0",
+    "supportedVersion": "1.13.*",
+    "tags": ["Utilities"],
+    "dependencies": ["Kaiserreich", "Millennium Dawn: Modern Day Mod", "The Road to 56"]
+  },
+  "assets": [{ "from": "original-assets", "to": "" }]
+}

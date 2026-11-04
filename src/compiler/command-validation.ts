@@ -72,7 +72,9 @@ export function commandValueError(
       ? undefined
       : `Expected ${expression === "yes" ? "true" : "false"}.`;
   if (
-    /^(?:int|float|variable_field|int_variable_field|variable_field_32)(?:\[|$)/.test(expression)
+    /^(?:int|float|variable_field|int_variable_field|int_variable_field_32|variable_field_32)(?:\[|$)/.test(
+      expression,
+    )
   ) {
     if (!numeric(value)) return "Expected a numeric value or numeric game variable.";
     if (typeof value === "number") {

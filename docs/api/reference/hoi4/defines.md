@@ -74,4 +74,4 @@ Defined in: [src/sdk/defines.ts:3](https://github.com/maxmixalex/krieg-lang/blob
 
 ## 完整示例与工作流
 
-[阅读Lua Defines 与覆盖对象指南](../../../content-domains.md)
+[阅读Lua Defines 与覆盖对象指南](../../../guide/domains/index.md)

@@ -1,6 +1,6 @@
 // Generated from the bundled CWT projection. Do not edit by hand.
 // CWT SHA-256: 4b3e365db80c5bb0cc7ce88d7ca58c37dc7bf66c31667e712605413218c8003c
-import type { CountryRef, StateRef, CwtOpaque, CwtNode, ScopeByName, Effect, Trigger } from './index.js';
+import type { CountryRef, StateRef, StateTargetRef, CwtOpaque, CwtNode, ScopeByName, Effect, Trigger } from './index.js';
 export interface GeneratedCountryEffects {
   /** Hires advisor (adds advisor idea) CWT: Config/effects_nsb.cwt:502. */
   "activate_advisor"(value: string): void;
@@ -15,7 +15,7 @@ export interface GeneratedCountryEffects {
   /** Activates targeted decisions or mission, ignoring its normal trigger conditions, cooldown and fire only once. Cannot activate if active in interface. CWT: Config/effects.cwt:2604. */
   "activate_targeted_decision"(value: { "target": CountryRef; "decision": string } | CwtNode): void;
   /** Activates targeted decisions or mission, ignoring its normal trigger conditions, cooldown and fire only once. Cannot activate if active in interface. CWT: Config/effects.cwt:2612. */
-  "activate_targeted_decision"(value: { "target": StateRef; "decision": string } | CwtNode): void;
+  "activate_targeted_decision"(value: { "target": StateRef | StateTargetRef; "decision": string } | CwtNode): void;
   /** Adds an air ace. CWT: Config/effects.cwt:1863. */
   "add_ace"(value: { "name": string; "surname": string; "callsign": string; "type": string; "is_female"?: true } | CwtNode): void;
   /**  CWT: Config/effects_nsb.cwt:298. */
@@ -43,9 +43,9 @@ export interface GeneratedCountryEffects {
   /** Adds strategy entry to country AI. CWT: Config/effects.cwt:3452. */
   "add_ai_strategy"(value: { "type": string; "value": number } | CwtNode): void;
   /** Adds strategy entry to country AI. CWT: Config/effects.cwt:3459. */
-  "add_ai_strategy"(value: { "type": string; "target": StateRef; "value": number } | CwtNode): void;
+  "add_ai_strategy"(value: { "type": string; "target": StateRef | StateTargetRef; "value": number } | CwtNode): void;
   /** Adds strategy entry to country AI. CWT: Config/effects.cwt:3467. */
-  "add_ai_strategy"(value: { "type": string; "id": StateRef; "value": number } | CwtNode): void;
+  "add_ai_strategy"(value: { "type": string; "id": StateRef | StateTargetRef; "value": number } | CwtNode): void;
   /** Adds strategy entry to country AI. CWT: Config/effects.cwt:3475. */
   "add_ai_strategy"(value: { "type": string; "id": string; "target": number; "value": number } | CwtNode): void;
   /** Adds strategy entry to country AI. CWT: Config/effects.cwt:3484. */
@@ -53,13 +53,13 @@ export interface GeneratedCountryEffects {
   /** Adds strategy entry to country AI. CWT: Config/effects.cwt:3510. */
   "add_ai_strategy"(value: { "type": "research_tech"; "id": string | number; "value": number } | CwtNode): void;
   /** Adds strategy entry to country AI. CWT: Config/effects.cwt:3519. */
-  "add_ai_strategy"(value: { "type": "scorched_earth_prio"; "id": CountryRef; "value"?: number; "states"?: readonly (StateRef)[] } | CwtNode): void;
+  "add_ai_strategy"(value: { "type": "scorched_earth_prio"; "id": CountryRef; "value"?: number; "states"?: readonly (StateRef | StateTargetRef)[] } | CwtNode): void;
   /** Adds strategy entry to country AI. CWT: Config/effects.cwt:3534. */
-  "add_ai_strategy"(value: { "type": "put_unit_buffers"; "ratio": number; "order_id"?: number; "states"?: readonly (StateRef)[]; "area"?: string; "subtract_invasions_from_need"?: boolean; "subtract_fronts_from_need"?: boolean } | CwtNode): void;
+  "add_ai_strategy"(value: { "type": "put_unit_buffers"; "ratio": number; "order_id"?: number; "states"?: readonly (StateRef | StateTargetRef)[]; "area"?: string; "subtract_invasions_from_need"?: boolean; "subtract_fronts_from_need"?: boolean } | CwtNode): void;
   /** Adds strategy entry to country AI. CWT: Config/effects.cwt:3553. */
-  "add_ai_strategy"(value: { "type": "front_control"; "tag"?: CountryRef; "id"?: CountryRef; "state"?: StateRef; "area"?: string; "strategic_region"?: string; "country_trigger"?: CwtNode; "state_trigger"?: CwtNode; "ratio"?: number; "priority"?: number; "ordertype"?: string; "execution_type"?: string; "execute_order"?: boolean; "manual_attack"?: boolean; "value"?: number } | CwtNode): void;
+  "add_ai_strategy"(value: { "type": "front_control"; "tag"?: CountryRef; "id"?: CountryRef; "state"?: StateRef | StateTargetRef; "area"?: string; "strategic_region"?: string; "country_trigger"?: CwtNode; "state_trigger"?: CwtNode; "ratio"?: number; "priority"?: number; "ordertype"?: string; "execution_type"?: string; "execute_order"?: boolean; "manual_attack"?: boolean; "value"?: number } | CwtNode): void;
   /** Adds strategy entry to country AI. CWT: Config/effects.cwt:3596. */
-  "add_ai_strategy"(value: { "type": string; "tag"?: CountryRef; "id"?: CountryRef; "state"?: StateRef; "strategic_region"?: string; "area"?: string; "country_trigger"?: CwtNode; "state_trigger"?: CwtNode; "value": number; "ratio"?: number } | CwtNode): void;
+  "add_ai_strategy"(value: { "type": string; "tag"?: CountryRef; "id"?: CountryRef; "state"?: StateRef | StateTargetRef; "strategic_region"?: string; "area"?: string; "country_trigger"?: CwtNode; "state_trigger"?: CwtNode; "value": number; "ratio"?: number } | CwtNode): void;
   /** Adds strategy entry to country AI. CWT: Config/effects.cwt:3627. */
   "add_ai_strategy"(value: { "type": "intelligence_agency_branch_desire_factor"; "id": string; "value": number } | CwtNode): void;
   /** Adds strategy entry to country AI. CWT: Config/effects.cwt:3635. */
@@ -67,15 +67,15 @@ export interface GeneratedCountryEffects {
   /** Adds strategy entry to country AI. CWT: Config/effects.cwt:3643. */
   "add_ai_strategy"(value: { "type": "asking_foreign_garrison"; "value": number; "id"?: CountryRef } | CwtNode): void;
   /** Adds strategy entry to country AI. CWT: Config/effects.cwt:3652. */
-  "add_ai_strategy"(value: { "type": "operative_mission"; "mission": string; "value": number; "mission_target"?: CountryRef; "state"?: StateRef; "priority"?: number; "num_operatives"?: number } | CwtNode): void;
+  "add_ai_strategy"(value: { "type": "operative_mission"; "mission": string; "value": number; "mission_target"?: CountryRef; "state"?: StateRef | StateTargetRef; "priority"?: number; "num_operatives"?: number } | CwtNode): void;
   /** Adds strategy entry to country AI. CWT: Config/effects.cwt:3668. */
   "add_ai_strategy"(value: { "type": "operative_operation"; "operation": string | number; "value": number; "operation_target": CountryRef | number } | CwtNode): void;
   /** Adds strategy entry to country AI. CWT: Config/effects.cwt:3681. */
   "add_ai_strategy"(value: { "type": string; "equipment_type"?: string; "seller"?: CountryRef; "value": number } | CwtNode): void;
   /** Adds strategy entry to country AI. CWT: Config/effects.cwt:3694. */
-  "add_ai_strategy"(value: { "type": "force_concentration_front_factor"; "tag"?: CountryRef; "state"?: StateRef; "strategic_region"?: string; "area"?: string; "country_trigger"?: CwtNode; "state_trigger"?: CwtNode; "ratio"?: number; "value": number } | CwtNode): void;
+  "add_ai_strategy"(value: { "type": "force_concentration_front_factor"; "tag"?: CountryRef; "state"?: StateRef | StateTargetRef; "strategic_region"?: string; "area"?: string; "country_trigger"?: CwtNode; "state_trigger"?: CwtNode; "ratio"?: number; "value": number } | CwtNode): void;
   /** Adds strategy entry to country AI. CWT: Config/effects.cwt:3731. */
-  "add_ai_strategy"(value: { "type": "force_concentration_target_weight"; "tag"?: CountryRef; "state"?: StateRef; "strategic_region"?: string; "area"?: string; "country_trigger"?: CwtNode; "state_trigger"?: CwtNode; "value": number } | CwtNode): void;
+  "add_ai_strategy"(value: { "type": "force_concentration_target_weight"; "tag"?: CountryRef; "state"?: StateRef | StateTargetRef; "strategic_region"?: string; "area"?: string; "country_trigger"?: CwtNode; "state_trigger"?: CwtNode; "value": number } | CwtNode): void;
   /** Adds strategy entry to country AI. CWT: Config/effects.cwt:3765. */
   "add_ai_strategy"(value: { "type": "convoy_raiding_target"; "id": CountryRef; "value": number } | CwtNode): void;
   /** Adds strategy entry to country AI. CWT: Config/effects.cwt:3773. */
@@ -87,7 +87,7 @@ export interface GeneratedCountryEffects {
   /** Add breakthrough points to one specialization or all for a country scope. CWT: Config/effects_gtd.cwt:3. */
   "add_breakthrough_points"(value: { "specialization": string | "all"; "value": number } | CwtNode): void;
   /** Add breakthrough progress to one specialization or all for a country scope.The value can either be an absolute value or a script constant. CWT: Config/effects_gtd.cwt:90. */
-  "add_breakthrough_progress"(value: { "value": number | string | number | boolean | CountryRef | StateRef; "specialization": string | "all" } | CwtNode): void;
+  "add_breakthrough_progress"(value: { "value": number | string | number | boolean | CountryRef | StateRef | StateTargetRef; "specialization": string | "all" } | CwtNode): void;
   /** Add CIC funds to the tag CWT: Config/effects_aat.cwt:156. */
   "add_cic"(value: number): void;
   /** Adds a civil war target to a specific country. CWT: Config/effects_new.cwt:824. */
@@ -97,7 +97,7 @@ export interface GeneratedCountryEffects {
   /** Add command power to country. CWT: Config/effects.cwt:2319. */
   "add_command_power"(value: number): void;
   /** Adds a contested owner to a state. The effect can be used either from a country or a state scope and accepts the other as parameter. CWT: Config/effects_gtd.cwt:143. */
-  "add_contested_owner"(value: StateRef): void;
+  "add_contested_owner"(value: StateRef | StateTargetRef): void;
   /**  CWT: Config/effects_nsb.cwt:65. */
   "add_corps_commander_role"(value: { "character"?: string | CwtOpaque; "desc"?: string; "traits"?: readonly (string)[]; "skill"?: number; "attack_skill"?: number; "defense_skill"?: number; "planning_skill"?: number; "logistics_skill"?: number; "female"?: boolean; "legacy_id"?: string; "visible"?: CwtNode } | CwtNode): void;
   /**  CWT: Config/effects_nsb.cwt:234. */
@@ -117,17 +117,17 @@ export interface GeneratedCountryEffects {
   /** Add decryption against a target country. CWT: Config/effects_new.cwt:476. */
   "add_decryption"(value: { "target": CountryRef; "ratio": number } | CwtNode): void;
   /** Add free bonus design discount to given types with a set of uses.The value for uses and cost_factor can either be an absolute value or a script constant. CWT: Config/effects_gtd.cwt:103. */
-  "add_design_template_bonus"(value: { "name"?: string; "uses": number | string | number | boolean | CountryRef | StateRef; "cost_factor": number | string | number | boolean | CountryRef | StateRef; "equipment": string } | CwtNode): void;
+  "add_design_template_bonus"(value: { "name"?: string; "uses": number | string | number | boolean | CountryRef | StateRef | StateTargetRef; "cost_factor": number | string | number | boolean | CountryRef | StateRef | StateTargetRef; "equipment": string } | CwtNode): void;
   /** Add divisional commander xp to unit CWT: Config/effects_new.cwt:1018. */
   "add_divisional_commander_xp"(value: number): void;
   /** Adds a limited use doctrine bonus CWT: Config/effects.cwt:1401. */
   "add_doctrine_cost_reduction"(value: { "category"?: string; "technology"?: string; "uses"?: number; "cost_reduction": number; "name": string } | CwtNode): void;
   /** Adds a dynamic modifier to country/state/unit leader. CWT: Config/effects.cwt:3137. */
-  "add_dynamic_modifier"(value: { "modifier": string; "scope"?: CountryRef | StateRef | string | CwtOpaque; "days"?: number } | CwtNode): void;
+  "add_dynamic_modifier"(value: { "modifier": string; "scope"?: CountryRef | StateRef | StateTargetRef | string | CwtOpaque; "days"?: number } | CwtNode): void;
   /** Adds the specified equipment bonuses to the country. As description the given loc key or the name of given special project will be used. Same usage as in Ideas/National spirits CWT: Config/effects_gtd.cwt:120. */
   "add_equipment_bonus"(value: { "name"?: string; "project"?: CwtOpaque; "bonus": CwtNode } | CwtNode): void;
   /** Adds an equipment production. CWT: Config/effects.cwt:1833. */
-  "add_equipment_production"(value: { "equipment": { "type": string; "creator"?: CountryRef; "version_name"?: string; "version"?: number } | CwtNode; "name"?: string | number | boolean | CountryRef | StateRef; "amount"?: number; "requested_factories"?: number; "progress"?: number; "efficiency"?: number; "industrial_manufacturer"?: string } | CwtNode): void;
+  "add_equipment_production"(value: { "equipment": { "type": string; "creator"?: CountryRef; "version_name"?: string; "version"?: number } | CwtNode; "name"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "amount"?: number; "requested_factories"?: number; "progress"?: number; "efficiency"?: number; "industrial_manufacturer"?: string } | CwtNode): void;
   /** Add equipment subsidy to a tag CWT: Config/effects_aat.cwt:160. */
   "add_equipment_subsidy"(value: { "cic": number; "equipment_type": string; "seller_trigger"?: CwtNode | string; "seller_tags"?: readonly (CountryRef)[] } | CwtNode): void;
   /** Adds equipment to the countries stockpiles. CWT: Config/effects.cwt:1897. */
@@ -171,7 +171,7 @@ export interface GeneratedCountryEffects {
   /** Adds country threat. CWT: Config/effects.cwt:1594. */
   "add_named_threat"(value: { "threat": number; "name": string } | CwtNode): void;
   /** Adds new namespace. CWT: Config/effects.cwt:761. */
-  "add_namespace"(value: string | number | boolean | CountryRef | StateRef): void;
+  "add_namespace"(value: string | number | boolean | CountryRef | StateRef | StateTargetRef): void;
   /**  CWT: Config/effects_nsb.cwt:194. */
   "add_naval_commander_role"(value: { "character"?: string | CwtOpaque; "desc"?: string; "traits"?: readonly (string)[]; "skill": number; "attack_skill": number; "defense_skill": number; "maneuvering_skill": number; "coordination_skill": number; "legacy_id"?: string; "visible"?: CwtNode } | CwtNode): void;
   /** Add nukes to country. CWT: Config/effects.cwt:831. */
@@ -201,7 +201,7 @@ export interface GeneratedCountryEffects {
   /** Adds a research slot (negative values subtracts). CWT: Config/effects.cwt:1421. */
   "add_research_slot"(value: number): void;
   /** Adds resource production to state. CWT: Config/effects.cwt:1519. */
-  "add_resource"(value: { "type": string; "amount": number; "state": StateRef } | CwtNode): void;
+  "add_resource"(value: { "type": string; "amount": number; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Add political power to country scaled by the difference in IC between the receiver and another country. CWT: Config/effects.cwt:1155. */
   "add_scaled_political_power"(value: number): void;
   /** Add scientist role to a character. The character can come from the scope or from an input parameter. The scientist role format is the same as in the character DB. Except the visible trigger - a scientist role created via effect cannot have triggers. CWT: Config/effects_gtd.cwt:209. */
@@ -209,11 +209,11 @@ export interface GeneratedCountryEffects {
   /** Adds the stability to the country in scope. Example: add_stability = 5. CWT: Config/effects.cwt:6. */
   "add_stability"(value: number): void;
   /** Add claim on state. CWT: Config/effects.cwt:437. */
-  "add_state_claim"(value: StateRef): void;
+  "add_state_claim"(value: StateRef | StateTargetRef): void;
   /** Add core on state. CWT: Config/effects.cwt:46. */
-  "add_state_core"(value: StateRef): void;
+  "add_state_core"(value: StateRef | StateTargetRef): void;
   /** Adds either a resistance or compliance modifier to a state. Can only use modifiers from the resistance_modifiers.txt/compliance_modifiers.txt that are marked as is_dynamic = yes CWT: Config/effects_ncns.cwt:154. */
-  "add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+  "add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Adds a limited use tech bonus. CWT: Config/effects.cwt:1385. */
   "add_tech_bonus"(value: CwtNode): void;
   /** Adds country threat. CWT: Config/effects.cwt:1437. */
@@ -221,7 +221,7 @@ export interface GeneratedCountryEffects {
   /** Add time limited idea to country idea, supports days/months/years. CWT: Config/effects.cwt:1542. */
   "add_timed_idea"(value: { "idea": string; "days"?: number; "months"?: number; "years"?: number } | CwtNode): void;
   /** Adds an element to an array. CWT: Config/effects.cwt:2824. */
-  "add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+  "add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
   /** Adds an element to an array. CWT: Config/effects.cwt:2846. */
   "add_to_array"(value: CwtNode): void;
   /** Adds specified country to faction. CWT: Config/effects.cwt:1020. */
@@ -229,17 +229,17 @@ export interface GeneratedCountryEffects {
   /** Adds country to technology sharing group of specified name. CWT: Config/effects.cwt:2016. */
   "add_to_tech_sharing_group"(value: string): void;
   /** Adds an element to a temporary array. CWT: Config/effects.cwt:2943. */
-  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
   /** Adds an element to a temporary array. CWT: Config/effects.cwt:2965. */
   "add_to_temp_array"(value: CwtNode): void;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:122. */
   "add_to_temp_variable"(value: CwtNode): void;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:129. */
-  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Adds a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:67. */
   "add_to_variable"(value: CwtNode): void;
   /** Adds a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:71. */
-  "add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Adds country to the specified war. CWT: Config/effects.cwt:1747. */
   "add_to_war"(value: { "targeted_alliance": CountryRef; "enemy": CountryRef; "hostility_reason"?: string; "single_target_only"?: boolean } | CwtNode): void;
   /** makes character head of their ideology party CWT: Config/effects_nsb.cwt:510. */
@@ -285,9 +285,9 @@ export interface GeneratedCountryEffects {
   /** Starts railway construction for amount of levels in specified state or province. CWT: Config/effects.cwt:878. */
   "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_province": number; "target_province": number; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
   /** Starts railway construction for amount of levels in specified state or province. CWT: Config/effects.cwt:915. */
-  "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef; "target_state": StateRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
+  "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef | StateTargetRef; "target_state": StateRef | StateTargetRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
   /** Cancel border war between two states. CWT: Config/effects.cwt:2525. */
-  "cancel_border_war"(value: { "dont_fire_events"?: boolean; "attacker": StateRef; "defender": StateRef } | CwtNode): void;
+  "cancel_border_war"(value: { "dont_fire_events"?: boolean; "attacker": StateRef | StateTargetRef; "defender": StateRef | StateTargetRef } | CwtNode): void;
   /**  CWT: Config/scopes.cwt:63. */
   "capital_scope"(value: Effect<ScopeByName["state"]> | { limit?: Trigger<ScopeByName["state"]>; effects: Effect<ScopeByName["state"]> } | CwtNode): void;
   /** Capture an operative. Can be used from a scope and a target that is either a country or a unit leader. CWT: Config/effects_new.cwt:111. */
@@ -301,7 +301,7 @@ export interface GeneratedCountryEffects {
   /** Clamps a temp variable between two a values or another variables. CWT: Config/variable_effects_temp.cwt:242. */
   "clamp_temp_variable"(value: { "var": string; "min"?: number; "max"?: number } | CwtNode): void;
   /** Clamps a variable between two a values or another variables. CWT: Config/variable_effects.cwt:188. */
-  "clamp_variable"(value: { "var": CwtOpaque; "min"?: number | string; "max"?: number | string } | CwtNode): void;
+  "clamp_variable"(value: { "var": string; "min"?: number | string; "max"?: number | string } | CwtNode): void;
   /** Clears the contents of array. CWT: Config/effects.cwt:2907. */
   "clear_array"(value: string | CwtOpaque): void;
   /** Remove cap for a division template. CWT: Config/effects.cwt:2550. */
@@ -319,7 +319,7 @@ export interface GeneratedCountryEffects {
   /** Clears a variable. The input is NOT validated CWT: Config/variable_effects.cwt:206. */
   "clear_variable"(value: number): void;
   /** Clears a variable. The input is NOT validated CWT: Config/variable_effects.cwt:210. */
-  "clear_variable"(value: CwtOpaque): void;
+  "clear_variable"(value: string): void;
   /** Clear country flag. CWT: Config/effects.cwt:153. */
   "clr_country_flag"(value: string): void;
   /** Clear global flag. CWT: Config/effects.cwt:170. */
@@ -333,7 +333,7 @@ export interface GeneratedCountryEffects {
   /** Complete a special project for the country in scope. This effect will not take into account the current state of the project tree and will allow you to unlock a project even if the one before is not unlocked. Since the project is not completed within a facility, the facility state and scientist effe CWT: Config/effects_gtd.cwt:163. */
   "complete_special_project"(value: string): void;
   /** Complete a special project for the country in scope. This effect will not take into account the current state of the project tree and will allow you to unlock a project even if the one before is not unlocked. Since the project is not completed within a facility, the facility state and scientist effe CWT: Config/effects_gtd.cwt:166. */
-  "complete_special_project"(value: { "project": CwtOpaque | string; "scientist"?: string; "state"?: StateRef; "iteration_output"?: readonly (string)[]; "show_modifiers"?: boolean } | CwtNode): void;
+  "complete_special_project"(value: { "project": CwtOpaque | string; "scientist"?: string; "state"?: StateRef | StateTargetRef; "iteration_output"?: readonly (string)[]; "show_modifiers"?: boolean } | CwtNode): void;
   /** Fires a country event. CWT: Config/effects.cwt:240. */
   "country_event"(value: { "id": string; "hours"?: number; "days"?: number; "months"?: number; "random_hours"?: number; "random_days"?: number; "random"?: number | CwtNode; "tooltip"?: string } | CwtNode): void;
   /** Fires a country event. CWT: Config/effects.cwt:286. */
@@ -345,13 +345,13 @@ export interface GeneratedCountryEffects {
   /** Create a colonial division template for overlord/owner. Available parameters are subject and division_template, where the subject parameter is the country tag for an overlords subject. And the division_template is the regular effect to create a division template. CWT: Config/effects_gtd.cwt:26. */
   "create_colonial_division_template"(value: { "subject": CountryRef; "division_template": { "name": string; "localization_key"?: string; "division_names_group"?: string; "role"?: string; "front_role_override"?: string; "override_model"?: string; "template_counter"?: number; "is_army_hq"?: boolean; "is_locked"?: boolean; "force_allow_recruiting"?: boolean; "obsolete"?: boolean; "division_cap"?: number; "regiments": CwtNode; "support"?: CwtNode; "regimental_support"?: CwtNode; "priority"?: number; "is_fake_intel_division"?: boolean; "foreign_template_tag"?: CountryRef; "origin_type"?: "subject" } | CwtNode } | CwtNode): void;
   /** Creates a corps commander for country in scope. CWT: Config/effects.cwt:1652. */
-  "create_corps_commander"(value: { "name"?: string | number | boolean | CountryRef | StateRef; "desc"?: string; "picture"?: string | number | boolean | CountryRef | StateRef; "portrait_path"?: string | number | boolean | CountryRef | StateRef; "gfx"?: string; "traits": readonly (string)[]; "skill": number; "attack_skill": number; "defense_skill": number; "planning_skill": number; "logistics_skill": number; "id"?: string; "legacy_id"?: string; "female"?: boolean } | CwtNode): void;
+  "create_corps_commander"(value: { "name"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "desc"?: string; "picture"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "portrait_path"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "gfx"?: string; "traits": readonly (string)[]; "skill": number; "attack_skill": number; "defense_skill": number; "planning_skill": number; "logistics_skill": number; "id"?: string; "legacy_id"?: string; "female"?: boolean } | CwtNode): void;
   /** Creates a leader and adds it to proper party in country. CWT: Config/effects.cwt:471. */
-  "create_country_leader"(value: { "name": string | number | boolean | CountryRef | StateRef; "desc"?: string; "picture": string | number | boolean | CountryRef | StateRef; "ideology": string; "expire"?: string; "traits"?: readonly (string)[]; "id"?: string; "female"?: boolean } | CwtNode): void;
+  "create_country_leader"(value: { "name": string | number | boolean | CountryRef | StateRef | StateTargetRef; "desc"?: string; "picture": string | number | boolean | CountryRef | StateRef | StateTargetRef; "ideology": string; "expire"?: string; "traits"?: readonly (string)[]; "id"?: string; "female"?: boolean } | CwtNode): void;
   /** Creates a dynamic country and runs child effects on it. CWT: Config/effects_new.cwt:327. */
   "create_dynamic_country"(value: Effect<ScopeByName["country"]> | { limit?: Trigger<ScopeByName["country"]>; effects: Effect<ScopeByName["country"]> } | CwtNode): void;
   /** Creates an enitity Uses the the same coordinate system that the map uses. A positive change in rotation results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. For comparison, default minimum zoom level (closest to the map) is 50 units, while default maximum CWT: Config/effects_nsb.cwt:823. */
-  "create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
+  "create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef | StateTargetRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
   /** Creates a new equipment variant. CWT: Config/effects.cwt:1781. */
   "create_equipment_variant"(value: { "name"?: string; "type": string; "name_group"?: string; "parent_version"?: number; "role_icon_index"?: number; "history"?: boolean; "allow_without_tech"?: boolean; "show_position"?: boolean; "upgrades"?: CwtNode; "modules"?: CwtNode; "obsolete"?: true; "mark_older_equipment_obsolete"?: boolean; "icon"?: string; "model"?: string; "design_team"?: string } | CwtNode): void;
   /** Create a faction of specified name. CWT: Config/effects.cwt:827. */
@@ -361,7 +361,7 @@ export interface GeneratedCountryEffects {
   /** Create a faction from a template allows for optional customization of name, icon and color. CWT: Config/effects_ncns.cwt:204. */
   "create_faction_from_template"(value: { "template": string; "name"?: string; "icon"?: string; "color"?: readonly (number)[] } | CwtNode): void;
   /** Creates a field marshal for country in scope. CWT: Config/effects.cwt:1614. */
-  "create_field_marshal"(value: { "name": string | number | boolean | CountryRef | StateRef; "desc"?: string; "picture": string | number | boolean | CountryRef | StateRef; "portrait_path"?: string | number | boolean | CountryRef | StateRef; "gfx"?: string; "traits": readonly (string)[]; "skill": number; "attack_skill": number; "defense_skill": number; "planning_skill": number; "logistics_skill": number; "id"?: string; "legacy_id"?: string; "female"?: boolean } | CwtNode): void;
+  "create_field_marshal"(value: { "name": string | number | boolean | CountryRef | StateRef | StateTargetRef; "desc"?: string; "picture": string | number | boolean | CountryRef | StateRef | StateTargetRef; "portrait_path"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "gfx"?: string; "traits": readonly (string)[]; "skill": number; "attack_skill": number; "defense_skill": number; "planning_skill": number; "logistics_skill": number; "id"?: string; "legacy_id"?: string; "female"?: boolean } | CwtNode): void;
   /** Creates trade between two countries. CWT: Config/effects.cwt:1566. */
   "create_import"(value: { "amount"?: number; "resource": string; "factories"?: number; "exporter": CountryRef } | CwtNode): void;
   /** Create an Intelligence Agency for the country, if it is not already done. CWT: Config/effects_new.cwt:632. */
@@ -369,9 +369,9 @@ export interface GeneratedCountryEffects {
   /** Create an Intelligence Agency for the country, if it is not already done. CWT: Config/effects_new.cwt:636. */
   "create_intelligence_agency"(value: { "name": string; "icon": string } | CwtNode): void;
   /** Creates an admiral for country in scope. CWT: Config/effects.cwt:716. */
-  "create_navy_leader"(value: { "name": string | number | boolean | CountryRef | StateRef; "desc"?: string; "picture"?: string | number | boolean | CountryRef | StateRef; "portrait_path"?: string | number | boolean | CountryRef | StateRef; "gfx"?: string; "traits": readonly (string)[]; "skill": number; "attack_skill": number; "defense_skill": number; "maneuvering_skill": number; "coordination_skill": number; "id"?: string; "legacy_id"?: string; "female"?: boolean } | CwtNode): void;
+  "create_navy_leader"(value: { "name": string | number | boolean | CountryRef | StateRef | StateTargetRef; "desc"?: string; "picture"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "portrait_path"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "gfx"?: string; "traits": readonly (string)[]; "skill": number; "attack_skill": number; "defense_skill": number; "maneuvering_skill": number; "coordination_skill": number; "id"?: string; "legacy_id"?: string; "female"?: boolean } | CwtNode): void;
   /** Create operative for country. CWT: Config/effects_new.cwt:66. */
-  "create_operative_leader"(value: { "name"?: string | number | boolean | CountryRef | StateRef; "desc"?: string; "picture"?: string | number | boolean | CountryRef | StateRef; "portrait_path"?: string | number | boolean | CountryRef | StateRef; "gfx"?: string; "traits"?: readonly (string)[]; "id"?: string; "available_to_spy_master"?: boolean; "bypass_recruitment"?: boolean; "nationalities"?: readonly (CountryRef)[]; "portrait_tag_override"?: CountryRef; "skill"?: number; "gender"?: "male" | "female" } | CwtNode): void;
+  "create_operative_leader"(value: { "name"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "desc"?: string; "picture"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "portrait_path"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "gfx"?: string; "traits"?: readonly (string)[]; "id"?: string; "available_to_spy_master"?: boolean; "bypass_recruitment"?: boolean; "nationalities"?: readonly (CountryRef)[]; "portrait_tag_override"?: CountryRef; "skill"?: number; "gender"?: "male" | "female" } | CwtNode): void;
   /** Creates production license. If the selection criteria fails to match a variant no license will be created. Example: create_production_license = { target = TAG cost_factor = 1 new_prioritised = no equipment = { type = small_plane_naval_bomber_airframe version = 1 version_name = \"Do 22\" }}" CWT: Config/effects.cwt:2128. */
   "create_production_license"(value: { "target": CountryRef; "equipment": { "type": string; "version"?: number; "version_name"?: string } | CwtNode; "cost_factor"?: number; "new_prioritised"?: boolean } | CwtNode): void;
   /** Creates a purchase contract between the countries CWT: Config/effects_aat.cwt:253. */
@@ -379,9 +379,9 @@ export interface GeneratedCountryEffects {
   /** Create railway gun effect CWT: Config/effects_nsb.cwt:713. */
   "create_railway_gun"(value: { "equipment": string; "name"?: string; "location"?: number } | CwtNode): void;
   /** Create a ship from another country and assign it to the reserve fleet. 'creator' is optional. If not set, it will be the scoped country. 'name' is optional. CWT: Config/effects_new.cwt:647. */
-  "create_ship"(value: { "type": string; "equipment_variant": string | number | boolean | CountryRef | StateRef; "creator"?: CountryRef; "name"?: string | number | boolean | CountryRef | StateRef } | CwtNode): void;
+  "create_ship"(value: { "type": string; "equipment_variant": string | number | boolean | CountryRef | StateRef | StateTargetRef; "creator"?: CountryRef; "name"?: string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): void;
   /** Creates wargoal for country in scope. CWT: Config/effects.cwt:1277. */
-  "create_wargoal"(value: { "target": CountryRef; "type": string; "generator"?: readonly (StateRef)[] | "core_states" | "owned_states" | string | CwtOpaque | StateRef; "expire"?: string | number } | CwtNode): void;
+  "create_wargoal"(value: { "target": CountryRef; "type": string; "generator"?: readonly (StateRef | StateTargetRef)[] | "core_states" | "owned_states" | string | CwtOpaque | StateRef | StateTargetRef; "expire"?: string | number } | CwtNode): void;
   /** Shows just a custom tooltip. CWT: Config/effects.cwt:14. */
   "custom_effect_tooltip"(value: string): void;
   /** Shows just a custom tooltip. CWT: Config/effects.cwt:17. */
@@ -389,15 +389,15 @@ export interface GeneratedCountryEffects {
   /** Executes the provided effects but with a custom tooltip surpressing all tooltips from all other effects inside this block. The custom tooltip is a [bindable localization] CWT: Config/effects_gtd.cwt:318. */
   "custom_override_tooltip"(value: CwtNode): void;
   /** damages units for given conditions. no tooltip generated CWT: Config/effects_nsb.cwt:666. */
-  "damage_units"(value: { "province"?: number; "state"?: StateRef; "region"?: string; "limit"?: CwtNode; "damage"?: number; "org_damage"?: number; "str_damage"?: number; "ratio"?: boolean; "template"?: string; "division_template"?: string; "army"?: boolean; "navy"?: boolean } | CwtNode): void;
+  "damage_units"(value: { "province"?: number; "state"?: StateRef | StateTargetRef; "region"?: string; "limit"?: CwtNode; "damage"?: number; "org_damage"?: number; "str_damage"?: number; "ratio"?: boolean; "template"?: string; "division_template"?: string; "army"?: boolean; "navy"?: boolean } | CwtNode): void;
   /** Fires advisor (removes advisor idea) CWT: Config/effects_nsb.cwt:506. */
   "deactivate_advisor"(value: string): void;
   /** Deactivate the shine effect on the focus with the given id. The current focus cannot have it's shine effect removed. Note that tooltips for this effect are only shown in debug mode. CWT: Config/effects_gtd.cwt:153. */
   "deactivate_shine_on_focus"(value: string): void;
   /** Declares war on specified country. CWT: Config/effects.cwt:1134. */
-  "declare_war_on"(value: { "target": CountryRef; "type": string; "generator"?: readonly (StateRef)[] | string | CwtOpaque | StateRef } | CwtNode): void;
+  "declare_war_on"(value: { "target": CountryRef; "type": string; "generator"?: readonly (StateRef | StateTargetRef)[] | string | CwtOpaque | StateRef | StateTargetRef } | CwtNode): void;
   /** Delete units of a country. No tooltip is generated. CWT: Config/effects_new.cwt:11. */
-  "delete_unit"(value: { "template"?: string | number | boolean | CountryRef | StateRef; "division_template"?: string; "id"?: number; "state"?: StateRef; "disband"?: boolean } | CwtNode): void;
+  "delete_unit"(value: { "template"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "division_template"?: string; "id"?: number; "state"?: StateRef | StateTargetRef; "disband"?: boolean } | CwtNode): void;
   /** Delete a template and its units. CWT: Config/effects.cwt:2564. */
   "delete_unit_template_and_units"(value: { "division_template": string; "disband"?: boolean } | CwtNode): void;
   /** Deletes units that uses a specific template. CWT: Config/effects_new.cwt:486. */
@@ -413,11 +413,11 @@ export interface GeneratedCountryEffects {
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:155. */
   "divide_temp_variable"(value: CwtNode): void;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:179. */
-  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
   /** Divides a variable to a value or another variable. CWT: Config/variable_effects.cwt:91. */
   "divide_variable"(value: CwtNode): void;
   /** Divides a variable to a value or another variable. CWT: Config/variable_effects.cwt:116. */
-  "divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+  "divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
   /** Adds a division template to country. CWT: Config/effects.cwt:574. */
   "division_template"(value: { "name": string; "localization_key"?: string; "division_names_group"?: string; "role"?: string; "front_role_override"?: string; "override_model"?: string; "template_counter"?: number; "is_army_hq"?: boolean; "is_locked"?: boolean; "force_allow_recruiting"?: boolean; "obsolete"?: boolean; "division_cap"?: number; "regiments": CwtNode; "support"?: CwtNode; "regimental_support"?: CwtNode; "priority"?: number; "is_fake_intel_division"?: boolean; "foreign_template_tag"?: CountryRef; "origin_type"?: "subject" } | CwtNode): void;
   /** Drops country cosmetic tag. CWT: Config/effects.cwt:2051. */
@@ -487,7 +487,7 @@ export interface GeneratedCountryEffects {
   /**  CWT: Config/scopes.cwt:83. */
   "faction_leader"(value: Effect<ScopeByName["country"]> | { limit?: Trigger<ScopeByName["country"]>; effects: Effect<ScopeByName["country"]> } | CwtNode): void;
   /** Finalizes border war between two states, wins or cancels it. CWT: Config/effects.cwt:2711. */
-  "finalize_border_war"(value: { "attacker": StateRef; "defender": StateRef; "attacker_win"?: boolean; "defender_win"?: boolean } | CwtNode): void;
+  "finalize_border_war"(value: { "attacker": StateRef | StateTargetRef; "defender": StateRef | StateTargetRef; "attacker_win"?: boolean; "defender_win"?: boolean } | CwtNode): void;
   /** Runs a loop on for each element of an array, finds the highest value and stores result in temp variables. CWT: Config/effects.cwt:3261. */
   "find_highest_in_array"(value: { "array": string | CwtOpaque; "value"?: string; "index"?: string } | CwtNode): void;
   /** Runs a loop on for each element of an array, finds the lowest value and stores result in temp variables. CWT: Config/effects.cwt:3247. */
@@ -533,13 +533,13 @@ export interface GeneratedCountryEffects {
   /** Gives military access to the specified country. CWT: Config/effects.cwt:1041. */
   "give_military_access"(value: CountryRef): void;
   /** Gives rights to take resources from specified state. give_resource_rights = { receiver = <TAG> state = <id> }. CWT: Config/effects.cwt:2771. */
-  "give_resource_rights"(value: { "receiver": CountryRef; "state": StateRef; "resources"?: readonly (string)[] } | CwtNode): void;
+  "give_resource_rights"(value: { "receiver": CountryRef; "state": StateRef | StateTargetRef; "resources"?: readonly (string)[] } | CwtNode): void;
   /** Executes children effects on army leaders for every country in the world that fulfills the "limit" trigger. Better to use every_army_leader if you know the country. CWT: Config/effects.cwt:2355. */
   "global_every_army_leader"(value: Effect<ScopeByName["any"]> | { limit?: Trigger<ScopeByName["any"]>; effects: Effect<ScopeByName["any"]> } | CwtNode): void;
   /** Goes to stated province. CWT: Config/effects.cwt:1690. */
   "goto_province"(value: number): void;
   /** Goes to stated state. CWT: Config/effects.cwt:1694. */
-  "goto_state"(value: StateRef): void;
+  "goto_state"(value: StateRef | StateTargetRef): void;
   /** Effect not shown in tooltips. CWT: Config/effects.cwt:3783. */
   "hidden_effect"(value: CwtNode): void;
   /** Immediately holds an election in the target country. CWT: Config/effects.cwt:1159. */
@@ -559,7 +559,7 @@ export interface GeneratedCountryEffects {
   /** Kills an operative. This will temporarily lock the slot they occupy. CWT: Config/effects_new.cwt:788. */
   "kill_operative"(value: { "operative": CwtOpaque } | CwtNode): void;
   /** Launch nuke at a state. usage . CWT: Config/effects.cwt:3222. */
-  "launch_nuke"(value: { "province"?: number | string; "state"?: StateRef; "controller"?: CountryRef; "use_nuke"?: boolean; "nuke_type"?: string } | CwtNode): void;
+  "launch_nuke"(value: { "province"?: number | string; "state"?: StateRef | StateTargetRef; "controller"?: CountryRef; "use_nuke"?: boolean; "nuke_type"?: string } | CwtNode): void;
   /** Country leaves the faction. CWT: Config/effects.cwt:1701. */
   "leave_faction"(value: boolean): void;
   /** Sets what focus tree a country uses, retains finished shared focuses. CWT: Config/effects.cwt:2391. */
@@ -593,15 +593,15 @@ export interface GeneratedCountryEffects {
   /** Modulos a variable with another. CWT: Config/variable_effects.cwt:155. */
   "modulo_variable"(value: CwtNode): void;
   /** Modulos a variable with another. CWT: Config/variable_effects.cwt:161. */
-  "modulo_variable"(value: { "var": CwtOpaque; "value": number } | CwtNode): void;
+  "modulo_variable"(value: { "var": string; "value": number } | CwtNode): void;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:144. */
   "multiply_temp_variable"(value: CwtNode): void;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:151. */
-  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Multiplies a variable to a value or another variable. CWT: Config/variable_effects.cwt:83. */
   "multiply_variable"(value: CwtNode): void;
   /** Multiplies a variable to a value or another variable. CWT: Config/variable_effects.cwt:87. */
-  "multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Add naval experience for country. CWT: Config/effects.cwt:1340. */
   "navy_experience"(value: number): void;
   /** Add air experience for country. CWT: Config/effects.cwt:1344. */
@@ -619,9 +619,9 @@ export interface GeneratedCountryEffects {
   /** Executes children effects on random characters that fulfills the "limit" trigger.Has to use has_ideology in limit to determine the party (with ideology group). tooltip=key can be added to override tooltip title CWT: Config/effects_nsb.cwt:941. */
   "party_leader"(value: Effect<ScopeByName["character"]> | { limit?: Trigger<ScopeByName["character"]>; effects: Effect<ScopeByName["character"]> } | CwtNode): void;
   /**  CWT: Config/effects.cwt:3800. */
-  "play_song"(value: string | number | boolean | CountryRef | StateRef): void;
+  "play_song"(value: string | number | boolean | CountryRef | StateRef | StateTargetRef): void;
   /** Prints all variables in scope and temp variables to a file. CWT: Config/effects.cwt:2572. */
-  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
+  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
   /** makes character head of their ideology party CWT: Config/effects_nsb.cwt:437. */
   "promote_character"(value: string): void;
   /** makes character head of their ideology party CWT: Config/effects_nsb.cwt:446. */
@@ -725,7 +725,7 @@ export interface GeneratedCountryEffects {
   /**  CWT: Config/effects_bba.cwt:133. */
   "remove_civil_war_target"(value: CountryRef): void;
   /** Removes a contested owner to a state. The effect can be used either from a country or a state scope and accepts the other as parameter. CWT: Config/effects_gtd.cwt:305. */
-  "remove_contested_owner"(value: StateRef): void;
+  "remove_contested_owner"(value: StateRef | StateTargetRef): void;
   /**  CWT: Config/effects_nsb.cwt:273. */
   "remove_country_leader_role"(value: { "character"?: string | CwtOpaque; "ideology"?: string } | CwtNode): void;
   /** Remove trait from active country leader. CWT: Config/effects.cwt:617. */
@@ -737,13 +737,13 @@ export interface GeneratedCountryEffects {
   /** Removes decision on cooldown to reactivate or remove CWT: Config/effects_toa.cwt:35. */
   "remove_decision_on_cooldown"(value: string): void;
   /** Removes a dynamic modifier from country/state/unit leader. CWT: Config/effects.cwt:3103. */
-  "remove_dynamic_modifier"(value: { "modifier": string; "scope"?: CountryRef | StateRef | string | CwtOpaque } | CwtNode): void;
+  "remove_dynamic_modifier"(value: { "modifier": string; "scope"?: CountryRef | StateRef | StateTargetRef | string | CwtOpaque } | CwtNode): void;
   /** **WARNING - DO NOT TRY TO REMOVE FACTION MANIFEST! IT WILL CRASH THE GAME** Remove a goal from the current's country faction. CWT: Config/effects_ncns.cwt:235. */
   "remove_faction_goal"(value: string): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2869. */
-  "remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
+  "remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2884. */
-  "remove_from_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+  "remove_from_array"(value: { "array": string; "index": number } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2894. */
   "remove_from_array"(value: CwtNode): void;
   /** Removes specified country from faction. CWT: Config/effects.cwt:1027. */
@@ -751,9 +751,9 @@ export interface GeneratedCountryEffects {
   /** Removes country from technology sharing group of specified name. CWT: Config/effects.cwt:2020. */
   "remove_from_tech_sharing_group"(value: string): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:2978. */
-  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
+  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:2993. */
-  "remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+  "remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:3003. */
   "remove_from_temp_array"(value: CwtNode): void;
   /** Remove idea(s) from country. CWT: Config/effects.cwt:683. */
@@ -779,19 +779,19 @@ export interface GeneratedCountryEffects {
   /** Removes an override rule to the country's relation to other countries.The desc key can be used to supply a custom description for the effect when a named trigger is used as key CWT: Config/effects_toa.cwt:21. */
   "remove_relation_rule_override"(value: CwtNode): void;
   /** Remove resource right to state for scope country. remove_resource_rights = ID. CWT: Config/effects.cwt:2785. */
-  "remove_resource_rights"(value: StateRef): void;
+  "remove_resource_rights"(value: StateRef | StateTargetRef): void;
   /** Remove the scientist role from a character.The character can come from the scope or from an input parameter. The scientist role format is the same as in the character DB. Except the visible trigger - a scientist role created via effect cannot have triggers. CWT: Config/effects_gtd.cwt:257. */
   "remove_scientist_role"(value: { "character": string | CwtOpaque } | CwtNode): void;
   /** Remove claim on state. CWT: Config/effects.cwt:444. */
-  "remove_state_claim"(value: StateRef): void;
+  "remove_state_claim"(value: StateRef | StateTargetRef): void;
   /** Remove core on state. CWT: Config/effects.cwt:53. */
-  "remove_state_core"(value: StateRef): void;
+  "remove_state_core"(value: StateRef | StateTargetRef): void;
   /** Removes either a resistance or compliance modifier to a state. Can only use modifiers from the resistance_modifiers.txt/compliance_modifiers.txt that are marked as is_dynamic = yes CWT: Config/effects_ncns.cwt:164. */
-  "remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+  "remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Removes targeted decisions or mission. CWT: Config/effects.cwt:2620. */
   "remove_targeted_decision"(value: { "target": CountryRef; "decision": string } | CwtNode): void;
   /** Removes targeted decisions or mission. CWT: Config/effects.cwt:2628. */
-  "remove_targeted_decision"(value: { "target": StateRef; "decision": string } | CwtNode): void;
+  "remove_targeted_decision"(value: { "target": StateRef | StateTargetRef; "decision": string } | CwtNode): void;
   /**  CWT: Config/effects_nsb.cwt:534. */
   "remove_trait"(value: { "character"?: string | CwtOpaque; "trait": string; "ideology"?: string; "slot"?: string } | CwtNode): void;
   /** Remove a unit leader by their legacy ID ( remove_unit_leader=ID ). CWT: Config/effects.cwt:1538. */
@@ -809,11 +809,11 @@ export interface GeneratedCountryEffects {
   /** Reset name of a province back to localization one. CWT: Config/effects.cwt:2120. */
   "reset_province_name"(value: number): void;
   /** Resizes array. CWT: Config/effects.cwt:2911. */
-  "resize_array"(value: { "array": string; "value"?: number | string; "size": "int_variable_field_32" } | CwtNode): void;
+  "resize_array"(value: { "array": string; "value"?: number | string; "size": number } | CwtNode): void;
   /** Resizes array. CWT: Config/effects.cwt:2928. */
   "resize_array"(value: CwtNode): void;
   /** Resizes a temp array. CWT: Config/effects.cwt:3023. */
-  "resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): void;
+  "resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): void;
   /** Resizes a temp array. CWT: Config/effects.cwt:3035. */
   "resize_temp_array"(value: CwtNode): void;
   /** removes character from all roles and availability CWT: Config/effects_nsb.cwt:390. */
@@ -831,7 +831,7 @@ export interface GeneratedCountryEffects {
   /** Rounds a temporary variable. CWT: Config/variable_effects_temp.cwt:252. */
   "round_temp_variable"(value: string): void;
   /** Rounds a variable. CWT: Config/variable_effects.cwt:202. */
-  "round_variable"(value: CwtOpaque): void;
+  "round_variable"(value: string): void;
   /** Save an event target. CWT: Config/effects.cwt:1356. */
   "save_event_target_as"(value: string): void;
   /** Save a global event target. CWT: Config/effects.cwt:1360. */
@@ -839,7 +839,7 @@ export interface GeneratedCountryEffects {
   /**  CWT: Config/scopes.cwt:32. */
   "scope_field"(value: CwtNode): void;
   /**  CWT: Config/effects.cwt:3803. */
-  "scoped_play_song"(value: string | number | boolean | CountryRef | StateRef): void;
+  "scoped_play_song"(value: string | number | boolean | CountryRef | StateRef | StateTargetRef): void;
   /** Plays sound effect only on in current scope's player. CWT: Config/effects.cwt:3243. */
   "scoped_sound_effect"(value: string): void;
   /** BUGGED AS OF NCNS BETA. Add technology tree icons from a target tag, not in tech details. Can be used multiple times for the same tag CWT: Config/effects_ncns.cwt:138. */
@@ -857,11 +857,11 @@ export interface GeneratedCountryEffects {
   /** Makes autonomy of specified level and country. CWT: Config/effects.cwt:1999. */
   "set_autonomy"(value: { "target": CountryRef; "autonomous_state": string | "autonomy_free"; "freedom_level"?: number; "end_wars"?: boolean; "end_civil_wars"?: boolean } | CwtNode): void;
   /** Update border war properties. CWT: Config/effects.cwt:2510. */
-  "set_border_war_data"(value: { "attacker": StateRef; "defender": StateRef; "attacker_modifier"?: number; "defender_modifier"?: number; "combat_width"?: number } | CwtNode): void;
+  "set_border_war_data"(value: { "attacker": StateRef | StateTargetRef; "defender": StateRef | StateTargetRef; "attacker_modifier"?: number; "defender_modifier"?: number; "combat_width"?: number } | CwtNode): void;
   /**  CWT: Config/effects_bba.cwt:92. */
   "set_can_be_fired_in_advisor_role"(value: { "character"?: string | CwtOpaque; "slot"?: string; "value": boolean } | CwtNode): void;
   /** Move capital to state. CWT: Config/effects.cwt:31. */
-  "set_capital"(value: { "state": StateRef; "remember_old_capital"?: boolean } | CwtNode): void;
+  "set_capital"(value: { "state": StateRef | StateTargetRef; "remember_old_capital"?: boolean } | CwtNode): void;
   /** renames character CWT: Config/effects_nsb.cwt:419. */
   "set_character_name"(value: { "character"?: string | CwtOpaque; "name": string } | CwtNode): void;
   /** Sets the collaboration in a target country with our currently scoped country. CWT: Config/effects_new.cwt:840. */
@@ -893,7 +893,7 @@ export interface GeneratedCountryEffects {
   /** Sets the position and rotation of an entity using two coordinates. IDs are set by the create_entity effect. Uses the the same coordinate system that the map uses. A positive change in rotation results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. CWT: Config/effects_nsb.cwt:855. */
   "set_entity_movement"(value: { "id": string; "start": { "x": number; "y": number; "z"?: number } | CwtNode; "target": { "province": number } | CwtNode; "ratio": number; "rotation": number } | CwtNode): void;
   /** Sets the position of an existing entity. IDs are set by the create_entity effect. Uses the the same coordinate system that the map uses. CWT: Config/effects_nsb.cwt:873. */
-  "set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef } | CwtNode): void;
+  "set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Sets the currently-facing angle of an existing entity. IDs are set by the create_entity effect. A positive change results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. CWT: Config/effects_nsb.cwt:887. */
   "set_entity_rotation"(value: { "id": string; "rotation": number } | CwtNode): void;
   /** Sets the size of an existing entity. IDs are set by the create_entity effect. CWT: Config/effects_nsb.cwt:895. */
@@ -931,7 +931,7 @@ export interface GeneratedCountryEffects {
   /** Example: set_grand_doctrine = new_mobile_warfare Set **Grand Doctrine** for a country in scope. CWT: Config/effects_ncns.cwt:27. */
   "set_grand_doctrine"(value: string): void;
   /** Registers an Order of Battle (OOB) file to be loaded for a country at game start, replacing any previously registered OOB (with the given key) on that country. CWT: Config/effects.cwt:2805. */
-  "set_keyed_oob"(value: { "key": string | number | boolean | CountryRef | StateRef; "name": string } | CwtNode): void;
+  "set_keyed_oob"(value: { "key": string | number | boolean | CountryRef | StateRef | StateTargetRef; "name": string } | CwtNode): void;
   /** Set_legitimacy = 10. Sets legitimacy on scope country to specified value. Value has to be 0-100. CWT: Config/effects.cwt:2746. */
   "set_legitimacy"(value: number): void;
   /** Sets mandatory major country flag. CWT: Config/effects.cwt:1608. */
@@ -987,9 +987,9 @@ export interface GeneratedCountryEffects {
   /** Sets the stability to the country in scope. Example: set_stability = 80. CWT: Config/effects.cwt:2218. */
   "set_stability"(value: number): void;
   /** Set controller for state. CWT: Config/effects.cwt:794. */
-  "set_state_controller"(value: StateRef): void;
+  "set_state_controller"(value: StateRef | StateTargetRef): void;
   /** Set owner for state. CWT: Config/effects.cwt:767. */
-  "set_state_owner"(value: StateRef): void;
+  "set_state_owner"(value: StateRef | StateTargetRef): void;
   /** Example: set_sub_doctrine = mobile_infantry Activate the **Subdoctrine** for a country in scope. CWT: Config/effects_ncns.cwt:33. */
   "set_sub_doctrine"(value: string): void;
   /** Sets technology level(s) on country. CWT: Config/effects.cwt:705. */
@@ -997,7 +997,7 @@ export interface GeneratedCountryEffects {
   /** # TEMP VARIABLE Sets a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:53. */
   "set_temp_variable"(value: CwtNode): void;
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:88. */
-  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Sets a temp variable to a random value. CWT: Config/variable_effects_temp.cwt:226. */
   "set_temp_variable_to_random"(value: string): void;
   /** Sets a temp variable to a random value. CWT: Config/variable_effects_temp.cwt:230. */
@@ -1007,7 +1007,7 @@ export interface GeneratedCountryEffects {
   /** Sets a variable to a value or another variable. CWT: Config/variable_effects.cwt:3. */
   "set_variable"(value: CwtNode): void;
   /** Sets a variable to a value or another variable. CWT: Config/variable_effects.cwt:37. */
-  "set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Sets a variable to a random value. CWT: Config/variable_effects.cwt:168. */
   "set_variable_to_random"(value: string): void;
   /** Sets a variable to a random value. CWT: Config/variable_effects.cwt:172. */
@@ -1027,7 +1027,7 @@ export interface GeneratedCountryEffects {
   /** Plays sound effect. CWT: Config/effects.cwt:562. */
   "sound_effect"(value: string): void;
   /** Start a border war between two states. CWT: Config/effects.cwt:2450. */
-  "start_border_war"(value: { "change_state_after_war": boolean; "combat_width"?: number; "minimum_duration_in_days"?: number; "attacker": { "state": StateRef; "num_provinces": number; "on_win"?: string; "on_lose"?: string; "on_cancel"?: string; "leader_score"?: CwtNode; "dig_in_factor"?: number; "terrain_factor"?: number; "modifier"?: number } | CwtNode; "defender": { "state": StateRef; "num_provinces": number; "on_win"?: string; "on_lose"?: string; "on_cancel"?: string; "modifier"?: number } | CwtNode } | CwtNode): void;
+  "start_border_war"(value: { "change_state_after_war": boolean; "combat_width"?: number; "minimum_duration_in_days"?: number; "attacker": { "state": StateRef | StateTargetRef; "num_provinces": number; "on_win"?: string; "on_lose"?: string; "on_cancel"?: string; "leader_score"?: CwtNode; "dig_in_factor"?: number; "terrain_factor"?: number; "modifier"?: number } | CwtNode; "defender": { "state": StateRef | StateTargetRef; "num_provinces": number; "on_win"?: string; "on_lose"?: string; "on_cancel"?: string; "modifier"?: number } | CwtNode } | CwtNode): void;
   /** Given ideology starts a civil war in the country. keep_unit_leaders specify ID of unit leaders that remain with the original country. CWT: Config/effects.cwt:1180. */
   "start_civil_war"(value: CwtNode): void;
   /** Start peace conference CWT: Config/effects_new.cwt:980. */
@@ -1037,11 +1037,11 @@ export interface GeneratedCountryEffects {
   /** Subtracts a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:133. */
   "subtract_from_temp_variable"(value: CwtNode): void;
   /** Subtracts a value or a variable to a temp variable. CWT: Config/variable_effects_temp.cwt:140. */
-  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Subtracts a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:75. */
   "subtract_from_variable"(value: CwtNode): void;
   /** Subtracts a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:79. */
-  "subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Swap 2 ideas. CWT: Config/effects.cwt:1917. */
   "swap_ideas"(value: { "remove_idea": string; "add_idea": string; "add_days"?: number; "days"?: number } | CwtNode): void;
   /** Swap 2 traits on current ruler. CWT: Config/effects.cwt:2728. */
@@ -1051,9 +1051,9 @@ export interface GeneratedCountryEffects {
   /** Transfers the entire navy from scope country to target country. Does not support carriers!. CWT: Config/effects.cwt:2266. */
   "transfer_navy"(value: { "target": CountryRef; "is_government_in_exile"?: true } | CwtNode): void;
   /** Transfers ship from scope country to target country. CWT: Config/effects.cwt:2055. */
-  "transfer_ship"(value: { "prefer_name"?: string | number | boolean | CountryRef | StateRef; "type": string; "target": CountryRef; "exclude_refitting"?: boolean } | CwtNode): void;
+  "transfer_ship"(value: { "prefer_name"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "type": string; "target": CountryRef; "exclude_refitting"?: boolean } | CwtNode): void;
   /** Set owner and controller for state. CWT: Config/effects.cwt:801. */
-  "transfer_state"(value: StateRef): void;
+  "transfer_state"(value: StateRef | StateTargetRef): void;
   /** Transfer units (air, army, navy) to another country. Also transfer the stockpiled equipment (you can set it to zero if it is undesired) as well as unit leaders. CWT: Config/effects_new.cwt:152. */
   "transfer_units_fraction"(value: { "target": CountryRef; "target_organization"?: number; "source_organization"?: number; "size"?: number; "stockpile_ratio"?: number; "army_ratio"?: number; "navy_ratio"?: number; "air_ratio"?: number; "keep_unit_leaders"?: readonly (string)[]; "keep_unit_leaders_trigger"?: CwtNode } | CwtNode): void;
   /** An operative is turned by the specified country. This transfers the operative to the target country and make it appear as killed to the country of origin (increases the death counter and lock the slot). This fires the on_action on_operative_death with as killer the target country. If the target coun CWT: Config/effects_new.cwt:870. */
@@ -1091,13 +1091,13 @@ export interface GeneratedCountryEffects {
 }
 export interface GeneratedCountryTriggers {
   /** Adds an element to a temporary array. CWT: Config/triggers.cwt:1781. */
-  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef; "index"?: "int_variable_field_32" } | CwtNode): boolean;
+  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef; "index"?: number } | CwtNode): boolean;
   /** Adds an element to a temporary array. CWT: Config/triggers.cwt:1800. */
   "add_to_temp_array"(value: CwtNode): boolean;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:71. */
   "add_to_temp_variable"(value: CwtNode): boolean;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:78. */
-  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Checks the number of upgrade done in the intelligence agency. CWT: Config/triggers_new.cwt:221. */
   "agency_upgrade_number"(value: number): boolean;
   /** Check if the ai controlled country has any fielded divisions for a specific role. CWT: Config/triggers.cwt:1357. */
@@ -1247,7 +1247,7 @@ export interface GeneratedCountryTriggers {
   /** Compares the warscore of all wars in a country to see if any fullfills the comparison condition 0-100 - Example any_war_score > 40. CWT: Config/triggers.cwt:560. */
   "any_war_score"(value: number): boolean;
   /** Checks for amount manpower currently the target state with option to specify a type. CWT: Config/triggers.cwt:1672. */
-  "army_manpower_in_state"(value: { "state": StateRef | number; "amount": number; "type"?: string } | CwtNode): boolean;
+  "army_manpower_in_state"(value: { "state": StateRef | StateTargetRef | number; "amount": number; "type"?: string } | CwtNode): boolean;
   /** Checks if the current scope is an untouched loser within the peace conference. CWT: Config/common/peace_conference.cwt:154. */
   "c_is_untouched_loser"(value: boolean): boolean;
   /** Example: can_assign_supportive_scientist_to_faction = specialization_naval Checks if the faction from the country in scope has a free slot for a supportive scientist for the country with the specialization type CWT: Config/triggers_ncns.cwt:81. */
@@ -1261,7 +1261,7 @@ export interface GeneratedCountryTriggers {
   /** Checks if a railway can be built according to specifications CWT: Config/triggers_nsb.cwt:336. */
   "can_build_railway"(value: { "build_only_on_allied"?: boolean; "start_province": number; "target_province": number; "fallback"?: boolean } | CwtNode): boolean;
   /** Checks if a railway can be built according to specifications CWT: Config/triggers_nsb.cwt:347. */
-  "can_build_railway"(value: { "build_only_on_allied"?: boolean; "start_state": StateRef; "target_state": StateRef; "fallback"?: boolean } | CwtNode): boolean;
+  "can_build_railway"(value: { "build_only_on_allied"?: boolean; "start_state": StateRef | StateTargetRef; "target_state": StateRef | StateTargetRef; "fallback"?: boolean } | CwtNode): boolean;
   /** Checks if the country could potentially declare a war on the target (according to game rules, relationship, etc... ). CWT: Config/triggers_new.cwt:395. */
   "can_declare_war_on"(value: CountryRef): boolean;
   /** Check if country can research technology. CWT: Config/triggers.cwt:926. */
@@ -1279,7 +1279,7 @@ export interface GeneratedCountryTriggers {
   /** Compares a variable to a number or variable. CWT: Config/triggers.cwt:93. */
   "check_variable"(value: CwtNode): boolean;
   /** Compares a variable to a number or variable. CWT: Config/triggers.cwt:105. */
-  "check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef; "value": string | number | boolean | CountryRef | StateRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
+  "check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef | StateTargetRef; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
   /** Civilwar target is ( for civil wars checks ). CWT: Config/triggers.cwt:1073. */
   "civilwar_target"(value: CountryRef): boolean;
   /** Clamps a temp variable between two a values or another variables. CWT: Config/variable_triggers_temp.cwt:190. */
@@ -1311,7 +1311,7 @@ export interface GeneratedCountryTriggers {
   /** Check controller for province. CWT: Config/triggers.cwt:2120. */
   "controls_province"(value: number): boolean;
   /** Check controller for state(s). CWT: Config/triggers.cwt:280. */
-  "controls_state"(value: StateRef): boolean;
+  "controls_state"(value: StateRef | StateTargetRef): boolean;
   /** A trigger to check convoy threat for a country. Controlled by NAVAL_CONVOY_DANGER defines. Returns a value between 0 and 1. Example: convoy_threat > 0.5. CWT: Config/triggers.cwt:2062. */
   "convoy_threat"(value: number): boolean;
   /** Compares the core (average of all occupied states) compliance value of occupied_country_tag that is occupied by the country in current scope. CWT: Config/triggers_new.cwt:90. */
@@ -1351,11 +1351,11 @@ export interface GeneratedCountryTriggers {
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:104. */
   "divide_temp_variable"(value: CwtNode): boolean;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:128. */
-  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
+  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
   /** Checks for amount of divisions in specified state owned by current country. CWT: Config/triggers.cwt:1715. */
-  "divisions_in_border_state"(value: { "type"?: string; "size": number; "state": StateRef; "border_state": StateRef } | CwtNode): boolean;
+  "divisions_in_border_state"(value: { "type"?: string; "size": number; "state": StateRef | StateTargetRef; "border_state": StateRef | StateTargetRef } | CwtNode): boolean;
   /** Checks for amount of divisions in specified state owned by current country. CWT: Config/triggers.cwt:342. */
-  "divisions_in_state"(value: { "size": number; "state": StateRef; "unit"?: string; "type"?: string } | CwtNode): boolean;
+  "divisions_in_state"(value: { "size": number; "state": StateRef | StateTargetRef; "unit"?: string; "type"?: string } | CwtNode): boolean;
   /** A conditional trigger. CWT: Config/triggers.cwt:28. */
   "else"(value: CwtNode): boolean;
   /** A conditional trigger. CWT: Config/triggers.cwt:21. */
@@ -1459,7 +1459,7 @@ export interface GeneratedCountryTriggers {
   /** Checks if a there is any border wars for country/state. CWT: Config/triggers.cwt:1582. */
   "has_border_war"(value: boolean): boolean;
   /** Checks if a there is a border war between two states. CWT: Config/triggers.cwt:1590. */
-  "has_border_war_between"(value: { "attacker": StateRef; "defender": StateRef } | CwtNode): boolean;
+  "has_border_war_between"(value: { "attacker": StateRef | StateTargetRef; "defender": StateRef | StateTargetRef } | CwtNode): boolean;
   /** Checks if a there is a border against a state/country. CWT: Config/triggers.cwt:1599. */
   "has_border_war_with"(value: CountryRef): boolean;
   /** Checks if the country in scope has enough breakthroughs within a given specialization. CWT: Config/triggers_gtd.cwt:57. */
@@ -1495,7 +1495,7 @@ export interface GeneratedCountryTriggers {
   /** Example: has_completed_track = heavy_aircraft Checks if the country has completed a specified **Track** CWT: Config/triggers_ncns.cwt:62. */
   "has_completed_track"(value: string): boolean;
   /** Checks if a state has the specified country as a contested owner. The trigger can be used either from a country or a state scope and accepts the other as parameter. CWT: Config/triggers_gtd.cwt:176. */
-  "has_contested_owner"(value: StateRef): boolean;
+  "has_contested_owner"(value: StateRef | StateTargetRef): boolean;
   /** Check value of convoys_war_support. This becomes more negative as the malus grows (it won't be positive). Example convoys_war_support < 0. CWT: Config/triggers.cwt:2148. */
   "has_convoys_war_support"(value: number): boolean;
   /** Has an occupation modifier that applies to average resistance/compliance. CWT: Config/triggers.cwt:2124. */
@@ -1513,7 +1513,7 @@ export interface GeneratedCountryTriggers {
   /** Check if country has leader with specified ID. Don't localize this. Tooltip only for debug. CWT: Config/triggers_nsb.cwt:146. */
   "has_country_leader"(value: { "ruling_only"?: boolean; "id": number } | CwtNode): boolean;
   /** Check if country has leader with specified ID. Don't localize this. Tooltip only for debug. CWT: Config/triggers_nsb.cwt:153. */
-  "has_country_leader"(value: { "ruling_only"?: boolean; "name": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+  "has_country_leader"(value: { "ruling_only"?: boolean; "name": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
   /** Check if country has character with specified ID. CWT: Config/triggers_nsb.cwt:160. */
   "has_country_leader"(value: string): boolean;
   /** Check if country has character with specified ID. CWT: Config/triggers_nsb.cwt:175. */
@@ -1543,7 +1543,7 @@ export interface GeneratedCountryTriggers {
   /** Has country done this intelligence agency upgrade (to its highest level). CWT: Config/triggers_new.cwt:205. */
   "has_done_agency_upgrade"(value: string): boolean;
   /** Checks if scope has a dynamic modifier. CWT: Config/triggers.cwt:1959. */
-  "has_dynamic_modifier"(value: { "modifier": string; "scope"?: CountryRef | StateRef | string | CwtOpaque } | CwtNode): boolean;
+  "has_dynamic_modifier"(value: { "modifier": string; "scope"?: CountryRef | StateRef | StateTargetRef | string | CwtOpaque } | CwtNode): boolean;
   /** Checks if scope has a dynamic modifier. CWT: Config/triggers.cwt:1988. */
   "has_dynamic_modifier"(value: string): boolean;
   /** Checks the country's politics on allowing elections. has_elections = yes. CWT: Config/triggers.cwt:1065. */
@@ -1573,7 +1573,7 @@ export interface GeneratedCountryTriggers {
   /** Check amount of fuel. CWT: Config/triggers.cwt:1903. */
   "has_fuel"(value: number): boolean;
   /** Check controller for state(s). CWT: Config/triggers.cwt:1266. */
-  "has_full_control_of_state"(value: StateRef): boolean;
+  "has_full_control_of_state"(value: StateRef | StateTargetRef): boolean;
   /** Checks if a game rule is set to a particular option. CWT: Config/triggers.cwt:1751. */
   "has_game_rule"(value: { "rule": string; "option": string } | CwtNode): boolean;
   /** Has global flag been set. Check flag val date set and days since set. Example: has_global_flag = test_flag. CWT: Config/triggers.cwt:155. */
@@ -1623,11 +1623,11 @@ export interface GeneratedCountryTriggers {
   /** Checks if friendly nations and country scope together has enough naval dominance to assert control in strategic region. CWT: Config/triggers_ncns.cwt:475. */
   "has_naval_control"(value: string): boolean;
   /** Check if the scoped country has a naval invasion against the specified state. CWT: Config/triggers_gtd.cwt:64. */
-  "has_naval_invasion_against_state"(value: StateRef): boolean;
+  "has_naval_invasion_against_state"(value: StateRef | StateTargetRef): boolean;
   /** Check if the scoped country has a naval invasion against the specified state. CWT: Config/triggers_gtd.cwt:68. */
   "has_naval_invasion_against_state"(value: string): boolean;
   /** Check if the scoped country has a naval invasion against the specified state. CWT: Config/triggers_gtd.cwt:72. */
-  "has_naval_invasion_against_state"(value: { "state": StateRef | string; "preparation"?: number; "activated"?: boolean } | CwtNode): boolean;
+  "has_naval_invasion_against_state"(value: { "state": StateRef | StateTargetRef | string; "preparation"?: number; "activated"?: boolean } | CwtNode): boolean;
   /** Compares current country's navy experience with right side value. CWT: Config/triggers.cwt:1262. */
   "has_navy_experience"(value: number): boolean;
   /** Checks for amount of ships, additionally of a specified type, archetype, or sub unit definition. Example: has_navy_size = { size > 10 type = convoy }; has_navy_size = { size < 1 archetype = ship_hull_light }; has_navy_size = { size > 39 unit = heavy_cruiser }; has_navy_size = { size < 100 }. CWT: Config/triggers.cwt:385. */
@@ -1657,19 +1657,19 @@ export interface GeneratedCountryTriggers {
   /** Checks for an existing rail connection. Uses same params as can_build_railway CWT: Config/triggers_nsb.cwt:373. */
   "has_railway_connection"(value: { "build_only_on_allied"?: boolean; "start_province": number; "target_province": number; "fallback"?: boolean } | CwtNode): boolean;
   /** Checks for an existing rail connection. Uses same params as can_build_railway CWT: Config/triggers_nsb.cwt:384. */
-  "has_railway_connection"(value: { "build_only_on_allied"?: boolean; "start_state": StateRef; "target_state": StateRef; "fallback"?: boolean } | CwtNode): boolean;
+  "has_railway_connection"(value: { "build_only_on_allied"?: boolean; "start_state": StateRef | StateTargetRef; "target_state": StateRef | StateTargetRef; "fallback"?: boolean } | CwtNode): boolean;
   /** Checks if a state contains a railway at or above the specified level. CWT: Config/triggers_nsb.cwt:29. */
-  "has_railway_level"(value: { "level": number; "state": StateRef } | CwtNode): boolean;
+  "has_railway_level"(value: { "level": number; "state": StateRef | StateTargetRef } | CwtNode): boolean;
   /** Country has specified relation modifier when dealing with _target_ county. CWT: Config/triggers.cwt:1361. */
   "has_relation_modifier"(value: { "target": CountryRef; "modifier": string } | CwtNode): boolean;
   /** Checks for amount of resources in specified state. CWT: Config/triggers.cwt:1184. */
-  "has_resources_amount"(value: { "resource": string; "amount": number; "state": StateRef; "delivered"?: boolean } | CwtNode): boolean;
+  "has_resources_amount"(value: { "resource": string; "amount": number; "state": StateRef | StateTargetRef; "delivered"?: boolean } | CwtNode): boolean;
   /** } &nbsp;&nbsp;&nbsp;&nbsp;Note: extracted and buildings are mutually exclusive &nbsp;&nbsp;&nbsp;&nbsp;buildings = no # (optional, default: no) checks only amount from local buildings instead of country balance &nbsp;&nbsp;&nbsp;&nbsp;extracted = yes # (optional, default: no) checks extracted amount CWT: Config/triggers_ncns.cwt:16. */
   "has_resources_in_collection"(value: { "collection": string | { "input": string; "name"?: string; "operators"?: CwtNode } | CwtNode; "resource": string; "amount": number; "extracted"?: false | true; "buildings"?: false | true } | CwtNode): boolean;
   /** Checks for amount of resources in country CWT: Config/triggers.cwt:2164. */
   "has_resources_in_country"(value: { "resource": string; "amount": number; "extracted"?: boolean; "buildings"?: boolean; "only_imported"?: boolean } | CwtNode): boolean;
   /**  CWT: Config/triggers_nsb.cwt:42. */
-  "has_resources_rights"(value: { "state": StateRef; "resources"?: readonly (string)[] } | CwtNode): boolean;
+  "has_resources_rights"(value: { "state": StateRef | StateTargetRef; "resources"?: readonly (string)[] } | CwtNode): boolean;
   /** Checks if a rule set for a country. Example: has_rule = can_puppet. CWT: Config/triggers.cwt:1935. */
   "has_rule"(value: string): boolean;
   /** Checks if the country in scope has a scientist with a skill level of at least 1 in specialization. CWT: Config/triggers_gtd.cwt:190. */
@@ -1787,11 +1787,11 @@ export interface GeneratedCountryTriggers {
   /** Checks if scope country is hosting target tag as an exile. is_hosting_exile = FRA. CWT: Config/triggers.cwt:1693. */
   "is_hosting_exile"(value: CountryRef): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1762. */
-  "is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+  "is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1769. */
   "is_in_array"(value: CwtNode): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1775. */
-  "is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+  "is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
   /** Check if member of any faction. CWT: Config/triggers.cwt:447. */
   "is_in_faction"(value: boolean): boolean;
   /** Check if member of same faction as specified country. CWT: Config/triggers.cwt:435. */
@@ -1825,7 +1825,7 @@ export interface GeneratedCountryTriggers {
   /** - Another option is to use the capital state of the tag. *FROM = { is_on_same_continent_as = 111 }* - Can use country scope. Example *GER = { is_on_same_continent_as = ITA }* Checks if the scope state is on the same continent as the given state. CWT: Config/triggers_ncns.cwt:87. */
   "is_on_same_continent_as"(value: CountryRef): boolean;
   /** - Another option is to use the capital state of the tag. *FROM = { is_on_same_continent_as = 111 }* - Can use country scope. Example *GER = { is_on_same_continent_as = ITA }* Checks if the scope state is on the same continent as the given state. CWT: Config/triggers_ncns.cwt:99. */
-  "is_on_same_continent_as"(value: StateRef): boolean;
+  "is_on_same_continent_as"(value: StateRef | StateTargetRef): boolean;
   /** Check if neighbor ( owned territory ) with specified country. CWT: Config/triggers.cwt:1025. */
   "is_owner_neighbor_of"(value: CountryRef): boolean;
   /** Checks if BOP is in certain range. CWT: Config/triggers_bba.cwt:21. */
@@ -1881,7 +1881,7 @@ export interface GeneratedCountryTriggers {
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:93. */
   "multiply_temp_variable"(value: CwtNode): boolean;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:100. */
-  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Compares navies of two sides. CWT: Config/triggers.cwt:2027. */
   "naval_strength_comparison"(value: { "other"?: CountryRef; "tooltip"?: string; "ratio"?: number; "sub_unit_def_weights"?: CwtNode } | CwtNode): boolean;
   /** Compares the estimated navy strength between the scope country and the one set with 'tag'. CWT: Config/triggers.cwt:1444. */
@@ -1889,17 +1889,17 @@ export interface GeneratedCountryTriggers {
   /** Checks network national coverage you have over a country. CWT: Config/triggers_new.cwt:411. */
   "network_national_coverage"(value: { "target": CountryRef; "value": number } | CwtNode): boolean;
   /** Checks network strength you have in a country. CWT: Config/triggers_new.cwt:106. */
-  "network_strength"(value: { "target": CountryRef; "state"?: StateRef; "value": number } | CwtNode): boolean;
+  "network_strength"(value: { "target": CountryRef; "state"?: StateRef | StateTargetRef; "value": number } | CwtNode): boolean;
   /** Checks network strength you have in a country. CWT: Config/triggers_new.cwt:118. */
-  "network_strength"(value: { "state": StateRef; "value": number } | CwtNode): boolean;
+  "network_strength"(value: { "state": StateRef | StateTargetRef; "value": number } | CwtNode): boolean;
   /**  CWT: Config/scopes.cwt:34. */
   "NOT"(value: CwtNode): boolean;
   /** Checks if states have divisions CWT: Config/triggers_bba.cwt:96. */
-  "num_battalions_in_states"(value: { "count": number; "states": readonly (StateRef)[]; "types"?: readonly (string)[]; "exclude"?: readonly (string)[] } | CwtNode): boolean;
+  "num_battalions_in_states"(value: { "count": number; "states": readonly (StateRef | StateTargetRef)[]; "types"?: readonly (string)[]; "exclude"?: readonly (string)[] } | CwtNode): boolean;
   /** Will compare towards the amount of divisions a country has control over, if strength matters use has_army_size. CWT: Config/triggers.cwt:1274. */
   "num_divisions"(value: number): boolean;
   /** Checks if states have divisions CWT: Config/triggers_bba.cwt:76. */
-  "num_divisions_in_states"(value: { "count": number; "states": readonly (StateRef)[]; "types"?: readonly (string)[]; "exclude"?: readonly (string)[] } | CwtNode): boolean;
+  "num_divisions_in_states"(value: { "count": number; "states": readonly (StateRef | StateTargetRef)[]; "types"?: readonly (string)[]; "exclude"?: readonly (string)[] } | CwtNode): boolean;
   /** Compares the number of members in the faction for the current country. CWT: Config/triggers.cwt:1112. */
   "num_faction_members"(value: number): boolean;
   /** Will compare towards the amount of fake intel divisions a country has control over. CWT: Config/triggers_new.cwt:321. */
@@ -1961,9 +1961,9 @@ export interface GeneratedCountryTriggers {
   /**  CWT: Config/scopes.cwt:5. */
   "OVERLORD"(value: Trigger<ScopeByName["country"]> | CwtNode): boolean;
   /** Check if the country owns any of the states in the list CWT: Config/triggers_goe.cwt:3. */
-  "owns_any_state_of"(value: readonly (StateRef)[]): boolean;
+  "owns_any_state_of"(value: readonly (StateRef | StateTargetRef)[]): boolean;
   /** Check owner for state(s). CWT: Config/triggers.cwt:272. */
-  "owns_state"(value: StateRef): boolean;
+  "owns_state"(value: StateRef | StateTargetRef): boolean;
   /** Checks if the current scope has the specified amount in current score within the peace conference. CWT: Config/common/peace_conference.cwt:206. */
   "pc_current_score"(value: number): boolean;
   /** Checks if the current scope has had an enforced government change within the peace conference. CWT: Config/common/peace_conference.cwt:187. */
@@ -2003,7 +2003,7 @@ export interface GeneratedCountryTriggers {
   /** Checks if BOP weekly drift is more or less than certain value (> <). CWT: Config/triggers_bba.cwt:44. */
   "power_balance_weekly_change"(value: { "id": string; "value": number } | CwtNode): boolean;
   /** Prints all variables in scope and temp variables to a file. CWT: Config/triggers.cwt:1635. */
-  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
+  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
   /** Randomize a temporary variable. CWT: Config/variable_triggers_temp.cwt:143. */
   "randomize_temp_variable"(value: string): boolean;
   /** Randomize a temporary variable. CWT: Config/variable_triggers_temp.cwt:147. */
@@ -2011,15 +2011,15 @@ export interface GeneratedCountryTriggers {
   /** Checks that the country in scope has received the specified amount of expeditionary forces from the specified country. CWT: Config/triggers.cwt:2082. */
   "received_expeditionary_forces"(value: { "sender": CountryRef; "value": number } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1811. */
-  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef } | CwtNode): boolean;
+  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1824. */
-  "remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): boolean;
+  "remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1833. */
   "remove_from_temp_array"(value: CwtNode): boolean;
   /** Check amount of reserves. CWT: Config/triggers.cwt:76. */
   "reserves"(value: number): boolean;
   /** Resizes a temp array. CWT: Config/triggers.cwt:1851. */
-  "resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): boolean;
+  "resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): boolean;
   /** Resizes a temp array. CWT: Config/triggers.cwt:1863. */
   "resize_temp_array"(value: CwtNode): boolean;
   /** Rounds a temporary variable. CWT: Config/variable_triggers_temp.cwt:200. */
@@ -2031,7 +2031,7 @@ export interface GeneratedCountryTriggers {
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:3. */
   "set_temp_variable"(value: CwtNode): boolean;
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:38. */
-  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Sets a temp variable to a random value. CWT: Config/variable_triggers_temp.cwt:174. */
   "set_temp_variable_to_random"(value: string): boolean;
   /** Sets a temp variable to a random value. CWT: Config/variable_triggers_temp.cwt:178. */
@@ -2039,7 +2039,7 @@ export interface GeneratedCountryTriggers {
   /** Checks for amount of ships in specified area. CWT: Config/triggers.cwt:362. */
   "ships_in_area"(value: { "type"?: string; "area": string; "size": number } | CwtNode): boolean;
   /** Checks for amount of ships in specified state's ports. CWT: Config/triggers.cwt:817. */
-  "ships_in_state_ports"(value: { "state": StateRef; "size": number; "type"?: string } | CwtNode): boolean;
+  "ships_in_state_ports"(value: { "state": StateRef | StateTargetRef; "size": number; "type"?: string } | CwtNode): boolean;
   /** Compares the ratio of equipment archetype in stockpile vs used. a value of 2 means we have double in stockpile of what is fielded or in training. CWT: Config/triggers.cwt:1727. */
   "stockpile_ratio"(value: { "archetype": string; "ratio": number } | CwtNode): boolean;
   /** Compares the estimated army strength between the scope country and the one set with 'tag'. CWT: Config/triggers.cwt:843. */
@@ -2047,7 +2047,7 @@ export interface GeneratedCountryTriggers {
   /** Subtracts a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:82. */
   "subtract_from_temp_variable"(value: CwtNode): boolean;
   /** Subtracts a value or a variable to a temp variable. CWT: Config/variable_triggers_temp.cwt:89. */
-  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Check if a country is close to surrendering. CWT: Config/triggers.cwt:544. */
   "surrender_progress"(value: number): boolean;
   /** Country tag trigger. CWT: Config/triggers.cwt:80. */
@@ -2079,7 +2079,7 @@ export interface GeneratedStateEffects {
   /** Add divisional commander xp to unit CWT: Config/effects_new.cwt:1018. */
   "add_divisional_commander_xp"(value: number): void;
   /** Adds a dynamic modifier to country/state/unit leader. CWT: Config/effects.cwt:3137. */
-  "add_dynamic_modifier"(value: { "modifier": string; "scope"?: CountryRef | StateRef | string | CwtOpaque; "days"?: number } | CwtNode): void;
+  "add_dynamic_modifier"(value: { "modifier": string; "scope"?: CountryRef | StateRef | StateTargetRef | string | CwtOpaque; "days"?: number } | CwtNode): void;
   /** Adds the specified equipment bonuses to the country. As description the given loc key or the name of given special project will be used. Same usage as in Ideas/National spirits CWT: Config/effects_gtd.cwt:120. */
   "add_equipment_bonus"(value: { "name"?: string; "project"?: CwtOpaque; "bonus": CwtNode } | CwtNode): void;
   /** Add extra shared building slot to state. CWT: Config/effects.cwt:1735. */
@@ -2087,7 +2087,7 @@ export interface GeneratedStateEffects {
   /** Adds manpower to the country in scope or locally on a state if in state scope. CWT: Config/effects.cwt:10. */
   "add_manpower"(value: number): void;
   /** Adds new namespace. CWT: Config/effects.cwt:761. */
-  "add_namespace"(value: string | number | boolean | CountryRef | StateRef): void;
+  "add_namespace"(value: string | number | boolean | CountryRef | StateRef | StateTargetRef): void;
   /** Adds static modifiers to specified province. CWT: Config/effects.cwt:67. */
   "add_province_modifier"(value: { "static_modifiers": readonly (string)[]; "province": { "all_provinces": boolean; "limit_to_coastal"?: boolean; "limit_to_naval_base"?: boolean; "limit_to_border"?: boolean; "limit_to_victory_point"?: boolean | number; "first"?: boolean } | CwtNode | { "id": number } | CwtNode; "days"?: number } | CwtNode): void;
   /** Adds static modifiers to specified province. CWT: Config/effects.cwt:127. */
@@ -2105,23 +2105,23 @@ export interface GeneratedStateEffects {
   /** Adds a modifier to the state. CWT: Config/effects.cwt:2101. */
   "add_state_modifier"(value: { "modifier": CwtNode } | CwtNode): void;
   /** Adds either a resistance or compliance modifier to a state. Can only use modifiers from the resistance_modifiers.txt/compliance_modifiers.txt that are marked as is_dynamic = yes CWT: Config/effects_ncns.cwt:154. */
-  "add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+  "add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Adds an element to an array. CWT: Config/effects.cwt:2824. */
-  "add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+  "add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
   /** Adds an element to an array. CWT: Config/effects.cwt:2846. */
   "add_to_array"(value: CwtNode): void;
   /** Adds an element to a temporary array. CWT: Config/effects.cwt:2943. */
-  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
   /** Adds an element to a temporary array. CWT: Config/effects.cwt:2965. */
   "add_to_temp_array"(value: CwtNode): void;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:122. */
   "add_to_temp_variable"(value: CwtNode): void;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:129. */
-  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Adds a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:67. */
   "add_to_variable"(value: CwtNode): void;
   /** Adds a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:71. */
-  "add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Adds victory point to province. CWT: Config/effects_new.cwt:957. */
   "add_victory_points"(value: { "province": number; "value": number } | CwtNode): void;
   /**  CWT: Config/scopes.cwt:51. */
@@ -2137,15 +2137,15 @@ export interface GeneratedStateEffects {
   /** Starts railway construction for amount of levels in specified state or province. CWT: Config/effects.cwt:878. */
   "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_province": number; "target_province": number; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
   /** Starts railway construction for amount of levels in specified state or province. CWT: Config/effects.cwt:915. */
-  "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef; "target_state": StateRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
+  "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef | StateTargetRef; "target_state": StateRef | StateTargetRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
   /** Cancel border war between two states. CWT: Config/effects.cwt:2525. */
-  "cancel_border_war"(value: { "dont_fire_events"?: boolean; "attacker": StateRef; "defender": StateRef } | CwtNode): void;
+  "cancel_border_war"(value: { "dont_fire_events"?: boolean; "attacker": StateRef | StateTargetRef; "defender": StateRef | StateTargetRef } | CwtNode): void;
   /** Cancels resistance activity for a core country. Use along with force_disable_resistance to disable resistance forever. CWT: Config/effects_new.cwt:225. */
   "cancel_resistance"(value: boolean): void;
   /** Clamps a temp variable between two a values or another variables. CWT: Config/variable_effects_temp.cwt:242. */
   "clamp_temp_variable"(value: { "var": string; "min"?: number; "max"?: number } | CwtNode): void;
   /** Clamps a variable between two a values or another variables. CWT: Config/variable_effects.cwt:188. */
-  "clamp_variable"(value: { "var": CwtOpaque; "min"?: number | string; "max"?: number | string } | CwtNode): void;
+  "clamp_variable"(value: { "var": string; "min"?: number | string; "max"?: number | string } | CwtNode): void;
   /** Clears the contents of array. CWT: Config/effects.cwt:2907. */
   "clear_array"(value: string | CwtOpaque): void;
   /** Clear a global event target. CWT: Config/effects.cwt:1364. */
@@ -2159,7 +2159,7 @@ export interface GeneratedStateEffects {
   /** Clears a variable. The input is NOT validated CWT: Config/variable_effects.cwt:206. */
   "clear_variable"(value: number): void;
   /** Clears a variable. The input is NOT validated CWT: Config/variable_effects.cwt:210. */
-  "clear_variable"(value: CwtOpaque): void;
+  "clear_variable"(value: string): void;
   /** Clear global flag. CWT: Config/effects.cwt:170. */
   "clr_global_flag"(value: string): void;
   /** Clear state flag. CWT: Config/effects.cwt:821. */
@@ -2171,13 +2171,13 @@ export interface GeneratedStateEffects {
   /** Creates a dynamic country and runs child effects on it. CWT: Config/effects_new.cwt:327. */
   "create_dynamic_country"(value: Effect<ScopeByName["country"]> | { limit?: Trigger<ScopeByName["country"]>; effects: Effect<ScopeByName["country"]> } | CwtNode): void;
   /** Creates an enitity Uses the the same coordinate system that the map uses. A positive change in rotation results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. For comparison, default minimum zoom level (closest to the map) is 50 units, while default maximum CWT: Config/effects_nsb.cwt:823. */
-  "create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
+  "create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef | StateTargetRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
   /** Creates a purchase contract between the countries CWT: Config/effects_aat.cwt:253. */
   "create_purchase_contract"(value: { "seller": CountryRef; "buyer": CountryRef; "civilian_factories": number; "equipment": { "type": string; "amount": number } | CwtNode } | CwtNode): void;
   /** Create railway gun effect CWT: Config/effects_nsb.cwt:713. */
   "create_railway_gun"(value: { "equipment": string; "name"?: string; "location"?: number } | CwtNode): void;
   /** Creates a unit effect, just like in OOB, from effect with specified parameters: owner, prioritize_location. CWT: Config/effects.cwt:498. */
-  "create_unit"(value: { "division": string | number | boolean | CountryRef | StateRef; "owner": CountryRef; "prioritize_location"?: number; "allow_spawning_on_enemy_provs"?: boolean; "count"?: number; "officer"?: { "name"?: string; "portraits"?: { "army": { "large": string; "small": string } | CwtNode } | CwtNode } | CwtNode; "country_score"?: CwtNode; "id"?: number; "divisional_commander_xp"?: number; "acclimatization"?: CwtNode; "army_manpower"?: { "army_manpower_value"?: { "value": { "tag": CountryRef; "value": number } | CwtNode } | CwtNode; "army_manpower_need"?: { "value": { "tag": CountryRef; "value": number } | CwtNode } | CwtNode } | CwtNode } | CwtNode): void;
+  "create_unit"(value: { "division": string | number | boolean | CountryRef | StateRef | StateTargetRef; "owner": CountryRef; "prioritize_location"?: number; "allow_spawning_on_enemy_provs"?: boolean; "count"?: number; "officer"?: { "name"?: string; "portraits"?: { "army": { "large": string; "small": string } | CwtNode } | CwtNode } | CwtNode; "country_score"?: CwtNode; "id"?: number; "divisional_commander_xp"?: number; "acclimatization"?: CwtNode; "army_manpower"?: { "army_manpower_value"?: { "value": { "tag": CountryRef; "value": number } | CwtNode } | CwtNode; "army_manpower_need"?: { "value": { "tag": CountryRef; "value": number } | CwtNode } | CwtNode } | CwtNode } | CwtNode): void;
   /** Shows just a custom tooltip. CWT: Config/effects.cwt:14. */
   "custom_effect_tooltip"(value: string): void;
   /** Shows just a custom tooltip. CWT: Config/effects.cwt:17. */
@@ -2185,21 +2185,21 @@ export interface GeneratedStateEffects {
   /** Executes the provided effects but with a custom tooltip surpressing all tooltips from all other effects inside this block. The custom tooltip is a [bindable localization] CWT: Config/effects_gtd.cwt:318. */
   "custom_override_tooltip"(value: CwtNode): void;
   /** Damages buildings in the current state. CWT: Config/effects.cwt:1934. */
-  "damage_building"(value: { "type": string; "damage": number; "province"?: number | string; "state"?: StateRef; "repair_speed_modifier"?: number } | CwtNode): void;
+  "damage_building"(value: { "type": string; "damage": number; "province"?: number | string; "state"?: StateRef | StateTargetRef; "repair_speed_modifier"?: number } | CwtNode): void;
   /** Damages buildings in the current state. CWT: Config/effects.cwt:1948. */
-  "damage_building"(value: { "tags": string | readonly (string)[]; "damage": number; "province"?: number | string; "state"?: StateRef; "repair_speed_modifier"?: number } | CwtNode): void;
+  "damage_building"(value: { "tags": string | readonly (string)[]; "damage": number; "province"?: number | string; "state"?: StateRef | StateTargetRef; "repair_speed_modifier"?: number } | CwtNode): void;
   /** damages units for given conditions. no tooltip generated CWT: Config/effects_nsb.cwt:666. */
-  "damage_units"(value: { "province"?: number; "state"?: StateRef; "region"?: string; "limit"?: CwtNode; "damage"?: number; "org_damage"?: number; "str_damage"?: number; "ratio"?: boolean; "template"?: string; "division_template"?: string; "army"?: boolean; "navy"?: boolean } | CwtNode): void;
+  "damage_units"(value: { "province"?: number; "state"?: StateRef | StateTargetRef; "region"?: string; "limit"?: CwtNode; "damage"?: number; "org_damage"?: number; "str_damage"?: number; "ratio"?: boolean; "template"?: string; "division_template"?: string; "army"?: boolean; "navy"?: boolean } | CwtNode): void;
   /** Destroys an existing entity IDs are set by the create_entity effect. CWT: Config/effects_nsb.cwt:849. */
   "destroy_entity"(value: string): void;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:155. */
   "divide_temp_variable"(value: CwtNode): void;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:179. */
-  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
   /** Divides a variable to a value or another variable. CWT: Config/variable_effects.cwt:91. */
   "divide_variable"(value: CwtNode): void;
   /** Divides a variable to a value or another variable. CWT: Config/variable_effects.cwt:116. */
-  "divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+  "divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
   /** Shows just tooltip of effects. CWT: Config/effects.cwt:1510. */
   "effect_tooltip"(value: CwtNode): void;
   /** Use after (else_)if for a catch-all case. CWT: Config/effects.cwt:431. */
@@ -2223,7 +2223,7 @@ export interface GeneratedStateEffects {
   /**  CWT: Config/effects_bba.cwt:116. */
   "every_state_division"(value: Effect<ScopeByName["unit"]> | { limit?: Trigger<ScopeByName["unit"]>; effects: Effect<ScopeByName["unit"]> } | CwtNode): void;
   /** Finalizes border war between two states, wins or cancels it. CWT: Config/effects.cwt:2711. */
-  "finalize_border_war"(value: { "attacker": StateRef; "defender": StateRef; "attacker_win"?: boolean; "defender_win"?: boolean } | CwtNode): void;
+  "finalize_border_war"(value: { "attacker": StateRef | StateTargetRef; "defender": StateRef | StateTargetRef; "attacker_win"?: boolean; "defender_win"?: boolean } | CwtNode): void;
   /** Runs a loop on for each element of an array, finds the highest value and stores result in temp variables. CWT: Config/effects.cwt:3261. */
   "find_highest_in_array"(value: { "array": string | CwtOpaque; "value"?: string; "index"?: string } | CwtNode): void;
   /** Runs a loop on for each element of an array, finds the lowest value and stores result in temp variables. CWT: Config/effects.cwt:3247. */
@@ -2259,7 +2259,7 @@ export interface GeneratedStateEffects {
   /** Goes to stated province. CWT: Config/effects.cwt:1690. */
   "goto_province"(value: number): void;
   /** Goes to stated state. CWT: Config/effects.cwt:1694. */
-  "goto_state"(value: StateRef): void;
+  "goto_state"(value: StateRef | StateTargetRef): void;
   /** Effect not shown in tooltips. CWT: Config/effects.cwt:3783. */
   "hidden_effect"(value: CwtNode): void;
   /** A conditional effect. CWT: Config/effects.cwt:413. */
@@ -2279,21 +2279,21 @@ export interface GeneratedStateEffects {
   /** Modulos a variable with another. CWT: Config/variable_effects.cwt:155. */
   "modulo_variable"(value: CwtNode): void;
   /** Modulos a variable with another. CWT: Config/variable_effects.cwt:161. */
-  "modulo_variable"(value: { "var": CwtOpaque; "value": number } | CwtNode): void;
+  "modulo_variable"(value: { "var": string; "value": number } | CwtNode): void;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:144. */
   "multiply_temp_variable"(value: CwtNode): void;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:151. */
-  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Multiplies a variable to a value or another variable. CWT: Config/variable_effects.cwt:83. */
   "multiply_variable"(value: CwtNode): void;
   /** Multiplies a variable to a value or another variable. CWT: Config/variable_effects.cwt:87. */
-  "multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /**  CWT: Config/scopes.cwt:44. */
   "NOT"(value: CwtNode): void;
   /**  CWT: Config/scopes.cwt:52. */
   "OR"(value: CwtNode): void;
   /** Prints all variables in scope and temp variables to a file. CWT: Config/effects.cwt:2572. */
-  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
+  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
   /** Promote the officer of the division to a general scope = unit CWT: Config/effects_gtd.cwt:298. */
   "promote_officer_to_general"(value: boolean): void;
   /** Requires raid as ROOT scope. Reduce progress to the special project in state. Root scope is raid instance scope. The input value is a ratio of the total needed progress to complete the special project, i.e. a decimal number between 0 and 1. CWT: Config/effects_gtd.cwt:12. */
@@ -2335,17 +2335,17 @@ export interface GeneratedStateEffects {
   /** Removes state as core of country. CWT: Config/effects.cwt:1325. */
   "remove_core_of"(value: CountryRef): void;
   /** Removes a dynamic modifier from country/state/unit leader. CWT: Config/effects.cwt:3103. */
-  "remove_dynamic_modifier"(value: { "modifier": string; "scope"?: CountryRef | StateRef | string | CwtOpaque } | CwtNode): void;
+  "remove_dynamic_modifier"(value: { "modifier": string; "scope"?: CountryRef | StateRef | StateTargetRef | string | CwtOpaque } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2869. */
-  "remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
+  "remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2884. */
-  "remove_from_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+  "remove_from_array"(value: { "array": string; "index": number } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2894. */
   "remove_from_array"(value: CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:2978. */
-  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
+  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:2993. */
-  "remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+  "remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:3003. */
   "remove_from_temp_array"(value: CwtNode): void;
   /** Removes static modifiers from specified province. CWT: Config/effects.cwt:98. */
@@ -2355,7 +2355,7 @@ export interface GeneratedStateEffects {
   /** Removes a previously added resistance target using its id. No tooltips are generated. CWT: Config/effects_new.cwt:397. */
   "remove_resistance_target"(value: string): void;
   /** Removes either a resistance or compliance modifier to a state. Can only use modifiers from the resistance_modifiers.txt/compliance_modifiers.txt that are marked as is_dynamic = yes CWT: Config/effects_ncns.cwt:164. */
-  "remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+  "remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
   /**  CWT: Config/effects_nsb.cwt:123. */
   "remove_unit_leader_role"(value: string): void;
   /** Reset name of a province back to localization one. CWT: Config/effects.cwt:2120. */
@@ -2363,11 +2363,11 @@ export interface GeneratedStateEffects {
   /** Reset_state_name = yes - Resets the current states name to the original one. CWT: Config/effects.cwt:2124. */
   "reset_state_name"(value: true): void;
   /** Resizes array. CWT: Config/effects.cwt:2911. */
-  "resize_array"(value: { "array": string; "value"?: number | string; "size": "int_variable_field_32" } | CwtNode): void;
+  "resize_array"(value: { "array": string; "value"?: number | string; "size": number } | CwtNode): void;
   /** Resizes array. CWT: Config/effects.cwt:2928. */
   "resize_array"(value: CwtNode): void;
   /** Resizes a temp array. CWT: Config/effects.cwt:3023. */
-  "resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): void;
+  "resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): void;
   /** Resizes a temp array. CWT: Config/effects.cwt:3035. */
   "resize_temp_array"(value: CwtNode): void;
   /** removes character from all roles and availability CWT: Config/effects_nsb.cwt:397. */
@@ -2377,7 +2377,7 @@ export interface GeneratedStateEffects {
   /** Rounds a temporary variable. CWT: Config/variable_effects_temp.cwt:252. */
   "round_temp_variable"(value: string): void;
   /** Rounds a variable. CWT: Config/variable_effects.cwt:202. */
-  "round_variable"(value: CwtOpaque): void;
+  "round_variable"(value: string): void;
   /** Save an event target. CWT: Config/effects.cwt:1356. */
   "save_event_target_as"(value: string): void;
   /** Save a global event target. CWT: Config/effects.cwt:1360. */
@@ -2387,7 +2387,7 @@ export interface GeneratedStateEffects {
   /** Starts a border war in a state with neighbouring state that also has border war. CWT: Config/effects.cwt:1429. */
   "set_border_war"(value: boolean): void;
   /** Update border war properties. CWT: Config/effects.cwt:2510. */
-  "set_border_war_data"(value: { "attacker": StateRef; "defender": StateRef; "attacker_modifier"?: number; "defender_modifier"?: number; "combat_width"?: number } | CwtNode): void;
+  "set_border_war_data"(value: { "attacker": StateRef | StateTargetRef; "defender": StateRef | StateTargetRef; "attacker_modifier"?: number; "defender_modifier"?: number; "combat_width"?: number } | CwtNode): void;
   /** Sets specific level of a building construction for amount of levels in specified state or province. CWT: Config/effects.cwt:2173. */
   "set_building_level"(value: { "type": string; "level": number; "instant_build"?: true } | CwtNode): void;
   /** Sets specific level of a building construction for amount of levels in specified state or province. CWT: Config/effects.cwt:2182. */
@@ -2401,7 +2401,7 @@ export interface GeneratedStateEffects {
   /** Sets the position and rotation of an entity using two coordinates. IDs are set by the create_entity effect. Uses the the same coordinate system that the map uses. A positive change in rotation results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. CWT: Config/effects_nsb.cwt:855. */
   "set_entity_movement"(value: { "id": string; "start": { "x": number; "y": number; "z"?: number } | CwtNode; "target": { "province": number } | CwtNode; "ratio": number; "rotation": number } | CwtNode): void;
   /** Sets the position of an existing entity. IDs are set by the create_entity effect. Uses the the same coordinate system that the map uses. CWT: Config/effects_nsb.cwt:873. */
-  "set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef } | CwtNode): void;
+  "set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Sets the currently-facing angle of an existing entity. IDs are set by the create_entity effect. A positive change results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. CWT: Config/effects_nsb.cwt:887. */
   "set_entity_rotation"(value: { "id": string; "rotation": number } | CwtNode): void;
   /** Sets the size of an existing entity. IDs are set by the create_entity effect. CWT: Config/effects_nsb.cwt:895. */
@@ -2447,7 +2447,7 @@ export interface GeneratedStateEffects {
   /** # TEMP VARIABLE Sets a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:53. */
   "set_temp_variable"(value: CwtNode): void;
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:88. */
-  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Sets a temp variable to a random value. CWT: Config/variable_effects_temp.cwt:226. */
   "set_temp_variable_to_random"(value: string): void;
   /** Sets a temp variable to a random value. CWT: Config/variable_effects_temp.cwt:230. */
@@ -2455,7 +2455,7 @@ export interface GeneratedStateEffects {
   /** Sets a variable to a value or another variable. CWT: Config/variable_effects.cwt:3. */
   "set_variable"(value: CwtNode): void;
   /** Sets a variable to a value or another variable. CWT: Config/variable_effects.cwt:37. */
-  "set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Sets a variable to a random value. CWT: Config/variable_effects.cwt:168. */
   "set_variable_to_random"(value: string): void;
   /** Sets a variable to a random value. CWT: Config/variable_effects.cwt:172. */
@@ -2465,7 +2465,7 @@ export interface GeneratedStateEffects {
   /** Plays sound effect. CWT: Config/effects.cwt:562. */
   "sound_effect"(value: string): void;
   /** Start a border war between two states. CWT: Config/effects.cwt:2450. */
-  "start_border_war"(value: { "change_state_after_war": boolean; "combat_width"?: number; "minimum_duration_in_days"?: number; "attacker": { "state": StateRef; "num_provinces": number; "on_win"?: string; "on_lose"?: string; "on_cancel"?: string; "leader_score"?: CwtNode; "dig_in_factor"?: number; "terrain_factor"?: number; "modifier"?: number } | CwtNode; "defender": { "state": StateRef; "num_provinces": number; "on_win"?: string; "on_lose"?: string; "on_cancel"?: string; "modifier"?: number } | CwtNode } | CwtNode): void;
+  "start_border_war"(value: { "change_state_after_war": boolean; "combat_width"?: number; "minimum_duration_in_days"?: number; "attacker": { "state": StateRef | StateTargetRef; "num_provinces": number; "on_win"?: string; "on_lose"?: string; "on_cancel"?: string; "leader_score"?: CwtNode; "dig_in_factor"?: number; "terrain_factor"?: number; "modifier"?: number } | CwtNode; "defender": { "state": StateRef | StateTargetRef; "num_provinces": number; "on_win"?: string; "on_lose"?: string; "on_cancel"?: string; "modifier"?: number } | CwtNode } | CwtNode): void;
   /** Starts resistance activity for a core country. Use along with force_enable_resistance if you are enabling resistance in a state that is not possible (ie core). CWT: Config/effects_new.cwt:213. */
   "start_resistance"(value: CountryRef): void;
   /** Starts resistance activity for a core country. Use along with force_enable_resistance if you are enabling resistance in a state that is not possible (ie core). CWT: Config/effects_new.cwt:221. */
@@ -2481,13 +2481,13 @@ export interface GeneratedStateEffects {
   /** Subtracts a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:133. */
   "subtract_from_temp_variable"(value: CwtNode): void;
   /** Subtracts a value or a variable to a temp variable. CWT: Config/variable_effects_temp.cwt:140. */
-  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Subtracts a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:75. */
   "subtract_from_variable"(value: CwtNode): void;
   /** Subtracts a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:79. */
-  "subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Teleport armies in state to another state or province. CWT: Config/effects_new.cwt:278. */
-  "teleport_armies"(value: { "limit"?: CwtNode; "to_state"?: StateRef; "to_state_array"?: string; "to_province"?: number } | CwtNode): void;
+  "teleport_armies"(value: { "limit"?: CwtNode; "to_state"?: StateRef | StateTargetRef; "to_state_array"?: string; "to_province"?: number } | CwtNode): void;
   /** transfers state (owns and controls) to target CWT: Config/effects_nsb.cwt:11. */
   "transfer_state_to"(value: CountryRef): void;
   /**  CWT: Config/effects.cwt:1381. */
@@ -2497,13 +2497,13 @@ export interface GeneratedStateEffects {
 }
 export interface GeneratedStateTriggers {
   /** Adds an element to a temporary array. CWT: Config/triggers.cwt:1781. */
-  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef; "index"?: "int_variable_field_32" } | CwtNode): boolean;
+  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef; "index"?: number } | CwtNode): boolean;
   /** Adds an element to a temporary array. CWT: Config/triggers.cwt:1800. */
   "add_to_temp_array"(value: CwtNode): boolean;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:71. */
   "add_to_temp_variable"(value: CwtNode): boolean;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:78. */
-  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Checks if the provided trigger is true for all countries that claims the state in scope. `tooltip` supports bindable localization. CWT: Config/triggers_ncns.cwt:526. */
   "all_claimant"(value: Trigger<ScopeByName["country"]> | CwtNode): boolean;
   /** ``` } num_of_available_civilian_factories > 5 } name = collection_has_more_than_10_factories operators = { limit = { num_of_civilian_factories > 10 } } input = game:all_countries collection = { all_collection_elements = { ``` Example (anonymous collection): Example: *all_collection_elements = { coll CWT: Config/triggers_ncns.cwt:151. */
@@ -2569,7 +2569,7 @@ export interface GeneratedStateTriggers {
   /** Compares a variable to a number or variable. CWT: Config/triggers.cwt:93. */
   "check_variable"(value: CwtNode): boolean;
   /** Compares a variable to a number or variable. CWT: Config/triggers.cwt:105. */
-  "check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef; "value": string | number | boolean | CountryRef | StateRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
+  "check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef | StateTargetRef; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
   /** Clamps a temp variable between two a values or another variables. CWT: Config/variable_triggers_temp.cwt:190. */
   "clamp_temp_variable"(value: { "var": string; "min"?: number; "max"?: number } | CwtNode): boolean;
   /** Clears the contents of a temporary array. CWT: Config/triggers.cwt:1844. */
@@ -2603,11 +2603,11 @@ export interface GeneratedStateTriggers {
   /** Check if the difficulty is above or below specified value 0-2 (difficulty enum). Example: difficulty > 0 (above easy). CWT: Config/triggers.cwt:46. */
   "difficulty"(value: number): boolean;
   /** Check distance between two states. CWT: Config/triggers.cwt:918. */
-  "distance_to"(value: { "value": number; "target": StateRef } | CwtNode): boolean;
+  "distance_to"(value: { "value": number; "target": StateRef | StateTargetRef } | CwtNode): boolean;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:104. */
   "divide_temp_variable"(value: CwtNode): boolean;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:128. */
-  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
+  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
   /** A conditional trigger. CWT: Config/triggers.cwt:28. */
   "else"(value: CwtNode): boolean;
   /** A conditional trigger. CWT: Config/triggers.cwt:21. */
@@ -2629,7 +2629,7 @@ export interface GeneratedStateTriggers {
   /** Checks if a there is any border wars for country/state. CWT: Config/triggers.cwt:1582. */
   "has_border_war"(value: boolean): boolean;
   /** Checks if a there is a border war between two states. CWT: Config/triggers.cwt:1590. */
-  "has_border_war_between"(value: { "attacker": StateRef; "defender": StateRef } | CwtNode): boolean;
+  "has_border_war_between"(value: { "attacker": StateRef | StateTargetRef; "defender": StateRef | StateTargetRef } | CwtNode): boolean;
   /** Checks if a there is a border against a state/country. CWT: Config/triggers.cwt:1599. */
   "has_border_war_with"(value: CountryRef): boolean;
   /** Checks if a state has been claimed by target country in an ongoing peace conference. CWT: Config/triggers.cwt:1037. */
@@ -2641,7 +2641,7 @@ export interface GeneratedStateTriggers {
   /** Checks if player has a DLC. Example: has_dlc = "name of the dlc". CWT: Config/triggers.cwt:176. */
   "has_dlc"(value: string): boolean;
   /** Checks if scope has a dynamic modifier. CWT: Config/triggers.cwt:1959. */
-  "has_dynamic_modifier"(value: { "modifier": string; "scope"?: CountryRef | StateRef | string | CwtOpaque } | CwtNode): boolean;
+  "has_dynamic_modifier"(value: { "modifier": string; "scope"?: CountryRef | StateRef | StateTargetRef | string | CwtOpaque } | CwtNode): boolean;
   /** Checks if scope has a dynamic modifier. CWT: Config/triggers.cwt:1988. */
   "has_dynamic_modifier"(value: string): boolean;
   /** Checks if current scope or global scope has the specified event target saved. CWT: Config/triggers.cwt:1570. */
@@ -2655,7 +2655,7 @@ export interface GeneratedStateTriggers {
   /** Compares occupied country that creates resistance to a tag. CWT: Config/triggers_new.cwt:82. */
   "has_occupation_modifier"(value: string): boolean;
   /** Checks if a state contains a railway at or above the specified level. CWT: Config/triggers_nsb.cwt:29. */
-  "has_railway_level"(value: { "level": number; "state": StateRef } | CwtNode): boolean;
+  "has_railway_level"(value: { "level": number; "state": StateRef | StateTargetRef } | CwtNode): boolean;
   /** Returns true if state has a resistance. CWT: Config/triggers_new.cwt:74. */
   "has_resistance"(value: boolean): boolean;
   /** Checks for amount of resources in specified state. CWT: Config/triggers.cwt:1195. */
@@ -2707,11 +2707,11 @@ export interface GeneratedStateTriggers {
   /** Check if the historical focus is active. CWT: Config/triggers.cwt:992. */
   "is_historical_focus_on"(value: boolean): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1762. */
-  "is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+  "is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1769. */
   "is_in_array"(value: CwtNode): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1775. */
-  "is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+  "is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
   /** Checks if the first province in the state is connected to the capital of its owner. CWT: Config/triggers.cwt:946. */
   "is_in_home_area"(value: boolean): boolean;
   /** Check if current game is ironman. CWT: Config/triggers.cwt:611. */
@@ -2725,7 +2725,7 @@ export interface GeneratedStateTriggers {
   /** - Another option is to use the capital state of the tag. *FROM = { is_on_same_continent_as = 111 }* - Can use country scope. Example *GER = { is_on_same_continent_as = ITA }* Checks if the scope state is on the same continent as the given state. CWT: Config/triggers_ncns.cwt:87. */
   "is_on_same_continent_as"(value: CountryRef): boolean;
   /** - Another option is to use the capital state of the tag. *FROM = { is_on_same_continent_as = 111 }* - Can use country scope. Example *GER = { is_on_same_continent_as = ITA }* Checks if the scope state is on the same continent as the given state. CWT: Config/triggers_ncns.cwt:99. */
-  "is_on_same_continent_as"(value: StateRef): boolean;
+  "is_on_same_continent_as"(value: StateRef | StateTargetRef): boolean;
   /** Checks if state is one island CWT: Config/triggers_aat.cwt:4. */
   "is_one_state_island"(value: boolean): boolean;
   /** Check if state is owned by. CWT: Config/triggers.cwt:980. */
@@ -2745,7 +2745,7 @@ export interface GeneratedStateTriggers {
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:93. */
   "multiply_temp_variable"(value: CwtNode): boolean;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:100. */
-  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Check if a state has enough non damaged buildings. CWT: Config/triggers_new.cwt:39. */
   "non_damaged_building_level"(value: { "building": string; "level": number } | CwtNode): boolean;
   /**  CWT: Config/scopes.cwt:34. */
@@ -2775,7 +2775,7 @@ export interface GeneratedStateTriggers {
   /** Compares the amount of turns that have passed during the peace conference with a number. CWT: Config/triggers_bba.cwt:175. */
   "pc_turn"(value: number): boolean;
   /** Prints all variables in scope and temp variables to a file. CWT: Config/triggers.cwt:1635. */
-  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
+  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
   /** Randomize a temporary variable. CWT: Config/variable_triggers_temp.cwt:143. */
   "randomize_temp_variable"(value: string): boolean;
   /** Randomize a temporary variable. CWT: Config/variable_triggers_temp.cwt:147. */
@@ -2783,9 +2783,9 @@ export interface GeneratedStateTriggers {
   /** Check state's strategic area id. CWT: Config/triggers.cwt:130. */
   "region"(value: string): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1811. */
-  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef } | CwtNode): boolean;
+  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1824. */
-  "remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): boolean;
+  "remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1833. */
   "remove_from_temp_array"(value: CwtNode): boolean;
   /** Check amount of reserves. CWT: Config/triggers.cwt:76. */
@@ -2797,7 +2797,7 @@ export interface GeneratedStateTriggers {
   /** Compares the target resistance level of a state to a value. CWT: Config/triggers_new.cwt:70. */
   "resistance_target"(value: number): boolean;
   /** Resizes a temp array. CWT: Config/triggers.cwt:1851. */
-  "resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): boolean;
+  "resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): boolean;
   /** Resizes a temp array. CWT: Config/triggers.cwt:1863. */
   "resize_temp_array"(value: CwtNode): boolean;
   /** Rounds a temporary variable. CWT: Config/variable_triggers_temp.cwt:200. */
@@ -2809,13 +2809,13 @@ export interface GeneratedStateTriggers {
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:3. */
   "set_temp_variable"(value: CwtNode): boolean;
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:38. */
-  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Sets a temp variable to a random value. CWT: Config/variable_triggers_temp.cwt:174. */
   "set_temp_variable_to_random"(value: string): boolean;
   /** Sets a temp variable to a random value. CWT: Config/variable_triggers_temp.cwt:178. */
   "set_temp_variable_to_random"(value: { "var": string; "min"?: number; "max"?: number; "integer"?: boolean } | CwtNode): boolean;
   /** Check state id. CWT: Config/triggers.cwt:6. */
-  "state"(value: StateRef): boolean;
+  "state"(value: StateRef | StateTargetRef): boolean;
   /** Checks for state strategic value. CWT: Config/triggers.cwt:1739. */
   "state_and_terrain_strategic_value"(value: number): boolean;
   /** Check the population in the state. CWT: Config/triggers.cwt:950. */
@@ -2831,7 +2831,7 @@ export interface GeneratedStateTriggers {
   /** Subtracts a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:82. */
   "subtract_from_temp_variable"(value: CwtNode): boolean;
   /** Subtracts a value or a variable to a temp variable. CWT: Config/variable_triggers_temp.cwt:89. */
-  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Check the global threat value. 0-1 value. CWT: Config/triggers.cwt:142. */
   "threat"(value: number): boolean;
   /** ``` } } add_to_temp_variable = { unlock_compare = num_armies } } operators = { faction_members } input = game:scope collection = { all_collection_elements = { set_temp_variable = { unlock_compare = 0 } tooltip_evaluation = eval hidden_trigger = { ``` ```hidden_trigger = { tooltip_evaluation = no_eva CWT: Config/triggers_ncns.cwt:706. */
@@ -2855,7 +2855,7 @@ export interface GeneratedCharacterEffects {
   /** Add divisional commander xp to unit CWT: Config/effects_new.cwt:1018. */
   "add_divisional_commander_xp"(value: number): void;
   /** Adds a dynamic modifier to country/state/unit leader. CWT: Config/effects.cwt:3137. */
-  "add_dynamic_modifier"(value: { "modifier": string; "scope"?: CountryRef | StateRef | string | CwtOpaque; "days"?: number } | CwtNode): void;
+  "add_dynamic_modifier"(value: { "modifier": string; "scope"?: CountryRef | StateRef | StateTargetRef | string | CwtOpaque; "days"?: number } | CwtNode): void;
   /** Adds the specified equipment bonuses to the country. As description the given loc key or the name of given special project will be used. Same usage as in Ideas/National spirits CWT: Config/effects_gtd.cwt:120. */
   "add_equipment_bonus"(value: { "name"?: string; "project"?: CwtOpaque; "bonus": CwtNode } | CwtNode): void;
   /**  CWT: Config/effects_nsb.cwt:153. */
@@ -2867,7 +2867,7 @@ export interface GeneratedCharacterEffects {
   /** Adds a max assignable trait slot for a general. CWT: Config/effects.cwt:2435. */
   "add_max_trait"(value: number): void;
   /** Adds new namespace. CWT: Config/effects.cwt:761. */
-  "add_namespace"(value: string | number | boolean | CountryRef | StateRef): void;
+  "add_namespace"(value: string | number | boolean | CountryRef | StateRef | StateTargetRef): void;
   /**  CWT: Config/effects_nsb.cwt:194. */
   "add_naval_commander_role"(value: { "character"?: string | CwtOpaque; "desc"?: string; "traits"?: readonly (string)[]; "skill": number; "attack_skill": number; "defense_skill": number; "maneuvering_skill": number; "coordination_skill": number; "legacy_id"?: string; "visible"?: CwtNode } | CwtNode): void;
   /** Adds planning skill to a unit leader. CWT: Config/effects.cwt:2379. */
@@ -2887,25 +2887,25 @@ export interface GeneratedCharacterEffects {
   /** Adds a skill level to a unit leader. CWT: Config/effects.cwt:2439. */
   "add_skill_level"(value: number): void;
   /** Adds either a resistance or compliance modifier to a state. Can only use modifiers from the resistance_modifiers.txt/compliance_modifiers.txt that are marked as is_dynamic = yes CWT: Config/effects_ncns.cwt:154. */
-  "add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+  "add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Add a timed trait to unit leader. CWT: Config/effects.cwt:2443. */
   "add_timed_unit_leader_trait"(value: { "trait": string; "days": number } | CwtNode): void;
   /** Adds an element to an array. CWT: Config/effects.cwt:2824. */
-  "add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+  "add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
   /** Adds an element to an array. CWT: Config/effects.cwt:2846. */
   "add_to_array"(value: CwtNode): void;
   /** Adds an element to a temporary array. CWT: Config/effects.cwt:2943. */
-  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
   /** Adds an element to a temporary array. CWT: Config/effects.cwt:2965. */
   "add_to_temp_array"(value: CwtNode): void;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:122. */
   "add_to_temp_variable"(value: CwtNode): void;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:129. */
-  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Adds a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:67. */
   "add_to_variable"(value: CwtNode): void;
   /** Adds a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:71. */
-  "add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** makes character head of their ideology party CWT: Config/effects_nsb.cwt:510. */
   "add_trait"(value: { "character"?: string | CwtOpaque; "trait": string; "ideology"?: string; "slot"?: string } | CwtNode): void;
   /** Add trait to unit leader. CWT: Config/effects.cwt:757. */
@@ -2925,7 +2925,7 @@ export interface GeneratedCharacterEffects {
   /** Starts railway construction for amount of levels in specified state or province. CWT: Config/effects.cwt:878. */
   "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_province": number; "target_province": number; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
   /** Starts railway construction for amount of levels in specified state or province. CWT: Config/effects.cwt:915. */
-  "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef; "target_state": StateRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
+  "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef | StateTargetRef; "target_state": StateRef | StateTargetRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
   /** Make the Unit Leader in scope be captured by the specified country (needs to be a general). Optionally specify the province where the leader is held captive. CWT: Config/effects_taog.cwt:33. */
   "capture_by"(value: CountryRef): void;
   /** Make the Unit Leader in scope be captured by the specified country (needs to be a general). Optionally specify the province where the leader is held captive. CWT: Config/effects_taog.cwt:41. */
@@ -2933,7 +2933,7 @@ export interface GeneratedCharacterEffects {
   /** Clamps a temp variable between two a values or another variables. CWT: Config/variable_effects_temp.cwt:242. */
   "clamp_temp_variable"(value: { "var": string; "min"?: number; "max"?: number } | CwtNode): void;
   /** Clamps a variable between two a values or another variables. CWT: Config/variable_effects.cwt:188. */
-  "clamp_variable"(value: { "var": CwtOpaque; "min"?: number | string; "max"?: number | string } | CwtNode): void;
+  "clamp_variable"(value: { "var": string; "min"?: number | string; "max"?: number | string } | CwtNode): void;
   /** Clears the contents of array. CWT: Config/effects.cwt:2907. */
   "clear_array"(value: string | CwtOpaque): void;
   /** Clear a global event target. CWT: Config/effects.cwt:1364. */
@@ -2947,7 +2947,7 @@ export interface GeneratedCharacterEffects {
   /** Clears a variable. The input is NOT validated CWT: Config/variable_effects.cwt:206. */
   "clear_variable"(value: number): void;
   /** Clears a variable. The input is NOT validated CWT: Config/variable_effects.cwt:210. */
-  "clear_variable"(value: CwtOpaque): void;
+  "clear_variable"(value: string): void;
   /**  CWT: Config/effects_nsb.cwt:498. */
   "clr_character_flag"(value: string): void;
   /** Clear global flag. CWT: Config/effects.cwt:170. */
@@ -2957,7 +2957,7 @@ export interface GeneratedCharacterEffects {
   /** Creates a dynamic country and runs child effects on it. CWT: Config/effects_new.cwt:327. */
   "create_dynamic_country"(value: Effect<ScopeByName["country"]> | { limit?: Trigger<ScopeByName["country"]>; effects: Effect<ScopeByName["country"]> } | CwtNode): void;
   /** Creates an enitity Uses the the same coordinate system that the map uses. A positive change in rotation results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. For comparison, default minimum zoom level (closest to the map) is 50 units, while default maximum CWT: Config/effects_nsb.cwt:823. */
-  "create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
+  "create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef | StateTargetRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
   /** Creates a purchase contract between the countries CWT: Config/effects_aat.cwt:253. */
   "create_purchase_contract"(value: { "seller": CountryRef; "buyer": CountryRef; "civilian_factories": number; "equipment": { "type": string; "amount": number } | CwtNode } | CwtNode): void;
   /** Create railway gun effect CWT: Config/effects_nsb.cwt:713. */
@@ -2975,11 +2975,11 @@ export interface GeneratedCharacterEffects {
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:155. */
   "divide_temp_variable"(value: CwtNode): void;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:179. */
-  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
   /** Divides a variable to a value or another variable. CWT: Config/variable_effects.cwt:91. */
   "divide_variable"(value: CwtNode): void;
   /** Divides a variable to a value or another variable. CWT: Config/variable_effects.cwt:116. */
-  "divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+  "divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
   /** Shows just tooltip of effects. CWT: Config/effects.cwt:1510. */
   "effect_tooltip"(value: CwtNode): void;
   /** Use after (else_)if for a catch-all case. CWT: Config/effects.cwt:431. */
@@ -3015,7 +3015,7 @@ export interface GeneratedCharacterEffects {
   /** Goes to stated province. CWT: Config/effects.cwt:1690. */
   "goto_province"(value: number): void;
   /** Goes to stated state. CWT: Config/effects.cwt:1694. */
-  "goto_state"(value: StateRef): void;
+  "goto_state"(value: StateRef | StateTargetRef): void;
   /** Effect not shown in tooltips. CWT: Config/effects.cwt:3783. */
   "hidden_effect"(value: CwtNode): void;
   /** A conditional effect. CWT: Config/effects.cwt:413. */
@@ -3039,21 +3039,21 @@ export interface GeneratedCharacterEffects {
   /** Modulos a variable with another. CWT: Config/variable_effects.cwt:155. */
   "modulo_variable"(value: CwtNode): void;
   /** Modulos a variable with another. CWT: Config/variable_effects.cwt:161. */
-  "modulo_variable"(value: { "var": CwtOpaque; "value": number } | CwtNode): void;
+  "modulo_variable"(value: { "var": string; "value": number } | CwtNode): void;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:144. */
   "multiply_temp_variable"(value: CwtNode): void;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:151. */
-  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Multiplies a variable to a value or another variable. CWT: Config/variable_effects.cwt:83. */
   "multiply_variable"(value: CwtNode): void;
   /** Multiplies a variable to a value or another variable. CWT: Config/variable_effects.cwt:87. */
-  "multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /**  CWT: Config/scopes.cwt:44. */
   "NOT"(value: CwtNode): void;
   /**  CWT: Config/scopes.cwt:52. */
   "OR"(value: CwtNode): void;
   /** Prints all variables in scope and temp variables to a file. CWT: Config/effects.cwt:2572. */
-  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
+  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
   /** makes character head of their ideology party CWT: Config/effects_nsb.cwt:458. */
   "promote_character"(value: boolean): void;
   /** makes character head of their ideology party CWT: Config/effects_nsb.cwt:461. */
@@ -3093,25 +3093,25 @@ export interface GeneratedCharacterEffects {
   /**  CWT: Config/effects_nsb.cwt:273. */
   "remove_country_leader_role"(value: { "character"?: string | CwtOpaque; "ideology"?: string } | CwtNode): void;
   /** Removes a dynamic modifier from country/state/unit leader. CWT: Config/effects.cwt:3103. */
-  "remove_dynamic_modifier"(value: { "modifier": string; "scope"?: CountryRef | StateRef | string | CwtOpaque } | CwtNode): void;
+  "remove_dynamic_modifier"(value: { "modifier": string; "scope"?: CountryRef | StateRef | StateTargetRef | string | CwtOpaque } | CwtNode): void;
   /** Remove exile tag from scope unit leader. remove_exile_tag = yes. CWT: Config/effects.cwt:2742. */
   "remove_exile_tag"(value: true): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2869. */
-  "remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
+  "remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2884. */
-  "remove_from_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+  "remove_from_array"(value: { "array": string; "index": number } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2894. */
   "remove_from_array"(value: CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:2978. */
-  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
+  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:2993. */
-  "remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+  "remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:3003. */
   "remove_from_temp_array"(value: CwtNode): void;
   /** Remove the scientist role from a character.The character can come from the scope or from an input parameter. The scientist role format is the same as in the character DB. Except the visible trigger - a scientist role created via effect cannot have triggers. CWT: Config/effects_gtd.cwt:254. */
   "remove_scientist_role"(value: boolean): void;
   /** Removes either a resistance or compliance modifier to a state. Can only use modifiers from the resistance_modifiers.txt/compliance_modifiers.txt that are marked as is_dynamic = yes CWT: Config/effects_ncns.cwt:164. */
-  "remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+  "remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
   /**  CWT: Config/effects_nsb.cwt:534. */
   "remove_trait"(value: { "character"?: string | CwtOpaque; "trait": string; "ideology"?: string; "slot"?: string } | CwtNode): void;
   /** Remove unit leader role to character CWT: Config/effects_nsb.cwt:118. */
@@ -3125,11 +3125,11 @@ export interface GeneratedCharacterEffects {
   /** Reset name of a province back to localization one. CWT: Config/effects.cwt:2120. */
   "reset_province_name"(value: number): void;
   /** Resizes array. CWT: Config/effects.cwt:2911. */
-  "resize_array"(value: { "array": string; "value"?: number | string; "size": "int_variable_field_32" } | CwtNode): void;
+  "resize_array"(value: { "array": string; "value"?: number | string; "size": number } | CwtNode): void;
   /** Resizes array. CWT: Config/effects.cwt:2928. */
   "resize_array"(value: CwtNode): void;
   /** Resizes a temp array. CWT: Config/effects.cwt:3023. */
-  "resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): void;
+  "resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): void;
   /** Resizes a temp array. CWT: Config/effects.cwt:3035. */
   "resize_temp_array"(value: CwtNode): void;
   /** Retires scope unit leader. CWT: Config/effects.cwt:2315. */
@@ -3141,7 +3141,7 @@ export interface GeneratedCharacterEffects {
   /** Rounds a temporary variable. CWT: Config/variable_effects_temp.cwt:252. */
   "round_temp_variable"(value: string): void;
   /** Rounds a variable. CWT: Config/variable_effects.cwt:202. */
-  "round_variable"(value: CwtOpaque): void;
+  "round_variable"(value: string): void;
   /** Save an event target. CWT: Config/effects.cwt:1356. */
   "save_event_target_as"(value: string): void;
   /** Save a global event target. CWT: Config/effects.cwt:1360. */
@@ -3163,7 +3163,7 @@ export interface GeneratedCharacterEffects {
   /** Sets the position and rotation of an entity using two coordinates. IDs are set by the create_entity effect. Uses the the same coordinate system that the map uses. A positive change in rotation results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. CWT: Config/effects_nsb.cwt:855. */
   "set_entity_movement"(value: { "id": string; "start": { "x": number; "y": number; "z"?: number } | CwtNode; "target": { "province": number } | CwtNode; "ratio": number; "rotation": number } | CwtNode): void;
   /** Sets the position of an existing entity. IDs are set by the create_entity effect. Uses the the same coordinate system that the map uses. CWT: Config/effects_nsb.cwt:873. */
-  "set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef } | CwtNode): void;
+  "set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Sets the currently-facing angle of an existing entity. IDs are set by the create_entity effect. A positive change results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. CWT: Config/effects_nsb.cwt:887. */
   "set_entity_rotation"(value: { "id": string; "rotation": number } | CwtNode): void;
   /** Sets the size of an existing entity. IDs are set by the create_entity effect. CWT: Config/effects_nsb.cwt:895. */
@@ -3195,7 +3195,7 @@ export interface GeneratedCharacterEffects {
   /** # TEMP VARIABLE Sets a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:53. */
   "set_temp_variable"(value: CwtNode): void;
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:88. */
-  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Sets a temp variable to a random value. CWT: Config/variable_effects_temp.cwt:226. */
   "set_temp_variable_to_random"(value: string): void;
   /** Sets a temp variable to a random value. CWT: Config/variable_effects_temp.cwt:230. */
@@ -3207,7 +3207,7 @@ export interface GeneratedCharacterEffects {
   /** Sets a variable to a value or another variable. CWT: Config/variable_effects.cwt:3. */
   "set_variable"(value: CwtNode): void;
   /** Sets a variable to a value or another variable. CWT: Config/variable_effects.cwt:37. */
-  "set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Sets a variable to a random value. CWT: Config/variable_effects.cwt:168. */
   "set_variable_to_random"(value: string): void;
   /** Sets a variable to a random value. CWT: Config/variable_effects.cwt:172. */
@@ -3219,11 +3219,11 @@ export interface GeneratedCharacterEffects {
   /** Subtracts a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:133. */
   "subtract_from_temp_variable"(value: CwtNode): void;
   /** Subtracts a value or a variable to a temp variable. CWT: Config/variable_effects_temp.cwt:140. */
-  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Subtracts a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:75. */
   "subtract_from_variable"(value: CwtNode): void;
   /** Subtracts a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:79. */
-  "subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Give supply to units being controlled by this leader. CWT: Config/effects.cwt:3291. */
   "supply_units"(value: number): void;
   /**  CWT: Config/effects_nsb.cwt:473. */
@@ -3239,13 +3239,13 @@ export interface GeneratedCharacterEffects {
 }
 export interface GeneratedCharacterTriggers {
   /** Adds an element to a temporary array. CWT: Config/triggers.cwt:1781. */
-  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef; "index"?: "int_variable_field_32" } | CwtNode): boolean;
+  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef; "index"?: number } | CwtNode): boolean;
   /** Adds an element to a temporary array. CWT: Config/triggers.cwt:1800. */
   "add_to_temp_array"(value: CwtNode): boolean;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:71. */
   "add_to_temp_variable"(value: CwtNode): boolean;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:78. */
-  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Return true if the character has an advisor role and they can be fired. Warning: will return false if the character has no advisor role or it does not match the input slot. You should use has_advisor_role trigger first to really test the can_be_fired flag CWT: Config/triggers_nsb.cwt:410. */
   "advisor_can_be_fired"(value: boolean): boolean;
   /** Return true if the character has an advisor role and they can be fired. Warning: will return false if the character has no advisor role or it does not match the input slot. You should use has_advisor_role trigger first to really test the can_be_fired flag CWT: Config/triggers_nsb.cwt:414. */
@@ -3309,7 +3309,7 @@ export interface GeneratedCharacterTriggers {
   /** Compares a variable to a number or variable. CWT: Config/triggers.cwt:93. */
   "check_variable"(value: CwtNode): boolean;
   /** Compares a variable to a number or variable. CWT: Config/triggers.cwt:105. */
-  "check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef; "value": string | number | boolean | CountryRef | StateRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
+  "check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef | StateTargetRef; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
   /** Clamps a temp variable between two a values or another variables. CWT: Config/variable_triggers_temp.cwt:190. */
   "clamp_temp_variable"(value: { "var": string; "min"?: number; "max"?: number } | CwtNode): boolean;
   /** Clears the contents of a temporary array. CWT: Config/triggers.cwt:1844. */
@@ -3341,7 +3341,7 @@ export interface GeneratedCharacterTriggers {
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:104. */
   "divide_temp_variable"(value: CwtNode): boolean;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:128. */
-  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
+  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
   /** A conditional trigger. CWT: Config/triggers.cwt:28. */
   "else"(value: CwtNode): boolean;
   /** A conditional trigger. CWT: Config/triggers.cwt:21. */
@@ -3385,7 +3385,7 @@ export interface GeneratedCharacterTriggers {
   /** Checks if the current character has a navy ledger. CWT: Config/triggers_nsb.cwt:258. */
   "has_navy_ledger"(value: boolean): boolean;
   /** Checks if a state contains a railway at or above the specified level. CWT: Config/triggers_nsb.cwt:29. */
-  "has_railway_level"(value: { "level": number; "state": StateRef } | CwtNode): boolean;
+  "has_railway_level"(value: { "level": number; "state": StateRef | StateTargetRef } | CwtNode): boolean;
   /** Checks if the scientist of the character in scope matches the skill level condition for a specialization. Supports < > = operators. CWT: Config/triggers_gtd.cwt:13. */
   "has_scientist_level"(value: { "level": number; "specialization": string } | CwtNode): boolean;
   /** Compare the initial start date of current game. CWT: Config/triggers.cwt:615. */
@@ -3445,13 +3445,13 @@ export interface GeneratedCharacterTriggers {
   /** Check if the historical focus is active. CWT: Config/triggers.cwt:992. */
   "is_historical_focus_on"(value: boolean): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1762. */
-  "is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+  "is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1769. */
   "is_in_array"(value: CwtNode): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1775. */
-  "is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+  "is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
   /** Checks if the character is in a specific state. Works for deployed generals (HQ location), scientists (facility location including faction programs), and operatives (mission location). CWT: Config/triggers_taog.cwt:16. */
-  "is_in_state"(value: StateRef): boolean;
+  "is_in_state"(value: StateRef | StateTargetRef): boolean;
   /** Check if current game is ironman. CWT: Config/triggers.cwt:611. */
   "is_ironman"(value: boolean): boolean;
   /** Is_leading_army = yes/no - Checks if the current unit leader is leading a single army (not army group). CWT: Config/triggers.cwt:1631. */
@@ -3497,7 +3497,7 @@ export interface GeneratedCharacterTriggers {
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:93. */
   "multiply_temp_variable"(value: CwtNode): boolean;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:100. */
-  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /**  CWT: Config/scopes.cwt:34. */
   "NOT"(value: CwtNode): boolean;
   /** Checks if the current character is not hired, with the exception of the specified slot. CWT: Config/triggers_nsb.cwt:270. */
@@ -3509,21 +3509,21 @@ export interface GeneratedCharacterTriggers {
   /** Compares planning skill level of a unit leader. CWT: Config/triggers.cwt:1623. */
   "planning_skill_level"(value: number): boolean;
   /** Prints all variables in scope and temp variables to a file. CWT: Config/triggers.cwt:1635. */
-  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
+  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
   /** Randomize a temporary variable. CWT: Config/variable_triggers_temp.cwt:143. */
   "randomize_temp_variable"(value: string): boolean;
   /** Randomize a temporary variable. CWT: Config/variable_triggers_temp.cwt:147. */
   "randomize_temp_variable"(value: { "var": string; "distribution": "uniform" | "binomial"; "min"?: number; "max"?: number; "lambda"?: number } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1811. */
-  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef } | CwtNode): boolean;
+  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1824. */
-  "remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): boolean;
+  "remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1833. */
   "remove_from_temp_array"(value: CwtNode): boolean;
   /** Check amount of reserves. CWT: Config/triggers.cwt:76. */
   "reserves"(value: number): boolean;
   /** Resizes a temp array. CWT: Config/triggers.cwt:1851. */
-  "resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): boolean;
+  "resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): boolean;
   /** Resizes a temp array. CWT: Config/triggers.cwt:1863. */
   "resize_temp_array"(value: CwtNode): boolean;
   /** Rounds a temporary variable. CWT: Config/variable_triggers_temp.cwt:200. */
@@ -3535,7 +3535,7 @@ export interface GeneratedCharacterTriggers {
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:3. */
   "set_temp_variable"(value: CwtNode): boolean;
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:38. */
-  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Sets a temp variable to a random value. CWT: Config/variable_triggers_temp.cwt:174. */
   "set_temp_variable_to_random"(value: string): boolean;
   /** Sets a temp variable to a random value. CWT: Config/variable_triggers_temp.cwt:178. */
@@ -3545,7 +3545,7 @@ export interface GeneratedCharacterTriggers {
   /** Subtracts a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:82. */
   "subtract_from_temp_variable"(value: CwtNode): boolean;
   /** Subtracts a value or a variable to a temp variable. CWT: Config/variable_triggers_temp.cwt:89. */
-  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Check the global threat value. 0-1 value. CWT: Config/triggers.cwt:142. */
   "threat"(value: number): boolean;
   /** ``` } } add_to_temp_variable = { unlock_compare = num_armies } } operators = { faction_members } input = game:scope collection = { all_collection_elements = { set_temp_variable = { unlock_compare = 0 } tooltip_evaluation = eval hidden_trigger = { ``` ```hidden_trigger = { tooltip_evaluation = no_eva CWT: Config/triggers_ncns.cwt:706. */
@@ -3579,7 +3579,7 @@ export interface GeneratedUnitLeaderEffects {
   /** Adds a max assignable trait slot for a general. CWT: Config/effects.cwt:2435. */
   "add_max_trait"(value: number): void;
   /** Adds new namespace. CWT: Config/effects.cwt:761. */
-  "add_namespace"(value: string | number | boolean | CountryRef | StateRef): void;
+  "add_namespace"(value: string | number | boolean | CountryRef | StateRef | StateTargetRef): void;
   /**  CWT: Config/effects_nsb.cwt:194. */
   "add_naval_commander_role"(value: { "character"?: string | CwtOpaque; "desc"?: string; "traits"?: readonly (string)[]; "skill": number; "attack_skill": number; "defense_skill": number; "maneuvering_skill": number; "coordination_skill": number; "legacy_id"?: string; "visible"?: CwtNode } | CwtNode): void;
   /** Adds planning skill to a unit leader. CWT: Config/effects.cwt:2379. */
@@ -3591,25 +3591,25 @@ export interface GeneratedUnitLeaderEffects {
   /** Adds a skill level to a unit leader. CWT: Config/effects.cwt:2439. */
   "add_skill_level"(value: number): void;
   /** Adds either a resistance or compliance modifier to a state. Can only use modifiers from the resistance_modifiers.txt/compliance_modifiers.txt that are marked as is_dynamic = yes CWT: Config/effects_ncns.cwt:154. */
-  "add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+  "add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Add a timed trait to unit leader. CWT: Config/effects.cwt:2443. */
   "add_timed_unit_leader_trait"(value: { "trait": string; "days": number } | CwtNode): void;
   /** Adds an element to an array. CWT: Config/effects.cwt:2824. */
-  "add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+  "add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
   /** Adds an element to an array. CWT: Config/effects.cwt:2846. */
   "add_to_array"(value: CwtNode): void;
   /** Adds an element to a temporary array. CWT: Config/effects.cwt:2943. */
-  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
   /** Adds an element to a temporary array. CWT: Config/effects.cwt:2965. */
   "add_to_temp_array"(value: CwtNode): void;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:122. */
   "add_to_temp_variable"(value: CwtNode): void;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:129. */
-  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Adds a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:67. */
   "add_to_variable"(value: CwtNode): void;
   /** Adds a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:71. */
-  "add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** makes character head of their ideology party CWT: Config/effects_nsb.cwt:510. */
   "add_trait"(value: { "character"?: string | CwtOpaque; "trait": string; "ideology"?: string; "slot"?: string } | CwtNode): void;
   /** Add trait to unit leader. CWT: Config/effects.cwt:757. */
@@ -3629,11 +3629,11 @@ export interface GeneratedUnitLeaderEffects {
   /** Starts railway construction for amount of levels in specified state or province. CWT: Config/effects.cwt:878. */
   "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_province": number; "target_province": number; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
   /** Starts railway construction for amount of levels in specified state or province. CWT: Config/effects.cwt:915. */
-  "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef; "target_state": StateRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
+  "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef | StateTargetRef; "target_state": StateRef | StateTargetRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
   /** Clamps a temp variable between two a values or another variables. CWT: Config/variable_effects_temp.cwt:242. */
   "clamp_temp_variable"(value: { "var": string; "min"?: number; "max"?: number } | CwtNode): void;
   /** Clamps a variable between two a values or another variables. CWT: Config/variable_effects.cwt:188. */
-  "clamp_variable"(value: { "var": CwtOpaque; "min"?: number | string; "max"?: number | string } | CwtNode): void;
+  "clamp_variable"(value: { "var": string; "min"?: number | string; "max"?: number | string } | CwtNode): void;
   /** Clears the contents of array. CWT: Config/effects.cwt:2907. */
   "clear_array"(value: string | CwtOpaque): void;
   /** Clear a global event target. CWT: Config/effects.cwt:1364. */
@@ -3647,7 +3647,7 @@ export interface GeneratedUnitLeaderEffects {
   /** Clears a variable. The input is NOT validated CWT: Config/variable_effects.cwt:206. */
   "clear_variable"(value: number): void;
   /** Clears a variable. The input is NOT validated CWT: Config/variable_effects.cwt:210. */
-  "clear_variable"(value: CwtOpaque): void;
+  "clear_variable"(value: string): void;
   /**  CWT: Config/effects_nsb.cwt:498. */
   "clr_character_flag"(value: string): void;
   /** Clear global flag. CWT: Config/effects.cwt:170. */
@@ -3657,7 +3657,7 @@ export interface GeneratedUnitLeaderEffects {
   /** Creates a dynamic country and runs child effects on it. CWT: Config/effects_new.cwt:327. */
   "create_dynamic_country"(value: Effect<ScopeByName["country"]> | { limit?: Trigger<ScopeByName["country"]>; effects: Effect<ScopeByName["country"]> } | CwtNode): void;
   /** Creates an enitity Uses the the same coordinate system that the map uses. A positive change in rotation results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. For comparison, default minimum zoom level (closest to the map) is 50 units, while default maximum CWT: Config/effects_nsb.cwt:823. */
-  "create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
+  "create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef | StateTargetRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
   /** Creates a purchase contract between the countries CWT: Config/effects_aat.cwt:253. */
   "create_purchase_contract"(value: { "seller": CountryRef; "buyer": CountryRef; "civilian_factories": number; "equipment": { "type": string; "amount": number } | CwtNode } | CwtNode): void;
   /** Create railway gun effect CWT: Config/effects_nsb.cwt:713. */
@@ -3669,7 +3669,7 @@ export interface GeneratedUnitLeaderEffects {
   /** Executes the provided effects but with a custom tooltip surpressing all tooltips from all other effects inside this block. The custom tooltip is a [bindable localization] CWT: Config/effects_gtd.cwt:318. */
   "custom_override_tooltip"(value: CwtNode): void;
   /** damages units for given conditions. no tooltip generated CWT: Config/effects_nsb.cwt:666. */
-  "damage_units"(value: { "province"?: number; "state"?: StateRef; "region"?: string; "limit"?: CwtNode; "damage"?: number; "org_damage"?: number; "str_damage"?: number; "ratio"?: boolean; "template"?: string; "division_template"?: string; "army"?: boolean; "navy"?: boolean } | CwtNode): void;
+  "damage_units"(value: { "province"?: number; "state"?: StateRef | StateTargetRef; "region"?: string; "limit"?: CwtNode; "damage"?: number; "org_damage"?: number; "str_damage"?: number; "ratio"?: boolean; "template"?: string; "division_template"?: string; "army"?: boolean; "navy"?: boolean } | CwtNode): void;
   /** Demotes field marshal to general. CWT: Config/effects.cwt:2311. */
   "demote_leader"(value: true): void;
   /** Destroys an existing entity IDs are set by the create_entity effect. CWT: Config/effects_nsb.cwt:849. */
@@ -3677,11 +3677,11 @@ export interface GeneratedUnitLeaderEffects {
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:155. */
   "divide_temp_variable"(value: CwtNode): void;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:179. */
-  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
   /** Divides a variable to a value or another variable. CWT: Config/variable_effects.cwt:91. */
   "divide_variable"(value: CwtNode): void;
   /** Divides a variable to a value or another variable. CWT: Config/variable_effects.cwt:116. */
-  "divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+  "divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
   /** Shows just tooltip of effects. CWT: Config/effects.cwt:1510. */
   "effect_tooltip"(value: CwtNode): void;
   /** Use after (else_)if for a catch-all case. CWT: Config/effects.cwt:431. */
@@ -3715,7 +3715,7 @@ export interface GeneratedUnitLeaderEffects {
   /** Goes to stated province. CWT: Config/effects.cwt:1690. */
   "goto_province"(value: number): void;
   /** Goes to stated state. CWT: Config/effects.cwt:1694. */
-  "goto_state"(value: StateRef): void;
+  "goto_state"(value: StateRef | StateTargetRef): void;
   /** Effect not shown in tooltips. CWT: Config/effects.cwt:3783. */
   "hidden_effect"(value: CwtNode): void;
   /** A conditional effect. CWT: Config/effects.cwt:413. */
@@ -3737,21 +3737,21 @@ export interface GeneratedUnitLeaderEffects {
   /** Modulos a variable with another. CWT: Config/variable_effects.cwt:155. */
   "modulo_variable"(value: CwtNode): void;
   /** Modulos a variable with another. CWT: Config/variable_effects.cwt:161. */
-  "modulo_variable"(value: { "var": CwtOpaque; "value": number } | CwtNode): void;
+  "modulo_variable"(value: { "var": string; "value": number } | CwtNode): void;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:144. */
   "multiply_temp_variable"(value: CwtNode): void;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:151. */
-  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Multiplies a variable to a value or another variable. CWT: Config/variable_effects.cwt:83. */
   "multiply_variable"(value: CwtNode): void;
   /** Multiplies a variable to a value or another variable. CWT: Config/variable_effects.cwt:87. */
-  "multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /**  CWT: Config/scopes.cwt:44. */
   "NOT"(value: CwtNode): void;
   /**  CWT: Config/scopes.cwt:52. */
   "OR"(value: CwtNode): void;
   /** Prints all variables in scope and temp variables to a file. CWT: Config/effects.cwt:2572. */
-  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
+  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
   /** makes character head of their ideology party CWT: Config/effects_nsb.cwt:458. */
   "promote_character"(value: boolean): void;
   /** makes character head of their ideology party CWT: Config/effects_nsb.cwt:461. */
@@ -3791,19 +3791,19 @@ export interface GeneratedUnitLeaderEffects {
   /** Remove exile tag from scope unit leader. remove_exile_tag = yes. CWT: Config/effects.cwt:2742. */
   "remove_exile_tag"(value: true): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2869. */
-  "remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
+  "remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2884. */
-  "remove_from_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+  "remove_from_array"(value: { "array": string; "index": number } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2894. */
   "remove_from_array"(value: CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:2978. */
-  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
+  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:2993. */
-  "remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+  "remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:3003. */
   "remove_from_temp_array"(value: CwtNode): void;
   /** Removes either a resistance or compliance modifier to a state. Can only use modifiers from the resistance_modifiers.txt/compliance_modifiers.txt that are marked as is_dynamic = yes CWT: Config/effects_ncns.cwt:164. */
-  "remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+  "remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
   /**  CWT: Config/effects_nsb.cwt:534. */
   "remove_trait"(value: { "character"?: string | CwtOpaque; "trait": string; "ideology"?: string; "slot"?: string } | CwtNode): void;
   /** Remove unit leader role to character CWT: Config/effects_nsb.cwt:118. */
@@ -3817,11 +3817,11 @@ export interface GeneratedUnitLeaderEffects {
   /** Reset name of a province back to localization one. CWT: Config/effects.cwt:2120. */
   "reset_province_name"(value: number): void;
   /** Resizes array. CWT: Config/effects.cwt:2911. */
-  "resize_array"(value: { "array": string; "value"?: number | string; "size": "int_variable_field_32" } | CwtNode): void;
+  "resize_array"(value: { "array": string; "value"?: number | string; "size": number } | CwtNode): void;
   /** Resizes array. CWT: Config/effects.cwt:2928. */
   "resize_array"(value: CwtNode): void;
   /** Resizes a temp array. CWT: Config/effects.cwt:3023. */
-  "resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): void;
+  "resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): void;
   /** Resizes a temp array. CWT: Config/effects.cwt:3035. */
   "resize_temp_array"(value: CwtNode): void;
   /** Retires scope unit leader. CWT: Config/effects.cwt:2315. */
@@ -3833,7 +3833,7 @@ export interface GeneratedUnitLeaderEffects {
   /** Rounds a temporary variable. CWT: Config/variable_effects_temp.cwt:252. */
   "round_temp_variable"(value: string): void;
   /** Rounds a variable. CWT: Config/variable_effects.cwt:202. */
-  "round_variable"(value: CwtOpaque): void;
+  "round_variable"(value: string): void;
   /** Save an event target. CWT: Config/effects.cwt:1356. */
   "save_event_target_as"(value: string): void;
   /** Save a global event target. CWT: Config/effects.cwt:1360. */
@@ -3855,7 +3855,7 @@ export interface GeneratedUnitLeaderEffects {
   /** Sets the position and rotation of an entity using two coordinates. IDs are set by the create_entity effect. Uses the the same coordinate system that the map uses. A positive change in rotation results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. CWT: Config/effects_nsb.cwt:855. */
   "set_entity_movement"(value: { "id": string; "start": { "x": number; "y": number; "z"?: number } | CwtNode; "target": { "province": number } | CwtNode; "ratio": number; "rotation": number } | CwtNode): void;
   /** Sets the position of an existing entity. IDs are set by the create_entity effect. Uses the the same coordinate system that the map uses. CWT: Config/effects_nsb.cwt:873. */
-  "set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef } | CwtNode): void;
+  "set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Sets the currently-facing angle of an existing entity. IDs are set by the create_entity effect. A positive change results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. CWT: Config/effects_nsb.cwt:887. */
   "set_entity_rotation"(value: { "id": string; "rotation": number } | CwtNode): void;
   /** Sets the size of an existing entity. IDs are set by the create_entity effect. CWT: Config/effects_nsb.cwt:895. */
@@ -3887,7 +3887,7 @@ export interface GeneratedUnitLeaderEffects {
   /** # TEMP VARIABLE Sets a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:53. */
   "set_temp_variable"(value: CwtNode): void;
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:88. */
-  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Sets a temp variable to a random value. CWT: Config/variable_effects_temp.cwt:226. */
   "set_temp_variable_to_random"(value: string): void;
   /** Sets a temp variable to a random value. CWT: Config/variable_effects_temp.cwt:230. */
@@ -3899,7 +3899,7 @@ export interface GeneratedUnitLeaderEffects {
   /** Sets a variable to a value or another variable. CWT: Config/variable_effects.cwt:3. */
   "set_variable"(value: CwtNode): void;
   /** Sets a variable to a value or another variable. CWT: Config/variable_effects.cwt:37. */
-  "set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Sets a variable to a random value. CWT: Config/variable_effects.cwt:168. */
   "set_variable_to_random"(value: string): void;
   /** Sets a variable to a random value. CWT: Config/variable_effects.cwt:172. */
@@ -3911,11 +3911,11 @@ export interface GeneratedUnitLeaderEffects {
   /** Subtracts a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:133. */
   "subtract_from_temp_variable"(value: CwtNode): void;
   /** Subtracts a value or a variable to a temp variable. CWT: Config/variable_effects_temp.cwt:140. */
-  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Subtracts a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:75. */
   "subtract_from_variable"(value: CwtNode): void;
   /** Subtracts a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:79. */
-  "subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Give supply to units being controlled by this leader. CWT: Config/effects.cwt:3291. */
   "supply_units"(value: number): void;
   /**  CWT: Config/effects_nsb.cwt:473. */
@@ -3931,13 +3931,13 @@ export interface GeneratedUnitLeaderEffects {
 }
 export interface GeneratedUnitLeaderTriggers {
   /** Adds an element to a temporary array. CWT: Config/triggers.cwt:1781. */
-  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef; "index"?: "int_variable_field_32" } | CwtNode): boolean;
+  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef; "index"?: number } | CwtNode): boolean;
   /** Adds an element to a temporary array. CWT: Config/triggers.cwt:1800. */
   "add_to_temp_array"(value: CwtNode): boolean;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:71. */
   "add_to_temp_variable"(value: CwtNode): boolean;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:78. */
-  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Return true if the character has an advisor role and they can be fired. Warning: will return false if the character has no advisor role or it does not match the input slot. You should use has_advisor_role trigger first to really test the can_be_fired flag CWT: Config/triggers_nsb.cwt:410. */
   "advisor_can_be_fired"(value: boolean): boolean;
   /** Return true if the character has an advisor role and they can be fired. Warning: will return false if the character has no advisor role or it does not match the input slot. You should use has_advisor_role trigger first to really test the can_be_fired flag CWT: Config/triggers_nsb.cwt:414. */
@@ -4001,7 +4001,7 @@ export interface GeneratedUnitLeaderTriggers {
   /** Compares a variable to a number or variable. CWT: Config/triggers.cwt:93. */
   "check_variable"(value: CwtNode): boolean;
   /** Compares a variable to a number or variable. CWT: Config/triggers.cwt:105. */
-  "check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef; "value": string | number | boolean | CountryRef | StateRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
+  "check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef | StateTargetRef; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
   /** Clamps a temp variable between two a values or another variables. CWT: Config/variable_triggers_temp.cwt:190. */
   "clamp_temp_variable"(value: { "var": string; "min"?: number; "max"?: number } | CwtNode): boolean;
   /** Clears the contents of a temporary array. CWT: Config/triggers.cwt:1844. */
@@ -4033,7 +4033,7 @@ export interface GeneratedUnitLeaderTriggers {
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:104. */
   "divide_temp_variable"(value: CwtNode): boolean;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:128. */
-  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
+  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
   /** A conditional trigger. CWT: Config/triggers.cwt:28. */
   "else"(value: CwtNode): boolean;
   /** A conditional trigger. CWT: Config/triggers.cwt:21. */
@@ -4081,7 +4081,7 @@ export interface GeneratedUnitLeaderTriggers {
   /** Checks if the current character has a navy ledger. CWT: Config/triggers_nsb.cwt:258. */
   "has_navy_ledger"(value: boolean): boolean;
   /** Checks if a state contains a railway at or above the specified level. CWT: Config/triggers_nsb.cwt:29. */
-  "has_railway_level"(value: { "level": number; "state": StateRef } | CwtNode): boolean;
+  "has_railway_level"(value: { "level": number; "state": StateRef | StateTargetRef } | CwtNode): boolean;
   /** Compare the initial start date of current game. CWT: Config/triggers.cwt:615. */
   "has_start_date"(value: string): boolean;
   /** Check if sides leader has trait. CWT: Config/triggers.cwt:671. */
@@ -4137,11 +4137,11 @@ export interface GeneratedUnitLeaderTriggers {
   /** Check if the historical focus is active. CWT: Config/triggers.cwt:992. */
   "is_historical_focus_on"(value: boolean): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1762. */
-  "is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+  "is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1769. */
   "is_in_array"(value: CwtNode): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1775. */
-  "is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+  "is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
   /** Check if current game is ironman. CWT: Config/triggers.cwt:611. */
   "is_ironman"(value: boolean): boolean;
   /** Is_leading_army = yes/no - Checks if the current unit leader is leading a single army (not army group). CWT: Config/triggers.cwt:1631. */
@@ -4183,7 +4183,7 @@ export interface GeneratedUnitLeaderTriggers {
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:93. */
   "multiply_temp_variable"(value: CwtNode): boolean;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:100. */
-  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /**  CWT: Config/scopes.cwt:34. */
   "NOT"(value: CwtNode): boolean;
   /** Checks if the current character is not hired, with the exception of the specified slot. CWT: Config/triggers_nsb.cwt:270. */
@@ -4199,21 +4199,21 @@ export interface GeneratedUnitLeaderTriggers {
   /** Compares planning skill level of a unit leader. CWT: Config/triggers.cwt:1623. */
   "planning_skill_level"(value: number): boolean;
   /** Prints all variables in scope and temp variables to a file. CWT: Config/triggers.cwt:1635. */
-  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
+  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
   /** Randomize a temporary variable. CWT: Config/variable_triggers_temp.cwt:143. */
   "randomize_temp_variable"(value: string): boolean;
   /** Randomize a temporary variable. CWT: Config/variable_triggers_temp.cwt:147. */
   "randomize_temp_variable"(value: { "var": string; "distribution": "uniform" | "binomial"; "min"?: number; "max"?: number; "lambda"?: number } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1811. */
-  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef } | CwtNode): boolean;
+  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1824. */
-  "remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): boolean;
+  "remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1833. */
   "remove_from_temp_array"(value: CwtNode): boolean;
   /** Check amount of reserves. CWT: Config/triggers.cwt:76. */
   "reserves"(value: number): boolean;
   /** Resizes a temp array. CWT: Config/triggers.cwt:1851. */
-  "resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): boolean;
+  "resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): boolean;
   /** Resizes a temp array. CWT: Config/triggers.cwt:1863. */
   "resize_temp_array"(value: CwtNode): boolean;
   /** Rounds a temporary variable. CWT: Config/variable_triggers_temp.cwt:200. */
@@ -4225,7 +4225,7 @@ export interface GeneratedUnitLeaderTriggers {
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:3. */
   "set_temp_variable"(value: CwtNode): boolean;
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:38. */
-  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Sets a temp variable to a random value. CWT: Config/variable_triggers_temp.cwt:174. */
   "set_temp_variable_to_random"(value: string): boolean;
   /** Sets a temp variable to a random value. CWT: Config/variable_triggers_temp.cwt:178. */
@@ -4237,7 +4237,7 @@ export interface GeneratedUnitLeaderTriggers {
   /** Subtracts a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:82. */
   "subtract_from_temp_variable"(value: CwtNode): boolean;
   /** Subtracts a value or a variable to a temp variable. CWT: Config/variable_triggers_temp.cwt:89. */
-  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Check the global threat value. 0-1 value. CWT: Config/triggers.cwt:142. */
   "threat"(value: number): boolean;
   /** ``` } } add_to_temp_variable = { unlock_compare = num_armies } } operators = { faction_members } input = game:scope collection = { all_collection_elements = { set_temp_variable = { unlock_compare = 0 } tooltip_evaluation = eval hidden_trigger = { ``` ```hidden_trigger = { tooltip_evaluation = no_eva CWT: Config/triggers_ncns.cwt:706. */
@@ -4251,29 +4251,29 @@ export interface GeneratedOperativeEffects {
   /** Adds the specified equipment bonuses to the country. As description the given loc key or the name of given special project will be used. Same usage as in Ideas/National spirits CWT: Config/effects_gtd.cwt:120. */
   "add_equipment_bonus"(value: { "name"?: string; "project"?: CwtOpaque; "bonus": CwtNode } | CwtNode): void;
   /** Adds new namespace. CWT: Config/effects.cwt:761. */
-  "add_namespace"(value: string | number | boolean | CountryRef | StateRef): void;
+  "add_namespace"(value: string | number | boolean | CountryRef | StateRef | StateTargetRef): void;
   /** Add the specified nationality to the scoped-in operative. CWT: Config/effects_new.cwt:854. */
   "add_nationality"(value: CountryRef): void;
   /** Add efficiency factor to strategic region for from country. CWT: Config/effects.cwt:2342. */
   "add_region_efficiency"(value: "replace_me"): void;
   /** Adds either a resistance or compliance modifier to a state. Can only use modifiers from the resistance_modifiers.txt/compliance_modifiers.txt that are marked as is_dynamic = yes CWT: Config/effects_ncns.cwt:154. */
-  "add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+  "add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Adds an element to an array. CWT: Config/effects.cwt:2824. */
-  "add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+  "add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
   /** Adds an element to an array. CWT: Config/effects.cwt:2846. */
   "add_to_array"(value: CwtNode): void;
   /** Adds an element to a temporary array. CWT: Config/effects.cwt:2943. */
-  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
   /** Adds an element to a temporary array. CWT: Config/effects.cwt:2965. */
   "add_to_temp_array"(value: CwtNode): void;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:122. */
   "add_to_temp_variable"(value: CwtNode): void;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:129. */
-  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Adds a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:67. */
   "add_to_variable"(value: CwtNode): void;
   /** Adds a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:71. */
-  "add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Add trait to unit leader. CWT: Config/effects.cwt:757. */
   "add_unit_leader_trait"(value: string): void;
   /** Adds victory point to province. CWT: Config/effects_new.cwt:957. */
@@ -4291,13 +4291,13 @@ export interface GeneratedOperativeEffects {
   /** Starts railway construction for amount of levels in specified state or province. CWT: Config/effects.cwt:878. */
   "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_province": number; "target_province": number; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
   /** Starts railway construction for amount of levels in specified state or province. CWT: Config/effects.cwt:915. */
-  "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef; "target_state": StateRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
+  "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef | StateTargetRef; "target_state": StateRef | StateTargetRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
   /** Capture an operative. Can be used from a scope and a target that is either a country or a unit leader. CWT: Config/effects_new.cwt:123. */
   "capture_operative"(value: { "captured_by": CountryRef; "ignore_death_chance"?: boolean } | CwtNode): void;
   /** Clamps a temp variable between two a values or another variables. CWT: Config/variable_effects_temp.cwt:242. */
   "clamp_temp_variable"(value: { "var": string; "min"?: number; "max"?: number } | CwtNode): void;
   /** Clamps a variable between two a values or another variables. CWT: Config/variable_effects.cwt:188. */
-  "clamp_variable"(value: { "var": CwtOpaque; "min"?: number | string; "max"?: number | string } | CwtNode): void;
+  "clamp_variable"(value: { "var": string; "min"?: number | string; "max"?: number | string } | CwtNode): void;
   /** Clears the contents of array. CWT: Config/effects.cwt:2907. */
   "clear_array"(value: string | CwtOpaque): void;
   /** Clear a global event target. CWT: Config/effects.cwt:1364. */
@@ -4311,13 +4311,13 @@ export interface GeneratedOperativeEffects {
   /** Clears a variable. The input is NOT validated CWT: Config/variable_effects.cwt:206. */
   "clear_variable"(value: number): void;
   /** Clears a variable. The input is NOT validated CWT: Config/variable_effects.cwt:210. */
-  "clear_variable"(value: CwtOpaque): void;
+  "clear_variable"(value: string): void;
   /** Clear global flag. CWT: Config/effects.cwt:170. */
   "clr_global_flag"(value: string): void;
   /** Creates a dynamic country and runs child effects on it. CWT: Config/effects_new.cwt:327. */
   "create_dynamic_country"(value: Effect<ScopeByName["country"]> | { limit?: Trigger<ScopeByName["country"]>; effects: Effect<ScopeByName["country"]> } | CwtNode): void;
   /** Creates an enitity Uses the the same coordinate system that the map uses. A positive change in rotation results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. For comparison, default minimum zoom level (closest to the map) is 50 units, while default maximum CWT: Config/effects_nsb.cwt:823. */
-  "create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
+  "create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef | StateTargetRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
   /** Creates a purchase contract between the countries CWT: Config/effects_aat.cwt:253. */
   "create_purchase_contract"(value: { "seller": CountryRef; "buyer": CountryRef; "civilian_factories": number; "equipment": { "type": string; "amount": number } | CwtNode } | CwtNode): void;
   /** Create railway gun effect CWT: Config/effects_nsb.cwt:713. */
@@ -4333,11 +4333,11 @@ export interface GeneratedOperativeEffects {
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:155. */
   "divide_temp_variable"(value: CwtNode): void;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:179. */
-  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
   /** Divides a variable to a value or another variable. CWT: Config/variable_effects.cwt:91. */
   "divide_variable"(value: CwtNode): void;
   /** Divides a variable to a value or another variable. CWT: Config/variable_effects.cwt:116. */
-  "divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+  "divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
   /** Shows just tooltip of effects. CWT: Config/effects.cwt:1510. */
   "effect_tooltip"(value: CwtNode): void;
   /** Use after (else_)if for a catch-all case. CWT: Config/effects.cwt:431. */
@@ -4379,7 +4379,7 @@ export interface GeneratedOperativeEffects {
   /** Goes to stated province. CWT: Config/effects.cwt:1690. */
   "goto_province"(value: number): void;
   /** Goes to stated state. CWT: Config/effects.cwt:1694. */
-  "goto_state"(value: StateRef): void;
+  "goto_state"(value: StateRef | StateTargetRef): void;
   /** Harm an operative. The specified value is subject to modifiers. CWT: Config/effects_new.cwt:679. */
   "harm_operative_leader"(value: number): void;
   /** Effect not shown in tooltips. CWT: Config/effects.cwt:3783. */
@@ -4401,15 +4401,15 @@ export interface GeneratedOperativeEffects {
   /** Modulos a variable with another. CWT: Config/variable_effects.cwt:155. */
   "modulo_variable"(value: CwtNode): void;
   /** Modulos a variable with another. CWT: Config/variable_effects.cwt:161. */
-  "modulo_variable"(value: { "var": CwtOpaque; "value": number } | CwtNode): void;
+  "modulo_variable"(value: { "var": string; "value": number } | CwtNode): void;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:144. */
   "multiply_temp_variable"(value: CwtNode): void;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:151. */
-  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Multiplies a variable to a value or another variable. CWT: Config/variable_effects.cwt:83. */
   "multiply_variable"(value: CwtNode): void;
   /** Multiplies a variable to a value or another variable. CWT: Config/variable_effects.cwt:87. */
-  "multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /**  CWT: Config/scopes.cwt:44. */
   "NOT"(value: CwtNode): void;
   /** Fires a operative leader event for owner country. CWT: Config/effects_new.cwt:705. */
@@ -4417,7 +4417,7 @@ export interface GeneratedOperativeEffects {
   /**  CWT: Config/scopes.cwt:52. */
   "OR"(value: CwtNode): void;
   /** Prints all variables in scope and temp variables to a file. CWT: Config/effects.cwt:2572. */
-  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
+  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
   /** Promote the officer of the division to a general scope = unit CWT: Config/effects_gtd.cwt:298. */
   "promote_officer_to_general"(value: boolean): void;
   /** A possible random effect that can occur. CWT: Config/effects.cwt:343. */
@@ -4443,19 +4443,19 @@ export interface GeneratedOperativeEffects {
   /** Randomize weather effect. CWT: Config/effects.cwt:570. */
   "randomize_weather"(value: number): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2869. */
-  "remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
+  "remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2884. */
-  "remove_from_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+  "remove_from_array"(value: { "array": string; "index": number } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2894. */
   "remove_from_array"(value: CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:2978. */
-  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
+  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:2993. */
-  "remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+  "remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:3003. */
   "remove_from_temp_array"(value: CwtNode): void;
   /** Removes either a resistance or compliance modifier to a state. Can only use modifiers from the resistance_modifiers.txt/compliance_modifiers.txt that are marked as is_dynamic = yes CWT: Config/effects_ncns.cwt:164. */
-  "remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+  "remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
   /**  CWT: Config/effects_nsb.cwt:123. */
   "remove_unit_leader_role"(value: string): void;
   /** Remove trait from unit leader. CWT: Config/effects.cwt:753. */
@@ -4463,11 +4463,11 @@ export interface GeneratedOperativeEffects {
   /** Reset name of a province back to localization one. CWT: Config/effects.cwt:2120. */
   "reset_province_name"(value: number): void;
   /** Resizes array. CWT: Config/effects.cwt:2911. */
-  "resize_array"(value: { "array": string; "value"?: number | string; "size": "int_variable_field_32" } | CwtNode): void;
+  "resize_array"(value: { "array": string; "value"?: number | string; "size": number } | CwtNode): void;
   /** Resizes array. CWT: Config/effects.cwt:2928. */
   "resize_array"(value: CwtNode): void;
   /** Resizes a temp array. CWT: Config/effects.cwt:3023. */
-  "resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): void;
+  "resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): void;
   /** Resizes a temp array. CWT: Config/effects.cwt:3035. */
   "resize_temp_array"(value: CwtNode): void;
   /** Retires scope unit leader. CWT: Config/effects.cwt:2315. */
@@ -4479,7 +4479,7 @@ export interface GeneratedOperativeEffects {
   /** Rounds a temporary variable. CWT: Config/variable_effects_temp.cwt:252. */
   "round_temp_variable"(value: string): void;
   /** Rounds a variable. CWT: Config/variable_effects.cwt:202. */
-  "round_variable"(value: CwtOpaque): void;
+  "round_variable"(value: string): void;
   /** Save an event target. CWT: Config/effects.cwt:1356. */
   "save_event_target_as"(value: string): void;
   /** Save a global event target. CWT: Config/effects.cwt:1360. */
@@ -4491,7 +4491,7 @@ export interface GeneratedOperativeEffects {
   /** Sets the position and rotation of an entity using two coordinates. IDs are set by the create_entity effect. Uses the the same coordinate system that the map uses. A positive change in rotation results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. CWT: Config/effects_nsb.cwt:855. */
   "set_entity_movement"(value: { "id": string; "start": { "x": number; "y": number; "z"?: number } | CwtNode; "target": { "province": number } | CwtNode; "ratio": number; "rotation": number } | CwtNode): void;
   /** Sets the position of an existing entity. IDs are set by the create_entity effect. Uses the the same coordinate system that the map uses. CWT: Config/effects_nsb.cwt:873. */
-  "set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef } | CwtNode): void;
+  "set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Sets the currently-facing angle of an existing entity. IDs are set by the create_entity effect. A positive change results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. CWT: Config/effects_nsb.cwt:887. */
   "set_entity_rotation"(value: { "id": string; "rotation": number } | CwtNode): void;
   /** Sets the size of an existing entity. IDs are set by the create_entity effect. CWT: Config/effects_nsb.cwt:895. */
@@ -4515,7 +4515,7 @@ export interface GeneratedOperativeEffects {
   /** # TEMP VARIABLE Sets a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:53. */
   "set_temp_variable"(value: CwtNode): void;
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:88. */
-  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Sets a temp variable to a random value. CWT: Config/variable_effects_temp.cwt:226. */
   "set_temp_variable_to_random"(value: string): void;
   /** Sets a temp variable to a random value. CWT: Config/variable_effects_temp.cwt:230. */
@@ -4527,7 +4527,7 @@ export interface GeneratedOperativeEffects {
   /** Sets a variable to a value or another variable. CWT: Config/variable_effects.cwt:3. */
   "set_variable"(value: CwtNode): void;
   /** Sets a variable to a value or another variable. CWT: Config/variable_effects.cwt:37. */
-  "set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Sets a variable to a random value. CWT: Config/variable_effects.cwt:168. */
   "set_variable_to_random"(value: string): void;
   /** Sets a variable to a random value. CWT: Config/variable_effects.cwt:172. */
@@ -4539,11 +4539,11 @@ export interface GeneratedOperativeEffects {
   /** Subtracts a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:133. */
   "subtract_from_temp_variable"(value: CwtNode): void;
   /** Subtracts a value or a variable to a temp variable. CWT: Config/variable_effects_temp.cwt:140. */
-  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Subtracts a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:75. */
   "subtract_from_variable"(value: CwtNode): void;
   /** Subtracts a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:79. */
-  "subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** An operative is turned by the specified country. This transfers the operative to the target country and make it appear as killed to the country of origin (increases the death counter and lock the slot). This fires the on_action on_operative_death with as killer the target country. If the target coun CWT: Config/effects_new.cwt:880. */
   "turn_operative"(value: { "turned_by": CountryRef } | CwtNode): void;
   /**  CWT: Config/effects.cwt:1381. */
@@ -4553,13 +4553,13 @@ export interface GeneratedOperativeEffects {
 }
 export interface GeneratedOperativeTriggers {
   /** Adds an element to a temporary array. CWT: Config/triggers.cwt:1781. */
-  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef; "index"?: "int_variable_field_32" } | CwtNode): boolean;
+  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef; "index"?: number } | CwtNode): boolean;
   /** Adds an element to a temporary array. CWT: Config/triggers.cwt:1800. */
   "add_to_temp_array"(value: CwtNode): boolean;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:71. */
   "add_to_temp_variable"(value: CwtNode): boolean;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:78. */
-  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** ``` } num_of_available_civilian_factories > 5 } name = collection_has_more_than_10_factories operators = { limit = { num_of_civilian_factories > 10 } } input = game:all_countries collection = { all_collection_elements = { ``` Example (anonymous collection): Example: *all_collection_elements = { coll CWT: Config/triggers_ncns.cwt:151. */
   "all_collection_elements"(value: Trigger<ScopeByName["any"]> | CwtNode): boolean;
   /** Check if all countries meets the trigger. CWT: Config/triggers.cwt:223. */
@@ -4609,7 +4609,7 @@ export interface GeneratedOperativeTriggers {
   /** Compares a variable to a number or variable. CWT: Config/triggers.cwt:93. */
   "check_variable"(value: CwtNode): boolean;
   /** Compares a variable to a number or variable. CWT: Config/triggers.cwt:105. */
-  "check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef; "value": string | number | boolean | CountryRef | StateRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
+  "check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef | StateTargetRef; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
   /** Clamps a temp variable between two a values or another variables. CWT: Config/variable_triggers_temp.cwt:190. */
   "clamp_temp_variable"(value: { "var": string; "min"?: number; "max"?: number } | CwtNode): boolean;
   /** Clears the contents of a temporary array. CWT: Config/triggers.cwt:1844. */
@@ -4639,7 +4639,7 @@ export interface GeneratedOperativeTriggers {
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:104. */
   "divide_temp_variable"(value: CwtNode): boolean;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:128. */
-  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
+  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
   /** A conditional trigger. CWT: Config/triggers.cwt:28. */
   "else"(value: CwtNode): boolean;
   /** A conditional trigger. CWT: Config/triggers.cwt:21. */
@@ -4669,7 +4669,7 @@ export interface GeneratedOperativeTriggers {
   /** Checks whether the operative has the specified nationality. NOTE: this is invalid on non-operatives. CWT: Config/triggers_new.cwt:403. */
   "has_nationality"(value: CountryRef): boolean;
   /** Checks if a state contains a railway at or above the specified level. CWT: Config/triggers_nsb.cwt:29. */
-  "has_railway_level"(value: { "level": number; "state": StateRef } | CwtNode): boolean;
+  "has_railway_level"(value: { "level": number; "state": StateRef | StateTargetRef } | CwtNode): boolean;
   /** Compare the initial start date of current game. CWT: Config/triggers.cwt:615. */
   "has_start_date"(value: string): boolean;
   /** Check if sides leader has trait. CWT: Config/triggers.cwt:671. */
@@ -4697,11 +4697,11 @@ export interface GeneratedOperativeTriggers {
   /** Check if the historical focus is active. CWT: Config/triggers.cwt:992. */
   "is_historical_focus_on"(value: boolean): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1762. */
-  "is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+  "is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1769. */
   "is_in_array"(value: CwtNode): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1775. */
-  "is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+  "is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
   /** Check if current game is ironman. CWT: Config/triggers.cwt:611. */
   "is_ironman"(value: boolean): boolean;
   /** Checks if the current character is an operative. CWT: Config/triggers_nsb.cwt:250. */
@@ -4721,7 +4721,7 @@ export interface GeneratedOperativeTriggers {
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:93. */
   "multiply_temp_variable"(value: CwtNode): boolean;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:100. */
-  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /**  CWT: Config/scopes.cwt:34. */
   "NOT"(value: CwtNode): boolean;
   /** Checks whether the operative is performing the given mission. CWT: Config/triggers_new.cwt:225. */
@@ -4733,21 +4733,21 @@ export interface GeneratedOperativeTriggers {
   /** Compares the amount of turns that have passed during the peace conference with a number. CWT: Config/triggers_bba.cwt:175. */
   "pc_turn"(value: number): boolean;
   /** Prints all variables in scope and temp variables to a file. CWT: Config/triggers.cwt:1635. */
-  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
+  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
   /** Randomize a temporary variable. CWT: Config/variable_triggers_temp.cwt:143. */
   "randomize_temp_variable"(value: string): boolean;
   /** Randomize a temporary variable. CWT: Config/variable_triggers_temp.cwt:147. */
   "randomize_temp_variable"(value: { "var": string; "distribution": "uniform" | "binomial"; "min"?: number; "max"?: number; "lambda"?: number } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1811. */
-  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef } | CwtNode): boolean;
+  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1824. */
-  "remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): boolean;
+  "remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1833. */
   "remove_from_temp_array"(value: CwtNode): boolean;
   /** Check amount of reserves. CWT: Config/triggers.cwt:76. */
   "reserves"(value: number): boolean;
   /** Resizes a temp array. CWT: Config/triggers.cwt:1851. */
-  "resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): boolean;
+  "resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): boolean;
   /** Resizes a temp array. CWT: Config/triggers.cwt:1863. */
   "resize_temp_array"(value: CwtNode): boolean;
   /** Rounds a temporary variable. CWT: Config/variable_triggers_temp.cwt:200. */
@@ -4759,7 +4759,7 @@ export interface GeneratedOperativeTriggers {
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:3. */
   "set_temp_variable"(value: CwtNode): boolean;
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:38. */
-  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Sets a temp variable to a random value. CWT: Config/variable_triggers_temp.cwt:174. */
   "set_temp_variable_to_random"(value: string): boolean;
   /** Sets a temp variable to a random value. CWT: Config/variable_triggers_temp.cwt:178. */
@@ -4767,7 +4767,7 @@ export interface GeneratedOperativeTriggers {
   /** Subtracts a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:82. */
   "subtract_from_temp_variable"(value: CwtNode): boolean;
   /** Subtracts a value or a variable to a temp variable. CWT: Config/variable_triggers_temp.cwt:89. */
-  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Check the global threat value. 0-1 value. CWT: Config/triggers.cwt:142. */
   "threat"(value: number): boolean;
   /** ``` } } add_to_temp_variable = { unlock_compare = num_armies } } operators = { faction_members } input = game:scope collection = { all_collection_elements = { set_temp_variable = { unlock_compare = 0 } tooltip_evaluation = eval hidden_trigger = { ``` ```hidden_trigger = { tooltip_evaluation = no_eva CWT: Config/triggers_ncns.cwt:706. */
@@ -4779,11 +4779,11 @@ export interface GeneratedProjectEffects {
   /** Add divisional commander xp to unit CWT: Config/effects_new.cwt:1018. */
   "add_divisional_commander_xp"(value: number): void;
   /** Adds a dynamic modifier to country/state/unit leader. CWT: Config/effects.cwt:3137. */
-  "add_dynamic_modifier"(value: { "modifier": string; "scope"?: CountryRef | StateRef | string | CwtOpaque; "days"?: number } | CwtNode): void;
+  "add_dynamic_modifier"(value: { "modifier": string; "scope"?: CountryRef | StateRef | StateTargetRef | string | CwtOpaque; "days"?: number } | CwtNode): void;
   /** Adds the specified equipment bonuses to the country. As description the given loc key or the name of given special project will be used. Same usage as in Ideas/National spirits CWT: Config/effects_gtd.cwt:120. */
   "add_equipment_bonus"(value: { "name"?: string; "project"?: CwtOpaque; "bonus": CwtNode } | CwtNode): void;
   /** Adds new namespace. CWT: Config/effects.cwt:761. */
-  "add_namespace"(value: string | number | boolean | CountryRef | StateRef): void;
+  "add_namespace"(value: string | number | boolean | CountryRef | StateRef | StateTargetRef): void;
   /** Add progress to the project's prototype phase. nThe input value is a ratio of the total needed progress to complete the special project, i.e. a decimal number between -1 and 1. CWT: Config/effects_gtd.cwt:309. */
   "add_project_progress_ratio"(value: number): void;
   /** Add progress to the project's prototype phase. nThe input value is a ratio of the total needed progress to complete the special project, i.e. a decimal number between -1 and 1. CWT: Config/effects_gtd.cwt:312. */
@@ -4791,23 +4791,23 @@ export interface GeneratedProjectEffects {
   /** Add efficiency factor to strategic region for from country. CWT: Config/effects.cwt:2342. */
   "add_region_efficiency"(value: "replace_me"): void;
   /** Adds either a resistance or compliance modifier to a state. Can only use modifiers from the resistance_modifiers.txt/compliance_modifiers.txt that are marked as is_dynamic = yes CWT: Config/effects_ncns.cwt:154. */
-  "add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+  "add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Adds an element to an array. CWT: Config/effects.cwt:2824. */
-  "add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+  "add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
   /** Adds an element to an array. CWT: Config/effects.cwt:2846. */
   "add_to_array"(value: CwtNode): void;
   /** Adds an element to a temporary array. CWT: Config/effects.cwt:2943. */
-  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
   /** Adds an element to a temporary array. CWT: Config/effects.cwt:2965. */
   "add_to_temp_array"(value: CwtNode): void;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:122. */
   "add_to_temp_variable"(value: CwtNode): void;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:129. */
-  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Adds a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:67. */
   "add_to_variable"(value: CwtNode): void;
   /** Adds a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:71. */
-  "add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Adds victory point to province. CWT: Config/effects_new.cwt:957. */
   "add_victory_points"(value: { "province": number; "value": number } | CwtNode): void;
   /**  CWT: Config/scopes.cwt:51. */
@@ -4823,11 +4823,11 @@ export interface GeneratedProjectEffects {
   /** Starts railway construction for amount of levels in specified state or province. CWT: Config/effects.cwt:878. */
   "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_province": number; "target_province": number; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
   /** Starts railway construction for amount of levels in specified state or province. CWT: Config/effects.cwt:915. */
-  "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef; "target_state": StateRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
+  "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef | StateTargetRef; "target_state": StateRef | StateTargetRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
   /** Clamps a temp variable between two a values or another variables. CWT: Config/variable_effects_temp.cwt:242. */
   "clamp_temp_variable"(value: { "var": string; "min"?: number; "max"?: number } | CwtNode): void;
   /** Clamps a variable between two a values or another variables. CWT: Config/variable_effects.cwt:188. */
-  "clamp_variable"(value: { "var": CwtOpaque; "min"?: number | string; "max"?: number | string } | CwtNode): void;
+  "clamp_variable"(value: { "var": string; "min"?: number | string; "max"?: number | string } | CwtNode): void;
   /** Clears the contents of array. CWT: Config/effects.cwt:2907. */
   "clear_array"(value: string | CwtOpaque): void;
   /** Clear a global event target. CWT: Config/effects.cwt:1364. */
@@ -4841,7 +4841,7 @@ export interface GeneratedProjectEffects {
   /** Clears a variable. The input is NOT validated CWT: Config/variable_effects.cwt:206. */
   "clear_variable"(value: number): void;
   /** Clears a variable. The input is NOT validated CWT: Config/variable_effects.cwt:210. */
-  "clear_variable"(value: CwtOpaque): void;
+  "clear_variable"(value: string): void;
   /** Clear global flag. CWT: Config/effects.cwt:170. */
   "clr_global_flag"(value: string): void;
   /** clear project flag CWT: Config/effects_gtd.cwt:72. */
@@ -4851,7 +4851,7 @@ export interface GeneratedProjectEffects {
   /** Creates a dynamic country and runs child effects on it. CWT: Config/effects_new.cwt:327. */
   "create_dynamic_country"(value: Effect<ScopeByName["country"]> | { limit?: Trigger<ScopeByName["country"]>; effects: Effect<ScopeByName["country"]> } | CwtNode): void;
   /** Creates an enitity Uses the the same coordinate system that the map uses. A positive change in rotation results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. For comparison, default minimum zoom level (closest to the map) is 50 units, while default maximum CWT: Config/effects_nsb.cwt:823. */
-  "create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
+  "create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef | StateTargetRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
   /** Creates a purchase contract between the countries CWT: Config/effects_aat.cwt:253. */
   "create_purchase_contract"(value: { "seller": CountryRef; "buyer": CountryRef; "civilian_factories": number; "equipment": { "type": string; "amount": number } | CwtNode } | CwtNode): void;
   /** Create railway gun effect CWT: Config/effects_nsb.cwt:713. */
@@ -4867,11 +4867,11 @@ export interface GeneratedProjectEffects {
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:155. */
   "divide_temp_variable"(value: CwtNode): void;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:179. */
-  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
   /** Divides a variable to a value or another variable. CWT: Config/variable_effects.cwt:91. */
   "divide_variable"(value: CwtNode): void;
   /** Divides a variable to a value or another variable. CWT: Config/variable_effects.cwt:116. */
-  "divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+  "divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
   /** Shows just tooltip of effects. CWT: Config/effects.cwt:1510. */
   "effect_tooltip"(value: CwtNode): void;
   /** Use after (else_)if for a catch-all case. CWT: Config/effects.cwt:431. */
@@ -4907,7 +4907,7 @@ export interface GeneratedProjectEffects {
   /** Goes to stated province. CWT: Config/effects.cwt:1690. */
   "goto_province"(value: number): void;
   /** Goes to stated state. CWT: Config/effects.cwt:1694. */
-  "goto_state"(value: StateRef): void;
+  "goto_state"(value: StateRef | StateTargetRef): void;
   /** Effect not shown in tooltips. CWT: Config/effects.cwt:3783. */
   "hidden_effect"(value: CwtNode): void;
   /** A conditional effect. CWT: Config/effects.cwt:413. */
@@ -4927,21 +4927,21 @@ export interface GeneratedProjectEffects {
   /** Modulos a variable with another. CWT: Config/variable_effects.cwt:155. */
   "modulo_variable"(value: CwtNode): void;
   /** Modulos a variable with another. CWT: Config/variable_effects.cwt:161. */
-  "modulo_variable"(value: { "var": CwtOpaque; "value": number } | CwtNode): void;
+  "modulo_variable"(value: { "var": string; "value": number } | CwtNode): void;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:144. */
   "multiply_temp_variable"(value: CwtNode): void;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:151. */
-  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Multiplies a variable to a value or another variable. CWT: Config/variable_effects.cwt:83. */
   "multiply_variable"(value: CwtNode): void;
   /** Multiplies a variable to a value or another variable. CWT: Config/variable_effects.cwt:87. */
-  "multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /**  CWT: Config/scopes.cwt:44. */
   "NOT"(value: CwtNode): void;
   /**  CWT: Config/scopes.cwt:52. */
   "OR"(value: CwtNode): void;
   /** Prints all variables in scope and temp variables to a file. CWT: Config/effects.cwt:2572. */
-  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
+  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
   /** Promote the officer of the division to a general scope = unit CWT: Config/effects_gtd.cwt:298. */
   "promote_officer_to_general"(value: boolean): void;
   /** A possible random effect that can occur. CWT: Config/effects.cwt:343. */
@@ -4967,31 +4967,31 @@ export interface GeneratedProjectEffects {
   /** Randomize weather effect. CWT: Config/effects.cwt:570. */
   "randomize_weather"(value: number): void;
   /** Removes a dynamic modifier from country/state/unit leader. CWT: Config/effects.cwt:3103. */
-  "remove_dynamic_modifier"(value: { "modifier": string; "scope"?: CountryRef | StateRef | string | CwtOpaque } | CwtNode): void;
+  "remove_dynamic_modifier"(value: { "modifier": string; "scope"?: CountryRef | StateRef | StateTargetRef | string | CwtOpaque } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2869. */
-  "remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
+  "remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2884. */
-  "remove_from_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+  "remove_from_array"(value: { "array": string; "index": number } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2894. */
   "remove_from_array"(value: CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:2978. */
-  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
+  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:2993. */
-  "remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+  "remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:3003. */
   "remove_from_temp_array"(value: CwtNode): void;
   /** Removes either a resistance or compliance modifier to a state. Can only use modifiers from the resistance_modifiers.txt/compliance_modifiers.txt that are marked as is_dynamic = yes CWT: Config/effects_ncns.cwt:164. */
-  "remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+  "remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
   /**  CWT: Config/effects_nsb.cwt:123. */
   "remove_unit_leader_role"(value: string): void;
   /** Reset name of a province back to localization one. CWT: Config/effects.cwt:2120. */
   "reset_province_name"(value: number): void;
   /** Resizes array. CWT: Config/effects.cwt:2911. */
-  "resize_array"(value: { "array": string; "value"?: number | string; "size": "int_variable_field_32" } | CwtNode): void;
+  "resize_array"(value: { "array": string; "value"?: number | string; "size": number } | CwtNode): void;
   /** Resizes array. CWT: Config/effects.cwt:2928. */
   "resize_array"(value: CwtNode): void;
   /** Resizes a temp array. CWT: Config/effects.cwt:3023. */
-  "resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): void;
+  "resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): void;
   /** Resizes a temp array. CWT: Config/effects.cwt:3035. */
   "resize_temp_array"(value: CwtNode): void;
   /** removes character from all roles and availability CWT: Config/effects_nsb.cwt:397. */
@@ -5001,7 +5001,7 @@ export interface GeneratedProjectEffects {
   /** Rounds a temporary variable. CWT: Config/variable_effects_temp.cwt:252. */
   "round_temp_variable"(value: string): void;
   /** Rounds a variable. CWT: Config/variable_effects.cwt:202. */
-  "round_variable"(value: CwtOpaque): void;
+  "round_variable"(value: string): void;
   /** Save an event target. CWT: Config/effects.cwt:1356. */
   "save_event_target_as"(value: string): void;
   /** Save a global event target. CWT: Config/effects.cwt:1360. */
@@ -5013,7 +5013,7 @@ export interface GeneratedProjectEffects {
   /** Sets the position and rotation of an entity using two coordinates. IDs are set by the create_entity effect. Uses the the same coordinate system that the map uses. A positive change in rotation results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. CWT: Config/effects_nsb.cwt:855. */
   "set_entity_movement"(value: { "id": string; "start": { "x": number; "y": number; "z"?: number } | CwtNode; "target": { "province": number } | CwtNode; "ratio": number; "rotation": number } | CwtNode): void;
   /** Sets the position of an existing entity. IDs are set by the create_entity effect. Uses the the same coordinate system that the map uses. CWT: Config/effects_nsb.cwt:873. */
-  "set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef } | CwtNode): void;
+  "set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Sets the currently-facing angle of an existing entity. IDs are set by the create_entity effect. A positive change results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. CWT: Config/effects_nsb.cwt:887. */
   "set_entity_rotation"(value: { "id": string; "rotation": number } | CwtNode): void;
   /** Sets the size of an existing entity. IDs are set by the create_entity effect. CWT: Config/effects_nsb.cwt:895. */
@@ -5035,7 +5035,7 @@ export interface GeneratedProjectEffects {
   /** # TEMP VARIABLE Sets a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:53. */
   "set_temp_variable"(value: CwtNode): void;
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:88. */
-  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Sets a temp variable to a random value. CWT: Config/variable_effects_temp.cwt:226. */
   "set_temp_variable_to_random"(value: string): void;
   /** Sets a temp variable to a random value. CWT: Config/variable_effects_temp.cwt:230. */
@@ -5043,7 +5043,7 @@ export interface GeneratedProjectEffects {
   /** Sets a variable to a value or another variable. CWT: Config/variable_effects.cwt:3. */
   "set_variable"(value: CwtNode): void;
   /** Sets a variable to a value or another variable. CWT: Config/variable_effects.cwt:37. */
-  "set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Sets a variable to a random value. CWT: Config/variable_effects.cwt:168. */
   "set_variable_to_random"(value: string): void;
   /** Sets a variable to a random value. CWT: Config/variable_effects.cwt:172. */
@@ -5055,11 +5055,11 @@ export interface GeneratedProjectEffects {
   /** Subtracts a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:133. */
   "subtract_from_temp_variable"(value: CwtNode): void;
   /** Subtracts a value or a variable to a temp variable. CWT: Config/variable_effects_temp.cwt:140. */
-  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Subtracts a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:75. */
   "subtract_from_variable"(value: CwtNode): void;
   /** Subtracts a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:79. */
-  "subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /**  CWT: Config/effects.cwt:1381. */
   "unlock_national_focus"(value: string): void;
   /** Runs the effect as long as a trigger is true. Warning: will stop after reaching MAX_EFFECT_ITERATION define iterations - default 1000. CWT: Config/effects.cwt:3200. */
@@ -5067,13 +5067,13 @@ export interface GeneratedProjectEffects {
 }
 export interface GeneratedProjectTriggers {
   /** Adds an element to a temporary array. CWT: Config/triggers.cwt:1781. */
-  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef; "index"?: "int_variable_field_32" } | CwtNode): boolean;
+  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef; "index"?: number } | CwtNode): boolean;
   /** Adds an element to a temporary array. CWT: Config/triggers.cwt:1800. */
   "add_to_temp_array"(value: CwtNode): boolean;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:71. */
   "add_to_temp_variable"(value: CwtNode): boolean;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:78. */
-  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** ``` } num_of_available_civilian_factories > 5 } name = collection_has_more_than_10_factories operators = { limit = { num_of_civilian_factories > 10 } } input = game:all_countries collection = { all_collection_elements = { ``` Example (anonymous collection): Example: *all_collection_elements = { coll CWT: Config/triggers_ncns.cwt:151. */
   "all_collection_elements"(value: Trigger<ScopeByName["any"]> | CwtNode): boolean;
   /** Check if all countries meets the trigger. CWT: Config/triggers.cwt:223. */
@@ -5123,7 +5123,7 @@ export interface GeneratedProjectTriggers {
   /** Compares a variable to a number or variable. CWT: Config/triggers.cwt:93. */
   "check_variable"(value: CwtNode): boolean;
   /** Compares a variable to a number or variable. CWT: Config/triggers.cwt:105. */
-  "check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef; "value": string | number | boolean | CountryRef | StateRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
+  "check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef | StateTargetRef; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
   /** Clamps a temp variable between two a values or another variables. CWT: Config/variable_triggers_temp.cwt:190. */
   "clamp_temp_variable"(value: { "var": string; "min"?: number; "max"?: number } | CwtNode): boolean;
   /** Clears the contents of a temporary array. CWT: Config/triggers.cwt:1844. */
@@ -5153,7 +5153,7 @@ export interface GeneratedProjectTriggers {
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:104. */
   "divide_temp_variable"(value: CwtNode): boolean;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:128. */
-  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
+  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
   /** A conditional trigger. CWT: Config/triggers.cwt:28. */
   "else"(value: CwtNode): boolean;
   /** A conditional trigger. CWT: Config/triggers.cwt:21. */
@@ -5185,7 +5185,7 @@ export interface GeneratedProjectTriggers {
   /** Check if flag has been set within the special project in scope. May checks on the value or date/days since last modified date. CWT: Config/triggers_gtd.cwt:31. */
   "has_project_flag"(value: { "flag": string; "value"?: number; "date"?: string; "days"?: number } | CwtNode): boolean;
   /** Checks if a state contains a railway at or above the specified level. CWT: Config/triggers_nsb.cwt:29. */
-  "has_railway_level"(value: { "level": number; "state": StateRef } | CwtNode): boolean;
+  "has_railway_level"(value: { "level": number; "state": StateRef | StateTargetRef } | CwtNode): boolean;
   /** Compare the initial start date of current game. CWT: Config/triggers.cwt:615. */
   "has_start_date"(value: string): boolean;
   /** Checks if a variable exists in a scope. CWT: Config/triggers.cwt:1550. */
@@ -5207,11 +5207,11 @@ export interface GeneratedProjectTriggers {
   /** Check if the historical focus is active. CWT: Config/triggers.cwt:992. */
   "is_historical_focus_on"(value: boolean): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1762. */
-  "is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+  "is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1769. */
   "is_in_array"(value: CwtNode): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1775. */
-  "is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+  "is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
   /** Check if current game is ironman. CWT: Config/triggers.cwt:611. */
   "is_ironman"(value: boolean): boolean;
   /** Check if the tutorial is active. CWT: Config/triggers.cwt:988. */
@@ -5227,7 +5227,7 @@ export interface GeneratedProjectTriggers {
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:93. */
   "multiply_temp_variable"(value: CwtNode): boolean;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:100. */
-  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /**  CWT: Config/scopes.cwt:34. */
   "NOT"(value: CwtNode): boolean;
   /**  CWT: Config/scopes.cwt:42. */
@@ -5235,21 +5235,21 @@ export interface GeneratedProjectTriggers {
   /** Compares the amount of turns that have passed during the peace conference with a number. CWT: Config/triggers_bba.cwt:175. */
   "pc_turn"(value: number): boolean;
   /** Prints all variables in scope and temp variables to a file. CWT: Config/triggers.cwt:1635. */
-  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
+  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
   /** Randomize a temporary variable. CWT: Config/variable_triggers_temp.cwt:143. */
   "randomize_temp_variable"(value: string): boolean;
   /** Randomize a temporary variable. CWT: Config/variable_triggers_temp.cwt:147. */
   "randomize_temp_variable"(value: { "var": string; "distribution": "uniform" | "binomial"; "min"?: number; "max"?: number; "lambda"?: number } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1811. */
-  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef } | CwtNode): boolean;
+  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1824. */
-  "remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): boolean;
+  "remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1833. */
   "remove_from_temp_array"(value: CwtNode): boolean;
   /** Check amount of reserves. CWT: Config/triggers.cwt:76. */
   "reserves"(value: number): boolean;
   /** Resizes a temp array. CWT: Config/triggers.cwt:1851. */
-  "resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): boolean;
+  "resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): boolean;
   /** Resizes a temp array. CWT: Config/triggers.cwt:1863. */
   "resize_temp_array"(value: CwtNode): boolean;
   /** Rounds a temporary variable. CWT: Config/variable_triggers_temp.cwt:200. */
@@ -5261,7 +5261,7 @@ export interface GeneratedProjectTriggers {
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:3. */
   "set_temp_variable"(value: CwtNode): boolean;
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:38. */
-  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Sets a temp variable to a random value. CWT: Config/variable_triggers_temp.cwt:174. */
   "set_temp_variable_to_random"(value: string): boolean;
   /** Sets a temp variable to a random value. CWT: Config/variable_triggers_temp.cwt:178. */
@@ -5269,7 +5269,7 @@ export interface GeneratedProjectTriggers {
   /** Subtracts a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:82. */
   "subtract_from_temp_variable"(value: CwtNode): boolean;
   /** Subtracts a value or a variable to a temp variable. CWT: Config/variable_triggers_temp.cwt:89. */
-  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Check the global threat value. 0-1 value. CWT: Config/triggers.cwt:142. */
   "threat"(value: number): boolean;
   /** ``` } } add_to_temp_variable = { unlock_compare = num_armies } } operators = { faction_members } input = game:scope collection = { all_collection_elements = { set_temp_variable = { unlock_compare = 0 } tooltip_evaluation = eval hidden_trigger = { ``` ```hidden_trigger = { tooltip_evaluation = no_eva CWT: Config/triggers_ncns.cwt:706. */
@@ -5283,27 +5283,27 @@ export interface GeneratedCombatEffects {
   /** Adds the specified equipment bonuses to the country. As description the given loc key or the name of given special project will be used. Same usage as in Ideas/National spirits CWT: Config/effects_gtd.cwt:120. */
   "add_equipment_bonus"(value: { "name"?: string; "project"?: CwtOpaque; "bonus": CwtNode } | CwtNode): void;
   /** Adds new namespace. CWT: Config/effects.cwt:761. */
-  "add_namespace"(value: string | number | boolean | CountryRef | StateRef): void;
+  "add_namespace"(value: string | number | boolean | CountryRef | StateRef | StateTargetRef): void;
   /** Add efficiency factor to strategic region for from country. CWT: Config/effects.cwt:2342. */
   "add_region_efficiency"(value: "replace_me"): void;
   /** Adds either a resistance or compliance modifier to a state. Can only use modifiers from the resistance_modifiers.txt/compliance_modifiers.txt that are marked as is_dynamic = yes CWT: Config/effects_ncns.cwt:154. */
-  "add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+  "add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Adds an element to an array. CWT: Config/effects.cwt:2824. */
-  "add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+  "add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
   /** Adds an element to an array. CWT: Config/effects.cwt:2846. */
   "add_to_array"(value: CwtNode): void;
   /** Adds an element to a temporary array. CWT: Config/effects.cwt:2943. */
-  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
   /** Adds an element to a temporary array. CWT: Config/effects.cwt:2965. */
   "add_to_temp_array"(value: CwtNode): void;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:122. */
   "add_to_temp_variable"(value: CwtNode): void;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:129. */
-  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Adds a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:67. */
   "add_to_variable"(value: CwtNode): void;
   /** Adds a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:71. */
-  "add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Adds victory point to province. CWT: Config/effects_new.cwt:957. */
   "add_victory_points"(value: { "province": number; "value": number } | CwtNode): void;
   /**  CWT: Config/scopes.cwt:51. */
@@ -5319,11 +5319,11 @@ export interface GeneratedCombatEffects {
   /** Starts railway construction for amount of levels in specified state or province. CWT: Config/effects.cwt:878. */
   "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_province": number; "target_province": number; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
   /** Starts railway construction for amount of levels in specified state or province. CWT: Config/effects.cwt:915. */
-  "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef; "target_state": StateRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
+  "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef | StateTargetRef; "target_state": StateRef | StateTargetRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
   /** Clamps a temp variable between two a values or another variables. CWT: Config/variable_effects_temp.cwt:242. */
   "clamp_temp_variable"(value: { "var": string; "min"?: number; "max"?: number } | CwtNode): void;
   /** Clamps a variable between two a values or another variables. CWT: Config/variable_effects.cwt:188. */
-  "clamp_variable"(value: { "var": CwtOpaque; "min"?: number | string; "max"?: number | string } | CwtNode): void;
+  "clamp_variable"(value: { "var": string; "min"?: number | string; "max"?: number | string } | CwtNode): void;
   /** Clears the contents of array. CWT: Config/effects.cwt:2907. */
   "clear_array"(value: string | CwtOpaque): void;
   /** Clear a global event target. CWT: Config/effects.cwt:1364. */
@@ -5337,13 +5337,13 @@ export interface GeneratedCombatEffects {
   /** Clears a variable. The input is NOT validated CWT: Config/variable_effects.cwt:206. */
   "clear_variable"(value: number): void;
   /** Clears a variable. The input is NOT validated CWT: Config/variable_effects.cwt:210. */
-  "clear_variable"(value: CwtOpaque): void;
+  "clear_variable"(value: string): void;
   /** Clear global flag. CWT: Config/effects.cwt:170. */
   "clr_global_flag"(value: string): void;
   /** Creates a dynamic country and runs child effects on it. CWT: Config/effects_new.cwt:327. */
   "create_dynamic_country"(value: Effect<ScopeByName["country"]> | { limit?: Trigger<ScopeByName["country"]>; effects: Effect<ScopeByName["country"]> } | CwtNode): void;
   /** Creates an enitity Uses the the same coordinate system that the map uses. A positive change in rotation results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. For comparison, default minimum zoom level (closest to the map) is 50 units, while default maximum CWT: Config/effects_nsb.cwt:823. */
-  "create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
+  "create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef | StateTargetRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
   /** Creates a purchase contract between the countries CWT: Config/effects_aat.cwt:253. */
   "create_purchase_contract"(value: { "seller": CountryRef; "buyer": CountryRef; "civilian_factories": number; "equipment": { "type": string; "amount": number } | CwtNode } | CwtNode): void;
   /** Create railway gun effect CWT: Config/effects_nsb.cwt:713. */
@@ -5359,11 +5359,11 @@ export interface GeneratedCombatEffects {
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:155. */
   "divide_temp_variable"(value: CwtNode): void;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:179. */
-  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
   /** Divides a variable to a value or another variable. CWT: Config/variable_effects.cwt:91. */
   "divide_variable"(value: CwtNode): void;
   /** Divides a variable to a value or another variable. CWT: Config/variable_effects.cwt:116. */
-  "divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+  "divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
   /** Shows just tooltip of effects. CWT: Config/effects.cwt:1510. */
   "effect_tooltip"(value: CwtNode): void;
   /** Use after (else_)if for a catch-all case. CWT: Config/effects.cwt:431. */
@@ -5397,7 +5397,7 @@ export interface GeneratedCombatEffects {
   /** Goes to stated province. CWT: Config/effects.cwt:1690. */
   "goto_province"(value: number): void;
   /** Goes to stated state. CWT: Config/effects.cwt:1694. */
-  "goto_state"(value: StateRef): void;
+  "goto_state"(value: StateRef | StateTargetRef): void;
   /** Effect not shown in tooltips. CWT: Config/effects.cwt:3783. */
   "hidden_effect"(value: CwtNode): void;
   /** A conditional effect. CWT: Config/effects.cwt:413. */
@@ -5415,21 +5415,21 @@ export interface GeneratedCombatEffects {
   /** Modulos a variable with another. CWT: Config/variable_effects.cwt:155. */
   "modulo_variable"(value: CwtNode): void;
   /** Modulos a variable with another. CWT: Config/variable_effects.cwt:161. */
-  "modulo_variable"(value: { "var": CwtOpaque; "value": number } | CwtNode): void;
+  "modulo_variable"(value: { "var": string; "value": number } | CwtNode): void;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:144. */
   "multiply_temp_variable"(value: CwtNode): void;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:151. */
-  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Multiplies a variable to a value or another variable. CWT: Config/variable_effects.cwt:83. */
   "multiply_variable"(value: CwtNode): void;
   /** Multiplies a variable to a value or another variable. CWT: Config/variable_effects.cwt:87. */
-  "multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /**  CWT: Config/scopes.cwt:44. */
   "NOT"(value: CwtNode): void;
   /**  CWT: Config/scopes.cwt:52. */
   "OR"(value: CwtNode): void;
   /** Prints all variables in scope and temp variables to a file. CWT: Config/effects.cwt:2572. */
-  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
+  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
   /** Promote the officer of the division to a general scope = unit CWT: Config/effects_gtd.cwt:298. */
   "promote_officer_to_general"(value: boolean): void;
   /** A possible random effect that can occur. CWT: Config/effects.cwt:343. */
@@ -5455,29 +5455,29 @@ export interface GeneratedCombatEffects {
   /** Randomize weather effect. CWT: Config/effects.cwt:570. */
   "randomize_weather"(value: number): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2869. */
-  "remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
+  "remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2884. */
-  "remove_from_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+  "remove_from_array"(value: { "array": string; "index": number } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2894. */
   "remove_from_array"(value: CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:2978. */
-  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
+  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:2993. */
-  "remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+  "remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:3003. */
   "remove_from_temp_array"(value: CwtNode): void;
   /** Removes either a resistance or compliance modifier to a state. Can only use modifiers from the resistance_modifiers.txt/compliance_modifiers.txt that are marked as is_dynamic = yes CWT: Config/effects_ncns.cwt:164. */
-  "remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+  "remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
   /**  CWT: Config/effects_nsb.cwt:123. */
   "remove_unit_leader_role"(value: string): void;
   /** Reset name of a province back to localization one. CWT: Config/effects.cwt:2120. */
   "reset_province_name"(value: number): void;
   /** Resizes array. CWT: Config/effects.cwt:2911. */
-  "resize_array"(value: { "array": string; "value"?: number | string; "size": "int_variable_field_32" } | CwtNode): void;
+  "resize_array"(value: { "array": string; "value"?: number | string; "size": number } | CwtNode): void;
   /** Resizes array. CWT: Config/effects.cwt:2928. */
   "resize_array"(value: CwtNode): void;
   /** Resizes a temp array. CWT: Config/effects.cwt:3023. */
-  "resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): void;
+  "resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): void;
   /** Resizes a temp array. CWT: Config/effects.cwt:3035. */
   "resize_temp_array"(value: CwtNode): void;
   /** removes character from all roles and availability CWT: Config/effects_nsb.cwt:397. */
@@ -5487,7 +5487,7 @@ export interface GeneratedCombatEffects {
   /** Rounds a temporary variable. CWT: Config/variable_effects_temp.cwt:252. */
   "round_temp_variable"(value: string): void;
   /** Rounds a variable. CWT: Config/variable_effects.cwt:202. */
-  "round_variable"(value: CwtOpaque): void;
+  "round_variable"(value: string): void;
   /** Save an event target. CWT: Config/effects.cwt:1356. */
   "save_event_target_as"(value: string): void;
   /** Save a global event target. CWT: Config/effects.cwt:1360. */
@@ -5499,7 +5499,7 @@ export interface GeneratedCombatEffects {
   /** Sets the position and rotation of an entity using two coordinates. IDs are set by the create_entity effect. Uses the the same coordinate system that the map uses. A positive change in rotation results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. CWT: Config/effects_nsb.cwt:855. */
   "set_entity_movement"(value: { "id": string; "start": { "x": number; "y": number; "z"?: number } | CwtNode; "target": { "province": number } | CwtNode; "ratio": number; "rotation": number } | CwtNode): void;
   /** Sets the position of an existing entity. IDs are set by the create_entity effect. Uses the the same coordinate system that the map uses. CWT: Config/effects_nsb.cwt:873. */
-  "set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef } | CwtNode): void;
+  "set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Sets the currently-facing angle of an existing entity. IDs are set by the create_entity effect. A positive change results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. CWT: Config/effects_nsb.cwt:887. */
   "set_entity_rotation"(value: { "id": string; "rotation": number } | CwtNode): void;
   /** Sets the size of an existing entity. IDs are set by the create_entity effect. CWT: Config/effects_nsb.cwt:895. */
@@ -5517,7 +5517,7 @@ export interface GeneratedCombatEffects {
   /** # TEMP VARIABLE Sets a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:53. */
   "set_temp_variable"(value: CwtNode): void;
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:88. */
-  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Sets a temp variable to a random value. CWT: Config/variable_effects_temp.cwt:226. */
   "set_temp_variable_to_random"(value: string): void;
   /** Sets a temp variable to a random value. CWT: Config/variable_effects_temp.cwt:230. */
@@ -5525,7 +5525,7 @@ export interface GeneratedCombatEffects {
   /** Sets a variable to a value or another variable. CWT: Config/variable_effects.cwt:3. */
   "set_variable"(value: CwtNode): void;
   /** Sets a variable to a value or another variable. CWT: Config/variable_effects.cwt:37. */
-  "set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Sets a variable to a random value. CWT: Config/variable_effects.cwt:168. */
   "set_variable_to_random"(value: string): void;
   /** Sets a variable to a random value. CWT: Config/variable_effects.cwt:172. */
@@ -5537,11 +5537,11 @@ export interface GeneratedCombatEffects {
   /** Subtracts a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:133. */
   "subtract_from_temp_variable"(value: CwtNode): void;
   /** Subtracts a value or a variable to a temp variable. CWT: Config/variable_effects_temp.cwt:140. */
-  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Subtracts a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:75. */
   "subtract_from_variable"(value: CwtNode): void;
   /** Subtracts a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:79. */
-  "subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Give supply to units being controlled by this leader. CWT: Config/effects.cwt:3291. */
   "supply_units"(value: number): void;
   /**  CWT: Config/effects.cwt:1381. */
@@ -5551,13 +5551,13 @@ export interface GeneratedCombatEffects {
 }
 export interface GeneratedCombatTriggers {
   /** Adds an element to a temporary array. CWT: Config/triggers.cwt:1781. */
-  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef; "index"?: "int_variable_field_32" } | CwtNode): boolean;
+  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef; "index"?: number } | CwtNode): boolean;
   /** Adds an element to a temporary array. CWT: Config/triggers.cwt:1800. */
   "add_to_temp_array"(value: CwtNode): boolean;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:71. */
   "add_to_temp_variable"(value: CwtNode): boolean;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:78. */
-  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** ``` } num_of_available_civilian_factories > 5 } name = collection_has_more_than_10_factories operators = { limit = { num_of_civilian_factories > 10 } } input = game:all_countries collection = { all_collection_elements = { ``` Example (anonymous collection): Example: *all_collection_elements = { coll CWT: Config/triggers_ncns.cwt:151. */
   "all_collection_elements"(value: Trigger<ScopeByName["any"]> | CwtNode): boolean;
   /** Check if all countries meets the trigger. CWT: Config/triggers.cwt:223. */
@@ -5615,7 +5615,7 @@ export interface GeneratedCombatTriggers {
   /** Compares a variable to a number or variable. CWT: Config/triggers.cwt:93. */
   "check_variable"(value: CwtNode): boolean;
   /** Compares a variable to a number or variable. CWT: Config/triggers.cwt:105. */
-  "check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef; "value": string | number | boolean | CountryRef | StateRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
+  "check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef | StateTargetRef; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
   /** Clamps a temp variable between two a values or another variables. CWT: Config/variable_triggers_temp.cwt:190. */
   "clamp_temp_variable"(value: { "var": string; "min"?: number; "max"?: number } | CwtNode): boolean;
   /** Clears the contents of a temporary array. CWT: Config/triggers.cwt:1844. */
@@ -5649,7 +5649,7 @@ export interface GeneratedCombatTriggers {
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:104. */
   "divide_temp_variable"(value: CwtNode): boolean;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:128. */
-  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
+  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
   /** A conditional trigger. CWT: Config/triggers.cwt:28. */
   "else"(value: CwtNode): boolean;
   /** A conditional trigger. CWT: Config/triggers.cwt:21. */
@@ -5701,7 +5701,7 @@ export interface GeneratedCombatTriggers {
   /** Check if side has maximal planning bonus. CWT: Config/triggers.cwt:851. */
   "has_max_planning"(value: boolean): boolean;
   /** Checks if a state contains a railway at or above the specified level. CWT: Config/triggers_nsb.cwt:29. */
-  "has_railway_level"(value: { "level": number; "state": StateRef } | CwtNode): boolean;
+  "has_railway_level"(value: { "level": number; "state": StateRef | StateTargetRef } | CwtNode): boolean;
   /** Check if side has reserves waiting. CWT: Config/triggers.cwt:683. */
   "has_reserves"(value: boolean): boolean;
   /** Compare the initial start date of current game. CWT: Config/triggers.cwt:615. */
@@ -5745,15 +5745,15 @@ export interface GeneratedCombatTriggers {
   /** Check what terrain is in combat. CWT: Config/triggers.cwt:579. */
   "is_fighting_in_terrain"(value: string): boolean;
   /** Checks the weather on a combat. CWT: Config/triggers.cwt:2090. */
-  "is_fighting_in_weather"(value: string | number | boolean | CountryRef | StateRef): boolean;
+  "is_fighting_in_weather"(value: string | number | boolean | CountryRef | StateRef | StateTargetRef): boolean;
   /** Check if the historical focus is active. CWT: Config/triggers.cwt:992. */
   "is_historical_focus_on"(value: boolean): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1762. */
-  "is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+  "is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1769. */
   "is_in_array"(value: CwtNode): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1775. */
-  "is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+  "is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
   /** Check if current game is ironman. CWT: Config/triggers.cwt:611. */
   "is_ironman"(value: boolean): boolean;
   /** Is_leading_army = yes/no - Checks if the current unit leader is leading a single army (not army group). CWT: Config/triggers.cwt:1631. */
@@ -5781,7 +5781,7 @@ export interface GeneratedCombatTriggers {
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:93. */
   "multiply_temp_variable"(value: CwtNode): boolean;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:100. */
-  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Check if combat is at night. CWT: Config/triggers.cwt:232. */
   "night"(value: boolean): boolean;
   /**  CWT: Config/scopes.cwt:34. */
@@ -5801,7 +5801,7 @@ export interface GeneratedCombatTriggers {
   /** Compares planning skill level of a unit leader. CWT: Config/triggers.cwt:1623. */
   "planning_skill_level"(value: number): boolean;
   /** Prints all variables in scope and temp variables to a file. CWT: Config/triggers.cwt:1635. */
-  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
+  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
   /** Check if the victory points of the combatants province is larger or less than the provinded amount. CWT: Config/triggers_gtd.cwt:144. */
   "province_vp"(value: number): boolean;
   /** Randomize a temporary variable. CWT: Config/variable_triggers_temp.cwt:143. */
@@ -5811,15 +5811,15 @@ export interface GeneratedCombatTriggers {
   /** Checks if side has an advantage in recon level. CWT: Config/triggers.cwt:599. */
   "recon_advantage"(value: boolean): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1811. */
-  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef } | CwtNode): boolean;
+  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1824. */
-  "remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): boolean;
+  "remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1833. */
   "remove_from_temp_array"(value: CwtNode): boolean;
   /** Check amount of reserves. CWT: Config/triggers.cwt:76. */
   "reserves"(value: number): boolean;
   /** Resizes a temp array. CWT: Config/triggers.cwt:1851. */
-  "resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): boolean;
+  "resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): boolean;
   /** Resizes a temp array. CWT: Config/triggers.cwt:1863. */
   "resize_temp_array"(value: CwtNode): boolean;
   /** Rounds a temporary variable. CWT: Config/variable_triggers_temp.cwt:200. */
@@ -5831,7 +5831,7 @@ export interface GeneratedCombatTriggers {
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:3. */
   "set_temp_variable"(value: CwtNode): boolean;
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:38. */
-  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Sets a temp variable to a random value. CWT: Config/variable_triggers_temp.cwt:174. */
   "set_temp_variable_to_random"(value: string): boolean;
   /** Sets a temp variable to a random value. CWT: Config/variable_triggers_temp.cwt:178. */
@@ -5843,7 +5843,7 @@ export interface GeneratedCombatTriggers {
   /** Subtracts a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:82. */
   "subtract_from_temp_variable"(value: CwtNode): boolean;
   /** Subtracts a value or a variable to a temp variable. CWT: Config/variable_triggers_temp.cwt:89. */
-  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Country tag trigger. CWT: Config/triggers.cwt:80. */
   "tag"(value: CountryRef): boolean;
   /** Check combat province temperature. CWT: Config/triggers.cwt:240. */
@@ -5879,27 +5879,27 @@ export interface GeneratedMilitaryIndustrialOrganizationEffects {
   /** Add to the maximum task capacity in the military industrial organization in scope. This changes the base value. Modifiers will still apply over it. Value can be negative to reduce capacity, but final capacity cannot be negative (capped at 0, no error raised). If the capacity is reduced and the MIO b CWT: Config/effects_aat.cwt:231. */
   "add_mio_task_capacity"(value: number): void;
   /** Adds new namespace. CWT: Config/effects.cwt:761. */
-  "add_namespace"(value: string | number | boolean | CountryRef | StateRef): void;
+  "add_namespace"(value: string | number | boolean | CountryRef | StateRef | StateTargetRef): void;
   /** Add efficiency factor to strategic region for from country. CWT: Config/effects.cwt:2342. */
   "add_region_efficiency"(value: "replace_me"): void;
   /** Adds either a resistance or compliance modifier to a state. Can only use modifiers from the resistance_modifiers.txt/compliance_modifiers.txt that are marked as is_dynamic = yes CWT: Config/effects_ncns.cwt:154. */
-  "add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+  "add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Adds an element to an array. CWT: Config/effects.cwt:2824. */
-  "add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+  "add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
   /** Adds an element to an array. CWT: Config/effects.cwt:2846. */
   "add_to_array"(value: CwtNode): void;
   /** Adds an element to a temporary array. CWT: Config/effects.cwt:2943. */
-  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
   /** Adds an element to a temporary array. CWT: Config/effects.cwt:2965. */
   "add_to_temp_array"(value: CwtNode): void;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:122. */
   "add_to_temp_variable"(value: CwtNode): void;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:129. */
-  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Adds a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:67. */
   "add_to_variable"(value: CwtNode): void;
   /** Adds a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:71. */
-  "add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Adds victory point to province. CWT: Config/effects_new.cwt:957. */
   "add_victory_points"(value: { "province": number; "value": number } | CwtNode): void;
   /**  CWT: Config/scopes.cwt:51. */
@@ -5915,11 +5915,11 @@ export interface GeneratedMilitaryIndustrialOrganizationEffects {
   /** Starts railway construction for amount of levels in specified state or province. CWT: Config/effects.cwt:878. */
   "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_province": number; "target_province": number; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
   /** Starts railway construction for amount of levels in specified state or province. CWT: Config/effects.cwt:915. */
-  "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef; "target_state": StateRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
+  "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef | StateTargetRef; "target_state": StateRef | StateTargetRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
   /** Clamps a temp variable between two a values or another variables. CWT: Config/variable_effects_temp.cwt:242. */
   "clamp_temp_variable"(value: { "var": string; "min"?: number; "max"?: number } | CwtNode): void;
   /** Clamps a variable between two a values or another variables. CWT: Config/variable_effects.cwt:188. */
-  "clamp_variable"(value: { "var": CwtOpaque; "min"?: number | string; "max"?: number | string } | CwtNode): void;
+  "clamp_variable"(value: { "var": string; "min"?: number | string; "max"?: number | string } | CwtNode): void;
   /** Clears the contents of array. CWT: Config/effects.cwt:2907. */
   "clear_array"(value: string | CwtOpaque): void;
   /** Clear a global event target. CWT: Config/effects.cwt:1364. */
@@ -5933,7 +5933,7 @@ export interface GeneratedMilitaryIndustrialOrganizationEffects {
   /** Clears a variable. The input is NOT validated CWT: Config/variable_effects.cwt:206. */
   "clear_variable"(value: number): void;
   /** Clears a variable. The input is NOT validated CWT: Config/variable_effects.cwt:210. */
-  "clear_variable"(value: CwtOpaque): void;
+  "clear_variable"(value: string): void;
   /** Clear global flag. CWT: Config/effects.cwt:170. */
   "clr_global_flag"(value: string): void;
   /** Clear the matching flag in the military industrial organization in scope CWT: Config/effects_aat.cwt:219. */
@@ -5945,7 +5945,7 @@ export interface GeneratedMilitaryIndustrialOrganizationEffects {
   /** Creates a dynamic country and runs child effects on it. CWT: Config/effects_new.cwt:327. */
   "create_dynamic_country"(value: Effect<ScopeByName["country"]> | { limit?: Trigger<ScopeByName["country"]>; effects: Effect<ScopeByName["country"]> } | CwtNode): void;
   /** Creates an enitity Uses the the same coordinate system that the map uses. A positive change in rotation results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. For comparison, default minimum zoom level (closest to the map) is 50 units, while default maximum CWT: Config/effects_nsb.cwt:823. */
-  "create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
+  "create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef | StateTargetRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
   /** Creates a purchase contract between the countries CWT: Config/effects_aat.cwt:253. */
   "create_purchase_contract"(value: { "seller": CountryRef; "buyer": CountryRef; "civilian_factories": number; "equipment": { "type": string; "amount": number } | CwtNode } | CwtNode): void;
   /** Create railway gun effect CWT: Config/effects_nsb.cwt:713. */
@@ -5961,11 +5961,11 @@ export interface GeneratedMilitaryIndustrialOrganizationEffects {
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:155. */
   "divide_temp_variable"(value: CwtNode): void;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:179. */
-  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
   /** Divides a variable to a value or another variable. CWT: Config/variable_effects.cwt:91. */
   "divide_variable"(value: CwtNode): void;
   /** Divides a variable to a value or another variable. CWT: Config/variable_effects.cwt:116. */
-  "divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+  "divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
   /** Shows just tooltip of effects. CWT: Config/effects.cwt:1510. */
   "effect_tooltip"(value: CwtNode): void;
   /** Use after (else_)if for a catch-all case. CWT: Config/effects.cwt:431. */
@@ -5999,7 +5999,7 @@ export interface GeneratedMilitaryIndustrialOrganizationEffects {
   /** Goes to stated province. CWT: Config/effects.cwt:1690. */
   "goto_province"(value: number): void;
   /** Goes to stated state. CWT: Config/effects.cwt:1694. */
-  "goto_state"(value: StateRef): void;
+  "goto_state"(value: StateRef | StateTargetRef): void;
   /** Effect not shown in tooltips. CWT: Config/effects.cwt:3783. */
   "hidden_effect"(value: CwtNode): void;
   /** A conditional effect. CWT: Config/effects.cwt:413. */
@@ -6019,21 +6019,21 @@ export interface GeneratedMilitaryIndustrialOrganizationEffects {
   /** Modulos a variable with another. CWT: Config/variable_effects.cwt:155. */
   "modulo_variable"(value: CwtNode): void;
   /** Modulos a variable with another. CWT: Config/variable_effects.cwt:161. */
-  "modulo_variable"(value: { "var": CwtOpaque; "value": number } | CwtNode): void;
+  "modulo_variable"(value: { "var": string; "value": number } | CwtNode): void;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:144. */
   "multiply_temp_variable"(value: CwtNode): void;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:151. */
-  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Multiplies a variable to a value or another variable. CWT: Config/variable_effects.cwt:83. */
   "multiply_variable"(value: CwtNode): void;
   /** Multiplies a variable to a value or another variable. CWT: Config/variable_effects.cwt:87. */
-  "multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /**  CWT: Config/scopes.cwt:44. */
   "NOT"(value: CwtNode): void;
   /**  CWT: Config/scopes.cwt:52. */
   "OR"(value: CwtNode): void;
   /** Prints all variables in scope and temp variables to a file. CWT: Config/effects.cwt:2572. */
-  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
+  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
   /** Promote the officer of the division to a general scope = unit CWT: Config/effects_gtd.cwt:298. */
   "promote_officer_to_general"(value: boolean): void;
   /** A possible random effect that can occur. CWT: Config/effects.cwt:343. */
@@ -6059,29 +6059,29 @@ export interface GeneratedMilitaryIndustrialOrganizationEffects {
   /** Randomize weather effect. CWT: Config/effects.cwt:570. */
   "randomize_weather"(value: number): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2869. */
-  "remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
+  "remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2884. */
-  "remove_from_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+  "remove_from_array"(value: { "array": string; "index": number } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2894. */
   "remove_from_array"(value: CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:2978. */
-  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
+  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:2993. */
-  "remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+  "remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:3003. */
   "remove_from_temp_array"(value: CwtNode): void;
   /** Removes either a resistance or compliance modifier to a state. Can only use modifiers from the resistance_modifiers.txt/compliance_modifiers.txt that are marked as is_dynamic = yes CWT: Config/effects_ncns.cwt:164. */
-  "remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+  "remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
   /**  CWT: Config/effects_nsb.cwt:123. */
   "remove_unit_leader_role"(value: string): void;
   /** Reset name of a province back to localization one. CWT: Config/effects.cwt:2120. */
   "reset_province_name"(value: number): void;
   /** Resizes array. CWT: Config/effects.cwt:2911. */
-  "resize_array"(value: { "array": string; "value"?: number | string; "size": "int_variable_field_32" } | CwtNode): void;
+  "resize_array"(value: { "array": string; "value"?: number | string; "size": number } | CwtNode): void;
   /** Resizes array. CWT: Config/effects.cwt:2928. */
   "resize_array"(value: CwtNode): void;
   /** Resizes a temp array. CWT: Config/effects.cwt:3023. */
-  "resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): void;
+  "resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): void;
   /** Resizes a temp array. CWT: Config/effects.cwt:3035. */
   "resize_temp_array"(value: CwtNode): void;
   /** removes character from all roles and availability CWT: Config/effects_nsb.cwt:397. */
@@ -6091,7 +6091,7 @@ export interface GeneratedMilitaryIndustrialOrganizationEffects {
   /** Rounds a temporary variable. CWT: Config/variable_effects_temp.cwt:252. */
   "round_temp_variable"(value: string): void;
   /** Rounds a variable. CWT: Config/variable_effects.cwt:202. */
-  "round_variable"(value: CwtOpaque): void;
+  "round_variable"(value: string): void;
   /** Save an event target. CWT: Config/effects.cwt:1356. */
   "save_event_target_as"(value: string): void;
   /** Save a global event target. CWT: Config/effects.cwt:1360. */
@@ -6103,7 +6103,7 @@ export interface GeneratedMilitaryIndustrialOrganizationEffects {
   /** Sets the position and rotation of an entity using two coordinates. IDs are set by the create_entity effect. Uses the the same coordinate system that the map uses. A positive change in rotation results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. CWT: Config/effects_nsb.cwt:855. */
   "set_entity_movement"(value: { "id": string; "start": { "x": number; "y": number; "z"?: number } | CwtNode; "target": { "province": number } | CwtNode; "ratio": number; "rotation": number } | CwtNode): void;
   /** Sets the position of an existing entity. IDs are set by the create_entity effect. Uses the the same coordinate system that the map uses. CWT: Config/effects_nsb.cwt:873. */
-  "set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef } | CwtNode): void;
+  "set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Sets the currently-facing angle of an existing entity. IDs are set by the create_entity effect. A positive change results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. CWT: Config/effects_nsb.cwt:887. */
   "set_entity_rotation"(value: { "id": string; "rotation": number } | CwtNode): void;
   /** Sets the size of an existing entity. IDs are set by the create_entity effect. CWT: Config/effects_nsb.cwt:895. */
@@ -6145,7 +6145,7 @@ export interface GeneratedMilitaryIndustrialOrganizationEffects {
   /** # TEMP VARIABLE Sets a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:53. */
   "set_temp_variable"(value: CwtNode): void;
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:88. */
-  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Sets a temp variable to a random value. CWT: Config/variable_effects_temp.cwt:226. */
   "set_temp_variable_to_random"(value: string): void;
   /** Sets a temp variable to a random value. CWT: Config/variable_effects_temp.cwt:230. */
@@ -6153,7 +6153,7 @@ export interface GeneratedMilitaryIndustrialOrganizationEffects {
   /** Sets a variable to a value or another variable. CWT: Config/variable_effects.cwt:3. */
   "set_variable"(value: CwtNode): void;
   /** Sets a variable to a value or another variable. CWT: Config/variable_effects.cwt:37. */
-  "set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Sets a variable to a random value. CWT: Config/variable_effects.cwt:168. */
   "set_variable_to_random"(value: string): void;
   /** Sets a variable to a random value. CWT: Config/variable_effects.cwt:172. */
@@ -6165,11 +6165,11 @@ export interface GeneratedMilitaryIndustrialOrganizationEffects {
   /** Subtracts a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:133. */
   "subtract_from_temp_variable"(value: CwtNode): void;
   /** Subtracts a value or a variable to a temp variable. CWT: Config/variable_effects_temp.cwt:140. */
-  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Subtracts a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:75. */
   "subtract_from_variable"(value: CwtNode): void;
   /** Subtracts a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:79. */
-  "subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Display a tooltip saying the trait is made available (aka unlocked) CWT: Config/effects_aat.cwt:8. */
   "unlock_mio_trait_tooltip"(value: string): void;
   /** Display a tooltip saying the trait is made available (aka unlocked) CWT: Config/effects_aat.cwt:12. */
@@ -6181,13 +6181,13 @@ export interface GeneratedMilitaryIndustrialOrganizationEffects {
 }
 export interface GeneratedMilitaryIndustrialOrganizationTriggers {
   /** Adds an element to a temporary array. CWT: Config/triggers.cwt:1781. */
-  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef; "index"?: "int_variable_field_32" } | CwtNode): boolean;
+  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef; "index"?: number } | CwtNode): boolean;
   /** Adds an element to a temporary array. CWT: Config/triggers.cwt:1800. */
   "add_to_temp_array"(value: CwtNode): boolean;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:71. */
   "add_to_temp_variable"(value: CwtNode): boolean;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:78. */
-  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** ``` } num_of_available_civilian_factories > 5 } name = collection_has_more_than_10_factories operators = { limit = { num_of_civilian_factories > 10 } } input = game:all_countries collection = { all_collection_elements = { ``` Example (anonymous collection): Example: *all_collection_elements = { coll CWT: Config/triggers_ncns.cwt:151. */
   "all_collection_elements"(value: Trigger<ScopeByName["any"]> | CwtNode): boolean;
   /** Check if all countries meets the trigger. CWT: Config/triggers.cwt:223. */
@@ -6237,7 +6237,7 @@ export interface GeneratedMilitaryIndustrialOrganizationTriggers {
   /** Compares a variable to a number or variable. CWT: Config/triggers.cwt:93. */
   "check_variable"(value: CwtNode): boolean;
   /** Compares a variable to a number or variable. CWT: Config/triggers.cwt:105. */
-  "check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef; "value": string | number | boolean | CountryRef | StateRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
+  "check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef | StateTargetRef; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
   /** Clamps a temp variable between two a values or another variables. CWT: Config/variable_triggers_temp.cwt:190. */
   "clamp_temp_variable"(value: { "var": string; "min"?: number; "max"?: number } | CwtNode): boolean;
   /** Clears the contents of a temporary array. CWT: Config/triggers.cwt:1844. */
@@ -6267,7 +6267,7 @@ export interface GeneratedMilitaryIndustrialOrganizationTriggers {
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:104. */
   "divide_temp_variable"(value: CwtNode): boolean;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:128. */
-  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
+  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
   /** A conditional trigger. CWT: Config/triggers.cwt:28. */
   "else"(value: CwtNode): boolean;
   /** A conditional trigger. CWT: Config/triggers.cwt:21. */
@@ -6315,7 +6315,7 @@ export interface GeneratedMilitaryIndustrialOrganizationTriggers {
   /** Checks if the Military Industrial Organisation in scope has a trait matching the input token CWT: Config/triggers_aat.cwt:56. */
   "has_mio_trait"(value: { "trait": string } | CwtNode): boolean;
   /** Checks if a state contains a railway at or above the specified level. CWT: Config/triggers_nsb.cwt:29. */
-  "has_railway_level"(value: { "level": number; "state": StateRef } | CwtNode): boolean;
+  "has_railway_level"(value: { "level": number; "state": StateRef | StateTargetRef } | CwtNode): boolean;
   /** Compare the initial start date of current game. CWT: Config/triggers.cwt:615. */
   "has_start_date"(value: string): boolean;
   /** Checks if a variable exists in a scope. CWT: Config/triggers.cwt:1550. */
@@ -6337,11 +6337,11 @@ export interface GeneratedMilitaryIndustrialOrganizationTriggers {
   /** Check if the historical focus is active. CWT: Config/triggers.cwt:992. */
   "is_historical_focus_on"(value: boolean): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1762. */
-  "is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+  "is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1769. */
   "is_in_array"(value: CwtNode): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1775. */
-  "is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+  "is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
   /** Check if current game is ironman. CWT: Config/triggers.cwt:611. */
   "is_ironman"(value: boolean): boolean;
   /** Checks if the Military Industrial Organisation in scope matches the input token CWT: Config/triggers_aat.cwt:8. */
@@ -6373,7 +6373,7 @@ export interface GeneratedMilitaryIndustrialOrganizationTriggers {
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:93. */
   "multiply_temp_variable"(value: CwtNode): boolean;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:100. */
-  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /**  CWT: Config/scopes.cwt:34. */
   "NOT"(value: CwtNode): boolean;
   /**  CWT: Config/scopes.cwt:42. */
@@ -6381,21 +6381,21 @@ export interface GeneratedMilitaryIndustrialOrganizationTriggers {
   /** Compares the amount of turns that have passed during the peace conference with a number. CWT: Config/triggers_bba.cwt:175. */
   "pc_turn"(value: number): boolean;
   /** Prints all variables in scope and temp variables to a file. CWT: Config/triggers.cwt:1635. */
-  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
+  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
   /** Randomize a temporary variable. CWT: Config/variable_triggers_temp.cwt:143. */
   "randomize_temp_variable"(value: string): boolean;
   /** Randomize a temporary variable. CWT: Config/variable_triggers_temp.cwt:147. */
   "randomize_temp_variable"(value: { "var": string; "distribution": "uniform" | "binomial"; "min"?: number; "max"?: number; "lambda"?: number } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1811. */
-  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef } | CwtNode): boolean;
+  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1824. */
-  "remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): boolean;
+  "remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1833. */
   "remove_from_temp_array"(value: CwtNode): boolean;
   /** Check amount of reserves. CWT: Config/triggers.cwt:76. */
   "reserves"(value: number): boolean;
   /** Resizes a temp array. CWT: Config/triggers.cwt:1851. */
-  "resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): boolean;
+  "resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): boolean;
   /** Resizes a temp array. CWT: Config/triggers.cwt:1863. */
   "resize_temp_array"(value: CwtNode): boolean;
   /** Rounds a temporary variable. CWT: Config/variable_triggers_temp.cwt:200. */
@@ -6407,7 +6407,7 @@ export interface GeneratedMilitaryIndustrialOrganizationTriggers {
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:3. */
   "set_temp_variable"(value: CwtNode): boolean;
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:38. */
-  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Sets a temp variable to a random value. CWT: Config/variable_triggers_temp.cwt:174. */
   "set_temp_variable_to_random"(value: string): boolean;
   /** Sets a temp variable to a random value. CWT: Config/variable_triggers_temp.cwt:178. */
@@ -6415,7 +6415,7 @@ export interface GeneratedMilitaryIndustrialOrganizationTriggers {
   /** Subtracts a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:82. */
   "subtract_from_temp_variable"(value: CwtNode): boolean;
   /** Subtracts a value or a variable to a temp variable. CWT: Config/variable_triggers_temp.cwt:89. */
-  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Check the global threat value. 0-1 value. CWT: Config/triggers.cwt:142. */
   "threat"(value: number): boolean;
   /** ``` } } add_to_temp_variable = { unlock_compare = num_armies } } operators = { faction_members } input = game:scope collection = { all_collection_elements = { set_temp_variable = { unlock_compare = 0 } tooltip_evaluation = eval hidden_trigger = { ``` ```hidden_trigger = { tooltip_evaluation = no_eva CWT: Config/triggers_ncns.cwt:706. */
@@ -6429,27 +6429,27 @@ export interface GeneratedPurchaseContractEffects {
   /** Adds the specified equipment bonuses to the country. As description the given loc key or the name of given special project will be used. Same usage as in Ideas/National spirits CWT: Config/effects_gtd.cwt:120. */
   "add_equipment_bonus"(value: { "name"?: string; "project"?: CwtOpaque; "bonus": CwtNode } | CwtNode): void;
   /** Adds new namespace. CWT: Config/effects.cwt:761. */
-  "add_namespace"(value: string | number | boolean | CountryRef | StateRef): void;
+  "add_namespace"(value: string | number | boolean | CountryRef | StateRef | StateTargetRef): void;
   /** Add efficiency factor to strategic region for from country. CWT: Config/effects.cwt:2342. */
   "add_region_efficiency"(value: "replace_me"): void;
   /** Adds either a resistance or compliance modifier to a state. Can only use modifiers from the resistance_modifiers.txt/compliance_modifiers.txt that are marked as is_dynamic = yes CWT: Config/effects_ncns.cwt:154. */
-  "add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+  "add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Adds an element to an array. CWT: Config/effects.cwt:2824. */
-  "add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+  "add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
   /** Adds an element to an array. CWT: Config/effects.cwt:2846. */
   "add_to_array"(value: CwtNode): void;
   /** Adds an element to a temporary array. CWT: Config/effects.cwt:2943. */
-  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
   /** Adds an element to a temporary array. CWT: Config/effects.cwt:2965. */
   "add_to_temp_array"(value: CwtNode): void;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:122. */
   "add_to_temp_variable"(value: CwtNode): void;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:129. */
-  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Adds a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:67. */
   "add_to_variable"(value: CwtNode): void;
   /** Adds a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:71. */
-  "add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Adds victory point to province. CWT: Config/effects_new.cwt:957. */
   "add_victory_points"(value: { "province": number; "value": number } | CwtNode): void;
   /**  CWT: Config/scopes.cwt:51. */
@@ -6465,13 +6465,13 @@ export interface GeneratedPurchaseContractEffects {
   /** Starts railway construction for amount of levels in specified state or province. CWT: Config/effects.cwt:878. */
   "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_province": number; "target_province": number; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
   /** Starts railway construction for amount of levels in specified state or province. CWT: Config/effects.cwt:915. */
-  "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef; "target_state": StateRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
+  "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef | StateTargetRef; "target_state": StateRef | StateTargetRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
   /** Cancels the scoped purchase contract CWT: Config/effects_aat.cwt:266. */
   "cancel_purchase_contract"(value: true): void;
   /** Clamps a temp variable between two a values or another variables. CWT: Config/variable_effects_temp.cwt:242. */
   "clamp_temp_variable"(value: { "var": string; "min"?: number; "max"?: number } | CwtNode): void;
   /** Clamps a variable between two a values or another variables. CWT: Config/variable_effects.cwt:188. */
-  "clamp_variable"(value: { "var": CwtOpaque; "min"?: number | string; "max"?: number | string } | CwtNode): void;
+  "clamp_variable"(value: { "var": string; "min"?: number | string; "max"?: number | string } | CwtNode): void;
   /** Clears the contents of array. CWT: Config/effects.cwt:2907. */
   "clear_array"(value: string | CwtOpaque): void;
   /** Clear a global event target. CWT: Config/effects.cwt:1364. */
@@ -6485,13 +6485,13 @@ export interface GeneratedPurchaseContractEffects {
   /** Clears a variable. The input is NOT validated CWT: Config/variable_effects.cwt:206. */
   "clear_variable"(value: number): void;
   /** Clears a variable. The input is NOT validated CWT: Config/variable_effects.cwt:210. */
-  "clear_variable"(value: CwtOpaque): void;
+  "clear_variable"(value: string): void;
   /** Clear global flag. CWT: Config/effects.cwt:170. */
   "clr_global_flag"(value: string): void;
   /** Creates a dynamic country and runs child effects on it. CWT: Config/effects_new.cwt:327. */
   "create_dynamic_country"(value: Effect<ScopeByName["country"]> | { limit?: Trigger<ScopeByName["country"]>; effects: Effect<ScopeByName["country"]> } | CwtNode): void;
   /** Creates an enitity Uses the the same coordinate system that the map uses. A positive change in rotation results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. For comparison, default minimum zoom level (closest to the map) is 50 units, while default maximum CWT: Config/effects_nsb.cwt:823. */
-  "create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
+  "create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef | StateTargetRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
   /** Creates a purchase contract between the countries CWT: Config/effects_aat.cwt:253. */
   "create_purchase_contract"(value: { "seller": CountryRef; "buyer": CountryRef; "civilian_factories": number; "equipment": { "type": string; "amount": number } | CwtNode } | CwtNode): void;
   /** Create railway gun effect CWT: Config/effects_nsb.cwt:713. */
@@ -6507,11 +6507,11 @@ export interface GeneratedPurchaseContractEffects {
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:155. */
   "divide_temp_variable"(value: CwtNode): void;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:179. */
-  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
   /** Divides a variable to a value or another variable. CWT: Config/variable_effects.cwt:91. */
   "divide_variable"(value: CwtNode): void;
   /** Divides a variable to a value or another variable. CWT: Config/variable_effects.cwt:116. */
-  "divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+  "divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
   /** Shows just tooltip of effects. CWT: Config/effects.cwt:1510. */
   "effect_tooltip"(value: CwtNode): void;
   /** Use after (else_)if for a catch-all case. CWT: Config/effects.cwt:431. */
@@ -6545,7 +6545,7 @@ export interface GeneratedPurchaseContractEffects {
   /** Goes to stated province. CWT: Config/effects.cwt:1690. */
   "goto_province"(value: number): void;
   /** Goes to stated state. CWT: Config/effects.cwt:1694. */
-  "goto_state"(value: StateRef): void;
+  "goto_state"(value: StateRef | StateTargetRef): void;
   /** Effect not shown in tooltips. CWT: Config/effects.cwt:3783. */
   "hidden_effect"(value: CwtNode): void;
   /** A conditional effect. CWT: Config/effects.cwt:413. */
@@ -6563,21 +6563,21 @@ export interface GeneratedPurchaseContractEffects {
   /** Modulos a variable with another. CWT: Config/variable_effects.cwt:155. */
   "modulo_variable"(value: CwtNode): void;
   /** Modulos a variable with another. CWT: Config/variable_effects.cwt:161. */
-  "modulo_variable"(value: { "var": CwtOpaque; "value": number } | CwtNode): void;
+  "modulo_variable"(value: { "var": string; "value": number } | CwtNode): void;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:144. */
   "multiply_temp_variable"(value: CwtNode): void;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:151. */
-  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Multiplies a variable to a value or another variable. CWT: Config/variable_effects.cwt:83. */
   "multiply_variable"(value: CwtNode): void;
   /** Multiplies a variable to a value or another variable. CWT: Config/variable_effects.cwt:87. */
-  "multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /**  CWT: Config/scopes.cwt:44. */
   "NOT"(value: CwtNode): void;
   /**  CWT: Config/scopes.cwt:52. */
   "OR"(value: CwtNode): void;
   /** Prints all variables in scope and temp variables to a file. CWT: Config/effects.cwt:2572. */
-  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
+  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
   /** Promote the officer of the division to a general scope = unit CWT: Config/effects_gtd.cwt:298. */
   "promote_officer_to_general"(value: boolean): void;
   /** A possible random effect that can occur. CWT: Config/effects.cwt:343. */
@@ -6603,29 +6603,29 @@ export interface GeneratedPurchaseContractEffects {
   /** Randomize weather effect. CWT: Config/effects.cwt:570. */
   "randomize_weather"(value: number): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2869. */
-  "remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
+  "remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2884. */
-  "remove_from_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+  "remove_from_array"(value: { "array": string; "index": number } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2894. */
   "remove_from_array"(value: CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:2978. */
-  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
+  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:2993. */
-  "remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+  "remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:3003. */
   "remove_from_temp_array"(value: CwtNode): void;
   /** Removes either a resistance or compliance modifier to a state. Can only use modifiers from the resistance_modifiers.txt/compliance_modifiers.txt that are marked as is_dynamic = yes CWT: Config/effects_ncns.cwt:164. */
-  "remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+  "remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
   /**  CWT: Config/effects_nsb.cwt:123. */
   "remove_unit_leader_role"(value: string): void;
   /** Reset name of a province back to localization one. CWT: Config/effects.cwt:2120. */
   "reset_province_name"(value: number): void;
   /** Resizes array. CWT: Config/effects.cwt:2911. */
-  "resize_array"(value: { "array": string; "value"?: number | string; "size": "int_variable_field_32" } | CwtNode): void;
+  "resize_array"(value: { "array": string; "value"?: number | string; "size": number } | CwtNode): void;
   /** Resizes array. CWT: Config/effects.cwt:2928. */
   "resize_array"(value: CwtNode): void;
   /** Resizes a temp array. CWT: Config/effects.cwt:3023. */
-  "resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): void;
+  "resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): void;
   /** Resizes a temp array. CWT: Config/effects.cwt:3035. */
   "resize_temp_array"(value: CwtNode): void;
   /** removes character from all roles and availability CWT: Config/effects_nsb.cwt:397. */
@@ -6635,7 +6635,7 @@ export interface GeneratedPurchaseContractEffects {
   /** Rounds a temporary variable. CWT: Config/variable_effects_temp.cwt:252. */
   "round_temp_variable"(value: string): void;
   /** Rounds a variable. CWT: Config/variable_effects.cwt:202. */
-  "round_variable"(value: CwtOpaque): void;
+  "round_variable"(value: string): void;
   /** Save an event target. CWT: Config/effects.cwt:1356. */
   "save_event_target_as"(value: string): void;
   /** Save a global event target. CWT: Config/effects.cwt:1360. */
@@ -6647,7 +6647,7 @@ export interface GeneratedPurchaseContractEffects {
   /** Sets the position and rotation of an entity using two coordinates. IDs are set by the create_entity effect. Uses the the same coordinate system that the map uses. A positive change in rotation results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. CWT: Config/effects_nsb.cwt:855. */
   "set_entity_movement"(value: { "id": string; "start": { "x": number; "y": number; "z"?: number } | CwtNode; "target": { "province": number } | CwtNode; "ratio": number; "rotation": number } | CwtNode): void;
   /** Sets the position of an existing entity. IDs are set by the create_entity effect. Uses the the same coordinate system that the map uses. CWT: Config/effects_nsb.cwt:873. */
-  "set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef } | CwtNode): void;
+  "set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Sets the currently-facing angle of an existing entity. IDs are set by the create_entity effect. A positive change results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. CWT: Config/effects_nsb.cwt:887. */
   "set_entity_rotation"(value: { "id": string; "rotation": number } | CwtNode): void;
   /** Sets the size of an existing entity. IDs are set by the create_entity effect. CWT: Config/effects_nsb.cwt:895. */
@@ -6665,7 +6665,7 @@ export interface GeneratedPurchaseContractEffects {
   /** # TEMP VARIABLE Sets a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:53. */
   "set_temp_variable"(value: CwtNode): void;
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:88. */
-  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Sets a temp variable to a random value. CWT: Config/variable_effects_temp.cwt:226. */
   "set_temp_variable_to_random"(value: string): void;
   /** Sets a temp variable to a random value. CWT: Config/variable_effects_temp.cwt:230. */
@@ -6673,7 +6673,7 @@ export interface GeneratedPurchaseContractEffects {
   /** Sets a variable to a value or another variable. CWT: Config/variable_effects.cwt:3. */
   "set_variable"(value: CwtNode): void;
   /** Sets a variable to a value or another variable. CWT: Config/variable_effects.cwt:37. */
-  "set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Sets a variable to a random value. CWT: Config/variable_effects.cwt:168. */
   "set_variable_to_random"(value: string): void;
   /** Sets a variable to a random value. CWT: Config/variable_effects.cwt:172. */
@@ -6685,11 +6685,11 @@ export interface GeneratedPurchaseContractEffects {
   /** Subtracts a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:133. */
   "subtract_from_temp_variable"(value: CwtNode): void;
   /** Subtracts a value or a variable to a temp variable. CWT: Config/variable_effects_temp.cwt:140. */
-  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Subtracts a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:75. */
   "subtract_from_variable"(value: CwtNode): void;
   /** Subtracts a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:79. */
-  "subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /**  CWT: Config/effects.cwt:1381. */
   "unlock_national_focus"(value: string): void;
   /** Runs the effect as long as a trigger is true. Warning: will stop after reaching MAX_EFFECT_ITERATION define iterations - default 1000. CWT: Config/effects.cwt:3200. */
@@ -6697,13 +6697,13 @@ export interface GeneratedPurchaseContractEffects {
 }
 export interface GeneratedPurchaseContractTriggers {
   /** Adds an element to a temporary array. CWT: Config/triggers.cwt:1781. */
-  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef; "index"?: "int_variable_field_32" } | CwtNode): boolean;
+  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef; "index"?: number } | CwtNode): boolean;
   /** Adds an element to a temporary array. CWT: Config/triggers.cwt:1800. */
   "add_to_temp_array"(value: CwtNode): boolean;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:71. */
   "add_to_temp_variable"(value: CwtNode): boolean;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:78. */
-  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** ``` } num_of_available_civilian_factories > 5 } name = collection_has_more_than_10_factories operators = { limit = { num_of_civilian_factories > 10 } } input = game:all_countries collection = { all_collection_elements = { ``` Example (anonymous collection): Example: *all_collection_elements = { coll CWT: Config/triggers_ncns.cwt:151. */
   "all_collection_elements"(value: Trigger<ScopeByName["any"]> | CwtNode): boolean;
   /** Check if all countries meets the trigger. CWT: Config/triggers.cwt:223. */
@@ -6755,7 +6755,7 @@ export interface GeneratedPurchaseContractTriggers {
   /** Compares a variable to a number or variable. CWT: Config/triggers.cwt:93. */
   "check_variable"(value: CwtNode): boolean;
   /** Compares a variable to a number or variable. CWT: Config/triggers.cwt:105. */
-  "check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef; "value": string | number | boolean | CountryRef | StateRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
+  "check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef | StateTargetRef; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
   /** Clamps a temp variable between two a values or another variables. CWT: Config/variable_triggers_temp.cwt:190. */
   "clamp_temp_variable"(value: { "var": string; "min"?: number; "max"?: number } | CwtNode): boolean;
   /** Clears the contents of a temporary array. CWT: Config/triggers.cwt:1844. */
@@ -6789,7 +6789,7 @@ export interface GeneratedPurchaseContractTriggers {
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:104. */
   "divide_temp_variable"(value: CwtNode): boolean;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:128. */
-  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
+  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
   /** A conditional trigger. CWT: Config/triggers.cwt:28. */
   "else"(value: CwtNode): boolean;
   /** A conditional trigger. CWT: Config/triggers.cwt:21. */
@@ -6817,7 +6817,7 @@ export interface GeneratedPurchaseContractTriggers {
   /** Has global flag been set. Check flag val date set and days since set. Example: has_global_flag = test_flag. CWT: Config/triggers.cwt:160. */
   "has_global_flag"(value: { "flag": string; "value"?: number; "date"?: string; "days"?: number } | CwtNode): boolean;
   /** Checks if a state contains a railway at or above the specified level. CWT: Config/triggers_nsb.cwt:29. */
-  "has_railway_level"(value: { "level": number; "state": StateRef } | CwtNode): boolean;
+  "has_railway_level"(value: { "level": number; "state": StateRef | StateTargetRef } | CwtNode): boolean;
   /** Compare the initial start date of current game. CWT: Config/triggers.cwt:615. */
   "has_start_date"(value: string): boolean;
   /** Checks if a variable exists in a scope. CWT: Config/triggers.cwt:1550. */
@@ -6839,11 +6839,11 @@ export interface GeneratedPurchaseContractTriggers {
   /** Check if the historical focus is active. CWT: Config/triggers.cwt:992. */
   "is_historical_focus_on"(value: boolean): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1762. */
-  "is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+  "is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1769. */
   "is_in_array"(value: CwtNode): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1775. */
-  "is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+  "is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
   /** Check if current game is ironman. CWT: Config/triggers.cwt:611. */
   "is_ironman"(value: boolean): boolean;
   /** Check if the tutorial is active. CWT: Config/triggers.cwt:988. */
@@ -6859,7 +6859,7 @@ export interface GeneratedPurchaseContractTriggers {
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:93. */
   "multiply_temp_variable"(value: CwtNode): boolean;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:100. */
-  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /**  CWT: Config/scopes.cwt:34. */
   "NOT"(value: CwtNode): boolean;
   /**  CWT: Config/scopes.cwt:42. */
@@ -6867,21 +6867,21 @@ export interface GeneratedPurchaseContractTriggers {
   /** Compares the amount of turns that have passed during the peace conference with a number. CWT: Config/triggers_bba.cwt:175. */
   "pc_turn"(value: number): boolean;
   /** Prints all variables in scope and temp variables to a file. CWT: Config/triggers.cwt:1635. */
-  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
+  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
   /** Randomize a temporary variable. CWT: Config/variable_triggers_temp.cwt:143. */
   "randomize_temp_variable"(value: string): boolean;
   /** Randomize a temporary variable. CWT: Config/variable_triggers_temp.cwt:147. */
   "randomize_temp_variable"(value: { "var": string; "distribution": "uniform" | "binomial"; "min"?: number; "max"?: number; "lambda"?: number } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1811. */
-  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef } | CwtNode): boolean;
+  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1824. */
-  "remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): boolean;
+  "remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1833. */
   "remove_from_temp_array"(value: CwtNode): boolean;
   /** Check amount of reserves. CWT: Config/triggers.cwt:76. */
   "reserves"(value: number): boolean;
   /** Resizes a temp array. CWT: Config/triggers.cwt:1851. */
-  "resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): boolean;
+  "resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): boolean;
   /** Resizes a temp array. CWT: Config/triggers.cwt:1863. */
   "resize_temp_array"(value: CwtNode): boolean;
   /** Rounds a temporary variable. CWT: Config/variable_triggers_temp.cwt:200. */
@@ -6895,7 +6895,7 @@ export interface GeneratedPurchaseContractTriggers {
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:3. */
   "set_temp_variable"(value: CwtNode): boolean;
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:38. */
-  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Sets a temp variable to a random value. CWT: Config/variable_triggers_temp.cwt:174. */
   "set_temp_variable_to_random"(value: string): boolean;
   /** Sets a temp variable to a random value. CWT: Config/variable_triggers_temp.cwt:178. */
@@ -6903,7 +6903,7 @@ export interface GeneratedPurchaseContractTriggers {
   /** Subtracts a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:82. */
   "subtract_from_temp_variable"(value: CwtNode): boolean;
   /** Subtracts a value or a variable to a temp variable. CWT: Config/variable_triggers_temp.cwt:89. */
-  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Check the global threat value. 0-1 value. CWT: Config/triggers.cwt:142. */
   "threat"(value: number): boolean;
   /** ``` } } add_to_temp_variable = { unlock_compare = num_armies } } operators = { faction_members } input = game:scope collection = { all_collection_elements = { set_temp_variable = { unlock_compare = 0 } tooltip_evaluation = eval hidden_trigger = { ``` ```hidden_trigger = { tooltip_evaluation = no_eva CWT: Config/triggers_ncns.cwt:706. */
@@ -6919,29 +6919,29 @@ export interface GeneratedUnitEffects {
   /** Add history entry to a unit in scope CWT: Config/effects_bba.cwt:144. */
   "add_history_entry"(value: { "key": string; "subject": string; "allow": boolean } | CwtNode): void;
   /** Adds new namespace. CWT: Config/effects.cwt:761. */
-  "add_namespace"(value: string | number | boolean | CountryRef | StateRef): void;
+  "add_namespace"(value: string | number | boolean | CountryRef | StateRef | StateTargetRef): void;
   /**  CWT: Config/effects_bba.cwt:82. */
   "add_random_valid_trait_from_unit"(value: { "character": string | CwtOpaque } | CwtNode): void;
   /** Add efficiency factor to strategic region for from country. CWT: Config/effects.cwt:2342. */
   "add_region_efficiency"(value: "replace_me"): void;
   /** Adds either a resistance or compliance modifier to a state. Can only use modifiers from the resistance_modifiers.txt/compliance_modifiers.txt that are marked as is_dynamic = yes CWT: Config/effects_ncns.cwt:154. */
-  "add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+  "add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Adds an element to an array. CWT: Config/effects.cwt:2824. */
-  "add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+  "add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
   /** Adds an element to an array. CWT: Config/effects.cwt:2846. */
   "add_to_array"(value: CwtNode): void;
   /** Adds an element to a temporary array. CWT: Config/effects.cwt:2943. */
-  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
   /** Adds an element to a temporary array. CWT: Config/effects.cwt:2965. */
   "add_to_temp_array"(value: CwtNode): void;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:122. */
   "add_to_temp_variable"(value: CwtNode): void;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:129. */
-  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Adds a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:67. */
   "add_to_variable"(value: CwtNode): void;
   /** Adds a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:71. */
-  "add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Add a medal to latest history entry of a unit in scope. Check 'add_history_entry' to create a new entry CWT: Config/effects_bba.cwt:153. */
   "add_unit_medal_to_latest_entry"(value: { "unit_medals": string } | CwtNode): void;
   /** Adds victory point to province. CWT: Config/effects_new.cwt:957. */
@@ -6959,13 +6959,13 @@ export interface GeneratedUnitEffects {
   /** Starts railway construction for amount of levels in specified state or province. CWT: Config/effects.cwt:878. */
   "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_province": number; "target_province": number; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
   /** Starts railway construction for amount of levels in specified state or province. CWT: Config/effects.cwt:915. */
-  "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef; "target_state": StateRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
+  "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef | StateTargetRef; "target_state": StateRef | StateTargetRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
   /** Change divisions in scope to selected template CWT: Config/effects_bba.cwt:124. */
   "change_division_template"(value: { "division_template": string } | CwtNode): void;
   /** Clamps a temp variable between two a values or another variables. CWT: Config/variable_effects_temp.cwt:242. */
   "clamp_temp_variable"(value: { "var": string; "min"?: number; "max"?: number } | CwtNode): void;
   /** Clamps a variable between two a values or another variables. CWT: Config/variable_effects.cwt:188. */
-  "clamp_variable"(value: { "var": CwtOpaque; "min"?: number | string; "max"?: number | string } | CwtNode): void;
+  "clamp_variable"(value: { "var": string; "min"?: number | string; "max"?: number | string } | CwtNode): void;
   /** Clears the contents of array. CWT: Config/effects.cwt:2907. */
   "clear_array"(value: string | CwtOpaque): void;
   /** Clear a global event target. CWT: Config/effects.cwt:1364. */
@@ -6979,13 +6979,13 @@ export interface GeneratedUnitEffects {
   /** Clears a variable. The input is NOT validated CWT: Config/variable_effects.cwt:206. */
   "clear_variable"(value: number): void;
   /** Clears a variable. The input is NOT validated CWT: Config/variable_effects.cwt:210. */
-  "clear_variable"(value: CwtOpaque): void;
+  "clear_variable"(value: string): void;
   /** Clear global flag. CWT: Config/effects.cwt:170. */
   "clr_global_flag"(value: string): void;
   /** Creates a dynamic country and runs child effects on it. CWT: Config/effects_new.cwt:327. */
   "create_dynamic_country"(value: Effect<ScopeByName["country"]> | { limit?: Trigger<ScopeByName["country"]>; effects: Effect<ScopeByName["country"]> } | CwtNode): void;
   /** Creates an enitity Uses the the same coordinate system that the map uses. A positive change in rotation results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. For comparison, default minimum zoom level (closest to the map) is 50 units, while default maximum CWT: Config/effects_nsb.cwt:823. */
-  "create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
+  "create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef | StateTargetRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
   /** Creates a purchase contract between the countries CWT: Config/effects_aat.cwt:253. */
   "create_purchase_contract"(value: { "seller": CountryRef; "buyer": CountryRef; "civilian_factories": number; "equipment": { "type": string; "amount": number } | CwtNode } | CwtNode): void;
   /** Create railway gun effect CWT: Config/effects_nsb.cwt:713. */
@@ -7003,11 +7003,11 @@ export interface GeneratedUnitEffects {
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:155. */
   "divide_temp_variable"(value: CwtNode): void;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:179. */
-  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
   /** Divides a variable to a value or another variable. CWT: Config/variable_effects.cwt:91. */
   "divide_variable"(value: CwtNode): void;
   /** Divides a variable to a value or another variable. CWT: Config/variable_effects.cwt:116. */
-  "divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+  "divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
   /** Shows just tooltip of effects. CWT: Config/effects.cwt:1510. */
   "effect_tooltip"(value: CwtNode): void;
   /** Use after (else_)if for a catch-all case. CWT: Config/effects.cwt:431. */
@@ -7041,7 +7041,7 @@ export interface GeneratedUnitEffects {
   /** Goes to stated province. CWT: Config/effects.cwt:1690. */
   "goto_province"(value: number): void;
   /** Goes to stated state. CWT: Config/effects.cwt:1694. */
-  "goto_state"(value: StateRef): void;
+  "goto_state"(value: StateRef | StateTargetRef): void;
   /** Effect not shown in tooltips. CWT: Config/effects.cwt:3783. */
   "hidden_effect"(value: CwtNode): void;
   /** A conditional effect. CWT: Config/effects.cwt:413. */
@@ -7059,21 +7059,21 @@ export interface GeneratedUnitEffects {
   /** Modulos a variable with another. CWT: Config/variable_effects.cwt:155. */
   "modulo_variable"(value: CwtNode): void;
   /** Modulos a variable with another. CWT: Config/variable_effects.cwt:161. */
-  "modulo_variable"(value: { "var": CwtOpaque; "value": number } | CwtNode): void;
+  "modulo_variable"(value: { "var": string; "value": number } | CwtNode): void;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:144. */
   "multiply_temp_variable"(value: CwtNode): void;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:151. */
-  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Multiplies a variable to a value or another variable. CWT: Config/variable_effects.cwt:83. */
   "multiply_variable"(value: CwtNode): void;
   /** Multiplies a variable to a value or another variable. CWT: Config/variable_effects.cwt:87. */
-  "multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /**  CWT: Config/scopes.cwt:44. */
   "NOT"(value: CwtNode): void;
   /**  CWT: Config/scopes.cwt:52. */
   "OR"(value: CwtNode): void;
   /** Prints all variables in scope and temp variables to a file. CWT: Config/effects.cwt:2572. */
-  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
+  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
   /** Promote the officer of the division to a general scope = unit CWT: Config/effects_gtd.cwt:298. */
   "promote_officer_to_general"(value: boolean): void;
   /** A possible random effect that can occur. CWT: Config/effects.cwt:343. */
@@ -7099,29 +7099,29 @@ export interface GeneratedUnitEffects {
   /** Randomize weather effect. CWT: Config/effects.cwt:570. */
   "randomize_weather"(value: number): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2869. */
-  "remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
+  "remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2884. */
-  "remove_from_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+  "remove_from_array"(value: { "array": string; "index": number } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2894. */
   "remove_from_array"(value: CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:2978. */
-  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
+  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:2993. */
-  "remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+  "remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:3003. */
   "remove_from_temp_array"(value: CwtNode): void;
   /** Removes either a resistance or compliance modifier to a state. Can only use modifiers from the resistance_modifiers.txt/compliance_modifiers.txt that are marked as is_dynamic = yes CWT: Config/effects_ncns.cwt:164. */
-  "remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+  "remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
   /**  CWT: Config/effects_nsb.cwt:123. */
   "remove_unit_leader_role"(value: string): void;
   /** Reset name of a province back to localization one. CWT: Config/effects.cwt:2120. */
   "reset_province_name"(value: number): void;
   /** Resizes array. CWT: Config/effects.cwt:2911. */
-  "resize_array"(value: { "array": string; "value"?: number | string; "size": "int_variable_field_32" } | CwtNode): void;
+  "resize_array"(value: { "array": string; "value"?: number | string; "size": number } | CwtNode): void;
   /** Resizes array. CWT: Config/effects.cwt:2928. */
   "resize_array"(value: CwtNode): void;
   /** Resizes a temp array. CWT: Config/effects.cwt:3023. */
-  "resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): void;
+  "resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): void;
   /** Resizes a temp array. CWT: Config/effects.cwt:3035. */
   "resize_temp_array"(value: CwtNode): void;
   /** removes character from all roles and availability CWT: Config/effects_nsb.cwt:397. */
@@ -7131,7 +7131,7 @@ export interface GeneratedUnitEffects {
   /** Rounds a temporary variable. CWT: Config/variable_effects_temp.cwt:252. */
   "round_temp_variable"(value: string): void;
   /** Rounds a variable. CWT: Config/variable_effects.cwt:202. */
-  "round_variable"(value: CwtOpaque): void;
+  "round_variable"(value: string): void;
   /** Save an event target. CWT: Config/effects.cwt:1356. */
   "save_event_target_as"(value: string): void;
   /** Save a global event target. CWT: Config/effects.cwt:1360. */
@@ -7143,7 +7143,7 @@ export interface GeneratedUnitEffects {
   /** Sets the position and rotation of an entity using two coordinates. IDs are set by the create_entity effect. Uses the the same coordinate system that the map uses. A positive change in rotation results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. CWT: Config/effects_nsb.cwt:855. */
   "set_entity_movement"(value: { "id": string; "start": { "x": number; "y": number; "z"?: number } | CwtNode; "target": { "province": number } | CwtNode; "ratio": number; "rotation": number } | CwtNode): void;
   /** Sets the position of an existing entity. IDs are set by the create_entity effect. Uses the the same coordinate system that the map uses. CWT: Config/effects_nsb.cwt:873. */
-  "set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef } | CwtNode): void;
+  "set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Sets the currently-facing angle of an existing entity. IDs are set by the create_entity effect. A positive change results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. CWT: Config/effects_nsb.cwt:887. */
   "set_entity_rotation"(value: { "id": string; "rotation": number } | CwtNode): void;
   /** Sets the size of an existing entity. IDs are set by the create_entity effect. CWT: Config/effects_nsb.cwt:895. */
@@ -7161,7 +7161,7 @@ export interface GeneratedUnitEffects {
   /** # TEMP VARIABLE Sets a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:53. */
   "set_temp_variable"(value: CwtNode): void;
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:88. */
-  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Sets a temp variable to a random value. CWT: Config/variable_effects_temp.cwt:226. */
   "set_temp_variable_to_random"(value: string): void;
   /** Sets a temp variable to a random value. CWT: Config/variable_effects_temp.cwt:230. */
@@ -7171,7 +7171,7 @@ export interface GeneratedUnitEffects {
   /** Sets a variable to a value or another variable. CWT: Config/variable_effects.cwt:3. */
   "set_variable"(value: CwtNode): void;
   /** Sets a variable to a value or another variable. CWT: Config/variable_effects.cwt:37. */
-  "set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Sets a variable to a random value. CWT: Config/variable_effects.cwt:168. */
   "set_variable_to_random"(value: string): void;
   /** Sets a variable to a random value. CWT: Config/variable_effects.cwt:172. */
@@ -7183,11 +7183,11 @@ export interface GeneratedUnitEffects {
   /** Subtracts a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:133. */
   "subtract_from_temp_variable"(value: CwtNode): void;
   /** Subtracts a value or a variable to a temp variable. CWT: Config/variable_effects_temp.cwt:140. */
-  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Subtracts a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:75. */
   "subtract_from_variable"(value: CwtNode): void;
   /** Subtracts a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:79. */
-  "subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /**  CWT: Config/effects.cwt:1381. */
   "unlock_national_focus"(value: string): void;
   /** Runs the effect as long as a trigger is true. Warning: will stop after reaching MAX_EFFECT_ITERATION define iterations - default 1000. CWT: Config/effects.cwt:3200. */
@@ -7195,13 +7195,13 @@ export interface GeneratedUnitEffects {
 }
 export interface GeneratedUnitTriggers {
   /** Adds an element to a temporary array. CWT: Config/triggers.cwt:1781. */
-  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef; "index"?: "int_variable_field_32" } | CwtNode): boolean;
+  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef; "index"?: number } | CwtNode): boolean;
   /** Adds an element to a temporary array. CWT: Config/triggers.cwt:1800. */
   "add_to_temp_array"(value: CwtNode): boolean;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:71. */
   "add_to_temp_variable"(value: CwtNode): boolean;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:78. */
-  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** ``` } num_of_available_civilian_factories > 5 } name = collection_has_more_than_10_factories operators = { limit = { num_of_civilian_factories > 10 } } input = game:all_countries collection = { all_collection_elements = { ``` Example (anonymous collection): Example: *all_collection_elements = { coll CWT: Config/triggers_ncns.cwt:151. */
   "all_collection_elements"(value: Trigger<ScopeByName["any"]> | CwtNode): boolean;
   /** Check if all countries meets the trigger. CWT: Config/triggers.cwt:223. */
@@ -7251,7 +7251,7 @@ export interface GeneratedUnitTriggers {
   /** Compares a variable to a number or variable. CWT: Config/triggers.cwt:93. */
   "check_variable"(value: CwtNode): boolean;
   /** Compares a variable to a number or variable. CWT: Config/triggers.cwt:105. */
-  "check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef; "value": string | number | boolean | CountryRef | StateRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
+  "check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef | StateTargetRef; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
   /** Clamps a temp variable between two a values or another variables. CWT: Config/variable_triggers_temp.cwt:190. */
   "clamp_temp_variable"(value: { "var": string; "min"?: number; "max"?: number } | CwtNode): boolean;
   /** Clears the contents of a temporary array. CWT: Config/triggers.cwt:1844. */
@@ -7281,7 +7281,7 @@ export interface GeneratedUnitTriggers {
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:104. */
   "divide_temp_variable"(value: CwtNode): boolean;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:128. */
-  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
+  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
   /** Check if division has this battalion in template CWT: Config/triggers_bba.cwt:72. */
   "division_has_battalion_in_template"(value: string): boolean;
   /** Check if division has this battalion as majority in template CWT: Config/triggers_bba.cwt:59. */
@@ -7315,7 +7315,7 @@ export interface GeneratedUnitTriggers {
   /** checks if division has an officer with the provided name key. CWT: Config/triggers_gtd.cwt:132. */
   "has_officer_name"(value: string): boolean;
   /** Checks if a state contains a railway at or above the specified level. CWT: Config/triggers_nsb.cwt:29. */
-  "has_railway_level"(value: { "level": number; "state": StateRef } | CwtNode): boolean;
+  "has_railway_level"(value: { "level": number; "state": StateRef | StateTargetRef } | CwtNode): boolean;
   /** Compare the initial start date of current game. CWT: Config/triggers.cwt:615. */
   "has_start_date"(value: string): boolean;
   /** Checks if a variable exists in a scope. CWT: Config/triggers.cwt:1550. */
@@ -7337,11 +7337,11 @@ export interface GeneratedUnitTriggers {
   /** Check if the historical focus is active. CWT: Config/triggers.cwt:992. */
   "is_historical_focus_on"(value: boolean): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1762. */
-  "is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+  "is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1769. */
   "is_in_array"(value: CwtNode): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1775. */
-  "is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+  "is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
   /** Check if current game is ironman. CWT: Config/triggers.cwt:611. */
   "is_ironman"(value: boolean): boolean;
   /** Check if the tutorial is active. CWT: Config/triggers.cwt:988. */
@@ -7359,7 +7359,7 @@ export interface GeneratedUnitTriggers {
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:93. */
   "multiply_temp_variable"(value: CwtNode): boolean;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:100. */
-  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /**  CWT: Config/scopes.cwt:34. */
   "NOT"(value: CwtNode): boolean;
   /**  CWT: Config/scopes.cwt:42. */
@@ -7367,21 +7367,21 @@ export interface GeneratedUnitTriggers {
   /** Compares the amount of turns that have passed during the peace conference with a number. CWT: Config/triggers_bba.cwt:175. */
   "pc_turn"(value: number): boolean;
   /** Prints all variables in scope and temp variables to a file. CWT: Config/triggers.cwt:1635. */
-  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
+  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
   /** Randomize a temporary variable. CWT: Config/variable_triggers_temp.cwt:143. */
   "randomize_temp_variable"(value: string): boolean;
   /** Randomize a temporary variable. CWT: Config/variable_triggers_temp.cwt:147. */
   "randomize_temp_variable"(value: { "var": string; "distribution": "uniform" | "binomial"; "min"?: number; "max"?: number; "lambda"?: number } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1811. */
-  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef } | CwtNode): boolean;
+  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1824. */
-  "remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): boolean;
+  "remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1833. */
   "remove_from_temp_array"(value: CwtNode): boolean;
   /** Check amount of reserves. CWT: Config/triggers.cwt:76. */
   "reserves"(value: number): boolean;
   /** Resizes a temp array. CWT: Config/triggers.cwt:1851. */
-  "resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): boolean;
+  "resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): boolean;
   /** Resizes a temp array. CWT: Config/triggers.cwt:1863. */
   "resize_temp_array"(value: CwtNode): boolean;
   /** Rounds a temporary variable. CWT: Config/variable_triggers_temp.cwt:200. */
@@ -7393,7 +7393,7 @@ export interface GeneratedUnitTriggers {
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:3. */
   "set_temp_variable"(value: CwtNode): boolean;
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:38. */
-  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Sets a temp variable to a random value. CWT: Config/variable_triggers_temp.cwt:174. */
   "set_temp_variable_to_random"(value: string): boolean;
   /** Sets a temp variable to a random value. CWT: Config/variable_triggers_temp.cwt:178. */
@@ -7401,7 +7401,7 @@ export interface GeneratedUnitTriggers {
   /** Subtracts a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:82. */
   "subtract_from_temp_variable"(value: CwtNode): boolean;
   /** Subtracts a value or a variable to a temp variable. CWT: Config/variable_triggers_temp.cwt:89. */
-  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Check the global threat value. 0-1 value. CWT: Config/triggers.cwt:142. */
   "threat"(value: number): boolean;
   /** ``` } } add_to_temp_variable = { unlock_compare = num_armies } } operators = { faction_members } input = game:scope collection = { all_collection_elements = { set_temp_variable = { unlock_compare = 0 } tooltip_evaluation = eval hidden_trigger = { ``` ```hidden_trigger = { tooltip_evaluation = no_eva CWT: Config/triggers_ncns.cwt:706. */
@@ -7419,29 +7419,29 @@ export interface GeneratedRaidEffects {
   /** Adds the specified equipment bonuses to the country. As description the given loc key or the name of given special project will be used. Same usage as in Ideas/National spirits CWT: Config/effects_gtd.cwt:120. */
   "add_equipment_bonus"(value: { "name"?: string; "project"?: CwtOpaque; "bonus": CwtNode } | CwtNode): void;
   /** Adds new namespace. CWT: Config/effects.cwt:761. */
-  "add_namespace"(value: string | number | boolean | CountryRef | StateRef): void;
+  "add_namespace"(value: string | number | boolean | CountryRef | StateRef | StateTargetRef): void;
   /** Add history entry to a raid. CWT: Config/effects_gtd.cwt:116. */
   "add_raid_history_entry"(value: boolean): void;
   /** Add efficiency factor to strategic region for from country. CWT: Config/effects.cwt:2342. */
   "add_region_efficiency"(value: "replace_me"): void;
   /** Adds either a resistance or compliance modifier to a state. Can only use modifiers from the resistance_modifiers.txt/compliance_modifiers.txt that are marked as is_dynamic = yes CWT: Config/effects_ncns.cwt:154. */
-  "add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+  "add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Adds an element to an array. CWT: Config/effects.cwt:2824. */
-  "add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+  "add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
   /** Adds an element to an array. CWT: Config/effects.cwt:2846. */
   "add_to_array"(value: CwtNode): void;
   /** Adds an element to a temporary array. CWT: Config/effects.cwt:2943. */
-  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
   /** Adds an element to a temporary array. CWT: Config/effects.cwt:2965. */
   "add_to_temp_array"(value: CwtNode): void;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:122. */
   "add_to_temp_variable"(value: CwtNode): void;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:129. */
-  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Adds a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:67. */
   "add_to_variable"(value: CwtNode): void;
   /** Adds a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:71. */
-  "add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Adds victory point to province. CWT: Config/effects_new.cwt:957. */
   "add_victory_points"(value: { "province": number; "value": number } | CwtNode): void;
   /**  CWT: Config/scopes.cwt:51. */
@@ -7457,11 +7457,11 @@ export interface GeneratedRaidEffects {
   /** Starts railway construction for amount of levels in specified state or province. CWT: Config/effects.cwt:878. */
   "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_province": number; "target_province": number; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
   /** Starts railway construction for amount of levels in specified state or province. CWT: Config/effects.cwt:915. */
-  "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef; "target_state": StateRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
+  "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef | StateTargetRef; "target_state": StateRef | StateTargetRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
   /** Clamps a temp variable between two a values or another variables. CWT: Config/variable_effects_temp.cwt:242. */
   "clamp_temp_variable"(value: { "var": string; "min"?: number; "max"?: number } | CwtNode): void;
   /** Clamps a variable between two a values or another variables. CWT: Config/variable_effects.cwt:188. */
-  "clamp_variable"(value: { "var": CwtOpaque; "min"?: number | string; "max"?: number | string } | CwtNode): void;
+  "clamp_variable"(value: { "var": string; "min"?: number | string; "max"?: number | string } | CwtNode): void;
   /** Clears the contents of array. CWT: Config/effects.cwt:2907. */
   "clear_array"(value: string | CwtOpaque): void;
   /** Clear a global event target. CWT: Config/effects.cwt:1364. */
@@ -7475,13 +7475,13 @@ export interface GeneratedRaidEffects {
   /** Clears a variable. The input is NOT validated CWT: Config/variable_effects.cwt:206. */
   "clear_variable"(value: number): void;
   /** Clears a variable. The input is NOT validated CWT: Config/variable_effects.cwt:210. */
-  "clear_variable"(value: CwtOpaque): void;
+  "clear_variable"(value: string): void;
   /** Clear global flag. CWT: Config/effects.cwt:170. */
   "clr_global_flag"(value: string): void;
   /** Creates a dynamic country and runs child effects on it. CWT: Config/effects_new.cwt:327. */
   "create_dynamic_country"(value: Effect<ScopeByName["country"]> | { limit?: Trigger<ScopeByName["country"]>; effects: Effect<ScopeByName["country"]> } | CwtNode): void;
   /** Creates an enitity Uses the the same coordinate system that the map uses. A positive change in rotation results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. For comparison, default minimum zoom level (closest to the map) is 50 units, while default maximum CWT: Config/effects_nsb.cwt:823. */
-  "create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
+  "create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef | StateTargetRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
   /** Creates a purchase contract between the countries CWT: Config/effects_aat.cwt:253. */
   "create_purchase_contract"(value: { "seller": CountryRef; "buyer": CountryRef; "civilian_factories": number; "equipment": { "type": string; "amount": number } | CwtNode } | CwtNode): void;
   /** Create railway gun effect CWT: Config/effects_nsb.cwt:713. */
@@ -7497,11 +7497,11 @@ export interface GeneratedRaidEffects {
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:155. */
   "divide_temp_variable"(value: CwtNode): void;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:179. */
-  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
   /** Divides a variable to a value or another variable. CWT: Config/variable_effects.cwt:91. */
   "divide_variable"(value: CwtNode): void;
   /** Divides a variable to a value or another variable. CWT: Config/variable_effects.cwt:116. */
-  "divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+  "divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
   /** Shows just tooltip of effects. CWT: Config/effects.cwt:1510. */
   "effect_tooltip"(value: CwtNode): void;
   /** Use after (else_)if for a catch-all case. CWT: Config/effects.cwt:431. */
@@ -7535,7 +7535,7 @@ export interface GeneratedRaidEffects {
   /** Goes to stated province. CWT: Config/effects.cwt:1690. */
   "goto_province"(value: number): void;
   /** Goes to stated state. CWT: Config/effects.cwt:1694. */
-  "goto_state"(value: StateRef): void;
+  "goto_state"(value: StateRef | StateTargetRef): void;
   /** Effect not shown in tooltips. CWT: Config/effects.cwt:3783. */
   "hidden_effect"(value: CwtNode): void;
   /** A conditional effect. CWT: Config/effects.cwt:413. */
@@ -7553,21 +7553,21 @@ export interface GeneratedRaidEffects {
   /** Modulos a variable with another. CWT: Config/variable_effects.cwt:155. */
   "modulo_variable"(value: CwtNode): void;
   /** Modulos a variable with another. CWT: Config/variable_effects.cwt:161. */
-  "modulo_variable"(value: { "var": CwtOpaque; "value": number } | CwtNode): void;
+  "modulo_variable"(value: { "var": string; "value": number } | CwtNode): void;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:144. */
   "multiply_temp_variable"(value: CwtNode): void;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:151. */
-  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Multiplies a variable to a value or another variable. CWT: Config/variable_effects.cwt:83. */
   "multiply_variable"(value: CwtNode): void;
   /** Multiplies a variable to a value or another variable. CWT: Config/variable_effects.cwt:87. */
-  "multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /**  CWT: Config/scopes.cwt:44. */
   "NOT"(value: CwtNode): void;
   /**  CWT: Config/scopes.cwt:52. */
   "OR"(value: CwtNode): void;
   /** Prints all variables in scope and temp variables to a file. CWT: Config/effects.cwt:2572. */
-  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
+  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
   /** Promote the officer of the division to a general scope = unit CWT: Config/effects_gtd.cwt:298. */
   "promote_officer_to_general"(value: boolean): void;
   /** Give experience to the units performing the raid (raid instance scope). Will give experience to any type of unit assigned to the raid, e.g. divisions or air wings. The value defines the progress towards the max level, e.g. 0.2 = gain 20% of the experience needed to reach max level. Can use either an CWT: Config/effects_gtd.cwt:294. */
@@ -7597,29 +7597,29 @@ export interface GeneratedRaidEffects {
   /** Randomize weather effect. CWT: Config/effects.cwt:570. */
   "randomize_weather"(value: number): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2869. */
-  "remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
+  "remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2884. */
-  "remove_from_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+  "remove_from_array"(value: { "array": string; "index": number } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2894. */
   "remove_from_array"(value: CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:2978. */
-  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
+  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:2993. */
-  "remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+  "remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:3003. */
   "remove_from_temp_array"(value: CwtNode): void;
   /** Removes either a resistance or compliance modifier to a state. Can only use modifiers from the resistance_modifiers.txt/compliance_modifiers.txt that are marked as is_dynamic = yes CWT: Config/effects_ncns.cwt:164. */
-  "remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+  "remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
   /**  CWT: Config/effects_nsb.cwt:123. */
   "remove_unit_leader_role"(value: string): void;
   /** Reset name of a province back to localization one. CWT: Config/effects.cwt:2120. */
   "reset_province_name"(value: number): void;
   /** Resizes array. CWT: Config/effects.cwt:2911. */
-  "resize_array"(value: { "array": string; "value"?: number | string; "size": "int_variable_field_32" } | CwtNode): void;
+  "resize_array"(value: { "array": string; "value"?: number | string; "size": number } | CwtNode): void;
   /** Resizes array. CWT: Config/effects.cwt:2928. */
   "resize_array"(value: CwtNode): void;
   /** Resizes a temp array. CWT: Config/effects.cwt:3023. */
-  "resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): void;
+  "resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): void;
   /** Resizes a temp array. CWT: Config/effects.cwt:3035. */
   "resize_temp_array"(value: CwtNode): void;
   /** removes character from all roles and availability CWT: Config/effects_nsb.cwt:397. */
@@ -7629,7 +7629,7 @@ export interface GeneratedRaidEffects {
   /** Rounds a temporary variable. CWT: Config/variable_effects_temp.cwt:252. */
   "round_temp_variable"(value: string): void;
   /** Rounds a variable. CWT: Config/variable_effects.cwt:202. */
-  "round_variable"(value: CwtOpaque): void;
+  "round_variable"(value: string): void;
   /** Save an event target. CWT: Config/effects.cwt:1356. */
   "save_event_target_as"(value: string): void;
   /** Save a global event target. CWT: Config/effects.cwt:1360. */
@@ -7641,7 +7641,7 @@ export interface GeneratedRaidEffects {
   /** Sets the position and rotation of an entity using two coordinates. IDs are set by the create_entity effect. Uses the the same coordinate system that the map uses. A positive change in rotation results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. CWT: Config/effects_nsb.cwt:855. */
   "set_entity_movement"(value: { "id": string; "start": { "x": number; "y": number; "z"?: number } | CwtNode; "target": { "province": number } | CwtNode; "ratio": number; "rotation": number } | CwtNode): void;
   /** Sets the position of an existing entity. IDs are set by the create_entity effect. Uses the the same coordinate system that the map uses. CWT: Config/effects_nsb.cwt:873. */
-  "set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef } | CwtNode): void;
+  "set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Sets the currently-facing angle of an existing entity. IDs are set by the create_entity effect. A positive change results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. CWT: Config/effects_nsb.cwt:887. */
   "set_entity_rotation"(value: { "id": string; "rotation": number } | CwtNode): void;
   /** Sets the size of an existing entity. IDs are set by the create_entity effect. CWT: Config/effects_nsb.cwt:895. */
@@ -7659,7 +7659,7 @@ export interface GeneratedRaidEffects {
   /** # TEMP VARIABLE Sets a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:53. */
   "set_temp_variable"(value: CwtNode): void;
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:88. */
-  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Sets a temp variable to a random value. CWT: Config/variable_effects_temp.cwt:226. */
   "set_temp_variable_to_random"(value: string): void;
   /** Sets a temp variable to a random value. CWT: Config/variable_effects_temp.cwt:230. */
@@ -7667,7 +7667,7 @@ export interface GeneratedRaidEffects {
   /** Sets a variable to a value or another variable. CWT: Config/variable_effects.cwt:3. */
   "set_variable"(value: CwtNode): void;
   /** Sets a variable to a value or another variable. CWT: Config/variable_effects.cwt:37. */
-  "set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Sets a variable to a random value. CWT: Config/variable_effects.cwt:168. */
   "set_variable_to_random"(value: string): void;
   /** Sets a variable to a random value. CWT: Config/variable_effects.cwt:172. */
@@ -7679,11 +7679,11 @@ export interface GeneratedRaidEffects {
   /** Subtracts a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:133. */
   "subtract_from_temp_variable"(value: CwtNode): void;
   /** Subtracts a value or a variable to a temp variable. CWT: Config/variable_effects_temp.cwt:140. */
-  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Subtracts a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:75. */
   "subtract_from_variable"(value: CwtNode): void;
   /** Subtracts a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:79. */
-  "subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /**  CWT: Config/effects.cwt:1381. */
   "unlock_national_focus"(value: string): void;
   /** Runs the effect as long as a trigger is true. Warning: will stop after reaching MAX_EFFECT_ITERATION define iterations - default 1000. CWT: Config/effects.cwt:3200. */
@@ -7691,13 +7691,13 @@ export interface GeneratedRaidEffects {
 }
 export interface GeneratedRaidTriggers {
   /** Adds an element to a temporary array. CWT: Config/triggers.cwt:1781. */
-  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef; "index"?: "int_variable_field_32" } | CwtNode): boolean;
+  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef; "index"?: number } | CwtNode): boolean;
   /** Adds an element to a temporary array. CWT: Config/triggers.cwt:1800. */
   "add_to_temp_array"(value: CwtNode): boolean;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:71. */
   "add_to_temp_variable"(value: CwtNode): boolean;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:78. */
-  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** ``` } num_of_available_civilian_factories > 5 } name = collection_has_more_than_10_factories operators = { limit = { num_of_civilian_factories > 10 } } input = game:all_countries collection = { all_collection_elements = { ``` Example (anonymous collection): Example: *all_collection_elements = { coll CWT: Config/triggers_ncns.cwt:151. */
   "all_collection_elements"(value: Trigger<ScopeByName["any"]> | CwtNode): boolean;
   /** Check if all countries meets the trigger. CWT: Config/triggers.cwt:223. */
@@ -7747,7 +7747,7 @@ export interface GeneratedRaidTriggers {
   /** Compares a variable to a number or variable. CWT: Config/triggers.cwt:93. */
   "check_variable"(value: CwtNode): boolean;
   /** Compares a variable to a number or variable. CWT: Config/triggers.cwt:105. */
-  "check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef; "value": string | number | boolean | CountryRef | StateRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
+  "check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef | StateTargetRef; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
   /** Clamps a temp variable between two a values or another variables. CWT: Config/variable_triggers_temp.cwt:190. */
   "clamp_temp_variable"(value: { "var": string; "min"?: number; "max"?: number } | CwtNode): boolean;
   /** Clears the contents of a temporary array. CWT: Config/triggers.cwt:1844. */
@@ -7777,7 +7777,7 @@ export interface GeneratedRaidTriggers {
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:104. */
   "divide_temp_variable"(value: CwtNode): boolean;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:128. */
-  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
+  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
   /** A conditional trigger. CWT: Config/triggers.cwt:28. */
   "else"(value: CwtNode): boolean;
   /** A conditional trigger. CWT: Config/triggers.cwt:21. */
@@ -7805,7 +7805,7 @@ export interface GeneratedRaidTriggers {
   /** Has global flag been set. Check flag val date set and days since set. Example: has_global_flag = test_flag. CWT: Config/triggers.cwt:160. */
   "has_global_flag"(value: { "flag": string; "value"?: number; "date"?: string; "days"?: number } | CwtNode): boolean;
   /** Checks if a state contains a railway at or above the specified level. CWT: Config/triggers_nsb.cwt:29. */
-  "has_railway_level"(value: { "level": number; "state": StateRef } | CwtNode): boolean;
+  "has_railway_level"(value: { "level": number; "state": StateRef | StateTargetRef } | CwtNode): boolean;
   /** Compare the initial start date of current game. CWT: Config/triggers.cwt:615. */
   "has_start_date"(value: string): boolean;
   /** Checks if a variable exists in a scope. CWT: Config/triggers.cwt:1550. */
@@ -7827,11 +7827,11 @@ export interface GeneratedRaidTriggers {
   /** Check if the historical focus is active. CWT: Config/triggers.cwt:992. */
   "is_historical_focus_on"(value: boolean): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1762. */
-  "is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+  "is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1769. */
   "is_in_array"(value: CwtNode): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1775. */
-  "is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+  "is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
   /** Check if current game is ironman. CWT: Config/triggers.cwt:611. */
   "is_ironman"(value: boolean): boolean;
   /** Check if the tutorial is active. CWT: Config/triggers.cwt:988. */
@@ -7847,7 +7847,7 @@ export interface GeneratedRaidTriggers {
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:93. */
   "multiply_temp_variable"(value: CwtNode): boolean;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:100. */
-  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /**  CWT: Config/scopes.cwt:34. */
   "NOT"(value: CwtNode): boolean;
   /**  CWT: Config/scopes.cwt:42. */
@@ -7855,21 +7855,21 @@ export interface GeneratedRaidTriggers {
   /** Compares the amount of turns that have passed during the peace conference with a number. CWT: Config/triggers_bba.cwt:175. */
   "pc_turn"(value: number): boolean;
   /** Prints all variables in scope and temp variables to a file. CWT: Config/triggers.cwt:1635. */
-  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
+  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
   /** Randomize a temporary variable. CWT: Config/variable_triggers_temp.cwt:143. */
   "randomize_temp_variable"(value: string): boolean;
   /** Randomize a temporary variable. CWT: Config/variable_triggers_temp.cwt:147. */
   "randomize_temp_variable"(value: { "var": string; "distribution": "uniform" | "binomial"; "min"?: number; "max"?: number; "lambda"?: number } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1811. */
-  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef } | CwtNode): boolean;
+  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1824. */
-  "remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): boolean;
+  "remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1833. */
   "remove_from_temp_array"(value: CwtNode): boolean;
   /** Check amount of reserves. CWT: Config/triggers.cwt:76. */
   "reserves"(value: number): boolean;
   /** Resizes a temp array. CWT: Config/triggers.cwt:1851. */
-  "resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): boolean;
+  "resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): boolean;
   /** Resizes a temp array. CWT: Config/triggers.cwt:1863. */
   "resize_temp_array"(value: CwtNode): boolean;
   /** Rounds a temporary variable. CWT: Config/variable_triggers_temp.cwt:200. */
@@ -7881,7 +7881,7 @@ export interface GeneratedRaidTriggers {
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:3. */
   "set_temp_variable"(value: CwtNode): boolean;
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:38. */
-  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Sets a temp variable to a random value. CWT: Config/variable_triggers_temp.cwt:174. */
   "set_temp_variable_to_random"(value: string): boolean;
   /** Sets a temp variable to a random value. CWT: Config/variable_triggers_temp.cwt:178. */
@@ -7889,7 +7889,7 @@ export interface GeneratedRaidTriggers {
   /** Subtracts a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:82. */
   "subtract_from_temp_variable"(value: CwtNode): boolean;
   /** Subtracts a value or a variable to a temp variable. CWT: Config/variable_triggers_temp.cwt:89. */
-  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Check the global threat value. 0-1 value. CWT: Config/triggers.cwt:142. */
   "threat"(value: number): boolean;
   /** ``` } } add_to_temp_variable = { unlock_compare = num_armies } } operators = { faction_members } input = game:scope collection = { all_collection_elements = { set_temp_variable = { unlock_compare = 0 } tooltip_evaluation = eval hidden_trigger = { ``` ```hidden_trigger = { tooltip_evaluation = no_eva CWT: Config/triggers_ncns.cwt:706. */
@@ -7903,27 +7903,27 @@ export interface GeneratedOperationEffects {
   /** Adds the specified equipment bonuses to the country. As description the given loc key or the name of given special project will be used. Same usage as in Ideas/National spirits CWT: Config/effects_gtd.cwt:120. */
   "add_equipment_bonus"(value: { "name"?: string; "project"?: CwtOpaque; "bonus": CwtNode } | CwtNode): void;
   /** Adds new namespace. CWT: Config/effects.cwt:761. */
-  "add_namespace"(value: string | number | boolean | CountryRef | StateRef): void;
+  "add_namespace"(value: string | number | boolean | CountryRef | StateRef | StateTargetRef): void;
   /** Add efficiency factor to strategic region for from country. CWT: Config/effects.cwt:2342. */
   "add_region_efficiency"(value: "replace_me"): void;
   /** Adds either a resistance or compliance modifier to a state. Can only use modifiers from the resistance_modifiers.txt/compliance_modifiers.txt that are marked as is_dynamic = yes CWT: Config/effects_ncns.cwt:154. */
-  "add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+  "add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Adds an element to an array. CWT: Config/effects.cwt:2824. */
-  "add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+  "add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
   /** Adds an element to an array. CWT: Config/effects.cwt:2846. */
   "add_to_array"(value: CwtNode): void;
   /** Adds an element to a temporary array. CWT: Config/effects.cwt:2943. */
-  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
   /** Adds an element to a temporary array. CWT: Config/effects.cwt:2965. */
   "add_to_temp_array"(value: CwtNode): void;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:122. */
   "add_to_temp_variable"(value: CwtNode): void;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:129. */
-  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Adds a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:67. */
   "add_to_variable"(value: CwtNode): void;
   /** Adds a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:71. */
-  "add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Adds victory point to province. CWT: Config/effects_new.cwt:957. */
   "add_victory_points"(value: { "province": number; "value": number } | CwtNode): void;
   /**  CWT: Config/scopes.cwt:51. */
@@ -7939,11 +7939,11 @@ export interface GeneratedOperationEffects {
   /** Starts railway construction for amount of levels in specified state or province. CWT: Config/effects.cwt:878. */
   "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_province": number; "target_province": number; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
   /** Starts railway construction for amount of levels in specified state or province. CWT: Config/effects.cwt:915. */
-  "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef; "target_state": StateRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
+  "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef | StateTargetRef; "target_state": StateRef | StateTargetRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
   /** Clamps a temp variable between two a values or another variables. CWT: Config/variable_effects_temp.cwt:242. */
   "clamp_temp_variable"(value: { "var": string; "min"?: number; "max"?: number } | CwtNode): void;
   /** Clamps a variable between two a values or another variables. CWT: Config/variable_effects.cwt:188. */
-  "clamp_variable"(value: { "var": CwtOpaque; "min"?: number | string; "max"?: number | string } | CwtNode): void;
+  "clamp_variable"(value: { "var": string; "min"?: number | string; "max"?: number | string } | CwtNode): void;
   /** Clears the contents of array. CWT: Config/effects.cwt:2907. */
   "clear_array"(value: string | CwtOpaque): void;
   /** Clear a global event target. CWT: Config/effects.cwt:1364. */
@@ -7957,13 +7957,13 @@ export interface GeneratedOperationEffects {
   /** Clears a variable. The input is NOT validated CWT: Config/variable_effects.cwt:206. */
   "clear_variable"(value: number): void;
   /** Clears a variable. The input is NOT validated CWT: Config/variable_effects.cwt:210. */
-  "clear_variable"(value: CwtOpaque): void;
+  "clear_variable"(value: string): void;
   /** Clear global flag. CWT: Config/effects.cwt:170. */
   "clr_global_flag"(value: string): void;
   /** Creates a dynamic country and runs child effects on it. CWT: Config/effects_new.cwt:327. */
   "create_dynamic_country"(value: Effect<ScopeByName["country"]> | { limit?: Trigger<ScopeByName["country"]>; effects: Effect<ScopeByName["country"]> } | CwtNode): void;
   /** Creates an enitity Uses the the same coordinate system that the map uses. A positive change in rotation results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. For comparison, default minimum zoom level (closest to the map) is 50 units, while default maximum CWT: Config/effects_nsb.cwt:823. */
-  "create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
+  "create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef | StateTargetRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
   /** Creates a purchase contract between the countries CWT: Config/effects_aat.cwt:253. */
   "create_purchase_contract"(value: { "seller": CountryRef; "buyer": CountryRef; "civilian_factories": number; "equipment": { "type": string; "amount": number } | CwtNode } | CwtNode): void;
   /** Create railway gun effect CWT: Config/effects_nsb.cwt:713. */
@@ -7979,11 +7979,11 @@ export interface GeneratedOperationEffects {
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:155. */
   "divide_temp_variable"(value: CwtNode): void;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:179. */
-  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
   /** Divides a variable to a value or another variable. CWT: Config/variable_effects.cwt:91. */
   "divide_variable"(value: CwtNode): void;
   /** Divides a variable to a value or another variable. CWT: Config/variable_effects.cwt:116. */
-  "divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+  "divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
   /** Shows just tooltip of effects. CWT: Config/effects.cwt:1510. */
   "effect_tooltip"(value: CwtNode): void;
   /** Use after (else_)if for a catch-all case. CWT: Config/effects.cwt:431. */
@@ -8021,7 +8021,7 @@ export interface GeneratedOperationEffects {
   /** Goes to stated province. CWT: Config/effects.cwt:1690. */
   "goto_province"(value: number): void;
   /** Goes to stated state. CWT: Config/effects.cwt:1694. */
-  "goto_state"(value: StateRef): void;
+  "goto_state"(value: StateRef | StateTargetRef): void;
   /** Effect not shown in tooltips. CWT: Config/effects.cwt:3783. */
   "hidden_effect"(value: CwtNode): void;
   /** A conditional effect. CWT: Config/effects.cwt:413. */
@@ -8039,21 +8039,21 @@ export interface GeneratedOperationEffects {
   /** Modulos a variable with another. CWT: Config/variable_effects.cwt:155. */
   "modulo_variable"(value: CwtNode): void;
   /** Modulos a variable with another. CWT: Config/variable_effects.cwt:161. */
-  "modulo_variable"(value: { "var": CwtOpaque; "value": number } | CwtNode): void;
+  "modulo_variable"(value: { "var": string; "value": number } | CwtNode): void;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:144. */
   "multiply_temp_variable"(value: CwtNode): void;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:151. */
-  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Multiplies a variable to a value or another variable. CWT: Config/variable_effects.cwt:83. */
   "multiply_variable"(value: CwtNode): void;
   /** Multiplies a variable to a value or another variable. CWT: Config/variable_effects.cwt:87. */
-  "multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /**  CWT: Config/scopes.cwt:44. */
   "NOT"(value: CwtNode): void;
   /**  CWT: Config/scopes.cwt:52. */
   "OR"(value: CwtNode): void;
   /** Prints all variables in scope and temp variables to a file. CWT: Config/effects.cwt:2572. */
-  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
+  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
   /** Promote the officer of the division to a general scope = unit CWT: Config/effects_gtd.cwt:298. */
   "promote_officer_to_general"(value: boolean): void;
   /** A possible random effect that can occur. CWT: Config/effects.cwt:343. */
@@ -8081,29 +8081,29 @@ export interface GeneratedOperationEffects {
   /** Randomize weather effect. CWT: Config/effects.cwt:570. */
   "randomize_weather"(value: number): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2869. */
-  "remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
+  "remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2884. */
-  "remove_from_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+  "remove_from_array"(value: { "array": string; "index": number } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2894. */
   "remove_from_array"(value: CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:2978. */
-  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
+  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:2993. */
-  "remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+  "remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:3003. */
   "remove_from_temp_array"(value: CwtNode): void;
   /** Removes either a resistance or compliance modifier to a state. Can only use modifiers from the resistance_modifiers.txt/compliance_modifiers.txt that are marked as is_dynamic = yes CWT: Config/effects_ncns.cwt:164. */
-  "remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+  "remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
   /**  CWT: Config/effects_nsb.cwt:123. */
   "remove_unit_leader_role"(value: string): void;
   /** Reset name of a province back to localization one. CWT: Config/effects.cwt:2120. */
   "reset_province_name"(value: number): void;
   /** Resizes array. CWT: Config/effects.cwt:2911. */
-  "resize_array"(value: { "array": string; "value"?: number | string; "size": "int_variable_field_32" } | CwtNode): void;
+  "resize_array"(value: { "array": string; "value"?: number | string; "size": number } | CwtNode): void;
   /** Resizes array. CWT: Config/effects.cwt:2928. */
   "resize_array"(value: CwtNode): void;
   /** Resizes a temp array. CWT: Config/effects.cwt:3023. */
-  "resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): void;
+  "resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): void;
   /** Resizes a temp array. CWT: Config/effects.cwt:3035. */
   "resize_temp_array"(value: CwtNode): void;
   /** removes character from all roles and availability CWT: Config/effects_nsb.cwt:397. */
@@ -8113,7 +8113,7 @@ export interface GeneratedOperationEffects {
   /** Rounds a temporary variable. CWT: Config/variable_effects_temp.cwt:252. */
   "round_temp_variable"(value: string): void;
   /** Rounds a variable. CWT: Config/variable_effects.cwt:202. */
-  "round_variable"(value: CwtOpaque): void;
+  "round_variable"(value: string): void;
   /** Save an event target. CWT: Config/effects.cwt:1356. */
   "save_event_target_as"(value: string): void;
   /** Save a global event target. CWT: Config/effects.cwt:1360. */
@@ -8125,7 +8125,7 @@ export interface GeneratedOperationEffects {
   /** Sets the position and rotation of an entity using two coordinates. IDs are set by the create_entity effect. Uses the the same coordinate system that the map uses. A positive change in rotation results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. CWT: Config/effects_nsb.cwt:855. */
   "set_entity_movement"(value: { "id": string; "start": { "x": number; "y": number; "z"?: number } | CwtNode; "target": { "province": number } | CwtNode; "ratio": number; "rotation": number } | CwtNode): void;
   /** Sets the position of an existing entity. IDs are set by the create_entity effect. Uses the the same coordinate system that the map uses. CWT: Config/effects_nsb.cwt:873. */
-  "set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef } | CwtNode): void;
+  "set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Sets the currently-facing angle of an existing entity. IDs are set by the create_entity effect. A positive change results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. CWT: Config/effects_nsb.cwt:887. */
   "set_entity_rotation"(value: { "id": string; "rotation": number } | CwtNode): void;
   /** Sets the size of an existing entity. IDs are set by the create_entity effect. CWT: Config/effects_nsb.cwt:895. */
@@ -8143,7 +8143,7 @@ export interface GeneratedOperationEffects {
   /** # TEMP VARIABLE Sets a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:53. */
   "set_temp_variable"(value: CwtNode): void;
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:88. */
-  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Sets a temp variable to a random value. CWT: Config/variable_effects_temp.cwt:226. */
   "set_temp_variable_to_random"(value: string): void;
   /** Sets a temp variable to a random value. CWT: Config/variable_effects_temp.cwt:230. */
@@ -8151,7 +8151,7 @@ export interface GeneratedOperationEffects {
   /** Sets a variable to a value or another variable. CWT: Config/variable_effects.cwt:3. */
   "set_variable"(value: CwtNode): void;
   /** Sets a variable to a value or another variable. CWT: Config/variable_effects.cwt:37. */
-  "set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Sets a variable to a random value. CWT: Config/variable_effects.cwt:168. */
   "set_variable_to_random"(value: string): void;
   /** Sets a variable to a random value. CWT: Config/variable_effects.cwt:172. */
@@ -8163,11 +8163,11 @@ export interface GeneratedOperationEffects {
   /** Subtracts a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:133. */
   "subtract_from_temp_variable"(value: CwtNode): void;
   /** Subtracts a value or a variable to a temp variable. CWT: Config/variable_effects_temp.cwt:140. */
-  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Subtracts a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:75. */
   "subtract_from_variable"(value: CwtNode): void;
   /** Subtracts a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:79. */
-  "subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /**  CWT: Config/effects.cwt:1381. */
   "unlock_national_focus"(value: string): void;
   /** Runs the effect as long as a trigger is true. Warning: will stop after reaching MAX_EFFECT_ITERATION define iterations - default 1000. CWT: Config/effects.cwt:3200. */
@@ -8175,13 +8175,13 @@ export interface GeneratedOperationEffects {
 }
 export interface GeneratedOperationTriggers {
   /** Adds an element to a temporary array. CWT: Config/triggers.cwt:1781. */
-  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef; "index"?: "int_variable_field_32" } | CwtNode): boolean;
+  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef; "index"?: number } | CwtNode): boolean;
   /** Adds an element to a temporary array. CWT: Config/triggers.cwt:1800. */
   "add_to_temp_array"(value: CwtNode): boolean;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:71. */
   "add_to_temp_variable"(value: CwtNode): boolean;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:78. */
-  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** ``` } num_of_available_civilian_factories > 5 } name = collection_has_more_than_10_factories operators = { limit = { num_of_civilian_factories > 10 } } input = game:all_countries collection = { all_collection_elements = { ``` Example (anonymous collection): Example: *all_collection_elements = { coll CWT: Config/triggers_ncns.cwt:151. */
   "all_collection_elements"(value: Trigger<ScopeByName["any"]> | CwtNode): boolean;
   /** Check if all countries meets the trigger. CWT: Config/triggers.cwt:223. */
@@ -8235,7 +8235,7 @@ export interface GeneratedOperationTriggers {
   /** Compares a variable to a number or variable. CWT: Config/triggers.cwt:93. */
   "check_variable"(value: CwtNode): boolean;
   /** Compares a variable to a number or variable. CWT: Config/triggers.cwt:105. */
-  "check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef; "value": string | number | boolean | CountryRef | StateRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
+  "check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef | StateTargetRef; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
   /** Clamps a temp variable between two a values or another variables. CWT: Config/variable_triggers_temp.cwt:190. */
   "clamp_temp_variable"(value: { "var": string; "min"?: number; "max"?: number } | CwtNode): boolean;
   /** Clears the contents of a temporary array. CWT: Config/triggers.cwt:1844. */
@@ -8265,7 +8265,7 @@ export interface GeneratedOperationTriggers {
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:104. */
   "divide_temp_variable"(value: CwtNode): boolean;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:128. */
-  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
+  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
   /** A conditional trigger. CWT: Config/triggers.cwt:28. */
   "else"(value: CwtNode): boolean;
   /** A conditional trigger. CWT: Config/triggers.cwt:21. */
@@ -8293,7 +8293,7 @@ export interface GeneratedOperationTriggers {
   /** Has global flag been set. Check flag val date set and days since set. Example: has_global_flag = test_flag. CWT: Config/triggers.cwt:160. */
   "has_global_flag"(value: { "flag": string; "value"?: number; "date"?: string; "days"?: number } | CwtNode): boolean;
   /** Checks if a state contains a railway at or above the specified level. CWT: Config/triggers_nsb.cwt:29. */
-  "has_railway_level"(value: { "level": number; "state": StateRef } | CwtNode): boolean;
+  "has_railway_level"(value: { "level": number; "state": StateRef | StateTargetRef } | CwtNode): boolean;
   /** Compare the initial start date of current game. CWT: Config/triggers.cwt:615. */
   "has_start_date"(value: string): boolean;
   /** Checks if a variable exists in a scope. CWT: Config/triggers.cwt:1550. */
@@ -8315,11 +8315,11 @@ export interface GeneratedOperationTriggers {
   /** Check if the historical focus is active. CWT: Config/triggers.cwt:992. */
   "is_historical_focus_on"(value: boolean): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1762. */
-  "is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+  "is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1769. */
   "is_in_array"(value: CwtNode): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1775. */
-  "is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+  "is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
   /** Check if current game is ironman. CWT: Config/triggers.cwt:611. */
   "is_ironman"(value: boolean): boolean;
   /** Checks the type of operation. CWT: Config/triggers_new.cwt:379. */
@@ -8337,7 +8337,7 @@ export interface GeneratedOperationTriggers {
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:93. */
   "multiply_temp_variable"(value: CwtNode): boolean;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:100. */
-  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /**  CWT: Config/scopes.cwt:34. */
   "NOT"(value: CwtNode): boolean;
   /**  CWT: Config/scopes.cwt:42. */
@@ -8345,21 +8345,21 @@ export interface GeneratedOperationTriggers {
   /** Compares the amount of turns that have passed during the peace conference with a number. CWT: Config/triggers_bba.cwt:175. */
   "pc_turn"(value: number): boolean;
   /** Prints all variables in scope and temp variables to a file. CWT: Config/triggers.cwt:1635. */
-  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
+  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
   /** Randomize a temporary variable. CWT: Config/variable_triggers_temp.cwt:143. */
   "randomize_temp_variable"(value: string): boolean;
   /** Randomize a temporary variable. CWT: Config/variable_triggers_temp.cwt:147. */
   "randomize_temp_variable"(value: { "var": string; "distribution": "uniform" | "binomial"; "min"?: number; "max"?: number; "lambda"?: number } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1811. */
-  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef } | CwtNode): boolean;
+  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1824. */
-  "remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): boolean;
+  "remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1833. */
   "remove_from_temp_array"(value: CwtNode): boolean;
   /** Check amount of reserves. CWT: Config/triggers.cwt:76. */
   "reserves"(value: number): boolean;
   /** Resizes a temp array. CWT: Config/triggers.cwt:1851. */
-  "resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): boolean;
+  "resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): boolean;
   /** Resizes a temp array. CWT: Config/triggers.cwt:1863. */
   "resize_temp_array"(value: CwtNode): boolean;
   /** Rounds a temporary variable. CWT: Config/variable_triggers_temp.cwt:200. */
@@ -8371,7 +8371,7 @@ export interface GeneratedOperationTriggers {
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:3. */
   "set_temp_variable"(value: CwtNode): boolean;
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:38. */
-  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Sets a temp variable to a random value. CWT: Config/variable_triggers_temp.cwt:174. */
   "set_temp_variable_to_random"(value: string): boolean;
   /** Sets a temp variable to a random value. CWT: Config/variable_triggers_temp.cwt:178. */
@@ -8379,7 +8379,7 @@ export interface GeneratedOperationTriggers {
   /** Subtracts a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:82. */
   "subtract_from_temp_variable"(value: CwtNode): boolean;
   /** Subtracts a value or a variable to a temp variable. CWT: Config/variable_triggers_temp.cwt:89. */
-  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Check the global threat value. 0-1 value. CWT: Config/triggers.cwt:142. */
   "threat"(value: number): boolean;
   /** ``` } } add_to_temp_variable = { unlock_compare = num_armies } } operators = { faction_members } input = game:scope collection = { all_collection_elements = { set_temp_variable = { unlock_compare = 0 } tooltip_evaluation = eval hidden_trigger = { ``` ```hidden_trigger = { tooltip_evaluation = no_eva CWT: Config/triggers_ncns.cwt:706. */
@@ -8393,27 +8393,27 @@ export interface GeneratedAnyEffects {
   /** Adds the specified equipment bonuses to the country. As description the given loc key or the name of given special project will be used. Same usage as in Ideas/National spirits CWT: Config/effects_gtd.cwt:120. */
   "add_equipment_bonus"(value: { "name"?: string; "project"?: CwtOpaque; "bonus": CwtNode } | CwtNode): void;
   /** Adds new namespace. CWT: Config/effects.cwt:761. */
-  "add_namespace"(value: string | number | boolean | CountryRef | StateRef): void;
+  "add_namespace"(value: string | number | boolean | CountryRef | StateRef | StateTargetRef): void;
   /** Add efficiency factor to strategic region for from country. CWT: Config/effects.cwt:2342. */
   "add_region_efficiency"(value: "replace_me"): void;
   /** Adds either a resistance or compliance modifier to a state. Can only use modifiers from the resistance_modifiers.txt/compliance_modifiers.txt that are marked as is_dynamic = yes CWT: Config/effects_ncns.cwt:154. */
-  "add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+  "add_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Adds an element to an array. CWT: Config/effects.cwt:2824. */
-  "add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+  "add_to_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
   /** Adds an element to an array. CWT: Config/effects.cwt:2846. */
   "add_to_array"(value: CwtNode): void;
   /** Adds an element to a temporary array. CWT: Config/effects.cwt:2943. */
-  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef | string; "index"?: "int_variable_field_32" } | CwtNode): void;
+  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef | string; "index"?: number } | CwtNode): void;
   /** Adds an element to a temporary array. CWT: Config/effects.cwt:2965. */
   "add_to_temp_array"(value: CwtNode): void;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:122. */
   "add_to_temp_variable"(value: CwtNode): void;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:129. */
-  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Adds a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:67. */
   "add_to_variable"(value: CwtNode): void;
   /** Adds a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:71. */
-  "add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "add_to_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Adds victory point to province. CWT: Config/effects_new.cwt:957. */
   "add_victory_points"(value: { "province": number; "value": number } | CwtNode): void;
   /**  CWT: Config/scopes.cwt:51. */
@@ -8429,11 +8429,11 @@ export interface GeneratedAnyEffects {
   /** Starts railway construction for amount of levels in specified state or province. CWT: Config/effects.cwt:878. */
   "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_province": number; "target_province": number; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
   /** Starts railway construction for amount of levels in specified state or province. CWT: Config/effects.cwt:915. */
-  "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef; "target_state": StateRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
+  "build_railway"(value: { "build_only_on_allied"?: boolean; "controller_priority"?: { "base"?: number; "modifier"?: { "tag": CountryRef; "add": number } | CwtNode } | CwtNode; "level"?: number; "start_state": StateRef | StateTargetRef; "target_state": StateRef | StateTargetRef; "path"?: readonly (number)[]; "fallback"?: boolean } | CwtNode): void;
   /** Clamps a temp variable between two a values or another variables. CWT: Config/variable_effects_temp.cwt:242. */
   "clamp_temp_variable"(value: { "var": string; "min"?: number; "max"?: number } | CwtNode): void;
   /** Clamps a variable between two a values or another variables. CWT: Config/variable_effects.cwt:188. */
-  "clamp_variable"(value: { "var": CwtOpaque; "min"?: number | string; "max"?: number | string } | CwtNode): void;
+  "clamp_variable"(value: { "var": string; "min"?: number | string; "max"?: number | string } | CwtNode): void;
   /** Clears the contents of array. CWT: Config/effects.cwt:2907. */
   "clear_array"(value: string | CwtOpaque): void;
   /** Clear a global event target. CWT: Config/effects.cwt:1364. */
@@ -8447,13 +8447,13 @@ export interface GeneratedAnyEffects {
   /** Clears a variable. The input is NOT validated CWT: Config/variable_effects.cwt:206. */
   "clear_variable"(value: number): void;
   /** Clears a variable. The input is NOT validated CWT: Config/variable_effects.cwt:210. */
-  "clear_variable"(value: CwtOpaque): void;
+  "clear_variable"(value: string): void;
   /** Clear global flag. CWT: Config/effects.cwt:170. */
   "clr_global_flag"(value: string): void;
   /** Creates a dynamic country and runs child effects on it. CWT: Config/effects_new.cwt:327. */
   "create_dynamic_country"(value: Effect<ScopeByName["country"]> | { limit?: Trigger<ScopeByName["country"]>; effects: Effect<ScopeByName["country"]> } | CwtNode): void;
   /** Creates an enitity Uses the the same coordinate system that the map uses. A positive change in rotation results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. For comparison, default minimum zoom level (closest to the map) is 50 units, while default maximum CWT: Config/effects_nsb.cwt:823. */
-  "create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
+  "create_entity"(value: { "entity": string; "id"?: string; "var"?: string; "x"?: number; "y"?: number; "z"?: number; "province"?: number; "state"?: StateRef | StateTargetRef; "rotation": number; "scale": number; "min_zoom": number; "visible"?: string } | CwtNode): void;
   /** Creates a purchase contract between the countries CWT: Config/effects_aat.cwt:253. */
   "create_purchase_contract"(value: { "seller": CountryRef; "buyer": CountryRef; "civilian_factories": number; "equipment": { "type": string; "amount": number } | CwtNode } | CwtNode): void;
   /** Create railway gun effect CWT: Config/effects_nsb.cwt:713. */
@@ -8469,11 +8469,11 @@ export interface GeneratedAnyEffects {
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:155. */
   "divide_temp_variable"(value: CwtNode): void;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:179. */
-  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
   /** Divides a variable to a value or another variable. CWT: Config/variable_effects.cwt:91. */
   "divide_variable"(value: CwtNode): void;
   /** Divides a variable to a value or another variable. CWT: Config/variable_effects.cwt:116. */
-  "divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
+  "divide_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): void;
   /** Shows just tooltip of effects. CWT: Config/effects.cwt:1510. */
   "effect_tooltip"(value: CwtNode): void;
   /** Use after (else_)if for a catch-all case. CWT: Config/effects.cwt:431. */
@@ -8507,7 +8507,7 @@ export interface GeneratedAnyEffects {
   /** Goes to stated province. CWT: Config/effects.cwt:1690. */
   "goto_province"(value: number): void;
   /** Goes to stated state. CWT: Config/effects.cwt:1694. */
-  "goto_state"(value: StateRef): void;
+  "goto_state"(value: StateRef | StateTargetRef): void;
   /** Effect not shown in tooltips. CWT: Config/effects.cwt:3783. */
   "hidden_effect"(value: CwtNode): void;
   /** A conditional effect. CWT: Config/effects.cwt:413. */
@@ -8525,21 +8525,21 @@ export interface GeneratedAnyEffects {
   /** Modulos a variable with another. CWT: Config/variable_effects.cwt:155. */
   "modulo_variable"(value: CwtNode): void;
   /** Modulos a variable with another. CWT: Config/variable_effects.cwt:161. */
-  "modulo_variable"(value: { "var": CwtOpaque; "value": number } | CwtNode): void;
+  "modulo_variable"(value: { "var": string; "value": number } | CwtNode): void;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:144. */
   "multiply_temp_variable"(value: CwtNode): void;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:151. */
-  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Multiplies a variable to a value or another variable. CWT: Config/variable_effects.cwt:83. */
   "multiply_variable"(value: CwtNode): void;
   /** Multiplies a variable to a value or another variable. CWT: Config/variable_effects.cwt:87. */
-  "multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "multiply_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /**  CWT: Config/scopes.cwt:44. */
   "NOT"(value: CwtNode): void;
   /**  CWT: Config/scopes.cwt:52. */
   "OR"(value: CwtNode): void;
   /** Prints all variables in scope and temp variables to a file. CWT: Config/effects.cwt:2572. */
-  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
+  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
   /** Promote the officer of the division to a general scope = unit CWT: Config/effects_gtd.cwt:298. */
   "promote_officer_to_general"(value: boolean): void;
   /** A possible random effect that can occur. CWT: Config/effects.cwt:343. */
@@ -8565,29 +8565,29 @@ export interface GeneratedAnyEffects {
   /** Randomize weather effect. CWT: Config/effects.cwt:570. */
   "randomize_weather"(value: number): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2869. */
-  "remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
+  "remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2884. */
-  "remove_from_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+  "remove_from_array"(value: { "array": string; "index": number } | CwtNode): void;
   /** Removes an element from an array using value or index. CWT: Config/effects.cwt:2894. */
   "remove_from_array"(value: CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:2978. */
-  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
+  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:2993. */
-  "remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+  "remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): void;
   /** Removes an element from a temporary array using value or index. CWT: Config/effects.cwt:3003. */
   "remove_from_temp_array"(value: CwtNode): void;
   /** Removes either a resistance or compliance modifier to a state. Can only use modifiers from the resistance_modifiers.txt/compliance_modifiers.txt that are marked as is_dynamic = yes CWT: Config/effects_ncns.cwt:164. */
-  "remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+  "remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
   /**  CWT: Config/effects_nsb.cwt:123. */
   "remove_unit_leader_role"(value: string): void;
   /** Reset name of a province back to localization one. CWT: Config/effects.cwt:2120. */
   "reset_province_name"(value: number): void;
   /** Resizes array. CWT: Config/effects.cwt:2911. */
-  "resize_array"(value: { "array": string; "value"?: number | string; "size": "int_variable_field_32" } | CwtNode): void;
+  "resize_array"(value: { "array": string; "value"?: number | string; "size": number } | CwtNode): void;
   /** Resizes array. CWT: Config/effects.cwt:2928. */
   "resize_array"(value: CwtNode): void;
   /** Resizes a temp array. CWT: Config/effects.cwt:3023. */
-  "resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): void;
+  "resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): void;
   /** Resizes a temp array. CWT: Config/effects.cwt:3035. */
   "resize_temp_array"(value: CwtNode): void;
   /** removes character from all roles and availability CWT: Config/effects_nsb.cwt:397. */
@@ -8597,7 +8597,7 @@ export interface GeneratedAnyEffects {
   /** Rounds a temporary variable. CWT: Config/variable_effects_temp.cwt:252. */
   "round_temp_variable"(value: string): void;
   /** Rounds a variable. CWT: Config/variable_effects.cwt:202. */
-  "round_variable"(value: CwtOpaque): void;
+  "round_variable"(value: string): void;
   /** Save an event target. CWT: Config/effects.cwt:1356. */
   "save_event_target_as"(value: string): void;
   /** Save a global event target. CWT: Config/effects.cwt:1360. */
@@ -8609,7 +8609,7 @@ export interface GeneratedAnyEffects {
   /** Sets the position and rotation of an entity using two coordinates. IDs are set by the create_entity effect. Uses the the same coordinate system that the map uses. A positive change in rotation results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. CWT: Config/effects_nsb.cwt:855. */
   "set_entity_movement"(value: { "id": string; "start": { "x": number; "y": number; "z"?: number } | CwtNode; "target": { "province": number } | CwtNode; "ratio": number; "rotation": number } | CwtNode): void;
   /** Sets the position of an existing entity. IDs are set by the create_entity effect. Uses the the same coordinate system that the map uses. CWT: Config/effects_nsb.cwt:873. */
-  "set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef } | CwtNode): void;
+  "set_entity_position"(value: { "id": string; "x": number; "y": number; "z"?: number; "province": "enum"; "state": StateRef | StateTargetRef } | CwtNode): void;
   /** Sets the currently-facing angle of an existing entity. IDs are set by the create_entity effect. A positive change results in counter-clockwise rotation, a full 360 degrees rotation is approximately 6.28 radians. CWT: Config/effects_nsb.cwt:887. */
   "set_entity_rotation"(value: { "id": string; "rotation": number } | CwtNode): void;
   /** Sets the size of an existing entity. IDs are set by the create_entity effect. CWT: Config/effects_nsb.cwt:895. */
@@ -8627,7 +8627,7 @@ export interface GeneratedAnyEffects {
   /** # TEMP VARIABLE Sets a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:53. */
   "set_temp_variable"(value: CwtNode): void;
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_effects_temp.cwt:88. */
-  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Sets a temp variable to a random value. CWT: Config/variable_effects_temp.cwt:226. */
   "set_temp_variable_to_random"(value: string): void;
   /** Sets a temp variable to a random value. CWT: Config/variable_effects_temp.cwt:230. */
@@ -8635,7 +8635,7 @@ export interface GeneratedAnyEffects {
   /** Sets a variable to a value or another variable. CWT: Config/variable_effects.cwt:3. */
   "set_variable"(value: CwtNode): void;
   /** Sets a variable to a value or another variable. CWT: Config/variable_effects.cwt:37. */
-  "set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "set_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Sets a variable to a random value. CWT: Config/variable_effects.cwt:168. */
   "set_variable_to_random"(value: string): void;
   /** Sets a variable to a random value. CWT: Config/variable_effects.cwt:172. */
@@ -8647,11 +8647,11 @@ export interface GeneratedAnyEffects {
   /** Subtracts a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_effects_temp.cwt:133. */
   "subtract_from_temp_variable"(value: CwtNode): void;
   /** Subtracts a value or a variable to a temp variable. CWT: Config/variable_effects_temp.cwt:140. */
-  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /** Subtracts a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:75. */
   "subtract_from_variable"(value: CwtNode): void;
   /** Subtracts a value or a variable to another one. Can define numerical variable with value = 0 CWT: Config/variable_effects.cwt:79. */
-  "subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): void;
+  "subtract_from_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): void;
   /**  CWT: Config/effects.cwt:1381. */
   "unlock_national_focus"(value: string): void;
   /** Runs the effect as long as a trigger is true. Warning: will stop after reaching MAX_EFFECT_ITERATION define iterations - default 1000. CWT: Config/effects.cwt:3200. */
@@ -8659,13 +8659,13 @@ export interface GeneratedAnyEffects {
 }
 export interface GeneratedAnyTriggers {
   /** Adds an element to a temporary array. CWT: Config/triggers.cwt:1781. */
-  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | CountryRef; "index"?: "int_variable_field_32" } | CwtNode): boolean;
+  "add_to_temp_array"(value: { "array": string; "value"?: number | CountryRef | StateRef | StateTargetRef | CountryRef; "index"?: number } | CwtNode): boolean;
   /** Adds an element to a temporary array. CWT: Config/triggers.cwt:1800. */
   "add_to_temp_array"(value: CwtNode): boolean;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:71. */
   "add_to_temp_variable"(value: CwtNode): boolean;
   /** Adds a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:78. */
-  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "add_to_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** ``` } num_of_available_civilian_factories > 5 } name = collection_has_more_than_10_factories operators = { limit = { num_of_civilian_factories > 10 } } input = game:all_countries collection = { all_collection_elements = { ``` Example (anonymous collection): Example: *all_collection_elements = { coll CWT: Config/triggers_ncns.cwt:151. */
   "all_collection_elements"(value: Trigger<ScopeByName["any"]> | CwtNode): boolean;
   /** Check if all countries meets the trigger. CWT: Config/triggers.cwt:223. */
@@ -8715,7 +8715,7 @@ export interface GeneratedAnyTriggers {
   /** Compares a variable to a number or variable. CWT: Config/triggers.cwt:93. */
   "check_variable"(value: CwtNode): boolean;
   /** Compares a variable to a number or variable. CWT: Config/triggers.cwt:105. */
-  "check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef; "value": string | number | boolean | CountryRef | StateRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
+  "check_variable"(value: { "var": string | number | boolean | CountryRef | StateRef | StateTargetRef; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef; "compare"?: string; "tooltip"?: string } | CwtNode): boolean;
   /** Clamps a temp variable between two a values or another variables. CWT: Config/variable_triggers_temp.cwt:190. */
   "clamp_temp_variable"(value: { "var": string; "min"?: number; "max"?: number } | CwtNode): boolean;
   /** Clears the contents of a temporary array. CWT: Config/triggers.cwt:1844. */
@@ -8745,7 +8745,7 @@ export interface GeneratedAnyTriggers {
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:104. */
   "divide_temp_variable"(value: CwtNode): boolean;
   /** Divides a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:128. */
-  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
+  "divide_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string; "if_zero"?: number } | CwtNode): boolean;
   /** A conditional trigger. CWT: Config/triggers.cwt:28. */
   "else"(value: CwtNode): boolean;
   /** A conditional trigger. CWT: Config/triggers.cwt:21. */
@@ -8773,7 +8773,7 @@ export interface GeneratedAnyTriggers {
   /** Has global flag been set. Check flag val date set and days since set. Example: has_global_flag = test_flag. CWT: Config/triggers.cwt:160. */
   "has_global_flag"(value: { "flag": string; "value"?: number; "date"?: string; "days"?: number } | CwtNode): boolean;
   /** Checks if a state contains a railway at or above the specified level. CWT: Config/triggers_nsb.cwt:29. */
-  "has_railway_level"(value: { "level": number; "state": StateRef } | CwtNode): boolean;
+  "has_railway_level"(value: { "level": number; "state": StateRef | StateTargetRef } | CwtNode): boolean;
   /** Compare the initial start date of current game. CWT: Config/triggers.cwt:615. */
   "has_start_date"(value: string): boolean;
   /** Checks if a variable exists in a scope. CWT: Config/triggers.cwt:1550. */
@@ -8795,11 +8795,11 @@ export interface GeneratedAnyTriggers {
   /** Check if the historical focus is active. CWT: Config/triggers.cwt:992. */
   "is_historical_focus_on"(value: boolean): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1762. */
-  "is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+  "is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1769. */
   "is_in_array"(value: CwtNode): boolean;
   /** Checks if an element is in array. CWT: Config/triggers.cwt:1775. */
-  "is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+  "is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
   /** Check if current game is ironman. CWT: Config/triggers.cwt:611. */
   "is_ironman"(value: boolean): boolean;
   /** Check if the tutorial is active. CWT: Config/triggers.cwt:988. */
@@ -8815,7 +8815,7 @@ export interface GeneratedAnyTriggers {
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:93. */
   "multiply_temp_variable"(value: CwtNode): boolean;
   /** Multiplies a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:100. */
-  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "multiply_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /**  CWT: Config/scopes.cwt:34. */
   "NOT"(value: CwtNode): boolean;
   /**  CWT: Config/scopes.cwt:42. */
@@ -8823,21 +8823,21 @@ export interface GeneratedAnyTriggers {
   /** Compares the amount of turns that have passed during the peace conference with a number. CWT: Config/triggers_bba.cwt:175. */
   "pc_turn"(value: number): boolean;
   /** Prints all variables in scope and temp variables to a file. CWT: Config/triggers.cwt:1635. */
-  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
+  "print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): boolean;
   /** Randomize a temporary variable. CWT: Config/variable_triggers_temp.cwt:143. */
   "randomize_temp_variable"(value: string): boolean;
   /** Randomize a temporary variable. CWT: Config/variable_triggers_temp.cwt:147. */
   "randomize_temp_variable"(value: { "var": string; "distribution": "uniform" | "binomial"; "min"?: number; "max"?: number; "lambda"?: number } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1811. */
-  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef } | CwtNode): boolean;
+  "remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1824. */
-  "remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): boolean;
+  "remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): boolean;
   /** Removes an element from a temporary array using value or index. CWT: Config/triggers.cwt:1833. */
   "remove_from_temp_array"(value: CwtNode): boolean;
   /** Check amount of reserves. CWT: Config/triggers.cwt:76. */
   "reserves"(value: number): boolean;
   /** Resizes a temp array. CWT: Config/triggers.cwt:1851. */
-  "resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): boolean;
+  "resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): boolean;
   /** Resizes a temp array. CWT: Config/triggers.cwt:1863. */
   "resize_temp_array"(value: CwtNode): boolean;
   /** Rounds a temporary variable. CWT: Config/variable_triggers_temp.cwt:200. */
@@ -8849,7 +8849,7 @@ export interface GeneratedAnyTriggers {
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:3. */
   "set_temp_variable"(value: CwtNode): boolean;
   /** Sets a temp variable to a value or another variable. CWT: Config/variable_triggers_temp.cwt:38. */
-  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | string | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "set_temp_variable"(value: { "var": string; "value": number | CountryRef | StateRef | StateTargetRef | string | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Sets a temp variable to a random value. CWT: Config/variable_triggers_temp.cwt:174. */
   "set_temp_variable_to_random"(value: string): boolean;
   /** Sets a temp variable to a random value. CWT: Config/variable_triggers_temp.cwt:178. */
@@ -8857,7 +8857,7 @@ export interface GeneratedAnyTriggers {
   /** Subtracts a value or a variable to a temp variable. Can define numerical variable with value = 0 CWT: Config/variable_triggers_temp.cwt:82. */
   "subtract_from_temp_variable"(value: CwtNode): boolean;
   /** Subtracts a value or a variable to a temp variable. CWT: Config/variable_triggers_temp.cwt:89. */
-  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef; "tooltip"?: string } | CwtNode): boolean;
+  "subtract_from_temp_variable"(value: { "var": string; "value": number | CwtNode | string | number | boolean | CountryRef | StateRef | StateTargetRef; "tooltip"?: string } | CwtNode): boolean;
   /** Check the global threat value. 0-1 value. CWT: Config/triggers.cwt:142. */
   "threat"(value: number): boolean;
   /** ``` } } add_to_temp_variable = { unlock_compare = num_armies } } operators = { faction_members } input = game:scope collection = { all_collection_elements = { set_temp_variable = { unlock_compare = 0 } tooltip_evaluation = eval hidden_trigger = { ``` ```hidden_trigger = { tooltip_evaluation = no_eva CWT: Config/triggers_ncns.cwt:706. */

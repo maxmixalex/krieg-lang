@@ -7,35 +7,70 @@ repo_name = "maxmixalex/krieg-lang"
 docs_dir = "docs"
 site_dir = "site"
 nav = [
-  { "开始" = [
-    { "Krieg 是什么" = "index.md" },
-    { "第一个模组" = "getting-started.md" },
-    { "原版与 Kaiserreich 完整示例" = "examples.md" },
-    { "编辑器与格式化" = "editor.md" },
+  { "首页" = "index.md" },
+  { "Tutorials · 教程" = [
+    { "学习路线" = "tutorials/index.md" },
+    { "01 安装并构建第一个模组" = "tutorials/first-mod.md" },
+    { "02 添加事件与中文文本" = "tutorials/event-and-localisation.md" },
+    { "03 国策解锁一项付费行动" = "tutorials/focus-and-action.md" },
+    { "04 用 TSX 连接同一个行动" = "tutorials/action-window.md" },
+    { "05 迁移一份原生脚本" = "tutorials/native-port.md" },
   ] },
-  { "语言与玩法" = [
-    { "语言与执行模型" = "language.md" },
-    { "作用域、条件与效果" = "scopes.md" },
-    { "事件、国策与决议组合" = "recipes.md" },
-    { "常用玩法与类型化结构" = "typed-gameplay.md" },
-    { "脚本化内容与 MetaEffect" = "scripted-content.md" },
-    { "科技、人物与其他领域" = "content-domains.md" },
+  { "Guides · 领域手册" = [
+    { "按领域查找" = "guide/index.md" },
+    { "语言与作用域" = [
+      { "静态语言与模块" = "guide/language.md" },
+      { "目录与运行时查表" = "guide/catalogues.md" },
+      { "游戏变量、数组与已保存作用域" = "guide/runtime-state.md" },
+      { "作用域、条件与效果" = "guide/scopes.md" },
+      { "脚本复用与 MetaEffect" = "guide/scripted-content.md" },
+    ] },
+    { "玩法" = [
+      { "事件与调度" = "guide/events.md" },
+      { "国策图与关系" = "guide/focuses.md" },
+      { "决议与共享行动" = "guide/actions.md" },
+      { "民族精神与修正" = "guide/ideas.md" },
+    ] },
+    { "原生内容领域" = [
+      { "入口与支持边界" = "guide/domains/index.md" },
+      { "人物、领袖与特质" = "guide/domains/characters.md" },
+      { "科技、学说与装备" = "guide/domains/technology.md" },
+      { "AI、政治与外交" = "guide/domains/politics-ai.md" },
+      { "工业、情报与特殊项目" = "guide/domains/industry-intelligence.md" },
+    ] },
+    { "世界、文本与资源" = [
+      { "国家与地图" = "guide/countries-maps.md" },
+      { "地图索引与铁路" = "guide/map-atlas.md" },
+      { "本地化" = "guide/localisation.md" },
+      { "图像、音频与 Defines" = "guide/assets.md" },
+    ] },
+    { "界面" = [
+      { "动态列表与修饰键操作" = "guide/window-interaction.md" },
+      { "TSX 与游戏行为" = "guide/ui.md" },
+      { "样式与 Stack" = "guide/styles.md" },
+    ] },
+    { "工程与验证" = [
+      { "项目配置与依赖" = "guide/projects.md" },
+      { "编辑器与格式化" = "guide/editor.md" },
+      { "有序 PDX 与导入" = "guide/native-import.md" },
+      { "验证层次" = "guide/validation.md" },
+      { "从游戏日志定位源码" = "guide/debugging.md" },
+    ] },
   ] },
-  { "世界、文本与界面" = [
-    { "国家与地图" = "countries-maps.md" },
-    { "地图索引与铁路规划" = "map-atlas.md" },
-    { "YAML 与原生本地化" = "localisation.md" },
-    { "界面与 TSX" = "ui.md" },
-    { "静态样式与 Stack 布局" = "styles.md" },
-    { "图片、音频与原生资源" = "assets.md" },
+  { "Ports · 实际案例" = [
+    { "项目索引与复现" = "ports/index.md" },
+    { "原版与 Kaiserreich 完整项目" = "ports/complete-examples.md" },
+    { "钢琴：琴键与声音" = "ports/playable-piano.md" },
+    { "州转移：作用域与状态" = "ports/state-transfer.md" },
+    { "GDP：公式、排序和地图" = "ports/gdp.md" },
+    { "UNO 与赌场：卡牌和筹码" = "ports/card-games.md" },
+    { "自动科研：资料、队列与存储" = "ports/automated-research.md" },
+    { "六个案例的外部规则检查" = "ports/validation.md" },
   ] },
-  { "项目工作流" = [
-    { "项目、资源与依赖" = "projects.md" },
-    { "导入原生脚本" = "native-import.md" },
-    { "命令行" = "cli.md" },
-    { "验证与兼容性" = "validation.md" },
-    { "从游戏报错定位源码" = "debugging.md" },
-    { "Wiki 功能覆盖" = "coverage.md" },
+  { "Reference · 查询" = [
+    { "查询入口" = "reference/index.md" },
+    { "CLI 命令与参数" = "reference/cli.md" },
+    { "Wiki 支持与证据" = "coverage.md" },
   ] },
   { "API Reference" = [
     { "按任务查找" = "api/index.md" },
@@ -54,10 +89,13 @@ nav = [
     { "玩法参考" = [
       { "决议类别、决议与条件" = "api/reference/hoi4/decisions.md" },
       { "事件、选项与调度句柄" = "api/reference/hoi4/events.md" },
+      { "从有限表生成连续编号内容" = "api/reference/hoi4/series.md" },
       { "战斗、行动与特殊作用域" = "api/reference/hoi4/scopes-specialized.md" },
+      { "可交互音效库" = "api/reference/hoi4/audio-banks.md" },
       { "人物、将领与特工作用域" = "api/reference/hoi4/scopes-people.md" },
       { "付费行动：共享资格、执行与界面绑定" = "api/reference/hoi4/actions.md" },
       { "国家作用域：条件与效果" = "api/reference/hoi4/country-scope.md" },
+      { "按国家数值绘制地图" = "api/reference/hoi4/country-heatmaps.md" },
       { "国家引用与历史" = "api/reference/hoi4/countries.md" },
       { "有序数据与原生补充结构" = "api/reference/hoi4/ordered-data.md" },
       { "Lua Defines 与覆盖对象" = "api/reference/hoi4/defines.md" },
@@ -66,11 +104,13 @@ nav = [
       { "精确编排国策树" = "api/reference/hoi4/focus-trees.md" },
       { "民族精神与修正" = "api/reference/hoi4/ideas.md" },
       { "原生 MetaEffect 参数替换" = "api/reference/hoi4/meta-effects.md" },
+      { "军工组织作用域引用" = "api/reference/hoi4/mio-scope-targets.md" },
       { "地区引用与历史" = "api/reference/hoi4/states.md" },
       { "可复用效果与有限变体" = "api/reference/hoi4/scripted-effects.md" },
       { "本地化键与动态文本" = "api/reference/hoi4/localisation.md" },
       { "可复用条件与有限变体" = "api/reference/hoi4/scripted-triggers.md" },
       { "地区作用域：条件与效果" = "api/reference/hoi4/state-scope.md" },
+      { "持久变量、动态作用域与运行时集合" = "api/reference/hoi4/runtime-state.md" },
     ] },
     { "界面参考" = [
       { "原生 GUI 控件与完整属性" = "api/reference/ui/native-controls.md" },
@@ -78,10 +118,10 @@ nav = [
       { "已有窗口、动态列表与 ScriptedGui" = "api/reference/ui/scripted-gui.md" },
       { "样式类与 Stack 布局" = "api/reference/ui/styles.md" },
       { "JSX 类型与原生标签" = "api/reference/ui/jsx.md" },
+      { "Sprite 与纹理资源" = "api/reference/ui/sprites.md" },
       { "按钮、图标与文本" = "api/reference/ui/buttons-text.md" },
       { "容器、重复内容与基础几何" = "api/reference/ui/layout.md" },
       { "ScriptedWindow：布局与游戏行为" = "api/reference/ui/windows.md" },
-      { "Sprite 与纹理资源" = "api/reference/ui/sprites.md" },
     ] },
     { "项目与工具" = [
       { "项目配置、依赖与编辑器" = "api/reference/project/configuration.md" },
@@ -128,7 +168,7 @@ nav = [
 
 [project.theme]
 language = "zh"
-features = ["navigation.sections", "navigation.top", "navigation.path", "navigation.prune", "content.code.copy", "search.highlight", "search.suggest"]
+features = ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.path", "navigation.prune", "content.code.copy", "search.highlight", "search.suggest"]
 
 [project.markdown_extensions]
 admonition = {}

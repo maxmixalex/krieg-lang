@@ -270,4 +270,4 @@ Native sound; schema: sound.cwt:34.
 
 ## 完整示例与工作流
 
-[阅读音频、音乐与字体指南](../../../content-domains.md)
+[阅读音频、音乐与字体指南](../../../guide/domains/index.md)

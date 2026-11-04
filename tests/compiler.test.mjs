@@ -34,7 +34,7 @@ test("semantic event emits scoped trigger, helper effects, runtime if/else and n
   assert.equal(actual.representation, "semantic");
   const expected = parsePdx(`add_namespace = test
     country_event = { id = test.1 title = test.1.t desc = test.1.d
-      trigger = { AND = { has_country_flag = ready NOT = { is_ai = yes } } }
+      trigger = { has_country_flag = ready NOT = { is_ai = yes } }
       option = { name = test.1.a if = { limit = { NOT = { has_stability < 0.5 } } add_political_power = 30 } else = { set_country_flag = recover } }
     }`).document;
   assert.ok(comparePdxSemantic(actual.document, expected), emitPdx(actual.document));
@@ -235,7 +235,7 @@ test("numeric queries use real CWT triggers and preserve exact comparator semant
   assert.match(text, /has_political_power < 100/);
   assert.match(text, /at_most = \{\s+NOT = \{\s+has_stability > 0\.5/);
   assert.match(text, /at_least = \{\s+NOT = \{\s+has_stability < 0\.5/);
-  assert.match(text, /equal = \{\s+AND =/);
+  assert.match(text, /equal = \{\s+NOT = \{\s+has_war_support [<>] 0\.5/);
   assert.match(text, /different = \{\s+OR =/);
   assert.doesNotMatch(text, /(?:^|\s)(?:political_power|stability|war_support) [<=>]/);
 });
@@ -360,5 +360,24 @@ test("country idea modifiers use actual country modifier names", () => {
   fail(
     `import {Idea} from 'krieg-lang/hoi4';const modifier={factory_output:0.1,stability_factor:0.1};export default Idea({id:'bad',modifier});`,
     "KRG2070",
+  );
+});
+
+test("hidden effects preserve the callback scope and flatten same-operator conditions", () => {
+  const result = ok(`${imports}
+    ScriptedEffect("tooltip", (c:CountryScope) => {
+      if ((c.triggers.has_country_flag("a") && c.triggers.has_country_flag("b")) || c.triggers.has_country_flag("c") || c.triggers.has_country_flag("d"))
+        c.hiddenEffect(s => { s.effects.set_country_flag("first"); c.effects.set_country_flag("second"); });
+    });`);
+  const text = emitPdx(result.outputs[0].document);
+  assert.equal((text.match(/\bOR =/g) ?? []).length, 1);
+  assert.match(text, /OR = \{\s+AND = \{\s+has_country_flag = a\s+has_country_flag = b/);
+  assert.match(
+    text,
+    /hidden_effect = \{\s+set_country_flag = first\s+set_country_flag = second\s+\}/,
+  );
+  fail(
+    `${imports} ScriptedEffect("wrong", (c:CountryScope) => c.hiddenEffect((s:StateScope) => {}));`,
+    "TS2345",
   );
 });

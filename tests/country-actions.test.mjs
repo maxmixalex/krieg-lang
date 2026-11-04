@@ -53,7 +53,7 @@ test("CountryAction shares named eligibility and settlement across events, butto
     result,
     "common/scripted_triggers/krieg_aid_action.txt",
     `
-    aid_eligible={AND={has_country_flag=unlocked NOT={has_country_flag=received}}}
+    aid_eligible={has_country_flag=unlocked NOT={has_country_flag=received}}
     aid_available={aid_eligible=yes NOT={has_political_power<25}}`,
   );
   semantic(

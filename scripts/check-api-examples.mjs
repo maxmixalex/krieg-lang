@@ -1,3 +1,4 @@
+import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import ts from "typescript";
@@ -39,3 +40,25 @@ for (const [key, topic] of Object.entries(topics)) {
   checked++;
 }
 console.log(`Verified ${checked} task-reference examples against the current public API.`);
+
+let guideExamples = 0;
+const guideRoot = path.join(root, "docs/guide");
+for (const page of fs.readdirSync(guideRoot, { recursive: true }).sort()) {
+  if (!page.endsWith(".md")) continue;
+  const source = fs.readFileSync(path.join(guideRoot, page), "utf8");
+  const examples = source.matchAll(
+    /<!-- example:compile -->\s*```(typescript|tsx)\n([\s\S]*?)\n```/g,
+  );
+  for (const [index, example] of [...examples].entries()) {
+    const result = compileSource(example[2], {
+      fileName: `${page.replaceAll(path.sep, "-")}-${index}.krg.${example[1] === "tsx" ? "tsx" : "ts"}`,
+    });
+    if (!result.success)
+      throw new Error(
+        `${page} example ${index + 1}: ${result.diagnostics.map((item) => item.message).join("\n")}`,
+      );
+    guideExamples++;
+  }
+}
+if (!guideExamples) throw new Error("No marked guide examples found");
+console.log(`Verified ${guideExamples} complete guide examples from published Markdown.`);

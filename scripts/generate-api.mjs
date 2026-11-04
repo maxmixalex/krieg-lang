@@ -329,12 +329,12 @@ function generateEntryPages() {
       lines.push("[按 Lua 根与命名空间查询全部键](defines/namespaces.md)", "");
     if (page === "scopes")
       lines.push(
-        "[按原生命令名查找效果与条件](commands/index.md) · [作用域指南](../scopes.md)",
+        "[按原生命令名查找效果与条件](commands/index.md) · [作用域指南](../guide/scopes.md)",
         "",
       );
     if (page === "hoi4")
-      lines.push("[常用玩法写法](../typed-gameplay.md) · [原生内容领域目录](domains.md)", "");
-    if (page === "ui") lines.push("[组件、布局与游戏行为](../ui.md)", "");
+      lines.push("[常用玩法写法](../guide/focuses.md) · [原生内容领域目录](domains.md)", "");
+    if (page === "ui") lines.push("[组件、布局与游戏行为](../guide/ui.md)", "");
     generated.set(`docs/api/${page}.md`, lines.join("\n"));
   }
   const guide = read("scripts/api-guide.md");

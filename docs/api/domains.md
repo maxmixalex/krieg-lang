@@ -4,7 +4,7 @@
 
 从要生成的游戏文件找到构造器，再进入 Spec 查看完整字段。TypeDoc 会保留字段类型、继承、可选性与交叉链接；嵌套字段点击其类型即可继续查看。
 
-[常用玩法 API](../typed-gameplay.md) · [领域写作指南](../content-domains.md) · [支持层次](../coverage.md)
+[常用玩法 API](../guide/focuses.md) · [领域写作指南](../guide/domains/index.md) · [支持层次](../coverage.md)
 
 ## 按内容查找
 

@@ -97,4 +97,4 @@ HOI4's versioned localisation dialect is not YAML. Validate without rewriting it
 
 ## 完整示例与工作流
 
-[阅读国家、地图与本地化验证指南](../../../validation.md)
+[阅读国家、地图与本地化验证指南](../../../guide/validation.md)

@@ -11,3 +11,8 @@ corpora/
 reports/local/
 coverage/
 *.log
+
+# Private artwork, audio and translations restored from a user's mod archive.
+examples/rewrites/*/original-assets/
+examples/rewrites/*/.hydrated-input.json
+examples/rewrites/*/.hydrate-*/

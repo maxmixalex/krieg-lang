@@ -27,7 +27,7 @@ export interface GuiClass<Properties extends object = object> {
 export interface GuiStyleProps {
   className?: GuiClass | readonly GuiClass[];
 }
-export type GuiCoordinate = number | `${number}%` | `@${string}`;
+export type GuiCoordinate = number | `${number}%` | `${number}%%` | `@${string}`;
 export interface GuiPosition {
   x: GuiCoordinate;
   y: GuiCoordinate;
@@ -86,11 +86,22 @@ export interface ContainerProps extends ElementProps {
   clickToFront?: boolean;
   smoothScrolling?: boolean | number;
   scrollWheelFactor?: number;
+  background?: { name: string; spriteType: string };
+  showSound?: string;
+  fadeTime?: number;
+  fadeType?: "linear" | "accelerated" | "decelerated";
+  showPosition?: GuiPosition;
+  showAnimationType?: "linear" | "accelerated" | "decelerated";
+  hideAnimationType?: "linear" | "accelerated" | "decelerated";
+  animationTime?: number;
+  margin?: { top?: number; bottom?: number; left?: number; right?: number };
 }
 interface IconBaseProps extends ElementProps {
   frame?: number;
   alwaysTransparent?: boolean;
   centerPosition?: boolean;
+  clickSound?: string;
+  shortcut?: string;
 }
 /** Supply a sprite explicitly or through the first style class. */
 export type IconProps = IconBaseProps &
@@ -113,6 +124,9 @@ export interface ButtonProps extends ElementProps {
   format?: "left" | "center" | "right";
   multiline?: boolean;
   noClickSound?: boolean;
+  clickSound?: string;
+  overSound?: string;
+  webLink?: string;
 }
 export interface TextProps extends ElementProps {
   text: string;
@@ -123,6 +137,7 @@ export interface TextProps extends ElementProps {
   verticalAlignment?: "top" | "center" | "bottom";
   multiline?: boolean;
   fixedSize?: boolean;
+  truncate?: boolean;
   alwaysTransparent?: boolean;
   borderSize?: GuiPosition;
 }
@@ -189,7 +204,9 @@ export interface GuiElementBindings<S> {
 }
 export type GuiButtonBindings<S> = GuiElementBindings<S> & {
   aiWeight?: GuiAiWeight<S>;
-  properties?: GuiFrameBindings;
+  properties?: GuiTextureBindings;
+  /** Mouse modifiers are separate native events; primary click uses click/action. */
+  events?: GuiMouseEvents<S>;
 } & (
     | { action?: never; click?: Effect<S>; enabled?: Trigger<S> }
     | {
@@ -198,8 +215,34 @@ export type GuiButtonBindings<S> = GuiElementBindings<S> & {
         enabled?: never;
       }
   );
+export interface GuiMouseEvents<S> {
+  rightClick?: Effect<S>;
+  shiftClick?: Effect<S>;
+  controlClick?: Effect<S>;
+  altClick?: Effect<S>;
+  shiftRightClick?: Effect<S>;
+  controlRightClick?: Effect<S>;
+  altRightClick?: Effect<S>;
+}
 export interface GuiIconBindings<S> extends GuiElementBindings<S> {
   properties?: GuiTextureBindings;
+}
+
+/**
+ * Repeat a named container over a native game array. The entry is emitted as a
+ * separate GUI template; its bound callbacks keep the enclosing window's scope.
+ * index/value reference native temporary variables supplied by the game.
+ */
+export interface GuiListBinding<S = unknown> {
+  array: string;
+  index?: GuiVariable;
+  value?: GuiVariable;
+  entry: GuiChild;
+  /** Change to a country/state entry of the same scope type as this window. */
+  entryScope?: S extends { readonly scope: infer Name extends "country" | "state" } ? Name : never;
+}
+export interface GuiListBindings<S> extends GuiElementBindings<S> {
+  list?: GuiListBinding<S>;
 }
 
 /** Contextual components supplied by ScriptedWindow; ordinary source helpers can forward them. */
@@ -208,8 +251,8 @@ export interface GuiBindings<S> {
   Button(props: ButtonProps & GuiButtonBindings<S>): GuiElement;
   Icon(props: IconProps & GuiIconBindings<S>): GuiElement;
   Text(props: TextProps & GuiElementBindings<S>): GuiElement;
-  GridBox(props: GridBoxProps & GuiElementBindings<S>): GuiElement;
-  ListBox(props: ListBoxProps & GuiElementBindings<S>): GuiElement;
+  GridBox(props: GridBoxProps & GuiListBindings<S>): GuiElement;
+  ListBox(props: ListBoxProps & GuiListBindings<S>): GuiElement;
 }
 
 export type ScriptedWindowParent =
@@ -245,7 +288,8 @@ export type ScriptedWindowSpec<C extends ScriptedGuiContext> = Omit<
  * Emits one interface .gui and one common/scripted_guis definition. The layout
  * must contain exactly one root Container and unique element names. Callback
  * scopes are inferred from context; no JavaScript or DOM event handler runs.
- * Use ScriptedGui for externally authored windows or dynamic game-array lists.
+ * Bound GridBox/ListBox list props colocate native game-array entry templates.
+ * Use ScriptedGui for externally authored windows or scope-changing arrays.
  *
  * @example
  * ```tsx
@@ -301,6 +345,16 @@ export interface SpriteSpec {
   lazyLoad?: boolean;
 }
 export declare function Sprite(spec: SpriteSpec): GuiElement;
+export interface AnimatedSpriteSpec extends SpriteSpec {
+  noOfFrames: number;
+  animationRateFps: number;
+  looping?: boolean;
+  playOnShow?: boolean;
+  pauseOnLoop?: number;
+  alwaysTransparent?: boolean;
+}
+/** Native frame animation; no browser animation or JavaScript timer is emitted. */
+export declare function AnimatedSprite(spec: AnimatedSpriteSpec): GuiElement;
 export declare function SpriteFile(
   path: string,
   sprites: GuiElement | readonly GuiElement[],

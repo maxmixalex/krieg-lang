@@ -179,4 +179,4 @@ Result of a complete, additive railway overlay. Any error suppresses the output 
 
 ## 完整示例与工作流
 
-[阅读铁路计划、线路与覆盖文件指南](../../../map-atlas.md)
+[阅读铁路计划、线路与覆盖文件指南](../../../guide/map-atlas.md)

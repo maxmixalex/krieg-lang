@@ -1,0 +1,269 @@
+[
+  {
+    "from": "getting-started.md",
+    "to": "tutorials/first-mod.md",
+    "anchors": {
+      "_1": "tutorials/first-mod.md#_1",
+      "_2": "tutorials/first-mod.md#_2",
+      "_3": "tutorials/first-mod.md#_3",
+      "_4": "tutorials/event-and-localisation.md#event",
+      "_5": "tutorials/event-and-localisation.md#text",
+      "_6": "tutorials/first-mod.md#_6",
+      "_7": "tutorials/first-mod.md#_7"
+    }
+  },
+  {
+    "from": "ui.md",
+    "to": "guide/ui.md",
+    "anchors": {
+      "tsx": "guide/ui.md#tsx",
+      "_1": "guide/ui.md#_1",
+      "_2": "guide/ui.md#_2",
+      "_3": "guide/ui.md#_3",
+      "_4": "guide/ui.md#_4",
+      "sprite": "guide/ui.md#sprite",
+      "ai": "guide/ui.md#ai",
+      "_5": "guide/ui.md#_5"
+    }
+  },
+  {
+    "from": "localisation.md",
+    "to": "guide/localisation.md",
+    "anchors": {
+      "yaml": "guide/localisation.md#yaml",
+      "_1": "guide/localisation.md#_1",
+      "yaml_1": "guide/localisation.md#yaml_1",
+      "yml": "guide/localisation.md#yml",
+      "_2": "guide/localisation.md#_2",
+      "typescript": "guide/localisation.md#typescript",
+      "_3": "guide/localisation.md#_3"
+    }
+  },
+  {
+    "from": "validation.md",
+    "to": "guide/validation.md",
+    "anchors": {
+      "_1": "guide/validation.md#_1",
+      "04": "guide/validation.md#04",
+      "03": "guide/validation.md#03",
+      "v020": "guide/validation.md#v020",
+      "_2": "guide/validation.md#_2",
+      "cwt": "guide/validation.md#cwt",
+      "_3": "guide/validation.md#_3",
+      "_4": "guide/validation.md#_4",
+      "_5": "guide/validation.md#_5",
+      "_6": "guide/validation.md#_6",
+      "_7": "guide/validation.md#_7",
+      "_8": "guide/validation.md#_8"
+    }
+  },
+  {
+    "from": "assets.md",
+    "to": "guide/assets.md",
+    "anchors": {
+      "_1": "guide/assets.md#_1",
+      "_2": "guide/assets.md#_2",
+      "_3": "guide/assets.md#_3",
+      "sprite": "guide/assets.md#sprite",
+      "lua-defines": "guide/assets.md#lua-defines",
+      "_4": "guide/assets.md#_4"
+    }
+  },
+  {
+    "from": "styles.md",
+    "to": "guide/styles.md",
+    "anchors": {
+      "_1": "guide/styles.md#_1",
+      "style-module": "guide/styles.md#style-module",
+      "_2": "guide/styles.md#_2",
+      "token": "guide/styles.md#token",
+      "_3": "guide/styles.md#_3",
+      "static-stack": "guide/styles.md#static-stack",
+      "editor-source-packages": "guide/styles.md#editor-source-packages",
+      "eslint": "guide/styles.md#eslint"
+    }
+  },
+  {
+    "from": "examples.md",
+    "to": "ports/complete-examples.md",
+    "anchors": {
+      "kaiserreich": "ports/complete-examples.md#kaiserreich",
+      "_1": "ports/complete-examples.md#_1",
+      "scripted-families": "ports/complete-examples.md#scripted-families",
+      "_2": "ports/complete-examples.md#_2",
+      "kaiserreich_1": "ports/complete-examples.md#kaiserreich_1",
+      "_3": "ports/complete-examples.md#_3",
+      "_4": "ports/complete-examples.md#_4"
+    }
+  },
+  {
+    "from": "native-import.md",
+    "to": "guide/native-import.md",
+    "anchors": {
+      "_1": "guide/native-import.md#_1",
+      "_2": "guide/native-import.md#_2",
+      "_3": "guide/native-import.md#_3",
+      "_4": "guide/native-import.md#_4",
+      "_5": "guide/native-import.md#_5",
+      "_6": "guide/native-import.md#_6",
+      "_7": "guide/native-import.md#_7"
+    }
+  },
+  {
+    "from": "scopes.md",
+    "to": "guide/scopes.md",
+    "anchors": {
+      "_1": "guide/scopes.md#_1",
+      "_2": "guide/scopes.md#_2",
+      "_3": "guide/scopes.md#_3",
+      "_4": "guide/scopes.md#_4",
+      "_5": "guide/scopes.md#_5",
+      "_6": "guide/scopes.md#_6",
+      "_7": "guide/scopes.md#_7"
+    }
+  },
+  {
+    "from": "debugging.md",
+    "to": "guide/debugging.md",
+    "anchors": {
+      "_1": "guide/debugging.md#_1",
+      "_2": "guide/debugging.md#_2",
+      "_3": "guide/debugging.md#_3"
+    }
+  },
+  {
+    "from": "countries-maps.md",
+    "to": "guide/countries-maps.md",
+    "anchors": {
+      "_1": "guide/countries-maps.md#_1",
+      "_2": "guide/countries-maps.md#_2",
+      "_3": "guide/countries-maps.md#_3",
+      "_4": "guide/countries-maps.md#_4",
+      "_5": "guide/countries-maps.md#_5",
+      "_6": "guide/countries-maps.md#_6",
+      "_7": "guide/countries-maps.md#_7"
+    }
+  },
+  {
+    "from": "recipes.md",
+    "to": "guide/actions.md",
+    "anchors": {
+      "_1": "guide/actions.md#_1",
+      "_2": "guide/actions.md#_2",
+      "_3": "guide/actions.md#_3",
+      "_4": "guide/actions.md#_4",
+      "gui": "guide/actions.md#gui",
+      "_5": "guide/actions.md#_5",
+      "_6": "guide/actions.md#_6",
+      "_7": "guide/actions.md#_7"
+    }
+  },
+  {
+    "from": "projects.md",
+    "to": "guide/projects.md",
+    "anchors": {
+      "_1": "guide/projects.md#_1",
+      "krgconfigjson": "guide/projects.md#krgconfigjson",
+      "_2": "guide/projects.md#_2",
+      "_3": "guide/projects.md#_3",
+      "_4": "guide/projects.md#_4",
+      "npm": "guide/projects.md#npm",
+      "_5": "guide/projects.md#_5",
+      "yaml": "guide/projects.md#yaml"
+    }
+  },
+  {
+    "from": "cli.md",
+    "to": "reference/cli.md",
+    "anchors": {
+      "_1": "reference/cli.md#_1",
+      "_2": "reference/cli.md#_2",
+      "_3": "reference/cli.md#_3",
+      "_4": "reference/cli.md#_4",
+      "_5": "reference/cli.md#_5",
+      "_6": "reference/cli.md#_6",
+      "_7": "reference/cli.md#_7",
+      "_8": "reference/cli.md#_8"
+    }
+  },
+  {
+    "from": "content-domains.md",
+    "to": "guide/domains/index.md",
+    "anchors": {
+      "ai": "guide/domains/index.md#ai",
+      "_1": "guide/domains/index.md#_1",
+      "_2": "guide/domains/index.md#_2",
+      "_3": "guide/domains/technology.md#technology-example",
+      "_4": "guide/domains/index.md#_4",
+      "_5": "guide/domains/index.md#_5",
+      "_6": "guide/domains/index.md#_6",
+      "_7": "guide/domains/index.md#_7"
+    }
+  },
+  {
+    "from": "language.md",
+    "to": "guide/language.md",
+    "anchors": {
+      "_1": "guide/language.md#_1",
+      "_2": "guide/language.md#_2",
+      "_3": "guide/language.md#_3",
+      "_4": "guide/language.md#_4",
+      "_5": "guide/language.md#_5",
+      "_6": "guide/language.md#_6",
+      "_7": "guide/language.md#_7",
+      "_8": "guide/language.md#_8"
+    }
+  },
+  {
+    "from": "editor.md",
+    "to": "guide/editor.md",
+    "anchors": {
+      "_1": "guide/editor.md#_1",
+      "typescript": "guide/editor.md#typescript",
+      "eslint": "guide/editor.md#eslint",
+      "prettier": "guide/editor.md#prettier",
+      "_2": "guide/editor.md#_2"
+    }
+  },
+  {
+    "from": "typed-gameplay.md",
+    "to": "guide/focuses.md",
+    "anchors": {
+      "_1": "guide/focuses.md#_1",
+      "_2": "guide/focuses.md#_2",
+      "_3": "guide/focuses.md#_3",
+      "id": "guide/focuses.md#id",
+      "_4": "guide/focuses.md#_4",
+      "03": "guide/focuses.md#03",
+      "_5": "guide/events.md#scheduling",
+      "wiki": "guide/focuses.md#wiki"
+    }
+  },
+  {
+    "from": "map-atlas.md",
+    "to": "guide/map-atlas.md",
+    "anchors": {
+      "_1": "guide/map-atlas.md#_1",
+      "typescript": "guide/map-atlas.md#typescript",
+      "_2": "guide/map-atlas.md#_2",
+      "_3": "guide/map-atlas.md#_3",
+      "_4": "guide/map-atlas.md#_4",
+      "api": "guide/map-atlas.md#api",
+      "_5": "guide/map-atlas.md#_5",
+      "_6": "guide/map-atlas.md#_6"
+    }
+  },
+  {
+    "from": "scripted-content.md",
+    "to": "guide/scripted-content.md",
+    "anchors": {
+      "metaeffect": "guide/scripted-content.md#metaeffect",
+      "_1": "guide/scripted-content.md#_1",
+      "_2": "guide/scripted-content.md#_2",
+      "_3": "guide/scripted-content.md#_3",
+      "scripted-localisation": "guide/scripted-content.md#scripted-localisation",
+      "metaeffect_1": "guide/scripted-content.md#metaeffect_1",
+      "_4": "guide/scripted-content.md#_4"
+    }
+  }
+]

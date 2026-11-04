@@ -7,7 +7,7 @@
 
 `ScriptedWindow` 同时生成一份 `.gui` 静态布局和一份 scripted GUI 行为。回调收到的 `ui.Button`、`ui.Icon` 等组件把可见性、点击和动态属性绑定到唯一的元素名。`context` 决定回调作用域；布局必须有一个根 Container，元素名不能冲突。
 
-`GuiVariable` 只引用已有游戏变量，不会创建或初始化变量，也不会自动更新 dirty。需要读取游戏动态数组或绑定外部已有窗口时，请查 [ScriptedGui](scripted-gui.md)。静态外观与复用类见[样式和 Stack](styles.md)。
+`Button.events` 的 `rightClick`、`shiftClick`、`controlClick` 和 `altClick` 分别生成原生修饰点击事件；这些回调沿用窗口作用域。`GuiVariable` 支持 `array^index` 引用，仅读取已有游戏变量，不会创建或初始化变量，也不会自动更新 dirty。需要读取游戏动态数组或绑定外部已有窗口时，请查 [ScriptedGui](scripted-gui.md)。静态外观与复用类见[样式和 Stack](styles.md)。
 
 ## 使用示例
 
@@ -32,7 +32,10 @@ ScriptedWindow(
 - [GuiBindings](#guibindings)
 - [GuiElementBindings](#guielementbindings)
 - [GuiButtonBindings](#guibuttonbindings)
+- [GuiMouseEvents](#guimouseevents)
 - [GuiIconBindings](#guiiconbindings)
+- [GuiListBinding](#guilistbinding)
+- [GuiListBindings](#guilistbindings)
 - [GuiPositionBindings](#guipositionbindings)
 - [GuiFrameBindings](#guiframebindings)
 - [GuiTextureBindings](#guitexturebindings)
@@ -43,13 +46,14 @@ ScriptedWindow(
 
 > **ScriptedWindow**&lt;`C` *extends* [`ScriptedGuiContext`](scripted-gui.md#scriptedguicontext)&gt;(`spec`: [`ScriptedWindowSpec`](#scriptedwindowspec)&lt;`C`&gt;, `layout`: (`ui`: [`GuiBindings`](#guibindings)&lt;[`ScriptedGuiScope`](scripted-gui.md#scriptedguiscope)&lt;`C`&gt;&gt;) => [`GuiChild`](layout.md#guichild)): [`Definition`](../hoi4/scope-selection.md#definition)
 
-Defined in: [src/ui/index.ts:262](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L262)
+Defined in: [src/ui/index.ts:306](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L306)
 
 Author a static layout and its game behavior together.
 Emits one interface .gui and one common/scripted_guis definition. The layout
 must contain exactly one root Container and unique element names. Callback
 scopes are inferred from context; no JavaScript or DOM event handler runs.
-Use ScriptedGui for externally authored windows or dynamic game-array lists.
+Bound GridBox/ListBox list props colocate native game-array entry templates.
+Use ScriptedGui for externally authored windows or scope-changing arrays.
 
 ### Type Parameters { #scriptedwindow-section-type-parameters }
 
@@ -86,7 +90,7 @@ ScriptedWindow(
 
 > **ScriptedWindowSpec**&lt;`C` *extends* [`ScriptedGuiContext`](scripted-gui.md#scriptedguicontext)&gt; = `Omit`&lt;[`ScriptedGuiSpec`](scripted-gui.md#scriptedguispec)&lt;`C`&gt;, `"windowName"` \| `"effects"` \| `"triggers"` \| `"properties"` \| `"dynamicLists"` \| `"aiWeights"` \| `"parentWindowToken"` \| `"parentWindowName"` \| `"parentScriptedGui"`&gt; & `object` & (`C` *extends* `"decision_category"` ? `object` : [`ScriptedWindowParent`](#scriptedwindowparent))
 
-Defined in: [src/ui/index.ts:226](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L226)
+Defined in: [src/ui/index.ts:269](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L269)
 
 The root container supplies windowName; element bindings supply behavior records.
 
@@ -100,19 +104,19 @@ The root container supplies windowName; element bindings supply behavior records
 
 | Name | Type | Defined in |
 | ------ | ------ | ------ |
-| `path` | `` `interface/${string}.gui` `` | [src/ui/index.ts:238](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L238) |
+| `path` | `` `interface/${string}.gui` `` | [src/ui/index.ts:281](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L281) |
 
 
 ## ScriptedWindowParent { #scriptedwindowparent }
 
 > **ScriptedWindowParent** = \{ `parentScriptedGui?`: `never`; `parentWindowName?`: `never`; `parentWindowToken?`: `never`; \} \| \{ `parentScriptedGui?`: `never`; `parentWindowName?`: `never`; `parentWindowToken`: [`GuiParentWindowToken`](scripted-gui.md#guiparentwindowtoken); \} \| \{ `parentScriptedGui?`: `never`; `parentWindowName`: `string`; `parentWindowToken?`: `never`; \} \| \{ `parentScriptedGui`: `string`; `parentWindowName?`: `never`; `parentWindowToken?`: `never`; \}
 
-Defined in: [src/ui/index.ts:215](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L215)
+Defined in: [src/ui/index.ts:258](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L258)
 
 
 ## GuiBindings&lt;S&gt; { #guibindings }
 
-Defined in: [src/ui/index.ts:206](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L206)
+Defined in: [src/ui/index.ts:249](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L249)
 
 Contextual components supplied by ScriptedWindow; ordinary source helpers can forward them.
 
@@ -130,7 +134,7 @@ Contextual components supplied by ScriptedWindow; ordinary source helpers can fo
 
 > **Button**(`props`: [`ButtonProps`](buttons-text.md#buttonprops) & [`GuiButtonBindings`](#guibuttonbindings)&lt;`S`&gt;): [`GuiElement`](layout.md#guielement)
 
-Defined in: [src/ui/index.ts:208](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L208)
+Defined in: [src/ui/index.ts:251](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L251)
 
 ##### Parameters { #guibindings-section-parameters }
 
@@ -150,7 +154,7 @@ Defined in: [src/ui/index.ts:208](https://github.com/maxmixalex/krieg-lang/blob/
 
 > **Container**(`props`: [`ContainerProps`](layout.md#containerprops) & [`GuiElementBindings`](#guielementbindings)&lt;`S`&gt;): [`GuiElement`](layout.md#guielement)
 
-Defined in: [src/ui/index.ts:207](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L207)
+Defined in: [src/ui/index.ts:250](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L250)
 
 ##### Parameters { #guibindings-section-parameters-1 }
 
@@ -168,15 +172,15 @@ Defined in: [src/ui/index.ts:207](https://github.com/maxmixalex/krieg-lang/blob/
 
 #### GridBox() { #guibindings-section-gridbox }
 
-> **GridBox**(`props`: [`GridBoxProps`](lists.md#gridboxprops) & [`GuiElementBindings`](#guielementbindings)&lt;`S`&gt;): [`GuiElement`](layout.md#guielement)
+> **GridBox**(`props`: [`GridBoxProps`](lists.md#gridboxprops) & [`GuiListBindings`](#guilistbindings)&lt;`S`&gt;): [`GuiElement`](layout.md#guielement)
 
-Defined in: [src/ui/index.ts:211](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L211)
+Defined in: [src/ui/index.ts:254](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L254)
 
 ##### Parameters { #guibindings-section-parameters-2 }
 
 | Parameter | Type |
 | ------ | ------ |
-| `props` | [`GridBoxProps`](lists.md#gridboxprops) & [`GuiElementBindings`](#guielementbindings)&lt;`S`&gt; |
+| `props` | [`GridBoxProps`](lists.md#gridboxprops) & [`GuiListBindings`](#guilistbindings)&lt;`S`&gt; |
 
 ##### Returns { #guibindings-section-returns-2 }
 
@@ -190,7 +194,7 @@ Defined in: [src/ui/index.ts:211](https://github.com/maxmixalex/krieg-lang/blob/
 
 > **Icon**(`props`: [`IconProps`](buttons-text.md#iconprops) & [`GuiIconBindings`](#guiiconbindings)&lt;`S`&gt;): [`GuiElement`](layout.md#guielement)
 
-Defined in: [src/ui/index.ts:209](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L209)
+Defined in: [src/ui/index.ts:252](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L252)
 
 ##### Parameters { #guibindings-section-parameters-3 }
 
@@ -208,15 +212,15 @@ Defined in: [src/ui/index.ts:209](https://github.com/maxmixalex/krieg-lang/blob/
 
 #### ListBox() { #guibindings-section-listbox }
 
-> **ListBox**(`props`: [`ListBoxProps`](lists.md#listboxprops) & [`GuiElementBindings`](#guielementbindings)&lt;`S`&gt;): [`GuiElement`](layout.md#guielement)
+> **ListBox**(`props`: [`ListBoxProps`](lists.md#listboxprops) & [`GuiListBindings`](#guilistbindings)&lt;`S`&gt;): [`GuiElement`](layout.md#guielement)
 
-Defined in: [src/ui/index.ts:212](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L212)
+Defined in: [src/ui/index.ts:255](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L255)
 
 ##### Parameters { #guibindings-section-parameters-4 }
 
 | Parameter | Type |
 | ------ | ------ |
-| `props` | [`ListBoxProps`](lists.md#listboxprops) & [`GuiElementBindings`](#guielementbindings)&lt;`S`&gt; |
+| `props` | [`ListBoxProps`](lists.md#listboxprops) & [`GuiListBindings`](#guilistbindings)&lt;`S`&gt; |
 
 ##### Returns { #guibindings-section-returns-4 }
 
@@ -230,7 +234,7 @@ Defined in: [src/ui/index.ts:212](https://github.com/maxmixalex/krieg-lang/blob/
 
 > **Text**(`props`: [`TextProps`](buttons-text.md#textprops) & [`GuiElementBindings`](#guielementbindings)&lt;`S`&gt;): [`GuiElement`](layout.md#guielement)
 
-Defined in: [src/ui/index.ts:210](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L210)
+Defined in: [src/ui/index.ts:253](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L253)
 
 ##### Parameters { #guibindings-section-parameters-5 }
 
@@ -245,13 +249,14 @@ Defined in: [src/ui/index.ts:210](https://github.com/maxmixalex/krieg-lang/blob/
 
 ## GuiElementBindings&lt;S&gt; { #guielementbindings }
 
-Defined in: [src/ui/index.ts:186](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L186)
+Defined in: [src/ui/index.ts:201](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L201)
 
 Visibility is an engine trigger, evaluated in the enclosing window's context.
 
 ### Extended by { #guielementbindings-section-extended-by }
 
 - [`GuiIconBindings`](#guiiconbindings)
+- [`GuiListBindings`](#guilistbindings)
 
 ### Type Parameters { #guielementbindings-section-type-parameters }
 
@@ -263,15 +268,15 @@ Visibility is an engine trigger, evaluated in the enclosing window's context.
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="guielementbindings-property-properties"></a> `properties?` | [`GuiPositionBindings`](#guipositionbindings) | [src/ui/index.ts:188](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L188) |
-| <a id="guielementbindings-property-visible"></a> `visible?` | [`Trigger`](../hoi4/scope-selection.md#trigger)&lt;`S`&gt; | [src/ui/index.ts:187](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L187) |
+| <a id="guielementbindings-property-properties"></a> `properties?` | [`GuiPositionBindings`](#guipositionbindings) | [src/ui/index.ts:203](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L203) |
+| <a id="guielementbindings-property-visible"></a> `visible?` | [`Trigger`](../hoi4/scope-selection.md#trigger)&lt;`S`&gt; | [src/ui/index.ts:202](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L202) |
 
 
 ## GuiButtonBindings&lt;S&gt; { #guibuttonbindings }
 
 > **GuiButtonBindings**&lt;`S`&gt; = [`GuiElementBindings`](#guielementbindings)&lt;`S`&gt; & `object` & (\{ `action?`: `never`; `click?`: [`Effect`](../hoi4/scope-selection.md#effect)&lt;`S`&gt;; `enabled?`: [`Trigger`](../hoi4/scope-selection.md#trigger)&lt;`S`&gt;; \} \| \{ `action`: `S` *extends* [`CountryScope`](../hoi4/country-scope.md#countryscope) ? [`CountryActionDefinition`](../hoi4/actions.md#countryactiondefinition) : `never`; `click?`: `never`; `enabled?`: `never`; \})
 
-Defined in: [src/ui/index.ts:190](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L190)
+Defined in: [src/ui/index.ts:205](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L205)
 
 ### Type Parameters { #guibuttonbindings-section-type-parameters }
 
@@ -281,15 +286,39 @@ Defined in: [src/ui/index.ts:190](https://github.com/maxmixalex/krieg-lang/blob/
 
 ### Type Declaration { #guibuttonbindings-section-type-declaration }
 
-| Name | Type | Defined in |
+| Name | Type | Description | Defined in |
+| ------ | ------ | ------ | ------ |
+| `aiWeight?` | [`GuiAiWeight`](scripted-gui.md#guiaiweight)&lt;`S`&gt; | - | [src/ui/index.ts:206](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L206) |
+| `events?` | [`GuiMouseEvents`](#guimouseevents)&lt;`S`&gt; | Mouse modifiers are separate native events; primary click uses click/action. | [src/ui/index.ts:209](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L209) |
+| `properties?` | [`GuiTextureBindings`](#guitexturebindings) | - | [src/ui/index.ts:207](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L207) |
+
+
+## GuiMouseEvents&lt;S&gt; { #guimouseevents }
+
+Defined in: [src/ui/index.ts:218](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L218)
+
+### Type Parameters { #guimouseevents-section-type-parameters }
+
+| Type Parameter |
+| ------ |
+| <a id="guimouseevents-type-parameter-s"></a> `S` |
+
+### Properties { #guimouseevents-section-properties }
+
+| Property | Type | Defined in |
 | ------ | ------ | ------ |
-| `aiWeight?` | [`GuiAiWeight`](scripted-gui.md#guiaiweight)&lt;`S`&gt; | [src/ui/index.ts:191](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L191) |
-| `properties?` | [`GuiFrameBindings`](#guiframebindings) | [src/ui/index.ts:192](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L192) |
+| <a id="guimouseevents-property-altclick"></a> `altClick?` | [`Effect`](../hoi4/scope-selection.md#effect)&lt;`S`&gt; | [src/ui/index.ts:222](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L222) |
+| <a id="guimouseevents-property-altrightclick"></a> `altRightClick?` | [`Effect`](../hoi4/scope-selection.md#effect)&lt;`S`&gt; | [src/ui/index.ts:225](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L225) |
+| <a id="guimouseevents-property-controlclick"></a> `controlClick?` | [`Effect`](../hoi4/scope-selection.md#effect)&lt;`S`&gt; | [src/ui/index.ts:221](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L221) |
+| <a id="guimouseevents-property-controlrightclick"></a> `controlRightClick?` | [`Effect`](../hoi4/scope-selection.md#effect)&lt;`S`&gt; | [src/ui/index.ts:224](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L224) |
+| <a id="guimouseevents-property-rightclick"></a> `rightClick?` | [`Effect`](../hoi4/scope-selection.md#effect)&lt;`S`&gt; | [src/ui/index.ts:219](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L219) |
+| <a id="guimouseevents-property-shiftclick"></a> `shiftClick?` | [`Effect`](../hoi4/scope-selection.md#effect)&lt;`S`&gt; | [src/ui/index.ts:220](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L220) |
+| <a id="guimouseevents-property-shiftrightclick"></a> `shiftRightClick?` | [`Effect`](../hoi4/scope-selection.md#effect)&lt;`S`&gt; | [src/ui/index.ts:223](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L223) |
 
 
 ## GuiIconBindings&lt;S&gt; { #guiiconbindings }
 
-Defined in: [src/ui/index.ts:201](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L201)
+Defined in: [src/ui/index.ts:227](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L227)
 
 Visibility is an engine trigger, evaluated in the enclosing window's context.
 
@@ -307,13 +336,63 @@ Visibility is an engine trigger, evaluated in the enclosing window's context.
 
 | Property | Type | Overrides | Defined in |
 | ------ | ------ | ------ | ------ |
-| <a id="guiiconbindings-property-properties"></a> `properties?` | [`GuiTextureBindings`](#guitexturebindings) | [`GuiElementBindings`](#guielementbindings).[`properties`](#guielementbindings-property-properties) | [src/ui/index.ts:202](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L202) |
-| <a id="guiiconbindings-property-visible"></a> `visible?` | [`Trigger`](../hoi4/scope-selection.md#trigger)&lt;`S`&gt; | - | [src/ui/index.ts:187](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L187) |
+| <a id="guiiconbindings-property-properties"></a> `properties?` | [`GuiTextureBindings`](#guitexturebindings) | [`GuiElementBindings`](#guielementbindings).[`properties`](#guielementbindings-property-properties) | [src/ui/index.ts:228](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L228) |
+| <a id="guiiconbindings-property-visible"></a> `visible?` | [`Trigger`](../hoi4/scope-selection.md#trigger)&lt;`S`&gt; | - | [src/ui/index.ts:202](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L202) |
+
+
+## GuiListBinding&lt;S = `unknown`&gt; { #guilistbinding }
+
+Defined in: [src/ui/index.ts:236](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L236)
+
+Repeat a named container over a native game array. The entry is emitted as a
+separate GUI template; its bound callbacks keep the enclosing window's scope.
+index/value reference native temporary variables supplied by the game.
+
+### Type Parameters { #guilistbinding-section-type-parameters }
+
+| Type Parameter | Default type |
+| ------ | ------ |
+| <a id="guilistbinding-type-parameter-s"></a> `S` | `unknown` |
+
+### Properties { #guilistbinding-section-properties }
+
+| Property | Type | Description | Defined in |
+| ------ | ------ | ------ | ------ |
+| <a id="guilistbinding-property-array"></a> `array` | `string` | - | [src/ui/index.ts:237](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L237) |
+| <a id="guilistbinding-property-entry"></a> `entry` | [`GuiChild`](layout.md#guichild) | - | [src/ui/index.ts:240](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L240) |
+| <a id="guilistbinding-property-entryscope"></a> `entryScope?` | `S` *extends* `object` ? `Name` : `never` | Change to a country/state entry of the same scope type as this window. | [src/ui/index.ts:242](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L242) |
+| <a id="guilistbinding-property-index"></a> `index?` | [`GuiVariable`](#guivariable-interface)&lt;`string`&gt; | - | [src/ui/index.ts:238](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L238) |
+| <a id="guilistbinding-property-value"></a> `value?` | [`GuiVariable`](#guivariable-interface)&lt;`string`&gt; | - | [src/ui/index.ts:239](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L239) |
+
+
+## GuiListBindings&lt;S&gt; { #guilistbindings }
+
+Defined in: [src/ui/index.ts:244](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L244)
+
+Visibility is an engine trigger, evaluated in the enclosing window's context.
+
+### Extends { #guilistbindings-section-extends }
+
+- [`GuiElementBindings`](#guielementbindings)&lt;`S`&gt;
+
+### Type Parameters { #guilistbindings-section-type-parameters }
+
+| Type Parameter |
+| ------ |
+| <a id="guilistbindings-type-parameter-s"></a> `S` |
+
+### Properties { #guilistbindings-section-properties }
+
+| Property | Type | Defined in |
+| ------ | ------ | ------ |
+| <a id="guilistbindings-property-list"></a> `list?` | [`GuiListBinding`](#guilistbinding)&lt;`S`&gt; | [src/ui/index.ts:245](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L245) |
+| <a id="guilistbindings-property-properties"></a> `properties?` | [`GuiPositionBindings`](#guipositionbindings) | [src/ui/index.ts:203](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L203) |
+| <a id="guilistbindings-property-visible"></a> `visible?` | [`Trigger`](../hoi4/scope-selection.md#trigger)&lt;`S`&gt; | [src/ui/index.ts:202](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L202) |
 
 
 ## GuiPositionBindings { #guipositionbindings }
 
-Defined in: [src/ui/index.ts:175](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L175)
+Defined in: [src/ui/index.ts:190](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L190)
 
 ### Extended by { #guipositionbindings-section-extended-by }
 
@@ -323,13 +402,13 @@ Defined in: [src/ui/index.ts:175](https://github.com/maxmixalex/krieg-lang/blob/
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="guipositionbindings-property-x"></a> `x?` | `number` \| [`GuiVariable`](#guivariable-interface)&lt;`string`&gt; | [src/ui/index.ts:176](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L176) |
-| <a id="guipositionbindings-property-y"></a> `y?` | `number` \| [`GuiVariable`](#guivariable-interface)&lt;`string`&gt; | [src/ui/index.ts:177](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L177) |
+| <a id="guipositionbindings-property-x"></a> `x?` | `number` \| [`GuiVariable`](#guivariable-interface)&lt;`string`&gt; | [src/ui/index.ts:191](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L191) |
+| <a id="guipositionbindings-property-y"></a> `y?` | `number` \| [`GuiVariable`](#guivariable-interface)&lt;`string`&gt; | [src/ui/index.ts:192](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L192) |
 
 
 ## GuiFrameBindings { #guiframebindings }
 
-Defined in: [src/ui/index.ts:179](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L179)
+Defined in: [src/ui/index.ts:194](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L194)
 
 ### Extends { #guiframebindings-section-extends }
 
@@ -343,14 +422,14 @@ Defined in: [src/ui/index.ts:179](https://github.com/maxmixalex/krieg-lang/blob/
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="guiframebindings-property-frame"></a> `frame?` | `number` \| [`GuiVariable`](#guivariable-interface)&lt;`string`&gt; | [src/ui/index.ts:180](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L180) |
-| <a id="guiframebindings-property-x"></a> `x?` | `number` \| [`GuiVariable`](#guivariable-interface)&lt;`string`&gt; | [src/ui/index.ts:176](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L176) |
-| <a id="guiframebindings-property-y"></a> `y?` | `number` \| [`GuiVariable`](#guivariable-interface)&lt;`string`&gt; | [src/ui/index.ts:177](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L177) |
+| <a id="guiframebindings-property-frame"></a> `frame?` | `number` \| [`GuiVariable`](#guivariable-interface)&lt;`string`&gt; | [src/ui/index.ts:195](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L195) |
+| <a id="guiframebindings-property-x"></a> `x?` | `number` \| [`GuiVariable`](#guivariable-interface)&lt;`string`&gt; | [src/ui/index.ts:191](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L191) |
+| <a id="guiframebindings-property-y"></a> `y?` | `number` \| [`GuiVariable`](#guivariable-interface)&lt;`string`&gt; | [src/ui/index.ts:192](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L192) |
 
 
 ## GuiTextureBindings { #guitexturebindings }
 
-Defined in: [src/ui/index.ts:182](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L182)
+Defined in: [src/ui/index.ts:197](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L197)
 
 ### Extends { #guitexturebindings-section-extends }
 
@@ -360,17 +439,17 @@ Defined in: [src/ui/index.ts:182](https://github.com/maxmixalex/krieg-lang/blob/
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="guitexturebindings-property-frame"></a> `frame?` | `number` \| [`GuiVariable`](#guivariable-interface)&lt;`string`&gt; | [src/ui/index.ts:180](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L180) |
-| <a id="guitexturebindings-property-image"></a> `image?` | `string` | [src/ui/index.ts:183](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L183) |
-| <a id="guitexturebindings-property-x"></a> `x?` | `number` \| [`GuiVariable`](#guivariable-interface)&lt;`string`&gt; | [src/ui/index.ts:176](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L176) |
-| <a id="guitexturebindings-property-y"></a> `y?` | `number` \| [`GuiVariable`](#guivariable-interface)&lt;`string`&gt; | [src/ui/index.ts:177](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L177) |
+| <a id="guitexturebindings-property-frame"></a> `frame?` | `number` \| [`GuiVariable`](#guivariable-interface)&lt;`string`&gt; | [src/ui/index.ts:195](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L195) |
+| <a id="guitexturebindings-property-image"></a> `image?` | `string` | [src/ui/index.ts:198](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L198) |
+| <a id="guitexturebindings-property-x"></a> `x?` | `number` \| [`GuiVariable`](#guivariable-interface)&lt;`string`&gt; | [src/ui/index.ts:191](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L191) |
+| <a id="guitexturebindings-property-y"></a> `y?` | `number` \| [`GuiVariable`](#guivariable-interface)&lt;`string`&gt; | [src/ui/index.ts:192](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L192) |
 
 
 ## GuiVariable() { #guivariable-function }
 
 > **GuiVariable**&lt;`Name` *extends* `string`&gt;(`name`: `Name`): [`GuiVariable`](#guivariable-interface)&lt;`Name`&gt;
 
-Defined in: [src/ui/index.ts:173](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L173)
+Defined in: [src/ui/index.ts:188](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L188)
 
 Bind a scripted window property to a native game variable.
 Numeric values are constants; variable references remain unquoted native names.
@@ -403,7 +482,7 @@ const frame = GuiVariable("programme_frame");
 
 ## GuiVariable&lt;Name *extends* `string` = `string`&gt; { #guivariable-interface }
 
-Defined in: [src/ui/index.ts:173](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L173)
+Defined in: [src/ui/index.ts:188](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L188)
 
 A reference to an existing game variable, without allocating or initializing it.
 
@@ -417,10 +496,10 @@ A reference to an existing game variable, without allocating or initializing it.
 
 | Property | Modifier | Type | Description | Defined in |
 | ------ | ------ | ------ | ------ | ------ |
-| <a id="guivariable-interface-property-__kriegguivariable"></a> `__kriegGuiVariable` | `readonly` | *typeof* `__kriegGuiVariable` | - | [src/ui/index.ts:158](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L158) |
-| <a id="guivariable-interface-property-name"></a> `name` | `readonly` | `Name` | Use this name with native setVariable/addToVariable and the window's dirty field. | [src/ui/index.ts:157](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L157) |
+| <a id="guivariable-interface-property-__kriegguivariable"></a> `__kriegGuiVariable` | `readonly` | *typeof* `__kriegGuiVariable` | - | [src/ui/index.ts:173](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L173) |
+| <a id="guivariable-interface-property-name"></a> `name` | `readonly` | `Name` | Use this name with native setVariable/addToVariable and the window's dirty field. | [src/ui/index.ts:172](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L172) |
 
 
 ## 完整示例与工作流
 
-[阅读ScriptedWindow：布局与游戏行为指南](../../../ui.md)
+[阅读ScriptedWindow：布局与游戏行为指南](../../../guide/ui.md)

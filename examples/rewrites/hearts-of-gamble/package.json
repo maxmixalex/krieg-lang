@@ -1,0 +1,10 @@
+{
+  "name": "krieg-hearts-of-gamble-rewrite",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "krieg build",
+    "check": "krieg check",
+    "pack": "krieg pack"
+  }
+}

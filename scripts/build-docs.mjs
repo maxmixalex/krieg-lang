@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import { writeDocRedirects } from "./write-doc-redirects.mjs";
 import { writeApiRedirects } from "./write-api-redirects.mjs";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
@@ -25,4 +26,5 @@ if (result.error) {
 }
 if (result.status !== 0) process.exit(result.status ?? 1);
 writeApiRedirects(root);
+writeDocRedirects(root);
 await import("./check-docs.mjs");

@@ -156,11 +156,11 @@ export class CountryActions {
   decision(spec: Record<string, unknown>, node: ts.Node): Record<string, unknown> {
     if (spec.action === undefined) return spec;
     const action = this.resolve(spec.action, node);
-    if (["cost", "available", "completeEffect"].some((key) => spec[key] !== undefined))
+    if (["cost", "available", "completeEffect", "mission"].some((key) => spec[key] !== undefined))
       this.fail(
         node,
         "KRG2622",
-        "A decision action owns cost, available and completeEffect; put eligibility and settlement in CountryAction.",
+        "A decision action owns cost, available and completeEffect and cannot be a timed mission; put eligibility and settlement in CountryAction.",
       );
     const parts = this.actions.get(action)!;
     const result: Record<string, unknown> = {

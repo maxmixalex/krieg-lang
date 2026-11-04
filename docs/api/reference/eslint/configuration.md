@@ -59,4 +59,4 @@ Defined in: [src/eslint/index.ts:379](https://github.com/maxmixalex/krieg-lang/b
 
 ## 完整示例与工作流
 
-[阅读ESLint 配置与规则指南](../../../editor.md)
+[阅读ESLint 配置与规则指南](../../../guide/editor.md)

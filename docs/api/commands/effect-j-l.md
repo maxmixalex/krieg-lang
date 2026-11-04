@@ -59,7 +59,7 @@ Launch nuke at a state. usage .
 作用域：`country`
 
 ```ts
-"launch_nuke"(value: { "province"?: number | string; "state"?: StateRef; "controller"?: CountryRef; "use_nuke"?: boolean; "nuke_type"?: string } | CwtNode): void;
+"launch_nuke"(value: { "province"?: number | string; "state"?: StateRef | StateTargetRef; "controller"?: CountryRef; "use_nuke"?: boolean; "nuke_type"?: string } | CwtNode): void;
 ```
 
 CWT 来源：

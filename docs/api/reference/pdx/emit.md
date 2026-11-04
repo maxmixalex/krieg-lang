@@ -84,4 +84,4 @@ Defined in: [src/pdx/emitter.ts:47](https://github.com/maxmixalex/krieg-lang/blo
 
 ## 完整示例与工作流
 
-[阅读输出 PDX 与语义比较指南](../../../native-import.md)
+[阅读输出 PDX 与语义比较指南](../../../guide/native-import.md)

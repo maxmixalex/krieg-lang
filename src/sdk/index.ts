@@ -37,6 +37,28 @@ export interface StateRef {
   readonly kind: "state";
   readonly id: number;
 }
+/** A state selected by an engine scope expression, with no compile-time numeric ID. */
+export interface StateTargetRef {
+  readonly kind: "state";
+  readonly path: string;
+}
+/** A saved military industrial organization scope; never a country or state reference. */
+export interface MioScopeRef {
+  readonly kind: "military_industrial_organization";
+  readonly path: string;
+}
+/** Explicit engine context or saved scope. The compiler checks the token grammar. */
+export type RuntimeScopePath =
+  | "ROOT"
+  | "THIS"
+  | "PREV"
+  | "FROM"
+  | `${"ROOT" | "THIS" | "PREV" | "FROM"}.${string}`
+  | `var:${string}`
+  | `event_target:${string}`;
+export declare function countryTarget(path: RuntimeScopePath): CountryRef;
+export declare function stateTarget(path: RuntimeScopePath): StateTargetRef;
+export declare function mioTarget(path: RuntimeScopePath): MioScopeRef;
 export type Country = CountryRef;
 export type State = StateRef;
 export type LocalisationKey = string;
@@ -61,6 +83,110 @@ export type Trigger<S> = (scope: S) => boolean;
 export interface Definition {
   readonly __kriegDefinition: unique symbol;
 }
+/** Declare the exact scripted interfaces supplied by a dependency or the game.
+ * Emits no duplicate definitions. Handles can be passed only to a matching scope. */
+export declare function gameScripts<
+  const S extends ScopeName,
+  const T extends readonly string[] = readonly [],
+  const E extends readonly string[] = readonly [],
+>(
+  scope: S,
+  contract: { readonly triggers?: T; readonly effects?: E },
+): {
+  readonly triggers: { readonly [Name in T[number]]: ScriptedTriggerDefinition<S> };
+  readonly effects: { readonly [Name in E[number]]: ScriptedEffectDefinition<S> };
+};
+/** Index a finite catalogue without erasing its exact keys. Duplicate keys are compile errors. */
+export declare function indexBy<const Row, const Key extends string>(
+  rows: readonly Row[],
+  key: (row: Row, index: number) => Key,
+): Readonly<Record<Key, Row>>;
+export declare function indexBy<const Row, const Key extends string, const Out>(
+  rows: readonly Row[],
+  key: (row: Row, index: number) => Key,
+  value: (row: Row, index: number) => Out,
+): Readonly<Record<Key, Out>>;
+/** Instantiate native declarations at build time. Useful for indexed sprites, modifiers and content families.
+ * `count` is bounded; no iteration or callback runs inside the game. Each declaration keeps its ordinary type rules. */
+export declare function DefinitionSeries(
+  first: number,
+  count: number,
+  define: (index: number) => Definition | readonly Definition[],
+): Definition;
+/** A finite, stable flag namespace; do not renumber flags in an existing save format. */
+export interface FlagAchievementSpec {
+  readonly prefix: string;
+  readonly count: number;
+  readonly first?: number;
+  readonly scope?: "global" | "country";
+  readonly outputPath?: string;
+}
+/** Handles for reading a persistent flag bank into an array and setting its indexed bit. */
+export interface AchievementStorageBank extends Definition {
+  readonly load: ScriptedEffectDefinition<"country">;
+  readonly mark: ScriptedEffectDefinition<"country">;
+}
+/** Expose a sequence of numbered game flags as individual achievements in one native achievement group.
+ * The storage overload generates load/mark effects for a zero-based array. */
+export declare function FlagAchievements(
+  uniqueId: string,
+  options: FlagAchievementSpec & {
+    readonly storage: {
+      readonly array: string;
+      readonly index: string;
+      readonly load: string;
+      readonly mark: string;
+    };
+  },
+): AchievementStorageBank;
+export declare function FlagAchievements(
+  uniqueId: string,
+  options: FlagAchievementSpec,
+): Definition;
+/** A group of directly playable clips; each clip emits both sound and soundeffect. */
+export interface AudioBankSpec<Clips extends Record<string, string>> {
+  readonly path: `sound/${string}.asset`;
+  /** Paths are relative to the game's sound directory. */
+  readonly clips: Clips;
+  readonly volume?: number;
+  /** Limit simultaneous audible instances; additional plays are ignored at the limit. */
+  readonly maxAudible?: number;
+  readonly alwaysLoad?: boolean;
+  readonly compressor?: {
+    readonly enabled: boolean;
+    readonly pregain?: number;
+    readonly postgain?: number;
+    readonly ratio?: number;
+    readonly threshold?: number;
+    readonly attacktime?: number;
+    readonly releasetime?: number;
+  };
+}
+export interface AudioBankDefinition<Clips extends Record<string, string>> extends Definition {
+  readonly sounds: { readonly [Key in keyof Clips]: Key };
+}
+/** Declare playable audio once and share its checked sound names with GUI controls. */
+export declare function AudioBank<const Clips extends Record<string, string>>(
+  category: string,
+  spec: AudioBankSpec<Clips>,
+): AudioBankDefinition<Clips>;
+export type MapColor = readonly [red: number, green: number, blue: number];
+/** A stepped country heat map relative to the largest observed value. */
+export interface CountryHeatmapSpec {
+  readonly id: string;
+  readonly path?: `common/map_modes/${string}.txt`;
+  readonly metric: string;
+  readonly maximumDivisor?: number;
+  /** Descending thresholds, each a fraction of the scaled maximum. */
+  readonly bands: readonly { readonly fraction: number; readonly color: MapColor }[];
+  readonly maximumColor: MapColor;
+  readonly fallbackColor: MapColor;
+  readonly highlightMaximum?: boolean;
+  readonly roundThresholds?: boolean;
+  readonly updateDaily?: boolean;
+}
+/** Emit the engine's country color calculator and its ordered, checked palette. */
+export declare function CountryHeatmap(spec: CountryHeatmapSpec): IdentifiedDefinition;
 export interface IdentifiedDefinition extends Definition {
   readonly id: string;
 }
@@ -131,12 +257,107 @@ export interface StateTriggers extends GeneratedStateTriggers {
   isControlledBy(country: CountryRef): boolean;
 }
 export interface ScopeBase<S extends ScopeName = ScopeName> {
-  /** Emit one native `name = yes` call; the handle must match the active scope. */
-  run(effect: ScriptedEffectDefinition<S>): void;
+  /**
+   * Look up a game-time numeric index in an author-time catalogue. The callback
+   * receives this scope, the precisely inferred row, and its public ordinal.
+   * A balanced tree tests one branch per level, even for hundreds of rows.
+   * Numeric values select half-open buckets; unexpected indices do nothing
+   * unless `outOfRange: "clamp"` is requested for compatibility.
+   */
+  dispatchByIndex<const Row>(
+    variable: string,
+    rows: readonly Row[],
+    apply: (scope: ScopeByName[S], row: Row, index: number) => void,
+    options?: { readonly first?: number; readonly outOfRange?: "ignore" | "clamp" },
+  ): void;
+
+  /** Execute effects on this same scope without exposing their automatic tooltip. */
+  hiddenEffect(effects: Effect<ScopeByName[S]>): void;
+
+  /** Choose one weighted effect. False `when` conditions zero its native weight. */
+  randomChoice(
+    choices: readonly {
+      weight: number;
+      when?: Trigger<ScopeByName[S]>;
+      effects: Effect<ScopeByName[S]>;
+    }[],
+  ): void;
+  /** Emit a native effect call; the handle must match the active scope.
+   * The optional yes/no invocation literal is preserved, not treated as a condition. */
+  run(effect: ScriptedEffectDefinition<S>, invocationValue?: boolean): void;
   /** Test a native trigger handle; negate with `!scope.test(handle)`. */
   test(trigger: ScriptedTriggerDefinition<S>): boolean;
   country(target: CountryRef, effect: Effect<CountryScope>): void;
-  state(target: StateRef, effect: Effect<StateScope>): void;
+  state(target: StateRef | StateTargetRef, effect: Effect<StateScope>): void;
+  countryMatches(target: CountryRef, trigger: Trigger<CountryScope>): boolean;
+  stateMatches(target: StateRef | StateTargetRef, trigger: Trigger<StateScope>): boolean;
+  /** Enter an engine organization scope saved by a MIO iteration or target. */
+  militaryOrganization(
+    target: MioScopeRef,
+    effect: Effect<MilitaryIndustrialOrganizationScope>,
+  ): void;
+  /** All world states, unlike CountryScope.everyState, which selects owned states. */
+  everyGlobalState(effect: Effect<StateScope>): void;
+  everyGlobalState(limit: Trigger<StateScope>, effect: Effect<StateScope>): void;
+  /** Read an existing persistent, temporary, global, or engine numeric variable. */
+  variable(name: string): number;
+  /** Compare the in-game calendar, including non-1936 starts. Dates are static YYYY.M.D or YYYY.M.D.H. */
+  dateBefore(date: string): boolean;
+  dateAfter(date: string): boolean;
+  /** True on the given date and after it; the complement of dateBefore. */
+  dateOnOrAfter(date: string): boolean;
+
+  setVariable(
+    name: string,
+    value: number | CountryRef | StateRef | StateTargetRef | MioScopeRef,
+  ): void;
+  addVariable(name: string, value: number): void;
+  subtractVariable(name: string, value: number): void;
+  multiplyVariable(name: string, value: number): void;
+  divideVariable(name: string, value: number): void;
+  moduloVariable(name: string, value: number): void;
+  setTempVariable(
+    name: string,
+    value: number | CountryRef | StateRef | StateTargetRef | MioScopeRef,
+  ): void;
+  addTempVariable(name: string, value: number): void;
+  subtractTempVariable(name: string, value: number): void;
+  multiplyTempVariable(name: string, value: number): void;
+  divideTempVariable(name: string, value: number): void;
+  clearVariable(name: string): void;
+  clampVariable(name: string, bounds: { min?: number; max?: number }): void;
+  clampTempVariable(name: string, bounds: { min?: number; max?: number }): void;
+  arrayContains(name: string, value: number | CountryRef | StateRef | StateTargetRef): boolean;
+  arrayPush(name: string, value: number | CountryRef | StateRef | StateTargetRef): void;
+  arrayLength(name: string): number;
+  arrayAt(name: string, index: number): number;
+  arraySet(
+    name: string,
+    index: number,
+    value: number | CountryRef | StateRef | StateTargetRef,
+  ): void;
+  arrayInsert(
+    name: string,
+    index: number,
+    value: number | CountryRef | StateRef | StateTargetRef,
+  ): void;
+  arrayRemoveAt(name: string, index: number): void;
+  arrayRemoveValue(name: string, value: number | CountryRef | StateRef | StateTargetRef): void;
+  /** Native value loop; named temporary bindings are read with variable(). No scope change. */
+  forEachValue(
+    name: string,
+    bindings: { value?: string; index?: string; break?: string },
+    effect: Effect<ScopeByName[S]>,
+  ): void;
+  clearArray(name: string): void;
+  forEachCountryInArray(name: string, effect: Effect<CountryScope>): void;
+  /** Engine loop with an exclusive upper bound; it does not change the active scope. */
+  forRange(
+    range: { start: number; end: number; step?: number; index?: string },
+    effect: Effect<ScopeByName[S]>,
+  ): void;
+  /** Engine loop, subject to HOI4's MAX_EFFECT_ITERATION limit. */
+  whileLoop(condition: Trigger<ScopeByName[S]>, effect: Effect<ScopeByName[S]>): void;
   everyCountry(effect: Effect<CountryScope>): void;
   everyCountry(limit: Trigger<CountryScope>, effect: Effect<CountryScope>): void;
   randomCountry(effect: Effect<CountryScope>): void;
@@ -145,10 +366,40 @@ export interface ScopeBase<S extends ScopeName = ScopeName> {
   allCountries(trigger: Trigger<CountryScope>): boolean;
 }
 export interface CountryScope extends ScopeBase<"country"> {
+  /** Compare an equipment stockpile without constructing native trigger text. */
+  hasEquipment(equipment: string, amount: number, comparison?: "atLeast" | "moreThan"): boolean;
+  readonly availableManpower: number;
+  readonly commandPower: number;
+  readonly militaryFactories: number;
+  readonly civilianFactories: number;
+  readonly navalFactories: number;
+  /** Unlock a technology; opt into the engine notification with popup. */
+  grantTechnology(technology: string, options?: { readonly popup?: boolean }): void;
   readonly scope: "country";
   readonly effects: CountryEffects;
   readonly triggers: CountryTriggers;
   readonly politicalPower: number;
+  /** Current branch XP, read by native numeric triggers. */
+  readonly armyExperience: number;
+  readonly navyExperience: number;
+  /** Navy/air comparisons use engine queries, not guessed variable names. */
+  deployedAircraft(role?: string): number;
+  navySize(type?: string): number;
+  estimatedMaxArmor(target: CountryRef): number;
+  opinionOf(target: CountryRef): number;
+  /** Any country whose original tag matches the supplied tag (includes civil-war instances). */
+  anyOriginalCountry(tag: CountryRef, matches: Trigger<CountryScope>): boolean;
+  overlordMatches(matches: Trigger<CountryScope>): boolean;
+  importedResource(
+    name: "oil" | "rubber" | "aluminium" | "steel" | "chromium" | "coal" | "tungsten",
+  ): number;
+  resource(
+    name: "oil" | "rubber" | "aluminium" | "steel" | "chromium" | "coal" | "tungsten",
+  ): number;
+  readonly energyRatio: number;
+  readonly factories: number;
+  readonly surrenderProgress: number;
+  readonly airExperience: number;
   readonly stability: number;
   readonly warSupport: number;
   readonly isAI: boolean;
@@ -165,6 +416,8 @@ export interface CountryScope extends ScopeBase<"country"> {
   capital(effect: Effect<StateScope>): void;
 }
 export interface StateScope extends ScopeBase<"state"> {
+  /** Current level of a named building in this state, usable in comparisons. */
+  buildingLevel(building: string): number;
   readonly scope: "state";
   readonly effects: StateEffects;
   readonly triggers: StateTriggers;
@@ -233,6 +486,8 @@ export interface EventSpec<S> {
   fireOnlyOnce?: boolean;
   major?: boolean;
   hidden?: boolean;
+  /** Native event popup expiry, in days. */
+  timeoutDays?: number;
   trigger?: Trigger<S>;
   immediate?: Effect<S>;
   meanTimeToHappen?: { days?: number; months?: number; years?: number };
@@ -299,6 +554,16 @@ interface DecisionBaseSpec {
   visible?: Trigger<CountryScope>;
   removeEffect?: Effect<CountryScope>;
   aiWillDo?: number;
+  priority?: number;
+}
+/** A timed decision mission. Its timeout runs only if cancellation has not fired. */
+export interface DecisionMissionSpec {
+  days: number;
+  activation?: Trigger<CountryScope>;
+  cancel?: Trigger<CountryScope>;
+  timeout: Effect<CountryScope>;
+  selectable?: boolean;
+  isGood?: boolean;
 }
 /** A manual decision or a shared action; an action owns its cost, eligibility and settlement. */
 export type DecisionSpec = DecisionBaseSpec &
@@ -308,12 +573,14 @@ export type DecisionSpec = DecisionBaseSpec &
         cost?: never;
         available?: never;
         completeEffect?: never;
+        mission?: never;
       }
     | {
         action?: never;
         cost?: number;
         available?: Trigger<CountryScope>;
         completeEffect?: Effect<CountryScope>;
+        mission?: DecisionMissionSpec;
       }
   );
 export interface DecisionCategorySpec {
@@ -321,6 +588,8 @@ export interface DecisionCategorySpec {
   icon?: AssetId;
   visible?: Trigger<CountryScope>;
   allowed?: Trigger<CountryScope>;
+  priority?: number;
+  scriptedGui?: string;
   decisions: readonly DecisionSpec[];
 }
 export declare function Decision(spec: DecisionSpec): DecisionSpec;
@@ -350,6 +619,8 @@ export interface IdeaSpec {
   id: IdeaId;
   picture?: AssetId;
   allowed?: Trigger<CountryScope>;
+  /** Eligibility for retaining this idea when a civil-war country is created. */
+  allowedCivilWar?: Trigger<CountryScope>;
   visible?: Trigger<CountryScope>;
   removalCost?: number;
   modifier?: IdeaModifiers;
@@ -513,7 +784,11 @@ export type DataValue =
   string | number | boolean | CountryRef | StateRef | DataRecord | readonly DataValue[];
 /** Emit structured native data at an explicit game-relative path. Prefer a named domain constructor for game-specific field checking. For repeated keys, mixed blocks or explicit native operators, use the ordered PDX API instead. */
 export declare function DataFile(path: string, data: DataRecord): Definition;
-export declare function country(tag: string): CountryRef;
+/** A native country tag. Preserve a mixed-case three-character token only when matching an existing mod's exact spelling. */
+export declare function country(
+  tag: string,
+  options?: { readonly spelling: "verbatim" },
+): CountryRef;
 export declare function state(id: number): StateRef;
 export declare function loc(key: string): LocalisationKey;
 /** A deliberate typed escape to ordered syntax for a CWT block argument. */

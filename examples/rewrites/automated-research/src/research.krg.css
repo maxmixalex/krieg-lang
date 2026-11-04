@@ -1,0 +1,16 @@
+.heading {
+  font: hoi_24header;
+  max-width: 340;
+  max-height: 28;
+  format: left;
+}
+.label {
+  font: hoi_16mbs;
+  max-width: 300;
+  max-height: 20;
+  format: left;
+}
+.action {
+  font: hoi_16mbs;
+  sprite-type: GFX_button_148x34;
+}

@@ -32,4 +32,4 @@
 | <a id="unitleaderscope"></a> `UnitLeaderScope`                                         | [查看 UnitLeaderScope](reference/hoi4/scopes-people.md#unitleaderscope)                                              |
 | <a id="unitscope"></a> `UnitScope`                                                     | [查看 UnitScope](reference/hoi4/scopes-specialized.md#unitscope)                                                     |
 
-[按原生命令名查找效果与条件](commands/index.md) · [作用域指南](../scopes.md)
+[按原生命令名查找效果与条件](commands/index.md) · [作用域指南](../guide/scopes.md)

@@ -588,4 +588,4 @@ Native common/opinion_modifiers; schema: common/opinions.cwt:8.
 
 ## 完整示例与工作流
 
-[阅读政治、理念与国家规则指南](../../../content-domains.md)
+[阅读政治、理念与国家规则指南](../../../guide/domains/index.md)

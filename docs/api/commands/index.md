@@ -2,7 +2,7 @@
 
 # CWT 效果与条件目录
 
-本目录连接游戏原生命令名、SDK 的实际 TypeScript 签名、合法作用域和原始 CWT 位置。这里保留 `snake_case` 名称，例如 `country.effects.add_political_power(25)`；少量手工建模的易读别名另见 [作用域 API](../scopes.md)。
+本目录连接游戏原生命令名、SDK 的实际 TypeScript 签名、合法作用域和原始 CWT 位置。这里保留 `snake_case` 名称，例如 `country.effects.add_political_power(25)`。少量手工建模的易读别名另见 [作用域 API](../scopes.md)。
 
 CWT 版本固定在仓库快照；这些规则不等价于游戏引擎实现。动态键和重复条目用 `CwtNode` 表达，无法安全投射的表达式保留 `CwtOpaque`。
 

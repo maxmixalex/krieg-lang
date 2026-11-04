@@ -22,7 +22,7 @@
 
 > **Button**(`props`: [`ButtonProps`](#buttonprops)): [`GuiElement`](layout.md#guielement)
 
-Defined in: [src/ui/index.ts:147](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L147)
+Defined in: [src/ui/index.ts:162](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L162)
 
 ### Parameters { #button-section-parameters }
 
@@ -37,7 +37,7 @@ Defined in: [src/ui/index.ts:147](https://github.com/maxmixalex/krieg-lang/blob/
 
 ## ButtonProps { #buttonprops }
 
-Defined in: [src/ui/index.ts:106](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L106)
+Defined in: [src/ui/index.ts:117](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L117)
 
 Classes apply left to right; explicit component props override the resulting style.
 
@@ -49,33 +49,36 @@ Classes apply left to right; explicit component props override the resulting sty
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="buttonprops-property-bordersize"></a> `borderSize?` | [`GuiPosition`](layout.md#guiposition) | [src/ui/index.ts:112](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L112) |
+| <a id="buttonprops-property-bordersize"></a> `borderSize?` | [`GuiPosition`](layout.md#guiposition) | [src/ui/index.ts:123](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L123) |
 | <a id="buttonprops-property-classname"></a> `className?` | [`GuiClass`](styles.md#guiclass)&lt;`object`&gt; \| readonly [`GuiClass`](styles.md#guiclass)&lt;`object`&gt;[] | [src/ui/index.ts:28](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L28) |
-| <a id="buttonprops-property-font"></a> `font?` | `string` | [src/ui/index.ts:109](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L109) |
-| <a id="buttonprops-property-format"></a> `format?` | `"right"` \| `"left"` \| `"center"` | [src/ui/index.ts:113](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L113) |
-| <a id="buttonprops-property-frame"></a> `frame?` | `number` | [src/ui/index.ts:111](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L111) |
+| <a id="buttonprops-property-clicksound"></a> `clickSound?` | `string` | [src/ui/index.ts:127](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L127) |
+| <a id="buttonprops-property-font"></a> `font?` | `string` | [src/ui/index.ts:120](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L120) |
+| <a id="buttonprops-property-format"></a> `format?` | `"right"` \| `"left"` \| `"center"` | [src/ui/index.ts:124](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L124) |
+| <a id="buttonprops-property-frame"></a> `frame?` | `number` | [src/ui/index.ts:122](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L122) |
 | <a id="buttonprops-property-hide"></a> `hide?` | `boolean` | [src/ui/index.ts:74](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L74) |
-| <a id="buttonprops-property-multiline"></a> `multiline?` | `boolean` | [src/ui/index.ts:114](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L114) |
+| <a id="buttonprops-property-multiline"></a> `multiline?` | `boolean` | [src/ui/index.ts:125](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L125) |
 | <a id="buttonprops-property-name"></a> `name` | `string` | [src/ui/index.ts:67](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L67) |
-| <a id="buttonprops-property-noclicksound"></a> `noClickSound?` | `boolean` | [src/ui/index.ts:115](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L115) |
+| <a id="buttonprops-property-noclicksound"></a> `noClickSound?` | `boolean` | [src/ui/index.ts:126](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L126) |
 | <a id="buttonprops-property-orientation"></a> `orientation?` | [`GuiOrientation`](layout.md#guiorientation) | [src/ui/index.ts:70](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L70) |
 | <a id="buttonprops-property-origo"></a> `origo?` | [`GuiOrigin`](layout.md#guiorigin) | [src/ui/index.ts:71](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L71) |
+| <a id="buttonprops-property-oversound"></a> `overSound?` | `string` | [src/ui/index.ts:128](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L128) |
 | <a id="buttonprops-property-position"></a> `position?` | [`GuiPosition`](layout.md#guiposition) | [src/ui/index.ts:68](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L68) |
 | <a id="buttonprops-property-rotation"></a> `rotation?` | `number` | [src/ui/index.ts:73](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L73) |
 | <a id="buttonprops-property-scale"></a> `scale?` | `number` | [src/ui/index.ts:72](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L72) |
-| <a id="buttonprops-property-shortcut"></a> `shortcut?` | `string` | [src/ui/index.ts:110](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L110) |
+| <a id="buttonprops-property-shortcut"></a> `shortcut?` | `string` | [src/ui/index.ts:121](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L121) |
 | <a id="buttonprops-property-size"></a> `size?` | [`GuiSize`](layout.md#guisize) | [src/ui/index.ts:69](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L69) |
-| <a id="buttonprops-property-spritetype"></a> `spriteType?` | `string` | [src/ui/index.ts:107](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L107) |
-| <a id="buttonprops-property-text"></a> `text?` | `string` | [src/ui/index.ts:108](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L108) |
+| <a id="buttonprops-property-spritetype"></a> `spriteType?` | `string` | [src/ui/index.ts:118](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L118) |
+| <a id="buttonprops-property-text"></a> `text?` | `string` | [src/ui/index.ts:119](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L119) |
 | <a id="buttonprops-property-tooltip"></a> `tooltip?` | `string` | [src/ui/index.ts:75](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L75) |
 | <a id="buttonprops-property-tooltipdelayed"></a> `tooltipDelayed?` | `string` | [src/ui/index.ts:76](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L76) |
+| <a id="buttonprops-property-weblink"></a> `webLink?` | `string` | [src/ui/index.ts:129](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L129) |
 
 
 ## Icon() { #icon }
 
 > **Icon**(`props`: [`IconProps`](#iconprops)): [`GuiElement`](layout.md#guielement)
 
-Defined in: [src/ui/index.ts:146](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L146)
+Defined in: [src/ui/index.ts:161](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L161)
 
 ### Parameters { #icon-section-parameters }
 
@@ -92,7 +95,7 @@ Defined in: [src/ui/index.ts:146](https://github.com/maxmixalex/krieg-lang/blob/
 
 > **IconProps** = [`IconBaseProps`](styles.md#iconbaseprops) & (\{ `spriteType`: `string`; \} \| \{ `className`: [`GuiClass`](styles.md#guiclass)&lt;\{ `spriteType`: `string`; \}&gt; \| readonly \[[`GuiClass`](styles.md#guiclass)&lt;\{ `spriteType`: `string`; \}&gt;, `...GuiClass[]`\]; `spriteType?`: `string`; \})
 
-Defined in: [src/ui/index.ts:96](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L96)
+Defined in: [src/ui/index.ts:107](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L107)
 
 Supply a sprite explicitly or through the first style class.
 
@@ -101,7 +104,7 @@ Supply a sprite explicitly or through the first style class.
 
 > **Text**(`props`: [`TextProps`](#textprops)): [`GuiElement`](layout.md#guielement)
 
-Defined in: [src/ui/index.ts:148](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L148)
+Defined in: [src/ui/index.ts:163](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L163)
 
 ### Parameters { #text-section-parameters }
 
@@ -116,7 +119,7 @@ Defined in: [src/ui/index.ts:148](https://github.com/maxmixalex/krieg-lang/blob/
 
 ## TextProps { #textprops }
 
-Defined in: [src/ui/index.ts:117](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L117)
+Defined in: [src/ui/index.ts:131](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L131)
 
 Classes apply left to right; explicit component props override the resulting style.
 
@@ -128,16 +131,16 @@ Classes apply left to right; explicit component props override the resulting sty
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="textprops-property-alwaystransparent"></a> `alwaysTransparent?` | `boolean` | [src/ui/index.ts:126](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L126) |
-| <a id="textprops-property-bordersize"></a> `borderSize?` | [`GuiPosition`](layout.md#guiposition) | [src/ui/index.ts:127](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L127) |
+| <a id="textprops-property-alwaystransparent"></a> `alwaysTransparent?` | `boolean` | [src/ui/index.ts:141](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L141) |
+| <a id="textprops-property-bordersize"></a> `borderSize?` | [`GuiPosition`](layout.md#guiposition) | [src/ui/index.ts:142](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L142) |
 | <a id="textprops-property-classname"></a> `className?` | [`GuiClass`](styles.md#guiclass)&lt;`object`&gt; \| readonly [`GuiClass`](styles.md#guiclass)&lt;`object`&gt;[] | [src/ui/index.ts:28](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L28) |
-| <a id="textprops-property-fixedsize"></a> `fixedSize?` | `boolean` | [src/ui/index.ts:125](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L125) |
-| <a id="textprops-property-font"></a> `font?` | `string` | [src/ui/index.ts:119](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L119) |
-| <a id="textprops-property-format"></a> `format?` | `"right"` \| `"left"` \| `"center"` | [src/ui/index.ts:122](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L122) |
+| <a id="textprops-property-fixedsize"></a> `fixedSize?` | `boolean` | [src/ui/index.ts:139](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L139) |
+| <a id="textprops-property-font"></a> `font?` | `string` | [src/ui/index.ts:133](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L133) |
+| <a id="textprops-property-format"></a> `format?` | `"right"` \| `"left"` \| `"center"` | [src/ui/index.ts:136](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L136) |
 | <a id="textprops-property-hide"></a> `hide?` | `boolean` | [src/ui/index.ts:74](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L74) |
-| <a id="textprops-property-maxheight"></a> `maxHeight?` | [`GuiCoordinate`](layout.md#guicoordinate) | [src/ui/index.ts:121](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L121) |
-| <a id="textprops-property-maxwidth"></a> `maxWidth?` | [`GuiCoordinate`](layout.md#guicoordinate) | [src/ui/index.ts:120](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L120) |
-| <a id="textprops-property-multiline"></a> `multiline?` | `boolean` | [src/ui/index.ts:124](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L124) |
+| <a id="textprops-property-maxheight"></a> `maxHeight?` | [`GuiCoordinate`](layout.md#guicoordinate) | [src/ui/index.ts:135](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L135) |
+| <a id="textprops-property-maxwidth"></a> `maxWidth?` | [`GuiCoordinate`](layout.md#guicoordinate) | [src/ui/index.ts:134](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L134) |
+| <a id="textprops-property-multiline"></a> `multiline?` | `boolean` | [src/ui/index.ts:138](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L138) |
 | <a id="textprops-property-name"></a> `name` | `string` | [src/ui/index.ts:67](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L67) |
 | <a id="textprops-property-orientation"></a> `orientation?` | [`GuiOrientation`](layout.md#guiorientation) | [src/ui/index.ts:70](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L70) |
 | <a id="textprops-property-origo"></a> `origo?` | [`GuiOrigin`](layout.md#guiorigin) | [src/ui/index.ts:71](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L71) |
@@ -145,12 +148,13 @@ Classes apply left to right; explicit component props override the resulting sty
 | <a id="textprops-property-rotation"></a> `rotation?` | `number` | [src/ui/index.ts:73](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L73) |
 | <a id="textprops-property-scale"></a> `scale?` | `number` | [src/ui/index.ts:72](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L72) |
 | <a id="textprops-property-size"></a> `size?` | [`GuiSize`](layout.md#guisize) | [src/ui/index.ts:69](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L69) |
-| <a id="textprops-property-text"></a> `text` | `string` | [src/ui/index.ts:118](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L118) |
+| <a id="textprops-property-text"></a> `text` | `string` | [src/ui/index.ts:132](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L132) |
 | <a id="textprops-property-tooltip"></a> `tooltip?` | `string` | [src/ui/index.ts:75](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L75) |
 | <a id="textprops-property-tooltipdelayed"></a> `tooltipDelayed?` | `string` | [src/ui/index.ts:76](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L76) |
-| <a id="textprops-property-verticalalignment"></a> `verticalAlignment?` | `"top"` \| `"bottom"` \| `"center"` | [src/ui/index.ts:123](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L123) |
+| <a id="textprops-property-truncate"></a> `truncate?` | `boolean` | [src/ui/index.ts:140](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L140) |
+| <a id="textprops-property-verticalalignment"></a> `verticalAlignment?` | `"top"` \| `"bottom"` \| `"center"` | [src/ui/index.ts:137](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L137) |
 
 
 ## 完整示例与工作流
 
-[阅读按钮、图标与文本指南](../../../ui.md)
+[阅读按钮、图标与文本指南](../../../guide/ui.md)

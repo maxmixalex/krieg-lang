@@ -76,14 +76,20 @@ export function cwtType(rule: CwtValueRule, schema: CwtSchema, depth = 0): strin
   if (expression === "bool") return "boolean";
   if (expression === "yes") return "true";
   if (expression === "no") return "false";
-  if (/^(?:int|float|variable_field|int_variable_field|variable_field_32)(?:\[|$)/.test(expression))
+  if (
+    /^(?:int|float|variable_field|int_variable_field|int_variable_field_32|variable_field_32)(?:\[|$)/.test(
+      expression,
+    )
+  )
     return "number";
   if (expression === "enum[country_tags]" || expression === "scope[country]") return "CountryRef";
-  if (expression === "<state>" || expression === "scope[state]") return "StateRef";
+  if (expression === "<state>" || expression === "scope[state]") return "StateRef | StateTargetRef";
   if (expression === "enum[provinces]") return "number";
-  if (expression === "scope_field") return "CountryRef | StateRef";
+  if (expression === "scope_field") return "CountryRef | StateRef | StateTargetRef";
+  if (/^scope\[[a-z_]+\]\.value\[variable\]$/.test(expression)) return "string";
   if (/^scope\[/.test(expression)) return "CwtOpaque";
-  if (expression === "scalar") return "string | number | boolean | CountryRef | StateRef";
+  if (expression === "scalar")
+    return "string | number | boolean | CountryRef | StateRef | StateTargetRef";
   if (
     /^(?:localisation|localisation_inline|date_field|datetime_field|filepath|icon)$/.test(
       expression,
@@ -102,7 +108,7 @@ export function generateCommandDeclarations(schema: CwtSchema, imported = true):
   ];
   if (imported)
     lines.push(
-      "import type { CountryRef, StateRef, CwtOpaque, CwtNode, ScopeByName, Effect, Trigger } from './index.js';",
+      "import type { CountryRef, StateRef, StateTargetRef, CwtOpaque, CwtNode, ScopeByName, Effect, Trigger } from './index.js';",
     );
   for (const scope of scopes)
     for (const kind of ["effect", "trigger"] as const) {

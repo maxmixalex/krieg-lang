@@ -522,4 +522,4 @@ Native gfx/models; schema: gfx/particles.cwt:22.
 
 ## 完整示例与工作流
 
-[阅读图形、模型与动画指南](../../../content-domains.md)
+[阅读图形、模型与动画指南](../../../guide/domains/index.md)

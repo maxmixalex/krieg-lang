@@ -20,7 +20,7 @@
 
 > **loc**(`key`: `string`): `string`
 
-Defined in: [src/sdk/index.ts:518](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L518)
+Defined in: [src/sdk/index.ts:793](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L793)
 
 ### Parameters { #loc-section-parameters }
 
@@ -37,14 +37,14 @@ Defined in: [src/sdk/index.ts:518](https://github.com/maxmixalex/krieg-lang/blob
 
 > **LocalisationKey** = `string`
 
-Defined in: [src/sdk/index.ts:42](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L42)
+Defined in: [src/sdk/index.ts:64](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L64)
 
 
 ## ScriptedLocalisation() { #scriptedlocalisation }
 
 > **ScriptedLocalisation**&lt;`S` *extends* keyof [`GeneratedEffectsByScope`](../../commands/index.md)&gt;(`name`: `string`, `spec`: [`ScriptedLocalisationSpec`](#scriptedlocalisationspec)&lt;`S`&gt;): [`ScriptedLocalisationDefinition`](#scriptedlocalisationdefinition)&lt;`S`&gt;
 
-Defined in: [src/sdk/index.ts:550](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L550)
+Defined in: [src/sdk/index.ts:825](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L825)
 
 ### Type Parameters { #scriptedlocalisation-section-type-parameters }
 
@@ -66,7 +66,7 @@ Defined in: [src/sdk/index.ts:550](https://github.com/maxmixalex/krieg-lang/blob
 
 ## ScriptedLocalisationDefinition&lt;S *extends* [`ScopeName`](scope-selection.md#scopename)&gt; { #scriptedlocalisationdefinition }
 
-Defined in: [src/sdk/index.ts:546](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L546)
+Defined in: [src/sdk/index.ts:821](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L821)
 
 ### Extends { #scriptedlocalisationdefinition-section-extends }
 
@@ -82,14 +82,14 @@ Defined in: [src/sdk/index.ts:546](https://github.com/maxmixalex/krieg-lang/blob
 
 | Property | Modifier | Type | Defined in |
 | ------ | ------ | ------ | ------ |
-| <a id="scriptedlocalisationdefinition-property-__kriegdefinition"></a> `__kriegDefinition` | `readonly` | *typeof* [`__kriegDefinition`](scope-selection.md#definition-property-__kriegdefinition) | [src/sdk/index.ts:62](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L62) |
-| <a id="scriptedlocalisationdefinition-property-name"></a> `name` | `readonly` | `string` | [src/sdk/index.ts:547](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L547) |
-| <a id="scriptedlocalisationdefinition-property-scope"></a> `scope` | `readonly` | `S` | [src/sdk/index.ts:548](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L548) |
+| <a id="scriptedlocalisationdefinition-property-__kriegdefinition"></a> `__kriegDefinition` | `readonly` | *typeof* [`__kriegDefinition`](scope-selection.md#definition-property-__kriegdefinition) | [src/sdk/index.ts:84](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L84) |
+| <a id="scriptedlocalisationdefinition-property-name"></a> `name` | `readonly` | `string` | [src/sdk/index.ts:822](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L822) |
+| <a id="scriptedlocalisationdefinition-property-scope"></a> `scope` | `readonly` | `S` | [src/sdk/index.ts:823](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L823) |
 
 
 ## ScriptedLocalisationSpec&lt;S *extends* [`ScopeName`](scope-selection.md#scopename)&gt; { #scriptedlocalisationspec }
 
-Defined in: [src/sdk/index.ts:542](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L542)
+Defined in: [src/sdk/index.ts:817](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L817)
 
 ### Type Parameters { #scriptedlocalisationspec-section-type-parameters }
 
@@ -101,15 +101,15 @@ Defined in: [src/sdk/index.ts:542](https://github.com/maxmixalex/krieg-lang/blob
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="scriptedlocalisationspec-property-scope"></a> `scope` | `S` | [src/sdk/index.ts:543](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L543) |
-| <a id="scriptedlocalisationspec-property-texts"></a> `texts` | readonly [`ScriptedLocalisationText`](#scriptedlocalisationtext)&lt;[`ScopeByName`](scope-selection.md#scopebyname)\[`S`\]&gt;[] | [src/sdk/index.ts:544](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L544) |
+| <a id="scriptedlocalisationspec-property-scope"></a> `scope` | `S` | [src/sdk/index.ts:818](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L818) |
+| <a id="scriptedlocalisationspec-property-texts"></a> `texts` | readonly [`ScriptedLocalisationText`](#scriptedlocalisationtext)&lt;[`ScopeByName`](scope-selection.md#scopebyname)\[`S`\]&gt;[] | [src/sdk/index.ts:819](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L819) |
 
 
 ## ScriptedLocalisationText&lt;S&gt; { #scriptedlocalisationtext }
 
 > **ScriptedLocalisationText**&lt;`S`&gt; = `object` & (\{ `localisationKey`: [`LocalisationKey`](#localisationkey); `randomList?`: `never`; \} \| \{ `localisationKey?`: `never`; `randomList`: readonly `object`[]; `seed?`: `number` \| `string`; \})
 
-Defined in: [src/sdk/index.ts:523](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L523)
+Defined in: [src/sdk/index.ts:798](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L798)
 
 First matching text wins; preserve the array order and put an unconditional fallback last.
 
@@ -123,9 +123,9 @@ First matching text wins; preserve the array order and put an unconditional fall
 
 | Name | Type | Defined in |
 | ------ | ------ | ------ |
-| `trigger?` | [`Trigger`](scope-selection.md#trigger)&lt;`S`&gt; | [src/sdk/index.ts:524](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L524) |
+| `trigger?` | [`Trigger`](scope-selection.md#trigger)&lt;`S`&gt; | [src/sdk/index.ts:799](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L799) |
 
 
 ## 完整示例与工作流
 
-[阅读本地化键与动态文本指南](../../../localisation.md)
+[阅读本地化键与动态文本指南](../../../guide/localisation.md)

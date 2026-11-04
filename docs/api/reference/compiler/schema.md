@@ -87,7 +87,7 @@ A conservative, provenance-bearing projection of CWT rules, not CWTools.
 
 > **generateCommandDeclarations**(`schema`: [`CwtSchema`](#cwtschema), `imported?`: `boolean`): `string`
 
-Defined in: [src/compiler/sdk.ts:98](https://github.com/maxmixalex/krieg-lang/blob/main/src/compiler/sdk.ts#L98)
+Defined in: [src/compiler/sdk.ts:104](https://github.com/maxmixalex/krieg-lang/blob/main/src/compiler/sdk.ts#L104)
 
 Stable public declarations for every fixed CWT command, grouped by legal scope.
 
@@ -105,7 +105,7 @@ Stable public declarations for every fixed CWT command, grouped by legal scope.
 
 ## MINIMAL\_LIB { #minimal_lib }
 
-> `const` **MINIMAL\_LIB**: "\\ninterface Object \{\}\\ninterface Function \{\}\\ninterface CallableFunction extends Function \{\}\\ninterface NewableFunction extends Function \{\}\\ninterface IArguments \{ readonly length: number; readonly \[index: number\]: unknown \}\\ninterface String \{ readonly length: number \}\\ninterface Number \{\}\\ninterface Boolean \{\}\\ninterface RegExp \{\}\\ninterface Array\<T\> \{ readonly length: number; \[index: number\]: T \}\\ninterface ReadonlyArray\<T\> \{ readonly length: number; readonly \[index: number\]: T \}\\n// Type-only support for the PDX lexer declaration exported by krieg-lang/pdx.\\n// There is deliberately no Set constructor value in the source language.\\ninterface Set\<T\> \{ readonly size: number; has(value: T): boolean \}\\ntype Readonly\<T\> = \{ readonly \[P in keyof T\]: T\[P\] \};\\ntype Partial\<T\> = \{ \[P in keyof T\]?: T\[P\] \};\\ntype Record\<K extends string \| number \| symbol, T\> = \{ \[P in K\]: T \};\\ntype Pick\<T, K extends keyof T\> = \{ \[P in K\]: T\[P\] \};\\ntype Exclude\<T, U\> = T extends U ? never : T;\\ntype Extract\<T, U\> = T extends U ? T : never;\\ntype Omit\<T, K extends string \| number \| symbol\> = Pick\<T, Exclude\<keyof T, K\>\>;\\ntype NoInfer\<T\> = intrinsic;\\n"
+> `const` **MINIMAL\_LIB**: "\\ninterface Object \{\}\\ninterface Function \{\}\\ninterface CallableFunction extends Function \{\}\\ninterface NewableFunction extends Function \{\}\\ninterface IArguments \{ readonly length: number; readonly \[index: number\]: unknown \}\\ninterface String \{ readonly length: number \}\\ninterface Number \{\}\\ninterface Boolean \{\}\\ninterface RegExp \{\}\\ninterface Array\<T\> extends ReadonlyArray\<T\> \{ \[index: number\]: T \}\\ninterface ReadonlyArray\<T\> \{\\n  readonly length: number;\\n  readonly \[index: number\]: T;\\n  map\<U\>(callback: (value: T, index: number, array: readonly T\[\]) =\> U): U\[\];\\n  flatMap\<U\>(callback: (value: T, index: number, array: readonly T\[\]) =\> U \| readonly U\[\]): U\[\];\\n  filter(callback: (value: T, index: number, array: readonly T\[\]) =\> boolean): T\[\];\\n  some(callback: (value: T, index: number, array: readonly T\[\]) =\> boolean): boolean;\\n  every(callback: (value: T, index: number, array: readonly T\[\]) =\> boolean): boolean;\\n\}\\n// Type-only support for the PDX lexer declaration exported by krieg-lang/pdx.\\n// There is deliberately no Set constructor value in the source language.\\ninterface Set\<T\> \{ readonly size: number; has(value: T): boolean \}\\ntype Readonly\<T\> = \{ readonly \[P in keyof T\]: T\[P\] \};\\ntype Partial\<T\> = \{ \[P in keyof T\]?: T\[P\] \};\\ntype Record\<K extends string \| number \| symbol, T\> = \{ \[P in K\]: T \};\\ntype Pick\<T, K extends keyof T\> = \{ \[P in K\]: T\[P\] \};\\ntype Exclude\<T, U\> = T extends U ? never : T;\\ntype Extract\<T, U\> = T extends U ? T : never;\\ntype Omit\<T, K extends string \| number \| symbol\> = Pick\<T, Exclude\<keyof T, K\>\>;\\ntype NoInfer\<T\> = intrinsic;\\n"
 
 Defined in: [src/compiler/minimal-lib.ts:2](https://github.com/maxmixalex/krieg-lang/blob/main/src/compiler/minimal-lib.ts#L2)
 
@@ -114,4 +114,4 @@ Language intrinsics only: no JavaScript standard library, DOM or Node ambient ty
 
 ## 完整示例与工作流
 
-[阅读CWT 模式与编辑器声明指南](../../../validation.md)
+[阅读CWT 模式与编辑器声明指南](../../../guide/validation.md)

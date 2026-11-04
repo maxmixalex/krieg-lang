@@ -473,7 +473,8 @@ export function generateTaskReference({ root, generated, manifest, rawPages, hea
         lines.push(rewrite(entry.content, entry.old, group.page), "");
     }
     const guide =
-      topic?.guide ?? (group.key.startsWith("domains/") ? "content-domains.md" : "scopes.md");
+      topic?.guide ??
+      (group.key.startsWith("domains/") ? "guide/domains/index.md" : "guide/scopes.md");
     lines.push(
       "## 完整示例与工作流",
       "",

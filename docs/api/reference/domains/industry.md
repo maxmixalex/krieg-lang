@@ -445,4 +445,4 @@ Native common/special_projects/projects; schema: common/special_projects.cwt:14.
 
 ## 完整示例与工作流
 
-[阅读工业、建筑与科研项目指南](../../../content-domains.md)
+[阅读工业、建筑与科研项目指南](../../../guide/domains/index.md)

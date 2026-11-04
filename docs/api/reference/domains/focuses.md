@@ -455,4 +455,4 @@ Native common/national_focus; schema: common/national_focus.cwt:592.
 
 ## 完整示例与工作流
 
-[阅读原生国策与共享国策指南](../../../content-domains.md)
+[阅读原生国策与共享国策指南](../../../guide/domains/index.md)

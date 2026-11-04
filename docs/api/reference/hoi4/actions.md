@@ -118,7 +118,7 @@ Bind the action directly to a decision so the game's cost system collects the pr
 | Property | Modifier | Type | Overrides | Defined in |
 | ------ | ------ | ------ | ------ | ------ |
 | <a id="countryactiondefinition-property-__kriegcountryaction"></a> `__kriegCountryAction` | `readonly` | *typeof* `__kriegCountryAction` | - | [src/sdk/gameplay.ts:32](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/gameplay.ts#L32) |
-| <a id="countryactiondefinition-property-__kriegdefinition"></a> `__kriegDefinition` | `readonly` | *typeof* [`__kriegDefinition`](scope-selection.md#definition-property-__kriegdefinition) | - | [src/sdk/index.ts:62](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L62) |
+| <a id="countryactiondefinition-property-__kriegdefinition"></a> `__kriegDefinition` | `readonly` | *typeof* [`__kriegDefinition`](scope-selection.md#definition-property-__kriegdefinition) | - | [src/sdk/index.ts:84](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L84) |
 | <a id="countryactiondefinition-property-available"></a> `available` | `readonly` | [`ScriptedTriggerDefinition`](scripted-triggers.md#scriptedtriggerdefinition)&lt;`"country"`&gt; & `object` | - | [src/sdk/gameplay.ts:30](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/gameplay.ts#L30) |
 | <a id="countryactiondefinition-property-execute"></a> `execute` | `readonly` | [`ScriptedEffectDefinition`](scripted-effects.md#scriptedeffectdefinition)&lt;`"country"`&gt; & `object` | - | [src/sdk/gameplay.ts:31](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/gameplay.ts#L31) |
 | <a id="countryactiondefinition-property-id"></a> `id` | `readonly` | `Id` | [`IdentifiedDefinition`](scope-selection.md#identifieddefinition).[`id`](scope-selection.md#identifieddefinition-property-id) | [src/sdk/gameplay.ts:28](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/gameplay.ts#L28) |
@@ -127,4 +127,4 @@ Bind the action directly to a decision so the game's cost system collects the pr
 
 ## 完整示例与工作流
 
-[阅读付费行动：共享资格、执行与界面绑定指南](../../../recipes.md)
+[阅读付费行动：共享资格、执行与界面绑定指南](../../../guide/actions.md)

@@ -23,7 +23,7 @@ CWT 来源：
 作用域：`country`
 
 ```ts
-"play_song"(value: string | number | boolean | CountryRef | StateRef): void;
+"play_song"(value: string | number | boolean | CountryRef | StateRef | StateTargetRef): void;
 ```
 
 CWT 来源：
@@ -37,7 +37,7 @@ Prints all variables in scope and temp variables to a file.
 作用域：`any`
 
 ```ts
-"print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef; "text"?: string | number | boolean | CountryRef | StateRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
+"print_variables"(value: { "file": string | number | boolean | CountryRef | StateRef | StateTargetRef; "text"?: string | number | boolean | CountryRef | StateRef | StateTargetRef; "append"?: boolean; "print_global"?: boolean; "var_list"?: readonly (string)[] } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -842,7 +842,7 @@ Removes a contested owner to a state. The effect can be used either from a count
 作用域：`state`、`country`
 
 ```ts
-"remove_contested_owner"(value: StateRef): void;
+"remove_contested_owner"(value: StateRef | StateTargetRef): void;
 "remove_contested_owner"(value: CountryRef): void;
 ```
 
@@ -929,7 +929,7 @@ Removes a dynamic modifier from country/state/unit leader.
 作用域：`state`、`country`、`character`、`project`
 
 ```ts
-"remove_dynamic_modifier"(value: { "modifier": string; "scope"?: CountryRef | StateRef | string | CwtOpaque } | CwtNode): void;
+"remove_dynamic_modifier"(value: { "modifier": string; "scope"?: CountryRef | StateRef | StateTargetRef | string | CwtOpaque } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -971,8 +971,8 @@ Removes an element from an array using value or index.
 作用域：`any`
 
 ```ts
-"remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
-"remove_from_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+"remove_from_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
+"remove_from_array"(value: { "array": string; "index": number } | CwtNode): void;
 "remove_from_array"(value: CwtNode): void;
 ```
 
@@ -1018,8 +1018,8 @@ Removes an element from a temporary array using value or index.
 作用域：`any`
 
 ```ts
-"remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | CountryRef | string } | CwtNode): void;
-"remove_from_temp_array"(value: { "array": string; "index": "int_variable_field_32" } | CwtNode): void;
+"remove_from_temp_array"(value: { "array": string; "value": number | CountryRef | StateRef | StateTargetRef | CountryRef | string } | CwtNode): void;
+"remove_from_temp_array"(value: { "array": string; "index": number } | CwtNode): void;
 "remove_from_temp_array"(value: CwtNode): void;
 ```
 
@@ -1212,7 +1212,7 @@ Remove resource right to state for scope country. remove_resource_rights = ID.
 作用域：`country`
 
 ```ts
-"remove_resource_rights"(value: StateRef): void;
+"remove_resource_rights"(value: StateRef | StateTargetRef): void;
 ```
 
 CWT 来源：
@@ -1243,7 +1243,7 @@ Remove claim on state.
 作用域：`country`
 
 ```ts
-"remove_state_claim"(value: StateRef): void;
+"remove_state_claim"(value: StateRef | StateTargetRef): void;
 ```
 
 CWT 来源：
@@ -1258,7 +1258,7 @@ Remove core on state.
 作用域：`country`
 
 ```ts
-"remove_state_core"(value: StateRef): void;
+"remove_state_core"(value: StateRef | StateTargetRef): void;
 ```
 
 CWT 来源：
@@ -1273,7 +1273,7 @@ Removes either a resistance or compliance modifier to a state. Can only use modi
 作用域：`any`
 
 ```ts
-"remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef } | CwtNode): void;
+"remove_state_resistance_compliance_modifier"(value: { "modifier": string; "state": StateRef | StateTargetRef } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -1288,7 +1288,7 @@ Removes targeted decisions or mission.
 
 ```ts
 "remove_targeted_decision"(value: { "target": CountryRef; "decision": string } | CwtNode): void;
-"remove_targeted_decision"(value: { "target": StateRef; "decision": string } | CwtNode): void;
+"remove_targeted_decision"(value: { "target": StateRef | StateTargetRef; "decision": string } | CwtNode): void;
 ```
 
 CWT 来源：
@@ -1437,7 +1437,7 @@ Resizes array.
 作用域：`any`
 
 ```ts
-"resize_array"(value: { "array": string; "value"?: number | string; "size": "int_variable_field_32" } | CwtNode): void;
+"resize_array"(value: { "array": string; "value"?: number | string; "size": number } | CwtNode): void;
 "resize_array"(value: CwtNode): void;
 ```
 
@@ -1453,7 +1453,7 @@ Resizes a temp array.
 作用域：`any`
 
 ```ts
-"resize_temp_array"(value: { "array": string; "value"?: number; "size": "int_variable_field_32" } | CwtNode): void;
+"resize_temp_array"(value: { "array": string; "value"?: number; "size": number } | CwtNode): void;
 "resize_temp_array"(value: CwtNode): void;
 ```
 
@@ -1561,7 +1561,7 @@ Rounds a variable.
 作用域：`any`
 
 ```ts
-"round_variable"(value: CwtOpaque): void;
+"round_variable"(value: string): void;
 ```
 
 CWT 来源：

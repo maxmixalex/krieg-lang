@@ -8,16 +8,23 @@
 
 | 公开符号                                                                       | 详细参考                                                                                                    |
 | ------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------- |
+| <a id="achievementstoragebank"></a> `AchievementStorageBank`                   | [查看 AchievementStorageBank](reference/hoi4/series.md#achievementstoragebank)                              |
 | <a id="assetid"></a> `AssetId`                                                 | [查看 AssetId](reference/hoi4/scope-selection.md#assetid)                                                   |
+| <a id="audiobank"></a> `AudioBank`                                             | [查看 AudioBank](reference/hoi4/audio-banks.md#audiobank)                                                   |
+| <a id="audiobankdefinition"></a> `AudioBankDefinition`                         | [查看 AudioBankDefinition](reference/hoi4/audio-banks.md#audiobankdefinition)                               |
+| <a id="audiobankspec"></a> `AudioBankSpec`                                     | [查看 AudioBankSpec](reference/hoi4/audio-banks.md#audiobankspec)                                           |
 | <a id="country"></a> `country`                                                 | [查看 country](reference/hoi4/countries.md#country-function)                                                |
 | <a id="country"></a> `Country`                                                 | [查看 Country](reference/hoi4/countries.md#country-typealias)                                               |
 | <a id="countryaction"></a> `CountryAction`                                     | [查看 CountryAction](reference/hoi4/actions.md#countryaction)                                               |
 | <a id="countryactiondefinition"></a> `CountryActionDefinition`                 | [查看 CountryActionDefinition](reference/hoi4/actions.md#countryactiondefinition)                           |
 | <a id="countryactionspec"></a> `CountryActionSpec`                             | [查看 CountryActionSpec](reference/hoi4/actions.md#countryactionspec)                                       |
 | <a id="countryevent"></a> `CountryEvent`                                       | [查看 CountryEvent](reference/hoi4/events.md#countryevent)                                                  |
+| <a id="countryheatmap"></a> `CountryHeatmap`                                   | [查看 CountryHeatmap](reference/hoi4/country-heatmaps.md#countryheatmap)                                    |
+| <a id="countryheatmapspec"></a> `CountryHeatmapSpec`                           | [查看 CountryHeatmapSpec](reference/hoi4/country-heatmaps.md#countryheatmapspec)                            |
 | <a id="countryhistory"></a> `CountryHistory`                                   | [查看 CountryHistory](reference/hoi4/countries.md#countryhistory)                                           |
 | <a id="countryhistoryspec"></a> `CountryHistorySpec`                           | [查看 CountryHistorySpec](reference/hoi4/countries.md#countryhistoryspec)                                   |
 | <a id="countryref"></a> `CountryRef`                                           | [查看 CountryRef](reference/hoi4/countries.md#countryref)                                                   |
+| <a id="countrytarget"></a> `countryTarget`                                     | [查看 countryTarget](reference/hoi4/runtime-state.md#countrytarget)                                         |
 | <a id="cwt"></a> `cwt`                                                         | [查看 cwt](reference/hoi4/ordered-data.md#cwt)                                                              |
 | <a id="cwtnode"></a> `CwtNode`                                                 | [查看 CwtNode](reference/hoi4/ordered-data.md#cwtnode)                                                      |
 | <a id="cwtopaque"></a> `CwtOpaque`                                             | [查看 CwtOpaque](reference/hoi4/ordered-data.md#cwtopaque)                                                  |
@@ -28,8 +35,10 @@
 | <a id="decision"></a> `Decision`                                               | [查看 Decision](reference/hoi4/decisions.md#decision)                                                       |
 | <a id="decisioncategory"></a> `DecisionCategory`                               | [查看 DecisionCategory](reference/hoi4/decisions.md#decisioncategory)                                       |
 | <a id="decisioncategoryspec"></a> `DecisionCategorySpec`                       | [查看 DecisionCategorySpec](reference/hoi4/decisions.md#decisioncategoryspec)                               |
+| <a id="decisionmissionspec"></a> `DecisionMissionSpec`                         | [查看 DecisionMissionSpec](reference/hoi4/decisions.md#decisionmissionspec)                                 |
 | <a id="decisionspec"></a> `DecisionSpec`                                       | [查看 DecisionSpec](reference/hoi4/decisions.md#decisionspec)                                               |
 | <a id="definition"></a> `Definition`                                           | [查看 Definition](reference/hoi4/scope-selection.md#definition)                                             |
+| <a id="definitionseries"></a> `DefinitionSeries`                               | [查看 DefinitionSeries](reference/hoi4/series.md#definitionseries)                                          |
 | <a id="effect"></a> `Effect`                                                   | [查看 Effect](reference/hoi4/scope-selection.md#effect)                                                     |
 | <a id="eventdefinition"></a> `EventDefinition`                                 | [查看 EventDefinition](reference/hoi4/events.md#eventdefinition)                                            |
 | <a id="eventdelay"></a> `EventDelay`                                           | [查看 EventDelay](reference/hoi4/events.md#eventdelay)                                                      |
@@ -37,6 +46,8 @@
 | <a id="eventidentifier"></a> `EventIdentifier`                                 | [查看 EventIdentifier](reference/hoi4/events.md#eventidentifier)                                            |
 | <a id="eventoption"></a> `EventOption`                                         | [查看 EventOption](reference/hoi4/events.md#eventoption)                                                    |
 | <a id="eventspec"></a> `EventSpec`                                             | [查看 EventSpec](reference/hoi4/events.md#eventspec)                                                        |
+| <a id="flagachievements"></a> `FlagAchievements`                               | [查看 FlagAchievements](reference/hoi4/series.md#flagachievements)                                          |
+| <a id="flagachievementspec"></a> `FlagAchievementSpec`                         | [查看 FlagAchievementSpec](reference/hoi4/series.md#flagachievementspec)                                    |
 | <a id="flagid"></a> `FlagId`                                                   | [查看 FlagId](reference/hoi4/scope-selection.md#flagid)                                                     |
 | <a id="focus"></a> `Focus`                                                     | [查看 Focus](reference/hoi4/focus-trees.md#focus)                                                           |
 | <a id="focusgraph"></a> `FocusGraph`                                           | [查看 FocusGraph](reference/hoi4/focus-graphs.md#focusgraph)                                                |
@@ -56,6 +67,7 @@
 | <a id="focusspec"></a> `FocusSpec`                                             | [查看 FocusSpec](reference/hoi4/focus-trees.md#focusspec)                                                   |
 | <a id="focustree"></a> `FocusTree`                                             | [查看 FocusTree](reference/hoi4/focus-trees.md#focustree)                                                   |
 | <a id="focustreespec"></a> `FocusTreeSpec`                                     | [查看 FocusTreeSpec](reference/hoi4/focus-trees.md#focustreespec)                                           |
+| <a id="gamescripts"></a> `gameScripts`                                         | [查看 gameScripts](reference/hoi4/series.md#gamescripts)                                                    |
 | <a id="guiaiweight"></a> `GuiAiWeight`                                         | [查看 GuiAiWeight](reference/ui/scripted-gui.md#guiaiweight)                                                |
 | <a id="guiclickname"></a> `GuiClickName`                                       | [查看 GuiClickName](reference/ui/scripted-gui.md#guiclickname)                                              |
 | <a id="guidynamiclist"></a> `GuiDynamicList`                                   | [查看 GuiDynamicList](reference/ui/scripted-gui.md#guidynamiclist)                                          |
@@ -67,15 +79,20 @@
 | <a id="ideamodifiers"></a> `IdeaModifiers`                                     | [查看 IdeaModifiers](reference/hoi4/ideas.md#ideamodifiers)                                                 |
 | <a id="ideaspec"></a> `IdeaSpec`                                               | [查看 IdeaSpec](reference/hoi4/ideas.md#ideaspec)                                                           |
 | <a id="identifieddefinition"></a> `IdentifiedDefinition`                       | [查看 IdentifiedDefinition](reference/hoi4/scope-selection.md#identifieddefinition)                         |
+| <a id="indexby"></a> `indexBy`                                                 | [查看 indexBy](reference/hoi4/series.md#indexby)                                                            |
 | <a id="loc"></a> `loc`                                                         | [查看 loc](reference/hoi4/localisation.md#loc)                                                              |
 | <a id="localisationkey"></a> `LocalisationKey`                                 | [查看 LocalisationKey](reference/hoi4/localisation.md#localisationkey)                                      |
+| <a id="mapcolor"></a> `MapColor`                                               | [查看 MapColor](reference/hoi4/country-heatmaps.md#mapcolor)                                                |
 | <a id="metaeffect"></a> `MetaEffect`                                           | [查看 MetaEffect](reference/hoi4/meta-effects.md#metaeffect)                                                |
 | <a id="metaeffectspec"></a> `MetaEffectSpec`                                   | [查看 MetaEffectSpec](reference/hoi4/meta-effects.md#metaeffectspec)                                        |
 | <a id="metaparameternames"></a> `MetaParameterNames`                           | [查看 MetaParameterNames](reference/hoi4/meta-effects.md#metaparameternames)                                |
 | <a id="metaparametervalue"></a> `MetaParameterValue`                           | [查看 MetaParameterValue](reference/hoi4/meta-effects.md#metaparametervalue)                                |
+| <a id="mioscoperef"></a> `MioScopeRef`                                         | [查看 MioScopeRef](reference/hoi4/mio-scope-targets.md#mioscoperef)                                         |
+| <a id="miotarget"></a> `mioTarget`                                             | [查看 mioTarget](reference/hoi4/mio-scope-targets.md#miotarget)                                             |
 | <a id="newsevent"></a> `NewsEvent`                                             | [查看 NewsEvent](reference/hoi4/events.md#newsevent)                                                        |
 | <a id="option"></a> `Option`                                                   | [查看 Option](reference/hoi4/events.md#option)                                                              |
 | <a id="provincebuildings"></a> `ProvinceBuildings`                             | [查看 ProvinceBuildings](reference/hoi4/states.md#provincebuildings)                                        |
+| <a id="runtimescopepath"></a> `RuntimeScopePath`                               | [查看 RuntimeScopePath](reference/hoi4/runtime-state.md#runtimescopepath)                                   |
 | <a id="scopedguidynamiclist"></a> `ScopedGuiDynamicList`                       | [查看 ScopedGuiDynamicList](reference/ui/scripted-gui.md#scopedguidynamiclist)                              |
 | <a id="scriptedeffect"></a> `ScriptedEffect`                                   | [查看 ScriptedEffect](reference/hoi4/scripted-effects.md#scriptedeffect)                                    |
 | <a id="scriptedeffectdefinition"></a> `ScriptedEffectDefinition`               | [查看 ScriptedEffectDefinition](reference/hoi4/scripted-effects.md#scriptedeffectdefinition)                |
@@ -106,8 +123,10 @@
 | <a id="stateresources"></a> `StateResources`                                   | [查看 StateResources](reference/hoi4/states.md#stateresources)                                              |
 | <a id="statescriptedeffect"></a> `StateScriptedEffect`                         | [查看 StateScriptedEffect](reference/hoi4/scripted-effects.md#statescriptedeffect)                          |
 | <a id="statescriptedtrigger"></a> `StateScriptedTrigger`                       | [查看 StateScriptedTrigger](reference/hoi4/scripted-triggers.md#statescriptedtrigger)                       |
+| <a id="statetarget"></a> `stateTarget`                                         | [查看 stateTarget](reference/hoi4/runtime-state.md#statetarget)                                             |
+| <a id="statetargetref"></a> `StateTargetRef`                                   | [查看 StateTargetRef](reference/hoi4/runtime-state.md#statetargetref)                                       |
 | <a id="trigger"></a> `Trigger`                                                 | [查看 Trigger](reference/hoi4/scope-selection.md#trigger)                                                   |
 | <a id="variablename"></a> `VariableName`                                       | [查看 VariableName](reference/hoi4/scope-selection.md#variablename)                                         |
 | <a id="weightmodifier"></a> `WeightModifier`                                   | [查看 WeightModifier](reference/ui/scripted-gui.md#weightmodifier)                                          |
 
-[常用玩法写法](../typed-gameplay.md) · [原生内容领域目录](domains.md)
+[常用玩法写法](../guide/focuses.md) · [原生内容领域目录](domains.md)

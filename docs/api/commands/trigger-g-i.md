@@ -501,7 +501,7 @@ Checks if a there is a border war between two states.
 作用域：`state`、`country`
 
 ```ts
-"has_border_war_between"(value: { "attacker": StateRef; "defender": StateRef } | CwtNode): boolean;
+"has_border_war_between"(value: { "attacker": StateRef | StateTargetRef; "defender": StateRef | StateTargetRef } | CwtNode): boolean;
 ```
 
 CWT 来源：
@@ -822,7 +822,7 @@ Checks if a state has the specified country as a contested owner. The trigger ca
 作用域：`country`、`state`
 
 ```ts
-"has_contested_owner"(value: StateRef): boolean;
+"has_contested_owner"(value: StateRef | StateTargetRef): boolean;
 "has_contested_owner"(value: CountryRef): boolean;
 ```
 
@@ -914,7 +914,7 @@ Check if country has character with specified ID.
 ```ts
 "has_country_leader"(value: { "ruling_only"?: boolean; "character": string | CwtOpaque } | CwtNode): boolean;
 "has_country_leader"(value: { "ruling_only"?: boolean; "id": number } | CwtNode): boolean;
-"has_country_leader"(value: { "ruling_only"?: boolean; "name": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+"has_country_leader"(value: { "ruling_only"?: boolean; "name": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
 "has_country_leader"(value: string): boolean;
 "has_country_leader"(value: CwtOpaque): boolean;
 ```
@@ -1111,7 +1111,7 @@ Checks if scope has a dynamic modifier.
 作用域：`state`、`country`
 
 ```ts
-"has_dynamic_modifier"(value: { "modifier": string; "scope"?: CountryRef | StateRef | string | CwtOpaque } | CwtNode): boolean;
+"has_dynamic_modifier"(value: { "modifier": string; "scope"?: CountryRef | StateRef | StateTargetRef | string | CwtOpaque } | CwtNode): boolean;
 "has_dynamic_modifier"(value: string): boolean;
 ```
 
@@ -1324,7 +1324,7 @@ Check controller for state(s).
 作用域：`country`
 
 ```ts
-"has_full_control_of_state"(value: StateRef): boolean;
+"has_full_control_of_state"(value: StateRef | StateTargetRef): boolean;
 ```
 
 CWT 来源：
@@ -1838,9 +1838,9 @@ Check if the scoped country has a naval invasion against the specified state.
 作用域：`country`
 
 ```ts
-"has_naval_invasion_against_state"(value: StateRef): boolean;
+"has_naval_invasion_against_state"(value: StateRef | StateTargetRef): boolean;
 "has_naval_invasion_against_state"(value: string): boolean;
-"has_naval_invasion_against_state"(value: { "state": StateRef | string; "preparation"?: number; "activated"?: boolean } | CwtNode): boolean;
+"has_naval_invasion_against_state"(value: { "state": StateRef | StateTargetRef | string; "preparation"?: number; "activated"?: boolean } | CwtNode): boolean;
 ```
 
 CWT 来源：
@@ -2087,7 +2087,7 @@ Checks for an existing rail connection. Uses same params as can_build_railway
 ```ts
 "has_railway_connection"(value: { "path": readonly (number)[]; "build_only_on_allied"?: boolean; "fallback"?: boolean } | CwtNode): boolean;
 "has_railway_connection"(value: { "build_only_on_allied"?: boolean; "start_province": number; "target_province": number; "fallback"?: boolean } | CwtNode): boolean;
-"has_railway_connection"(value: { "build_only_on_allied"?: boolean; "start_state": StateRef; "target_state": StateRef; "fallback"?: boolean } | CwtNode): boolean;
+"has_railway_connection"(value: { "build_only_on_allied"?: boolean; "start_state": StateRef | StateTargetRef; "target_state": StateRef | StateTargetRef; "fallback"?: boolean } | CwtNode): boolean;
 ```
 
 CWT 来源：
@@ -2103,7 +2103,7 @@ Checks if a state contains a railway at or above the specified level.
 作用域：`any`
 
 ```ts
-"has_railway_level"(value: { "level": number; "state": StateRef } | CwtNode): boolean;
+"has_railway_level"(value: { "level": number; "state": StateRef | StateTargetRef } | CwtNode): boolean;
 ```
 
 CWT 来源：
@@ -2159,7 +2159,7 @@ Checks for amount of resources in specified state.
 作用域：`country`、`state`
 
 ```ts
-"has_resources_amount"(value: { "resource": string; "amount": number; "state": StateRef; "delivered"?: boolean } | CwtNode): boolean;
+"has_resources_amount"(value: { "resource": string; "amount": number; "state": StateRef | StateTargetRef; "delivered"?: boolean } | CwtNode): boolean;
 "has_resources_amount"(value: { "resource": string; "amount": number; "delivered"?: boolean } | CwtNode): boolean;
 ```
 
@@ -2201,7 +2201,7 @@ CWT 来源：
 作用域：`country`、`state`
 
 ```ts
-"has_resources_rights"(value: { "state": StateRef; "resources"?: readonly (string)[] } | CwtNode): boolean;
+"has_resources_rights"(value: { "state": StateRef | StateTargetRef; "resources"?: readonly (string)[] } | CwtNode): boolean;
 "has_resources_rights"(value: { "receiver": CountryRef; "resources"?: readonly (string)[] } | CwtNode): boolean;
 ```
 
@@ -3331,7 +3331,7 @@ Checks the weather on a combat.
 作用域：`combat`
 
 ```ts
-"is_fighting_in_weather"(value: string | number | boolean | CountryRef | StateRef): boolean;
+"is_fighting_in_weather"(value: string | number | boolean | CountryRef | StateRef | StateTargetRef): boolean;
 ```
 
 CWT 来源：
@@ -3473,9 +3473,9 @@ Checks if an element is in array.
 作用域：`any`
 
 ```ts
-"is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+"is_in_array"(value: { "array": string | CwtOpaque; "value": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
 "is_in_array"(value: CwtNode): boolean;
-"is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef } | CwtNode): boolean;
+"is_in_array"(value: { "variable_field_32": string | number | boolean | CountryRef | StateRef | StateTargetRef } | CwtNode): boolean;
 ```
 
 CWT 来源：
@@ -3550,7 +3550,7 @@ Checks if the character is in a specific state. Works for deployed generals (HQ 
 作用域：`character`
 
 ```ts
-"is_in_state"(value: StateRef): boolean;
+"is_in_state"(value: StateRef | StateTargetRef): boolean;
 ```
 
 CWT 来源：
@@ -3923,7 +3923,7 @@ CWT 来源：
 
 ```ts
 "is_on_same_continent_as"(value: CountryRef): boolean;
-"is_on_same_continent_as"(value: StateRef): boolean;
+"is_on_same_continent_as"(value: StateRef | StateTargetRef): boolean;
 ```
 
 CWT 来源：

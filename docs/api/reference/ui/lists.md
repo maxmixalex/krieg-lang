@@ -28,7 +28,7 @@
 
 > **GridBox**(`props`: [`GridBoxProps`](#gridboxprops)): [`GuiElement`](layout.md#guielement)
 
-Defined in: [src/ui/index.ts:149](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L149)
+Defined in: [src/ui/index.ts:164](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L164)
 
 ### Parameters { #gridbox-section-parameters }
 
@@ -43,7 +43,7 @@ Defined in: [src/ui/index.ts:149](https://github.com/maxmixalex/krieg-lang/blob/
 
 ## GridBoxProps { #gridboxprops }
 
-Defined in: [src/ui/index.ts:129](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L129)
+Defined in: [src/ui/index.ts:144](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L144)
 
 Classes apply left to right; explicit component props override the resulting style.
 
@@ -55,25 +55,25 @@ Classes apply left to right; explicit component props override the resulting sty
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="gridboxprops-property-addhorizontal"></a> `addHorizontal?` | `boolean` | [src/ui/index.ts:134](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L134) |
+| <a id="gridboxprops-property-addhorizontal"></a> `addHorizontal?` | `boolean` | [src/ui/index.ts:149](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L149) |
 | <a id="gridboxprops-property-classname"></a> `className?` | [`GuiClass`](styles.md#guiclass)&lt;`object`&gt; \| readonly [`GuiClass`](styles.md#guiclass)&lt;`object`&gt;[] | [src/ui/index.ts:28](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L28) |
-| <a id="gridboxprops-property-format"></a> `format?` | [`GuiOrientation`](layout.md#guiorientation) | [src/ui/index.ts:133](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L133) |
+| <a id="gridboxprops-property-format"></a> `format?` | [`GuiOrientation`](layout.md#guiorientation) | [src/ui/index.ts:148](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L148) |
 | <a id="gridboxprops-property-hide"></a> `hide?` | `boolean` | [src/ui/index.ts:74](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L74) |
-| <a id="gridboxprops-property-maxslotshorizontal"></a> `maxSlotsHorizontal?` | `number` | [src/ui/index.ts:131](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L131) |
-| <a id="gridboxprops-property-maxslotsvertical"></a> `maxSlotsVertical?` | `number` | [src/ui/index.ts:132](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L132) |
+| <a id="gridboxprops-property-maxslotshorizontal"></a> `maxSlotsHorizontal?` | `number` | [src/ui/index.ts:146](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L146) |
+| <a id="gridboxprops-property-maxslotsvertical"></a> `maxSlotsVertical?` | `number` | [src/ui/index.ts:147](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L147) |
 | <a id="gridboxprops-property-name"></a> `name` | `string` | [src/ui/index.ts:67](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L67) |
 | <a id="gridboxprops-property-orientation"></a> `orientation?` | [`GuiOrientation`](layout.md#guiorientation) | [src/ui/index.ts:70](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L70) |
 | <a id="gridboxprops-property-origo"></a> `origo?` | [`GuiOrigin`](layout.md#guiorigin) | [src/ui/index.ts:71](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L71) |
-| <a id="gridboxprops-property-padding"></a> `padding?` | `object` | [src/ui/index.ts:135](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L135) |
-| `padding.bottom?` | `number` | [src/ui/index.ts:135](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L135) |
-| `padding.left?` | `number` | [src/ui/index.ts:135](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L135) |
-| `padding.right?` | `number` | [src/ui/index.ts:135](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L135) |
-| `padding.top?` | `number` | [src/ui/index.ts:135](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L135) |
+| <a id="gridboxprops-property-padding"></a> `padding?` | `object` | [src/ui/index.ts:150](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L150) |
+| `padding.bottom?` | `number` | [src/ui/index.ts:150](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L150) |
+| `padding.left?` | `number` | [src/ui/index.ts:150](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L150) |
+| `padding.right?` | `number` | [src/ui/index.ts:150](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L150) |
+| `padding.top?` | `number` | [src/ui/index.ts:150](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L150) |
 | <a id="gridboxprops-property-position"></a> `position?` | [`GuiPosition`](layout.md#guiposition) | [src/ui/index.ts:68](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L68) |
 | <a id="gridboxprops-property-rotation"></a> `rotation?` | `number` | [src/ui/index.ts:73](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L73) |
 | <a id="gridboxprops-property-scale"></a> `scale?` | `number` | [src/ui/index.ts:72](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L72) |
 | <a id="gridboxprops-property-size"></a> `size?` | [`GuiSize`](layout.md#guisize) | [src/ui/index.ts:69](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L69) |
-| <a id="gridboxprops-property-slotsize"></a> `slotsize?` | [`GuiSize`](layout.md#guisize) | [src/ui/index.ts:130](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L130) |
+| <a id="gridboxprops-property-slotsize"></a> `slotsize?` | [`GuiSize`](layout.md#guisize) | [src/ui/index.ts:145](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L145) |
 | <a id="gridboxprops-property-tooltip"></a> `tooltip?` | `string` | [src/ui/index.ts:75](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L75) |
 | <a id="gridboxprops-property-tooltipdelayed"></a> `tooltipDelayed?` | `string` | [src/ui/index.ts:76](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L76) |
 
@@ -82,7 +82,7 @@ Classes apply left to right; explicit component props override the resulting sty
 
 > **ListBox**(`props`: [`ListBoxProps`](#listboxprops)): [`GuiElement`](layout.md#guielement)
 
-Defined in: [src/ui/index.ts:150](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L150)
+Defined in: [src/ui/index.ts:165](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L165)
 
 ### Parameters { #listbox-section-parameters }
 
@@ -97,7 +97,7 @@ Defined in: [src/ui/index.ts:150](https://github.com/maxmixalex/krieg-lang/blob/
 
 ## ListBoxProps { #listboxprops }
 
-Defined in: [src/ui/index.ts:137](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L137)
+Defined in: [src/ui/index.ts:152](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L152)
 
 Classes apply left to right; explicit component props override the resulting style.
 
@@ -109,21 +109,21 @@ Classes apply left to right; explicit component props override the resulting sty
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="listboxprops-property-alwaystransparent"></a> `alwaysTransparent?` | `boolean` | [src/ui/index.ts:143](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L143) |
-| <a id="listboxprops-property-bordersize"></a> `borderSize?` | [`GuiPosition`](layout.md#guiposition) | [src/ui/index.ts:141](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L141) |
+| <a id="listboxprops-property-alwaystransparent"></a> `alwaysTransparent?` | `boolean` | [src/ui/index.ts:158](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L158) |
+| <a id="listboxprops-property-bordersize"></a> `borderSize?` | [`GuiPosition`](layout.md#guiposition) | [src/ui/index.ts:156](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L156) |
 | <a id="listboxprops-property-classname"></a> `className?` | [`GuiClass`](styles.md#guiclass)&lt;`object`&gt; \| readonly [`GuiClass`](styles.md#guiclass)&lt;`object`&gt;[] | [src/ui/index.ts:28](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L28) |
 | <a id="listboxprops-property-hide"></a> `hide?` | `boolean` | [src/ui/index.ts:74](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L74) |
-| <a id="listboxprops-property-horizontal"></a> `horizontal?` | `0` \| `1` | [src/ui/index.ts:138](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L138) |
+| <a id="listboxprops-property-horizontal"></a> `horizontal?` | `0` \| `1` | [src/ui/index.ts:153](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L153) |
 | <a id="listboxprops-property-name"></a> `name` | `string` | [src/ui/index.ts:67](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L67) |
-| <a id="listboxprops-property-offset"></a> `offset?` | [`GuiPosition`](layout.md#guiposition) | [src/ui/index.ts:142](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L142) |
+| <a id="listboxprops-property-offset"></a> `offset?` | [`GuiPosition`](layout.md#guiposition) | [src/ui/index.ts:157](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L157) |
 | <a id="listboxprops-property-orientation"></a> `orientation?` | [`GuiOrientation`](layout.md#guiorientation) | [src/ui/index.ts:70](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L70) |
 | <a id="listboxprops-property-origo"></a> `origo?` | [`GuiOrigin`](layout.md#guiorigin) | [src/ui/index.ts:71](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L71) |
 | <a id="listboxprops-property-position"></a> `position?` | [`GuiPosition`](layout.md#guiposition) | [src/ui/index.ts:68](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L68) |
 | <a id="listboxprops-property-rotation"></a> `rotation?` | `number` | [src/ui/index.ts:73](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L73) |
 | <a id="listboxprops-property-scale"></a> `scale?` | `number` | [src/ui/index.ts:72](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L72) |
-| <a id="listboxprops-property-scrollbartype"></a> `scrollbartype?` | `string` | [src/ui/index.ts:140](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L140) |
+| <a id="listboxprops-property-scrollbartype"></a> `scrollbartype?` | `string` | [src/ui/index.ts:155](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L155) |
 | <a id="listboxprops-property-size"></a> `size?` | [`GuiSize`](layout.md#guisize) | [src/ui/index.ts:69](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L69) |
-| <a id="listboxprops-property-spacing"></a> `spacing?` | `number` | [src/ui/index.ts:139](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L139) |
+| <a id="listboxprops-property-spacing"></a> `spacing?` | `number` | [src/ui/index.ts:154](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L154) |
 | <a id="listboxprops-property-tooltip"></a> `tooltip?` | `string` | [src/ui/index.ts:75](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L75) |
 | <a id="listboxprops-property-tooltipdelayed"></a> `tooltipDelayed?` | `string` | [src/ui/index.ts:76](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L76) |
 
@@ -444,4 +444,4 @@ Defined in: [src/sdk/domains.ts:7972](https://github.com/maxmixalex/krieg-lang/b
 
 ## 完整示例与工作流
 
-[阅读网格、列表与滚动指南](../../../ui.md)
+[阅读网格、列表与滚动指南](../../../guide/ui.md)

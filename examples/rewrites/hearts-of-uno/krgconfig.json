@@ -1,0 +1,28 @@
+{
+  "$schema": "../../../schemas/krgconfig.schema.json",
+  "name": "hearts-of-uno",
+  "sourceDir": "src",
+  "outDir": "build/mod",
+  "mod": {
+    "name": "Hearts of UNO \u2014 Krieg semantic rewrite",
+    "version": "0.5.0",
+    "supportedVersion": "1.19.*",
+    "tags": ["Gameplay"]
+  },
+  "assets": [
+    {
+      "from": "original-assets",
+      "to": ""
+    }
+  ],
+  "localisation": [
+    {
+      "language": "english",
+      "from": "localisation/english.json"
+    },
+    {
+      "language": "simp_chinese",
+      "from": "localisation/simp_chinese.json"
+    }
+  ]
+}

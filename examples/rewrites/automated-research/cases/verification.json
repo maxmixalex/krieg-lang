@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "originalEffectsSha256": "74c4518abdae6922d058ae156589bc3848fed8436c1765e3d3db6f2d918c9776",
+  "builtEffectsSha256": "ed3ca1d930209f56ceb1fd1ae9d51c876f6e5eb69a50bc5d8ab155286c780e58",
+  "checks": 18831,
+  "groups": [
+    {
+      "name": "552 technology grants, costs, dates and prerequisite alternatives",
+      "checks": 2764,
+      "milliseconds": 183
+    },
+    {
+      "name": "DLC branches and unavailable/owned technology gates",
+      "checks": 1700,
+      "milliseconds": 806
+    },
+    {
+      "name": "row insertion, removal, movement and progress restoration",
+      "checks": 6,
+      "milliseconds": 1
+    },
+    {
+      "name": "prerequisite chain insertion, alternative parents and dependency repair",
+      "checks": 14,
+      "milliseconds": 328
+    },
+    {
+      "name": "1040 national idea modifiers and research sharing",
+      "checks": 1045,
+      "milliseconds": 618
+    },
+    {
+      "name": "ahead-of-time cost and decreasing-penalty days estimator",
+      "checks": 66,
+      "milliseconds": 25
+    },
+    {
+      "name": "daily lanes, native slot reservation, completion and idle banking",
+      "checks": 41,
+      "milliseconds": 27
+    },
+    {
+      "name": "experience purchases are paid once and breakthroughs respect DLC/pause",
+      "checks": 59,
+      "milliseconds": 143
+    },
+    {
+      "name": "settings defaults, bounds and stable queue view sorting",
+      "checks": 30,
+      "milliseconds": 8
+    },
+    {
+      "name": "v3 cross-game stream, names, MIO palettes and DLC compatibility",
+      "checks": 15,
+      "milliseconds": 554
+    },
+    {
+      "name": "255 AI policy queries and all technology preference weights",
+      "checks": 12744,
+      "milliseconds": 682
+    },
+    {
+      "name": "automatic planner selection, priority ancestry and manual ownership",
+      "checks": 13,
+      "milliseconds": 560
+    },
+    {
+      "name": "priority lane borrowing, lock rules, bank cap and queue edits",
+      "checks": 118,
+      "milliseconds": 313
+    },
+    {
+      "name": "legacy streams, append limits and actual save clicks",
+      "checks": 10,
+      "milliseconds": 295
+    },
+    {
+      "name": "calendar extraction and 1936/1939 or out-of-range starts",
+      "checks": 90,
+      "milliseconds": 35
+    },
+    {
+      "name": "player tree and row handlers up to their refresh boundary",
+      "checks": 76,
+      "milliseconds": 104
+    },
+    {
+      "name": "complete daily engine and repeated paused refreshes",
+      "checks": 40,
+      "milliseconds": 194
+    }
+  ],
+  "scope": "Independent native PDX execution against the uploaded original; projected states are specified by cases/verify.mjs. Not an HOI4 engine run or full equivalence certification.",
+  "unproved": [
+    "MIO selection, assignment, upkeep and bonus lifecycle in organization-aware fixtures",
+    "National-focus one-use bonus discovery, reservation and consumption in focus-aware fixtures",
+    "Original native technology-tree replacement layout and icon variants",
+    "In-game renderer, full saved-game migration, engine loop budget and multiplayer behavior"
+  ]
+}

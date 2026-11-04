@@ -21,7 +21,7 @@
 
 > **ScriptedTrigger**(`name`: `string`, `trigger`: [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;): [`ScriptedTriggerDefinition`](#scriptedtriggerdefinition)&lt;`"country"`&gt;
 
-Defined in: [src/sdk/index.ts:369](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L369)
+Defined in: [src/sdk/index.ts:640](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L640)
 
 #### Parameters { #scriptedtrigger-section-parameters }
 
@@ -38,7 +38,7 @@ Defined in: [src/sdk/index.ts:369](https://github.com/maxmixalex/krieg-lang/blob
 
 > **ScriptedTrigger**&lt;`S` *extends* keyof [`GeneratedEffectsByScope`](../../commands/index.md)&gt;(`name`: `string`, `scope`: `S`, `trigger`: [`Trigger`](scope-selection.md#trigger)&lt;[`ScopeByName`](scope-selection.md#scopebyname)\[`S`\]&gt;): [`ScriptedTriggerDefinition`](#scriptedtriggerdefinition)&lt;`S`&gt;
 
-Defined in: [src/sdk/index.ts:373](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L373)
+Defined in: [src/sdk/index.ts:644](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L644)
 
 #### Type Parameters { #scriptedtrigger-section-type-parameters }
 
@@ -63,7 +63,7 @@ Defined in: [src/sdk/index.ts:373](https://github.com/maxmixalex/krieg-lang/blob
 
 > **StateScriptedTrigger**(`name`: `string`, `trigger`: [`Trigger`](scope-selection.md#trigger)&lt;[`StateScope`](state-scope.md#statescope)&gt;): [`ScriptedTriggerDefinition`](#scriptedtriggerdefinition)&lt;`"state"`&gt;
 
-Defined in: [src/sdk/index.ts:382](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L382)
+Defined in: [src/sdk/index.ts:653](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L653)
 
 ### Parameters { #statescriptedtrigger-section-parameters }
 
@@ -79,7 +79,7 @@ Defined in: [src/sdk/index.ts:382](https://github.com/maxmixalex/krieg-lang/blob
 
 ## ScriptedTriggerDefinition&lt;S *extends* [`ScopeName`](scope-selection.md#scopename)&gt; { #scriptedtriggerdefinition }
 
-Defined in: [src/sdk/index.ts:72](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L72)
+Defined in: [src/sdk/index.ts:198](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L198)
 
 ### Extends { #scriptedtriggerdefinition-section-extends }
 
@@ -95,10 +95,10 @@ Defined in: [src/sdk/index.ts:72](https://github.com/maxmixalex/krieg-lang/blob/
 
 | Property | Modifier | Type | Defined in |
 | ------ | ------ | ------ | ------ |
-| <a id="scriptedtriggerdefinition-property-__kriegdefinition"></a> `__kriegDefinition` | `readonly` | *typeof* [`__kriegDefinition`](scope-selection.md#definition-property-__kriegdefinition) | [src/sdk/index.ts:62](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L62) |
-| <a id="scriptedtriggerdefinition-property-__trigger"></a> `__trigger` | `readonly` | *typeof* `__trigger` | [src/sdk/index.ts:75](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L75) |
-| <a id="scriptedtriggerdefinition-property-name"></a> `name` | `readonly` | `string` | [src/sdk/index.ts:73](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L73) |
-| <a id="scriptedtriggerdefinition-property-scope"></a> `scope` | `readonly` | `S` | [src/sdk/index.ts:74](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L74) |
+| <a id="scriptedtriggerdefinition-property-__kriegdefinition"></a> `__kriegDefinition` | `readonly` | *typeof* [`__kriegDefinition`](scope-selection.md#definition-property-__kriegdefinition) | [src/sdk/index.ts:84](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L84) |
+| <a id="scriptedtriggerdefinition-property-__trigger"></a> `__trigger` | `readonly` | *typeof* `__trigger` | [src/sdk/index.ts:201](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L201) |
+| <a id="scriptedtriggerdefinition-property-name"></a> `name` | `readonly` | `string` | [src/sdk/index.ts:199](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L199) |
+| <a id="scriptedtriggerdefinition-property-scope"></a> `scope` | `readonly` | `S` | [src/sdk/index.ts:200](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L200) |
 
 
 ## ScriptedTriggerFamily() { #scriptedtriggerfamily }
@@ -107,7 +107,7 @@ Defined in: [src/sdk/index.ts:72](https://github.com/maxmixalex/krieg-lang/blob/
 
 > **ScriptedTriggerFamily**&lt;`Prefix` *extends* `string`, `Variants` *extends* `Readonly`&lt;`Record`&lt;`string`, `Readonly`&lt;`Record`&lt;`string`, [`ScriptedVariantValue`](scripted-effects.md#scriptedvariantvalue)&gt;&gt;&gt;&gt;&gt;(`prefix`: `Prefix`, `variants`: `Variants`, `trigger`: (`scope`: [`CountryScope`](country-scope.md#countryscope), `parameters`: `NoInfer`&lt;`Variants`\[keyof `Variants`\]&gt;) => `boolean`): [`ScriptedTriggerFamilyDefinition`](#scriptedtriggerfamilydefinition)&lt;`Prefix`, `"country"`, `Variants`&gt;
 
-Defined in: [src/sdk/index.ts:416](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L416)
+Defined in: [src/sdk/index.ts:687](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L687)
 
 Specialize a typed condition into ordinary `${prefix}_${key}` native triggers.
 
@@ -139,7 +139,7 @@ values, not `$PARAM$` macros or implicit game variables.
 
 > **ScriptedTriggerFamily**&lt;`Prefix` *extends* `string`, `S` *extends* keyof [`GeneratedEffectsByScope`](../../commands/index.md), `Variants` *extends* `Readonly`&lt;`Record`&lt;`string`, `Readonly`&lt;`Record`&lt;`string`, [`ScriptedVariantValue`](scripted-effects.md#scriptedvariantvalue)&gt;&gt;&gt;&gt;&gt;(`prefix`: `Prefix`, `scope`: `S`, `variants`: `Variants`, `trigger`: (`scope`: [`ScopeByName`](scope-selection.md#scopebyname)\[`NoInfer`&lt;`S`&gt;\], `parameters`: `NoInfer`&lt;`Variants`\[keyof `Variants`\]&gt;) => `boolean`): [`ScriptedTriggerFamilyDefinition`](#scriptedtriggerfamilydefinition)&lt;`Prefix`, `S`, `Variants`&gt;
 
-Defined in: [src/sdk/index.ts:425](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L425)
+Defined in: [src/sdk/index.ts:696](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L696)
 
 Explicit scope variant of ScriptedTriggerFamily.
 
@@ -169,7 +169,7 @@ Explicit scope variant of ScriptedTriggerFamily.
 
 > **ScriptedTriggerFamilyDefinition**&lt;`Prefix` *extends* `string`, `S` *extends* [`ScopeName`](scope-selection.md#scopename), `Variants` *extends* [`ScriptedVariants`](scripted-effects.md#scriptedvariants)&gt; = \{ readonly \[Key in keyof Variants\]: ScriptedTriggerDefinition\<S\> & \{ name: \`$\{Prefix\}\_$\{Key & (string \| number)\}\` \} \}
 
-Defined in: [src/sdk/index.ts:95](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L95)
+Defined in: [src/sdk/index.ts:221](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L221)
 
 Exact keys select ordinary native trigger handles for their declared scope.
 
@@ -184,4 +184,4 @@ Exact keys select ordinary native trigger handles for their declared scope.
 
 ## 完整示例与工作流
 
-[阅读可复用条件与有限变体指南](../../../scripted-content.md)
+[阅读可复用条件与有限变体指南](../../../guide/scripted-content.md)

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "editedFile": "src/technologies.krg.ts",
+  "editedTechnology": "early_fighter",
+  "authoredNumericEdits": 1,
+  "baseCost": {
+    "before": 220,
+    "after": 230
+  },
+  "completionDay": {
+    "before": 1,
+    "after": 11
+  },
+  "grantUnchanged": "early_fighter",
+  "nativeFilesEdited": 0,
+  "scope": "Both outcomes execute actual compiled native lane handlers. This demonstrates propagation of one technology fact through cost and completion; it does not estimate human development time or engine performance."
+}

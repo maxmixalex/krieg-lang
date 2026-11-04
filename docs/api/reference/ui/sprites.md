@@ -12,12 +12,14 @@
 - [Sprite](#sprite)
 - [SpriteSpec](#spritespec)
 - [SpriteFile](#spritefile)
+- [AnimatedSprite](#animatedsprite)
+- [AnimatedSpriteSpec](#animatedspritespec)
 
 ## Sprite() { #sprite }
 
 > **Sprite**(`spec`: [`SpriteSpec`](#spritespec)): [`GuiElement`](layout.md#guielement)
 
-Defined in: [src/ui/index.ts:303](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L303)
+Defined in: [src/ui/index.ts:347](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L347)
 
 ### Parameters { #sprite-section-parameters }
 
@@ -32,26 +34,30 @@ Defined in: [src/ui/index.ts:303](https://github.com/maxmixalex/krieg-lang/blob/
 
 ## SpriteSpec { #spritespec }
 
-Defined in: [src/ui/index.ts:294](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L294)
+Defined in: [src/ui/index.ts:338](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L338)
+
+### Extended by { #spritespec-section-extended-by }
+
+- [`AnimatedSpriteSpec`](#animatedspritespec)
 
 ### Properties { #spritespec-section-properties }
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="spritespec-property-effectfile"></a> `effectFile?` | `string` | [src/ui/index.ts:298](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L298) |
-| <a id="spritespec-property-lazyload"></a> `lazyLoad?` | `boolean` | [src/ui/index.ts:301](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L301) |
-| <a id="spritespec-property-loadtype"></a> `loadType?` | `"INGAME"` | [src/ui/index.ts:300](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L300) |
-| <a id="spritespec-property-name"></a> `name` | `string` | [src/ui/index.ts:295](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L295) |
-| <a id="spritespec-property-noofframes"></a> `noOfFrames?` | `number` | [src/ui/index.ts:297](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L297) |
-| <a id="spritespec-property-texturefile"></a> `textureFile` | `string` | [src/ui/index.ts:296](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L296) |
-| <a id="spritespec-property-transparencecheck"></a> `transparenceCheck?` | `boolean` | [src/ui/index.ts:299](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L299) |
+| <a id="spritespec-property-effectfile"></a> `effectFile?` | `string` | [src/ui/index.ts:342](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L342) |
+| <a id="spritespec-property-lazyload"></a> `lazyLoad?` | `boolean` | [src/ui/index.ts:345](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L345) |
+| <a id="spritespec-property-loadtype"></a> `loadType?` | `"INGAME"` | [src/ui/index.ts:344](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L344) |
+| <a id="spritespec-property-name"></a> `name` | `string` | [src/ui/index.ts:339](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L339) |
+| <a id="spritespec-property-noofframes"></a> `noOfFrames?` | `number` | [src/ui/index.ts:341](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L341) |
+| <a id="spritespec-property-texturefile"></a> `textureFile` | `string` | [src/ui/index.ts:340](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L340) |
+| <a id="spritespec-property-transparencecheck"></a> `transparenceCheck?` | `boolean` | [src/ui/index.ts:343](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L343) |
 
 
 ## SpriteFile() { #spritefile }
 
 > **SpriteFile**(`path`: `string`, `sprites`: [`GuiElement`](layout.md#guielement) \| readonly [`GuiElement`](layout.md#guielement)[]): [`Definition`](../hoi4/scope-selection.md#definition)
 
-Defined in: [src/ui/index.ts:304](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L304)
+Defined in: [src/ui/index.ts:358](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L358)
 
 ### Parameters { #spritefile-section-parameters }
 
@@ -65,6 +71,51 @@ Defined in: [src/ui/index.ts:304](https://github.com/maxmixalex/krieg-lang/blob/
 [`Definition`](../hoi4/scope-selection.md#definition)
 
 
+## AnimatedSprite() { #animatedsprite }
+
+> **AnimatedSprite**(`spec`: [`AnimatedSpriteSpec`](#animatedspritespec)): [`GuiElement`](layout.md#guielement)
+
+Defined in: [src/ui/index.ts:357](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L357)
+
+Native frame animation; no browser animation or JavaScript timer is emitted.
+
+### Parameters { #animatedsprite-section-parameters }
+
+| Parameter | Type |
+| ------ | ------ |
+| `spec` | [`AnimatedSpriteSpec`](#animatedspritespec) |
+
+### Returns { #animatedsprite-section-returns }
+
+[`GuiElement`](layout.md#guielement)
+
+
+## AnimatedSpriteSpec { #animatedspritespec }
+
+Defined in: [src/ui/index.ts:348](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L348)
+
+### Extends { #animatedspritespec-section-extends }
+
+- [`SpriteSpec`](#spritespec)
+
+### Properties { #animatedspritespec-section-properties }
+
+| Property | Type | Overrides | Defined in |
+| ------ | ------ | ------ | ------ |
+| <a id="animatedspritespec-property-alwaystransparent"></a> `alwaysTransparent?` | `boolean` | - | [src/ui/index.ts:354](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L354) |
+| <a id="animatedspritespec-property-animationratefps"></a> `animationRateFps` | `number` | - | [src/ui/index.ts:350](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L350) |
+| <a id="animatedspritespec-property-effectfile"></a> `effectFile?` | `string` | - | [src/ui/index.ts:342](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L342) |
+| <a id="animatedspritespec-property-lazyload"></a> `lazyLoad?` | `boolean` | - | [src/ui/index.ts:345](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L345) |
+| <a id="animatedspritespec-property-loadtype"></a> `loadType?` | `"INGAME"` | - | [src/ui/index.ts:344](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L344) |
+| <a id="animatedspritespec-property-looping"></a> `looping?` | `boolean` | - | [src/ui/index.ts:351](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L351) |
+| <a id="animatedspritespec-property-name"></a> `name` | `string` | - | [src/ui/index.ts:339](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L339) |
+| <a id="animatedspritespec-property-noofframes"></a> `noOfFrames` | `number` | [`SpriteSpec`](#spritespec).[`noOfFrames`](#spritespec-property-noofframes) | [src/ui/index.ts:349](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L349) |
+| <a id="animatedspritespec-property-pauseonloop"></a> `pauseOnLoop?` | `number` | - | [src/ui/index.ts:353](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L353) |
+| <a id="animatedspritespec-property-playonshow"></a> `playOnShow?` | `boolean` | - | [src/ui/index.ts:352](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L352) |
+| <a id="animatedspritespec-property-texturefile"></a> `textureFile` | `string` | - | [src/ui/index.ts:340](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L340) |
+| <a id="animatedspritespec-property-transparencecheck"></a> `transparenceCheck?` | `boolean` | - | [src/ui/index.ts:343](https://github.com/maxmixalex/krieg-lang/blob/main/src/ui/index.ts#L343) |
+
+
 ## 完整示例与工作流
 
-[阅读Sprite 与纹理资源指南](../../../assets.md)
+[阅读Sprite 与纹理资源指南](../../../guide/assets.md)
