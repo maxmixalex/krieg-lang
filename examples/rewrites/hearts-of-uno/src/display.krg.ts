@@ -1,10 +1,11 @@
 import { ScriptedEffect } from "krieg-lang/hoi4";
 import { colors, seats } from "./cards.krg.ts";
+import { uno } from "./state.krg.ts";
 
 /** Presentation counters preserve the original ten-language text contracts. */
 export const updateDisplay = ScriptedEffect("ku_update_display", (country) => {
   country.setVariable("global.num_of_all_cards", country.variable("global.ku_remaining"));
-  country.setVariable("global.seven_cards", country.variable("global.ku_dealing"));
+  country.setVariable("global.seven_cards", uno.dealing);
   country.setVariable("seven_first_cards", 0);
   if (country.variable("ku_deal_remaining") > 0)
     country.setVariable("seven_first_cards", country.variable("ku_deal_remaining") - 1);

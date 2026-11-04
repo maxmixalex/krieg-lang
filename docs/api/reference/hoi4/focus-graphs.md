@@ -153,7 +153,7 @@ A focus tree and the exact, typed references exported by its node names.
 
 | Property | Modifier | Type | Overrides | Defined in |
 | ------ | ------ | ------ | ------ | ------ |
-| <a id="focusgraphdefinition-property-__kriegdefinition"></a> `__kriegDefinition` | `readonly` | *typeof* [`__kriegDefinition`](scope-selection.md#definition-property-__kriegdefinition) | - | [src/sdk/index.ts:84](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L84) |
+| <a id="focusgraphdefinition-property-__kriegdefinition"></a> `__kriegDefinition` | `readonly` | *typeof* [`__kriegDefinition`](scope-selection.md#definition-property-__kriegdefinition) | - | [src/sdk/index.ts:106](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L106) |
 | <a id="focusgraphdefinition-property-focuses"></a> `focuses` | `readonly` | `` { readonly [Name in string]: FocusReference<`${Prefix}_${Name}`> } `` | - | [src/sdk/gameplay.ts:221](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/gameplay.ts#L221) |
 | <a id="focusgraphdefinition-property-id"></a> `id` | `readonly` | `Id` | [`IdentifiedDefinition`](scope-selection.md#identifieddefinition).[`id`](scope-selection.md#identifieddefinition-property-id) | [src/sdk/gameplay.ts:220](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/gameplay.ts#L220) |
 
@@ -178,15 +178,15 @@ Gameplay and its local unlocking rules, written together on the same node.
 
 | Property | Modifier | Type | Description | Defined in |
 | ------ | ------ | ------ | ------ | ------ |
-| <a id="focusgraphnodespec-property-aiwilldo"></a> `aiWillDo?` | `public` | `number` | - | [src/sdk/index.ts:536](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L536) |
-| <a id="focusgraphnodespec-property-available"></a> `available?` | `public` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | - | [src/sdk/index.ts:531](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L531) |
-| <a id="focusgraphnodespec-property-bypass"></a> `bypass?` | `public` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | - | [src/sdk/index.ts:532](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L532) |
-| <a id="focusgraphnodespec-property-cancelifinvalid"></a> `cancelIfInvalid?` | `public` | `boolean` | - | [src/sdk/index.ts:533](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L533) |
-| <a id="focusgraphnodespec-property-completionreward"></a> `completionReward?` | `public` | [`Effect`](scope-selection.md#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | - | [src/sdk/index.ts:535](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L535) |
-| <a id="focusgraphnodespec-property-continueifinvalid"></a> `continueIfInvalid?` | `public` | `boolean` | - | [src/sdk/index.ts:534](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L534) |
-| <a id="focusgraphnodespec-property-cost"></a> `cost?` | `public` | `number` | - | [src/sdk/index.ts:526](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L526) |
+| <a id="focusgraphnodespec-property-aiwilldo"></a> `aiWillDo?` | `public` | `number` | - | [src/sdk/index.ts:585](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L585) |
+| <a id="focusgraphnodespec-property-available"></a> `available?` | `public` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | - | [src/sdk/index.ts:580](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L580) |
+| <a id="focusgraphnodespec-property-bypass"></a> `bypass?` | `public` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | - | [src/sdk/index.ts:581](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L581) |
+| <a id="focusgraphnodespec-property-cancelifinvalid"></a> `cancelIfInvalid?` | `public` | `boolean` | - | [src/sdk/index.ts:582](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L582) |
+| <a id="focusgraphnodespec-property-completionreward"></a> `completionReward?` | `public` | [`Effect`](scope-selection.md#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | - | [src/sdk/index.ts:584](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L584) |
+| <a id="focusgraphnodespec-property-continueifinvalid"></a> `continueIfInvalid?` | `public` | `boolean` | - | [src/sdk/index.ts:583](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L583) |
+| <a id="focusgraphnodespec-property-cost"></a> `cost?` | `public` | `number` | - | [src/sdk/index.ts:575](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L575) |
 | <a id="focusgraphnodespec-property-exclusivewith"></a> `exclusiveWith?` | `readonly` | (`focus`: [`FocusSelector`](#focusselector)&lt;`Key`&gt;) => [`FocusNodeKey`](#focusnodekey)&lt;`Key`&gt; \| readonly \[[`FocusNodeKey`](#focusnodekey)&lt;`Key`&gt;, [`FocusNodeKey`](#focusnodekey)&lt;`Key`&gt;\] | Select alternatives to exclude. The compiler supplies the reverse links. | [src/sdk/gameplay.ts:159](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/gameplay.ts#L159) |
-| <a id="focusgraphnodespec-property-icon"></a> `icon?` | `public` | `string` | - | [src/sdk/index.ts:523](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L523) |
+| <a id="focusgraphnodespec-property-icon"></a> `icon?` | `public` | `string` | - | [src/sdk/index.ts:572](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L572) |
 | <a id="focusgraphnodespec-property-position"></a> `position?` | `readonly` | `object` | Optional absolute position; otherwise the graph assigns a row and column. | [src/sdk/gameplay.ts:123](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/gameplay.ts#L123) |
 | `position.x` | `readonly` | `number` | - | [src/sdk/gameplay.ts:123](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/gameplay.ts#L123) |
 | `position.y` | `readonly` | `number` | - | [src/sdk/gameplay.ts:123](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/gameplay.ts#L123) |
@@ -216,14 +216,14 @@ not a fixed duration. The configured NFocus.FOCUS_POINT_DAYS define controls it.
 
 | Property | Modifier | Type | Description | Defined in |
 | ------ | ------ | ------ | ------ | ------ |
-| <a id="focusnodespec-property-aiwilldo"></a> `aiWillDo?` | `public` | `number` | - | [src/sdk/index.ts:536](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L536) |
-| <a id="focusnodespec-property-available"></a> `available?` | `public` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | - | [src/sdk/index.ts:531](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L531) |
-| <a id="focusnodespec-property-bypass"></a> `bypass?` | `public` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | - | [src/sdk/index.ts:532](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L532) |
-| <a id="focusnodespec-property-cancelifinvalid"></a> `cancelIfInvalid?` | `public` | `boolean` | - | [src/sdk/index.ts:533](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L533) |
-| <a id="focusnodespec-property-completionreward"></a> `completionReward?` | `public` | [`Effect`](scope-selection.md#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | - | [src/sdk/index.ts:535](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L535) |
-| <a id="focusnodespec-property-continueifinvalid"></a> `continueIfInvalid?` | `public` | `boolean` | - | [src/sdk/index.ts:534](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L534) |
-| <a id="focusnodespec-property-cost"></a> `cost?` | `public` | `number` | - | [src/sdk/index.ts:526](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L526) |
-| <a id="focusnodespec-property-icon"></a> `icon?` | `public` | `string` | - | [src/sdk/index.ts:523](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L523) |
+| <a id="focusnodespec-property-aiwilldo"></a> `aiWillDo?` | `public` | `number` | - | [src/sdk/index.ts:585](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L585) |
+| <a id="focusnodespec-property-available"></a> `available?` | `public` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | - | [src/sdk/index.ts:580](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L580) |
+| <a id="focusnodespec-property-bypass"></a> `bypass?` | `public` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | - | [src/sdk/index.ts:581](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L581) |
+| <a id="focusnodespec-property-cancelifinvalid"></a> `cancelIfInvalid?` | `public` | `boolean` | - | [src/sdk/index.ts:582](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L582) |
+| <a id="focusnodespec-property-completionreward"></a> `completionReward?` | `public` | [`Effect`](scope-selection.md#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | - | [src/sdk/index.ts:584](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L584) |
+| <a id="focusnodespec-property-continueifinvalid"></a> `continueIfInvalid?` | `public` | `boolean` | - | [src/sdk/index.ts:583](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L583) |
+| <a id="focusnodespec-property-cost"></a> `cost?` | `public` | `number` | - | [src/sdk/index.ts:575](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L575) |
+| <a id="focusnodespec-property-icon"></a> `icon?` | `public` | `string` | - | [src/sdk/index.ts:572](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L572) |
 | <a id="focusnodespec-property-position"></a> `position?` | `readonly` | `object` | Optional absolute position; otherwise the graph assigns a row and column. | [src/sdk/gameplay.ts:123](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/gameplay.ts#L123) |
 | `position.x` | `readonly` | `number` | - | [src/sdk/gameplay.ts:123](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/gameplay.ts#L123) |
 | `position.y` | `readonly` | `number` | - | [src/sdk/gameplay.ts:123](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/gameplay.ts#L123) |

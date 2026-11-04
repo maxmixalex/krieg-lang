@@ -94,6 +94,7 @@
 | <a id="provincebuildings"></a> `ProvinceBuildings`                             | [查看 ProvinceBuildings](reference/hoi4/states.md#provincebuildings)                                        |
 | <a id="runtimescopepath"></a> `RuntimeScopePath`                               | [查看 RuntimeScopePath](reference/hoi4/runtime-state.md#runtimescopepath)                                   |
 | <a id="scopedguidynamiclist"></a> `ScopedGuiDynamicList`                       | [查看 ScopedGuiDynamicList](reference/ui/scripted-gui.md#scopedguidynamiclist)                              |
+| <a id="scriptedarguments"></a> `ScriptedArguments`                             | [查看 ScriptedArguments](reference/hoi4/scripted-effects.md#scriptedarguments)                              |
 | <a id="scriptedeffect"></a> `ScriptedEffect`                                   | [查看 ScriptedEffect](reference/hoi4/scripted-effects.md#scriptedeffect)                                    |
 | <a id="scriptedeffectdefinition"></a> `ScriptedEffectDefinition`               | [查看 ScriptedEffectDefinition](reference/hoi4/scripted-effects.md#scriptedeffectdefinition)                |
 | <a id="scriptedeffectfamily"></a> `ScriptedEffectFamily`                       | [查看 ScriptedEffectFamily](reference/hoi4/scripted-effects.md#scriptedeffectfamily)                        |
@@ -106,6 +107,7 @@
 | <a id="scriptedlocalisationdefinition"></a> `ScriptedLocalisationDefinition`   | [查看 ScriptedLocalisationDefinition](reference/hoi4/localisation.md#scriptedlocalisationdefinition)        |
 | <a id="scriptedlocalisationspec"></a> `ScriptedLocalisationSpec`               | [查看 ScriptedLocalisationSpec](reference/hoi4/localisation.md#scriptedlocalisationspec)                    |
 | <a id="scriptedlocalisationtext"></a> `ScriptedLocalisationText`               | [查看 ScriptedLocalisationText](reference/hoi4/localisation.md#scriptedlocalisationtext)                    |
+| <a id="scriptedparameters"></a> `ScriptedParameters`                           | [查看 ScriptedParameters](reference/hoi4/scripted-effects.md#scriptedparameters)                            |
 | <a id="scriptedtrigger"></a> `ScriptedTrigger`                                 | [查看 ScriptedTrigger](reference/hoi4/scripted-triggers.md#scriptedtrigger)                                 |
 | <a id="scriptedtriggerdefinition"></a> `ScriptedTriggerDefinition`             | [查看 ScriptedTriggerDefinition](reference/hoi4/scripted-triggers.md#scriptedtriggerdefinition)             |
 | <a id="scriptedtriggerfamily"></a> `ScriptedTriggerFamily`                     | [查看 ScriptedTriggerFamily](reference/hoi4/scripted-triggers.md#scriptedtriggerfamily)                     |
@@ -127,6 +129,9 @@
 | <a id="statetargetref"></a> `StateTargetRef`                                   | [查看 StateTargetRef](reference/hoi4/runtime-state.md#statetargetref)                                       |
 | <a id="trigger"></a> `Trigger`                                                 | [查看 Trigger](reference/hoi4/scope-selection.md#trigger)                                                   |
 | <a id="variablename"></a> `VariableName`                                       | [查看 VariableName](reference/hoi4/scope-selection.md#variablename)                                         |
+| <a id="variablestate"></a> `variableState`                                     | [查看 variableState](reference/hoi4/scope-selection.md#variablestate-function)                              |
+| <a id="variablestate"></a> `VariableState`                                     | [查看 VariableState](reference/hoi4/scope-selection.md#variablestate-interface)                             |
+| <a id="variablestatevalues"></a> `VariableStateValues`                         | [查看 VariableStateValues](reference/hoi4/scope-selection.md#variablestatevalues)                           |
 | <a id="weightmodifier"></a> `WeightModifier`                                   | [查看 WeightModifier](reference/ui/scripted-gui.md#weightmodifier)                                          |
 
 [常用玩法写法](../guide/focuses.md) · [原生内容领域目录](domains.md)

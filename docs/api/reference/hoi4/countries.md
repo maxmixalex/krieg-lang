@@ -19,7 +19,7 @@
 
 > **country**(`tag`: `string`, `options?`: `object`): [`CountryRef`](#countryref)
 
-Defined in: [src/sdk/index.ts:788](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L788)
+Defined in: [src/sdk/index.ts:867](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L867)
 
 A native country tag. Preserve a mixed-case three-character token only when matching an existing mod's exact spelling.
 
@@ -59,7 +59,7 @@ Defined in: [src/sdk/index.ts:32](https://github.com/maxmixalex/krieg-lang/blob/
 
 > **CountryHistory**(`spec`: [`CountryHistorySpec`](#countryhistoryspec)): [`Definition`](scope-selection.md#definition)
 
-Defined in: [src/sdk/index.ts:720](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L720)
+Defined in: [src/sdk/index.ts:799](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L799)
 
 Write the starting history of a country: its capital, government, order of battle and setup effects. The project still needs a country tag, common definition and flags.
 
@@ -80,7 +80,7 @@ Write the starting history of a country: its capital, government, order of battl
 
 ## CountryHistorySpec { #countryhistoryspec }
 
-Defined in: [src/sdk/index.ts:710](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L710)
+Defined in: [src/sdk/index.ts:789](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L789)
 
 Complete country history. Set path to the exact original file when replacing an existing history.
 
@@ -88,12 +88,12 @@ Complete country history. Set path to the exact original file when replacing an 
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="countryhistoryspec-property-capital"></a> `capital` | [`StateRef`](states.md#stateref) | [src/sdk/index.ts:712](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L712) |
-| <a id="countryhistoryspec-property-country"></a> `country` | [`CountryRef`](#countryref) | [src/sdk/index.ts:711](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L711) |
-| <a id="countryhistoryspec-property-history"></a> `history?` | [`Effect`](scope-selection.md#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | [src/sdk/index.ts:715](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L715) |
-| <a id="countryhistoryspec-property-oob"></a> `oob?` | `string` | [src/sdk/index.ts:713](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L713) |
-| <a id="countryhistoryspec-property-path"></a> `path?` | `string` | [src/sdk/index.ts:716](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L716) |
-| <a id="countryhistoryspec-property-startingtrainbuffer"></a> `startingTrainBuffer?` | `number` | [src/sdk/index.ts:714](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L714) |
+| <a id="countryhistoryspec-property-capital"></a> `capital` | [`StateRef`](states.md#stateref) | [src/sdk/index.ts:791](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L791) |
+| <a id="countryhistoryspec-property-country"></a> `country` | [`CountryRef`](#countryref) | [src/sdk/index.ts:790](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L790) |
+| <a id="countryhistoryspec-property-history"></a> `history?` | [`Effect`](scope-selection.md#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | [src/sdk/index.ts:794](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L794) |
+| <a id="countryhistoryspec-property-oob"></a> `oob?` | `string` | [src/sdk/index.ts:792](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L792) |
+| <a id="countryhistoryspec-property-path"></a> `path?` | `string` | [src/sdk/index.ts:795](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L795) |
+| <a id="countryhistoryspec-property-startingtrainbuffer"></a> `startingTrainBuffer?` | `number` | [src/sdk/index.ts:793](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L793) |
 
 
 ## 完整示例与工作流

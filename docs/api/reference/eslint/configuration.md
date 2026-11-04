@@ -25,36 +25,36 @@ export default [configs.recommended];
 
 > `const` **configs**: `Record`&lt;`string`, `LegacyConfigObject`&lt;`RulesConfig`, `RulesConfig`&gt; \| `ConfigObject`&lt;`RulesConfig`&gt; \| `ConfigObject`&lt;`RulesConfig`&gt;[]&gt; & `object` = `plugin.configs`
 
-Defined in: [src/eslint/index.ts:378](https://github.com/maxmixalex/krieg-lang/blob/main/src/eslint/index.ts#L378)
+Defined in: [src/eslint/index.ts:383](https://github.com/maxmixalex/krieg-lang/blob/main/src/eslint/index.ts#L383)
 
 ### Type Declaration { #configs-section-type-declaration }
 
 | Name | Type | Defined in |
 | ------ | ------ | ------ |
-| `recommended` | `Config` | [src/eslint/index.ts:322](https://github.com/maxmixalex/krieg-lang/blob/main/src/eslint/index.ts#L322) |
-| `styles` | `Config` | [src/eslint/index.ts:322](https://github.com/maxmixalex/krieg-lang/blob/main/src/eslint/index.ts#L322) |
+| `recommended` | `Config` | [src/eslint/index.ts:325](https://github.com/maxmixalex/krieg-lang/blob/main/src/eslint/index.ts#L325) |
+| `styles` | `Config` | [src/eslint/index.ts:325](https://github.com/maxmixalex/krieg-lang/blob/main/src/eslint/index.ts#L325) |
 
 
 ## default { #default }
 
 > `const` **default**: `ESLint.Plugin` & `object`
 
-Defined in: [src/eslint/index.ts:322](https://github.com/maxmixalex/krieg-lang/blob/main/src/eslint/index.ts#L322)
+Defined in: [src/eslint/index.ts:325](https://github.com/maxmixalex/krieg-lang/blob/main/src/eslint/index.ts#L325)
 
 ### Type Declaration { #default-section-type-declaration }
 
 | Name | Type | Defined in |
 | ------ | ------ | ------ |
-| `configs` | `object` | [src/eslint/index.ts:322](https://github.com/maxmixalex/krieg-lang/blob/main/src/eslint/index.ts#L322) |
-| `configs.recommended` | `Linter.Config` | [src/eslint/index.ts:322](https://github.com/maxmixalex/krieg-lang/blob/main/src/eslint/index.ts#L322) |
-| `configs.styles` | `Linter.Config` | [src/eslint/index.ts:322](https://github.com/maxmixalex/krieg-lang/blob/main/src/eslint/index.ts#L322) |
+| `configs` | `object` | [src/eslint/index.ts:325](https://github.com/maxmixalex/krieg-lang/blob/main/src/eslint/index.ts#L325) |
+| `configs.recommended` | `Linter.Config` | [src/eslint/index.ts:325](https://github.com/maxmixalex/krieg-lang/blob/main/src/eslint/index.ts#L325) |
+| `configs.styles` | `Linter.Config` | [src/eslint/index.ts:325](https://github.com/maxmixalex/krieg-lang/blob/main/src/eslint/index.ts#L325) |
 
 
 ## rules { #rules }
 
 > `const` **rules**: `Record`&lt;`string`, `RuleDefinition`&lt;`RuleDefinitionTypeOptions`&gt;&gt; \| `undefined` = `plugin.rules`
 
-Defined in: [src/eslint/index.ts:379](https://github.com/maxmixalex/krieg-lang/blob/main/src/eslint/index.ts#L379)
+Defined in: [src/eslint/index.ts:384](https://github.com/maxmixalex/krieg-lang/blob/main/src/eslint/index.ts#L384)
 
 
 ## 完整示例与工作流

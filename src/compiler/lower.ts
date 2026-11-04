@@ -1,3 +1,5 @@
+import { runtimeLoopIssue } from "./loop-syntax.js";
+import { parameterBindingIssue } from "./parameter-syntax.js";
 import { flagStorage } from "./flag-storage.js";
 import { indexDispatch } from "./indexed-dispatch.js";
 import ts from "typescript";
@@ -48,7 +50,25 @@ type Builtin = {
 };
 type Member = { _krg: "member"; object: Value; name: string };
 type Trigger = { _krg: "trigger"; items: pdx.PdxItem[] };
-type Variable = { _krg: "variable"; name: string; scope: Scope; mutable: boolean };
+type Variable = {
+  _krg: "variable";
+  name: string;
+  scope: Scope;
+  mutable: boolean;
+  property?: true;
+  temporary?: boolean;
+  lengthOf?: RuntimeArray;
+};
+type VariableState = {
+  _krg: "variable-state";
+  scope: string;
+  names: Record<string, string>;
+};
+type BoundVariableState = {
+  _krg: "bound-variable-state";
+  scope: Scope;
+  names: Record<string, string>;
+};
 type Query = {
   _krg: "query";
   name: string;
@@ -56,6 +76,7 @@ type Query = {
   boolean?: boolean;
   metric?: { field: string; before: pdx.PdxItem[]; after: pdx.PdxItem[] };
 };
+type RuntimeArray = { _krg: "array"; name: string; scope: Scope; temporary?: boolean };
 type Arithmetic = { _krg: "arithmetic"; operator: ts.SyntaxKind; left: Value; right: Value };
 type Definition = {
   _krg: "definition";
@@ -68,6 +89,10 @@ type Definition = {
   focuses?: Record<string, { _krg: "focus-reference"; id: string }>;
   pendingOutput?: () => CompileOutput[];
 };
+type ParameterizedEffect = {
+  parameters: Record<string, "number" | "number[]">;
+  callback: Callable;
+};
 interface Context {
   env: Environment;
   mode: "top" | "effect" | "trigger";
@@ -76,6 +101,7 @@ interface Context {
   prefix: string;
   declarationFile?: string;
   dynamicBranch?: boolean;
+  immediateRecord?: ts.Expression;
 }
 class CompileFailure extends Error {}
 class ReturnValue {
@@ -160,9 +186,7 @@ const forbiddenKinds = new Set([
   ts.SyntaxKind.NewExpression,
   ts.SyntaxKind.AwaitExpression,
   ts.SyntaxKind.YieldExpression,
-  ts.SyntaxKind.WhileStatement,
   ts.SyntaxKind.DoStatement,
-  ts.SyntaxKind.ForStatement,
   ts.SyntaxKind.ForInStatement,
   ts.SyntaxKind.TryStatement,
   ts.SyntaxKind.ThrowStatement,
@@ -189,6 +213,7 @@ export class Lowerer {
   private readonly outputs: CompileOutput[] = [];
   private readonly outputDefinitions = new Set<Definition>();
   private readonly scriptedFamilies = new WeakMap<object, Definition[]>();
+  private readonly parameterizedEffects = new WeakMap<object, ParameterizedEffect>();
   private readonly scriptedNames = new Set<string>();
   private readonly gameplayIds = new Set<string>();
   private readonly countryActions = new CountryActions((node, code, message) =>
@@ -287,6 +312,8 @@ export class Lowerer {
         token = scanner.scan();
       }
       const visit = (node: ts.Node): void => {
+        const loopIssue = runtimeLoopIssue(node);
+        if (loopIssue) this.report(node, "KRG1001", `Krieg does not support ${loopIssue}.`);
         if (forbiddenKinds.has(node.kind))
           this.report(
             node,
@@ -340,11 +367,12 @@ export class Lowerer {
                 "KRG1005",
                 "A parameter requires an explicit type or a safe type inferred from its callback context.",
               );
-            if (!ts.isIdentifier(parameter.name) || parameter.dotDotDotToken)
+            const bindingIssue = parameterBindingIssue(parameter);
+            if (bindingIssue)
               this.report(
                 parameter,
                 "KRG1006",
-                "Use named parameters; rest and destructured parameters are not supported.",
+                `Krieg does not support ${bindingIssue}. Use identifiers or shallow named object fields.`,
               );
           }
         }
@@ -795,31 +823,60 @@ export class Lowerer {
       ts.isSatisfiesExpression(node) ||
       ts.isAsExpression(node)
     )
-      return this.evaluate(node.expression, context);
+      return this.evaluate(node.expression, {
+        ...context,
+        immediateRecord:
+          context.immediateRecord === node ? node.expression : context.immediateRecord,
+      });
     if (ts.isArrayLiteralExpression(node)) {
-      const values: Value[] = [];
+      let values: Value[] = [];
+      const immediate = context.immediateRecord === node;
       for (const element of node.elements) {
-        if (ts.isSpreadElement(element))
-          values.push(...this.array(this.evaluate(element.expression, context), element));
-        else if (ts.isOmittedExpression(element))
+        if (ts.isOmittedExpression(element))
           this.fail(element, "KRG2011", "Sparse arrays are not supported.");
-        else values.push(this.evaluate(element, context));
+        const expression = ts.isSpreadElement(element) ? element.expression : element;
+        const pending = {
+          ...context,
+          sink: [] as pdx.PdxItem[],
+          immediateRecord: immediate ? expression : undefined,
+        };
+        const value = this.evaluate(expression, pending);
+        if (pending.sink.length)
+          values = values.map((earlier) => this.snapshotValue(earlier, element, context));
+        context.sink.push(...pending.sink);
+        const items = ts.isSpreadElement(element) ? this.array(value, element) : [value];
+        values.push(
+          ...items.map((item) => (immediate ? item : this.snapshotNumber(item, element, context))),
+        );
       }
       return values;
     }
     if (ts.isObjectLiteralExpression(node)) {
       const value: Record<string, Value> = Object.create(null);
+      const immediate = context.immediateRecord === node;
       for (const property of node.properties) {
+        const pending = { ...context, sink: [] as pdx.PdxItem[] };
+        const store = (entries: Record<string, Value>): void => {
+          if (pending.sink.length)
+            for (const key of Object.keys(value))
+              value[key] = this.snapshotValue(value[key], property, context);
+          context.sink.push(...pending.sink);
+          for (const [key, item] of Object.entries(entries))
+            value[key] = immediate ? item : this.snapshotNumber(item, property, context);
+        };
         if (ts.isSpreadAssignment(property)) {
-          Object.assign(value, this.object(this.evaluate(property.expression, context), property));
+          if (immediate) pending.immediateRecord = property.expression;
+          store(this.object(this.evaluate(property.expression, pending), property));
           continue;
         }
         if (ts.isShorthandPropertyAssignment(property)) {
-          value[property.name.text] = this.lookup(
-            property.name,
-            context,
-            this.checker.getShorthandAssignmentValueSymbol(property),
-          );
+          store({
+            [property.name.text]: this.lookup(
+              property.name,
+              pending,
+              this.checker.getShorthandAssignmentValueSymbol(property),
+            ),
+          });
           continue;
         }
         if (!ts.isPropertyAssignment(property))
@@ -829,7 +886,7 @@ export class Lowerer {
             "Object methods and accessors are not supported. Use a named function or arrow callback.",
           );
         const key = ts.isComputedPropertyName(property.name)
-          ? this.evaluate(property.name.expression, context)
+          ? this.evaluate(property.name.expression, pending)
           : property.name.text;
         if (typeof key !== "string" && typeof key !== "number")
           this.fail(
@@ -843,7 +900,8 @@ export class Lowerer {
             "KRG2014",
             "Duplicate record keys lose game semantics. Use the ordered PDX API for repeated properties.",
           );
-        value[String(key)] = this.evaluate(property.initializer, context);
+        if (immediate) pending.immediateRecord = property.initializer;
+        store({ [String(key)]: this.evaluate(property.initializer, pending) });
       }
       return value;
     }
@@ -856,6 +914,30 @@ export class Lowerer {
       const key = ts.isPropertyAccessExpression(node)
         ? node.name.text
         : this.evaluate(node.argumentExpression, context);
+      if (tagged(object, "array")) {
+        const array = object as RuntimeArray;
+        if (key === "length") return this.arrayVariable(array, "num", false);
+        if (typeof key === "string" && ["push", "includes", "splice"].includes(key))
+          return { _krg: "member", object, name: key } as Member;
+        if (ts.isElementAccessExpression(node)) {
+          const parent = node.parent;
+          const assigned =
+            (ts.isBinaryExpression(parent) &&
+              parent.left === node &&
+              parent.operatorToken.kind >= ts.SyntaxKind.FirstAssignment &&
+              parent.operatorToken.kind <= ts.SyntaxKind.LastAssignment) ||
+            ts.isPostfixUnaryExpression(parent) ||
+            ts.isPrefixUnaryExpression(parent);
+          const index =
+            assigned && context.mode === "effect" ? this.arrayArgument(key, node, context) : key;
+          return this.arrayVariable(array, this.arrayIndex(index, node, context), true);
+        }
+        this.fail(
+          node,
+          "KRG2750",
+          "Runtime arrays support indexed access, length, push, includes and standalone splice.",
+        );
+      }
       if (typeof key !== "string" && typeof key !== "number")
         this.fail(node, "KRG2015", "Property indices must be compile-time strings or numbers.");
       const name = String(key);
@@ -888,8 +970,25 @@ export class Lowerer {
           return { _krg: "query", name: queries[name], scope, boolean: name === "isAI" } as Query;
         return { _krg: "member", object, name } as Member;
       }
+      if (
+        tagged(object, "bound-variable-state") ||
+        (tagged(object, "variable-state") && object.scope === "global")
+      ) {
+        return this.stateProperty(
+          object as VariableState | BoundVariableState,
+          name,
+          node,
+          context,
+        );
+      }
       if (tagged(object, "member")) return { _krg: "member", object, name } as Member;
       if (Array.isArray(object)) {
+        if (["push", "splice", "includes"].includes(name))
+          this.fail(
+            node,
+            "KRG2750",
+            "Use let or an explicit number[] annotation for a runtime array.",
+          );
         if (["map", "flatMap", "filter", "some", "every"].includes(name))
           return { _krg: "member", object, name } as Member;
         return name === "length" ? object.length : object[Number(name)];
@@ -900,19 +999,46 @@ export class Lowerer {
     }
     if (ts.isJsxElement(node) || ts.isJsxSelfClosingElement(node) || ts.isJsxFragment(node))
       return this.jsx(node, context);
-    if (ts.isCallExpression(node))
-      return this.call(
-        this.evaluate(node.expression, context),
-        node.arguments.map((argument) => {
-          if (ts.isSpreadElement(argument))
-            this.fail(argument, "KRG2017", "Spread call arguments are not supported.");
-          return this.evaluate(argument, context);
-        }),
-        node,
-        context,
-      );
+    if (ts.isCallExpression(node)) {
+      const callable = this.evaluate(node.expression, context);
+      const nativeCommand =
+        tagged(callable, "member") &&
+        (tagged(callable.object, "scope") ||
+          (tagged(callable.object, "member") &&
+            ["effects", "triggers"].includes(String(callable.object.name)) &&
+            tagged(callable.object.object, "scope")));
+      const parameterCall =
+        tagged(callable, "definition") && this.parameterizedEffects.has(callable);
+      let args: Value[] = [];
+      for (const argument of node.arguments) {
+        if (ts.isSpreadElement(argument))
+          this.fail(argument, "KRG2017", "Spread call arguments are not supported.");
+        const pending = {
+          ...context,
+          sink: [] as pdx.PdxItem[],
+          immediateRecord:
+            nativeCommand || (args.length === 1 && parameterCall) ? argument : undefined,
+        };
+        const value = this.evaluate(argument, pending);
+        if (pending.sink.length)
+          args = args.map((earlier) => this.snapshotValue(earlier, argument, context));
+        context.sink.push(...pending.sink);
+        args.push(value);
+      }
+      return this.call(callable, args, node, context);
+    }
     if (ts.isBinaryExpression(node)) return this.binary(node, context);
     if (ts.isPrefixUnaryExpression(node)) {
+      if (
+        node.operator === ts.SyntaxKind.PlusPlusToken ||
+        node.operator === ts.SyntaxKind.MinusMinusToken
+      )
+        return this.increment(
+          node.operand,
+          node.operator === ts.SyntaxKind.PlusPlusToken ? 1 : -1,
+          node,
+          context,
+        );
       const value = this.evaluate(node.operand, context);
       if (node.operator === ts.SyntaxKind.ExclamationToken) {
         if (typeof value === "boolean") return !value;
@@ -931,16 +1057,6 @@ export class Lowerer {
               left: -1,
               right: value,
             } as Arithmetic);
-      if (
-        node.operator === ts.SyntaxKind.PlusPlusToken ||
-        node.operator === ts.SyntaxKind.MinusMinusToken
-      )
-        return this.increment(
-          node.operand,
-          node.operator === ts.SyntaxKind.PlusPlusToken ? 1 : -1,
-          node,
-          context,
-        );
       this.fail(node, "KRG2018", "This unary operation cannot be lowered.");
     }
     if (ts.isPostfixUnaryExpression(node))
@@ -978,6 +1094,16 @@ export class Lowerer {
   }
 
   private call(callable: Value, args: Value[], node: ts.Node, context: Context): Value {
+    if (tagged(callable, "definition") && callable.definitionKind === "effect") {
+      if (!tagged(args[0], "scope"))
+        this.fail(node, "KRG2066", "A scripted effect call requires its typed game scope first.");
+      return this.memberCall(
+        { _krg: "member", object: args[0], name: "run" },
+        [callable, ...args.slice(1)],
+        node,
+        context,
+      );
+    }
     if (tagged(callable, "builtin")) {
       const builtin = callable as Builtin;
       return builtin.module === "pdx"
@@ -994,28 +1120,104 @@ export class Lowerer {
       "Only resolved SDK operations and statically defined helper functions can be called.",
     );
   }
+  private snapshotValue(value: Value, node: ts.Node, context: Context): Value {
+    if (context.mode !== "effect") return value;
+    if (Array.isArray(value)) return value.map((item) => this.snapshotValue(item, node, context));
+    if (record(value) && !("_krg" in value))
+      return Object.fromEntries(
+        Object.entries(value).map(([key, item]) => [key, this.snapshotValue(item, node, context)]),
+      );
+    return this.snapshotNumber(value, node, context);
+  }
+  private snapshotNumber(value: Value, node: ts.Node, context: Context): Value {
+    if (
+      context.mode !== "effect" ||
+      !context.scope ||
+      (!tagged(value, "variable") && !tagged(value, "arithmetic"))
+    )
+      return value;
+    if (
+      tagged(value, "variable") &&
+      value.temporary &&
+      !value.mutable &&
+      !value.property &&
+      !String(value.name).includes("^")
+    )
+      return value;
+    const name = `krg_${context.prefix}_value_${++this.sequence}`;
+    this.variableEffect("set_temp_variable", name, value, node, context);
+    return {
+      _krg: "variable",
+      name,
+      scope: context.scope,
+      mutable: false,
+      temporary: true,
+    } as Variable;
+  }
   private invoke(callable: Callable, args: Value[], call: ts.Node, context: Context): Value {
     if (this.calls.includes(callable.node))
       this.fail(call, "KRG2023", "Recursive helper expansion is not supported.");
     if (!callable.node.body) this.fail(call, "KRG2024", "Helper function has no body.");
     const env = new Map(callable.env);
-    for (let index = 0; index < callable.node.parameters.length; index++) {
-      const parameter = callable.node.parameters[index];
-      const symbol = this.symbol(parameter.name);
-      let argument =
-        args[index] === undefined && parameter.initializer
-          ? this.evaluate(parameter.initializer, { ...context, env })
-          : args[index];
+    const bind = (identifier: ts.Identifier, argument: Value): void => {
       if (
         context.mode === "effect" &&
         context.scope &&
         (tagged(argument, "variable") || tagged(argument, "arithmetic"))
       ) {
-        const name = `krg_${context.prefix}_arg_${safeId(parameter.name.getText())}_${++this.sequence}`;
-        this.variableEffect("set_variable", name, argument, call, context);
-        argument = { _krg: "variable", name, scope: context.scope, mutable: false } as Variable;
+        const name = `krg_${context.prefix}_arg_${safeId(identifier.text)}_${++this.sequence}`;
+        this.variableEffect("set_temp_variable", name, argument, call, context);
+        argument = {
+          _krg: "variable",
+          name,
+          scope: context.scope,
+          mutable: false,
+          temporary: true,
+        } as Variable;
       }
+      const symbol = this.symbol(identifier);
       if (symbol) env.set(symbol, argument);
+    };
+    for (let index = 0; index < callable.node.parameters.length; index++) {
+      const parameter = callable.node.parameters[index];
+      const argument =
+        args[index] === undefined && parameter.initializer
+          ? this.evaluate(parameter.initializer, { ...context, env })
+          : args[index];
+      if (ts.isIdentifier(parameter.name)) {
+        bind(parameter.name, argument);
+      } else if (ts.isObjectBindingPattern(parameter.name)) {
+        if (!record(argument) || tagged(argument, "scope"))
+          this.fail(
+            parameter,
+            "KRG2746",
+            "Object parameters require a record. Bind game scopes by name.",
+          );
+        const bindingIssue = parameterBindingIssue(parameter);
+        if (bindingIssue)
+          this.fail(parameter, "KRG2746", `Krieg does not support ${bindingIssue}.`);
+        for (const element of parameter.name.elements) {
+          if (
+            !ts.isIdentifier(element.name) ||
+            (element.propertyName && ts.isComputedPropertyName(element.propertyName))
+          )
+            this.fail(element, "KRG2746", "Use shallow named or renamed parameter fields.");
+          const key = element.propertyName?.text ?? element.name.text;
+          const value =
+            tagged(argument, "bound-variable-state") ||
+            (tagged(argument, "variable-state") && argument.scope === "global")
+              ? this.stateProperty(
+                  argument as VariableState | BoundVariableState,
+                  key,
+                  element,
+                  context,
+                )
+              : argument[key];
+          bind(element.name, value);
+        }
+      } else {
+        this.fail(parameter, "KRG2746", "Use identifiers or shallow named object parameters.");
+      }
     }
     // A return exits this helper, not the runtime branch that called it.
     // Branches opened inside the helper still mark their own dynamic context.
@@ -1039,6 +1241,24 @@ export class Lowerer {
       this.calls.pop();
       if (traceHelper) this.origins.helpers.pop();
     }
+  }
+  private stateProperty(
+    state: VariableState | BoundVariableState,
+    name: string,
+    node: ts.Node,
+    context: Context,
+  ): Variable {
+    if (!Object.hasOwn(state.names, name))
+      this.fail(node, "KRG2745", `Variable state has no property '${name}'.`);
+    if (!context.scope || context.mode === "top")
+      this.fail(node, "KRG2745", "Read variable state inside a game callback.");
+    return {
+      _krg: "variable",
+      name: state.scope === "global" ? `global.${state.names[name]}` : state.names[name],
+      scope: state.scope === "global" ? context.scope : state.scope,
+      mutable: true,
+      property: true,
+    } as Variable;
   }
   private pdxCall(name: string, args: Value[], node: ts.Node): Value {
     switch (name) {
@@ -1068,6 +1288,36 @@ export class Lowerer {
     }
   }
   private sdkCall(name: string, args: Value[], node: ts.Node, context: Context): Value {
+    if (name === "variableState") {
+      if (context.mode !== "top")
+        this.fail(node, "KRG2745", "Declare variable state at module scope.");
+      const scope = this.string(args[0], node);
+      if (
+        !this.schema.scopes.some(
+          (value) => value.toLowerCase().replace("unitleader", "unit_leader") === scope,
+        ) &&
+        !["global", "country", "state", "character", "unit_leader", "any"].includes(scope)
+      )
+        this.fail(node, "KRG2745", `Unknown variable state scope '${scope}'.`);
+      const names = this.object(args[1], node);
+      const nativeNames = new Set<string>();
+      for (const [key, value] of Object.entries(names)) {
+        if (
+          ["_krg", "__proto__", "prototype", "constructor"].includes(key) ||
+          typeof value !== "string" ||
+          !/^[A-Za-z_][A-Za-z0-9_]*$/.test(value)
+        )
+          this.fail(
+            node,
+            "KRG2745",
+            "Variable state requires property names mapped to simple native identifiers.",
+          );
+        if (nativeNames.has(value))
+          this.fail(node, "KRG2745", `Duplicate native variable '${value}' in variable state.`);
+        nativeNames.add(value);
+      }
+      return { _krg: "variable-state", scope, names } as VariableState;
+    }
     if (name === "CountryHeatmap") {
       if (context.mode !== "top")
         this.fail(node, "KRG2028", "Country heatmaps belong at module scope.");
@@ -1406,6 +1656,11 @@ export class Lowerer {
           "KRG2028",
           "Game declarations belong at module scope; effect helpers may only produce effects.",
         );
+      if (
+        (name === "ScriptedEffect" || name === "StateScriptedEffect") &&
+        (args.length === 4 || (args.length === 3 && typeof args[1] !== "string"))
+      )
+        return this.parameterizedEffect(name, args, node);
       // Publish event identity before lowering its callbacks. This allows declared
       // event chains (including a delayed self-loop) without recursive expansion.
       if (["CountryEvent", "StateEvent", "NewsEvent"].includes(name)) {
@@ -1449,6 +1704,134 @@ export class Lowerer {
     if (this.scriptedNames.has(key))
       this.fail(node, "KRG2611", `Duplicate scripted ${kind} name '${name}'.`);
     this.scriptedNames.add(key);
+  }
+
+  private parameterizedEffect(name: string, args: Value[], node: ts.Node): Definition {
+    const explicitScope = args.length === 4;
+    const parameters = this.object(args[explicitScope ? 2 : 1], node);
+    for (const [key, type] of Object.entries(parameters)) {
+      if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(key) || !["number", "number[]"].includes(String(type)))
+        this.fail(
+          node,
+          "KRG2612",
+          "Scripted effect parameters require identifier keys and 'number' or 'number[]' types.",
+        );
+    }
+    const callback = args[explicitScope ? 3 : 2];
+    if (!tagged(callback, "function"))
+      this.fail(node, "KRG2030", "Expected a typed game scope callback.");
+    const id = this.string(args[0], node);
+    this.claimScriptedName("effect", id, node);
+    const definition: Definition = {
+      _krg: "definition",
+      name: id,
+      scope: explicitScope
+        ? this.string(args[1], node)
+        : name.startsWith("State")
+          ? "state"
+          : "country",
+      definitionKind: "effect",
+      outputs: [],
+    };
+    this.parameterizedEffects.set(definition, {
+      parameters: parameters as ParameterizedEffect["parameters"],
+      callback: callback as Callable,
+    });
+    return definition;
+  }
+
+  private runParameterizedEffect(
+    definition: Definition,
+    effect: ParameterizedEffect,
+    args: Value[],
+    scope: Scope,
+    node: ts.Node,
+    context: Context,
+  ): void {
+    if (context.mode !== "effect")
+      this.fail(node, "KRG2037", "Effects cannot execute in triggers or module initializers.");
+    if (args.length !== 2 || !record(args[1]) || "_krg" in args[1] || Array.isArray(args[1]))
+      this.fail(node, "KRG2613", "A parameterized effect call requires its parameter record.");
+    const inputs = args[1] as Record<string, Value>;
+    const keys = Object.keys(effect.parameters);
+    const missing = keys.filter((key) => !Object.hasOwn(inputs, key));
+    const extra = Object.keys(inputs).filter((key) => !Object.hasOwn(effect.parameters, key));
+    if (missing.length || extra.length)
+      this.fail(
+        node,
+        "KRG2613",
+        `Invalid scripted effect arguments.${missing.length ? ` Missing: ${missing.join(", ")}.` : ""}${extra.length ? ` Unknown: ${extra.join(", ")}.` : ""}`,
+      );
+    const name = `krg_${context.prefix}_call_${safeId(definition.name!)}_${++this.sequence}`;
+    const bindings: Record<string, Variable | RuntimeArray> = Object.create(null);
+    const setup: pdx.PdxItem[] = [];
+    const caller = { ...context, sink: setup };
+    for (const key of keys) {
+      const input = inputs[key];
+      if (effect.parameters[key] === "number[]") {
+        if (!tagged(input, "array"))
+          this.fail(
+            node,
+            "KRG2613",
+            `Parameter '${key}' requires a mutable runtime numeric array.`,
+          );
+        const array = input as RuntimeArray;
+        if (!array.temporary && array.scope.id !== scope.id)
+          this.fail(
+            node,
+            "KRG2613",
+            `Persistent array parameter '${key}' must belong to the effect's target scope.`,
+          );
+        bindings[key] = array;
+      } else {
+        if (!(
+          typeof input === "number" ||
+          tagged(input, "variable") ||
+          tagged(input, "arithmetic")
+        ))
+          this.fail(
+            node,
+            "KRG2613",
+            `Parameter '${key}' requires a number or runtime numeric value.`,
+          );
+        const parameterName = `${name}_param_${key}`;
+        this.variableEffect("set_temp_variable", parameterName, input, node, caller);
+        bindings[key] = {
+          _krg: "variable",
+          name: parameterName,
+          scope,
+          mutable: false,
+          temporary: true,
+        };
+      }
+    }
+    this.claimScriptedName("effect", name, node);
+    const body = this.callback(
+      effect.callback,
+      scope.name,
+      "effect",
+      node,
+      { ...context, prefix: name },
+      undefined,
+      [],
+      (target) => [
+        Object.fromEntries(
+          Object.entries(bindings).map(([key, value]) => [key, { ...value, scope: target }]),
+        ),
+      ],
+    );
+    this.outputs.push({
+      ...this.output(
+        `common/scripted_effects/krieg_${name}.txt`,
+        pdx.document([pdx.property(name, pdx.block(body))]),
+        node,
+      ),
+      sourceFile: context.declarationFile ?? node.getSourceFile().fileName,
+    });
+    context.sink.push(
+      ...setup,
+      ...this.inScope([pdx.property(name, pdx.atom("yes"))], scope, context, node),
+    );
   }
 
   private scriptedFamily(name: string, args: Value[], node: ts.Node, context: Context): Value {
@@ -2164,6 +2547,7 @@ export class Lowerer {
     outer: Context,
     parent?: Scope,
     parameters: Value[] = [],
+    bindParameters?: (scope: Scope) => Value[],
   ): pdx.PdxItem[] {
     const actionCallback = this.countryActions.callback(value, scopeName, mode, node);
     if (actionCallback) return actionCallback;
@@ -2176,8 +2560,20 @@ export class Lowerer {
       ...(parent ? { parent } : {}),
     };
     const sink: pdx.PdxItem[] = [];
-    const context: Context = { env: new Map(), mode, sink, scope, prefix: outer.prefix };
-    const result = this.invoke(value as Callable, [scope, ...parameters], node, context);
+    const context: Context = {
+      env: new Map(),
+      mode,
+      sink,
+      scope,
+      prefix: outer.prefix,
+      declarationFile: outer.declarationFile ?? node.getSourceFile().fileName,
+    };
+    const result = this.invoke(
+      value as Callable,
+      [scope, ...(bindParameters?.(scope) ?? parameters)],
+      node,
+      context,
+    );
     if (mode === "trigger") return this.flattenLogical(this.trigger(result, node, context));
     if (result !== undefined) this.fail(node, "KRG2031", "An effect callback must return void.");
     return sink;
@@ -2208,7 +2604,144 @@ export class Lowerer {
     const scopePath = this.scopePath(target, context.scope, node);
     return scopePath ? [pdx.property(scopePath, pdx.block(items))] : items;
   }
+  private arrayVariable(array: RuntimeArray, index: string, mutable: boolean): Variable {
+    return {
+      _krg: "variable",
+      name: `${array.name}^${index}`,
+      scope: array.scope,
+      mutable,
+      temporary: array.temporary,
+      property: true,
+      ...(index === "num" ? { lengthOf: array } : {}),
+    };
+  }
+  private arrayIndex(index: Value, node: ts.Node, context: Context): string {
+    if (typeof index !== "number" && !tagged(index, "variable") && !tagged(index, "arithmetic"))
+      this.fail(node, "KRG2708", "Array indices must be numeric.");
+    if (typeof index === "number" && (!Number.isSafeInteger(index) || index < 0))
+      this.fail(node, "KRG2708", "Literal array indices must be non-negative integers.");
+    const encoded = this.toPdx(index, node, context);
+    if (encoded.kind !== "atom") this.fail(node, "KRG2708", "Invalid array index.");
+    return encoded.text;
+  }
+  private arrayArgument(value: Value, node: ts.Node, context: Context): Value {
+    if (typeof value === "number") return value;
+    if (!tagged(value, "variable") && !tagged(value, "arithmetic"))
+      this.fail(node, "KRG2751", "Runtime arrays contain numeric values.");
+    return this.snapshotNumber(value, node, context);
+  }
+  private runtimeArrayCall(
+    array: RuntimeArray,
+    method: string,
+    args: Value[],
+    node: ts.Node,
+    context: Context,
+  ): Value {
+    const local = array.temporary ? context : { ...context, scope: array.scope, sink: [] };
+    const numeric = (value: Value): pdx.PdxValue => {
+      if (typeof value !== "number" && !tagged(value, "variable") && !tagged(value, "arithmetic"))
+        this.fail(node, "KRG2751", "Runtime arrays contain numeric values.");
+      return this.toPdx(value, node, local);
+    };
+    if (method === "includes") {
+      if (args.length !== 1)
+        this.fail(node, "KRG2750", "Runtime includes requires one numeric value.");
+      return {
+        _krg: "trigger",
+        items: this.inScope(
+          [
+            pdx.property(
+              "is_in_array",
+              pdx.block([
+                pdx.property("array", pdx.atom(array.name)),
+                pdx.property("value", numeric(args[0])),
+              ]),
+            ),
+          ],
+          array.temporary ? context.scope! : array.scope,
+          context,
+          node,
+        ),
+      } as Trigger;
+    }
+    if (context.mode !== "effect" || !context.scope)
+      this.fail(node, "KRG2037", "Array mutations require an effect callback.");
+    const add = array.temporary ? "add_to_temp_array" : "add_to_array";
+    if (method === "push") {
+      const values = args.map((value) => this.arrayArgument(value, node, context));
+      for (const value of values)
+        local.sink.push(
+          pdx.property(
+            add,
+            pdx.block([
+              pdx.property("array", pdx.atom(array.name)),
+              pdx.property("value", numeric(value)),
+            ]),
+          ),
+        );
+    } else {
+      if (!ts.isExpressionStatement(node.parent))
+        this.fail(
+          node,
+          "KRG2750",
+          "splice must be a standalone statement; its removed values are not available.",
+        );
+      const count = args[1];
+      if (args.length < 2 || typeof count !== "number" || !Number.isSafeInteger(count) || count < 0)
+        this.fail(
+          node,
+          "KRG2750",
+          "splice requires a non-negative index and a constant non-negative delete count.",
+        );
+      const index = this.arrayIndex(this.arrayArgument(args[0], node, context), node, context);
+      const values = args.slice(2).map((value) => this.arrayArgument(value, node, context));
+      for (let offset = 0; offset < count; offset++) {
+        this.tick(node);
+        local.sink.push(
+          pdx.property(
+            array.temporary ? "remove_from_temp_array" : "remove_from_array",
+            pdx.block([
+              pdx.property("array", pdx.atom(array.name)),
+              pdx.property("index", pdx.atom(index)),
+            ]),
+          ),
+        );
+      }
+      for (const value of values.reverse())
+        local.sink.push(
+          pdx.property(
+            add,
+            pdx.block([
+              pdx.property("array", pdx.atom(array.name)),
+              pdx.property("index", pdx.atom(index)),
+              pdx.property("value", numeric(value)),
+            ]),
+          ),
+        );
+    }
+    if (!array.temporary)
+      context.sink.push(...this.inScope(local.sink, array.scope, context, node));
+    if (method !== "push" || !ts.isCallExpression(node) || ts.isExpressionStatement(node.parent))
+      return undefined;
+    const name = `krg_${context.prefix}_length_${++this.sequence}`;
+    this.variableEffect(
+      "set_temp_variable",
+      name,
+      this.arrayVariable(array, "num", false),
+      node,
+      context,
+    );
+    return {
+      _krg: "variable",
+      name,
+      scope: context.scope,
+      mutable: false,
+      temporary: true,
+    } as Variable;
+  }
   private memberCall(member: Member, args: Value[], node: ts.Node, context: Context): Value {
+    if (tagged(member.object, "array"))
+      return this.runtimeArrayCall(member.object as RuntimeArray, member.name, args, node, context);
     if (
       Array.isArray(member.object) &&
       ["map", "flatMap", "filter", "some", "every"].includes(member.name)
@@ -2322,6 +2855,22 @@ export class Lowerer {
     if (!tagged(member.object, "scope"))
       this.fail(node, "KRG2038", "Arbitrary JavaScript methods are not available.");
     const scope = member.object as Scope;
+    if (member.name === "numberArray") {
+      const name = this.string(args[0], node);
+      if (args.length !== 1 || !/^[A-Za-z_][A-Za-z0-9_]*$/.test(name))
+        this.fail(node, "KRG2702", "numberArray requires one simple native array name.");
+      return { _krg: "array", name, scope } as RuntimeArray;
+    }
+    if (member.name === "variables") {
+      const layout = args[0];
+      if (!tagged(layout, "variable-state") || layout.scope !== scope.name)
+        this.fail(node, "KRG2745", `Variable state must match the '${scope.name}' scope.`);
+      return {
+        _krg: "bound-variable-state",
+        scope,
+        names: layout.names,
+      } as BoundVariableState;
+    }
     if (
       [
         "arrayLength",
@@ -2898,6 +3447,27 @@ export class Lowerer {
         definition.scope !== scope.name
       )
         this.fail(node, "KRG2066", `Expected a scripted ${kind} handle for ${scope.name} scope.`);
+      const parameterized = this.parameterizedEffects.get(definition);
+      if (parameterized) {
+        this.runParameterizedEffect(
+          definition as Definition,
+          parameterized,
+          args,
+          scope,
+          node,
+          context,
+        );
+        return undefined;
+      }
+      if (
+        args.length > (kind === "effect" ? 2 : 1) ||
+        (args[1] !== undefined && typeof args[1] !== "boolean")
+      )
+        this.fail(
+          node,
+          "KRG2613",
+          "An ordinary scripted call accepts only its optional boolean invocation value.",
+        );
       const items = this.inScope(
         [
           pdx.property(
@@ -3003,6 +3573,7 @@ export class Lowerer {
       return /^[^\s{}=#"<>!?]+$/.test(value) && value !== "" ? pdx.atom(value) : pdx.string(value);
     if (tagged(value, "variable")) {
       const variable = value as Variable;
+      if (variable.temporary) return pdx.atom(variable.name);
       if (/^(?:global|ROOT|FROM)\./i.test(variable.name)) return pdx.atom(variable.name);
       const prefix = this.scopePath(variable.scope, context.scope, node);
       return pdx.atom(prefix ? `${prefix}.${variable.name}` : variable.name);
@@ -3032,7 +3603,7 @@ export class Lowerer {
     const operator = node.operatorToken.kind;
     if (operator >= ts.SyntaxKind.FirstAssignment && operator <= ts.SyntaxKind.LastAssignment)
       return this.assignment(node, context);
-    const left = this.evaluate(node.left, context);
+    let left = this.evaluate(node.left, context);
     if (operator === ts.SyntaxKind.AmpersandAmpersandToken && left === false) return false;
     if (operator === ts.SyntaxKind.BarBarToken && left === true) return true;
     if (
@@ -3040,7 +3611,10 @@ export class Lowerer {
       (operator === ts.SyntaxKind.BarBarToken && left === false)
     )
       return this.evaluate(node.right, context);
-    const right = this.evaluate(node.right, context);
+    const pending = { ...context, sink: [] as pdx.PdxItem[] };
+    const right = this.evaluate(node.right, pending);
+    if (pending.sink.length) left = this.snapshotNumber(left, node.left, context);
+    context.sink.push(...pending.sink);
     if (
       operator === ts.SyntaxKind.AmpersandAmpersandToken ||
       operator === ts.SyntaxKind.BarBarToken
@@ -3261,7 +3835,7 @@ export class Lowerer {
         "Runtime arithmetic requires an effect context. Calculate a variable before comparing it in a trigger.",
       );
     const name = `krg_${context.prefix}_tmp_${++this.sequence}`;
-    this.variableEffect("set_variable", name, value.left, node, context);
+    this.variableEffect("set_temp_variable", name, value.left, node, context);
     const operations: Partial<Record<ts.SyntaxKind, string>> = {
       [ts.SyntaxKind.PlusToken]: "add_to_variable",
       [ts.SyntaxKind.MinusToken]: "subtract_from_variable",
@@ -3271,7 +3845,13 @@ export class Lowerer {
     };
     const operation = operations[value.operator];
     if (!operation) this.fail(node, "KRG2052", "Unsupported runtime arithmetic operator.");
-    this.variableEffect(operation, name, value.right, node, context);
+    this.variableEffect(
+      operation.replace("variable", "temp_variable"),
+      name,
+      value.right,
+      node,
+      context,
+    );
     return name;
   }
   private variableEffect(
@@ -3290,17 +3870,54 @@ export class Lowerer {
     );
   }
   private assignment(node: ts.BinaryExpression, context: Context): Value {
-    if (context.mode !== "effect" || !ts.isIdentifier(node.left))
+    if (
+      context.mode !== "effect" ||
+      !(
+        ts.isIdentifier(node.left) ||
+        ts.isPropertyAccessExpression(node.left) ||
+        ts.isElementAccessExpression(node.left)
+      )
+    )
       this.fail(
         node,
         "KRG2053",
-        "Assignments are limited to local numeric game variables inside effects.",
+        "Assign numeric game variables or variable state properties inside effects.",
       );
     const variable = this.evaluate(node.left, context);
+    if (tagged(variable, "variable") && variable.lengthOf) {
+      if (
+        node.operatorToken.kind !== ts.SyntaxKind.EqualsToken ||
+        this.evaluate(node.right, context) !== 0
+      )
+        this.fail(
+          node,
+          "KRG2750",
+          "Runtime array length can only be assigned zero to clear the array.",
+        );
+      const array = variable.lengthOf as RuntimeArray;
+      const item = pdx.property(
+        array.temporary ? "clear_temp_array" : "clear_array",
+        pdx.atom(array.name),
+      );
+      context.sink.push(
+        ...(array.temporary ? [item] : this.inScope([item], array.scope, context, node)),
+      );
+      return undefined;
+    }
+    if (tagged(variable, "array"))
+      this.fail(
+        node,
+        "KRG2750",
+        "Runtime array bindings cannot be reassigned. Update elements, push, splice, or clear length.",
+      );
     if (!tagged(variable, "variable") || !variable.mutable)
-      this.fail(node, "KRG2054", "Only let-declared numeric game variables can be assigned.");
+      this.fail(
+        node,
+        "KRG2054",
+        "Only mutable game variables or variable state properties can be assigned.",
+      );
     const target = variable as Variable;
-    if (this.scopePath(target.scope, context.scope, node))
+    if (!target.property && !target.temporary && this.scopePath(target.scope, context.scope, node))
       this.fail(node, "KRG2055", "Assign a variable within its declaring scope.");
     const operations: Partial<Record<ts.SyntaxKind, string>> = {
       [ts.SyntaxKind.EqualsToken]: "set_variable",
@@ -3312,7 +3929,19 @@ export class Lowerer {
     };
     const operation = operations[node.operatorToken.kind];
     if (!operation) this.fail(node, "KRG2056", "This assignment operator cannot be lowered.");
-    this.variableEffect(operation, target.name, this.evaluate(node.right, context), node, context);
+    const value = this.evaluate(node.right, context);
+    if (!(typeof value === "number" || tagged(value, "variable") || tagged(value, "arithmetic")))
+      this.fail(node, "KRG2703", "Variable assignment requires a number or numeric expression.");
+    if ((operation === "divide_variable" || operation === "modulo_variable") && value === 0)
+      this.fail(node, "KRG2704", "Division or modulo by constant zero is invalid.");
+    const name = (this.toPdx(target, node, context) as pdx.PdxAtom).text;
+    this.variableEffect(
+      target.temporary ? operation.replace(/_variable$/, "_temp_variable") : operation,
+      name,
+      value,
+      node,
+      context,
+    );
     return undefined;
   }
   private increment(
@@ -3321,7 +3950,10 @@ export class Lowerer {
     node: ts.Node,
     context: Context,
   ): Value {
-    if (!ts.isExpressionStatement(node.parent))
+    if (
+      !ts.isExpressionStatement(node.parent) &&
+      !(ts.isForStatement(node.parent) && node.parent.incrementor === node)
+    )
       this.fail(
         node,
         "KRG2057",
@@ -3332,13 +3964,156 @@ export class Lowerer {
       this.fail(
         node,
         "KRG2058",
-        "Increment/decrement requires a local numeric game variable in an effect.",
+        "Increment/decrement requires a mutable numeric game variable in an effect.",
       );
     const target = variable as Variable;
-    if (this.scopePath(target.scope, context.scope, node))
+    if (!target.property && !target.temporary && this.scopePath(target.scope, context.scope, node))
       this.fail(node, "KRG2055", "Assign a variable within its declaring scope.");
-    this.variableEffect("add_to_variable", target.name, amount, node, context);
+    const name = (this.toPdx(target, node, context) as pdx.PdxAtom).text;
+    this.variableEffect(
+      target.temporary ? "add_to_temp_variable" : "add_to_variable",
+      name,
+      amount,
+      node,
+      context,
+    );
     return undefined;
+  }
+  private localDeclarations(declarations: ts.VariableDeclarationList, context: Context): void {
+    if (!(declarations.flags & (ts.NodeFlags.Const | ts.NodeFlags.Let)))
+      this.fail(
+        declarations,
+        "KRG2067",
+        "Use const for compile-time values and let for numeric game variables. var hoisting is not supported.",
+      );
+    for (const declaration of declarations.declarations) {
+      if (!ts.isIdentifier(declaration.name) || !declaration.initializer)
+        this.fail(
+          declaration,
+          "KRG2059",
+          "Local declarations require a named identifier and initializer.",
+        );
+      const value = this.evaluate(declaration.initializer, context);
+      const symbol = this.symbol(declaration.name)!;
+      const type = this.checker.getTypeAtLocation(declaration.name);
+      const numericArray = this.checker.isArrayType(type) && type.symbol?.name === "Array";
+      if (tagged(value, "array")) {
+        context.env.set(symbol, value);
+        continue;
+      }
+      if (
+        Array.isArray(value) &&
+        (!(declarations.flags & ts.NodeFlags.Const) || (declaration.type && numericArray))
+      ) {
+        if (context.mode !== "effect" || !context.scope)
+          this.fail(declaration, "KRG2060", "Runtime arrays must be initialized inside an effect.");
+        const element = this.checker.getIndexTypeOfType(type, ts.IndexKind.Number);
+        if (
+          !element ||
+          element.flags & ts.TypeFlags.Any ||
+          !this.checker.isTypeAssignableTo(element, this.checker.getNumberType())
+        )
+          this.fail(
+            declaration,
+            "KRG2751",
+            "Runtime arrays require a numeric element type. Annotate an empty array as number[].",
+          );
+        const name = `krg_${context.prefix}_${safeId(declaration.name.text)}_${++this.sequence}`;
+        const array: RuntimeArray = { _krg: "array", name, scope: context.scope, temporary: true };
+        context.sink.push(pdx.property("clear_temp_array", pdx.atom(name)));
+        this.runtimeArrayCall(array, "push", value, declaration, context);
+        context.env.set(symbol, array);
+        continue;
+      }
+      if (declarations.flags & ts.NodeFlags.Const) {
+        if (tagged(value, "variable") || tagged(value, "arithmetic")) {
+          if (context.mode !== "effect" || !context.scope)
+            this.fail(
+              declaration,
+              "KRG2068",
+              "A runtime numeric snapshot requires an effect context.",
+            );
+          const name = `krg_${context.prefix}_${safeId(declaration.name.text)}_${++this.sequence}`;
+          this.variableEffect("set_temp_variable", name, value, declaration, context);
+          context.env.set(symbol, {
+            _krg: "variable",
+            name,
+            scope: context.scope,
+            mutable: false,
+            temporary: true,
+          } as Variable);
+        } else {
+          if (context.mode === "effect" && (tagged(value, "trigger") || tagged(value, "query")))
+            this.fail(
+              declaration,
+              "KRG2069",
+              "Store boolean predicates as typed helper functions, or use them directly in if. A runtime predicate cannot be stored as a compile-time constant.",
+            );
+          context.env.set(symbol, value);
+        }
+      } else {
+        if (
+          context.mode !== "effect" ||
+          !context.scope ||
+          !(typeof value === "number" || tagged(value, "variable") || tagged(value, "arithmetic"))
+        )
+          this.fail(
+            declaration,
+            "KRG2060",
+            "let variables must be numeric values or numeric arrays initialized inside an effect.",
+          );
+        const name = `krg_${context.prefix}_${safeId(declaration.name.text)}_${++this.sequence}`;
+        const variable: Variable = {
+          _krg: "variable",
+          name,
+          scope: context.scope,
+          mutable: true,
+          temporary: true,
+        };
+        this.variableEffect("set_temp_variable", name, value, declaration, context);
+        context.env.set(symbol, variable);
+      }
+    }
+  }
+  private runtimeLoop(statement: ts.WhileStatement | ts.ForStatement, context: Context): void {
+    if (context.mode !== "effect" || !context.scope)
+      this.fail(statement, "KRG2063", "Runtime loops require an effect callback.");
+    const loop: Context = { ...context, env: new Map(context.env) };
+    const counted = ts.isForStatement(statement);
+    if (counted) {
+      const initializer = statement.initializer as ts.VariableDeclarationList;
+      const declaration = initializer.declarations[0];
+      if (
+        !this.checker.isTypeAssignableTo(
+          this.checker.getTypeAtLocation(declaration.name),
+          this.checker.getNumberType(),
+        )
+      )
+        this.fail(declaration, "KRG2060", "A runtime for-loop counter must be numeric.");
+      this.localDeclarations(initializer, loop);
+    }
+    const test = counted ? statement.condition! : statement.expression;
+    const predicate: Context = { ...loop, mode: "trigger", sink: [] };
+    const value = this.evaluate(test, predicate);
+    if (value === false) return;
+    if (value === true)
+      this.fail(test, "KRG1001", "A runtime loop needs a condition that can become false in game.");
+    const limit = this.flattenLogical(this.trigger(value, test, predicate));
+    const stop = `krg_${context.prefix}_loop_break_${++this.sequence}`;
+    this.variableEffect("set_temp_variable", stop, 0, statement, context);
+    const body: Context = { ...loop, sink: [], dynamicBranch: true };
+    this.statements([statement.statement], body);
+    if (counted) this.evaluate(statement.incrementor!, body);
+    context.sink.push(
+      pdx.property(
+        "while_loop_effect",
+        pdx.block([
+          pdx.property("limit", pdx.block(limit)),
+          pdx.property("break", pdx.atom(stop)),
+          ...body.sink,
+        ]),
+      ),
+    );
   }
   private statements(
     statements: ts.NodeArray<ts.Statement> | readonly ts.Statement[],
@@ -3347,72 +4122,7 @@ export class Lowerer {
     for (const statement of statements) {
       this.tick(statement);
       if (ts.isVariableStatement(statement)) {
-        if (!(statement.declarationList.flags & (ts.NodeFlags.Const | ts.NodeFlags.Let)))
-          this.fail(
-            statement,
-            "KRG2067",
-            "Use const for compile-time values and let for numeric game variables. var hoisting is not supported.",
-          );
-        for (const declaration of statement.declarationList.declarations) {
-          if (!ts.isIdentifier(declaration.name) || !declaration.initializer)
-            this.fail(
-              declaration,
-              "KRG2059",
-              "Local declarations require a named identifier and initializer.",
-            );
-          const value = this.evaluate(declaration.initializer, context);
-          const symbol = this.symbol(declaration.name)!;
-          if (statement.declarationList.flags & ts.NodeFlags.Const) {
-            if (tagged(value, "variable") || tagged(value, "arithmetic")) {
-              if (context.mode !== "effect" || !context.scope)
-                this.fail(
-                  declaration,
-                  "KRG2068",
-                  "A runtime numeric snapshot requires an effect context.",
-                );
-              const name = `krg_${context.prefix}_${safeId(declaration.name.text)}_${++this.sequence}`;
-              this.variableEffect("set_variable", name, value, declaration, context);
-              context.env.set(symbol, {
-                _krg: "variable",
-                name,
-                scope: context.scope,
-                mutable: false,
-              } as Variable);
-            } else {
-              if (context.mode === "effect" && (tagged(value, "trigger") || tagged(value, "query")))
-                this.fail(
-                  declaration,
-                  "KRG2069",
-                  "Store boolean predicates as typed helper functions, or use them directly in if. A runtime predicate cannot be stored as a compile-time constant.",
-                );
-              context.env.set(symbol, value);
-            }
-          } else {
-            if (
-              context.mode !== "effect" ||
-              !context.scope ||
-              !(
-                typeof value === "number" ||
-                tagged(value, "variable") ||
-                tagged(value, "arithmetic")
-              )
-            )
-              this.fail(
-                declaration,
-                "KRG2060",
-                "let variables are numeric game variables and must be initialized inside an effect.",
-              );
-            const name = `krg_${context.prefix}_${safeId(declaration.name.text)}_${++this.sequence}`;
-            const variable: Variable = {
-              _krg: "variable",
-              name,
-              scope: context.scope,
-              mutable: true,
-            };
-            this.variableEffect("set_variable", name, value, declaration, context);
-            context.env.set(symbol, variable);
-          }
-        }
+        this.localDeclarations(statement.declarationList, context);
       } else if (ts.isExpressionStatement(statement)) {
         const value = this.evaluate(statement.expression, context);
         if (tagged(value, "trigger") || tagged(value, "query"))
@@ -3471,13 +4181,46 @@ export class Lowerer {
             context.sink.push(pdx.property("else", pdx.block(elseItems)));
           }
         }
+      } else if (ts.isWhileStatement(statement) || ts.isForStatement(statement)) {
+        this.runtimeLoop(statement, context);
       } else if (ts.isForOfStatement(statement)) {
-        const values = this.array(
-          this.evaluate(statement.expression, context),
-          statement.expression,
-        );
+        const source = this.evaluate(statement.expression, context);
         const declaration = (statement.initializer as ts.VariableDeclarationList).declarations[0];
         const symbol = this.symbol(declaration.name)!;
+        if (tagged(source, "array")) {
+          if (context.mode !== "effect" || !context.scope)
+            this.fail(statement, "KRG2037", "Runtime array iteration requires an effect callback.");
+          const array = source as RuntimeArray;
+          const name = `krg_${context.prefix}_${safeId(declaration.name.getText())}_${++this.sequence}`;
+          const env = new Map(context.env);
+          env.set(symbol, {
+            _krg: "variable",
+            name,
+            scope: context.scope,
+            mutable: false,
+            temporary: true,
+          } as Variable);
+          const sink: pdx.PdxItem[] = [];
+          this.statements([statement.statement], { ...context, env, sink, dynamicBranch: true });
+          const prefix = array.temporary
+            ? undefined
+            : this.scopePath(array.scope, context.scope, statement);
+          this.variableEffect("set_temp_variable", `${name}_break`, 0, statement, context);
+          context.sink.push(
+            pdx.property(
+              "for_each_loop",
+              pdx.block([
+                pdx.property("array", pdx.atom(prefix ? `${prefix}.${array.name}` : array.name)),
+                pdx.property("value", pdx.atom(name)),
+                pdx.property("index", pdx.atom(`${name}_index`)),
+                pdx.property("break", pdx.atom(`${name}_break`)),
+                ...sink,
+              ]),
+            ),
+          );
+          continue;
+        }
+        const values = this.array(source, statement.expression);
         for (const value of values) {
           const env = new Map(context.env);
           env.set(symbol, value);

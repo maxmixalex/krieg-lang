@@ -18,7 +18,7 @@
 
 > **MetaEffect**&lt;`Text` *extends* `string`&gt;(`scope`: `object`, `specification`: [`MetaEffectSpec`](#metaeffectspec)&lt;`Text`&gt;): `void`
 
-Defined in: [src/sdk/index.ts:840](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L840)
+Defined in: [src/sdk/index.ts:919](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L919)
 
 ### Type Parameters { #metaeffect-section-type-parameters }
 
@@ -41,7 +41,7 @@ Defined in: [src/sdk/index.ts:840](https://github.com/maxmixalex/krieg-lang/blob
 
 ## MetaEffectSpec&lt;Text *extends* `string`&gt; { #metaeffectspec }
 
-Defined in: [src/sdk/index.ts:834](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L834)
+Defined in: [src/sdk/index.ts:913](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L913)
 
 ### Type Parameters { #metaeffectspec-section-type-parameters }
 
@@ -53,16 +53,16 @@ Defined in: [src/sdk/index.ts:834](https://github.com/maxmixalex/krieg-lang/blob
 
 | Property | Type | Description | Defined in |
 | ------ | ------ | ------ | ------ |
-| <a id="metaeffectspec-property-debug"></a> `debug?` | `boolean` | - | [src/sdk/index.ts:838](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L838) |
-| <a id="metaeffectspec-property-parameters"></a> `parameters` | `{ readonly [Name in string]: MetaParameterValue }` | - | [src/sdk/index.ts:837](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L837) |
-| <a id="metaeffectspec-property-text"></a> `text` | `Text` | An effect block body without outer braces, containing [PARAMETER] placeholders. | [src/sdk/index.ts:836](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L836) |
+| <a id="metaeffectspec-property-debug"></a> `debug?` | `boolean` | - | [src/sdk/index.ts:917](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L917) |
+| <a id="metaeffectspec-property-parameters"></a> `parameters` | `{ readonly [Name in string]: MetaParameterValue }` | - | [src/sdk/index.ts:916](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L916) |
+| <a id="metaeffectspec-property-text"></a> `text` | `Text` | An effect block body without outer braces, containing [PARAMETER] placeholders. | [src/sdk/index.ts:915](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L915) |
 
 
 ## MetaParameterNames&lt;Text *extends* `string`&gt; { #metaparameternames }
 
 > **MetaParameterNames**&lt;`Text` *extends* `string`&gt; = `Text` *extends* `` `${string}[${infer Name}]${infer Rest}` `` ? `Name` \| `MetaParameterNames`&lt;`Rest`&gt; : `never`
 
-Defined in: [src/sdk/index.ts:831](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L831)
+Defined in: [src/sdk/index.ts:910](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L910)
 
 Native meta_effect substitutions are evaluated by HOI4, never by the compiler.
 
@@ -77,7 +77,7 @@ Native meta_effect substitutions are evaluated by HOI4, never by the compiler.
 
 > **MetaParameterValue** = `string` \| `number` \| `boolean` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref)
 
-Defined in: [src/sdk/index.ts:833](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L833)
+Defined in: [src/sdk/index.ts:912](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L912)
 
 
 ## 完整示例与工作流

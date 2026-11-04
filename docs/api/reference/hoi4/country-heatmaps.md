@@ -17,7 +17,7 @@
 
 > **CountryHeatmap**(`spec`: [`CountryHeatmapSpec`](#countryheatmapspec)): [`IdentifiedDefinition`](scope-selection.md#identifieddefinition)
 
-Defined in: [src/sdk/index.ts:189](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L189)
+Defined in: [src/sdk/index.ts:211](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L211)
 
 Emit the engine's country color calculator and its ordered, checked palette.
 
@@ -34,7 +34,7 @@ Emit the engine's country color calculator and its ordered, checked palette.
 
 ## CountryHeatmapSpec { #countryheatmapspec }
 
-Defined in: [src/sdk/index.ts:175](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L175)
+Defined in: [src/sdk/index.ts:197](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L197)
 
 A stepped country heat map relative to the largest observed value.
 
@@ -42,23 +42,23 @@ A stepped country heat map relative to the largest observed value.
 
 | Property | Modifier | Type | Description | Defined in |
 | ------ | ------ | ------ | ------ | ------ |
-| <a id="countryheatmapspec-property-bands"></a> `bands` | `readonly` | readonly `object`[] | Descending thresholds, each a fraction of the scaled maximum. | [src/sdk/index.ts:181](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L181) |
-| <a id="countryheatmapspec-property-fallbackcolor"></a> `fallbackColor` | `readonly` | [`MapColor`](#mapcolor) | - | [src/sdk/index.ts:183](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L183) |
-| <a id="countryheatmapspec-property-highlightmaximum"></a> `highlightMaximum?` | `readonly` | `boolean` | - | [src/sdk/index.ts:184](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L184) |
-| <a id="countryheatmapspec-property-id"></a> `id` | `readonly` | `string` | - | [src/sdk/index.ts:176](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L176) |
-| <a id="countryheatmapspec-property-maximumcolor"></a> `maximumColor` | `readonly` | [`MapColor`](#mapcolor) | - | [src/sdk/index.ts:182](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L182) |
-| <a id="countryheatmapspec-property-maximumdivisor"></a> `maximumDivisor?` | `readonly` | `number` | - | [src/sdk/index.ts:179](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L179) |
-| <a id="countryheatmapspec-property-metric"></a> `metric` | `readonly` | `string` | - | [src/sdk/index.ts:178](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L178) |
-| <a id="countryheatmapspec-property-path"></a> `path?` | `readonly` | `` `common/map_modes/${string}.txt` `` | - | [src/sdk/index.ts:177](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L177) |
-| <a id="countryheatmapspec-property-roundthresholds"></a> `roundThresholds?` | `readonly` | `boolean` | - | [src/sdk/index.ts:185](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L185) |
-| <a id="countryheatmapspec-property-updatedaily"></a> `updateDaily?` | `readonly` | `boolean` | - | [src/sdk/index.ts:186](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L186) |
+| <a id="countryheatmapspec-property-bands"></a> `bands` | `readonly` | readonly `object`[] | Descending thresholds, each a fraction of the scaled maximum. | [src/sdk/index.ts:203](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L203) |
+| <a id="countryheatmapspec-property-fallbackcolor"></a> `fallbackColor` | `readonly` | [`MapColor`](#mapcolor) | - | [src/sdk/index.ts:205](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L205) |
+| <a id="countryheatmapspec-property-highlightmaximum"></a> `highlightMaximum?` | `readonly` | `boolean` | - | [src/sdk/index.ts:206](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L206) |
+| <a id="countryheatmapspec-property-id"></a> `id` | `readonly` | `string` | - | [src/sdk/index.ts:198](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L198) |
+| <a id="countryheatmapspec-property-maximumcolor"></a> `maximumColor` | `readonly` | [`MapColor`](#mapcolor) | - | [src/sdk/index.ts:204](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L204) |
+| <a id="countryheatmapspec-property-maximumdivisor"></a> `maximumDivisor?` | `readonly` | `number` | - | [src/sdk/index.ts:201](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L201) |
+| <a id="countryheatmapspec-property-metric"></a> `metric` | `readonly` | `string` | - | [src/sdk/index.ts:200](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L200) |
+| <a id="countryheatmapspec-property-path"></a> `path?` | `readonly` | `` `common/map_modes/${string}.txt` `` | - | [src/sdk/index.ts:199](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L199) |
+| <a id="countryheatmapspec-property-roundthresholds"></a> `roundThresholds?` | `readonly` | `boolean` | - | [src/sdk/index.ts:207](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L207) |
+| <a id="countryheatmapspec-property-updatedaily"></a> `updateDaily?` | `readonly` | `boolean` | - | [src/sdk/index.ts:208](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L208) |
 
 
 ## MapColor { #mapcolor }
 
 > **MapColor** = readonly \[`red`: `number`, `green`: `number`, `blue`: `number`\]
 
-Defined in: [src/sdk/index.ts:173](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L173)
+Defined in: [src/sdk/index.ts:195](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L195)
 
 
 ## 完整示例与工作流

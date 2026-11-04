@@ -1,5 +1,6 @@
 import { type CountryScope, type GuiAiWeight } from "krieg-lang/hoi4";
 import { cards, colors, type Card } from "./cards.krg.ts";
+import { uno } from "./state.krg.ts";
 
 function holdsColor(country: CountryScope, color: number): boolean {
   return cards.some((card) => card.color === color && country.arrayContains("ku_hand", card.id));
@@ -15,7 +16,7 @@ export function cardWeight(card: Card): GuiAiWeight<CountryScope> {
           {
             factor: 50000,
             trigger: (country) =>
-              country.variable("global.ku_dealing") <= 0 &&
+              uno.dealing <= 0 &&
               colors.some(
                 (color) =>
                   country.variable("global.ku_color") === color.id &&
@@ -33,14 +34,14 @@ export function cardWeight(card: Card): GuiAiWeight<CountryScope> {
           {
             factor: 999999,
             trigger: (country) =>
-              country.variable("global.ku_dealing") <= 0 &&
+              uno.dealing <= 0 &&
               (country.variable("global.ku_rank") === 12 ||
                 country.variable("global.ku_rank") === 14),
           },
           {
             factor: 10,
             trigger: (country) =>
-              country.variable("global.ku_dealing") <= 0 &&
+              uno.dealing <= 0 &&
               colors.some((color) => country.variable("global.ku_color") === color.id),
           },
         ],
@@ -53,7 +54,7 @@ export function cardWeight(card: Card): GuiAiWeight<CountryScope> {
         {
           factor: 10000,
           trigger: (country) =>
-            country.variable("global.ku_dealing") <= 0 &&
+            uno.dealing <= 0 &&
             (country.variable("global.ku_color") === card.color ||
               country.variable("global.ku_rank") === card.rank),
         },

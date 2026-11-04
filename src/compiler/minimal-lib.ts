@@ -9,10 +9,16 @@ interface String { readonly length: number }
 interface Number {}
 interface Boolean {}
 interface RegExp {}
-interface Array<T> extends ReadonlyArray<T> { [index: number]: T }
+interface Array<T> extends ReadonlyArray<T> {
+  length: number;
+  [index: number]: T;
+  push(...items: T[]): number;
+  splice(start: number, deleteCount: number, ...items: T[]): T[];
+}
 interface ReadonlyArray<T> {
   readonly length: number;
   readonly [index: number]: T;
+  includes(value: T): boolean;
   map<U>(callback: (value: T, index: number, array: readonly T[]) => U): U[];
   flatMap<U>(callback: (value: T, index: number, array: readonly T[]) => U | readonly U[]): U[];
   filter(callback: (value: T, index: number, array: readonly T[]) => boolean): T[];

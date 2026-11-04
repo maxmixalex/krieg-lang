@@ -303,6 +303,7 @@
 | `ScopeByName` | [ScopeByName](scope-selection.md#scopebyname) |
 | `ScopedGuiDynamicList` | [ScopedGuiDynamicList](../ui/scripted-gui.md#scopedguidynamiclist) |
 | `ScopeName` | [ScopeName](scope-selection.md#scopename) |
+| `ScriptedArguments` | [ScriptedArguments](scripted-effects.md#scriptedarguments) |
 | `ScriptedEffect` | [ScriptedEffect](scripted-effects.md#scriptedeffect) |
 | `ScriptedEffectDefinition` | [ScriptedEffectDefinition](scripted-effects.md#scriptedeffectdefinition) |
 | `ScriptedEffectFamily` | [ScriptedEffectFamily](scripted-effects.md#scriptedeffectfamily) |
@@ -318,6 +319,7 @@
 | `ScriptedLocalisationText` | [ScriptedLocalisationText](localisation.md#scriptedlocalisationtext) |
 | `ScriptedMapMode` | [ScriptedMapMode](../domains/map.md#scriptedmapmode) |
 | `ScriptedMapModeSpec` | [ScriptedMapModeSpec](../domains/map.md#scriptedmapmodespec) |
+| `ScriptedParameters` | [ScriptedParameters](scripted-effects.md#scriptedparameters) |
 | `ScriptedTrigger` | [ScriptedTrigger](scripted-triggers.md#scriptedtrigger) |
 | `ScriptedTriggerDefinition` | [ScriptedTriggerDefinition](scripted-triggers.md#scriptedtriggerdefinition) |
 | `ScriptedTriggerFamily` | [ScriptedTriggerFamily](scripted-triggers.md#scriptedtriggerfamily) |
@@ -389,6 +391,9 @@
 | `UnitScope` | [UnitScope](scopes-specialized.md#unitscope) |
 | `UnitSpec` | [UnitSpec](../domains/units.md#unitspec) |
 | `VariableName` | [VariableName](scope-selection.md#variablename) |
+| `variableState` | [variableState](scope-selection.md#variablestate-function) |
+| `VariableState` | [VariableState](scope-selection.md#variablestate-interface) |
+| `VariableStateValues` | [VariableStateValues](scope-selection.md#variablestatevalues) |
 | `Wargoal` | [Wargoal](../domains/factions.md#wargoal) |
 | `WargoalSpec` | [WargoalSpec](../domains/factions.md#wargoalspec) |
 | `WeightModifier` | [WeightModifier](../ui/scripted-gui.md#weightmodifier) |

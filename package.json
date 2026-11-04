@@ -1,6 +1,6 @@
 {
   "name": "krieg-lang",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "A statically compiled TypeScript subset and project toolchain for Hearts of Iron IV mods",
   "type": "module",
   "license": "UNLICENSED",

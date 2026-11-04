@@ -59,9 +59,9 @@ test("let variables and arithmetic preserve runtime updates and comparisons", ()
     if(doubled > 20){c.effects.addPoliticalPower(doubled);} else {budget--;}
   });`);
   const text = emitPdx(result.outputs[0].document);
-  assert.match(text, /set_variable =/);
-  assert.match(text, /add_to_variable =/);
-  assert.match(text, /multiply_variable =/);
+  assert.match(text, /set_temp_variable =/);
+  assert.match(text, /add_to_temp_variable =/);
+  assert.match(text, /multiply_temp_variable =/);
   assert.match(text, /check_variable =/);
   assert.match(text, /value = 20/);
   assert.match(text, /compare = greater_than/);

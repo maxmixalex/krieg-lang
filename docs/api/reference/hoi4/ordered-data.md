@@ -22,7 +22,7 @@
 
 > **cwt**(`items`: readonly [`PdxItem`](../pdx/construct.md#pdxitem)[]): [`CwtNode`](#cwtnode)
 
-Defined in: [src/sdk/index.ts:795](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L795)
+Defined in: [src/sdk/index.ts:874](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L874)
 
 A deliberate typed escape to ordered syntax for a CWT block argument.
 
@@ -39,26 +39,26 @@ A deliberate typed escape to ordered syntax for a CWT block argument.
 
 ## CwtNode { #cwtnode }
 
-Defined in: [src/sdk/index.ts:76](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L76)
+Defined in: [src/sdk/index.ts:98](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L98)
 
 ### Properties { #cwtnode-section-properties }
 
 | Property | Modifier | Type | Defined in |
 | ------ | ------ | ------ | ------ |
-| <a id="cwtnode-property-items"></a> `items` | `readonly` | readonly [`PdxItem`](../pdx/construct.md#pdxitem)[] | [src/sdk/index.ts:78](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L78) |
-| <a id="cwtnode-property-kind"></a> `kind` | `readonly` | `"cwt"` | [src/sdk/index.ts:77](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L77) |
+| <a id="cwtnode-property-items"></a> `items` | `readonly` | readonly [`PdxItem`](../pdx/construct.md#pdxitem)[] | [src/sdk/index.ts:100](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L100) |
+| <a id="cwtnode-property-kind"></a> `kind` | `readonly` | `"cwt"` | [src/sdk/index.ts:99](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L99) |
 
 
 ## CwtValue { #cwtvalue }
 
 > **CwtValue** = `string` \| `number` \| `boolean` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`CwtNode`](#cwtnode)
 
-Defined in: [src/sdk/index.ts:80](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L80)
+Defined in: [src/sdk/index.ts:102](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L102)
 
 
 ## CwtOpaque { #cwtopaque }
 
-Defined in: [src/sdk/index.ts:73](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L73)
+Defined in: [src/sdk/index.ts:95](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L95)
 
 Deliberately opaque for CWT expressions which cannot be represented safely.
 
@@ -66,14 +66,14 @@ Deliberately opaque for CWT expressions which cannot be represented safely.
 
 | Property | Modifier | Type | Defined in |
 | ------ | ------ | ------ | ------ |
-| <a id="cwtopaque-property-__cwtopaque"></a> `__cwtOpaque` | `readonly` | *typeof* [`__cwtOpaque`](#cwtopaque-property-__cwtopaque) | [src/sdk/index.ts:74](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L74) |
+| <a id="cwtopaque-property-__cwtopaque"></a> `__cwtOpaque` | `readonly` | *typeof* [`__cwtOpaque`](#cwtopaque-property-__cwtopaque) | [src/sdk/index.ts:96](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L96) |
 
 
 ## DataFile() { #datafile }
 
 > **DataFile**(`path`: `string`, `data`: [`DataRecord`](#datarecord)): [`Definition`](scope-selection.md#definition)
 
-Defined in: [src/sdk/index.ts:786](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L786)
+Defined in: [src/sdk/index.ts:865](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L865)
 
 Emit structured native data at an explicit game-relative path. Prefer a named domain constructor for game-specific field checking. For repeated keys, mixed blocks or explicit native operators, use the ordered PDX API instead.
 
@@ -93,12 +93,12 @@ Emit structured native data at an explicit game-relative path. Prefer a named do
 
 > **DataValue** = `string` \| `number` \| `boolean` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref) \| [`DataRecord`](#datarecord) \| readonly `DataValue`[]
 
-Defined in: [src/sdk/index.ts:783](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L783)
+Defined in: [src/sdk/index.ts:862](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L862)
 
 
 ## DataRecord { #datarecord }
 
-Defined in: [src/sdk/index.ts:780](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L780)
+Defined in: [src/sdk/index.ts:859](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L859)
 
 Structured game data. This API checks data shape, not domain-specific game rules.
 
@@ -111,7 +111,7 @@ Structured game data. This API checks data shape, not domain-specific game rules
 
 > **SourceFile**(`path`: `string`, `document`: [`PdxDocument`](../pdx/construct.md#pdxdocument)): [`Definition`](scope-selection.md#definition)
 
-Defined in: [src/sdk/index.ts:778](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L778)
+Defined in: [src/sdk/index.ts:857](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L857)
 
 Explicit ordered PDX representation; no semantic-rewrite guarantee is implied.
 

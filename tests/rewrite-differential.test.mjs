@@ -20,7 +20,13 @@ test(
     assert.equal(report.mods["playable-piano"].keys.length, 25);
     assert.equal(report.mods["twr-gdp-screen"].quicksortSpecializations.length, 12);
     assert.equal(report.mods["twr-gdp-screen"].scenarios.length, 3);
-    assert.equal(report.mods["twr-gdp-screen"].effects.length, 10);
+    assert.equal(report.mods["twr-gdp-screen"].effects.length, 8);
+    assert.equal(report.mods["twr-gdp-screen"].allocations.length, 11);
+    for (const check of report.mods["twr-gdp-screen"].allocations)
+      if (check.effect === "example_sum_cap_usage") {
+        assert.equal(check.selected, 2);
+        assert.equal(check.change, 10);
+      }
     assert.ok(report.mods["state-transfer-tool"].checks.length >= 40);
   },
 );

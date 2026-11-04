@@ -49,7 +49,7 @@ npx eslint "src/**/*.krg.{ts,tsx}"
 | --------------------------- | ---------------------------------------------------------------------------------- |
 | `krieg/no-any`              | 拒绝显式 `any`                                                                     |
 | `krieg/allowed-imports`     | 只允许 SDK、生成的项目引用、相对源码模块及显式列入配置的 Krieg npm 包              |
-| `krieg/supported-syntax`    | 提示异步、类、动态循环、类型逃逸和 JavaScript 运行时调用等不支持的结构             |
+| `krieg/supported-syntax`    | 提示异步、类、缺少条件或更新步骤的计数循环、类型逃逸和 JavaScript 运行时调用       |
 | `krieg/explicit-parameters` | 要求独立辅助函数注明参数类型；内联回调可由调用上下文推导，编译器继续拒绝隐式 `any` |
 
 如果项目使用了可复用的 Krieg npm 源码包，可以声明允许的包名：

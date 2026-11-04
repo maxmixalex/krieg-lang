@@ -68,7 +68,7 @@ export const topics = {
   "hoi4/scripted-effects": {
     title: "可复用效果与有限变体",
     names:
-      "ScriptedEffect StateScriptedEffect ScriptedEffectDefinition ScriptedEffectFamily ScriptedEffectFamilyDefinition ScriptedVariants ScriptedVariantValue",
+      "ScriptedEffect StateScriptedEffect ScriptedEffectDefinition ScriptedParameters ScriptedArguments ScriptedEffectFamily ScriptedEffectFamilyDefinition ScriptedVariants ScriptedVariantValue",
     guide: "guide/scripted-content.md",
     intro:
       "`ScriptedEffect` 把效果体写入游戏可复用的 scripted effect 文件，返回的句柄通过 `scope.run(handle)` 调用。句柄记录声明作用域，国家效果不能误用在地区作用域。`StateScriptedEffect` 是地区作用域的便捷入口。\n\n需要按若干配置生成同类内容时，`ScriptedEffectFamily` 遍历有限参数表，生成普通原生效果和按键访问的句柄。参数在编译期展开；游戏运行时的变量应在效果回调中使用作用域 API。",
@@ -114,7 +114,7 @@ export const topics = {
   "hoi4/scope-selection": {
     title: "作用域切换与通用回调",
     names:
-      "ScopeBase Scope ScopeByName ScopeName Effect Trigger Definition IdentifiedDefinition FlagId VariableName AssetId",
+      "ScopeBase Scope ScopeByName ScopeName Effect Trigger Definition IdentifiedDefinition FlagId VariableName variableState VariableState VariableStateValues AssetId",
     guide: "guide/scopes.md",
     intro:
       "`Effect<S>` 表示在游戏作用域 S 执行效果，`Trigger<S>` 表示在该作用域计算条件。回调由编译器解释为原生脚本；不能执行网络、文件或任意 JavaScript。`ScopeBase` 提供国家与地区选择、遍历以及 scripted handle 调用。进入新的回调后，类型和原生作用域都会随之切换。",
@@ -343,7 +343,7 @@ topics["hoi4/runtime-state"] = {
   names: "RuntimeScopePath StateTargetRef countryTarget stateTarget",
   guide: "guide/scopes.md",
   intro:
-    "`scope.variable(name)` 读取已有游戏变量，`setVariable`、`addVariable`、`multiplyVariable` 等方法更新具名值，临时变量使用相应 Temp 方法。ROOT 与 global 引用跨嵌套作用域保持绝对名称。`countryTarget` 和 `stateTarget` 明确选择 ROOT、FROM.FROM 或保存的作用域；国家与州引用不能混用。`everyGlobalState` 遍历世界全部州，`everyState` 遍历当前国家拥有的州。`forRange` 的 end 不包含在循环中，`whileLoop` 与 forRange 保持当前作用域，并受游戏 MAX_EFFECT_ITERATION 上限约束。",
+    "用 `variableState` 为持久数值声明有补全的字段。局部 `let` 与数值数组使用临时存储，`for`、`while` 与数组的 `for...of` 在游戏中执行。`scope.variable(name)` 读取已有游戏变量，`setVariable`、`addVariable`、`multiplyVariable` 等方法更新具名值，临时变量使用相应 Temp 方法。ROOT 与 global 引用跨嵌套作用域保持绝对名称。`countryTarget` 和 `stateTarget` 明确选择 ROOT、FROM.FROM 或保存的作用域；国家与州引用不能混用。`everyGlobalState` 遍历世界全部州，`everyState` 遍历当前国家拥有的州。`forRange` 的 end 不包含在循环中，`whileLoop` 与 forRange 保持当前作用域，并受游戏 MAX_EFFECT_ITERATION 上限约束。",
 };
 topics["hoi4/audio-banks"] = {
   title: "可交互音效库",

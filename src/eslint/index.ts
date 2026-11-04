@@ -1,3 +1,5 @@
+import { runtimeLoopIssue } from "../compiler/loop-syntax.js";
+import { parameterBindingIssue } from "../compiler/parameter-syntax.js";
 import { VERSION } from "../version.js";
 import ts from "typescript";
 import { parser } from "typescript-eslint";
@@ -138,9 +140,7 @@ const unsupportedKinds = new Map<ts.SyntaxKind, string>([
   [ts.SyntaxKind.NewExpression, "new expressions"],
   [ts.SyntaxKind.AwaitExpression, "await"],
   [ts.SyntaxKind.YieldExpression, "yield"],
-  [ts.SyntaxKind.WhileStatement, "while loops"],
   [ts.SyntaxKind.DoStatement, "do/while loops"],
-  [ts.SyntaxKind.ForStatement, "C-style for loops"],
   [ts.SyntaxKind.ForInStatement, "for/in loops"],
   [ts.SyntaxKind.TryStatement, "try/catch"],
   [ts.SyntaxKind.ThrowStatement, "throw"],
@@ -200,7 +200,7 @@ const supportedSyntax: Rule.RuleModule = {
       async: "Krieg functions cannot be async or generators.",
       runtime: "'{{name}}' is a JavaScript runtime API and cannot be used in Krieg source.",
       mutableLoop:
-        "A Krieg for/of loop must bind a const identifier and iterate a compile-time constant array.",
+        "A Krieg for/of loop must bind a const identifier and iterate a static array or a runtime numeric array.",
       variable: "Use const or a typed let declaration; var is outside the Krieg language subset.",
       typeSuppression: "TypeScript error-suppression directives are not allowed in Krieg source.",
     },
@@ -215,7 +215,10 @@ const supportedSyntax: Rule.RuleModule = {
           }
         }
         walk(file, (node) => {
-          const feature = unsupportedKinds.get(node.kind);
+          const feature =
+            unsupportedKinds.get(node.kind) ??
+            runtimeLoopIssue(node) ??
+            parameterBindingIssue(node);
           if (feature) report(context, file, node, "unsupported", { feature });
           if (
             (ts.isAsExpression(node) || ts.isTypeAssertionExpression(node)) &&
@@ -367,6 +370,8 @@ plugin.configs.recommended = {
   },
   plugins: { krieg: plugin },
   rules: {
+    // In Krieg, changing let to const can turn a runtime array into a static table.
+    "prefer-const": "off",
     "krieg/no-any": "error",
     "krieg/allowed-imports": "error",
     "krieg/supported-syntax": "error",

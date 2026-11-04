@@ -47,7 +47,7 @@ export const aid = CountryEvent({
 
 > **CountryEvent**&lt;`Id` *extends* `string`&gt;(`spec`: [`EventSpec`](#eventspec)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; & `object`): [`EventDefinition`](#eventdefinition)&lt;`"country"`, `Id`&gt;
 
-Defined in: [src/sdk/index.ts:506](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L506)
+Defined in: [src/sdk/index.ts:555](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L555)
 
 Declare a country event and return its typed handle. Keep the handle when scheduling from another definition: TypeScript checks the receiver scope and preserves the literal event ID.
 
@@ -86,7 +86,7 @@ const grant = CountryEvent({
 
 > **NewsEvent**&lt;`Id` *extends* `string`&gt;(`spec`: [`EventSpec`](#eventspec)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; & `object`): [`EventDefinition`](#eventdefinition)&lt;`"country"`, `Id`&gt;
 
-Defined in: [src/sdk/index.ts:516](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L516)
+Defined in: [src/sdk/index.ts:565](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L565)
 
 Declare a news event; the scheduling receiver is a country. The returned handle retains the actual event identifier.
 
@@ -115,7 +115,7 @@ Declare a news event; the scheduling receiver is a country. The returned handle 
 
 > **StateEvent**&lt;`Id` *extends* `string`&gt;(`spec`: [`EventSpec`](#eventspec)&lt;[`StateScope`](state-scope.md#statescope)&gt; & `object`): [`EventDefinition`](#eventdefinition)&lt;`"state"`, `Id`&gt;
 
-Defined in: [src/sdk/index.ts:511](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L511)
+Defined in: [src/sdk/index.ts:560](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L560)
 
 Declare an event received by a state. Its callbacks operate in state scope, and its handle can be passed to a state scope's `schedule` method.
 
@@ -142,7 +142,7 @@ Declare an event received by a state. Its callbacks operate in state scope, and 
 
 ## EventSpec&lt;S&gt; { #eventspec }
 
-Defined in: [src/sdk/index.ts:480](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L480)
+Defined in: [src/sdk/index.ts:529](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L529)
 
 ### Type Parameters { #eventspec-section-type-parameters }
 
@@ -154,27 +154,27 @@ Defined in: [src/sdk/index.ts:480](https://github.com/maxmixalex/krieg-lang/blob
 
 | Property | Type | Description | Defined in |
 | ------ | ------ | ------ | ------ |
-| <a id="eventspec-property-description"></a> `description?` | `string` | - | [src/sdk/index.ts:483](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L483) |
-| <a id="eventspec-property-fireonlyonce"></a> `fireOnlyOnce?` | `boolean` | - | [src/sdk/index.ts:486](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L486) |
-| <a id="eventspec-property-hidden"></a> `hidden?` | `boolean` | - | [src/sdk/index.ts:488](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L488) |
-| <a id="eventspec-property-id"></a> `id` | `string` | - | [src/sdk/index.ts:481](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L481) |
-| <a id="eventspec-property-immediate"></a> `immediate?` | [`Effect`](scope-selection.md#effect)&lt;`S`&gt; | - | [src/sdk/index.ts:492](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L492) |
-| <a id="eventspec-property-istriggeredonly"></a> `isTriggeredOnly?` | `boolean` | - | [src/sdk/index.ts:485](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L485) |
-| <a id="eventspec-property-major"></a> `major?` | `boolean` | - | [src/sdk/index.ts:487](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L487) |
-| <a id="eventspec-property-meantimetohappen"></a> `meanTimeToHappen?` | `object` | - | [src/sdk/index.ts:493](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L493) |
-| `meanTimeToHappen.days?` | `number` | - | [src/sdk/index.ts:493](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L493) |
-| `meanTimeToHappen.months?` | `number` | - | [src/sdk/index.ts:493](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L493) |
-| `meanTimeToHappen.years?` | `number` | - | [src/sdk/index.ts:493](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L493) |
-| <a id="eventspec-property-options"></a> `options?` | readonly [`EventOption`](#eventoption)&lt;`S`&gt;[] | - | [src/sdk/index.ts:494](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L494) |
-| <a id="eventspec-property-picture"></a> `picture?` | `string` | - | [src/sdk/index.ts:484](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L484) |
-| <a id="eventspec-property-timeoutdays"></a> `timeoutDays?` | `number` | Native event popup expiry, in days. | [src/sdk/index.ts:490](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L490) |
-| <a id="eventspec-property-title"></a> `title?` | `string` | - | [src/sdk/index.ts:482](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L482) |
-| <a id="eventspec-property-trigger"></a> `trigger?` | [`Trigger`](scope-selection.md#trigger)&lt;`S`&gt; | - | [src/sdk/index.ts:491](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L491) |
+| <a id="eventspec-property-description"></a> `description?` | `string` | - | [src/sdk/index.ts:532](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L532) |
+| <a id="eventspec-property-fireonlyonce"></a> `fireOnlyOnce?` | `boolean` | - | [src/sdk/index.ts:535](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L535) |
+| <a id="eventspec-property-hidden"></a> `hidden?` | `boolean` | - | [src/sdk/index.ts:537](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L537) |
+| <a id="eventspec-property-id"></a> `id` | `string` | - | [src/sdk/index.ts:530](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L530) |
+| <a id="eventspec-property-immediate"></a> `immediate?` | [`Effect`](scope-selection.md#effect)&lt;`S`&gt; | - | [src/sdk/index.ts:541](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L541) |
+| <a id="eventspec-property-istriggeredonly"></a> `isTriggeredOnly?` | `boolean` | - | [src/sdk/index.ts:534](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L534) |
+| <a id="eventspec-property-major"></a> `major?` | `boolean` | - | [src/sdk/index.ts:536](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L536) |
+| <a id="eventspec-property-meantimetohappen"></a> `meanTimeToHappen?` | `object` | - | [src/sdk/index.ts:542](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L542) |
+| `meanTimeToHappen.days?` | `number` | - | [src/sdk/index.ts:542](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L542) |
+| `meanTimeToHappen.months?` | `number` | - | [src/sdk/index.ts:542](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L542) |
+| `meanTimeToHappen.years?` | `number` | - | [src/sdk/index.ts:542](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L542) |
+| <a id="eventspec-property-options"></a> `options?` | readonly [`EventOption`](#eventoption)&lt;`S`&gt;[] | - | [src/sdk/index.ts:543](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L543) |
+| <a id="eventspec-property-picture"></a> `picture?` | `string` | - | [src/sdk/index.ts:533](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L533) |
+| <a id="eventspec-property-timeoutdays"></a> `timeoutDays?` | `number` | Native event popup expiry, in days. | [src/sdk/index.ts:539](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L539) |
+| <a id="eventspec-property-title"></a> `title?` | `string` | - | [src/sdk/index.ts:531](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L531) |
+| <a id="eventspec-property-trigger"></a> `trigger?` | [`Trigger`](scope-selection.md#trigger)&lt;`S`&gt; | - | [src/sdk/index.ts:540](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L540) |
 
 
 ## EventOption&lt;S&gt; { #eventoption }
 
-Defined in: [src/sdk/index.ts:474](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L474)
+Defined in: [src/sdk/index.ts:523](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L523)
 
 ### Type Parameters { #eventoption-section-type-parameters }
 
@@ -186,17 +186,17 @@ Defined in: [src/sdk/index.ts:474](https://github.com/maxmixalex/krieg-lang/blob
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="eventoption-property-aichance"></a> `aiChance?` | `number` | [src/sdk/index.ts:477](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L477) |
-| <a id="eventoption-property-effects"></a> `effects?` | [`Effect`](scope-selection.md#effect)&lt;`S`&gt; | [src/sdk/index.ts:478](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L478) |
-| <a id="eventoption-property-name"></a> `name` | `string` | [src/sdk/index.ts:475](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L475) |
-| <a id="eventoption-property-trigger"></a> `trigger?` | [`Trigger`](scope-selection.md#trigger)&lt;`S`&gt; | [src/sdk/index.ts:476](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L476) |
+| <a id="eventoption-property-aichance"></a> `aiChance?` | `number` | [src/sdk/index.ts:526](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L526) |
+| <a id="eventoption-property-effects"></a> `effects?` | [`Effect`](scope-selection.md#effect)&lt;`S`&gt; | [src/sdk/index.ts:527](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L527) |
+| <a id="eventoption-property-name"></a> `name` | `string` | [src/sdk/index.ts:524](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L524) |
+| <a id="eventoption-property-trigger"></a> `trigger?` | [`Trigger`](scope-selection.md#trigger)&lt;`S`&gt; | [src/sdk/index.ts:525](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L525) |
 
 
 ## Option() { #option }
 
 > **Option**&lt;`S`&gt;(`spec`: [`EventOption`](#eventoption)&lt;`S`&gt;): [`EventOption`](#eventoption)&lt;`S`&gt;
 
-Defined in: [src/sdk/index.ts:519](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L519)
+Defined in: [src/sdk/index.ts:568](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L568)
 
 ### Type Parameters { #option-section-type-parameters }
 
@@ -241,7 +241,7 @@ require a state recipient. The literal ID remains available for native APIs.
 
 | Property | Modifier | Type | Overrides | Defined in |
 | ------ | ------ | ------ | ------ | ------ |
-| <a id="eventdefinition-property-__kriegdefinition"></a> `__kriegDefinition` | `readonly` | *typeof* [`__kriegDefinition`](scope-selection.md#definition-property-__kriegdefinition) | - | [src/sdk/index.ts:84](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L84) |
+| <a id="eventdefinition-property-__kriegdefinition"></a> `__kriegDefinition` | `readonly` | *typeof* [`__kriegDefinition`](scope-selection.md#definition-property-__kriegdefinition) | - | [src/sdk/index.ts:106](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L106) |
 | <a id="eventdefinition-property-__kriegevent"></a> `__kriegEvent` | `readonly` | *typeof* `__kriegEvent` | - | [src/sdk/gameplay.ts:88](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/gameplay.ts#L88) |
 | <a id="eventdefinition-property-eventscope"></a> `eventScope` | `readonly` | `S` | - | [src/sdk/gameplay.ts:87](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/gameplay.ts#L87) |
 | <a id="eventdefinition-property-id"></a> `id` | `readonly` | `Id` | [`IdentifiedDefinition`](scope-selection.md#identifieddefinition).[`id`](scope-selection.md#identifieddefinition-property-id) | [src/sdk/gameplay.ts:86](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/gameplay.ts#L86) |

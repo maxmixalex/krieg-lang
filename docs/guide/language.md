@@ -43,6 +43,8 @@ ScriptedEffect("grant_standard_reward", (country: CountryScope) => {
 });
 ```
 
+函数与回调支持浅层对象参数解构，例如 `(country, { values, change: delta }) => { ... }`。字段名称和类型由参数记录推导，独立辅助函数仍需显式标注记录类型。效果中的数值字段在进入函数时取得快照，数值数组字段引用调用方的数组。解构中的默认值、rest、嵌套模式和计算属性名会产生编译与 lint 诊断。
+
 辅助函数调用会静态展开到调用位置。递归和过度展开会产生诊断，不会作为 JavaScript 递归执行。需要保留原生脚本化效果的调用关系时，可以保存 `ScriptedEffect` 返回的句柄，并使用作用域的 `run` 方法：
 
 ```typescript
@@ -73,7 +75,7 @@ ScriptedEffect("use_shared_reward", (country: CountryScope) => {
 
 ## 常量数组遍历 {#_6}
 
-唯一支持的循环形式是对可静态确定数组的 `for...of`，并使用 `const` 标识符绑定：
+静态资料表使用 `for...of` 遍历，并使用 `const` 标识符绑定。
 
 ```typescript
 import { ScriptedEffect, type CountryScope } from "krieg-lang/hoi4";
@@ -86,6 +88,27 @@ ScriptedEffect("set_preparation_flags", (country: CountryScope) => {
 ```
 
 这会生成两条 `set_country_flag`。如果目标是遍历游戏运行时存在的国家或地区，应使用 `everyCountry`、`everyState` 等作用域 API；两者的行为不同。
+
+效果中的 `while` 与计数循环可直接读取游戏里的数值。计数器先初始化一次。游戏在每次迭代前重新读取条件，执行循环体后再更新计数器。例如，下面的效果会发放库存中现有的补给，最多三次。
+
+<!-- example:compile -->
+
+```typescript
+import { ScriptedEffect } from "krieg-lang/hoi4";
+
+ScriptedEffect("grant_supply_batches", (country) => {
+  let stock = country.variable("available_batches");
+  for (let batch = 0; batch < 3; batch++) {
+    if (stock > 0) {
+      country.effects.addPoliticalPower(1);
+      stock--;
+    }
+  }
+  country.setVariable("available_batches", stock);
+});
+```
+
+`for` 使用单个已初始化的数值 `let` 计数器，更新位置支持 `++`、`--`、`+=`、`-=` 和给计数器重新赋值。循环体内的 `return` 会触发诊断。
 
 ## 导入与模块 {#_7}
 
@@ -108,16 +131,16 @@ ScriptedEffect("shared_reward", (country: CountryScope) => {
 
 ## 不支持的结构 {#_8}
 
-| 结构                                  | 原因或替代方式                                 |
-| ------------------------------------- | ---------------------------------------------- |
-| `any`、未标注的函数参数               | 失去静态类型边界；使用明确的 SDK 类型          |
-| `async`、`await`、Promise             | 没有 JavaScript 异步执行过程                   |
-| 类、`new`、`this`                     | 不属于 DSL 的数据与作用域模型                  |
-| `while`、`do`、传统 `for`、`for...in` | 不做任意动态循环；用常量展开或游戏作用域遍历   |
-| `try`、`throw`、生成器                | 不对应当前语言中的游戏执行结构                 |
-| `eval`、动态 `import`、`require`      | 不能动态加载或执行编译期代码                   |
-| `Math`、`JSON`、文件与网络 API        | 属于 JavaScript 运行时；在独立预处理步骤中使用 |
-| 普通 npm JavaScript 依赖              | 使用声明了 Krieg 源码入口的包                  |
+| 结构                                          | 原因或替代方式                                      |
+| --------------------------------------------- | --------------------------------------------------- |
+| `any`、未标注的函数参数                       | 失去静态类型边界；使用明确的 SDK 类型               |
+| `async`、`await`、Promise                     | 没有 JavaScript 异步执行过程                        |
+| 类、`new`、`this`                             | 不属于 DSL 的数据与作用域模型                       |
+| `do...while`、`for...in`、`break`、`continue` | 效果中可用带条件的 `while` 与基于数值计数器的 `for` |
+| `try`、`throw`、生成器                        | 不对应当前语言中的游戏执行结构                      |
+| `eval`、动态 `import`、`require`              | 不能动态加载或执行编译期代码                        |
+| `Math`、`JSON`、文件与网络 API                | 属于 JavaScript 运行时；在独立预处理步骤中使用      |
+| 普通 npm JavaScript 依赖                      | 使用声明了 Krieg 源码入口的包                       |
 
 除 `as const` 外的类型断言、非空断言，以及 `@ts-ignore`、`@ts-expect-error`、`@ts-nocheck` 都会被拒绝。它们不能用来把错误的游戏参数强行变成合法输入。
 

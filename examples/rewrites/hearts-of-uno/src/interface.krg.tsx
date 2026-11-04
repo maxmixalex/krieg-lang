@@ -12,6 +12,7 @@ import { countryTarget, type CountryScope, type Trigger } from "krieg-lang/hoi4"
 import { cards, colors, faces, seats, guestSeats, type Card } from "./cards.krg.ts";
 import { canPlay, chooseColor, draw, plays, turn } from "./game.krg.ts";
 import { cardWeight, colorWeight, deckWeight } from "./ai.krg.ts";
+import { uno } from "./state.krg.ts";
 
 // Each position is relative to the viewing player, clockwise around the original table.
 const places = [
@@ -156,7 +157,7 @@ function Players(props: { ui: GuiBindings<CountryScope> }): GuiElement {
                   text={`player_${((viewer + place.slot - 2) % 6) + 1}_uno`}
                   visible={(country) =>
                     country.variable("ku_seat") === viewer &&
-                    country.variable("global.ku_dealing") <= 0 &&
+                    uno.dealing <= 0 &&
                     country.countryMatches(
                       countryTarget(`event_target:ku_p${((viewer + place.slot - 2) % 6) + 1}`),
                       (player) => player.variable("ku_hand^num") === 1,
@@ -268,7 +269,7 @@ function Status(props: { ui: GuiBindings<CountryScope> }): GuiElement {
         text="everyone_draws_seven"
         visible={(country) =>
           country.triggers.has_global_flag("ku_started") &&
-          country.variable("global.ku_dealing") > 0 &&
+          uno.dealing > 0 &&
           guestSeats.every((seat) => country.triggers.has_global_flag(`ku_seat_${seat}`))
         }
       />

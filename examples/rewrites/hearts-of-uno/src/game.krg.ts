@@ -1,6 +1,7 @@
 import { CountryEvent, ScriptedEffect, countryTarget, type CountryScope } from "krieg-lang/hoi4";
 import { cards, seats, guestSeats, type Card } from "./cards.krg.ts";
 import { deckColors, updateDisplay } from "./display.krg.ts";
+import { uno } from "./state.krg.ts";
 
 export function turn(country: CountryScope): boolean {
   return (
@@ -11,7 +12,7 @@ export function turn(country: CountryScope): boolean {
 export function canPlay(country: CountryScope, card: Card): boolean {
   return (
     turn(country) &&
-    (card.rank !== 13 || country.variable("global.ku_dealing") <= 0) &&
+    (card.rank !== 13 || uno.dealing <= 0) &&
     country.arrayContains("ku_hand", card.id) &&
     (country.variable("global.ku_choose_color") === 1 ||
       country.variable("global.ku_pending") === 0 ||
@@ -71,8 +72,8 @@ export const draw = ScriptedEffect("ku_draw", (country) => {
     country.variable("global.ku_remaining") > 0
   ) {
     country.run(drawOne);
-    if (country.variable("global.ku_dealing") > 0) {
-      country.subtractVariable("global.ku_dealing", 1);
+    if (uno.dealing > 0) {
+      uno.dealing -= 1;
       country.subtractVariable("ku_deal_remaining", 1);
       if (country.variable("ku_deal_remaining") === 0) country.run(advance);
     } else {
@@ -111,11 +112,7 @@ function play(country: CountryScope, card: Card): void {
       country.effects.sound_effect("ku_plus_four");
     }
     country.effects.sound_effect("ku_place");
-    if (
-      card.rank < 10 &&
-      country.variable("global.ku_dealing") <= 0 &&
-      country.variable("ku_hand^num") === 1
-    )
+    if (card.rank < 10 && uno.dealing <= 0 && country.variable("ku_hand^num") === 1)
       country.effects.sound_effect("ku_uno");
     if (card.color === 0) country.setVariable("global.ku_choose_color", 1);
     else {
@@ -124,7 +121,7 @@ function play(country: CountryScope, card: Card): void {
         country.run(advance);
       }
     }
-    if (country.variable("global.ku_dealing") <= 0 && country.variable("ku_hand^num") === 0) {
+    if (uno.dealing <= 0 && country.variable("ku_hand^num") === 0) {
       country.effects.setCountryFlag("ku_winner");
       country.effects.save_global_event_target_as("ku_winner");
       country.everyCountry((player) => player.effects.countryEvent({ id: "uno.1" }));
@@ -233,7 +230,7 @@ export const start = ScriptedEffect("ku_start", (country) => {
     country.setVariable("global.ku_direction", 1);
     country.setVariable("global.ku_pending", 0);
     country.setVariable("global.ku_penalty_started", 0);
-    country.setVariable("global.ku_dealing", 42);
+    uno.dealing = 42;
     country.setVariable("global.ku_choose_color", 0);
     country.setVariable("global.ku_top", 0);
     initializeDeck(country);

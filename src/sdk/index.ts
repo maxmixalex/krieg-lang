@@ -69,6 +69,28 @@ export type FlagId = string;
 export type AssetId = string;
 export type VariableName = string;
 export type ScopeName = keyof GeneratedEffectsByScope;
+/** Numeric properties backed by explicitly named native game variables. */
+export type VariableStateValues<Names extends Record<string, string>> = {
+  -readonly [Key in keyof Names]: number;
+};
+/** A variable layout for one kind of game scope. Bind it with `scope.variables(layout)`. */
+export interface VariableState<S extends ScopeName, Names extends Record<string, string>> {
+  readonly __variableState: unique symbol;
+  readonly scope: S;
+  readonly names: Names;
+}
+/** Declare global numeric state with completed property names. Reads and assignments target
+ * `global.<native name>` in game callbacks. This declaration does not initialize game values. */
+export declare function variableState<const Names extends Record<string, string>>(
+  scope: "global",
+  names: Names,
+): VariableStateValues<Names>;
+/** Declare numeric state for a game scope. Native names must be simple identifiers.
+ * Bind the returned layout to a matching scope with `scope.variables(layout)`. */
+export declare function variableState<
+  const S extends ScopeName,
+  const Names extends Record<string, string>,
+>(scope: S, names: Names): VariableState<S, Names>;
 /** Deliberately opaque for CWT expressions which cannot be represented safely. */
 export interface CwtOpaque {
   readonly __cwtOpaque: unique symbol;
@@ -190,10 +212,25 @@ export declare function CountryHeatmap(spec: CountryHeatmapSpec): IdentifiedDefi
 export interface IdentifiedDefinition extends Definition {
   readonly id: string;
 }
-export interface ScriptedEffectDefinition<S extends ScopeName> extends Definition {
+/** Typed inputs for a scripted effect. Numeric arrays are borrowed mutable references. */
+export type ScriptedParameters = Readonly<Record<string, "number" | "number[]">>;
+/** Values inferred from a scripted effect's parameter declaration. */
+export type ScriptedArguments<Parameters extends ScriptedParameters> = {
+  readonly [Key in keyof Parameters]: Parameters[Key] extends "number[]" ? number[] : number;
+};
+export interface ScriptedEffectDefinition<
+  S extends ScopeName,
+  Parameters extends ScriptedParameters | undefined = undefined,
+> extends Definition {
+  (
+    ...args: Parameters extends ScriptedParameters
+      ? [scope: ScopeByName[S], parameters: ScriptedArguments<Parameters>]
+      : [scope: ScopeByName[S], invocationValue?: boolean]
+  ): void;
   readonly name: string;
   readonly scope: S;
   readonly __effect: unique symbol;
+  readonly __parameters?: Parameters;
 }
 export interface ScriptedTriggerDefinition<S extends ScopeName> extends Definition {
   readonly name: string;
@@ -284,7 +321,12 @@ export interface ScopeBase<S extends ScopeName = ScopeName> {
   ): void;
   /** Emit a native effect call; the handle must match the active scope.
    * The optional yes/no invocation literal is preserved, not treated as a condition. */
-  run(effect: ScriptedEffectDefinition<S>, invocationValue?: boolean): void;
+  run<const Parameters extends ScriptedParameters | undefined = undefined>(
+    effect: ScriptedEffectDefinition<S, Parameters>,
+    ...args: Parameters extends ScriptedParameters
+      ? [parameters: ScriptedArguments<NoInfer<Parameters>>]
+      : [invocationValue?: boolean]
+  ): void;
   /** Test a native trigger handle; negate with `!scope.test(handle)`. */
   test(trigger: ScriptedTriggerDefinition<S>): boolean;
   country(target: CountryRef, effect: Effect<CountryScope>): void;
@@ -301,6 +343,11 @@ export interface ScopeBase<S extends ScopeName = ScopeName> {
   everyGlobalState(limit: Trigger<StateScope>, effect: Effect<StateScope>): void;
   /** Read an existing persistent, temporary, global, or engine numeric variable. */
   variable(name: string): number;
+  /** Bind a declared numeric variable layout to this scope. Properties support ordinary
+   * reads, assignment, compound assignment and standalone increment/decrement in effects. */
+  variables<const Names extends Record<string, string>>(
+    layout: VariableState<S, Names>,
+  ): VariableStateValues<Names>;
   /** Compare the in-game calendar, including non-1936 starts. Dates are static YYYY.M.D or YYYY.M.D.H. */
   dateBefore(date: string): boolean;
   dateAfter(date: string): boolean;
@@ -329,6 +376,8 @@ export interface ScopeBase<S extends ScopeName = ScopeName> {
   clampTempVariable(name: string, bounds: { min?: number; max?: number }): void;
   arrayContains(name: string, value: number | CountryRef | StateRef | StateTargetRef): boolean;
   arrayPush(name: string, value: number | CountryRef | StateRef | StateTargetRef): void;
+  /** Typed access to an existing persistent numeric array in this scope. */
+  numberArray(name: string): number[];
   arrayLength(name: string): number;
   arrayAt(name: string, index: number): number;
   arraySet(
@@ -637,6 +686,30 @@ export declare function ScriptedEffect<S extends ScopeName>(
   scope: S,
   effect: Effect<ScopeByName[S]>,
 ): ScriptedEffectDefinition<S>;
+/**
+ * Declare typed inputs for a reusable effect. Call with `effect(scope, inputs)`
+ * or `scope.run(effect, inputs)`.
+ * @remarks Each static call generates a native specialization invoked with `= yes`.
+ * Numbers are copied into temporary variables and mutable arrays are borrowed.
+ */
+export declare function ScriptedEffect<const Parameters extends ScriptedParameters>(
+  name: string,
+  parameters: Parameters,
+  effect: (scope: CountryScope, parameters: ScriptedArguments<NoInfer<Parameters>>) => void,
+): ScriptedEffectDefinition<"country", Parameters>;
+/** Explicit scope variant of a parameterized scripted effect. */
+export declare function ScriptedEffect<
+  S extends ScopeName,
+  const Parameters extends ScriptedParameters,
+>(
+  name: string,
+  scope: S,
+  parameters: Parameters,
+  effect: (
+    scope: ScopeByName[NoInfer<S>],
+    parameters: ScriptedArguments<NoInfer<Parameters>>,
+  ) => void,
+): ScriptedEffectDefinition<S, Parameters>;
 export declare function ScriptedTrigger(
   name: string,
   trigger: Trigger<CountryScope>,
@@ -650,6 +723,12 @@ export declare function StateScriptedEffect(
   name: string,
   effect: Effect<StateScope>,
 ): ScriptedEffectDefinition<"state">;
+/** Declare a parameterized effect callable from state scope. */
+export declare function StateScriptedEffect<const Parameters extends ScriptedParameters>(
+  name: string,
+  parameters: Parameters,
+  effect: (scope: StateScope, parameters: ScriptedArguments<NoInfer<Parameters>>) => void,
+): ScriptedEffectDefinition<"state", Parameters>;
 export declare function StateScriptedTrigger(
   name: string,
   trigger: Trigger<StateScope>,

@@ -88,7 +88,7 @@ export class RewriteModel {
       this.world.states.find((s) => String(s.id) === token)
     );
   }
-  location(name, ctx, temporary = false) {
+  location(name, ctx, temporary) {
     const caret = name.indexOf("^");
     if (caret >= 0) {
       const base = this.location(name.slice(0, caret), ctx, temporary);
@@ -109,7 +109,8 @@ export class RewriteModel {
       key = match[2];
     }
     if (!entity) throw new Error(`Missing scope for ${name}`);
-    if (temporary || Object.hasOwn(this.temp, key)) return { object: this.temp, key };
+    if (temporary || (temporary === undefined && Object.hasOwn(this.temp, key)))
+      return { object: this.temp, key };
     return { object: entity.variables, key };
   }
   read(name, ctx) {
@@ -153,8 +154,8 @@ export class RewriteModel {
     const loc = this.location(name, ctx, temporary);
     loc.object[loc.key] = value;
   }
-  array(name, ctx) {
-    const loc = this.location(name, ctx);
+  array(name, ctx, temporary) {
+    const loc = this.location(name, ctx, temporary);
     return loc.object[loc.key] ?? (loc.object[loc.key] = []);
   }
   pair(block) {
@@ -256,7 +257,8 @@ export class RewriteModel {
         const [name, val] = this.pair(v),
           right = this.value(val, ctx),
           temporary = k.includes("temp_");
-        const old = this.read(name, ctx);
+        const destination = this.location(name, ctx, temporary);
+        const old = destination.object[destination.key] ?? 0;
         const next = k.startsWith("set_")
           ? right
           : k.startsWith("add_")
@@ -293,31 +295,31 @@ export class RewriteModel {
         this.write(v.text, Math.round(this.read(v.text, ctx)), ctx, k.includes("temp_"));
         continue;
       }
-      if (k === "clear_variable" || k === "clear_array") {
-        const loc = this.location(v.text, ctx);
-        if (k === "clear_array") loc.object[loc.key] = [];
+      if (k === "clear_variable" || k === "clear_array" || k === "clear_temp_array") {
+        const loc = this.location(v.text, ctx, k === "clear_temp_array");
+        if (k.endsWith("array")) loc.object[loc.key] = [];
         else delete loc.object[loc.key];
         continue;
       }
       if (k === "add_to_array" || k === "add_to_temp_array") {
         const a = field(v, "array");
         const [name, val] = a ? [a.text, field(v, "value")] : this.pair(v);
-        const array = this.array(name, ctx);
+        const array = this.array(name, ctx, k === "add_to_temp_array");
         const item = this.value(val, ctx);
         if (field(v, "index")) array.splice(this.value(field(v, "index"), ctx), 0, item);
         else array.push(item);
         continue;
       }
       if (k === "remove_from_array" || k === "remove_from_temp_array") {
-        const array = this.array(atom(v, "array"), ctx);
+        const array = this.array(atom(v, "array"), ctx, k === "remove_from_temp_array");
         const index = field(v, "index")
           ? this.value(field(v, "index"), ctx)
           : array.indexOf(this.value(field(v, "value"), ctx));
         if (index >= 0) array.splice(index, 1);
         continue;
       }
-      if (k === "resize_temp_array") {
-        const array = this.array(atom(v, "array"), ctx),
+      if (k === "resize_array" || k === "resize_temp_array") {
+        const array = this.array(atom(v, "array"), ctx, k === "resize_temp_array"),
           size = this.value(field(v, "size"), ctx);
         while (array.length < size) array.push(this.value(field(v, "value"), ctx));
         array.length = Math.max(0, size);
@@ -328,6 +330,7 @@ export class RewriteModel {
           end = this.value(field(v, "end"), ctx),
           step = field(v, "add") ? this.value(field(v, "add"), ctx) : 1;
         const name = atom(v, "value") ?? "v";
+        const stop = atom(v, "break") ?? "break";
         let iterations = 0;
         for (let n = start; step > 0 ? n < end : n > end; n += step) {
           if (++iterations > 1000) throw new Error("Engine loop bound reached");
@@ -340,10 +343,12 @@ export class RewriteModel {
             },
             ctx,
           );
+          if (this.temp[stop]) break;
         }
         continue;
       }
       if (k === "while_loop_effect") {
+        const stop = atom(v, "break") ?? "break";
         let iterations = 0;
         while (this.test(field(v, "limit"), ctx)) {
           if (++iterations > 1000) throw new Error("Engine loop bound reached");
@@ -351,6 +356,28 @@ export class RewriteModel {
             { items: properties(v).filter((x) => !["limit", "break"].includes(x.key.text)) },
             ctx,
           );
+          if (this.temp[stop]) break;
+        }
+        continue;
+      }
+      if (k === "for_each_loop") {
+        const values = this.array(atom(v, "array"), ctx);
+        const value = atom(v, "value") ?? "v";
+        const index = atom(v, "index") ?? "i";
+        const stop = atom(v, "break") ?? "break";
+        for (let offset = 0; offset < values.length; offset++) {
+          if (offset >= 1000) throw new Error("Engine loop bound reached");
+          this.write(value, values[offset], ctx, true);
+          this.write(index, offset, ctx, true);
+          this.effects(
+            {
+              items: properties(v).filter(
+                (x) => !["array", "value", "index", "break"].includes(x.key.text),
+              ),
+            },
+            ctx,
+          );
+          if (this.temp[stop]) break;
         }
         continue;
       }

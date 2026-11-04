@@ -1,11 +1,12 @@
 # 脚本化内容：复用、动态文本与 MetaEffect {#metaeffect}
 
-辅助函数在编译时展开；`ScriptedEffect` / `ScriptedTrigger` 生成由游戏调用的定义；`ScriptedEffectFamily` / `ScriptedTriggerFamily` 用有限参数表在编译时生成多份具名定义；`MetaEffect` 的占位符则由游戏在运行时替换。先确定需要在哪一层复用，再选择 API。
+辅助函数在编译时展开；`ScriptedEffect` / `ScriptedTrigger` 生成由游戏调用的定义；带类型参数的 `ScriptedEffect` 为调用生成原生定义并绑定实参；`ScriptedEffectFamily` / `ScriptedTriggerFamily` 用有限参数表生成多份具名定义；`MetaEffect` 的占位符由游戏在运行时替换。
 
 | 需求                           | API                                             | 输出中的调用关系                     |
 | ------------------------------ | ----------------------------------------------- | ------------------------------------ |
 | 复用一段有类型的代码           | 普通具名函数                                    | 在调用点静态展开                     |
 | 多个事件共用一个原生效果       | `ScriptedEffect`、`scope.run()`                 | 保留脚本化效果定义与原生调用         |
+| 传入运行时数值和可变数值数组   | `ScriptedEffect(name, parameters, callback)`    | 临时数值参数、借用数组和专用原生调用 |
 | 重用条件                       | `ScriptedTrigger`、`scope.test()`               | 保留脚本化条件定义与原生调用         |
 | 用一份逻辑声明几个固定参数版本 | `ScriptedEffectFamily`、`ScriptedTriggerFamily` | 每个变体一份普通原生定义，调用不展开 |
 | 按状态选择显示文本             | `ScriptedLocalisation`                          | 有序 `defined_text` / `text` 分支    |
@@ -35,6 +36,35 @@ ScriptedEffect("request_reconstruction", (country: CountryScope) => {
 ```
 
 句柄保留作用域类型；把国家作用域的效果传给地区作用域会失败。事件、国策、决议和 GUI 回调都可复用同一个句柄。原生输出路径分别是 `common/scripted_effects/` 与 `common/scripted_triggers/`，定义名称是游戏中的调用名。
+
+## 有类型的调用参数 {#parameters}
+
+在声明中列出参数类型，回调和调用点都能获得字段补全与类型检查。`"number"` 接收数值、运行时数值变量或算术表达式，`"number[]"` 接收可变运行时数值数组。
+
+```typescript
+import { ScriptedEffect } from "krieg-lang/hoi4";
+
+const capSeat = ScriptedEffect(
+  "cap_seat",
+  { bucket: "number", limit: "number", seats: "number[]" },
+  (country, p) => {
+    if (p.seats[p.bucket] > p.limit) p.seats[p.bucket] = p.limit;
+  },
+);
+
+ScriptedEffect("allocate_seats", (country) => {
+  let seats: number[] = [10, 20];
+  capSeat(country, { bucket: 1, limit: 15, seats });
+  country.run(capSeat, { bucket: 0, limit: 8, seats });
+  country.effects.addPoliticalPower(seats[0]);
+});
+```
+
+`capSeat(country, inputs)` 与 `country.run(capSeat, inputs)` 使用相同的检查和生成逻辑。所有参数必须提供，额外字段也会失败。数值字段只读，数组元素可读写，数组修改对调用方可见。`let` 声明的局部数组与 `country.numberArray("existing_array")` 返回的原生数组引用均可作为数组实参。持久数组必须属于效果的目标作用域，临时局部数组可以跨作用域传入。静态配置数组应先初始化到局部运行时数组。
+
+每个静态调用生成一个独立命名的原生效果，输出路径位于 `common/scripted_effects/`。调用前用 `set_temp_variable` 保存数值实参，再以 `generated_name = yes` 执行效果。数组实参绑定到调用方的存储名称，效果内部直接访问该数组。运行时循环重复执行同一个调用点时复用该定义，嵌套调用拥有独立的数值参数名称。临时变量遵循游戏当前效果链的生命周期。未调用的参数化声明不输出原生定义。
+
+显式作用域写作 `ScriptedEffect("local", "state", { amount: "number" }, (state, p) => ...)`，也可使用 `StateScriptedEffect("local", { amount: "number" }, ...)`。作用域、参数遗漏、数值/数组混用、递归展开都会报错。效果回调返回 `void`，参数声明目前支持数值和数值数组。
 
 ## 有限参数表：编译期生成具名变体 {#_2}
 
@@ -109,11 +139,11 @@ const manpower = ScriptedEffectFamily(
 
 ## 原生契约与选择边界 {#_3}
 
-本项目核对的 HOI4 [Effect / Scripted effects](https://hoi4.paradoxwikis.com/Effect#Scripted_effects)、[Triggers / Scripted triggers](https://hoi4.paradoxwikis.com/Triggers#Scripted_triggers) 和 CWT 规则都使用普通调用：效果为 `name = yes`，条件为 `name = yes/no`。CWT 的 `effects.cwt` / `triggers.cwt` 分别声明 `alias[effect:<scripted_effect>] = yes` 和 `alias[trigger:<scripted_trigger>] = bool`。因此 `run(handle, { AMOUNT: 25 })` 和原生 `name = { AMOUNT = 25 }` 都不是这些 API 的调用形式。
+HOI4 的普通效果调用为 `name = yes`，条件调用为 `name = yes/no`。CWT 的 `effects.cwt` / `triggers.cwt` 分别声明 `alias[effect:<scripted_effect>] = yes` 和 `alias[trigger:<scripted_trigger>] = bool`。Krieg 的参数化调用会转换为临时变量绑定和普通效果调用，输出遵循这一原生契约。[CWT effects.cwt](https://github.com/cwtools/cwtools-hoi4-config/blob/master/Config/effects.cwt)
 
 对所附原版、Kaiserreich、TNO 的 `common/scripted_effects` 和 `common/scripted_triggers` 共 646 个文件、825,944 行进行检查，没有发现可执行的 `$PARAM$` 定义；四处 `$Overlord$` 命中均为注释。这里不会把其他 Paradox 游戏的参数宏语法套用到 HOI4。若目标游戏版本增加了不同语法，应先补充该版本的原生证据与 CWT 规则。
 
-需要任意参数组合、并且可以接受调用点展开时，使用普通有类型的 TypeScript 辅助函数。几个固定版本需要被许多事件调用时，使用 family。逻辑和参数完全相同时，单个 `ScriptedEffect` / `ScriptedTrigger` 就够了。需要读取运行时游戏变量时，应明确使用相应的变量命令；[Data structures / Variables](https://hoi4.paradoxwikis.com/Data_structures#Variables) 也专门说明了临时变量跨 scripted 调用的生命周期。只有需要游戏执行动态文本替换时才使用下面的 `MetaEffect`。
+普通有类型的 TypeScript 辅助函数适用于调用点展开和数值返回值。带类型参数的 `ScriptedEffect` 可接收运行时数值和数组，生成具名效果调用。几个固定版本需要被许多事件调用时，可以使用 family。逻辑和参数完全相同时，单个 `ScriptedEffect` / `ScriptedTrigger` 就够了。临时变量跨 scripted 调用的生命周期由游戏规定。需要游戏执行动态文本替换时可使用下面的 `MetaEffect`。[Data structures / Variables](https://hoi4.paradoxwikis.com/Data_structures#Variables)
 
 ## 有序 Scripted Localisation {#scripted-localisation}
 

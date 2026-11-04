@@ -28,7 +28,7 @@
 
 > **ScriptedGui**&lt;`C` *extends* [`ScriptedGuiContext`](#scriptedguicontext)&gt;(`spec`: [`ScriptedGuiSpec`](#scriptedguispec)&lt;`C`&gt;): [`Definition`](../hoi4/scope-selection.md#definition)
 
-Defined in: [src/sdk/index.ts:975](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L975)
+Defined in: [src/sdk/index.ts:1054](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1054)
 
 ### Type Parameters { #scriptedgui-section-type-parameters }
 
@@ -49,7 +49,7 @@ Defined in: [src/sdk/index.ts:975](https://github.com/maxmixalex/krieg-lang/blob
 
 ## ScriptedGuiSpec&lt;C *extends* [`ScriptedGuiContext`](#scriptedguicontext)&gt; { #scriptedguispec }
 
-Defined in: [src/sdk/index.ts:949](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L949)
+Defined in: [src/sdk/index.ts:1028](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1028)
 
 ### Type Parameters { #scriptedguispec-section-type-parameters }
 
@@ -61,44 +61,44 @@ Defined in: [src/sdk/index.ts:949](https://github.com/maxmixalex/krieg-lang/blob
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="scriptedguispec-property-aicheck"></a> `aiCheck?` | [`Trigger`](../hoi4/scope-selection.md#trigger)&lt;[`CountryScope`](../hoi4/country-scope.md#countryscope)&gt; | [src/sdk/index.ts:965](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L965) |
-| <a id="scriptedguispec-property-aicheckscope"></a> `aiCheckScope?` | [`Trigger`](../hoi4/scope-selection.md#trigger)&lt;[`ScriptedGuiScope`](#scriptedguiscope)&lt;`C`&gt;&gt; | [src/sdk/index.ts:966](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L966) |
-| <a id="scriptedguispec-property-aienabled"></a> `aiEnabled?` | [`Trigger`](../hoi4/scope-selection.md#trigger)&lt;[`CountryScope`](../hoi4/country-scope.md#countryscope)&gt; | [src/sdk/index.ts:964](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L964) |
-| <a id="scriptedguispec-property-aimaxweighttakenpertest"></a> `aiMaxWeightTakenPerTest?` | `number` | [src/sdk/index.ts:971](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L971) |
-| <a id="scriptedguispec-property-aitestinterval"></a> `aiTestInterval?` | `number` | [src/sdk/index.ts:968](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L968) |
-| <a id="scriptedguispec-property-aitestparent"></a> `aiTestParent?` | `string` | [src/sdk/index.ts:967](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L967) |
-| <a id="scriptedguispec-property-aitestscopes"></a> `aiTestScopes?` | readonly [`GuiAiTestScope`](#guiaitestscope)[] | [src/sdk/index.ts:970](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L970) |
-| <a id="scriptedguispec-property-aitestvariance"></a> `aiTestVariance?` | `number` | [src/sdk/index.ts:969](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L969) |
-| <a id="scriptedguispec-property-aiweights"></a> `aiWeights?` | `object` | [src/sdk/index.ts:972](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L972) |
-| <a id="scriptedguispec-property-context"></a> `context` | `C` | [src/sdk/index.ts:952](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L952) |
-| <a id="scriptedguispec-property-dirty"></a> `dirty?` | `string` | [src/sdk/index.ts:956](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L956) |
-| <a id="scriptedguispec-property-dynamiclists"></a> `dynamicLists?` | `object` | [src/sdk/index.ts:961](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L961) |
-| <a id="scriptedguispec-property-effects"></a> `effects?` | `object` | [src/sdk/index.ts:958](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L958) |
-| <a id="scriptedguispec-property-mapicontargets"></a> `mapiconTargets?` | `object` | [src/sdk/index.ts:973](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L973) |
-| `mapiconTargets.targetArray?` | `string` | [src/sdk/index.ts:973](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L973) |
-| `mapiconTargets.targetTrigger?` | [`Trigger`](../hoi4/scope-selection.md#trigger)&lt;[`ScriptedGuiScope`](#scriptedguiscope)&lt;`C`&gt;&gt; | [src/sdk/index.ts:973](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L973) |
-| <a id="scriptedguispec-property-name"></a> `name` | `string` | [src/sdk/index.ts:950](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L950) |
-| <a id="scriptedguispec-property-parentscriptedgui"></a> `parentScriptedGui?` | `string` | [src/sdk/index.ts:955](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L955) |
-| <a id="scriptedguispec-property-parentwindowname"></a> `parentWindowName?` | `string` | [src/sdk/index.ts:954](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L954) |
-| <a id="scriptedguispec-property-parentwindowtoken"></a> `parentWindowToken?` | [`GuiParentWindowToken`](#guiparentwindowtoken) | [src/sdk/index.ts:953](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L953) |
-| <a id="scriptedguispec-property-properties"></a> `properties?` | `object` | [src/sdk/index.ts:960](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L960) |
-| <a id="scriptedguispec-property-triggers"></a> `triggers?` | `object` | [src/sdk/index.ts:959](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L959) |
-| <a id="scriptedguispec-property-visible"></a> `visible?` | [`Trigger`](../hoi4/scope-selection.md#trigger)&lt;[`ScriptedGuiScope`](#scriptedguiscope)&lt;`C`&gt;&gt; | [src/sdk/index.ts:957](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L957) |
-| <a id="scriptedguispec-property-windowname"></a> `windowName` | `string` | [src/sdk/index.ts:951](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L951) |
+| <a id="scriptedguispec-property-aicheck"></a> `aiCheck?` | [`Trigger`](../hoi4/scope-selection.md#trigger)&lt;[`CountryScope`](../hoi4/country-scope.md#countryscope)&gt; | [src/sdk/index.ts:1044](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1044) |
+| <a id="scriptedguispec-property-aicheckscope"></a> `aiCheckScope?` | [`Trigger`](../hoi4/scope-selection.md#trigger)&lt;[`ScriptedGuiScope`](#scriptedguiscope)&lt;`C`&gt;&gt; | [src/sdk/index.ts:1045](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1045) |
+| <a id="scriptedguispec-property-aienabled"></a> `aiEnabled?` | [`Trigger`](../hoi4/scope-selection.md#trigger)&lt;[`CountryScope`](../hoi4/country-scope.md#countryscope)&gt; | [src/sdk/index.ts:1043](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1043) |
+| <a id="scriptedguispec-property-aimaxweighttakenpertest"></a> `aiMaxWeightTakenPerTest?` | `number` | [src/sdk/index.ts:1050](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1050) |
+| <a id="scriptedguispec-property-aitestinterval"></a> `aiTestInterval?` | `number` | [src/sdk/index.ts:1047](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1047) |
+| <a id="scriptedguispec-property-aitestparent"></a> `aiTestParent?` | `string` | [src/sdk/index.ts:1046](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1046) |
+| <a id="scriptedguispec-property-aitestscopes"></a> `aiTestScopes?` | readonly [`GuiAiTestScope`](#guiaitestscope)[] | [src/sdk/index.ts:1049](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1049) |
+| <a id="scriptedguispec-property-aitestvariance"></a> `aiTestVariance?` | `number` | [src/sdk/index.ts:1048](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1048) |
+| <a id="scriptedguispec-property-aiweights"></a> `aiWeights?` | `object` | [src/sdk/index.ts:1051](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1051) |
+| <a id="scriptedguispec-property-context"></a> `context` | `C` | [src/sdk/index.ts:1031](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1031) |
+| <a id="scriptedguispec-property-dirty"></a> `dirty?` | `string` | [src/sdk/index.ts:1035](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1035) |
+| <a id="scriptedguispec-property-dynamiclists"></a> `dynamicLists?` | `object` | [src/sdk/index.ts:1040](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1040) |
+| <a id="scriptedguispec-property-effects"></a> `effects?` | `object` | [src/sdk/index.ts:1037](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1037) |
+| <a id="scriptedguispec-property-mapicontargets"></a> `mapiconTargets?` | `object` | [src/sdk/index.ts:1052](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1052) |
+| `mapiconTargets.targetArray?` | `string` | [src/sdk/index.ts:1052](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1052) |
+| `mapiconTargets.targetTrigger?` | [`Trigger`](../hoi4/scope-selection.md#trigger)&lt;[`ScriptedGuiScope`](#scriptedguiscope)&lt;`C`&gt;&gt; | [src/sdk/index.ts:1052](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1052) |
+| <a id="scriptedguispec-property-name"></a> `name` | `string` | [src/sdk/index.ts:1029](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1029) |
+| <a id="scriptedguispec-property-parentscriptedgui"></a> `parentScriptedGui?` | `string` | [src/sdk/index.ts:1034](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1034) |
+| <a id="scriptedguispec-property-parentwindowname"></a> `parentWindowName?` | `string` | [src/sdk/index.ts:1033](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1033) |
+| <a id="scriptedguispec-property-parentwindowtoken"></a> `parentWindowToken?` | [`GuiParentWindowToken`](#guiparentwindowtoken) | [src/sdk/index.ts:1032](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1032) |
+| <a id="scriptedguispec-property-properties"></a> `properties?` | `object` | [src/sdk/index.ts:1039](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1039) |
+| <a id="scriptedguispec-property-triggers"></a> `triggers?` | `object` | [src/sdk/index.ts:1038](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1038) |
+| <a id="scriptedguispec-property-visible"></a> `visible?` | [`Trigger`](../hoi4/scope-selection.md#trigger)&lt;[`ScriptedGuiScope`](#scriptedguiscope)&lt;`C`&gt;&gt; | [src/sdk/index.ts:1036](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1036) |
+| <a id="scriptedguispec-property-windowname"></a> `windowName` | `string` | [src/sdk/index.ts:1030](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1030) |
 
 
 ## ScriptedGuiContext { #scriptedguicontext }
 
 > **ScriptedGuiContext** = `"global_context"` \| `"player_context"` \| `"selected_country_context"` \| `"selected_state_context"` \| `"diplomacy_target_context"` \| `"decision_category"` \| `"diplomatic_action"` \| `"national_focus_context"` \| `"country_mapicon"` \| `"state_mapicon"`
 
-Defined in: [src/sdk/index.ts:845](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L845)
+Defined in: [src/sdk/index.ts:924](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L924)
 
 
 ## ScriptedGuiScope&lt;C *extends* [`ScriptedGuiContext`](#scriptedguicontext)&gt; { #scriptedguiscope }
 
 > **ScriptedGuiScope**&lt;`C` *extends* [`ScriptedGuiContext`](#scriptedguicontext)&gt; = `C` *extends* `"selected_state_context"` \| `"state_mapicon"` ? [`StateScope`](../hoi4/state-scope.md#statescope) : `C` *extends* `"global_context"` ? [`AnyScope`](../hoi4/scopes-specialized.md#anyscope) : [`CountryScope`](../hoi4/country-scope.md#countryscope)
 
-Defined in: [src/sdk/index.ts:856](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L856)
+Defined in: [src/sdk/index.ts:935](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L935)
 
 ### Type Parameters { #scriptedguiscope-section-type-parameters }
 
@@ -109,23 +109,23 @@ Defined in: [src/sdk/index.ts:856](https://github.com/maxmixalex/krieg-lang/blob
 
 ## ScriptedGuiProperties { #scriptedguiproperties }
 
-Defined in: [src/sdk/index.ts:893](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L893)
+Defined in: [src/sdk/index.ts:972](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L972)
 
 ### Properties { #scriptedguiproperties-section-properties }
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="scriptedguiproperties-property-frame"></a> `frame?` | `string` \| `number` | [src/sdk/index.ts:895](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L895) |
-| <a id="scriptedguiproperties-property-image"></a> `image?` | `string` | [src/sdk/index.ts:894](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L894) |
-| <a id="scriptedguiproperties-property-x"></a> `x?` | `string` \| `number` | [src/sdk/index.ts:896](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L896) |
-| <a id="scriptedguiproperties-property-y"></a> `y?` | `string` \| `number` | [src/sdk/index.ts:897](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L897) |
+| <a id="scriptedguiproperties-property-frame"></a> `frame?` | `string` \| `number` | [src/sdk/index.ts:974](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L974) |
+| <a id="scriptedguiproperties-property-image"></a> `image?` | `string` | [src/sdk/index.ts:973](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L973) |
+| <a id="scriptedguiproperties-property-x"></a> `x?` | `string` \| `number` | [src/sdk/index.ts:975](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L975) |
+| <a id="scriptedguiproperties-property-y"></a> `y?` | `string` \| `number` | [src/sdk/index.ts:976](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L976) |
 
 
 ## GuiDynamicList&lt;S&gt; { #guidynamiclist }
 
 > **GuiDynamicList**&lt;`S`&gt; = `object` & (\{ `countryScopeEntryContainer?`: `never`; `entryContainer`: `string`; \} \| \{ `countryScopeEntryContainer`: `string`; `entryContainer?`: `never`; \})
 
-Defined in: [src/sdk/index.ts:933](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L933)
+Defined in: [src/sdk/index.ts:1012](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1012)
 
 ### Type Parameters { #guidynamiclist-section-type-parameters }
 
@@ -137,27 +137,27 @@ Defined in: [src/sdk/index.ts:933](https://github.com/maxmixalex/krieg-lang/blob
 
 | Name | Type | Defined in |
 | ------ | ------ | ------ |
-| `aiWeights?` | `object` | [src/sdk/index.ts:940](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L940) |
-| `array` | `string` | [src/sdk/index.ts:934](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L934) |
-| `changeScope?` | `false` | [src/sdk/index.ts:937](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L937) |
-| `effects?` | `object` | [src/sdk/index.ts:938](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L938) |
-| `index?` | `string` | [src/sdk/index.ts:936](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L936) |
-| `triggers?` | `object` | [src/sdk/index.ts:939](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L939) |
-| `value?` | `string` | [src/sdk/index.ts:935](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L935) |
+| `aiWeights?` | `object` | [src/sdk/index.ts:1019](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1019) |
+| `array` | `string` | [src/sdk/index.ts:1013](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1013) |
+| `changeScope?` | `false` | [src/sdk/index.ts:1016](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1016) |
+| `effects?` | `object` | [src/sdk/index.ts:1017](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1017) |
+| `index?` | `string` | [src/sdk/index.ts:1015](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1015) |
+| `triggers?` | `object` | [src/sdk/index.ts:1018](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1018) |
+| `value?` | `string` | [src/sdk/index.ts:1014](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1014) |
 
 
 ## ScopedGuiDynamicList { #scopedguidynamiclist }
 
 > **ScopedGuiDynamicList** = `{ [S in ScopeName]: Omit<GuiDynamicList<ScopeByName[S]>, "changeScope"> & { entryScope: S } }`\[[`ScopeName`](../hoi4/scope-selection.md#scopename)\]
 
-Defined in: [src/sdk/index.ts:946](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L946)
+Defined in: [src/sdk/index.ts:1025](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L1025)
 
 entryScope emits change_scope=yes and checks row callbacks against that scope.
 
 
 ## GuiAiWeight&lt;S&gt; { #guiaiweight }
 
-Defined in: [src/sdk/index.ts:905](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L905)
+Defined in: [src/sdk/index.ts:984](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L984)
 
 ### Type Parameters { #guiaiweight-section-type-parameters }
 
@@ -169,20 +169,20 @@ Defined in: [src/sdk/index.ts:905](https://github.com/maxmixalex/krieg-lang/blob
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="guiaiweight-property-aiwilldo"></a> `aiWillDo` | [`GuiWeight`](#guiweight)&lt;`S`&gt; | [src/sdk/index.ts:906](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L906) |
-| <a id="guiaiweight-property-ignorelowerweights"></a> `ignoreLowerWeights?` | [`GuiWeight`](#guiweight)&lt;`S`&gt; | [src/sdk/index.ts:907](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L907) |
+| <a id="guiaiweight-property-aiwilldo"></a> `aiWillDo` | [`GuiWeight`](#guiweight)&lt;`S`&gt; | [src/sdk/index.ts:985](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L985) |
+| <a id="guiaiweight-property-ignorelowerweights"></a> `ignoreLowerWeights?` | [`GuiWeight`](#guiweight)&lt;`S`&gt; | [src/sdk/index.ts:986](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L986) |
 
 
 ## GuiAiTestScope { #guiaitestscope }
 
 > **GuiAiTestScope** = `"test_self_country"` \| `"test_enemy_countries"` \| `"test_ally_countries"` \| `"test_neighbouring_countries"` \| `"test_neighbouring_ally_countries"` \| `"test_neighbouring_enemy_countries"` \| `"test_self_owned_states"` \| `"test_enemy_owned_states"` \| `"test_ally_owned_states"` \| `"test_self_controlled_states"` \| `"test_enemy_controlled_states"` \| `"test_ally_controlled_states"` \| `"test_neighbouring_states"` \| `"test_neighbouring_enemy_states"` \| `"test_neighbouring_ally_states"` \| `"test_our_neighbouring_states"` \| `"test_our_neighbouring_states_against_allies"` \| `"test_our_neighbouring_states_against_enemies"` \| `"test_contesded_states"` \| `"test_if_only_major"` \| `"test_if_only_coastal"`
 
-Defined in: [src/sdk/index.ts:911](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L911)
+Defined in: [src/sdk/index.ts:990](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L990)
 
 
 ## GuiWeight&lt;S&gt; { #guiweight }
 
-Defined in: [src/sdk/index.ts:899](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L899)
+Defined in: [src/sdk/index.ts:978](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L978)
 
 ### Type Parameters { #guiweight-section-type-parameters }
 
@@ -194,36 +194,36 @@ Defined in: [src/sdk/index.ts:899](https://github.com/maxmixalex/krieg-lang/blob
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="guiweight-property-add"></a> `add?` | `string` \| `number` | [src/sdk/index.ts:902](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L902) |
-| <a id="guiweight-property-base"></a> `base?` | `string` \| `number` | [src/sdk/index.ts:900](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L900) |
-| <a id="guiweight-property-factor"></a> `factor?` | `string` \| `number` | [src/sdk/index.ts:901](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L901) |
-| <a id="guiweight-property-modifiers"></a> `modifiers?` | readonly [`WeightModifier`](#weightmodifier)&lt;`S`&gt;[] | [src/sdk/index.ts:903](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L903) |
+| <a id="guiweight-property-add"></a> `add?` | `string` \| `number` | [src/sdk/index.ts:981](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L981) |
+| <a id="guiweight-property-base"></a> `base?` | `string` \| `number` | [src/sdk/index.ts:979](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L979) |
+| <a id="guiweight-property-factor"></a> `factor?` | `string` \| `number` | [src/sdk/index.ts:980](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L980) |
+| <a id="guiweight-property-modifiers"></a> `modifiers?` | readonly [`WeightModifier`](#weightmodifier)&lt;`S`&gt;[] | [src/sdk/index.ts:982](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L982) |
 
 
 ## GuiClickName { #guiclickname }
 
 > **GuiClickName** = `` `${string}_click` ``
 
-Defined in: [src/sdk/index.ts:909](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L909)
+Defined in: [src/sdk/index.ts:988](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L988)
 
 
 ## GuiTriggerName { #guitriggername }
 
 > **GuiTriggerName** = `` `${string}_visible` `` \| `` `${string}_click_enabled` ``
 
-Defined in: [src/sdk/index.ts:910](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L910)
+Defined in: [src/sdk/index.ts:989](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L989)
 
 
 ## GuiParentWindowToken { #guiparentwindowtoken }
 
 > **GuiParentWindowToken** = `"top_bar"` \| `"decision_tab"` \| `"technology_tab"` \| `"trade_tab"` \| `"construction_tab"` \| `"production_tab"` \| `"deployment_tab"` \| `"logistics_tab"` \| `"diplomacy_tab"` \| `"national_focus"` \| `"politics_tab"` \| `"selected_country_view"` \| `"selected_state_view"` \| `"selected_country_view_info"` \| `"selected_country_view_diplomacy"` \| `"army_ledger"` \| `"navy_ledger"` \| `"civilian_ledger"` \| `"air_ledger"` \| `"tech_infantry_folder"` \| `"tech_support_folder"` \| `"tech_armor_folder"` \| `"tech_artillery_folder"` \| `"tech_land_doctrine_folder"` \| `"tech_naval_folder"` \| `"tech_naval_doctrine_folder"` \| `"tech_air_techs_folder"` \| `"tech_air_doctrine_folder"` \| `"tech_electronics_folder"` \| `"tech_industry_folder"`
 
-Defined in: [src/sdk/index.ts:862](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L862)
+Defined in: [src/sdk/index.ts:941](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L941)
 
 
 ## WeightModifier&lt;S&gt; { #weightmodifier }
 
-Defined in: [src/sdk/index.ts:812](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L812)
+Defined in: [src/sdk/index.ts:891](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L891)
 
 ### Type Parameters { #weightmodifier-section-type-parameters }
 
@@ -235,9 +235,9 @@ Defined in: [src/sdk/index.ts:812](https://github.com/maxmixalex/krieg-lang/blob
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="weightmodifier-property-add"></a> `add?` | `string` \| `number` | [src/sdk/index.ts:815](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L815) |
-| <a id="weightmodifier-property-factor"></a> `factor?` | `string` \| `number` | [src/sdk/index.ts:814](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L814) |
-| <a id="weightmodifier-property-trigger"></a> `trigger` | [`Trigger`](../hoi4/scope-selection.md#trigger)&lt;`S`&gt; | [src/sdk/index.ts:813](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L813) |
+| <a id="weightmodifier-property-add"></a> `add?` | `string` \| `number` | [src/sdk/index.ts:894](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L894) |
+| <a id="weightmodifier-property-factor"></a> `factor?` | `string` \| `number` | [src/sdk/index.ts:893](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L893) |
+| <a id="weightmodifier-property-trigger"></a> `trigger` | [`Trigger`](../hoi4/scope-selection.md#trigger)&lt;`S`&gt; | [src/sdk/index.ts:892](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L892) |
 
 
 ## 完整示例与工作流

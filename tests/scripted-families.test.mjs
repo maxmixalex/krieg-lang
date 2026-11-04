@@ -274,7 +274,7 @@ test("published types and editor completion retain exact family keys, payload fi
   assert.notEqual(invalid.status, 0);
   assert.match(invalid.stdout, /__PAYLOAD__/);
   assert.match(invalid.stdout, /__KEY__/);
-  assert.match(invalid.stdout, /ScriptedEffectDefinition<"state">/);
+  assert.match(invalid.stdout, /ScriptedEffectDefinition<"state"(?:, undefined)?>/);
   const service = editorService(join(root, "tsconfig.json"));
   t.after(() => service.dispose());
   const complete = (marker) =>

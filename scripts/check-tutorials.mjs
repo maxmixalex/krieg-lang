@@ -1,3 +1,4 @@
+import { RewriteModel } from "./lib/rewrite-model.mjs";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
@@ -102,8 +103,37 @@ try {
     true,
   );
   assert.equal([...rebuilt.matchAll(/set_country_flag/g)].length, 2);
+  const [supply] = markedFiles("typed-allocation.md");
+  assert.equal(supply.filename, "src/supply.krg.ts");
+  fs.writeFileSync(path.join(project, supply.filename), supply.source);
+  const supplyBuild = build("06 typed stock transfer");
+  const definitions = Object.fromEntries(
+    parsePdx(supplyBuild.read("common/scripted_effects/"))
+      .document.items.filter((item) => item.kind === "property")
+      .map((item) => [item.key.text, item.value]),
+  );
+  for (const [rear, front, expectedRear, expectedFront] of [
+    [18, 2, 8, 12],
+    [6, 4, 0, 10],
+    [0, 5, 0, 5],
+  ]) {
+    const model = new RewriteModel(
+      {
+        countries: [{ tag: "AAA", variables: { supply_rear: rear, supply_front: front } }],
+        states: [],
+        global: {},
+      },
+      definitions,
+    );
+    const ctx = model.context();
+    model.run("tutorial_supply_front", ctx);
+    assert.deepEqual(ctx.current.variables, {
+      supply_rear: expectedRear,
+      supply_front: expectedFront,
+    });
+  }
   console.log(
-    "Verified five tutorial stages from published Markdown, including cross-file actions, GUI wiring and ordered native round-trip.",
+    "Verified six tutorial stages from published Markdown, including cross-file actions, GUI wiring and ordered native round-trip.",
   );
 } finally {
   fs.rmSync(temporary, { recursive: true, force: true });

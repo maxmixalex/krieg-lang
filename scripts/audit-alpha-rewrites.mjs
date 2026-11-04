@@ -389,13 +389,59 @@ function auditStateTransfer(original, built) {
     final: snapshot(models[0]),
   };
 }
+function auditAllocation(source, output) {
+  const cases = [
+    { values: [35, 40, 25], selected: 2, change: 10 },
+    { values: [10, 95, 30], selected: 2, change: 10 },
+    { values: [60, 20, 20], selected: 1, change: -7 },
+    { values: [10, 30, 60], selected: 3, change: 0 },
+    { values: [0, 3, 97], selected: 2, change: -5 },
+    { values: [5, 15, 70, 10], selected: 4, change: 12 },
+  ];
+  const checks = [];
+  for (const { values, selected, change } of cases) {
+    const effects = values.length === 3 ? ["sum_cap", "example_sum_cap_usage"] : ["sum_cap"];
+    for (const effect of effects) {
+      const results = [source, output].map((defs) => {
+        const model = new RewriteModel(fixture(), defs);
+        const ctx = model.context();
+        if (effect === "sum_cap") {
+          ctx.current.variables.temp_value_array = [...values];
+          Object.assign(model.temp, { max: 100, temp_index: selected, temp_value: change });
+          model.run(effect, ctx);
+          return {
+            values: ctx.current.variables.temp_value_array,
+            index: model.temp.temp_index,
+            remainder: model.temp.temp_value,
+            checked: model.temp.temp,
+            peers: model.read("temp_array", ctx),
+          };
+        }
+        values.forEach((amount, i) => model.write(`variable_${i + 1}`, amount, ctx));
+        model.run(effect, ctx);
+        return values.map((_, i) => model.read(`variable_${i + 1}`, ctx));
+      });
+      equal(`${effect} [${values}]`, results[0], results[1]);
+      checks.push({
+        effect,
+        values,
+        selected: effect === "sum_cap" ? selected : 2,
+        change: effect === "sum_cap" ? change : 10,
+        result: results[1],
+      });
+    }
+  }
+  return checks;
+}
+
 function auditGDP(original, built) {
   const models = modelPair(original, built);
   const source = models[0].definitions,
     output = models[1].definitions;
+  const allocations = auditAllocation(source, output);
   const structure = [];
   for (const name of Object.keys(source))
-    if (name !== "scoped_quicksort") {
+    if (name !== "scoped_quicksort" && !allocations.some((entry) => entry.effect === name)) {
       equal(name, normalize(source[name]), normalize(output[name]));
       structure.push({ effect: name, canonicalSha256: blockHash(source[name]), matched: true });
     }
@@ -515,6 +561,7 @@ function auditGDP(original, built) {
     equal(name, normalize(oldMaps[name]), normalize(newMaps[name]));
   return {
     effects: structure,
+    allocations,
     quicksortSpecializations: specializations,
     scenarios: tests,
     mapModes: Object.keys(oldMaps).map((id) => ({ id, matched: true })),

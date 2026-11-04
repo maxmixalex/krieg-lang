@@ -272,6 +272,22 @@ const exactAvailableName:"package_invest_available"=investment.available.name;
   write(project, "src/actions.krg.ts", actionSource);
   write(
     project,
+    "src/parameters.krg.ts",
+    `import {ScriptedEffect} from "krieg-lang/hoi4";
+export const increase=ScriptedEffect("package_increase",{values:"number[]",amount:"number"},(country,{values,amount})=>{
+  values[0]+=amount;
+});
+ScriptedEffect("package_parameters",country=>{
+  let values:number[]=[1,2];
+  increase(country,{values,amount:3});
+  country.run(increase,{values,amount:4});
+  country.everyCountry(other=>increase(other,{values,amount:1}));
+  country.setVariable("package_result",values[0]);
+});
+`,
+  );
+  write(
+    project,
     "src/entrypoints.krg.ts",
     `import {CountryEvent,Decision,DecisionCategory} from "krieg-lang/hoi4";
 import {investment} from "./actions.krg.js";
@@ -349,6 +365,10 @@ export default [krieg.configs.recommended,krieg.configs.styles,{
   assert.match(gui, /spriteType = "GFX_package_badge"/);
   assert.doesNotMatch(gui, /className|composes|var\(|\bStack\b|\bpx\b/);
   const readOutput = (path) => readFileSync(join(project, "build/mod", path), "utf8");
+  const parameters = readOutput("common/scripted_effects/krieg_package_parameters.txt");
+  assert.equal((parameters.match(/_call_package_increase_\d+ = yes/g) ?? []).length, 3);
+  assert.match(parameters, /set_temp_variable =/);
+  assert.doesNotMatch(parameters, /\$|package_increase = \{/);
   const graph = readOutput("common/national_focus/krieg_package_tree.txt");
   assert.match(graph, /prerequisite = \{\s+focus = PKG_industry\s+focus = PKG_relief/);
   assert.match(graph, /mutually_exclusive = \{\s+focus = PKG_relief/);
@@ -559,6 +579,28 @@ ScriptedWindow({name:"wrong_scope",path:"interface/wrong_scope.gui",context:"sel
   for (const sourceLine of [4, 5, 6, 8, 10, 12])
     assert.match(actionErrors, new RegExp(`invalid\\.krg\\.tsx\\(${sourceLine},`));
   rejects(process.execPath, [cli, "check"], [/TS2345/, /TS2322/], project);
+  writeFileSync(
+    invalidPath,
+    `import {ScriptedEffect,StateScriptedEffect} from "krieg-lang/hoi4";
+import {increase} from "./parameters.krg.js";
+ScriptedEffect("wrong_parameter",country=>{let values:number[]=[];increase(country,{values,amount:"bad"});});
+StateScriptedEffect("wrong_parameter_scope",state=>{let values:number[]=[];increase(state,{values,amount:1});});
+`,
+  );
+  rejects(process.execPath, [tsc, "--noEmit", "--pretty", "false"], [/TS2322/, /TS2345/], project);
+  rejects(process.execPath, [cli, "check"], [/TS2322/, /TS2345/], project);
+  writeFileSync(
+    invalidPath,
+    `import {ScriptedEffect} from "krieg-lang/hoi4";
+import {increase} from "./parameters.krg.js";
+ScriptedEffect("wrong_array_scope",country=>{
+  const values=country.numberArray("seats");
+  country.everyCountry(other=>increase(other,{values,amount:1}));
+});
+`,
+  );
+  run(process.execPath, [tsc, "--noEmit"], project);
+  rejects(process.execPath, [cli, "check"], [/KRG2613/, /target scope/], project);
   writeFileSync(invalidPath, "const unsafe:any=1;\n");
   rejects(process.execPath, [eslint, "src", "--max-warnings", "0"], [/krieg\/no-any/], project);
   writeFileSync(

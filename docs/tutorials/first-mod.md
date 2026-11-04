@@ -14,12 +14,12 @@ npm run build
 npm pack
 node dist/cli.js init ../hello-krieg
 cd ../hello-krieg
-npm install ../krieg-lang/krieg-lang-0.5.0.tgz
+npm install ../krieg-lang/krieg-lang-0.6.0.tgz
 npx krieg check
 npx krieg build
 ```
 
-`npm pack` 生成本地安装包。若使用 [GitHub Actions 成功 CI](https://github.com/maxmixalex/krieg-lang/actions/workflows/ci.yml) 的 `krieg-npm-package` 归档，先解压并核对 `SHA256SUMS`，再用 `npx --yes --package=./krieg-lang-0.5.0.tgz krieg init hello-krieg` 创建项目，在项目中安装该 `.tgz`。CI 归档保留 30 天；流程不向 npm registry 发布版本。
+`npm pack` 生成本地安装包。若使用 [GitHub Actions 成功 CI](https://github.com/maxmixalex/krieg-lang/actions/workflows/ci.yml) 的 `krieg-npm-package` 归档，先解压并核对 `SHA256SUMS`，再用 `npx --yes --package=./krieg-lang-0.6.0.tgz krieg init hello-krieg` 创建项目，在项目中安装该 `.tgz`。CI 归档保留 30 天；流程不向 npm registry 发布版本。
 
 ## 理解项目中的文件 {#_3}
 

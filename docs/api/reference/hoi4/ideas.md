@@ -18,7 +18,7 @@
 
 > **Idea**(`spec`: [`IdeaSpec`](#ideaspec)): [`IdentifiedDefinition`](scope-selection.md#identifieddefinition)
 
-Defined in: [src/sdk/index.ts:630](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L630)
+Defined in: [src/sdk/index.ts:679](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L679)
 
 ### Parameters { #idea-section-parameters }
 
@@ -33,41 +33,41 @@ Defined in: [src/sdk/index.ts:630](https://github.com/maxmixalex/krieg-lang/blob
 
 ## IdeaSpec { #ideaspec }
 
-Defined in: [src/sdk/index.ts:618](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L618)
+Defined in: [src/sdk/index.ts:667](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L667)
 
 ### Properties { #ideaspec-section-properties }
 
 | Property | Type | Description | Defined in |
 | ------ | ------ | ------ | ------ |
-| <a id="ideaspec-property-allowed"></a> `allowed?` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | - | [src/sdk/index.ts:621](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L621) |
-| <a id="ideaspec-property-allowedcivilwar"></a> `allowedCivilWar?` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | Eligibility for retaining this idea when a civil-war country is created. | [src/sdk/index.ts:623](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L623) |
-| <a id="ideaspec-property-id"></a> `id` | `string` | - | [src/sdk/index.ts:619](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L619) |
-| <a id="ideaspec-property-modifier"></a> `modifier?` | [`IdeaModifiers`](#ideamodifiers) | - | [src/sdk/index.ts:626](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L626) |
-| <a id="ideaspec-property-onadd"></a> `onAdd?` | [`Effect`](scope-selection.md#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | - | [src/sdk/index.ts:627](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L627) |
-| <a id="ideaspec-property-onremove"></a> `onRemove?` | [`Effect`](scope-selection.md#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | - | [src/sdk/index.ts:628](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L628) |
-| <a id="ideaspec-property-picture"></a> `picture?` | `string` | - | [src/sdk/index.ts:620](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L620) |
-| <a id="ideaspec-property-removalcost"></a> `removalCost?` | `number` | - | [src/sdk/index.ts:625](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L625) |
-| <a id="ideaspec-property-visible"></a> `visible?` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | - | [src/sdk/index.ts:624](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L624) |
+| <a id="ideaspec-property-allowed"></a> `allowed?` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | - | [src/sdk/index.ts:670](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L670) |
+| <a id="ideaspec-property-allowedcivilwar"></a> `allowedCivilWar?` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | Eligibility for retaining this idea when a civil-war country is created. | [src/sdk/index.ts:672](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L672) |
+| <a id="ideaspec-property-id"></a> `id` | `string` | - | [src/sdk/index.ts:668](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L668) |
+| <a id="ideaspec-property-modifier"></a> `modifier?` | [`IdeaModifiers`](#ideamodifiers) | - | [src/sdk/index.ts:675](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L675) |
+| <a id="ideaspec-property-onadd"></a> `onAdd?` | [`Effect`](scope-selection.md#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | - | [src/sdk/index.ts:676](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L676) |
+| <a id="ideaspec-property-onremove"></a> `onRemove?` | [`Effect`](scope-selection.md#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | - | [src/sdk/index.ts:677](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L677) |
+| <a id="ideaspec-property-picture"></a> `picture?` | `string` | - | [src/sdk/index.ts:669](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L669) |
+| <a id="ideaspec-property-removalcost"></a> `removalCost?` | `number` | - | [src/sdk/index.ts:674](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L674) |
+| <a id="ideaspec-property-visible"></a> `visible?` | [`Trigger`](scope-selection.md#trigger)&lt;[`CountryScope`](country-scope.md#countryscope)&gt; | - | [src/sdk/index.ts:673](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L673) |
 
 
 ## IdeaModifiers { #ideamodifiers }
 
-Defined in: [src/sdk/index.ts:606](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L606)
+Defined in: [src/sdk/index.ts:655](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L655)
 
 ### Properties { #ideamodifiers-section-properties }
 
 | Property | Type | Defined in |
 | ------ | ------ | ------ |
-| <a id="ideamodifiers-property-army_org_factor"></a> `army_org_factor?` | `number` | [src/sdk/index.ts:616](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L616) |
-| <a id="ideamodifiers-property-conscription_factor"></a> `conscription_factor?` | `number` | [src/sdk/index.ts:615](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L615) |
-| <a id="ideamodifiers-property-consumer_goods_factor"></a> `consumer_goods_factor?` | `number` | [src/sdk/index.ts:611](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L611) |
-| <a id="ideamodifiers-property-industrial_capacity_factory"></a> `industrial_capacity_factory?` | `number` | [src/sdk/index.ts:613](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L613) |
-| <a id="ideamodifiers-property-political_power_factor"></a> `political_power_factor?` | `number` | [src/sdk/index.ts:610](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L610) |
-| <a id="ideamodifiers-property-political_power_gain"></a> `political_power_gain?` | `number` | [src/sdk/index.ts:609](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L609) |
-| <a id="ideamodifiers-property-production_speed_buildings_factor"></a> `production_speed_buildings_factor?` | `number` | [src/sdk/index.ts:612](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L612) |
-| <a id="ideamodifiers-property-research_speed_factor"></a> `research_speed_factor?` | `number` | [src/sdk/index.ts:614](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L614) |
-| <a id="ideamodifiers-property-stability_factor"></a> `stability_factor?` | `number` | [src/sdk/index.ts:607](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L607) |
-| <a id="ideamodifiers-property-war_support_factor"></a> `war_support_factor?` | `number` | [src/sdk/index.ts:608](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L608) |
+| <a id="ideamodifiers-property-army_org_factor"></a> `army_org_factor?` | `number` | [src/sdk/index.ts:665](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L665) |
+| <a id="ideamodifiers-property-conscription_factor"></a> `conscription_factor?` | `number` | [src/sdk/index.ts:664](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L664) |
+| <a id="ideamodifiers-property-consumer_goods_factor"></a> `consumer_goods_factor?` | `number` | [src/sdk/index.ts:660](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L660) |
+| <a id="ideamodifiers-property-industrial_capacity_factory"></a> `industrial_capacity_factory?` | `number` | [src/sdk/index.ts:662](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L662) |
+| <a id="ideamodifiers-property-political_power_factor"></a> `political_power_factor?` | `number` | [src/sdk/index.ts:659](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L659) |
+| <a id="ideamodifiers-property-political_power_gain"></a> `political_power_gain?` | `number` | [src/sdk/index.ts:658](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L658) |
+| <a id="ideamodifiers-property-production_speed_buildings_factor"></a> `production_speed_buildings_factor?` | `number` | [src/sdk/index.ts:661](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L661) |
+| <a id="ideamodifiers-property-research_speed_factor"></a> `research_speed_factor?` | `number` | [src/sdk/index.ts:663](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L663) |
+| <a id="ideamodifiers-property-stability_factor"></a> `stability_factor?` | `number` | [src/sdk/index.ts:656](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L656) |
+| <a id="ideamodifiers-property-war_support_factor"></a> `war_support_factor?` | `number` | [src/sdk/index.ts:657](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L657) |
 
 
 ## IdeaId { #ideaid }

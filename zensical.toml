@@ -15,6 +15,7 @@ nav = [
     { "03 国策解锁一项付费行动" = "tutorials/focus-and-action.md" },
     { "04 用 TSX 连接同一个行动" = "tutorials/action-window.md" },
     { "05 迁移一份原生脚本" = "tutorials/native-port.md" },
+    { "06 在两个仓库间调拨补给" = "tutorials/typed-allocation.md" },
   ] },
   { "Guides · 领域手册" = [
     { "按领域查找" = "guide/index.md" },

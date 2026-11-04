@@ -28,6 +28,18 @@ test("ordinary TypeScript syntax and typed callbacks use the stock parser", asyn
   assert.deepEqual(messages, []);
 });
 
+test("the recommended Krieg config preserves runtime array declarations under a prefer-const base config", async () => {
+  const composed = new ESLint({
+    overrideConfigFile: true,
+    overrideConfig: [{ rules: { "prefer-const": "error" } }, plugin.configs.recommended],
+  });
+  const [result] = await composed.lintText(
+    "function store(n: number) { let values = [n]; values.push(2); }",
+    { filePath: "stores.krg.ts" },
+  );
+  assert.deepEqual(result.messages, []);
+});
+
 test("unsupported runtime syntax and any have useful locations", async () => {
   const messages = await lint("const value: any = 1;\nwhile (value) { console.log(value); }\n");
   assert.ok(messages.some((message) => message.ruleId === "krieg/no-any" && message.line === 1));

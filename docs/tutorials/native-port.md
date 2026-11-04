@@ -23,7 +23,7 @@ tutorial_legacy_aid = {
 ```sh
 npx krieg import ../old-aid.txt --out ../migrated-aid   --path common/scripted_effects/tutorial_legacy_aid.txt
 cd ../migrated-aid
-npm install ../krieg-lang/krieg-lang-0.5.0.tgz
+npm install ../krieg-lang/krieg-lang-0.6.0.tgz
 npx krieg check
 npx krieg build
 ```

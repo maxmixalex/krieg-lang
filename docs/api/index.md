@@ -4,7 +4,7 @@
 
 先选择你要完成的任务。每张任务参考将函数、输入 Spec、选项和返回句柄放在一起，先解释用途与写法，再连续列出完整参数和字段。所有签名由 **TypeDoc** 从当前公开入口生成，与教程共享 Zensical 导航和站内搜索。
 
-当前版本：`0.5.0`。编写 `.krg.ts` / `.krg.tsx` 时使用 `krieg-lang/hoi4` 和 `krieg-lang/ui`；Node.js 工具使用编译器、项目或 PDX 入口。
+当前版本：`0.6.0`。编写 `.krg.ts` / `.krg.tsx` 时使用 `krieg-lang/hoi4` 和 `krieg-lang/ui`；Node.js 工具使用编译器、项目或 PDX 入口。
 
 ## 按写作任务查找
 

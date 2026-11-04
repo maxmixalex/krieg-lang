@@ -1,6 +1,6 @@
 {
   "formatVersion": 3,
-  "packageVersion": "0.5.0",
+  "packageVersion": "0.6.0",
   "generator": {
     "name": "TypeDoc",
     "version": "0.28.20",
@@ -3200,6 +3200,14 @@
     },
     {
       "module": "krieg-lang/hoi4",
+      "name": "ScriptedArguments",
+      "page": "reference/hoi4/scripted-effects.md#scriptedarguments",
+      "source": "src/sdk/index.ts",
+      "legacyPage": "reference/hoi4/type-aliases/ScriptedArguments.md",
+      "kind": "TypeAlias"
+    },
+    {
+      "module": "krieg-lang/hoi4",
       "name": "ScriptedEffect",
       "page": "reference/hoi4/scripted-effects.md#scriptedeffect",
       "source": "src/sdk/index.ts",
@@ -3317,6 +3325,14 @@
       "source": "src/sdk/domains.ts",
       "legacyPage": "reference/hoi4/interfaces/ScriptedMapModeSpec.md",
       "kind": "Interface"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "ScriptedParameters",
+      "page": "reference/hoi4/scripted-effects.md#scriptedparameters",
+      "source": "src/sdk/index.ts",
+      "legacyPage": "reference/hoi4/type-aliases/ScriptedParameters.md",
+      "kind": "TypeAlias"
     },
     {
       "module": "krieg-lang/hoi4",
@@ -3884,6 +3900,30 @@
       "page": "reference/hoi4/scope-selection.md#variablename",
       "source": "src/sdk/index.ts",
       "legacyPage": "reference/hoi4/type-aliases/VariableName.md",
+      "kind": "TypeAlias"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "variableState",
+      "page": "reference/hoi4/scope-selection.md#variablestate-function",
+      "source": "src/sdk/index.ts",
+      "legacyPage": "reference/hoi4/functions/variableState.md",
+      "kind": "Function"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "VariableState",
+      "page": "reference/hoi4/scope-selection.md#variablestate-interface",
+      "source": "src/sdk/index.ts",
+      "legacyPage": "reference/hoi4/interfaces/VariableState.md",
+      "kind": "Interface"
+    },
+    {
+      "module": "krieg-lang/hoi4",
+      "name": "VariableStateValues",
+      "page": "reference/hoi4/scope-selection.md#variablestatevalues",
+      "source": "src/sdk/index.ts",
+      "legacyPage": "reference/hoi4/type-aliases/VariableStateValues.md",
       "kind": "TypeAlias"
     },
     {
@@ -12843,6 +12883,9 @@
         "IdentifiedDefinition",
         "FlagId",
         "VariableName",
+        "variableState",
+        "VariableState",
+        "VariableStateValues",
         "AssetId"
       ]
     },
@@ -12974,6 +13017,8 @@
         "ScriptedEffect",
         "StateScriptedEffect",
         "ScriptedEffectDefinition",
+        "ScriptedParameters",
+        "ScriptedArguments",
         "ScriptedEffectFamily",
         "ScriptedEffectFamilyDefinition",
         "ScriptedVariants",

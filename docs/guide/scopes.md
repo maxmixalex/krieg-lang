@@ -76,6 +76,32 @@ ScriptedEffect("support_germany", (scope: CountryScope) => {
 
 这个示例要求项目的有效世界中存在 `GER`。`countries.GER` 来自 `@project/countries`，`states[1]` 来自 `@project/states`；没有出现在项目视图中的成员会触发类型错误。SDK 也提供 `country("GER")` 与 `state(1)` 这些较低层的引用构造器，但它们的参数类型本身不枚举完整世界。不要把随意的字符串强制断言为 `CountryRef` 来绕过检查。
 
+## 有类型的游戏变量 {#typed-variable-state}
+
+`variableState` 用一份显式映射声明数值变量。全局变量直接作为对象属性读写，编辑器补全属性名并检查数值类型。
+
+```typescript
+import { ScriptedEffect, ScriptedTrigger, variableState } from "krieg-lang/hoi4";
+
+export const uno = variableState("global", { dealing: "ku_dealing" });
+const playerState = variableState("country", { score: "ku_score" });
+
+ScriptedTrigger("dealing_finished", (country) => uno.dealing <= 0);
+ScriptedEffect("start_dealing", (country) => {
+  uno.dealing = 42;
+  const player = country.variables(playerState);
+  player.score = 0;
+  country.everyState((state) => {
+    player.score += 1;
+    uno.dealing -= 1;
+  });
+});
+```
+
+`uno.dealing` 对应 `global.ku_dealing`。国家或地区变量布局通过相应作用域的 `variables` 绑定，跨回调捕获后仍指向原来的游戏对象。映射中的原生名字必须是简单标识符。同一布局不能把两个属性映射到同一个变量。
+
+声明布局不会初始化存档里的值。读取发生在游戏回调中，写入仅允许在效果回调中，支持 `=`、`+=`、`-=`、`*=`、`/=`、`%=` 和独立的 `++`、`--`。将属性保存为数值 `const` 会取得当前值的快照。需要直接操作原生命名路径时，可以继续使用 `variable`、`setVariable` 等 API。
+
 ## 在游戏运行时遍历 {#_4}
 
 `everyCountry` 可以接受一个条件回调和一个效果回调：

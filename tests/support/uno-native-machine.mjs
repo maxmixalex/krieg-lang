@@ -29,11 +29,13 @@ export class UnoNativeMachine {
       ai: i > 0,
     }));
     this.targets = {};
+    this.temporary = {};
     this.events = [];
     this.sounds = [];
     this.seed = seed;
   }
-  variable(name, country) {
+  variable(name, country, includeTemporary = true) {
+    if (includeTemporary && Object.hasOwn(this.temporary, name)) return this.temporary[name];
     const parts = name.split(".");
     const target = parts[0] === "global" ? this.global : country;
     const key = parts[0] === "global" ? parts.slice(1).join(".") : name;
@@ -107,7 +109,12 @@ export class UnoNativeMachine {
   run(name, country = this.countries[0]) {
     const block = this.definitions.get(name);
     assert.ok(block, `Missing effect ${name}`);
-    this.execute(block, country, country);
+    this.temporary = {};
+    try {
+      this.execute(block, country, country);
+    } finally {
+      this.temporary = {};
+    }
   }
   execute(block, country, root = country) {
     let branchTaken = false;
@@ -169,32 +176,33 @@ export class UnoNativeMachine {
         continue;
       }
       if (key === "modifier") continue;
+      const operation = key.replace(/_temp_variable$/, "_variable");
       if (
         [
           "set_variable",
-          "set_temp_variable",
           "add_to_variable",
-          "add_to_temp_variable",
           "subtract_from_variable",
           "multiply_variable",
           "divide_variable",
-        ].includes(key)
+          "modulo_variable",
+        ].includes(operation)
       ) {
         const map = fields(value),
           entry = properties(value)[0],
           name = map.var ? atom(map.var) : entry.key.text;
+        const temporary = key !== operation;
         const amount = this.number(map.value ?? entry.value, country),
-          before = this.variable(name, country);
+          before = temporary ? (this.temporary[name] ?? 0) : this.variable(name, country, false);
         const result = {
           set_variable: amount,
-          set_temp_variable: amount,
           add_to_variable: before + amount,
-          add_to_temp_variable: before + amount,
           subtract_from_variable: before - amount,
           multiply_variable: before * amount,
           divide_variable: before / amount,
-        }[key];
-        this.set(name, result, country);
+          modulo_variable: before % amount,
+        }[operation];
+        if (temporary) this.temporary[name] = result;
+        else this.set(name, result, country);
         continue;
       }
       if (key === "clear_variable") {

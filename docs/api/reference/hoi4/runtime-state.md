@@ -5,7 +5,7 @@
 
 [API 任务入口](../../index.md) · [公开模块](../index.md)
 
-`scope.variable(name)` 读取已有游戏变量，`setVariable`、`addVariable`、`multiplyVariable` 等方法更新具名值，临时变量使用相应 Temp 方法。ROOT 与 global 引用跨嵌套作用域保持绝对名称。`countryTarget` 和 `stateTarget` 明确选择 ROOT、FROM.FROM 或保存的作用域；国家与州引用不能混用。`everyGlobalState` 遍历世界全部州，`everyState` 遍历当前国家拥有的州。`forRange` 的 end 不包含在循环中，`whileLoop` 与 forRange 保持当前作用域，并受游戏 MAX_EFFECT_ITERATION 上限约束。
+用 `variableState` 为持久数值声明有补全的字段。局部 `let` 与数值数组使用临时存储，`for`、`while` 与数组的 `for...of` 在游戏中执行。`scope.variable(name)` 读取已有游戏变量，`setVariable`、`addVariable`、`multiplyVariable` 等方法更新具名值，临时变量使用相应 Temp 方法。ROOT 与 global 引用跨嵌套作用域保持绝对名称。`countryTarget` 和 `stateTarget` 明确选择 ROOT、FROM.FROM 或保存的作用域；国家与州引用不能混用。`everyGlobalState` 遍历世界全部州，`everyState` 遍历当前国家拥有的州。`forRange` 的 end 不包含在循环中，`whileLoop` 与 forRange 保持当前作用域，并受游戏 MAX_EFFECT_ITERATION 上限约束。
 
 ## 本页参考
 

@@ -28,7 +28,7 @@ DefinitionSeries(1,3,slot=>DynamicModifier({id:"office_"+slot,entries:{political
 
 > **DefinitionSeries**(`first`: `number`, `count`: `number`, `define`: (`index`: `number`) => [`Definition`](scope-selection.md#definition) \| readonly [`Definition`](scope-selection.md#definition)[]): [`Definition`](scope-selection.md#definition)
 
-Defined in: [src/sdk/index.ts:111](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L111)
+Defined in: [src/sdk/index.ts:133](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L133)
 
 Instantiate native declarations at build time. Useful for indexed sprites, modifiers and content families.
 `count` is bounded; no iteration or callback runs inside the game. Each declaration keeps its ordinary type rules.
@@ -52,7 +52,7 @@ Instantiate native declarations at build time. Useful for indexed sprites, modif
 
 > **FlagAchievements**(`uniqueId`: `string`, `options`: [`FlagAchievementSpec`](#flagachievementspec) & `object`): [`AchievementStorageBank`](#achievementstoragebank)
 
-Defined in: [src/sdk/index.ts:131](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L131)
+Defined in: [src/sdk/index.ts:153](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L153)
 
 Expose a sequence of numbered game flags as individual achievements in one native achievement group.
 The storage overload generates load/mark effects for a zero-based array.
@@ -72,7 +72,7 @@ The storage overload generates load/mark effects for a zero-based array.
 
 > **FlagAchievements**(`uniqueId`: `string`, `options`: [`FlagAchievementSpec`](#flagachievementspec)): [`Definition`](scope-selection.md#definition)
 
-Defined in: [src/sdk/index.ts:142](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L142)
+Defined in: [src/sdk/index.ts:164](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L164)
 
 Expose a sequence of numbered game flags as individual achievements in one native achievement group.
 The storage overload generates load/mark effects for a zero-based array.
@@ -91,7 +91,7 @@ The storage overload generates load/mark effects for a zero-based array.
 
 ## FlagAchievementSpec { #flagachievementspec }
 
-Defined in: [src/sdk/index.ts:117](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L117)
+Defined in: [src/sdk/index.ts:139](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L139)
 
 A finite, stable flag namespace; do not renumber flags in an existing save format.
 
@@ -99,16 +99,16 @@ A finite, stable flag namespace; do not renumber flags in an existing save forma
 
 | Property | Modifier | Type | Defined in |
 | ------ | ------ | ------ | ------ |
-| <a id="flagachievementspec-property-count"></a> `count` | `readonly` | `number` | [src/sdk/index.ts:119](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L119) |
-| <a id="flagachievementspec-property-first"></a> `first?` | `readonly` | `number` | [src/sdk/index.ts:120](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L120) |
-| <a id="flagachievementspec-property-outputpath"></a> `outputPath?` | `readonly` | `string` | [src/sdk/index.ts:122](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L122) |
-| <a id="flagachievementspec-property-prefix"></a> `prefix` | `readonly` | `string` | [src/sdk/index.ts:118](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L118) |
-| <a id="flagachievementspec-property-scope"></a> `scope?` | `readonly` | `"country"` \| `"global"` | [src/sdk/index.ts:121](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L121) |
+| <a id="flagachievementspec-property-count"></a> `count` | `readonly` | `number` | [src/sdk/index.ts:141](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L141) |
+| <a id="flagachievementspec-property-first"></a> `first?` | `readonly` | `number` | [src/sdk/index.ts:142](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L142) |
+| <a id="flagachievementspec-property-outputpath"></a> `outputPath?` | `readonly` | `string` | [src/sdk/index.ts:144](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L144) |
+| <a id="flagachievementspec-property-prefix"></a> `prefix` | `readonly` | `string` | [src/sdk/index.ts:140](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L140) |
+| <a id="flagachievementspec-property-scope"></a> `scope?` | `readonly` | `"country"` \| `"global"` | [src/sdk/index.ts:143](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L143) |
 
 
 ## AchievementStorageBank { #achievementstoragebank }
 
-Defined in: [src/sdk/index.ts:125](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L125)
+Defined in: [src/sdk/index.ts:147](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L147)
 
 Handles for reading a persistent flag bank into an array and setting its indexed bit.
 
@@ -120,9 +120,9 @@ Handles for reading a persistent flag bank into an array and setting its indexed
 
 | Property | Modifier | Type | Defined in |
 | ------ | ------ | ------ | ------ |
-| <a id="achievementstoragebank-property-__kriegdefinition"></a> `__kriegDefinition` | `readonly` | *typeof* [`__kriegDefinition`](scope-selection.md#definition-property-__kriegdefinition) | [src/sdk/index.ts:84](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L84) |
-| <a id="achievementstoragebank-property-load"></a> `load` | `readonly` | [`ScriptedEffectDefinition`](scripted-effects.md#scriptedeffectdefinition)&lt;`"country"`&gt; | [src/sdk/index.ts:126](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L126) |
-| <a id="achievementstoragebank-property-mark"></a> `mark` | `readonly` | [`ScriptedEffectDefinition`](scripted-effects.md#scriptedeffectdefinition)&lt;`"country"`&gt; | [src/sdk/index.ts:127](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L127) |
+| <a id="achievementstoragebank-property-__kriegdefinition"></a> `__kriegDefinition` | `readonly` | *typeof* [`__kriegDefinition`](scope-selection.md#definition-property-__kriegdefinition) | [src/sdk/index.ts:106](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L106) |
+| <a id="achievementstoragebank-property-load"></a> `load` | `readonly` | [`ScriptedEffectDefinition`](scripted-effects.md#scriptedeffectdefinition)&lt;`"country"`&gt; | [src/sdk/index.ts:148](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L148) |
+| <a id="achievementstoragebank-property-mark"></a> `mark` | `readonly` | [`ScriptedEffectDefinition`](scripted-effects.md#scriptedeffectdefinition)&lt;`"country"`&gt; | [src/sdk/index.ts:149](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L149) |
 
 
 ## indexBy() { #indexby }
@@ -131,7 +131,7 @@ Handles for reading a persistent flag bank into an array and setting its indexed
 
 > **indexBy**&lt;`Row`, `Key` *extends* `string`&gt;(`rows`: readonly `Row`[], `key`: (`row`: `Row`, `index`: `number`) => `Key`): `Readonly`&lt;`Record`&lt;`Key`, `Row`&gt;&gt;
 
-Defined in: [src/sdk/index.ts:100](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L100)
+Defined in: [src/sdk/index.ts:122](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L122)
 
 Index a finite catalogue without erasing its exact keys. Duplicate keys are compile errors.
 
@@ -157,7 +157,7 @@ Index a finite catalogue without erasing its exact keys. Duplicate keys are comp
 
 > **indexBy**&lt;`Row`, `Key` *extends* `string`, `Out`&gt;(`rows`: readonly `Row`[], `key`: (`row`: `Row`, `index`: `number`) => `Key`, `value`: (`row`: `Row`, `index`: `number`) => `Out`): `Readonly`&lt;`Record`&lt;`Key`, `Out`&gt;&gt;
 
-Defined in: [src/sdk/index.ts:104](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L104)
+Defined in: [src/sdk/index.ts:126](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L126)
 
 Index a finite catalogue without erasing its exact keys. Duplicate keys are compile errors.
 
@@ -186,7 +186,7 @@ Index a finite catalogue without erasing its exact keys. Duplicate keys are comp
 
 > **gameScripts**&lt;`S` *extends* keyof [`GeneratedEffectsByScope`](../../commands/index.md), `T` *extends* readonly `string`[] = readonly \[\], `E` *extends* readonly `string`[] = readonly \[\]&gt;(`scope`: `S`, `contract`: `object`): `object`
 
-Defined in: [src/sdk/index.ts:88](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L88)
+Defined in: [src/sdk/index.ts:110](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L110)
 
 Declare the exact scripted interfaces supplied by a dependency or the game.
 Emits no duplicate definitions. Handles can be passed only to a matching scope.
@@ -214,8 +214,8 @@ Emits no duplicate definitions. Handles can be passed only to a matching scope.
 
 | Name | Type | Defined in |
 | ------ | ------ | ------ |
-| `effects` | `{ readonly [Name in string]: ScriptedEffectDefinition<S> }` | [src/sdk/index.ts:97](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L97) |
-| `triggers` | `{ readonly [Name in string]: ScriptedTriggerDefinition<S> }` | [src/sdk/index.ts:96](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L96) |
+| `effects` | `{ readonly [Name in string]: ScriptedEffectDefinition<S, undefined> }` | [src/sdk/index.ts:119](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L119) |
+| `triggers` | `{ readonly [Name in string]: ScriptedTriggerDefinition<S> }` | [src/sdk/index.ts:118](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L118) |
 
 
 ## 完整示例与工作流

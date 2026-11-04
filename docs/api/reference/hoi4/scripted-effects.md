@@ -14,6 +14,8 @@
 - [ScriptedEffect](#scriptedeffect)
 - [StateScriptedEffect](#statescriptedeffect)
 - [ScriptedEffectDefinition](#scriptedeffectdefinition)
+- [ScriptedParameters](#scriptedparameters)
+- [ScriptedArguments](#scriptedarguments)
 - [ScriptedEffectFamily](#scriptedeffectfamily)
 - [ScriptedEffectFamilyDefinition](#scriptedeffectfamilydefinition)
 - [ScriptedVariants](#scriptedvariants)
@@ -25,7 +27,7 @@
 
 > **ScriptedEffect**(`name`: `string`, `effect`: [`Effect`](scope-selection.md#effect)&lt;[`CountryScope`](country-scope.md#countryscope)&gt;): [`ScriptedEffectDefinition`](#scriptedeffectdefinition)&lt;`"country"`&gt;
 
-Defined in: [src/sdk/index.ts:631](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L631)
+Defined in: [src/sdk/index.ts:680](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L680)
 
 #### Parameters { #scriptedeffect-section-parameters }
 
@@ -42,7 +44,7 @@ Defined in: [src/sdk/index.ts:631](https://github.com/maxmixalex/krieg-lang/blob
 
 > **ScriptedEffect**&lt;`S` *extends* keyof [`GeneratedEffectsByScope`](../../commands/index.md)&gt;(`name`: `string`, `scope`: `S`, `effect`: [`Effect`](scope-selection.md#effect)&lt;[`ScopeByName`](scope-selection.md#scopebyname)\[`S`\]&gt;): [`ScriptedEffectDefinition`](#scriptedeffectdefinition)&lt;`S`&gt;
 
-Defined in: [src/sdk/index.ts:635](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L635)
+Defined in: [src/sdk/index.ts:684](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L684)
 
 #### Type Parameters { #scriptedeffect-section-type-parameters }
 
@@ -62,28 +64,116 @@ Defined in: [src/sdk/index.ts:635](https://github.com/maxmixalex/krieg-lang/blob
 
 [`ScriptedEffectDefinition`](#scriptedeffectdefinition)&lt;`S`&gt;
 
+### Call Signature { #scriptedeffect-section-call-signature-2 }
+
+> **ScriptedEffect**&lt;`Parameters` *extends* `Readonly`&lt;`Record`&lt;`string`, `"number"` \| `"number[]"`&gt;&gt;&gt;(`name`: `string`, `parameters`: `Parameters`, `effect`: (`scope`: [`CountryScope`](country-scope.md#countryscope), `parameters`: [`ScriptedArguments`](#scriptedarguments)&lt;`NoInfer`&lt;`Parameters`&gt;&gt;) => `void`): [`ScriptedEffectDefinition`](#scriptedeffectdefinition)&lt;`"country"`, `Parameters`&gt;
+
+Defined in: [src/sdk/index.ts:695](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L695)
+
+Declare typed inputs for a reusable effect. Call with `effect(scope, inputs)`
+or `scope.run(effect, inputs)`.
+
+#### Type Parameters { #scriptedeffect-section-type-parameters-1 }
+
+| Type Parameter |
+| ------ |
+| <a id="scriptedeffect-type-parameter-parameters"></a> `Parameters` *extends* `Readonly`&lt;`Record`&lt;`string`, `"number"` \| `"number[]"`&gt;&gt; |
+
+#### Parameters { #scriptedeffect-section-parameters-2 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `parameters` | `Parameters` |
+| `effect` | (`scope`: [`CountryScope`](country-scope.md#countryscope), `parameters`: [`ScriptedArguments`](#scriptedarguments)&lt;`NoInfer`&lt;`Parameters`&gt;&gt;) => `void` |
+
+#### Returns { #scriptedeffect-section-returns-2 }
+
+[`ScriptedEffectDefinition`](#scriptedeffectdefinition)&lt;`"country"`, `Parameters`&gt;
+
+#### Remarks { #scriptedeffect-section-remarks }
+
+Each static call generates a native specialization invoked with `= yes`.
+Numbers are copied into temporary variables and mutable arrays are borrowed.
+
+### Call Signature { #scriptedeffect-section-call-signature-3 }
+
+> **ScriptedEffect**&lt;`S` *extends* keyof [`GeneratedEffectsByScope`](../../commands/index.md), `Parameters` *extends* `Readonly`&lt;`Record`&lt;`string`, `"number"` \| `"number[]"`&gt;&gt;&gt;(`name`: `string`, `scope`: `S`, `parameters`: `Parameters`, `effect`: (`scope`: [`ScopeByName`](scope-selection.md#scopebyname)\[`NoInfer`&lt;`S`&gt;\], `parameters`: [`ScriptedArguments`](#scriptedarguments)&lt;`NoInfer`&lt;`Parameters`&gt;&gt;) => `void`): [`ScriptedEffectDefinition`](#scriptedeffectdefinition)&lt;`S`, `Parameters`&gt;
+
+Defined in: [src/sdk/index.ts:701](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L701)
+
+Explicit scope variant of a parameterized scripted effect.
+
+#### Type Parameters { #scriptedeffect-section-type-parameters-2 }
+
+| Type Parameter |
+| ------ |
+| <a id="scriptedeffect-type-parameter-s-1"></a> `S` *extends* keyof [`GeneratedEffectsByScope`](../../commands/index.md) |
+| <a id="scriptedeffect-type-parameter-parameters-1"></a> `Parameters` *extends* `Readonly`&lt;`Record`&lt;`string`, `"number"` \| `"number[]"`&gt;&gt; |
+
+#### Parameters { #scriptedeffect-section-parameters-3 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `scope` | `S` |
+| `parameters` | `Parameters` |
+| `effect` | (`scope`: [`ScopeByName`](scope-selection.md#scopebyname)\[`NoInfer`&lt;`S`&gt;\], `parameters`: [`ScriptedArguments`](#scriptedarguments)&lt;`NoInfer`&lt;`Parameters`&gt;&gt;) => `void` |
+
+#### Returns { #scriptedeffect-section-returns-3 }
+
+[`ScriptedEffectDefinition`](#scriptedeffectdefinition)&lt;`S`, `Parameters`&gt;
+
 
 ## StateScriptedEffect() { #statescriptedeffect }
 
+### Call Signature { #statescriptedeffect-section-call-signature }
+
 > **StateScriptedEffect**(`name`: `string`, `effect`: [`Effect`](scope-selection.md#effect)&lt;[`StateScope`](state-scope.md#statescope)&gt;): [`ScriptedEffectDefinition`](#scriptedeffectdefinition)&lt;`"state"`&gt;
 
-Defined in: [src/sdk/index.ts:649](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L649)
+Defined in: [src/sdk/index.ts:722](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L722)
 
-### Parameters { #statescriptedeffect-section-parameters }
+#### Parameters { #statescriptedeffect-section-parameters }
 
 | Parameter | Type |
 | ------ | ------ |
 | `name` | `string` |
 | `effect` | [`Effect`](scope-selection.md#effect)&lt;[`StateScope`](state-scope.md#statescope)&gt; |
 
-### Returns { #statescriptedeffect-section-returns }
+#### Returns { #statescriptedeffect-section-returns }
 
 [`ScriptedEffectDefinition`](#scriptedeffectdefinition)&lt;`"state"`&gt;
 
+### Call Signature { #statescriptedeffect-section-call-signature-1 }
 
-## ScriptedEffectDefinition&lt;S *extends* [`ScopeName`](scope-selection.md#scopename)&gt; { #scriptedeffectdefinition }
+> **StateScriptedEffect**&lt;`Parameters` *extends* `Readonly`&lt;`Record`&lt;`string`, `"number"` \| `"number[]"`&gt;&gt;&gt;(`name`: `string`, `parameters`: `Parameters`, `effect`: (`scope`: [`StateScope`](state-scope.md#statescope), `parameters`: [`ScriptedArguments`](#scriptedarguments)&lt;`NoInfer`&lt;`Parameters`&gt;&gt;) => `void`): [`ScriptedEffectDefinition`](#scriptedeffectdefinition)&lt;`"state"`, `Parameters`&gt;
 
-Defined in: [src/sdk/index.ts:193](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L193)
+Defined in: [src/sdk/index.ts:727](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L727)
+
+Declare a parameterized effect callable from state scope.
+
+#### Type Parameters { #statescriptedeffect-section-type-parameters }
+
+| Type Parameter |
+| ------ |
+| <a id="statescriptedeffect-type-parameter-parameters"></a> `Parameters` *extends* `Readonly`&lt;`Record`&lt;`string`, `"number"` \| `"number[]"`&gt;&gt; |
+
+#### Parameters { #statescriptedeffect-section-parameters-1 }
+
+| Parameter | Type |
+| ------ | ------ |
+| `name` | `string` |
+| `parameters` | `Parameters` |
+| `effect` | (`scope`: [`StateScope`](state-scope.md#statescope), `parameters`: [`ScriptedArguments`](#scriptedarguments)&lt;`NoInfer`&lt;`Parameters`&gt;&gt;) => `void` |
+
+#### Returns { #statescriptedeffect-section-returns-1 }
+
+[`ScriptedEffectDefinition`](#scriptedeffectdefinition)&lt;`"state"`, `Parameters`&gt;
+
+
+## ScriptedEffectDefinition()&lt;S *extends* [`ScopeName`](scope-selection.md#scopename), Parameters *extends* [`ScriptedParameters`](#scriptedparameters) \| `undefined` = `undefined`&gt; { #scriptedeffectdefinition }
+
+Defined in: [src/sdk/index.ts:221](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L221)
 
 ### Extends { #scriptedeffectdefinition-section-extends }
 
@@ -91,18 +181,58 @@ Defined in: [src/sdk/index.ts:193](https://github.com/maxmixalex/krieg-lang/blob
 
 ### Type Parameters { #scriptedeffectdefinition-section-type-parameters }
 
-| Type Parameter |
-| ------ |
-| <a id="scriptedeffectdefinition-type-parameter-s"></a> `S` *extends* [`ScopeName`](scope-selection.md#scopename) |
+| Type Parameter | Default type |
+| ------ | ------ |
+| <a id="scriptedeffectdefinition-type-parameter-s"></a> `S` *extends* [`ScopeName`](scope-selection.md#scopename) | - |
+| <a id="scriptedeffectdefinition-type-parameter-parameters"></a> `Parameters` *extends* [`ScriptedParameters`](#scriptedparameters) \| `undefined` | `undefined` |
+
+> **ScriptedEffectDefinition**(...`args`: `Parameters` *extends* `Readonly`&lt;`Record`&lt;`string`, `"number"` \| `"number[]"`&gt;&gt; ? \[`scope`: [`ScopeByName`](scope-selection.md#scopebyname)\[`S`\], `parameters`: [`ScriptedArguments`](#scriptedarguments)&lt;`Parameters`&gt;\] : \[`scope`: [`ScopeByName`](scope-selection.md#scopebyname)\[`S`\], `invocationValue?`: `boolean`\]): `void`
+
+Defined in: [src/sdk/index.ts:225](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L225)
+
+### Parameters { #scriptedeffectdefinition-section-parameters }
+
+| Parameter | Type |
+| ------ | ------ |
+| ...`args` | `Parameters` *extends* `Readonly`&lt;`Record`&lt;`string`, `"number"` \| `"number[]"`&gt;&gt; ? \[`scope`: [`ScopeByName`](scope-selection.md#scopebyname)\[`S`\], `parameters`: [`ScriptedArguments`](#scriptedarguments)&lt;`Parameters`&gt;\] : \[`scope`: [`ScopeByName`](scope-selection.md#scopebyname)\[`S`\], `invocationValue?`: `boolean`\] |
+
+### Returns { #scriptedeffectdefinition-section-returns }
+
+`void`
 
 ### Properties { #scriptedeffectdefinition-section-properties }
 
 | Property | Modifier | Type | Defined in |
 | ------ | ------ | ------ | ------ |
-| <a id="scriptedeffectdefinition-property-__effect"></a> `__effect` | `readonly` | *typeof* `__effect` | [src/sdk/index.ts:196](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L196) |
-| <a id="scriptedeffectdefinition-property-__kriegdefinition"></a> `__kriegDefinition` | `readonly` | *typeof* [`__kriegDefinition`](scope-selection.md#definition-property-__kriegdefinition) | [src/sdk/index.ts:84](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L84) |
-| <a id="scriptedeffectdefinition-property-name"></a> `name` | `readonly` | `string` | [src/sdk/index.ts:194](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L194) |
-| <a id="scriptedeffectdefinition-property-scope"></a> `scope` | `readonly` | `S` | [src/sdk/index.ts:195](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L195) |
+| <a id="scriptedeffectdefinition-property-__effect"></a> `__effect` | `readonly` | *typeof* `__effect` | [src/sdk/index.ts:232](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L232) |
+| <a id="scriptedeffectdefinition-property-__kriegdefinition"></a> `__kriegDefinition` | `readonly` | *typeof* [`__kriegDefinition`](scope-selection.md#definition-property-__kriegdefinition) | [src/sdk/index.ts:106](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L106) |
+| <a id="scriptedeffectdefinition-property-__parameters"></a> `__parameters?` | `readonly` | `Parameters` | [src/sdk/index.ts:233](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L233) |
+| <a id="scriptedeffectdefinition-property-name"></a> `name` | `readonly` | `string` | [src/sdk/index.ts:230](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L230) |
+| <a id="scriptedeffectdefinition-property-scope"></a> `scope` | `readonly` | `S` | [src/sdk/index.ts:231](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L231) |
+
+
+## ScriptedParameters { #scriptedparameters }
+
+> **ScriptedParameters** = `Readonly`&lt;`Record`&lt;`string`, `"number"` \| `"number[]"`&gt;&gt;
+
+Defined in: [src/sdk/index.ts:216](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L216)
+
+Typed inputs for a scripted effect. Numeric arrays are borrowed mutable references.
+
+
+## ScriptedArguments&lt;Parameters *extends* [`ScriptedParameters`](#scriptedparameters)&gt; { #scriptedarguments }
+
+> **ScriptedArguments**&lt;`Parameters` *extends* [`ScriptedParameters`](#scriptedparameters)&gt; = `{ readonly [Key in keyof Parameters]: Parameters[Key] extends "number[]" ? number[] : number }`
+
+Defined in: [src/sdk/index.ts:218](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L218)
+
+Values inferred from a scripted effect's parameter declaration.
+
+### Type Parameters { #scriptedarguments-section-type-parameters }
+
+| Type Parameter |
+| ------ |
+| <a id="scriptedarguments-type-parameter-parameters"></a> `Parameters` *extends* [`ScriptedParameters`](#scriptedparameters) |
 
 
 ## ScriptedEffectFamily() { #scriptedeffectfamily }
@@ -111,7 +241,7 @@ Defined in: [src/sdk/index.ts:193](https://github.com/maxmixalex/krieg-lang/blob
 
 > **ScriptedEffectFamily**&lt;`Prefix` *extends* `string`, `Variants` *extends* `Readonly`&lt;`Record`&lt;`string`, `Readonly`&lt;`Record`&lt;`string`, [`ScriptedVariantValue`](#scriptedvariantvalue)&gt;&gt;&gt;&gt;&gt;(`prefix`: `Prefix`, `variants`: `Variants`, `effect`: (`scope`: [`CountryScope`](country-scope.md#countryscope), `parameters`: `NoInfer`&lt;`Variants`\[keyof `Variants`\]&gt;) => `void`): [`ScriptedEffectFamilyDefinition`](#scriptedeffectfamilydefinition)&lt;`Prefix`, `"country"`, `Variants`&gt;
 
-Defined in: [src/sdk/index.ts:663](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L663)
+Defined in: [src/sdk/index.ts:742](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L742)
 
 Specialize one typed callback into one native effect per finite variant.
 
@@ -144,7 +274,7 @@ Prefixes and keys must form safe ASCII identifiers; duplicate native names fail.
 
 > **ScriptedEffectFamily**&lt;`Prefix` *extends* `string`, `S` *extends* keyof [`GeneratedEffectsByScope`](../../commands/index.md), `Variants` *extends* `Readonly`&lt;`Record`&lt;`string`, `Readonly`&lt;`Record`&lt;`string`, [`ScriptedVariantValue`](#scriptedvariantvalue)&gt;&gt;&gt;&gt;&gt;(`prefix`: `Prefix`, `scope`: `S`, `variants`: `Variants`, `effect`: (`scope`: [`ScopeByName`](scope-selection.md#scopebyname)\[`NoInfer`&lt;`S`&gt;\], `parameters`: `NoInfer`&lt;`Variants`\[keyof `Variants`\]&gt;) => `void`): [`ScriptedEffectFamilyDefinition`](#scriptedeffectfamilydefinition)&lt;`Prefix`, `S`, `Variants`&gt;
 
-Defined in: [src/sdk/index.ts:672](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L672)
+Defined in: [src/sdk/index.ts:751](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L751)
 
 Explicit scope variant of ScriptedEffectFamily.
 
@@ -174,7 +304,7 @@ Explicit scope variant of ScriptedEffectFamily.
 
 > **ScriptedEffectFamilyDefinition**&lt;`Prefix` *extends* `string`, `S` *extends* [`ScopeName`](scope-selection.md#scopename), `Variants` *extends* [`ScriptedVariants`](#scriptedvariants)&gt; = \{ readonly \[Key in keyof Variants\]: ScriptedEffectDefinition\<S\> & \{ name: \`$\{Prefix\}\_$\{Key & (string \| number)\}\` \} \}
 
-Defined in: [src/sdk/index.ts:211](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L211)
+Defined in: [src/sdk/index.ts:248](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L248)
 
 Exact keys select ordinary native effect handles for their declared scope.
 
@@ -191,7 +321,7 @@ Exact keys select ordinary native effect handles for their declared scope.
 
 > **ScriptedVariants** = `Readonly`&lt;`Record`&lt;`string`, `Readonly`&lt;`Record`&lt;`string`, [`ScriptedVariantValue`](#scriptedvariantvalue)&gt;&gt;&gt;&gt;
 
-Defined in: [src/sdk/index.ts:207](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L207)
+Defined in: [src/sdk/index.ts:244](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L244)
 
 Finite variant names mapped to flat, typed parameter records.
 
@@ -200,7 +330,7 @@ Finite variant names mapped to flat, typed parameter records.
 
 > **ScriptedVariantValue** = `string` \| `number` \| `boolean` \| [`CountryRef`](countries.md#countryref) \| [`StateRef`](states.md#stateref)
 
-Defined in: [src/sdk/index.ts:205](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L205)
+Defined in: [src/sdk/index.ts:242](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L242)
 
 Literal compile-time inputs, never runtime native text substitutions.
 

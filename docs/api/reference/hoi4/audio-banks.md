@@ -17,7 +17,7 @@
 
 > **AudioBank**&lt;`Clips` *extends* `Record`&lt;`string`, `string`&gt;&gt;(`category`: `string`, `spec`: [`AudioBankSpec`](#audiobankspec)&lt;`Clips`&gt;): [`AudioBankDefinition`](#audiobankdefinition)&lt;`Clips`&gt;
 
-Defined in: [src/sdk/index.ts:169](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L169)
+Defined in: [src/sdk/index.ts:191](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L191)
 
 Declare playable audio once and share its checked sound names with GUI controls.
 
@@ -41,7 +41,7 @@ Declare playable audio once and share its checked sound names with GUI controls.
 
 ## AudioBankSpec&lt;Clips *extends* `Record`&lt;`string`, `string`&gt;&gt; { #audiobankspec }
 
-Defined in: [src/sdk/index.ts:147](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L147)
+Defined in: [src/sdk/index.ts:169](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L169)
 
 A group of directly playable clips; each clip emits both sound and soundeffect.
 
@@ -55,24 +55,24 @@ A group of directly playable clips; each clip emits both sound and soundeffect.
 
 | Property | Modifier | Type | Description | Defined in |
 | ------ | ------ | ------ | ------ | ------ |
-| <a id="audiobankspec-property-alwaysload"></a> `alwaysLoad?` | `readonly` | `boolean` | - | [src/sdk/index.ts:154](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L154) |
-| <a id="audiobankspec-property-clips"></a> `clips` | `readonly` | `Clips` | Paths are relative to the game's sound directory. | [src/sdk/index.ts:150](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L150) |
-| <a id="audiobankspec-property-compressor"></a> `compressor?` | `readonly` | `object` | - | [src/sdk/index.ts:155](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L155) |
-| `compressor.attacktime?` | `readonly` | `number` | - | [src/sdk/index.ts:161](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L161) |
-| `compressor.enabled` | `readonly` | `boolean` | - | [src/sdk/index.ts:156](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L156) |
-| `compressor.postgain?` | `readonly` | `number` | - | [src/sdk/index.ts:158](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L158) |
-| `compressor.pregain?` | `readonly` | `number` | - | [src/sdk/index.ts:157](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L157) |
-| `compressor.ratio?` | `readonly` | `number` | - | [src/sdk/index.ts:159](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L159) |
-| `compressor.releasetime?` | `readonly` | `number` | - | [src/sdk/index.ts:162](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L162) |
-| `compressor.threshold?` | `readonly` | `number` | - | [src/sdk/index.ts:160](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L160) |
-| <a id="audiobankspec-property-maxaudible"></a> `maxAudible?` | `readonly` | `number` | Limit simultaneous audible instances; additional plays are ignored at the limit. | [src/sdk/index.ts:153](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L153) |
-| <a id="audiobankspec-property-path"></a> `path` | `readonly` | `` `sound/${string}.asset` `` | - | [src/sdk/index.ts:148](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L148) |
-| <a id="audiobankspec-property-volume"></a> `volume?` | `readonly` | `number` | - | [src/sdk/index.ts:151](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L151) |
+| <a id="audiobankspec-property-alwaysload"></a> `alwaysLoad?` | `readonly` | `boolean` | - | [src/sdk/index.ts:176](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L176) |
+| <a id="audiobankspec-property-clips"></a> `clips` | `readonly` | `Clips` | Paths are relative to the game's sound directory. | [src/sdk/index.ts:172](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L172) |
+| <a id="audiobankspec-property-compressor"></a> `compressor?` | `readonly` | `object` | - | [src/sdk/index.ts:177](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L177) |
+| `compressor.attacktime?` | `readonly` | `number` | - | [src/sdk/index.ts:183](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L183) |
+| `compressor.enabled` | `readonly` | `boolean` | - | [src/sdk/index.ts:178](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L178) |
+| `compressor.postgain?` | `readonly` | `number` | - | [src/sdk/index.ts:180](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L180) |
+| `compressor.pregain?` | `readonly` | `number` | - | [src/sdk/index.ts:179](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L179) |
+| `compressor.ratio?` | `readonly` | `number` | - | [src/sdk/index.ts:181](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L181) |
+| `compressor.releasetime?` | `readonly` | `number` | - | [src/sdk/index.ts:184](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L184) |
+| `compressor.threshold?` | `readonly` | `number` | - | [src/sdk/index.ts:182](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L182) |
+| <a id="audiobankspec-property-maxaudible"></a> `maxAudible?` | `readonly` | `number` | Limit simultaneous audible instances; additional plays are ignored at the limit. | [src/sdk/index.ts:175](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L175) |
+| <a id="audiobankspec-property-path"></a> `path` | `readonly` | `` `sound/${string}.asset` `` | - | [src/sdk/index.ts:170](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L170) |
+| <a id="audiobankspec-property-volume"></a> `volume?` | `readonly` | `number` | - | [src/sdk/index.ts:173](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L173) |
 
 
 ## AudioBankDefinition&lt;Clips *extends* `Record`&lt;`string`, `string`&gt;&gt; { #audiobankdefinition }
 
-Defined in: [src/sdk/index.ts:165](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L165)
+Defined in: [src/sdk/index.ts:187](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L187)
 
 ### Extends { #audiobankdefinition-section-extends }
 
@@ -88,8 +88,8 @@ Defined in: [src/sdk/index.ts:165](https://github.com/maxmixalex/krieg-lang/blob
 
 | Property | Modifier | Type | Defined in |
 | ------ | ------ | ------ | ------ |
-| <a id="audiobankdefinition-property-__kriegdefinition"></a> `__kriegDefinition` | `readonly` | *typeof* [`__kriegDefinition`](scope-selection.md#definition-property-__kriegdefinition) | [src/sdk/index.ts:84](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L84) |
-| <a id="audiobankdefinition-property-sounds"></a> `sounds` | `readonly` | \{ readonly \[Key in string \| number \| symbol\]: Key \} | [src/sdk/index.ts:166](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L166) |
+| <a id="audiobankdefinition-property-__kriegdefinition"></a> `__kriegDefinition` | `readonly` | *typeof* [`__kriegDefinition`](scope-selection.md#definition-property-__kriegdefinition) | [src/sdk/index.ts:106](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L106) |
+| <a id="audiobankdefinition-property-sounds"></a> `sounds` | `readonly` | \{ readonly \[Key in string \| number \| symbol\]: Key \} | [src/sdk/index.ts:188](https://github.com/maxmixalex/krieg-lang/blob/main/src/sdk/index.ts#L188) |
 
 
 ## 完整示例与工作流
